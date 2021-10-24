@@ -198,7 +198,7 @@ document.forms.start.onsubmit = function() {
   show_hide.remove();
   user = blockUser.value;
   randomDragon();
-  console.log(user);
+  // console.log(user);
   return false;
 };
 
