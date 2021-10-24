@@ -1,0 +1,205 @@
+/* html, body {margin: 0; height: 100%; overflow: hidden} */
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 1080px;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: beige;
+}
+
+img {
+    max-width: 100%;
+    border: 10px solid white;
+    border-radius: 20px;
+  }
+  @media (min-width: 800px) {
+    .img {
+      max-width: auto;
+    }
+  }
+
+.welcome{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    /* margin: auto; */
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  z-index: 1;
+}
+
+.welcome li{
+    font-size: 2em;
+    text-align: center;
+    margin-top: 30px;
+    /* font-size: 3em; */
+}
+
+input {
+    border-radius: 30px;
+}
+
+input[type="text"] {
+    font-size: 2em;
+    /* height: 1em; */
+    width: 9em;
+}
+
+input[type="checkbox"] {
+    margin-top: 30px;
+    vertical-align: middle;
+    height: 5em;
+    width: 7em;
+}
+
+input[type="submit"] {
+    height: 250px;
+    width: 250px;
+    font-size: 1em;
+}
+
+input[type="reset"] {
+    height: 250px;
+    width: 250px;
+    font-size: 1em;
+}
+
+p{
+    font-weight: bold;
+}
+/* 
+audio{
+    position: absolute;
+    left: 100px;
+} */
+.show_hide{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* display: none; */
+    top: 0; left: 0; bottom: 0; right: 0;
+    background-color: azure;
+}
+
+.displayNONE {
+    display: none;
+}
+
+.container_image {
+    display: flex;
+    height: 60%;
+    justify-content: center;
+    overflow: hidden;
+    margin: 30px;
+    /* border-radius: 25%; */
+}
+
+.container_moni{
+    margin-top: 0;
+    display: flex;
+    justify-content: stretch;
+    max-height: 20%;
+}
+
+.points {
+    display: block;
+    flex-wrap: nowrap;
+    background-color: chocolate;
+    font-size: 2em;
+    line-height: 0.1em;
+    width: auto;
+    min-width: 20%;
+    border-radius: 10px;
+}
+
+.monitor{
+    line-height: 3em;
+    width: 100%;
+    font-size: 4em;
+    text-align: center;
+    background-color: rgb(43, 107, 226);
+    border-radius: 10px;
+}
+
+.like>.like_points, .dislike>.dislike_points{
+    font-size: 3em;
+    font-weight: bold;
+}
+
+
+.four_buttons {
+    display: flex;
+    width: 100%;
+    justify-content: center;  
+}
+
+button {
+    padding-top: 160px;
+    font-size: 1.1em;
+    font-style: italic;
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    background-size: 90%;
+    background-position-y: 5px;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    background-color: rgb(236, 236, 236);
+ }
+ 
+ .button_1 {
+    display: none;
+    background-image: url(image/buttons/di-din.png);
+ }
+
+ .button_2 {
+    display: none;
+    background-image: url(image/buttons/dili-din.png);
+ }
+
+ .button_3 {
+    display: none;
+    background-image: url(image/buttons/dili-dinli.png);
+ }
+
+ .button_4 {
+    display: none;
+    background-image: url(image/buttons/di-dinli.png);
+ }
+
+ .button_5 {
+    background-image: url(image/Lisenok/like.png);
+    background-position-y: center;
+    background-size: 90%;
+ }
+ 
+ .prize {
+     display: none;
+     position: absolute;
+     width: 100%;
+     height: 100vh;
+     padding-top: 100px;
+     font-size: 5em;
+     color: cornsilk;
+     text-shadow: 1px 1px 2px black, 0 0 1em rgb(255, 255, 255);
+     border-radius: 10px;
+     background-color: rgb(204, 157, 123, 0.9);
+     background-image: url(image/Lisenok/10_dragons.png);
+     background-position-y: 60%;
+     background-position-x: center;
+     background-repeat: no-repeat;
+    
+ }
+
+ .happy_end {
+     display: none;
+ }
