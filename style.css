@@ -180,6 +180,14 @@ button {
     background-size: 90%;
  }
  
+ .playBtn {
+    display: none;
+    background-image: url(image/buttons/play.png);
+    background-position-y: center;
+    background-size: 70%;
+ }
+
+
  .prize {
      display: none;
      position: absolute;

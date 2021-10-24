@@ -1,3 +1,5 @@
+document.oncontextmenu = cmenu; function cmenu() { return false; };
+
 //ввод имени и выбор уровня
 
 let level = [];
@@ -11,6 +13,7 @@ let prize = document.querySelector('.prize');
 //переменная блока основной картинки
 let image = document.querySelector('.image');
 let btns = document.querySelectorAll('button');
+let playBtn = document.querySelector('.playBtn');
 
 //переменные монитора
 let monitor = document.querySelector('.monitor');
@@ -130,6 +133,7 @@ let soundMasDiDin = [
 
 let dragons = [];
 let dragon;
+let audio;
 // let dragon = diDinMas[0];
 
 //функция рандомных драконов
@@ -138,10 +142,13 @@ let randomDragon = function(){
       monitor.textContent = dragon.name;
       image.src = dragon.source;
       playSound(dragon.audioSrc);
+      // if(dragon.audioSrc != ""){
+      //   playBtn.style.display = "block";
+      // }
   };
 
 function playSound(url){
-  var audio = document.createElement('audio');
+  audio = document.createElement('audio');
   audio.style.display = "none";
   audio.src = url;
   audio.autoplay = true;
@@ -191,6 +198,7 @@ document.forms.start.onsubmit = function() {
     buttons[1].style.display = "block";
     buttons[2].style.display = "block";
     buttons[3].style.display = "block";
+    playBtn.style.display = "block";
   }
 
 
@@ -222,11 +230,13 @@ buttons.forEach(function(btn) {
         like_points_elem.textContent = like_points;
         console.log('МОЛОДЕЦ' + "   " + like_points);
         lisenok.style.backgroundImage = 'url(image/Lisenok/like.png)';
+        // playBtn.style.display = "none";
     } else {
         dislike_points = Number(dislike_points) + 1;
         dislike_points_elem.textContent = dislike_points;
         console.log('ПОПРОБУЙ ЕЩЁ');
         lisenok.style.backgroundImage = 'url(image/Lisenok/dislike.png)';
+        // playBtn.style.display = "none";
     };
     
     randomDragon();
@@ -303,4 +313,8 @@ buttons.forEach(function(btn) {
 
 prize.addEventListener('click', function () {
   prize.style.display = "none";
+});
+
+playBtn.addEventListener('click', function () {
+  playSound(audio.src);
 });
