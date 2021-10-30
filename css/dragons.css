@@ -23,11 +23,22 @@ img {
 .welcome{
     display: flex;
     justify-content: center;
+    align-items: center;
+    top: 0; left: 0; bottom: 0; right: 0;
+    border: 5px black solid;
+    position: fixed;
+    z-index: 1;
+    background-color: azure;
 }
 
 .start {
     display: grid;
+    position: relative;
+    width: 60vw;
+    height: 90vh;
+    padding: 30px;
     justify-items: center;
+    align-items: center;
     grid-template-areas:
     "yourname yourname"
     "user user"
@@ -39,16 +50,17 @@ img {
     "submit reset"
     ;
     grid-row-gap: 20px;
-    grid-template-rows: 90px;
-    grid-template-columns: 100% 1fr;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
     list-style: none;
-    position: absolute;
-    z-index: 1;
+    border: 5px rgb(83, 79, 79) solid;
+    border-radius: 20px;
+    
 }
 
 
 input[type="checkbox"] {
-    transform: scale(2.5);
+    transform: scale(4.5);
 }
 
 .yourname {
@@ -56,7 +68,7 @@ input[type="checkbox"] {
     background: rgb(245, 245, 245);
     grid-area: yourname;
     text-align: center;
-    font-size: 1em;
+    font-size: 2em;
 }
 
 .user {
@@ -67,13 +79,54 @@ input[type="checkbox"] {
     font-size: 1em;
 }
 
+.checkbox{
+    min-height: 100px;
+    min-width: 100px;
+    text-align: center;
+    background-size: 80%;
+    background-position-y: 15px;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    border: 2px solid black;
+}
+
+.checkbox1Label {
+    grid-area: checkbox1Label;
+    background-image: url(../image/buttons/di-din.png);
+}
+
+.checkbox2Label {
+    grid-area: checkbox2Label;
+    background-image: url(../image/buttons/dili-din.png);
+}
+
+.checkbox3Label {
+    grid-area: checkbox3Label;
+    background-image: url(../image/buttons/dili-dinli.png);
+}
+
+.checkbox4Label {
+    grid-area: checkbox4Label;
+    background-image: url(../image/buttons/di-dinli.png);
+}
+
+.checkbox5Label {
+    grid-area: checkbox5Label;
+    background-image: url(../image/buttons/play.png);
+}
+
+.checkbox1 { grid-area: checkbox1; }
+.checkbox2 { grid-area: checkbox2; }
+.checkbox3 { grid-area: checkbox3; }
+.checkbox4 { grid-area: checkbox4; }
+.checkbox5 { grid-area: checkbox5; }
 
 .submit {
     padding: 20px;
     background: rgb(245, 245, 245);
     grid-area: submit;
     text-align: center;
-    font-size: 1em;
+    font-size: 2em;
 }
 
 .reset {
@@ -81,7 +134,7 @@ input[type="checkbox"] {
     background: rgb(245, 245, 245);
     grid-area: reset;
     text-align: center;
-    font-size: 1em;
+    font-size: 2em;
 }
 
 /* input[type="submit"] {
@@ -100,14 +153,13 @@ p{
     font-weight: bold;
 }
 
-.show_hide{
+/* .show_hide{
     position: absolute;
     width: 100%;
     height: 100%;
-    /* display: none; */
     top: 0; left: 0; bottom: 0; right: 0;
     background-color: azure;
-}
+} */
 
 .displayNONE {
     display: none;
