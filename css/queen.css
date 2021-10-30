@@ -1,0 +1,45 @@
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation:portrait) {
+    body {
+      -webkit-transform: rotate(90deg);
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+.keyboards {
+    display: flex;
+    justify-content: center;
+    max-width: 736px;
+    width: auto;
+    margin: auto;
+    font-size: 10px;
+    /* border: 1px solid blue; */
+    background-color: rgb(216, 216, 216);
+}
+
+.key {
+    width: 22px;
+    height: 140px;
+    color: blue;
+    border: 1px solid rgb(93, 93, 93);
+    border-radius: 0 0 3px 3px;
+    background-color: white;
+}
+
+.black_key{
+    width: 14px;
+    height: 87px;
+    margin-left: -8px;
+    margin-right: -8px;
+    border-radius: 0 0 3px 3px;
+    background-color: black;
+    z-index: 1;
+}
+
+.key:hover{
+    background-color: rgb(53, 231, 148);
+}
