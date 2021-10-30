@@ -141,19 +141,19 @@ let soundMasDiDin = [
 //запуск функции предзагрузки всех картинок
 for (key in diDinMas){
   preload(diDinMas[key].source);
-}
+};
 
 for (key in diliDinMas){
   preload(diliDinMas[key].source);
-}
+};
 
 for (key in diliDinliMas){
   preload(diliDinliMas[key].source);
-}
+};
 
 for (key in diDinliMas){
   preload(diDinliMas[key].source);
-}
+};
 
 
 let dragons = [];
