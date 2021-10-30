@@ -7,7 +7,6 @@ let user;
 let blockUser = document.querySelector('.user');
 
 let welcome = document.querySelector('.welcome');
-let show_hide = document.querySelector('.show_hide');
 let prize = document.querySelector('.prize');
 
 //переменная блока основной картинки
@@ -203,7 +202,6 @@ document.forms.start.onsubmit = function() {
 
 
   welcome.remove();
-  show_hide.remove();
   user = blockUser.value;
   randomDragon();
   // console.log(user);
