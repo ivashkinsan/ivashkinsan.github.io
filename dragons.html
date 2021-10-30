@@ -1,0 +1,66 @@
+<html lang="ru">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Поймай Дракона</title>
+    <link rel="stylesheet" href="css/dragons.css">
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+
+    <!-- предзагрузка картинок
+    <link rel="prefetch prerender" href="image\buttons\di-din.png" />
+    <link rel="prefetch prerender" href="image\buttons\di-dinli.png" />
+    <link rel="prefetch prerender" href="image\buttons\dili-din.png" />
+    <link rel="prefetch prerender" href="image\buttons\dili-dinli.png" /> -->
+</head>
+<body>
+
+<div class="prize"></div>
+
+<ul class="welcome">
+    <form name="start">
+        <li>
+            <b>Ваше имя:</b><br>
+            <input name="user" type="text" size="40" width="150px" class="user">
+        </li>
+        <li><b>Выбери каких драконов будем ловить?</b><Br>
+            <input type="checkbox" name="start_dragon_1" value="di-din">ДИ - ДИНЬ<Br>
+            <input type="checkbox" name="start_dragon_2" value="dili-din"> ДИЛИ - ДИНЬ<Br>
+            <input type="checkbox" name="start_dragon_3" value="dili-dinli"> ДИЛИ - ДИНЬЛИ<Br>
+            <input type="checkbox" name="start_dragon_4" value="di-dinli"> ДИ - ДИНЬЛИ<Br>
+            <input type="checkbox" name="start_dragon_audio" value="audio"> на слух<Br>
+         </li>
+        <li>
+            <input type="submit" value="Начать игру">
+            <input type="reset" value="Сброс">
+        </li>
+    </form>
+    </ul>
+
+
+    <div class="show_hide"></div>
+    
+        <div class="container_image">
+        <image class="image" src="" height="100%"></image>
+        </div>
+        <div class="container_moni">
+            <div class="points like"><p>ПОЙМАЛ</p><p class="like_points">0</p></div>
+            <div class="monitor"></div>
+            
+            
+            <div class="points dislike"><p>УЛЕТЕЛИ</p><p class="dislike_points">0</p></div>
+        </div>
+        <div class="four_buttons">
+            <button class="button button_1" type="button" name= "di-din">ДИ - ДИНЬ</button>
+            <button class="button button_2" type="button" name= "dili-din">ДИЛИ-ДИНЬ</button>
+            <button class="button button_3" type="button" name= "dili-dinli">ДИЛИ-ДИНЬЛИ</button>
+            <button class="button button_4" type="button" name= "di-dinli">ДИ-ДИНЬЛИ</button>
+            <button class="button_5" type="button" name= "lisenok"></button>
+            <button class="playBtn" type="button" name= "playBtn">послушать</button>
+            
+        </div>
+        
+
+<div class="happy_end">КОНЕЦ ИГРЫ</div>
+
+</body>
+<script src="js/dragons.js"></script>
+</html>

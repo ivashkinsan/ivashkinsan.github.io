@@ -1,0 +1,39 @@
+body {
+    display: grid;
+    grid-template-areas:
+    "header header"
+    "sidebar-1 sidebar-2"
+    "footer footer";
+    grid-gap: 10px;
+    height: 100vh;
+    margin: = 0;
+    grid-template-rows: 50px 1fr 100px;
+    grid-template-columns: 1fr 1fr;
+}
+
+#header {
+    padding: 20px;
+    background: orange;
+    grid-area: header;
+    text-align: center;
+    font-size: 1em;
+}
+
+#sidebar-1, #sidebar-2 {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: burlywood;
+    grid-area: sidebar-1;
+    cursor: pointer;
+}
+
+#sidebar-2 {
+    grid-area: sidebar-2;
+}
+
+#footer{
+    padding: 20px;
+    background: darkcyan;
+    grid-area: footer;
+}
