@@ -15,25 +15,30 @@
 
 <div class="prize"></div>
 
-<ul class="welcome">
-    <form name="start">
-        <li>
-            <b>Ваше имя:</b><br>
-            <input name="user" type="text" size="40" width="150px" class="user">
-        </li>
-        <li><b>Выбери каких драконов будем ловить?</b><Br>
-            <input type="checkbox" name="start_dragon_1" value="di-din">ДИ - ДИНЬ<Br>
-            <input type="checkbox" name="start_dragon_2" value="dili-din"> ДИЛИ - ДИНЬ<Br>
-            <input type="checkbox" name="start_dragon_3" value="dili-dinli"> ДИЛИ - ДИНЬЛИ<Br>
-            <input type="checkbox" name="start_dragon_4" value="di-dinli"> ДИ - ДИНЬЛИ<Br>
-            <input type="checkbox" name="start_dragon_audio" value="audio"> на слух<Br>
-         </li>
-        <li>
-            <input type="submit" value="Начать игру">
-            <input type="reset" value="Сброс">
-        </li>
-    </form>
-    </ul>
+<div class="welcome">
+<form class="start" name="start">
+    <div class="yourname">ВАШЕ ИМЯ</div>
+    <input class="user" type="text" name="user">
+
+    <div class="checkbox1Label">Ди-Динь</div>
+    <input class="checkbox1" type="checkbox" name="start_dragon_1" value="di-din">
+
+    <div class="checkbox2Label">Дили-Динь</div>
+    <input class="checkbox2" type="checkbox" name="start_dragon_2" value="dili-din">
+
+    <div class="checkbox3Label">Дили-Дили</div>
+    <input class="checkbox3" type="checkbox" name="start_dragon_3" value="dili-dinli">
+
+    <div class="checkbox4Label">Ди-Диньли</div>
+    <input class="checkbox4" type="checkbox" name="start_dragon_4" value="di-dinli">
+
+    <div class="checkbox5Label">НА СЛУХ</div>
+    <input class="checkbox5" type="checkbox" name="start_dragon_audio" value="audio">
+
+    <input class="submit" type="submit" value="Начать игру">
+    <input class="reset" type="reset" value="Сброс">
+  </form>
+</div>
 
 
     <div class="show_hide"></div>

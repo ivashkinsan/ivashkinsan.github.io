@@ -22,61 +22,84 @@ img {
 
 .welcome{
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
     justify-content: center;
+}
+
+.start {
+    display: grid;
+    justify-items: center;
+    grid-template-areas:
+    "yourname yourname"
+    "user user"
+    "checkbox1Label checkbox1"
+    "checkbox2Label checkbox2"
+    "checkbox3Label checkbox3"
+    "checkbox4Label checkbox4"
+    "checkbox5Label checkbox5"
+    "submit reset"
+    ;
+    grid-row-gap: 20px;
+    grid-template-rows: 90px;
+    grid-template-columns: 100% 1fr;
     list-style: none;
-    /* margin: auto; */
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-  z-index: 1;
+    position: absolute;
+    z-index: 1;
 }
 
-.welcome li{
-    font-size: 2em;
-    text-align: center;
-    margin-top: 30px;
-    /* font-size: 3em; */
-}
-
-input {
-    border-radius: 30px;
-}
-
-input[type="text"] {
-    font-size: 2em;
-    /* height: 1em; */
-    width: 9em;
-}
 
 input[type="checkbox"] {
-    margin-top: 30px;
-    vertical-align: middle;
-    height: 5em;
-    width: 7em;
+    transform: scale(2.5);
 }
 
-input[type="submit"] {
-    height: 250px;
-    width: 250px;
+.yourname {
+    padding: 20px;
+    background: rgb(245, 245, 245);
+    grid-area: yourname;
+    text-align: center;
     font-size: 1em;
 }
 
-input[type="reset"] {
+.user {
+    padding: 20px;
+    background: rgb(245, 245, 245);
+    grid-area: user;
+    text-align: center;
+    font-size: 1em;
+}
+
+
+.submit {
+    padding: 20px;
+    background: rgb(245, 245, 245);
+    grid-area: submit;
+    text-align: center;
+    font-size: 1em;
+}
+
+.reset {
+    padding: 20px;
+    background: rgb(245, 245, 245);
+    grid-area: reset;
+    text-align: center;
+    font-size: 1em;
+}
+
+/* input[type="submit"] {
     height: 250px;
     width: 250px;
     font-size: 1em;
-}
+} */
+
+/* input[type="reset"] {
+    height: 250px;
+    width: 250px;
+    font-size: 1em;
+} */
 
 p{
     font-weight: bold;
 }
-/* 
-audio{
-    position: absolute;
-    left: 100px;
-} */
+
 .show_hide{
     position: absolute;
     width: 100%;
