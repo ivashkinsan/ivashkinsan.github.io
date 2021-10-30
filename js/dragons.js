@@ -1,7 +1,13 @@
 document.oncontextmenu = cmenu; function cmenu() { return false; };
 
-//ввод имени и выбор уровня
+//функция предварительной загрузки медиа
+function preload() {
+  while(arguments.length) {
+      new Image().src = [].shift.call(arguments);
+  }
+}
 
+//ввод имени и выбор уровня
 let level = [];
 let user;
 let blockUser = document.querySelector('.user');
@@ -53,6 +59,7 @@ let diDinMas = [
     {source: "image/di_Din/Фазан.jpg", answer: "di-din", name: "ФАЗАН", audioSrc:"",},
     {source: "image/di_Din/Щегол.jpg", answer: "di-din", name: "ЩЕГОЛ", audioSrc:"",}
     ];
+
 //картинки и драконы ДиЛи-Динь    
 let diliDinMas = [
     {source: "image/dili_Din/Бегемот.JPG", answer: "dili-din", name: "БЕГЕМОТ", audioSrc:"",},
@@ -77,6 +84,7 @@ let diliDinMas = [
     {source: "image/dili_Din/Ягуар.JPG", answer: "dili-din", name: "ЯГУАР", audioSrc:"",},
     ];
 
+      
 //картинки и драконы ДиЛи-ДиньЛи
 let diliDinliMas = [
      {source: "image/dili_dinli/Барракуда.JPG", answer: "dili-dinli", name: "БАРРАКУДА", audioSrc:"",},
@@ -129,6 +137,24 @@ let soundMasDiDin = [
   {source: "audio/ROYAL.jpg", answer: "dili-din", name: "звук", audioSrc:"audio/diliDinZOYO.wav",},
   {source: "audio/ROYAL.jpg", answer: "dili-din", name: "звук", audioSrc:"audio/diliDinZOYOup.wav",}
 ];
+
+//запуск функции предзагрузки всех картинок
+for (key in diDinMas){
+  preload(diDinMas[key].source);
+}
+
+for (key in diliDinMas){
+  preload(diliDinMas[key].source);
+}
+
+for (key in diliDinliMas){
+  preload(diliDinliMas[key].source);
+}
+
+for (key in diDinliMas){
+  preload(diDinliMas[key].source);
+}
+
 
 let dragons = [];
 let dragon;
