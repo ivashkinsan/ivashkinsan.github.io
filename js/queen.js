@@ -1,6 +1,6 @@
 let keys = document.querySelectorAll(".key");
+let audioArr = document.querySelectorAll("audio");
 // console.log(allKeys);
-
 
 for (let i = 0; i < keys.length; i++){
     keys[i].addEventListener('click', function () {
@@ -21,7 +21,7 @@ function playNote(e) {
     // const keyNote = key.getAttribute("data-note");
     // key.classList.add("playing");
     // note.innerHTML = keyNote;
-    audio.currentTime = 0;
+    audio.currentTime = 0.1;
     audio.play();
   }
   
