@@ -39,18 +39,16 @@ img {
     justify-items: center;
     align-items: center;
     grid-template-areas:
-    "yourname yourname"
-    "user user"
-    "checkbox1Label checkbox1Label"
-    "checkbox2Label checkbox2Label"
-    "checkbox3Label checkbox3Label"
-    "checkbox4Label checkbox4Label"
-    "checkbox5Label checkbox5Label"
-    "submit reset"
+    "yourname yourname yourname yourname"
+    "user user user user"
+    "yourvariant yourvariant yourvariant yourvariant"
+    "checkbox1Label checkbox2Label checkbox3Label checkbox4Label"
+    "checkbox5Label checkbox5Label checkbox5Label checkbox5Label"
+    "submit submit reset reset"
     ;
     grid-row-gap: 20px;
     grid-template-rows: auto;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     list-style: none;
     border: 5px rgb(83, 79, 79) solid;
     border-radius: 20px;
@@ -65,6 +63,14 @@ input[type="checkbox"] {
     padding: 20px;
     background: rgb(245, 245, 245);
     grid-area: yourname;
+    text-align: center;
+    font-size: 2em;
+}
+
+.yourvariant{
+    padding: 20px;
+    background: rgb(245, 245, 245);
+    grid-area: yourvariant;
     text-align: center;
     font-size: 2em;
 }
