@@ -13,8 +13,11 @@ let user;
 let blockUser = document.querySelector('.user');
 
 let welcome = document.querySelector('.welcome');
+let checkboxes = document.querySelectorAll('.start .checkbox');
 let prize = document.querySelector('.prize');
 
+
+// console.log(checkboxes);
 //переменная блока основной картинки
 let image = document.querySelector('.image');
 let btns = document.querySelectorAll('button');
@@ -184,40 +187,50 @@ function playSound(url){
 };
 
 
+// Слушаем события на стартовых драконах
+checkboxes.forEach(function(btn) {
+  
+  // Вешаем событие клик
+  btn.addEventListener('click', function() { 
+    // console.log(btn.classList..checkbox_active::after);
+    btn.classList.toggle('checkbox_active');
+    // console.log(checkboxes[0]);
+    });
+});
 
 //функция вывода данных из формы
 document.forms.start.onsubmit = function() {
   user = this.user.value;
-  if(this.start_dragon_1.checked == true){
-  level[0] = this.start_dragon_1.value;
+  if(checkboxes[0].classList[2] == 'checkbox_active'){
+  level[0] = checkboxes[0].value;
   dragons = dragons.concat(diDinMas);
   buttons[0].style.display = "block";
   dragon = dragons[0];
   }
-  if(this.start_dragon_1.checked == true && this.start_dragon_audio.checked == true){
+  if(checkboxes[4].classList[2] == 'checkbox_active' && checkboxes[4].classList[2] == 'checkbox_active'){
     dragons = dragons.concat(soundMasDiDin);
   }
 
-  if(this.start_dragon_2.checked == true){
-    level[1] = this.start_dragon_2.value;
+  if(checkboxes[1].classList[2] == 'checkbox_active'){
+    level[1] = checkboxes[1].value;
     dragons = dragons.concat(diliDinMas);
     buttons[1].style.display = "block";
     dragon = dragons[0];
   }
-  if(this.start_dragon_3.checked == true){
-      level[2] = this.start_dragon_3.value;
+  if(checkboxes[2].classList[2] == 'checkbox_active'){
+      level[2] = checkboxes[2].value;
       dragons = dragons.concat(diliDinliMas);
       buttons[2].style.display = "block";
       dragon = dragons[0];
   }
-  if(this.start_dragon_4.checked == true){
-  level[3] = this.start_dragon_4.value;
+  if(checkboxes[3].classList[2] == 'checkbox_active'){
+  level[3] = checkboxes[3].value;
   dragons = dragons.concat(diDinliMas);
   buttons[3].style.display = "block";
   dragon = dragons[0];
   }
   
-  if(this.start_dragon_audio.checked == true){
+  if(checkboxes[4].classList[2] == 'checkbox_active'){
     dragons = dragons.concat(soundMasDiDin);
     buttons[0].style.display = "block";
     buttons[1].style.display = "block";
@@ -231,7 +244,7 @@ document.forms.start.onsubmit = function() {
   user = blockUser.value;
   randomDragon();
   // console.log(user);
-  return false;
+  // return false;
 };
 
 //кнопка СБРОС

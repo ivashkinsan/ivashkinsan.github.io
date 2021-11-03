@@ -41,11 +41,11 @@ img {
     grid-template-areas:
     "yourname yourname"
     "user user"
-    "checkbox1Label checkbox1"
-    "checkbox2Label checkbox2"
-    "checkbox3Label checkbox3"
-    "checkbox4Label checkbox4"
-    "checkbox5Label checkbox5"
+    "checkbox1Label checkbox1Label"
+    "checkbox2Label checkbox2Label"
+    "checkbox3Label checkbox3Label"
+    "checkbox4Label checkbox4Label"
+    "checkbox5Label checkbox5Label"
     "submit reset"
     ;
     grid-row-gap: 20px;
@@ -86,6 +86,14 @@ input[type="checkbox"] {
     background-position-x: center;
     background-repeat: no-repeat;
     border: 2px solid black;
+    border: 5px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.checkbox_active {
+    border: 5px solid rgb(21, 17, 238);
 }
 
 .checkbox1Label {
@@ -270,3 +278,7 @@ button {
  .happy_end {
      display: none;
  }
+
+
+
+ 
