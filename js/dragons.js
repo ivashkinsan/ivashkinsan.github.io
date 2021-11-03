@@ -14,6 +14,7 @@ let blockUser = document.querySelector('.user');
 
 let welcome = document.querySelector('.welcome');
 let checkboxes = document.querySelectorAll('.start .checkbox');
+let allBtn = document.querySelector('.allBtn');
 let prize = document.querySelector('.prize');
 
 
@@ -141,6 +142,90 @@ let soundMasDiDin = [
   {source: "audio/ROYAL.jpg", answer: "dili-din", name: "звук", audioSrc:"audio/diliDinZOYOup.wav",}
 ];
 
+let schitalka_NeSpat = [ 
+  {text: "Не спать!", answer: "di-din"},
+  {text: "Всем встать!", answer: "di-din"},
+  {text: "Вас тут", answer: "di-din"},
+  {text: "Всех ждут!", answer: "di-din"},
+  {text: "Здесь есть,", answer: "di-din"},
+  {text: "Что съесть!", answer: "di-din"},
+  {text: "Кто смел,", answer: "di-din"},
+  {text: "Тот съел.", answer: "di-din"}
+];
+
+let schitalka_NePlach = [ 
+  {text: "Не плачь,", answer: "di-din"},
+  {text: "Не плачь,", answer: "di-din"},
+  {text: "Куплю", answer: "di-din"},
+  {text: "Калач.", answer: "di-din"},
+  {text: "Не вой,", answer: "di-din"},
+  {text: "Не вой,", answer: "di-din"},
+  {text: "Куплю", answer: "di-din"},
+  {text: "Другой.", answer: "di-din"},
+  {text: "Не реви,", answer: "dili-din"},
+  {text: "Не реви,", answer: "dili-din"},
+  {text: "Куплю", answer: "di-din"},
+  {text: "Сухари.", answer: "dili-din"}
+];
+
+let schitalka_Parovoz = [ 
+  {text: "Паровоз,", answer: "dili-din"},
+  {text: "Паровоз,", answer: "dili-din"},
+  {text: "Ты куда", answer: "dili-din"},
+  {text: "Нас повёз?", answer: "dili-din"},
+  {text: "Я стучу,", answer: "dili-din"},
+  {text: "Я пыхчу,", answer: "dili-din"},
+  {text: "Я качу,", answer: "dili-din"},
+  {text: "Где хочу.", answer: "dili-din"}
+];
+
+let schitalka_PrigSkok = [ 
+  {text: "Прыг-скок,", answer: "di-din"},
+  {text: "На листок,", answer: "dili-din"},
+  {text: "А потом,", answer: "dili-din"},
+  {text: "На цветок,", answer: "dili-din"},
+  {text: "А потом,", answer: "dili-din"},
+  {text: "На кусток,", answer: "dili-din"},
+  {text: "Прыг-скок,", answer: "di-din"},
+  {text: "Прыг-скок.", answer: "di-din"}
+];
+
+let schitalka_Korovi = [ 
+  {text: "Посмотрите", answer: "dili-dinli"},
+  {text: "Вот коровы.", answer: "dili-dinli"},
+  {text: "Все смеются,", answer: "dili-dinli"},
+  {text: "Все здоровы.", answer: "dili-dinli"},
+  {text: "Чисто моют", answer: "dili-dinli"},
+  {text: "Все копыта.", answer: "dili-dinli"},
+  {text: "Им не надо", answer: "dili-dinli"},
+  {text: "Айболита.", answer: "dili-dinli"},
+  {text: "Ну а рядом", answer: "dili-dinli"},
+  {text: "Плачут блохи", answer: "dili-dinli"},
+  {text: "Их желудки", answer: "dili-dinli"},
+  {text: "Очень плохи", answer: "dili-dinli"},
+  {text: "О водичке", answer: "dili-dinli"},
+  {text: "И о мыле", answer: "dili-dinli"},
+  {text: "Эти блохи", answer: "dili-dinli"},
+  {text: "Позабыли", answer: "dili-dinli"},
+  {text: "Всё семейство", answer: "dili-dinli"},
+  {text: "Недовольно", answer: "dili-dinli"},
+  {text: "Потому что", answer: "dili-dinli"},
+  {text: "Очень больно.", answer: "dili-dinli"},
+  {text: "Не кусайте", answer: "dili-dinli"},
+  {text: "Блохи локти", answer: "dili-dinli"},
+  {text: "Чаще мойте", answer: "dili-dinli"},
+  {text: "Лапки, когти", answer: "dili-dinli"},
+  {text: "Уши, ноги", answer: "dili-dinli"},
+  {text: "И копыта.", answer: "dili-dinli"},
+  {text: "Вот вам тазик", answer: "dili-dinli"},
+  {text: "Вот корыто.", answer: "dili-dinli"},
+  {text: "Вот вам мыло,", answer: "dili-dinli"},
+  {text: "Вот мочалка", answer: "dili-dinli"},
+  {text: "Мойте, мойте,", answer: "dili-dinli"},
+  {text: "Нам не жалко.", answer: "dili-dinli"}
+];
+
+
 //запуск функции предзагрузки всех картинок
 for (key in diDinMas){
   preload(diDinMas[key].source);
@@ -247,11 +332,22 @@ document.forms.start.onsubmit = function() {
   // return false;
 };
 
+//кнопка выделить ВСЕ
+allBtn.addEventListener('click', function(){
+  console.log('all');
+for(i = 0; i < checkboxes.length; i++){
+  checkboxes[i].classList.add('checkbox_active');
+};
+});
+
 //кнопка СБРОС
 document.forms.start.onreset = function() {
   console.log('reset');
   level = [];
   user = null;
+for(i = 0; i < checkboxes.length; i++){
+  checkboxes[i].classList.remove('checkbox_active');
+}
 };
 
 

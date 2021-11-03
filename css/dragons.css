@@ -44,7 +44,7 @@ img {
     "yourvariant yourvariant yourvariant yourvariant"
     "checkbox1Label checkbox2Label checkbox3Label checkbox4Label"
     "checkbox5Label checkbox5Label checkbox5Label checkbox5Label"
-    "submit submit reset reset"
+    "submit submit all reset"
     ;
     grid-row-gap: 20px;
     grid-template-rows: auto;
@@ -137,6 +137,14 @@ input[type="checkbox"] {
     padding: 20px;
     background: rgb(245, 245, 245);
     grid-area: submit;
+    text-align: center;
+    font-size: 2em;
+}
+
+.allBtn {
+    padding: 20px;
+    background: rgb(245, 245, 245);
+    grid-area: all;
     text-align: center;
     font-size: 2em;
 }
