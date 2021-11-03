@@ -33,7 +33,7 @@ img {
 .start {
     display: grid;
     position: relative;
-    width: 60vw;
+    width: 90vw;
     height: 90vh;
     padding: 30px;
     justify-items: center;
