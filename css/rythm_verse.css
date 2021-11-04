@@ -21,7 +21,8 @@ img {
   }
 
 .welcome{
-    display: flex;
+    /* display: flex; */
+    /* display: none; */
     justify-content: center;
     align-items: center;
     top: 0; left: 0; bottom: 0; right: 0;
@@ -41,10 +42,9 @@ img {
     grid-template-areas:
     "yourname yourname yourname yourname"
     "user user user user"
-    "yourvariant yourvariant yourvariant yourvariant"
-    "checkbox1Label checkbox2Label checkbox3Label checkbox4Label"
-    "checkbox5Label checkbox5Label checkbox5Label checkbox5Label"
-    "submit submit allBtn reset"
+    "start_variant start_variant start_variant start_variant"
+    "checkbox checkbox checkbox checkbox"
+    "checkbox checkbox checkbox checkbox"
     ;
     grid-row-gap: 20px;
     grid-template-rows: auto;
@@ -67,14 +67,6 @@ input[type="checkbox"] {
     font-size: 2em;
 }
 
-.yourvariant{
-    padding: 20px;
-    background: rgb(245, 245, 245);
-    grid-area: yourvariant;
-    text-align: center;
-    font-size: 2em;
-}
-
 .user {
     padding: 20px;
     background: rgb(245, 245, 245);
@@ -83,10 +75,19 @@ input[type="checkbox"] {
     font-size: 2em;
 }
 
+.start_variant {
+    padding: 20px;
+    background: rgb(245, 245, 245);
+    grid-area: start_variant;
+    text-align: center;
+    font-size: 2em;
+}
+
 .checkbox{
     min-height: 150px;
     min-width: 150px;
     text-align: center;
+    font-size: 2em;
     background-size: 80%;
     background-position-y: 15px;
     background-position-x: center;
@@ -100,61 +101,6 @@ input[type="checkbox"] {
 
 .checkbox_active {
     border: 5px solid rgb(21, 17, 238);
-}
-
-.checkbox1Label {
-    grid-area: checkbox1Label;
-    background-image: url(../image/buttons/di-din.png);
-}
-
-.checkbox2Label {
-    grid-area: checkbox2Label;
-    background-image: url(../image/buttons/dili-din.png);
-}
-
-.checkbox3Label {
-    grid-area: checkbox3Label;
-    background-image: url(../image/buttons/dili-dinli.png);
-}
-
-.checkbox4Label {
-    grid-area: checkbox4Label;
-    background-image: url(../image/buttons/di-dinli.png);
-}
-
-.checkbox5Label {
-    grid-area: checkbox5Label;
-    background-image: url(../image/buttons/play.png);
-}
-
-.checkbox1 { grid-area: checkbox1; }
-.checkbox2 { grid-area: checkbox2; }
-.checkbox3 { grid-area: checkbox3; }
-.checkbox4 { grid-area: checkbox4; }
-.checkbox5 { grid-area: checkbox5; }
-
-.submit {
-    padding: 20px;
-    background: rgb(245, 245, 245);
-    grid-area: submit;
-    text-align: center;
-    font-size: 2em;
-}
-
-.allBtn {
-    padding: 20px;
-    background: rgb(245, 245, 245);
-    grid-area: allBtn;
-    text-align: center;
-    font-size: 2em;
-}
-
-.reset {
-    padding: 20px;
-    background: rgb(245, 245, 245);
-    grid-area: reset;
-    text-align: center;
-    font-size: 2em;
 }
 
 p{
@@ -173,13 +119,76 @@ p{
     display: none;
 }
 
-.container_image {
-    display: flex;
-    height: 60%;
+.table {
+    display: grid;
+    margin-left: auto;
+    /* margin-right: auto; */
+    padding: 15px 15px;
+    width: 70%;
+    /* height: 60%; */
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    grid-template-rows: auto;
     justify-content: center;
+    font-size: 2.3em;
     overflow: hidden;
-    margin: 30px;
-    /* border-radius: 25%; */
+    /* margin: 30px; */
+}
+
+.table_elem{
+    position: relative;
+    width: 30vw;
+    height: 13vh;
+    padding: 5px;
+    border: 1px solid rgb(136, 136, 136);
+    /* box-shadow: 5px 5px 5px rgba(0,0,0,0.5); */
+    border-radius: 5px;
+    /* overflow: hidden; */
+
+}
+
+.active::after {
+    content: " ???"; /* Добавляем после текста абзаца */
+    color: red; /* Красный цвет текста */
+    font-style: italic; /* Курсивное начертание */
+   }
+
+.tab_image{
+    display: block;
+    width: 30vw;
+    height: 10vh;
+    background-image: url(../image/buttons/di-din.png);
+    background-size: 27%;
+    background-position-y: 0;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    /* border: 3px solid black; */
+    /* z-index: 2; */
+}
+
+.active {
+    box-shadow: 3px 3px 10px rgb(241, 173, 15), -3px -3px 10px red;
+}
+
+.true_answer {
+    background-color: rgba(173, 255, 10, 0.486);
+}
+
+.false_answer {
+    background-color: rgba(255, 10, 124, 0.486);
+}
+
+
+.answer_chek {
+    display: block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+    color: rgb(0, 0, 0); /* Красный цвет текста */
+    font-style: italic; /* Курсивное начертание */
+    /* background-color: black; */
+    z-index: 1;
 }
 
 .container_moni{
@@ -216,9 +225,13 @@ p{
 
 
 .four_buttons {
+    position: fixed;
+    flex-direction: column;
     display: flex;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    justify-content: center;  
+    /* justify-content: center;   */
 }
 
 button {
@@ -226,8 +239,8 @@ button {
     font-size: 1.1em;
     font-style: italic;
     border-radius: 10px;
-    width: 200px;
-    height: 200px;
+    width: 190px;
+    height: 190px;
     font-weight: bold;
     letter-spacing: 2px;
     background-size: 90%;
@@ -238,27 +251,27 @@ button {
  }
  
  .button_1 {
-    display: none;
+    display: block;
     background-image: url(../image/buttons/di-din.png);
  }
 
  .button_2 {
-    display: none;
+    display: block;
     background-image: url(../image/buttons/dili-din.png);
  }
 
  .button_3 {
-    display: none;
+    display: block;
     background-image: url(../image/buttons/dili-dinli.png);
  }
 
  .button_4 {
-    display: none;
+    display: block;
     background-image: url(../image/buttons/di-dinli.png);
  }
 
- .button_5 {
-    background-image: url(../image/Lisenok/like.png);
+ .lisenok {
+    background-image: url(../image/Lisenok/10_dragons.png);
     background-position-y: center;
     background-size: 90%;
  }
@@ -290,7 +303,16 @@ button {
  }
 
  .happy_end {
-     display: none;
+    display: none;
+    margin-left: auto;
+    margin-right: 10px;
+    padding: 20px;
+     width: 80%;
+     height: auto;
+     font-size: 2.5em;
+     background-color: rgba(255, 244, 34, 0.801);
+     border: 1px solid gray;
+     border-radius: 30px;
  }
 
 

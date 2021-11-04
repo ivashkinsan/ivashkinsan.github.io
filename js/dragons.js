@@ -142,7 +142,9 @@ let soundMasDiDin = [
   {source: "audio/ROYAL.jpg", answer: "dili-din", name: "звук", audioSrc:"audio/diliDinZOYOup.wav",}
 ];
 
-let schitalka_NeSpat = [ 
+let schitalki  = { 
+
+neSpat: [ 
   {text: "Не спать!", answer: "di-din"},
   {text: "Всем встать!", answer: "di-din"},
   {text: "Вас тут", answer: "di-din"},
@@ -150,23 +152,26 @@ let schitalka_NeSpat = [
   {text: "Здесь есть,", answer: "di-din"},
   {text: "Что съесть!", answer: "di-din"},
   {text: "Кто смел,", answer: "di-din"},
-  {text: "Тот съел.", answer: "di-din"}
-];
+  {text: "Тот съел.", answer: "di-din"}],
 
-let schitalka_NePlach = [ 
-  {text: "Не плачь,", answer: "di-din"},
-  {text: "Не плачь,", answer: "di-din"},
-  {text: "Куплю", answer: "di-din"},
-  {text: "Калач.", answer: "di-din"},
-  {text: "Не вой,", answer: "di-din"},
-  {text: "Не вой,", answer: "di-din"},
-  {text: "Куплю", answer: "di-din"},
-  {text: "Другой.", answer: "di-din"},
-  {text: "Не реви,", answer: "dili-din"},
-  {text: "Не реви,", answer: "dili-din"},
-  {text: "Куплю", answer: "di-din"},
-  {text: "Сухари.", answer: "dili-din"}
-];
+nePlach:[ 
+    {text: "Не плачь,", answer: "di-din"},
+    {text: "Не плачь,", answer: "di-din"},
+    {text: "Куплю", answer: "di-din"},
+    {text: "Калач.", answer: "di-din"},
+    {text: "Не вой,", answer: "di-din"},
+    {text: "Не вой,", answer: "di-din"},
+    {text: "Куплю", answer: "di-din"},
+    {text: "Другой.", answer: "di-din"},
+    {text: "Не реви,", answer: "dili-din"},
+    {text: "Не реви,", answer: "dili-din"},
+    {text: "Куплю", answer: "di-din"},
+    {text: "Сухари.", answer: "dili-din"}
+  ]
+
+};
+console.log(schitalki.neSpat[6].text)
+
 
 let schitalka_Parovoz = [ 
   {text: "Паровоз,", answer: "dili-din"},
@@ -292,10 +297,7 @@ document.forms.start.onsubmit = function() {
   buttons[0].style.display = "block";
   dragon = dragons[0];
   }
-  if(checkboxes[4].classList[2] == 'checkbox_active' && checkboxes[4].classList[2] == 'checkbox_active'){
-    dragons = dragons.concat(soundMasDiDin);
-  }
-
+  
   if(checkboxes[1].classList[2] == 'checkbox_active'){
     level[1] = checkboxes[1].value;
     dragons = dragons.concat(diliDinMas);
@@ -450,4 +452,8 @@ prize.addEventListener('click', function () {
 
 playBtn.addEventListener('click', function () {
   playSound(audio.src);
+});
+
+rhymes.addEventListener('click', function () {
+  console.log('готово');
 });
