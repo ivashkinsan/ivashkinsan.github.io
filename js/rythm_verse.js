@@ -337,7 +337,8 @@ let nextStep = function(){
 };
 if (tab_elements.length > indexTop ){
     tab_elements[indexTop].classList.add('active');
-   };
+    tab_elements[indexTop].scrollIntoView({block: "center", behavior: "smooth"});
+};
   indexTop++;
 };
 
@@ -352,7 +353,6 @@ let add_image_answer = function(name){
   newAnswerElement.datasetName = name;
   tab_elements[step].append(newAnswerElement);
   allAnswer.push(newAnswerElement);
-
   ++step;
 };
 
@@ -376,7 +376,8 @@ button_answer.forEach(function(btn) {
           answerFalse++;
         };
       }
-      happy_end.style.display = 'block';
+      happy_end.style.display = 'flex';
+      happy_end.scrollIntoView({block: "center", behavior: "smooth"});
       happy_end_label.textContent = user.value + ' ТВОЙ РЕЗУЛЬТАТ';
       likeDiv.textContent = "ПОЙМАЛИ - " + answerTrue;
       dislikeDiv.textContent = "УЛЕТЕЛИ - " + answerFalse;
@@ -389,4 +390,22 @@ button_answer.forEach(function(btn) {
     });
 });
 
+// let menuDiv = document.querySelector('.menuDiv');
+let repeat = document.querySelector('.repeat');
 
+// menuDiv.addEventListener('click', function () {
+//   let clearDiv =  document.querySelectorAll('.table_elem');
+//     welcome.style.display = 'block';
+//     happy_end.style.display = 'none';
+//     answerTrue = 0;
+//     answerFalse = 0;
+//     for(i = 0; i < tab_elements.length; i++){
+//     tab_elements = [];
+//     allAnswer = [];
+//     startVariable = [];
+//     clearDiv = [];
+//     console.log(tab_elements);
+//     console.log(allAnswer);
+//     }
+// });
+// console.log(menuDiv)
