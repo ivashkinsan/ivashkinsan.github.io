@@ -166,6 +166,12 @@ p{
     /* z-index: 2; */
 }
 
+@media (orientation: portrait) {
+    .tab_image{
+        background-size: 5em;
+    }
+}
+
 .active {
     box-shadow: 3px 3px 10px rgb(241, 173, 15), -3px -3px 10px red;
 }
