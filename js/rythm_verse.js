@@ -1,7 +1,8 @@
 document.oncontextmenu = cmenu; function cmenu() { return false; };
 
-let start = document.querySelector('.start');
-let user = document.querySelector('.start .user');
+let start = document.querySelector('.form');
+let start_variant = document.querySelector('.start_variant')
+let user = document.querySelector('.form .user');
 
 let welcome = document.querySelector('.welcome');
 let table = document.querySelector('.table');
@@ -117,6 +118,8 @@ let allNamesSchitalok = [
 
 //генерируем стартовое меню
 let NewGridStartMenuElements;
+let startBtn = document.querySelector('.startBtn');
+let startVariable;
 //функция создания элементов
   let NewGridStartMenuGO = function(allNames){
     for(let i = 0; i < allNames.length; i++){
@@ -126,7 +129,8 @@ let NewGridStartMenuElements;
       NewGridStartMenuElements.className = "checkbox";
       start.append(NewGridStartMenuElements);
     };  
-  }
+}
+  
 //запуск стартового меню
 NewGridStartMenuGO(allNamesSchitalok);
   
@@ -135,19 +139,26 @@ let checkboxes = document.querySelectorAll('.checkbox');
 checkboxes.forEach(function(btn) {
   // Вешаем событие клик
     btn.addEventListener('click', function() {
-      
-      // let checkedBtn = ;
-      welcome.style.display = 'none';
-      
-      //запуск считалки
-      schitalkaGO(btn['dataSrc']);
-      //сбор созданных элементов
-      tab_elements = document.querySelectorAll('.table_elem');
-      //запуск первого шага
-      nextStep();
-      });
+      for(i = 0; i < checkboxes.length; i++){
+        checkboxes[i].classList.remove('active_btn');
+      }
+      btn.classList.toggle('active_btn');
+      startVariable = btn.dataSrc;
+      console.log(startVariable);
+       });
   });
 
+  startBtn.addEventListener('click', function () {
+    
+    welcome.style.display = 'none';
+      
+    //запуск считалки
+    schitalkaGO(startVariable);
+    //сбор созданных элементов
+    tab_elements = document.querySelectorAll('.table_elem');
+    //запуск первого шага
+    nextStep();
+  });
 
 //создаем блоки Грида считалки
 let NewGridElements;

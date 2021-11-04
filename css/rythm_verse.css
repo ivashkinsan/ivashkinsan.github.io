@@ -31,7 +31,7 @@ img {
     background-color: azure;
 }
 
-.start {
+.form {
     display: grid;
     position: relative;
     width: 90vw;
@@ -45,6 +45,7 @@ img {
     "start_variant start_variant start_variant start_variant"
     "checkbox checkbox checkbox checkbox"
     "checkbox checkbox checkbox checkbox"
+    "startBtn startBtn startBtn startBtn"
     ;
     grid-row-gap: 20px;
     grid-template-rows: auto;
@@ -103,6 +104,11 @@ input[type="checkbox"] {
     border: 5px solid rgb(21, 17, 238);
 }
 
+.startBtn {
+    grid-area: startBtn;
+    font-size: 50px;
+}
+
 p{
     font-weight: bold;
 }
@@ -147,6 +153,15 @@ p{
 
 }
 
+.active_btn {
+    box-shadow: 3px 3px 10px rgb(241, 173, 15), -3px -3px 10px red;
+}
+
+.active {
+    box-shadow: 3px 3px 10px rgb(241, 173, 15), -3px -3px 10px red;
+}
+
+
 .active::after {
     content: " ???"; /* Добавляем после текста абзаца */
     color: red; /* Красный цвет текста */
@@ -172,9 +187,6 @@ p{
     }
 }
 
-.active {
-    box-shadow: 3px 3px 10px rgb(241, 173, 15), -3px -3px 10px red;
-}
 
 .true_answer {
     background-color: rgba(173, 255, 10, 0.486);
@@ -234,7 +246,7 @@ p{
     position: fixed;
     flex-direction: column;
     display: flex;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
     /* justify-content: center;   */
