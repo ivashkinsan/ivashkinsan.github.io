@@ -106,14 +106,164 @@ let schitalka_nePlach = [
     {text: "Нам не жалко.", answer: "dili-dinli"}
   ];
 
+  let schitalka_RibaKit = [ 
+    {text: "Рыба-рыба,", answer: "dili-dinli"},
+    {text: "Рыба-Кит,", answer: "dili-din"},
+    {text: "Рыба правду", answer: "dili-dinli"},
+    {text: "Говорит.", answer: "dili-din"},
+    {text: "Если рыба", answer: "dili-dinli"},
+    {text: "Будет врать,", answer: "dili-din"},
+    {text: "Я не буду", answer: "dili-dinli"},
+    {text: "С ней играть.", answer: "dili-din"}
+  ];
 
+  let schitalka_obesiana_chichichi = [ 
+    {text: "Обезьяна", answer: "dili-dinli"},
+    {text: "Чи-чи-чи", answer: "dili-din"},
+    {text: "Продавала", answer: "dili-dinli"},
+    {text: "Кирпичи", answer: "dili-din"},
+    {text: "Не успела", answer: "dili-dinli"},
+    {text: "Всё продать", answer: "dili-din"},
+    {text: "Улетела", answer: "dili-dinli"},
+    {text: "Под кровать.", answer: "dili-din"}
+  ];
+
+  let schitalka_shishel_mishel = [ 
+    {text: "Шишел-Мышел", answer: "dili-dinli"},
+    {text: "Вон пошёл,", answer: "dili-din"},
+    {text: "На боярский", answer: "dili-dinli"},
+    {text: "Двор зашёл,", answer: "dili-din"},
+    {text: "Там бояре", answer: "dili-dinli"},
+    {text: "Шапки шьют,", answer: "dili-din"},
+    {text: "На окошко", answer: "dili-dinli"},
+    {text: "Их кладут.", answer: "dili-din"}
+  ];
+
+  let schitalka_ati_bati = [ 
+    {text: "Аты-баты,", answer: "dili-dinli"},
+    {text: "Шли солдаты.", answer: "dili-dinli"},
+    {text: "Аты-баты,", answer: "dili-dinli"},
+    {text: "На базар.", answer: "dili-din"},
+    {text: "Аты-баты,", answer: "dili-dinli"},
+    {text: "Что-купили?", answer: "dili-dinli"},
+    {text: "Аты-баты,", answer: "dili-dinli"},
+    {text: "Самовар.", answer: "dili-din"},
+    {text: "Аты-баты,", answer: "dili-dinli"},
+    {text: "Сколько стоит?", answer: "dili-dinli"},
+    {text: "Аты-баты,", answer: "dili-dinli"},
+    {text: "Три рубля.", answer: "dili-din"},
+    {text: "Аты-баты,", answer: "dili-dinli"},
+    {text: "Кто выходит?", answer: "dili-dinli"},
+    {text: "Аты-баты,", answer: "dili-dinli"},
+    {text: "Ты, да я.", answer: "dili-din"}
+  ];
+
+  let schitalka_povar_ehal = [ 
+    {text: "Повар ехал", answer: "dili-dinli"},
+    {text: "На свинье,", answer: "dili-din"},
+    {text: "Балалайка", answer: "dili-dinli"},
+    {text: "На спине.", answer: "dili-din"},
+    {text: "Балалайка", answer: "dili-dinli"},
+    {text: "Зазвенит -", answer: "dili-din"},
+    {text: "Меня повар", answer: "dili-dinli"},
+    {text: "Забранит.", answer: "dili-din"},
+    {text: "Балалайка", answer: "dili-dinli"},
+    {text: "Не звенит -", answer: "dili-din"},
+    {text: "Меня повар", answer: "dili-dinli"},
+    {text: "Не бранит.", answer: "dili-din"}
+  ];
+
+  let schitalka_anka_dranka = [ 
+    {text: "Анка-дранка,", answer: "dili-dinli"},
+    {text: "Дри-бедру,", answer: "dili-din"},
+    {text: "Фибер-фабер,", answer: "dili-dinli"},
+    {text: "Фибер-фу.", answer: "dili-din"},
+    {text: "А, дран,", answer: "di-din"},
+    {text: "Либестран,", answer: "dili-din"},
+    {text: "Эта-фита,", answer: "dili-dinli"},
+    {text: "Канифан.", answer: "dili-din"}
+  ];
+
+  let schitalka_moryak = [ 
+    {text: "Моряк", answer: "di-din"},
+    {text: "С печки бряк.", answer: "dili-din"},
+    {text: "Расстянулся", answer: "dili-dinli"},
+    {text: "Как червяк.", answer: "dili-din"}
+  ];
+
+  let schitalka_shla_torgovka = [ 
+    {text: "Шла торговка", answer: "dili-dinli"},
+    {text: "Мимо рынка", answer: "dili-dinli"},
+    {text: "Наступила", answer: "dili-dinli"},
+    {text: "На корзинку", answer: "dili-dinli"},
+    {text: "И упала", answer: "dili-dinli"},
+    {text: "В яму - бух!", answer: "dili-din"},
+    {text: "Раздавила", answer: "dili-dinli"},
+    {text: "Сорок мух.", answer: "dili-din"}
+  ];
+
+  let schitalka_katya_katya = [ 
+    {text: "Катя-Катя", answer: "dili-dinli"},
+    {text: "Катюха", answer: "dili-din"},
+    {text: "Запрягла", answer: "dili-din"},
+    {text: "Петуха.", answer: "dili-din"},
+    {text: "Петух", answer: "di-din"},
+    {text: "Заржал,", answer: "di-din"},
+    {text: "В огород", answer: "dili-din"},
+    {text: "Побежал.", answer: "dili-din"}
+  ];
+
+  let schitalka_vot_galka = [ 
+    {text: "Вот галка,", answer: "di-dinli"},
+    {text: "Вот кошка.", answer: "di-dinli"},
+    {text: "Вот палка,", answer: "di-dinli"},
+    {text: "Вот плошка.", answer: "di-dinli"},
+    {text: "Вот осень,", answer: "di-dinli"},
+    {text: "Вот лето.", answer: "di-dinli"},
+    {text: "Не спутай,", answer: "di-dinli"},
+    {text: "Всё это.", answer: "di-dinli"}
+  ];
+
+  let schitalka_pro_vanyu = [ 
+    {text: "Ваня-Ваня", answer: "dili-dinli"},
+    {text: "Простота", answer: "dili-din"},
+    {text: "Купил лошадь", answer: "dili-dinli"},
+    {text: "Без хвоста.", answer: "dili-din"},
+    {text: "Сел задом", answer: "di-dinli"},
+    {text: "Наперёд", answer: "dili-din"},
+    {text: "И поехал", answer: "dili-dinli"},
+    {text: "В огород.", answer: "dili-din"}
+  ];
+
+  let schitalka_raz_dwa_tri_chetire = [ 
+    {text: "Раз, два, ", answer: "di-din"},
+    {text: "Три, четыре", answer: "dili-dinli"},
+    {text: "Мы сидели", answer: "dili-dinli"},
+    {text: "На квартире.", answer: "dili-dinli"},
+    {text: "Чай пили,", answer: "di-dinli"},
+    {text: "Булки ели,", answer: "dili-dinli"},
+    {text: "Позабыли", answer: "dili-dinli"},
+    {text: "С кем сидели.", answer: "dili-dinli"}
+  ];
 //переменная всех считалок
-let allNamesSchitalok = [
+const allNamesSchitalok = [
 {text: "Не спать", imgsrc: "", dataSrc: schitalka_neSpat},
 {text: "Не плачь", imgsrc: "", dataSrc: schitalka_nePlach},
 {text: "Паровоз", imgsrc: "", dataSrc: schitalka_Parovoz},
 {text: "Прыг скок", imgsrc: "", dataSrc: schitalka_PrigSkok},
-{text: "Коровы", imgsrc: "", dataSrc: schitalka_Korovi}
+{text: "Коровы", imgsrc: "", dataSrc: schitalka_Korovi},
+{text: "Рыба-кит", imgsrc: "", dataSrc: schitalka_RibaKit},
+{text: "Чи-чи-чи", imgsrc: "", dataSrc: schitalka_obesiana_chichichi},
+{text: "Шишел-Мышел", imgsrc: "", dataSrc: schitalka_shishel_mishel},
+{text: "Аты-баты", imgsrc: "", dataSrc: schitalka_ati_bati},
+{text: "Повар ехал", imgsrc: "", dataSrc: schitalka_povar_ehal},
+{text: "Анка-дранка", imgsrc: "", dataSrc: schitalka_anka_dranka},
+{text: "Моряк", imgsrc: "", dataSrc: schitalka_moryak},
+{text: "Шла торговка", imgsrc: "", dataSrc: schitalka_shla_torgovka},
+{text: "Катя-Катя", imgsrc: "", dataSrc: schitalka_katya_katya},
+{text: "Вот галка", imgsrc: "", dataSrc: schitalka_vot_galka},
+{text: "Про Ваню", imgsrc: "", dataSrc: schitalka_pro_vanyu},
+{text: "Раз, два", imgsrc: "", dataSrc: schitalka_raz_dwa_tri_chetire}
 ];
 
 //генерируем стартовое меню
