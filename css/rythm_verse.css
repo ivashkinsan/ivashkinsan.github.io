@@ -193,6 +193,7 @@ p{
     }
     .welcome {
         height: 100vh;
+        bottom: 0;
     }
 }
 
