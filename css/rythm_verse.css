@@ -43,19 +43,21 @@ img {
     justify-items: center;
     align-items: center;
     grid-template-areas:
-    "yourname yourname yourname yourname"
-    "user user user user"
-    "start_variant start_variant start_variant start_variant"
-    "checkbox checkbox checkbox checkbox"
-    "checkbox checkbox checkbox checkbox"
-    "checkbox checkbox checkbox checkbox"
-    "checkbox checkbox checkbox checkbox"
-    "checkbox checkbox checkbox checkbox"
-    "startBtn startBtn startBtn startBtn"
+    "yourname yourname yourname"
+    "user user user"
+    "start_variant start_variant start_variant"
+    "checkbox checkbox checkbox"
+    "checkbox checkbox checkbox"
+    "checkbox checkbox checkbox"
+    "checkbox checkbox checkbox"
+    "checkbox checkbox checkbox"
+    "checkbox checkbox checkbox"
+    "checkbox checkbox checkbox"
+    "startBtn startBtn startBtn"
     ;
     grid-row-gap: 20px;
     grid-template-rows: auto;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     list-style: none;
     border: 5px rgb(83, 79, 79) solid;
     border-radius: 20px;
@@ -64,6 +66,7 @@ img {
 
 input[type="checkbox"] {
     transform: scale(4.5);
+    border-radius: 15px;
 }
 
 .yourname {
@@ -72,6 +75,7 @@ input[type="checkbox"] {
     grid-area: yourname;
     text-align: center;
     font-size: 2em;
+    border-radius: 15px;
 }
 
 .user {
@@ -88,20 +92,22 @@ input[type="checkbox"] {
     grid-area: start_variant;
     text-align: center;
     font-size: 2em;
+    border-radius: 15px;
 }
 
 .checkbox{
     min-height: 60px;
-    min-width: 170px;
+    min-width: 25vw;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 2em;
+    line-height: 2em;
     background-size: 80%;
     background-position-y: 15px;
     background-position-x: center;
     background-repeat: no-repeat;
     border: 2px solid black;
     border: 5px solid transparent;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
@@ -113,6 +119,8 @@ input[type="checkbox"] {
 .startBtn {
     grid-area: startBtn;
     font-size: 50px;
+    border-radius: 15px;
+    padding: 15px;
 }
 
 p{
