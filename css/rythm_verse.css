@@ -188,8 +188,11 @@ p{
 }
 
 @media (orientation: portrait) {
-    .tab_image{
+    .tab_image {
         background-size: 5em;
+    }
+    .welcome {
+        height: 100vh;
     }
 }
 
