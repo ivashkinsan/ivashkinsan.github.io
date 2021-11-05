@@ -159,6 +159,7 @@ p{
     position: relative;
     width: 30vw;
     min-height: 160px;
+    height: 160px;
     padding: 4px;
     border: 1px solid rgb(136, 136, 136);
     /* box-shadow: 5px 5px 5px rgba(0,0,0,0.5); */
@@ -357,7 +358,7 @@ button {
     padding: 20px;
      width: 718px;
      height: 144px;
-     font-size: 1.5em;
+     font-size: 1.8em;
      background-color: rgb(236, 236, 236);
      border: 1px solid gray;
      border-radius: 10px;

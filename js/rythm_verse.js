@@ -379,8 +379,8 @@ button_answer.forEach(function(btn) {
       happy_end.style.display = 'flex';
       happy_end.scrollIntoView({block: "center", behavior: "smooth"});
       happy_end_label.textContent = user.value + ' ТВОЙ РЕЗУЛЬТАТ';
-      likeDiv.textContent = "ПОЙМАЛИ - " + answerTrue;
-      dislikeDiv.textContent = "УЛЕТЕЛИ - " + answerFalse;
+      likeDiv.textContent = answerTrue;
+      dislikeDiv.textContent = answerFalse;
       if(answerFalse > 0){
         lisenok.style.backgroundImage = 'url(../image/Lisenok/dislike.png)';
       } else {
