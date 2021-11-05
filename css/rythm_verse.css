@@ -151,20 +151,33 @@ p{
     grid-template-rows: auto;
     justify-content: center;
     font-size: 2.3em;
-    overflow: hidden;
+    /* overflow: hidden; */
     /* margin: 30px; */
 }
 
 .table_elem{
     position: relative;
     width: 30vw;
-    height: 16vh;
-    padding: 5px;
+    height: 25vh;
+    padding: 2px;
     border: 1px solid rgb(136, 136, 136);
     /* box-shadow: 5px 5px 5px rgba(0,0,0,0.5); */
     border-radius: 5px;
-    overflow: hidden;
+    /* overflow: hidden; */
 
+}
+
+.tab_image{
+    display: block;
+    width: 30vw;
+    height: 25vh;
+    background-image: url(../image/buttons/di-din.png);
+    background-size: 27%;
+    background-position-y: 0;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    /* border: 3px solid black; */
+    /* z-index: 2; */
 }
 
 .active_btn {
@@ -173,6 +186,9 @@ p{
 
 .active {
     box-shadow: 3px 3px 10px rgb(241, 173, 15), -3px -3px 10px red;
+    background-color: beige;
+    transform: scale(1.3);
+    z-index: 1;
 }
 
 
@@ -182,18 +198,7 @@ p{
     font-style: italic; /* Курсивное начертание */
    }
 
-.tab_image{
-    display: block;
-    width: 30vw;
-    height: 10vh;
-    background-image: url(../image/buttons/di-din.png);
-    background-size: 27%;
-    background-position-y: 0;
-    background-position-x: center;
-    background-repeat: no-repeat;
-    /* border: 3px solid black; */
-    /* z-index: 2; */
-}
+
 
 @media (orientation: portrait) {
     .tab_image {
