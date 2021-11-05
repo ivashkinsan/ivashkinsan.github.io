@@ -158,8 +158,8 @@ p{
 .table_elem{
     position: relative;
     width: 30vw;
-    min-height: 120px;
-    padding: 2px;
+    min-height: 140px;
+    padding: 4px;
     border: 1px solid rgb(136, 136, 136);
     /* box-shadow: 5px 5px 5px rgba(0,0,0,0.5); */
     border-radius: 5px;
