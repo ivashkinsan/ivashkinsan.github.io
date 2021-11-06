@@ -454,6 +454,6 @@ playBtn.addEventListener('click', function () {
   playSound(audio.src);
 });
 
-rhymes.addEventListener('click', function () {
-  console.log('готово');
-});
+// rhymes.addEventListener('click', function () {
+//   console.log('готово');
+// });
