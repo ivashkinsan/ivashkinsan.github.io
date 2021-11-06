@@ -179,7 +179,6 @@ p{
     justify-content: center;
     overflow: hidden;
     margin: 30px;
-    /* border-radius: 25%; */
 }
 
 .container_moni{
@@ -187,19 +186,17 @@ p{
     display: flex;
     flex-wrap: nowrap;
     height: auto;
-    font-size: 2em;
-    line-height: 2em;
     text-align: center;
 }
 
 .points {
-    flex-grow: 1;
+    width: 25%;
     background-color: chocolate;
     border-radius: 10px;
 }
 
 .monitor{  
-    flex-grow: 5;
+    width: 50%;
     background-color: rgb(43, 107, 226);
     font-size: 2em;
     line-height: 4em;
@@ -207,7 +204,7 @@ p{
 }
 
 .like>.like_points, .dislike>.dislike_points{
-    font-size: 2em;
+    font-size: 3em;
     line-height: 0.1em;
     font-weight: bold;
 }
