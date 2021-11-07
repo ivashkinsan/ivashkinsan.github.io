@@ -6,6 +6,12 @@ let queenStart = document.querySelector(".queen_start");
 
 
 for (let i = 0; i < keys.length; i++){
+    keys[i].addEventListener('touchstart', function () {
+        console.log('KLICK');
+        let data = keys[i].getAttribute('data-key');
+        console.log(data);
+        playNote(data);
+          });
     keys[i].addEventListener('mousedown', function () {
         console.log('KLICK');
         let data = keys[i].getAttribute('data-key');
