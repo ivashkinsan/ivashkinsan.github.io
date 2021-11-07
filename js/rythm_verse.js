@@ -79,31 +79,7 @@ let schitalka_nePlach = [
     {text: "Чисто моют", answer: "dili-dinli"},
     {text: "Все копыта.", answer: "dili-dinli"},
     {text: "Им не надо", answer: "dili-dinli"},
-    {text: "Айболита.", answer: "dili-dinli"},
-    {text: "Ну а рядом", answer: "dili-dinli"},
-    {text: "Плачут блохи", answer: "dili-dinli"},
-    {text: "Их желудки", answer: "dili-dinli"},
-    {text: "Очень плохи", answer: "dili-dinli"},
-    {text: "О водичке", answer: "dili-dinli"},
-    {text: "И о мыле", answer: "dili-dinli"},
-    {text: "Эти блохи", answer: "dili-dinli"},
-    {text: "Позабыли", answer: "dili-dinli"},
-    {text: "Всё семейство", answer: "dili-dinli"},
-    {text: "Недовольно", answer: "dili-dinli"},
-    {text: "Потому что", answer: "dili-dinli"},
-    {text: "Очень больно.", answer: "dili-dinli"},
-    {text: "Не кусайте", answer: "dili-dinli"},
-    {text: "Блохи локти", answer: "dili-dinli"},
-    {text: "Чаще мойте", answer: "dili-dinli"},
-    {text: "Лапки, когти", answer: "dili-dinli"},
-    {text: "Уши, ноги", answer: "dili-dinli"},
-    {text: "И копыта.", answer: "dili-dinli"},
-    {text: "Вот вам тазик", answer: "dili-dinli"},
-    {text: "Вот корыто.", answer: "dili-dinli"},
-    {text: "Вот вам мыло,", answer: "dili-dinli"},
-    {text: "Вот мочалка", answer: "dili-dinli"},
-    {text: "Мойте, мойте,", answer: "dili-dinli"},
-    {text: "Нам не жалко.", answer: "dili-dinli"}
+    {text: "Айболита.", answer: "dili-dinli"}
   ];
 
   let schitalka_RibaKit = [ 
@@ -147,16 +123,8 @@ let schitalka_nePlach = [
     {text: "Аты-баты,", answer: "dili-dinli"},
     {text: "Что-купили?", answer: "dili-dinli"},
     {text: "Аты-баты,", answer: "dili-dinli"},
-    {text: "Самовар.", answer: "dili-din"},
-    {text: "Аты-баты,", answer: "dili-dinli"},
-    {text: "Сколько стоит?", answer: "dili-dinli"},
-    {text: "Аты-баты,", answer: "dili-dinli"},
-    {text: "Три рубля.", answer: "dili-din"},
-    {text: "Аты-баты,", answer: "dili-dinli"},
-    {text: "Кто выходит?", answer: "dili-dinli"},
-    {text: "Аты-баты,", answer: "dili-dinli"},
-    {text: "Ты, да я.", answer: "dili-din"}
-  ];
+    {text: "Самовар.", answer: "dili-din"}
+];
 
   let schitalka_povar_ehal = [ 
     {text: "Повар ехал", answer: "dili-dinli"},
