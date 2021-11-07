@@ -3,6 +3,10 @@ body {
     box-sizing: border-box;
 }
 
+.big_container {
+    width: auto;
+}
+
 .keyboards {
     display: flex;
     justify-content: center;
@@ -51,3 +55,54 @@ body {
 /* .key:hover{
     background-color: rgb(53, 231, 148);
 } */
+
+.monitor_message{
+    text-align: center;
+    font-size: x-large;
+    line-height: 3em;
+}
+
+.queen_button_container {
+    display: flex;
+    justify-content: center;
+    max-width: 736px;
+    width: auto;
+    margin: auto;
+    max-width: 736px;
+    width: 736px;
+}
+
+.queen_button_item {
+    width: 150px;
+    height: 150px;
+    margin: 15px;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    background-color: transparent;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+}
+
+.queen_button_item:hover{
+    transform: scale(1.1);
+}
+
+.G1 {background-image: url("../image/staff/G1.svg");}
+.D2 {background-image: url("../image/staff/D2.svg");}
+.A2 {background-image: url("../image/staff/A2.svg");}
+.E3 {background-image: url("../image/staff/E3.svg");}
+.B3 {background-image: url("../image/staff/B3.svg");}
+.F4 {background-image: url("../image/staff/F4.svg");}
+
+.queen_start_item{
+    display: block;
+    width: 120px;
+    height: 60px;
+    margin-left: auto;
+    margin-right: auto;
+}

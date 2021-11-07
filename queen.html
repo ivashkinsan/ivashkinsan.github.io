@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/queen.css">
-    <!-- <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon"> -->
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
     <title>GAME MENU</title>
 
 </head>
 <body>
+    <div class="big_container">
     <div class="keyboards">
         <div class="key white_key" data-key="1" data-note="C">C</div>
         <div class="key black_key" data-key="2" data-note="C#">Db</div>
@@ -64,19 +65,24 @@
 
         <div class="key white_key" data-key="49" data-note="C">C</div>
     </div>
-
-<div class="queen_button">
-    <button class="queen_button_item" value="G">Соль</button>
-    <button class="queen_button_item" value="D">Ре</button>
-    <button class="queen_button_item" value="A">Ля</button>
-    <button class="queen_button_item" value="E">Ми</button>
-    <button class="queen_button_item" value="B">Си</button>
-    <button class="queen_button_item" value="F">Фа</button>
+<div class="monitor">
+<div class="monitor_message">ВЫБЕРИ НОТЫ КОРОЛЕВЫ</div>
+<div class="queen_button_container">
+    <button class="queen_button_item G1" value="G"></button>
+    <button class="queen_button_item D2" value="D"></button>
+    <button class="queen_button_item A2" value="A"></button>
+    <button class="queen_button_item E3" value="E"></button>
+    <button class="queen_button_item B3" value="B"></button>
+    <button class="queen_button_item F4" value="F"></button>
 </div>
+</div>
+
 
 <div class="queen_start">
-    <button class="queen_start_item" value="G">Start</button>
+    <button class="queen_start_item" value="Start">Начать игру</button>
 </div>
+</div>
+
 
     <audio data-key="1" src="/PianoSound/01.opus" preload="auto"></audio>
     <audio data-key="2" src="/PianoSound/02.opus" preload="auto"></audio>
