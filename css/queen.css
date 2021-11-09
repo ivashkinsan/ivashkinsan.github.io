@@ -73,9 +73,9 @@ body {
 }
 
 .queen_button_item {
-    width: 150px;
-    height: 150px;
-    margin: 15px;
+    width: 95px;
+    height: 95px;
+    margin: 3px;
     padding: 0;
     border: none;
     font: inherit;
@@ -86,6 +86,7 @@ body {
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: center;
+    transition: all 0.5s ease-out;
 }
 
 .queen_button_item:hover{
@@ -99,6 +100,15 @@ body {
 .B3 {background-image: url("../image/staff/B3.svg");}
 .F4 {background-image: url("../image/staff/F4.svg");}
 
+
+.G1:hover {background-image: url("../image/Queen/queen_G.png");}
+.D2:hover {background-image: url("../image/Queen/queen_D.png");}
+.A2:hover {background-image: url("../image/Queen/queen_A.png");}
+.E3:hover {background-image: url("../image/Queen/queen_E.png");}
+.B3:hover {background-image: url("../image/Queen/queen_B.png");}
+.F4:hover {background-image: url("../image/Queen/queen_F.png");}
+
+
 .queen_start_item{
     display: block;
     width: 120px;
@@ -106,3 +116,25 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
+button[data-descr] {
+    position: relative;
+    text-decoration: underline;
+    color: #00F;
+    cursor: help;
+  }
+  
+  button[data-descr]:hover::after {
+    content: attr(data-descr);
+    position: absolute;
+    left: 8px;
+    top: 95px;
+    min-width: 50px;
+    border: 1px #aaaaaa solid;
+    border-radius: 10px;
+    background-color: #ffffcc;
+    padding: 12px;
+    color: #000000;
+    font-size: 14px;
+    z-index: 1;
+  }
