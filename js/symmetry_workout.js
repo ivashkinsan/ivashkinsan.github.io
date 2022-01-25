@@ -1,117 +1,131 @@
+let marker = document.querySelectorAll('p');
+for(let item of marker){
+    item.innerHTML = '';
+}
+
 let keys = document.querySelectorAll('.key');
 let elements = document.querySelectorAll('.elem');
 let monitor = document.querySelector('.monitor');//монитор
 let buttons = document.querySelectorAll('.button');
+let circles = document.querySelectorAll('.circle');
+let answerArr;
 
 let ti;
 let symmetry2;
 let symmetry3;
 let symmetry4;
 let symmetry6;
-// let x = [[1,13],[2,14],[3,15],[4,16],[5,17],[6,18],[7,19],];
-// console.log(symmetry2);
-// console.log(symmetry3);
-// console.log(symmetry4);
-// console.log(symmetry6);
+
+let symBtnLevel;
+let symBtnLevelGO;
+//ВЫБОР РЕЖИМА РАНДОМ
+let symmetryNameArr = [symmetry2, symmetry3, symmetry4, symmetry6];
+let startSymmetry = getRandomIntInclusive(0,3);
 
 for (let item of buttons) {
     item.onclick = function () {
+        monitoring(item.dataset.number);
+        symBtnLevel = item;
+        // console.log(symBtnLevel.dataset.number);
+        clear_ledOn();
+        startWork();
+        remove_border_color();
         item.classList.toggle('ledGoldON');
         let circle = item.children;
         for(let itemCircle of circle){
             itemCircle.classList.toggle('border_color');
-            console.log(itemCircle);
         }
-        
     }
 };
+
+// ФУНКЦИЯ remove border_color
+let remove_border_color = function(){
+    for(let item of circles){
+        item.classList.remove('border_color');
+    }
+    for(let item of buttons){
+        item.classList.remove('ledGoldON');
+    }
+}
 
 //функция подсветки голубым
 for (let item of keys) {
     item.onclick = function () {
         item.classList.toggle('ledON');
         finderLed();  
-        // monitor.textContent = '';
-        
-        // for (let i = 0; i < finderLed().length; i++) {
-        //     monitor.textContent += finderLed()[i].dataset.number + ' ';
-        // };
-
-        // let perem = monitor.textContent;
-        // let poisk = ident.find(item => item.keys == monitor.textContent);
-        //     if (poisk) {
-        //     monitor.textContent = poisk.name;
-        //     };
-
     }
 };
 
+//функция очистки клавиш
+let clear_ledOn = function(){
+for (let item of keys) {
+     item.classList.remove('ledON');
+     item.classList.remove('ledWin');    
+};
+};
 
-
-
-
-
-
-// РАНДОМНОЕ ЧИСЛО
+// ФУНКЦИЯ РАНДОМНОЕ ЧИСЛО
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
   }
 
-//ПОДСВЕТКА ОКТАВЫ, ПРИСВОЕНИЕ ИСХОДНЫХ ЦИФР
+// console.log('YYYYEEESSS')
+// ФУНКЦИЯ ПОДСВЕТКИ СТАРТОВОЙ ОКТАВЫ, ПРИСВОЕНИЕ ИСХОДНЫХ ЦИФР
   let startWork = function(){
+    clear_ledOn();
     let startOneNote = getRandomIntInclusive(0,12);
     let startTwoNote = startOneNote+12;
     keys[startOneNote].classList.toggle('ledON');
     keys[startTwoNote].classList.toggle('ledON');
+
     ti = startOneNote;
-symmetry2 = [(ti+1),(ti+7),(ti+13)];
-symmetry3 = [(ti+1),(ti+5),(ti+9),(ti+13)];
-symmetry4 = [(ti+1),(ti+4),(ti+7),(ti+10),(ti+13)];
-symmetry6 = [(ti+1),(ti+3),(ti+5),(ti+7),(ti+9),(ti+11),(ti+13)];
-    // console.log(startOneNote,startTwoNote);
-
-}
-
-//ВЫБОР РЕЖИМА РАНДОМ
-let symmetryNameArr = [symmetry2, symmetry3, symmetry4, symmetry6];
-let startSymmetry = getRandomIntInclusive(0,3);
-// console.log(startSymmetry);
-
-// console.log(getRandomIntInclusive(1,13));
+    if(symBtnLevel.dataset.number == 'symmetry2'){symBtnLevelGO = [(ti+1),(ti+7),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'symmetry3'){symBtnLevelGO = [(ti+1),(ti+5),(ti+9),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'symmetry4'){symBtnLevelGO = [(ti+1),(ti+4),(ti+7),(ti+10),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'symmetry6'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+7),(ti+9),(ti+11),(ti+13)];};
+};
 
 //ПОИСК ВЫБРАННЫХ ЭЛЕМЕНТОВ
-let finderLed = function (ledElement) {
-    ledElement = document.querySelectorAll('.ledON');
+let finderLed = function () {
+    let ledElement = document.querySelectorAll('.ledON');
     let answer = [];
     for (let i = 0; i < ledElement.length; i++){
-        answer.push(ledElement[i].dataset.number)
-        // console.log(ledElement[i].dataset.number);
-        sravniElem(answer,symmetry2);
-    }
-    // console.log(answer);
-    
+        answer.push(ledElement[i].dataset.number) 
+    };
+    answerArr = ledElement;
+    sravniElem(answer,symBtnLevelGO);
     return ledElement;
-}
+};
 
-
+// ПРОВЕРКА ОТВЕТА - СРАВНЕНИЕ
 let sravniElem = function(a,b){
     let sovpadeniya = 0;
+
     for(i = 0; a[i] == b[i] && i < a.length ; i++){
-        if(a[i] == b[i]){sovpadeniya +=1};
-        if(a.length == b.length && a.length == sovpadeniya){
-            console.log('rabotaet' + sovpadeniya);
-            setInterval(monitoring(), 5000);
-        }
+        if(a[i] == b[i]){sovpadeniya +=1}; 
     }
-}
 
-let monitoring = function(){
-   
-    monitor.textContent = 'GOTOVO';
-}
+    if(a.length == b.length && a.length == sovpadeniya){
+        // console.log('rabotaet' + sovpadeniya);
+        // console.log(answerArr);
+        win_ledOn(answerArr);
+        setTimeout(startWork,1300);
+    }
+};
 
+//функция подсветки в случае верного ответа   
+let win_ledOn = function(winArr){
+    for (let item of winArr) {
+        item.classList.add('ledWin');  
+    };
+};
 
+let monitoring = function(level){
+   if(level == 'symmetry2'){monitor.textContent = 'СИММЕТРИЯ из 2';}
+   if(level == 'symmetry3'){monitor.textContent = 'СИММЕТРИЯ из 3';}
+   if(level == 'symmetry4'){monitor.textContent = 'СИММЕТРИЯ из 4';}
+   if(level == 'symmetry6'){monitor.textContent = 'СИММЕТРИЯ из 6';}
+};
 
-startWork();

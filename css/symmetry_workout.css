@@ -93,6 +93,13 @@ body {
     box-shadow: inset 0px 0px 15px 0px #F4D6B1;
   }
 
+  .ledWin { 
+    background-color: #d6a86f; 
+    transition-property: background-color;
+    transition-duration: 300ms;
+    box-shadow: inset 0px 0px 15px 0px #000000;
+  }
+  
   .border_color{
     border-color: #182A48;
     /* border-width: 3px; */
