@@ -1,8 +1,15 @@
 body {
     margin: 0;
     box-sizing: border-box;
+    box-sizing: border-box;
+    
+    height: 100vh;
+    margin: 0;
+    color: #F4D6B1;
+    background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
+    border: 20px solid;
+    border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
 }
-
 .big_container {
     width: auto;
 }
@@ -56,13 +63,23 @@ body {
     background-color: rgb(53, 231, 148);
 } */
 
-.monitor_message{
+.monitor{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    font-size: 34px;
     text-align: center;
-    font-size: x-large;
-    line-height: 3em;
+    margin: 10px 20px 10px 20px;
+   
 }
 
+/* .monitor_message{
+    text-align: center;
+    margin: 0 20px 0 20px;
+} */
+
 .queen_button_container {
+    position: relative;
     display: flex;
     justify-content: center;
     max-width: 736px;
@@ -70,6 +87,21 @@ body {
     margin: auto;
     max-width: 736px;
     width: 736px;
+}
+
+.blind{
+    display: block;
+    position: absolute;
+    width: 750px;
+    height: 100px;
+
+    font-size: 44px;
+    text-align: center;
+    color: black;
+    background-color: beige;
+    z-index: 1;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .queen_button_item {
@@ -92,6 +124,8 @@ body {
 .queen_button_item:hover{
     transform: scale(1.1);
 }
+
+.play {background-image: url("../image/buttons/play.png");}
 
 .G1 {background-image: url("../image/staff/G1.svg");}
 .D2 {background-image: url("../image/staff/D2.svg");}
@@ -122,6 +156,7 @@ button[data-descr] {
     text-decoration: underline;
     color: #00F;
     cursor: help;
+    background-color: beige;
   }
   
   button[data-descr]:hover::after {

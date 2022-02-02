@@ -1,7 +1,7 @@
 let marker = document.querySelectorAll('p');
-for(let item of marker){
-    item.innerHTML = '';
-}
+// for(let item of marker){
+//     item.innerHTML = '';
+// }
 
 let keys = document.querySelectorAll('.key');
 let elements = document.querySelectorAll('.elem');
@@ -85,6 +85,14 @@ function getRandomIntInclusive(min, max) {
     if(symBtnLevel.dataset.number == 'symmetry3'){symBtnLevelGO = [(ti+1),(ti+5),(ti+9),(ti+13)];}
     if(symBtnLevel.dataset.number == 'symmetry4'){symBtnLevelGO = [(ti+1),(ti+4),(ti+7),(ti+10),(ti+13)];}
     if(symBtnLevel.dataset.number == 'symmetry6'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+7),(ti+9),(ti+11),(ti+13)];};
+
+    if(symBtnLevel.dataset.number == 'ionian'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+6),(ti+8),(ti+10),(ti+12)];}
+    if(symBtnLevel.dataset.number == 'melodic_minor'){symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6),(ti+8),(ti+10),(ti+12)];}
+
+    if(symBtnLevel.dataset.number == 'maj_tetrachord'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+6)];}
+    if(symBtnLevel.dataset.number == 'min_tetrachord'){symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6)];}
+    if(symBtnLevel.dataset.number == 'frig_tetrachord'){symBtnLevelGO = [(ti+1),(ti+2),(ti+4),(ti+6)];}
+    if(symBtnLevel.dataset.number == 'harm_tetrachord'){symBtnLevelGO = [(ti+1),(ti+2),(ti+5,(ti+6))];}
 };
 
 //ПОИСК ВЫБРАННЫХ ЭЛЕМЕНТОВ
