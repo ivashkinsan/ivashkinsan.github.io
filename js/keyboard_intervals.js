@@ -1,3 +1,5 @@
+document.oncontextmenu = cmenu; function cmenu() { return false; };
+
 let monitor_header = document.querySelector('.monitor_header');
 let monitor_footer = document.querySelector('.monitor_footer');
 let user_answer = [];

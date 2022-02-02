@@ -1,3 +1,5 @@
+document.oncontextmenu = cmenu; function cmenu() { return false; };
+
 let keys = document.querySelectorAll(".key");
 
 for(let item of keys){

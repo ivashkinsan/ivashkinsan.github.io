@@ -1,9 +1,18 @@
+//запрещает нажатие правой кнопки мыши на сайте
+document.oncontextmenu = cmenu; function cmenu() { return false; };
+
 const container_dom = document.querySelector('.container_dom');
 const dom_item = document.querySelectorAll('svg');
 const audioAll = document.querySelectorAll('audio');
 
-container_dom.insertBefore(dom_item[0],dom_item[1]);
+let scaleButton = document.querySelector('.scale');
 
+// container_dom.insertBefore(dom_item[0],dom_item[1]);
+
+scaleButton.addEventListener('click', function () {
+    container_dom.classList.toggle('scale_transform');
+    console.log(container_dom);
+});
 //присвоение дата атрибутов SVG объектам
 let j = 21;
 for(let i = dom_item.length-1; i > 0; i--){
