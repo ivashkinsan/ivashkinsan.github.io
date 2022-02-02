@@ -3,13 +3,16 @@ let keys = document.querySelectorAll(".key");
 for(let item of keys){
   item.innerHTML = '';
 }
-
-let audioArr = document.querySelectorAll("audio");
-let queenStartItem = document.querySelector(".queen_start_item");
-let queen_button_item = document.querySelectorAll(".queen_button_item");
+let startButtonsToggle = document.querySelectorAll('.start_button_item');
+let audioArr = document.querySelectorAll('audio');
+let queenStartItem = document.querySelector('.queen_start_item');
+let queen_button_item = document.querySelectorAll('.queen_button_item');
 const audioAll = document.querySelectorAll('audio');
-let queenArr = ['1G','2D','2A','3E','3B','4F'];
-let blind = document.querySelector(".blind");
+let queenArr = [];
+// let queenArr = ['1G','2D','2A','3E','3B','4F'];
+// let queenArr2 = [];
+let startButton = document.querySelector('.start_button');
+let startMenu = document.querySelector('.start_menu');
 let moniRight = document.querySelector('.answer_right');
 let moniWrong = document.querySelector('.answer_wrong');
 let noteQuest = '';
@@ -18,10 +21,32 @@ let right = 0;
 let wrong = 0;
 let playButton = document.querySelector('.play');
 
-blind.addEventListener('click', function () {
-  blind.style.display = 'none';
-  playNewWork(queenArr[getRandomInt(6)]);
+startButton.addEventListener('click', function () {
+  for(let item of startButtonsToggle){
+    if(item.classList[2] == 'start_button_toggle'){
+      queenArr.push(item.dataset.value);
+    }
+  }
+  startButton.style.display = 'none';
+  startMenu.style.display = 'none';
+  playNewWork(queenArr[getRandomInt(queenArr.length)]);
+  
 });
+
+
+for(let item of startButtonsToggle){
+item.addEventListener('click', function () {
+  
+  // queenArr.push(item.dataset.value);
+  item.classList.toggle('start_button_toggle');
+
+  // console.log('click----');
+  // console.log(item.dataset.value);
+  // console.log(item.classList);
+  // console.log(queenArr);
+  
+});
+}
 
 //повтор проигранной ноты
 playButton.addEventListener('click', function () {
@@ -36,7 +61,7 @@ for (let i = 0; i < keys.length; i++){
         sound.play();
         noteAnswer = audioAll[i];
           compare(noteQuest,noteAnswer)
-          setTimeout(playNewWork, 2000, queenArr[getRandomInt(6)]);
+          setTimeout(playNewWork, 2000, queenArr[getRandomInt(queenArr.length)]);
           });
     keys[i].addEventListener('mousedown', function () {
         // console.log('KLICK mousedown');
@@ -44,7 +69,7 @@ for (let i = 0; i < keys.length; i++){
         sound.play();
         noteAnswer = audioAll[i];
           compare(noteQuest,noteAnswer)
-          setTimeout(playNewWork, 2000, queenArr[getRandomInt(6)]);
+          setTimeout(playNewWork, 2000, queenArr[getRandomInt(queenArr.length)]);
           });  
 };
 
@@ -59,7 +84,7 @@ for (let i = 0; i < queen_button_item.length; i++){
           audioAll[j].play();
           noteAnswer = audioAll[j];
           compare(noteQuest,noteAnswer);
-          setTimeout(playNewWork, 2000, queenArr[getRandomInt(6)]);
+          setTimeout(playNewWork, 2000, queenArr[getRandomInt(queenArr.length)]);
         }
       }
     });
@@ -73,7 +98,7 @@ for (let i = 0; i < queen_button_item.length; i++){
  function playNewWork(queenOneElem){
   for(j = 0; j < audioAll.length; j++){
     if(audioAll[j].dataset.key == queenOneElem){
-    console.log("РАБОТАЕТ" + audioAll[j].dataset.key);
+    // console.log("РАБОТАЕТ" + audioAll[j].dataset.key);
     audioAll[j].play();
     noteQuest = audioAll[j];
     
@@ -93,7 +118,7 @@ function compare(a,b){
     wrong += 1;
     moniWrong.innerHTML = wrong;
   };
-  console.log('right =' + right, 'wrong =' + wrong);
+  // console.log('right =' + right, 'wrong =' + wrong);
   
 }
 

@@ -2,7 +2,7 @@ body {
     margin: 0;
     box-sizing: border-box;
     box-sizing: border-box;
-    
+    width: 100vw;
     height: 100vh;
     margin: 0;
     color: #F4D6B1;
@@ -10,6 +10,67 @@ body {
     border: 20px solid;
     border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
 }
+
+.start_menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 95vw;
+    height: 95vh;
+    background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
+    z-index: 999;
+}
+
+
+
+.start_button{
+    width: 80px;
+    height: 40px;
+    font-size: 24px;
+    text-align: center;
+    line-height: 40px;
+    margin-top: 10px;
+    color: black;
+    background-color: #ffffcc;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.start_button_item{
+    width: 85px;
+    height: 85px;
+    margin: 3px;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    background-color: transparent;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    transition: all 0.5s ease-out;
+    border-radius: 5px;
+    margin: 20px;
+}
+
+
+.start_button_toggle {
+    box-sizing: content-box;
+    border: 6px solid white;
+    box-shadow: 3px 3px 10px rgb(8, 218, 255), -3px -3px 10px rgb(232, 250, 255);   
+}
+
+.buttons_block {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .big_container {
     width: auto;
 }
@@ -49,7 +110,7 @@ body {
     margin-right: -7px;
     border-radius: 0 0 3px 3px;
     background-color: black;
-    z-index: 1;
+    z-index: 2;
     box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -5px 2px 3px rgba(0,0,0,0.6) inset,0 2px 4px rgba(0,0,0,0.5);
     background:linear-gradient(45deg,#222 0%,#555 100%)
 }
@@ -89,16 +150,18 @@ body {
 
 
 .blind{
-    display: block;
-    position: absolute;
-    width: 750px;
-    height: 100px;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute; */
+    width: 150px;
+    height: 40px;
+    margin: 5px;
     font-size: 24px;
     text-align: center;
     color: black;
     background-color: beige;
-    z-index: 1;
+    z-index: 3;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -140,6 +203,25 @@ body {
 .B3 {background-image: url("../image/staff/B3.svg");}
 .F4 {background-image: url("../image/staff/F4.svg");}
 
+.G1_start {
+    background-color: #ffffcc;
+    background-image: url("../image/staff/G1.svg");}
+.D2_start {
+    background-color: #ffffcc;
+    background-image: url("../image/staff/D2.svg");}
+.A2_start{
+    background-color: #ffffcc;
+    background-image: url("../image/staff/A2.svg");}
+.E3_start {
+    background-color: #ffffcc;
+    background-image: url("../image/staff/E3.svg");}
+.B3_start {
+    background-color: #ffffcc;
+    background-image: url("../image/staff/B3.svg");}
+.F4_start {
+    background-color: #ffffcc;
+    background-image: url("../image/staff/F4.svg");}
+
 
 .G1:hover {background-image: url("../image/Queen/queen_G.png");}
 .D2:hover {background-image: url("../image/Queen/queen_D.png");}
@@ -157,12 +239,15 @@ body {
     margin-right: auto;
 }
 
+
+
 button[data-descr] {
     position: relative;
     text-decoration: underline;
     color: #00F;
     cursor: help;
-    background-color: beige;
+    background-color: #ffffcc;
+    border-radius: 5px;
   }
   
   button[data-descr]:hover::after {
