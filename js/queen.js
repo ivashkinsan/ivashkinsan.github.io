@@ -36,6 +36,7 @@ for (let i = 0; i < keys.length; i++){
         sound.play();
         noteAnswer = audioAll[i];
           compare(noteQuest,noteAnswer)
+          setTimeout(playNewWork, 2000, queenArr[getRandomInt(6)]);
           });
     keys[i].addEventListener('mousedown', function () {
         // console.log('KLICK mousedown');
@@ -43,10 +44,11 @@ for (let i = 0; i < keys.length; i++){
         sound.play();
         noteAnswer = audioAll[i];
           compare(noteQuest,noteAnswer)
+          setTimeout(playNewWork, 2000, queenArr[getRandomInt(6)]);
           });  
 };
 
-//озвучка кнопок событием клика
+//озвучка кнопок BUTTON событием клика
 for (let i = 0; i < queen_button_item.length; i++){
   queen_button_item[i].addEventListener('click', function () {
       // console.log('KLICK');
@@ -56,12 +58,14 @@ for (let i = 0; i < queen_button_item.length; i++){
           // console.log("РАБОТАЕТ" + audioAll[j].dataset.key + data);
           audioAll[j].play();
           noteAnswer = audioAll[j];
-          compare(noteQuest,noteAnswer)
+          compare(noteQuest,noteAnswer);
+          setTimeout(playNewWork, 2000, queenArr[getRandomInt(6)]);
         }
       }
     });
  };
 
+ //рандомное число с ограничением по максимально допустимому
  function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
@@ -77,6 +81,7 @@ for (let i = 0; i < queen_button_item.length; i++){
  }
 }
 
+//Функция сравнения
 function compare(a,b){
   // console.log('noteQuest ' + noteQuest);
   // console.log('noteAnswer ' + noteAnswer);
@@ -89,6 +94,6 @@ function compare(a,b){
     moniWrong.innerHTML = wrong;
   };
   console.log('right =' + right, 'wrong =' + wrong);
-  setTimeout(playNewWork, 2000, queenArr[getRandomInt(6)]);
+  
 }
 
