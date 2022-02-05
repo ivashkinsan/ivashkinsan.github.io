@@ -14,7 +14,7 @@ const audioAll = document.querySelectorAll('audio');
 //     console.log(container_dom);
 // });
 //присвоение дата атрибутов SVG объектам
-let j = 21;
+let j = 25;
 for(let i = dom_item.length-1; i >= 0; i--){
     dom_item[i].setAttribute('data-key',audioAll[j].dataset.key);
     // console.log(dom_item[i]);
