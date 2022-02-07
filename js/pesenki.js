@@ -83,14 +83,14 @@ let dveteteri = [
     ];
 
 let korablik = [
-    {text: 'Наш кораблик по волнам плывёт,', formula: ['YO','YO','TI','TI','RA','TI','YO','YO','ZO']},
-    {text: 'капитаном одноглазый кот,', formula: ['YO','YO','TI','TI','RA','TI','YO','YO','ZO']},
-    {text: 'ворон с мачты глядит вперёд', formula: ['RA','TI','YO','YO','TI','RA','TI','YO']},
-    {text: 'и матросы мыши.', formula: ['TI','TI','RA','TI','YO','YO']},
-    {text: 'Удивляется любой моряк –', formula: ['YO','YO','TI','TI','RA','TI','YO','YO','ZO']},
-    {text: 'паруса у нас вперекосяк.', formula: ['YO','YO','TI','TI','RA','TI','YO','YO','ZO']},
-    {text: 'Ну и что же? Зато наш флаг', formula: ['RA','TI','YO','YO','TI','RA','TI','YO']},
-    {text: 'прочих флагов выше!', formula: ['TI','TI','RA','TI','YO','YO']}
+    {text: 'Наш кораблик по волнам плывёт,', formula: ['YO',0,'YO','TI','TI','RA','TI','YO',0,'YO',0,'ZO']},
+    {text: 'капитаном одноглазый кот,', formula: ['YO',0,'YO','TI','TI','RA','TI','YO',0,'YO',0,'ZO']},
+    {text: 'ворон с мачты глядит вперёд', formula: ['RA',0,'TI','YO',0,'YO','TI','RA',0,'TI',0,'YO']},
+    {text: 'и матросы мыши.', formula: ['TI',0,'TI','RA',0,'TI',0,'YO',0,'YO']},
+    {text: 'Удивляется любой моряк –', formula: ['YO',0,'YO','TI','TI','RA','TI','YO',0,'YO',0,'ZO']},
+    {text: 'паруса у нас вперекосяк.', formula: ['YO',0,'YO','TI','TI','RA','TI','YO',0,'YO',0,'ZO']},
+    {text: 'Ну и что же? Зато наш флаг', formula: ['RA',0,'TI','YO',0,'YO','TI','RA',0,'TI',0,'YO']},
+    {text: 'прочих флагов выше!', formula: ['TI',0,'TI','RA',0,'TI',0,'YO',0,'YO']}
     ];
     
 
@@ -141,7 +141,7 @@ let start = function(mass){
     }
     monitor_for_text.innerHTML = mass.text;
 }
-start(korablik[0]);
+start(solnishko[5]);
 
 
 // notes[0].style.top = topBottomArr[0] + 'px';
