@@ -6,6 +6,38 @@ let nameStage = ['ZO','RA','TI','YO','LE','WI','NA','ZO_up'];
 let tonalnost_os_Y = {};
 let monitor_for_text = document.querySelector('.monitor_for_text');
 let container_notes = document.querySelector('.container_notes');
+let button_left = document.querySelector('.button_left');
+let button_right = document.querySelector('.button_right');
+let length_song = 0;
+let page_number = 0;
+let start_game;
+
+
+button_left.addEventListener('click', function() { 
+    // length_song = esli.length;
+    if(page_number > 0){
+        let note_delete = document.querySelectorAll('.note');
+    for(let item of note_delete){
+        item.remove();
+    }
+        page_number--;
+        start_game();
+    } 
+});
+
+
+button_right.addEventListener('click', function() {
+    // length_song = esli.length;
+    if(page_number < length_song){
+        let note_delete = document.querySelectorAll('.note');
+    for(let item of note_delete){
+        item.remove();
+    }
+        page_number++;
+        start_game();
+    }
+});
+
 
 let parowoz = [
 {text: '- Паровоз, паровоз, ты куда нас повез?', formula: ['ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO']},
@@ -102,7 +134,7 @@ for(let i = 0; i < 12; i++){
     topBottomArr.push(oneItemArrTopBottom);
     oneItemArrTopBottom -= 17.5;
 };
-console.log(oneItemArrTopBottom);
+// console.log(oneItemArrTopBottom);
 
 // Создание массива с координатами горизонтального расположения
 let rightLeftArr = [];
@@ -122,14 +154,17 @@ for(let i = 0; i < 12; i++){
 
 // запуск странички с частью песни
 let start = function(mass){
+    
     let interval = 0;
     for(let i = 0; i < mass.formula.length; i++){
         let newDiv = document.createElement('div');
         newDiv.classList.add('note');
         if(mass.formula[i] == 0){
-            newDiv.style.width = '10px';
-            interval += 18.5;
-            console.log(parowoz[1].formula[3])
+            newDiv.style.width = '0px';
+            newDiv.style.top = tonalnost_os_Y[mass.formula[i]] + 'px';
+            newDiv.style.left = margin_left + interval + 'px';
+            interval += 37;
+            // console.log(parowoz[1].formula[3]);
         } else {
             
             newDiv.style.backgroundImage = "url(../image/staff/" + mass.formula[i]+ ".svg)";
@@ -141,37 +176,10 @@ let start = function(mass){
     }
     monitor_for_text.innerHTML = mass.text;
 }
-start(solnishko[5]);
 
+start_game = function(){
+    start(solnishko[page_number]);
+    length_song = solnishko.length-1;
+}
 
-// notes[0].style.top = topBottomArr[0] + 'px';
-// notes[1].style.top = topBottomArr[1] + 'px';
-// notes[2].style.top = topBottomArr[2] + 'px';
-// notes[3].style.top = topBottomArr[3] + 'px';
-// notes[4].style.top = topBottomArr[4] + 'px';
-// notes[5].style.top = topBottomArr[5] + 'px';
-// notes[6].style.top = topBottomArr[6] + 'px';
-// notes[7].style.top = topBottomArr[7] + 'px';
-// notes[8].style.top = topBottomArr[8] + 'px';
-// notes[9].style.top = topBottomArr[9] + 'px';
-// notes[10].style.top = topBottomArr[10] + 'px';
-// notes[11].style.top = topBottomArr[11] + 'px';
-// notes[12].style.top = topBottomArr[12] + 'px';
-
-// Позиция нот по горизонтали
-// notes[0].style.left = rightLeftArr[0] + 'px';
-// notes[1].style.left = rightLeftArr[1] + 'px';
-// notes[2].style.left = rightLeftArr[2] + 'px';
-// notes[3].style.left = rightLeftArr[3] + 'px';
-// notes[4].style.left = rightLeftArr[4] + 'px';
-// notes[5].style.left = rightLeftArr[5] + 'px';
-// notes[6].style.left = rightLeftArr[6] + 'px';
-// notes[7].style.left = rightLeftArr[7] + 'px';
-// notes[8].style.left = rightLeftArr[8] + 'px';
-// notes[9].style.left = rightLeftArr[9] + 'px';
-// notes[10].style.left = rightLeftArr[10] + 'px';
-// notes[11].style.left = rightLeftArr[11] + 'px';
-// notes[12].style.left = rightLeftArr[12] + 'px';
-// notes[13].style.left = rightLeftArr[13] + 'px';
-// notes[14].style.left = rightLeftArr[14] + 'px';
-// notes[15].style.left = rightLeftArr[15] + 'px';
+start_game();
