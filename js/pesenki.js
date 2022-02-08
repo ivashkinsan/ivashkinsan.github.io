@@ -1,6 +1,6 @@
 let staff_5 = document.querySelectorAll('.line');
 let notes = document.querySelectorAll('.note');
-let margin_left = 110;
+let margin_left = 60;
 let interval_x = 37;
 let nameStage = ['ZO','RA','TI','YO','LE','WI','NA','ZO_up'];
 let tonalnost_os_Y = {};
@@ -12,31 +12,6 @@ let length_song = 0;
 let page_number = 0;
 let start_game;
 
-
-button_left.addEventListener('click', function() { 
-    // length_song = esli.length;
-    if(page_number > 0){
-        let note_delete = document.querySelectorAll('.note');
-    for(let item of note_delete){
-        item.remove();
-    }
-        page_number--;
-        start_game();
-    } 
-});
-
-
-button_right.addEventListener('click', function() {
-    // length_song = esli.length;
-    if(page_number < length_song){
-        let note_delete = document.querySelectorAll('.note');
-    for(let item of note_delete){
-        item.remove();
-    }
-        page_number++;
-        start_game();
-    }
-});
 
 let parowoz = [
 {text: '- Паровоз, паровоз, ты куда нас повез?', formula: ['ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO']},
@@ -137,6 +112,54 @@ let full_menu = [
     { name: 'Кораблик', arr: korablik}
 ];
 
+//генерируем стартовое меню
+let NewGridStartMenuElements;
+let buttonsBlock = document.querySelector('.buttons_block');
+//контейнер для стартовой игры
+let startVariable;
+//функция создания элементов
+  let NewGridStartMenuGO = function(allNames){
+    for(let i = 0; i < allNames.length; i++){
+      NewGridStartMenuElements = document.createElement('div');
+      NewGridStartMenuElements.textContent = allNames[i].name;
+      NewGridStartMenuElements.dataSrc = allNames[i].arr;
+      NewGridStartMenuElements.className = "start_buttons";
+      buttonsBlock.append(NewGridStartMenuElements);
+    };  
+}
+
+
+
+//запуск стартового меню
+NewGridStartMenuGO(full_menu);
+
+//слушаем события на start_buttons
+let start_buttons = document.querySelectorAll('.start_buttons');
+start_buttons.forEach(function(btn) {
+  // Вешаем событие клик
+    btn.addEventListener('click', function() {
+      for(i = 0; i < start_buttons.length; i++){
+        start_buttons[i].classList.remove('active_btn');
+      }
+      btn.classList.toggle('active_btn');
+      startVariable = btn.dataSrc;
+      console.log(startVariable);
+       });
+  });
+
+
+  let startBtn = document.querySelector('.startBtn');
+  let welcome = document.querySelector('.welcome');
+  // функция для кнопки старт
+  startBtn.addEventListener('click', function () {
+    console.log(startVariable);
+    welcome.style.display = 'none';
+    
+    start_game(startVariable);
+  });
+
+
+
 // Создание массива с координатами высот
 let topBottomArr = [];
 let startLineDo = staff_5[4].getBoundingClientRect().y + 2 + 17.5;
@@ -188,9 +211,35 @@ let start = function(mass){
     monitor_for_text.innerHTML = mass.text;
 }
 
-start_game = function(){
-    start(solnishko[page_number]);
-    length_song = solnishko.length-1;
+start_game = function(game){
+    console.log(game);
+    console.log(game[page_number]);
+    start(game[page_number]);
+    length_song = game.length-1;
 }
 
-start_game();
+
+button_left.addEventListener('click', function() { 
+    // length_song = esli.length;
+    if(page_number > 0){
+        let note_delete = document.querySelectorAll('.note');
+    for(let item of note_delete){
+        item.remove();
+    }
+        page_number--;
+        start_game(startVariable);
+    } 
+});
+
+
+button_right.addEventListener('click', function() {
+    // length_song = esli.length;
+    if(page_number < length_song){
+        let note_delete = document.querySelectorAll('.note');
+    for(let item of note_delete){
+        item.remove();
+    }
+        page_number++;
+        start_game(startVariable);
+    }
+});

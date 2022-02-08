@@ -266,6 +266,7 @@ checkboxes.forEach(function(btn) {
        });
   });
 
+  // функция для кнопки старт
   startBtn.addEventListener('click', function () {
     
     welcome.style.display = 'none';

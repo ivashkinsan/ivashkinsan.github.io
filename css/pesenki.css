@@ -15,7 +15,7 @@ body {
     text-align: center;
     /* border: 3px white solid; */
 }
-.start_menu {
+.welcome {
     position: fixed;
     margin: 0;
     box-sizing: border-box;
@@ -41,7 +41,7 @@ body {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.start_button{
+.start_buttons, .startBtn{
     margin: 1%;
     font-size: 24px;
     text-align: center;
@@ -62,11 +62,11 @@ body {
     border-radius: 5px;
 }
 
-/* .start_button_toggle {
+.active_btn {
     box-sizing: content-box;
     border: 6px solid white;
     box-shadow: 3px 3px 10px rgb(8, 218, 255), -3px -3px 10px rgb(232, 250, 255);   
-} */
+}
 
 
 
@@ -75,7 +75,7 @@ body {
     position: fixed;
     top: 20vh;
     left: 17vw;
-    font-size: 30px;
+    font-size: 24px;
     width: auto;
     height: 40px;
     display: flex;

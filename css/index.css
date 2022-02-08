@@ -14,9 +14,10 @@ body {
     "header header header"
     "sidebar-1 sidebar-2 sidebar-3"
     "sidebar-4 sidebar-5 sidebar-6"
+    "sidebar-7 sidebar-8 sidebar-9"
     "footer footer footer";
     grid-gap: 10px;
-    grid-template-rows: 50px 1fr 1fr 800px;
+    grid-template-rows: 50px 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -40,7 +41,7 @@ body {
     font-size: 1em;
 }
 
-#sidebar-1, #sidebar-2, #sidebar-3, #sidebar-4,#sidebar-5,#sidebar-6  {
+#sidebar-1, #sidebar-2, #sidebar-3, #sidebar-4,#sidebar-5,#sidebar-6,#sidebar-7  {
     display: flex;
     align-items: center;
     padding: 20px;
@@ -70,7 +71,9 @@ body {
 #sidebar-6 {
     grid-area: sidebar-6;
 }
-
+#sidebar-7{
+    grid-area: sidebar-7;
+}
 #footer{
     padding: 20px;
     /* background: darkcyan; */
