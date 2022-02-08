@@ -38,7 +38,6 @@ button_right.addEventListener('click', function() {
     }
 });
 
-
 let parowoz = [
 {text: '- Паровоз, паровоз, ты куда нас повез?', formula: ['ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO']},
 {text: '- Я стучу, я пыхчу, я качу, где хочу.', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
@@ -125,6 +124,18 @@ let korablik = [
     {text: 'прочих флагов выше!', formula: ['TI',0,'TI','RA',0,'TI',0,'YO',0,'YO']}
     ];
     
+let full_menu = [
+    { name: 'Паровоз', arr: parowoz},
+    { name: 'Если очень захотеть', arr: esli},
+    { name: 'Сорока', arr: soroka},
+    { name: 'Зайчик', arr: zaichik},
+    { name: 'Воробей', arr: vorobey},
+    { name: 'Медведь', arr: medved},
+    { name: 'Коза', arr: koza},
+    { name: 'Солнышко', arr: solnishko},
+    { name: 'Две тетери', arr: dveteteri},
+    { name: 'Кораблик', arr: korablik}
+];
 
 // Создание массива с координатами высот
 let topBottomArr = [];
