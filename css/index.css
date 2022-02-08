@@ -28,6 +28,8 @@ body {
         "sidebar-1 sidebar-2"
         "sidebar-3 sidebar-4"
         "sidebar-5 sidebar-6"
+        "sidebar-7 sidebar-8"
+        "sidebar-9 sidebar-10"
         "footer footer";
         grid-template-rows: 50px 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr;
