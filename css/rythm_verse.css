@@ -385,8 +385,20 @@ button {
     z-index: 1;
 }
 
-.menuDiv:hover {
-    transform: scale(1.3);
+.repeat:after{
+    display: block;
+    position: absolute;
+    content: '- ещё раз';
+    font-size: 14px;
+    bottom: 30px;
+}
+
+.menuDiv:after{
+    display: block;
+    position: absolute;
+    content: '- меню';
+    font-size: 14px;
+    bottom: 30px;
 }
 
 .menuDiv{

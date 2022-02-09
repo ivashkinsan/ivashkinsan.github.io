@@ -301,7 +301,9 @@ let step = 0;
 
 //функция последовательного переключения между блоками
 let nextStep = function(){
+  
   if (indexTop > 0 && tab_elements[indexTop-1].classList[1] == 'active'){
+    console.log(tab_elements);
     tab_elements[indexTop-1].classList.remove('active');
 };
 if (tab_elements.length > indexTop ){
@@ -325,7 +327,7 @@ let add_image_answer = function(name){
   ++step;
 };
 
-// Слушаем события на драконах ответах
+// Слушаем события на драконах в ответах
 button_answer.forEach(function(btn) {
 // Вешаем событие клик
   btn.addEventListener('click', function() { 
@@ -362,12 +364,39 @@ button_answer.forEach(function(btn) {
 // let menuDiv = document.querySelector('.menuDiv');
 let repeat = document.querySelector('.repeat');
 
-// menuDiv.addEventListener('click', function () {
-//   let clearDiv =  document.querySelectorAll('.table_elem');
-//     welcome.style.display = 'block';
-//     happy_end.style.display = 'none';
-//     answerTrue = 0;
-//     answerFalse = 0;
+repeat.addEventListener('click', function () {
+// console.log('click');
+let clearDivs = document.querySelectorAll('.table_elem');
+// console.log(clearDivs);
+for(let item of clearDivs){
+  item.remove();
+  // console.log(item);
+}
+// console.log(clearDivs);
+
+happy_end.style.display = 'none';
+//счетчик индекса
+indexTop = 0;
+//счетчик шагов
+step = 0;
+//счетчик верных ответов
+answerTrue = 0;
+//счетчик ложных ответов
+answerFalse = 0;
+//массив ответов
+allAnswer = [];
+
+console.log('tab elements = ' + tab_elements);
+  //запуск считалки
+  schitalkaGO(startVariable);
+  //сбор созданных элементов
+  tab_elements = document.querySelectorAll('.table_elem');
+  //запуск первого шага
+  nextStep();
+});
+// console.log(menuDiv)
+
+
 //     for(i = 0; i < tab_elements.length; i++){
 //     tab_elements = [];
 //     allAnswer = [];
@@ -376,5 +405,3 @@ let repeat = document.querySelector('.repeat');
 //     console.log(tab_elements);
 //     console.log(allAnswer);
 //     }
-// });
-// console.log(menuDiv)
