@@ -82,39 +82,36 @@ function getRandomIntInclusive(min, max) {
     let startOneNote = getRandomIntInclusive(0,12);
     let startTwoNote = startOneNote+12;
     keys[startOneNote].classList.toggle('ledON');
-    keys[startTwoNote].classList.toggle('ledON');
+    
 
     ti = startOneNote;
-    if(symBtnLevel.dataset.number == 'symmetry2'){symBtnLevelGO = [(ti+1),(ti+7),(ti+13)];}
-    if(symBtnLevel.dataset.number == 'symmetry3'){symBtnLevelGO = [(ti+1),(ti+5),(ti+9),(ti+13)];}
-    if(symBtnLevel.dataset.number == 'symmetry4'){symBtnLevelGO = [(ti+1),(ti+4),(ti+7),(ti+10),(ti+13)];}
-    if(symBtnLevel.dataset.number == 'symmetry6'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+7),(ti+9),(ti+11),(ti+13)];};
+    if(symBtnLevel.dataset.number == 'symmetry2'){
+        keys[startTwoNote].classList.toggle('ledON');
+        symBtnLevelGO = [(ti+1),(ti+7),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'symmetry3'){
+        keys[startTwoNote].classList.toggle('ledON');
+        symBtnLevelGO = [(ti+1),(ti+5),(ti+9),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'symmetry4'){
+        keys[startTwoNote].classList.toggle('ledON');
+        symBtnLevelGO = [(ti+1),(ti+4),(ti+7),(ti+10),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'symmetry6'){
+        keys[startTwoNote].classList.toggle('ledON');
+        symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+7),(ti+9),(ti+11),(ti+13)];};
+        
+    if(symBtnLevel.dataset.number == 'melodic_minor'){symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6),(ti+8),(ti+10),(ti+12)];}
+    if(symBtnLevel.dataset.number == 'ionian'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+6),(ti+8),(ti+10),(ti+12)];}
+    if(symBtnLevel.dataset.number == 'lydian'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+7),(ti+8),(ti+10),(ti+12)];}
+    if(symBtnLevel.dataset.number == 'lydian_aug'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+7),(ti+9),(ti+10),(ti+12)];}    
 
-    if(symBtnLevel.dataset.number == 'ionian'){
-        symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+6),(ti+8),(ti+10),(ti+12)];
-        keys[startTwoNote].classList.toggle('ledON');
-    }
-    if(symBtnLevel.dataset.number == 'melodic_minor'){
-        symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6),(ti+8),(ti+10),(ti+12)];
-        keys[startTwoNote].classList.toggle('ledON');
-    }
+    if(symBtnLevel.dataset.number == 'maj_tetrachord'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+6)];}
+    if(symBtnLevel.dataset.number == 'min_tetrachord'){symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6)];}
+    if(symBtnLevel.dataset.number == 'frig_tetrachord'){symBtnLevelGO = [(ti+1),(ti+2),(ti+4),(ti+6)];}
+    if(symBtnLevel.dataset.number == 'harm_tetrachord'){symBtnLevelGO = [(ti+1),(ti+2),(ti+5),(ti+6)];}
 
-    if(symBtnLevel.dataset.number == 'maj_tetrachord'){
-        symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+6)];
-        keys[startTwoNote].classList.toggle('ledON');
-    }
-    if(symBtnLevel.dataset.number == 'min_tetrachord'){
-        symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6)];
-        keys[startTwoNote].classList.toggle('ledON');
-    }
-    if(symBtnLevel.dataset.number == 'frig_tetrachord'){
-        symBtnLevelGO = [(ti+1),(ti+2),(ti+4),(ti+6)];
-        keys[startTwoNote].classList.toggle('ledON');
-    }
-    if(symBtnLevel.dataset.number == 'harm_tetrachord'){
-        symBtnLevelGO = [(ti+1),(ti+2),(ti+5,(ti+6))];
-        keys[startTwoNote].classList.toggle('ledON');
-    }
+    if(symBtnLevel.dataset.number == 'major_35'){symBtnLevelGO = [(ti+1),(ti+5),(ti+8)];}
+    if(symBtnLevel.dataset.number == 'minor_35'){symBtnLevelGO = [(ti+1),(ti+4),(ti+8)];}
+    if(symBtnLevel.dataset.number == 'diminished'){symBtnLevelGO = [(ti+1),(ti+5),(ti+9)];}
+    if(symBtnLevel.dataset.number == 'augmented'){symBtnLevelGO = [(ti+1),(ti+4),(ti+7)];}
 };
 
 //ПОИСК ВЫБРАННЫХ ЭЛЕМЕНТОВ

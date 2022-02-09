@@ -42,10 +42,10 @@ p{
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 200px;
+  width: 250px;
   height: 40px;
   margin: 5px;
-  font-size: 22px;
+  font-size: 18px;
   text-align: center;
   border: 3px solid #F4D6B1;
   border-radius: 4px;
