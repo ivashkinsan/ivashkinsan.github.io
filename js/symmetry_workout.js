@@ -20,10 +20,12 @@ let symmetry6;
 
 let symBtnLevel;
 let symBtnLevelGO;
+
 //ВЫБОР РЕЖИМА РАНДОМ
 let symmetryNameArr = [symmetry2, symmetry3, symmetry4, symmetry6];
 let startSymmetry = getRandomIntInclusive(0,3);
 
+//запуск при нажатии на кнопку режима
 for (let item of buttons) {
     item.onclick = function () {
         monitoring(item.dataset.number);
@@ -88,13 +90,31 @@ function getRandomIntInclusive(min, max) {
     if(symBtnLevel.dataset.number == 'symmetry4'){symBtnLevelGO = [(ti+1),(ti+4),(ti+7),(ti+10),(ti+13)];}
     if(symBtnLevel.dataset.number == 'symmetry6'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+7),(ti+9),(ti+11),(ti+13)];};
 
-    if(symBtnLevel.dataset.number == 'ionian'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+6),(ti+8),(ti+10),(ti+12)];}
-    if(symBtnLevel.dataset.number == 'melodic_minor'){symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6),(ti+8),(ti+10),(ti+12)];}
+    if(symBtnLevel.dataset.number == 'ionian'){
+        symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+6),(ti+8),(ti+10),(ti+12)];
+        keys[startTwoNote].classList.toggle('ledON');
+    }
+    if(symBtnLevel.dataset.number == 'melodic_minor'){
+        symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6),(ti+8),(ti+10),(ti+12)];
+        keys[startTwoNote].classList.toggle('ledON');
+    }
 
-    if(symBtnLevel.dataset.number == 'maj_tetrachord'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+6)];}
-    if(symBtnLevel.dataset.number == 'min_tetrachord'){symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6)];}
-    if(symBtnLevel.dataset.number == 'frig_tetrachord'){symBtnLevelGO = [(ti+1),(ti+2),(ti+4),(ti+6)];}
-    if(symBtnLevel.dataset.number == 'harm_tetrachord'){symBtnLevelGO = [(ti+1),(ti+2),(ti+5,(ti+6))];}
+    if(symBtnLevel.dataset.number == 'maj_tetrachord'){
+        symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+6)];
+        keys[startTwoNote].classList.toggle('ledON');
+    }
+    if(symBtnLevel.dataset.number == 'min_tetrachord'){
+        symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6)];
+        keys[startTwoNote].classList.toggle('ledON');
+    }
+    if(symBtnLevel.dataset.number == 'frig_tetrachord'){
+        symBtnLevelGO = [(ti+1),(ti+2),(ti+4),(ti+6)];
+        keys[startTwoNote].classList.toggle('ledON');
+    }
+    if(symBtnLevel.dataset.number == 'harm_tetrachord'){
+        symBtnLevelGO = [(ti+1),(ti+2),(ti+5,(ti+6))];
+        keys[startTwoNote].classList.toggle('ledON');
+    }
 };
 
 //ПОИСК ВЫБРАННЫХ ЭЛЕМЕНТОВ
