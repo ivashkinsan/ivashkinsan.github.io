@@ -1,5 +1,5 @@
 let parowoz = [
-    {all: 52, text: '- Паровоз, паровоз, ты куда нас повез?', formula: ['ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO']},
+    {all: 156, text: '- Паровоз, паровоз, ты куда нас повез?', formula: ['ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO']},
     {text: '- Я стучу, я пыхчу, я качу, где хочу.', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
     {text: '- Паровоз, паровоз, ты зачем нас повез?', formula: ['ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO']},
     {text: '- Что б узнать вы смогли: нет конца у земли', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
@@ -96,6 +96,7 @@ let full_menu = [
     { name: 'Две тетери', arr: dveteteri},
     { name: 'Кораблик', arr: korablik}
 ];
+let winner_image = document.querySelector('.winner_image');
 
 let page_number = 0;
 let container_notes = document.querySelector('.container_notes');
@@ -224,6 +225,9 @@ for (let i = 0; i < all_page_pigs.length; i++){
             page_number++;
             start_game(startVariable);
         }
+        if(stop == 0 && reverse_item == 0){
+            winner_image.style.display = 'block';
+        }
     });  
     
 };
@@ -250,22 +254,24 @@ let button_right = document.querySelector('.button_right');
 let button_menu = document.querySelector('.button_menu');
 let length_song = 0;
 
-//кнопка МЕНЮ
-button_menu.addEventListener('click', function() {
-    // length_song = esli.length;
-    // console.log('right =' + page_number);
+//Сброс счетчиков
+let reset = function(){
     stop = 0;
     reverse_item = 0;
     page_number = 0;
     length_song = 0;
+}
 
+
+//кнопка МЕНЮ
+button_menu.addEventListener('click', function() {
+    reset();
     if(page_number <= length_song){
         let note_delete = document.querySelectorAll('.note');
     for(let item of note_delete){
         item.remove();
     }
     welcome.style.display = 'block';
-        // start_game(startVariable);
     }
 });
 
@@ -299,6 +305,16 @@ button_right.addEventListener('click', function() {
 
 
 
-//РАБОТА СО ЗВУКОМ
-//озвучка клавиатуры событием касания и клика
+//кнопка на картинке попеды
+winner_image.addEventListener('click', function() {
+    reset();
+    if(page_number <= length_song){
+        let note_delete = document.querySelectorAll('.note');
+    for(let item of note_delete){
+        item.remove();
+    }
+    winner_image.style.display = 'none';
+    welcome.style.display = 'block';
+    }
+});
 

@@ -198,3 +198,14 @@ body {
     /* border-radius: 10%; */
     cursor: pointer;
 }
+
+.winner_image {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url(../image/Lisenok/80_dragons.png) no-repeat center;
+    background-size: 30%;
+}
