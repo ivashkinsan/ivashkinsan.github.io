@@ -28,7 +28,7 @@ let startSymmetry = getRandomIntInclusive(0,3);
 //запуск при нажатии на кнопку режима
 for (let item of buttons) {
     item.onclick = function () {
-        monitoring(item.dataset.number);
+        // monitoring(item.dataset.number);
         symBtnLevel = item;
         // console.log(symBtnLevel.dataset.number);
         clear_ledOn();
