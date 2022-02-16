@@ -3,6 +3,7 @@ body {
     height: 100vh;
     margin: 0;
     color: #F4D6B1;
+    font-size: 12px;
     background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
     /* border-style: inset; */
     border: 20px solid;
@@ -11,43 +12,48 @@ body {
 
 p{
   color: blue;
-  font-size: 20px;
+  /* font-size: 20px; */
 }
 .section{
     display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     flex-direction: column;
     align-items: center;
-    border: 5px solid white;
+    /* margin: 0; */
+    /* padding: 0; */
 }
 
 .monitor{
-    width: 800px;
-    height: 50px;
-    padding-top: 5px;
-    margin: 5px auto;
-    /* border: solid 4px white; */
+    width: 90vw;
+    /* height: 20px; */
     color: white;
-    font-size: 25px;
     text-align: center;
-    border: 5px solid white;
+    /* border: 5px solid white; */
   }
 
 .section_button{
   display: flex;
 
+  flex-direction: row;
+  
+  /* left: 0;
+  right: 0; */
+  justify-content: stretch;
 }
 
 .button{
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 250px;
-  height: 40px;
-  margin: 5px;
-  font-size: 18px;
+  /* flex: 1 2 3 auto; */
+  padding: 0 5px 0 5px;
+  margin: 2px;
+  /* font-size: 18px; */
   text-align: center;
-  border: 3px solid #F4D6B1;
+  border: 1px solid #F4D6B1;
   border-radius: 4px;
   cursor: pointer;
 }  
@@ -87,20 +93,18 @@ p{
     z-index: 999;
   }
 
-@media(max-width: 900px){
+@media(max-width: 800px){
   .monitor{
-    width: 400px;
-    height: 20px;
-    font-size: 16px;
-    border: 1px solid white;
+    font-size: 12px;
   }
+
   .button{
-  width: 140px;
-  height: 20px;
-  margin: 5px;
-  font-size: 12px;
-  border: 1px solid #F4D6B1;
+  width: auto;
+  height: auto;
+  /* font-size: 12px; */
+  /* border: 1px solid #F4D6B1; */
   }
+
   .elem {
     width: 37px;
     height: 186px;

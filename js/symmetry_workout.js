@@ -149,10 +149,10 @@ let win_ledOn = function(winArr){
     };
 };
 
-let monitoring = function(level){
-   if(level == 'symmetry2'){monitor.textContent = 'СИММЕТРИЯ из 2';}
-   if(level == 'symmetry3'){monitor.textContent = 'СИММЕТРИЯ из 3';}
-   if(level == 'symmetry4'){monitor.textContent = 'СИММЕТРИЯ из 4';}
-   if(level == 'symmetry6'){monitor.textContent = 'СИММЕТРИЯ из 6';}
-};
+// let monitoring = function(level){
+//    if(level == 'symmetry2'){monitor.textContent = 'СИММЕТРИЯ из 2';}
+//    if(level == 'symmetry3'){monitor.textContent = 'СИММЕТРИЯ из 3';}
+//    if(level == 'symmetry4'){monitor.textContent = 'СИММЕТРИЯ из 4';}
+//    if(level == 'symmetry6'){monitor.textContent = 'СИММЕТРИЯ из 6';}
+// };
 
