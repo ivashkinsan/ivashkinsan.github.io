@@ -1,5 +1,5 @@
 let parowoz = [
-    {text: '- Паровоз, паровоз, ты куда нас повез?', formula: ['ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO']},
+    {all: 52, text: '- Паровоз, паровоз, ты куда нас повез?', formula: ['ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO']},
     {text: '- Я стучу, я пыхчу, я качу, где хочу.', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
     {text: '- Паровоз, паровоз, ты зачем нас повез?', formula: ['ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO']},
     {text: '- Что б узнать вы смогли: нет конца у земли', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
@@ -15,14 +15,14 @@ let parowoz = [
     ];
 
 let esli = [
-    {text: 'Если очень захотеть,', formula: ['ZO','ZO','ZO','ZO','ZO','ZO','YO']},
+    {all: 26, text: 'Если очень захотеть,', formula: ['ZO','ZO','ZO','ZO','ZO','ZO','YO']},
     {text: 'замахать руками –', formula: ['ZO','ZO','ZO','ZO','YO',0,'YO']},
     {text: 'можно даже полететь', formula: ['ZO','ZO','ZO','ZO','ZO','ZO','YO']},
     {text: 'рядом с облаками.', formula: ['ZO','ZO','ZO','ZO','YO',0,'YO']}
     ];
 
 let soroka = [
-    {text: 'Сорока, сорока, где была? Далёко –', formula: ['RA','RA','RA','RA','RA',0,'ZO',0,'RA','RA','RA','RA','RA',0,'ZO']},
+    {all: 50, text: 'Сорока, сорока, где была? Далёко –', formula: ['RA','RA','RA','RA','RA',0,'ZO',0,'RA','RA','RA','RA','RA',0,'ZO']},
     {text: 'кашу варила, деточек кормила,', formula: ['RA',0,'RA','RA','RA',0,'ZO',0,'RA','RA','RA','RA','RA',0,'ZO']},
     {text: 'на порог скакала, гостей созывала,', formula: ['RA','RA','RA','RA','RA',0,'ZO',0,'RA','RA','RA','RA','RA',0,'ZO']},
     {text: 'гости услыхали, быть обещали…', formula: ['RA','RA','RA','RA','RA',0,'ZO',0,'RA',0,'RA','RA','RA',0,'ZO']},
@@ -30,7 +30,7 @@ let soroka = [
     ];
 
 let zaichik = [
-    {text: 'Зайчик, ты, зайчик,', formula: ['YO',0,'ZO','ZO','RA',0,'ZO']},
+    {all: 23, text: 'Зайчик, ты, зайчик,', formula: ['YO',0,'ZO','ZO','RA',0,'ZO']},
     {text: 'коротеньки ножки.', formula: ['YO','YO','ZO','ZO','RA',0,'ZO']},
     {text: 'На этих на ножках', formula: ['YO','YO','ZO','ZO','RA',0,'ZO']},
     {text: 'сафьяны сапожки.', formula: ['YO','YO','ZO','ZO','RA',0,'ZO']}
@@ -44,21 +44,21 @@ let vorobey = [
     ];
 
 let medved = [
-    {text: 'Весной медведь решил запеть.', formula: ['YO','RA',0,0,'YO','ZO',0,0,'ZO','RA',0,0,'ZO','YO']},
+    {all: 32, text: 'Весной медведь решил запеть.', formula: ['YO','RA',0,0,'YO','ZO',0,0,'ZO','RA',0,0,'ZO','YO']},
     {text: 'Он пел и пел, сопел, хрипел.', formula: ['YO','RA',0,0,'YO','ZO',0,0,'ZO','RA',0,0,'ZO','YO']},
     {text: 'А мы не прочь ему помочь:', formula: ['YO','RA',0,0,'YO','ZO',0,0,'ZO','RA',0,0,'ZO','YO']},
     {text: 'Ё-РА, Ё-ЗО, ЗО-РА, ЗО-Ё.', formula: ['YO','RA',0,0,'YO','ZO',0,0,'ZO','RA',0,0,'ZO','YO']}
     ];
     
 let koza = [
-    {text: 'Идёт коза рогатая', formula: ['TI','YO',0,'TI','ZO',0,'TI','YO',0,'TI','ZO']},
+    {all: 38, text: 'Идёт коза рогатая', formula: ['TI','YO',0,'TI','ZO',0,'TI','YO',0,'TI','ZO']},
     {text: 'за малыми ребятами.', formula: ['TI','YO',0,'TI','ZO',0,'TI','YO',0,'TI','ZO']},
     {text: 'Кто кашу не ест, молоко не пьёт,', formula: ['TI','YO','YO','TI','ZO','ZO','TI','YO',0,'TI','ZO']},
     {text: 'того бу! забоду! на рога посажу!', formula: ['ZO','TI','YO','YO','TI','ZO','ZO','TI','YO','YO','TI','ZO']}
     ];
 
 let solnishko = [
-    {text: 'Солнышко, солнышко,', formula: ['YO',0,'TI','TI','YO',0,'ZO','ZO']},
+    {all: 36, text: 'Солнышко, солнышко,', formula: ['YO',0,'TI','TI','YO',0,'ZO','ZO']},
     {text: 'выгляни в окошечко.', formula: ['YO','YO','TI','TI','YO',0,'ZO','ZO']},
     {text: 'Там твои детки', formula: ['YO',0,'TI','TI','YO',0,'ZO']},
     {text: 'сидят на загнетке,', formula: ['ZO','YO',0,'TI','TI','YO',0,'ZO']},
@@ -67,14 +67,14 @@ let solnishko = [
     ];
 
 let dveteteri = [
-    {text: 'На зелёном на лугу', formula: ['YO','TI','RA','YO','TI','TI','YO']},
+    {all: 28, text: 'На зелёном на лугу', formula: ['YO','TI','RA','YO','TI','TI','YO']},
     {text: 'стоит чашка творогу.', formula: ['YO','TI','RA','YO','TI','TI','YO']},
     {text: 'Прилетели две тетери,', formula: ['ZO','ZO','RA','RA','TI','TI','YO']},
     {text: 'поклевали, улетели.', formula: ['ZO','ZO','RA','RA','TI','TI','YO']}
     ];
 
 let korablik = [
-    {text: 'Наш кораблик по волнам плывёт,', formula: ['YO',0,'YO','TI','TI','RA','TI','YO',0,'YO',0,'ZO']},
+    {all: 64, text: 'Наш кораблик по волнам плывёт,', formula: ['YO',0,'YO','TI','TI','RA','TI','YO',0,'YO',0,'ZO']},
     {text: 'капитаном одноглазый кот,', formula: ['YO',0,'YO','TI','TI','RA','TI','YO',0,'YO',0,'ZO']},
     {text: 'ворон с мачты глядит вперёд', formula: ['RA',0,'TI','YO',0,'YO','TI','RA',0,'TI',0,'YO']},
     {text: 'и матросы мыши.', formula: ['TI',0,'TI','RA',0,'TI',0,'YO',0,'YO']},
@@ -240,8 +240,9 @@ find_all_page_pigs();
 
 //старт игры
 start_game = function(game){
-    start(game[page_number]);
     length_song = game.length-1;
+    start(game[page_number]);
+    
 }
 
 let button_left = document.querySelector('.button_left');
@@ -253,7 +254,11 @@ let length_song = 0;
 button_menu.addEventListener('click', function() {
     // length_song = esli.length;
     // console.log('right =' + page_number);
-    
+    stop = 0;
+    reverse_item = 0;
+    page_number = 0;
+    length_song = 0;
+
     if(page_number <= length_song){
         let note_delete = document.querySelectorAll('.note');
     for(let item of note_delete){
