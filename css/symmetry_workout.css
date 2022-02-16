@@ -93,18 +93,7 @@ p{
     z-index: 999;
   }
 
-@media(max-width: 800px){
-  .monitor{
-    font-size: 12px;
-  }
-
-  .button{
-  width: auto;
-  height: auto;
-  /* font-size: 12px; */
-  /* border: 1px solid #F4D6B1; */
-  }
-
+@media (min-width: 768px) and (max-width: 979px) {
   .elem {
     width: 37px;
     height: 186px;
@@ -119,6 +108,22 @@ p{
     border: 1px #9c9c9c solid;
   }
 }
+@media (min-width: 481px) and (max-width: 767px) {
+  .elem {
+    width: 30px;
+    height: 146px;
+    border-radius: 0 0 6px 6px;
+    border: 1px #9c9c9c solid;
+  }
+  .black_key {
+    width: 22px;
+    height: 82px;
+    margin-left: -12px;
+    margin-right: -12px;
+    border: 1px #9c9c9c solid;
+  }
+}
+/* @media (max-width: 480px) {} */
   
   .ledON { 
     background-color: rgb(0, 234, 255); 
