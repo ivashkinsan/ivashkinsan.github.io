@@ -100,18 +100,17 @@ let full_menu = [
 let page_number = 0;
 let container_notes = document.querySelector('.container_notes');
 let monitor_for_text = document.querySelector('.monitor_for_text');
-let nameStage = ['ZO','RA','TI','YO','LE','WI','NA','ZO_up'];
+let nameStage = ['ZO_up','NA','WI','LE','YO','TI','RA','ZO'];
 
-
+let start_ZO = -1;
 //прячем лишние горизонтальные линии
 let allLine = document.querySelectorAll('.line');
-for(let i=0; i<allLine.length; i++){
-    allLine[i].dataset.name = nameStage[i];
+for(let i= 0; i < allLine.length; i++){
+    allLine[i].dataset.name = nameStage[i+start_ZO];
         if(i % 2 == 0 || i == 11){
         allLine[i].style.backgroundColor = 'transparent';
     }   
 }
-
 
 // Создание массива с координатами горизонтального расположения
 // let start_Line_Left = 60;
@@ -122,7 +121,6 @@ for(let i = 0; i < 20; i++){
     grid_X.push(one_Item_Grid_X);
     one_Item_Grid_X += interval_x;
 };
-
 
 //генерируем стартовое меню
 let NewGridStartMenuElements;
@@ -140,10 +138,8 @@ let NewGridStartMenuGO = function(allNames){
     };  
 }
 
-
 //запуск стартового меню
 NewGridStartMenuGO(full_menu);
-
 
 //слушаем события на start_buttons
 let start_buttons = document.querySelectorAll('.start_buttons');
@@ -155,11 +151,8 @@ start_buttons.forEach(function(btn) {
       }
       btn.classList.toggle('active_btn');
       startVariable = btn.dataSrc;
-    //   console.log(startVariable);
        });
   });
-
-
 
 // функция для кнопки старт
   let startBtn = document.querySelector('.startBtn');
@@ -168,54 +161,66 @@ start_buttons.forEach(function(btn) {
     welcome.style.display = 'none';
     start_game(startVariable);
   });
-
-// ориентация по горизонтали
-for(let i = 0; i < parowoz[0].formula.length; i++){
+console.log(startVariable);
+// запуск одной страницы
+let start = function(pageArr){
+for(let i = 0; i < pageArr.formula.length; i++){
             let newDiv = document.createElement('div');
             newDiv.classList.add('note');
-            if(parowoz[0].formula[i] == 0){
+            if(pageArr.formula[i] == 0){
                 newDiv.style.width = '0px';
             } else {
-                newDiv.style.backgroundImage = "url(../image/staff/" + parowoz[0].formula[i]+ ".svg)";
+                newDiv.style.backgroundImage = "url(../image/staff/" + pageArr.formula[i]+ ".svg)";
             }
             newDiv.style.left = grid_X[i] + 'px';
-            // console.log(newDiv.style.left)
-            for(let j = allLine.length; j > 0; j--){
-                allLine[j].append(newDiv);
+            for(let j = allLine.length-1; j >= 0 ; j--){
+                if(pageArr.formula[i] == allLine[j].dataset.name){
+                    // console.log(allLine[j].dataset.name);
+                    allLine[j].append(newDiv);
+                }
             }
+    }
+    monitor_for_text.innerHTML = pageArr.text;
 }
-
-
-
-// запуск странички с частью песни
-// let interval = 0;
-// let start = function(mass){
-    
-   
-//     for(let i = 0; i < mass.formula.length-1; i++){
-//         let newDiv = document.createElement('div');
-//         newDiv.classList.add('note');
-        
-//         if(mass.formula[i] == 0){
-//             newDiv.style.width = '0px';
-//             newDiv.style.left = grid_X[i] +'px';
-//         } else {
-//             newDiv.style.left = grid_X[i] +'px';
-//             newDiv.style.backgroundImage = "url(../image/staff/" + mass.formula[i]+ ".svg)";
-//             for(let j=mass.formula[i].length; j > 0 ; j--){
-//                 if(mass.formula[i] == allLine[j].dataset.name){
-//                     allLine[j].append(newDiv);
-//                 }
-//         }
-        
-//         }
-        
-//     }
-//     monitor_for_text.innerHTML = mass.text;
-// }
+// startVariable = parowoz[0];
+// start_new_page(startVariable);
 
 //старт игры
 start_game = function(game){
     start(game[page_number]);
     length_song = game.length-1;
 }
+
+let button_left = document.querySelector('.button_left');
+let button_right = document.querySelector('.button_right');
+let length_song = 0;
+// let page_number = 0;
+
+
+//кнопка Left
+button_left.addEventListener('click', function() { 
+    // length_song = esli.length;
+    console.log('left =' + page_number);
+    if(page_number > 0){
+        let note_delete = document.querySelectorAll('.note');
+    for(let item of note_delete){
+        item.remove();
+    }
+        page_number--;
+        start_game(startVariable);
+    } 
+});
+
+//кнопки Right
+button_right.addEventListener('click', function() {
+    // length_song = esli.length;
+    console.log('right =' + page_number);
+    if(page_number < length_song){
+        let note_delete = document.querySelectorAll('.note');
+    for(let item of note_delete){
+        item.remove();
+    }
+        page_number++;
+        start_game(startVariable);
+    }
+});

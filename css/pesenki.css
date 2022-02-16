@@ -17,7 +17,7 @@ body {
     /* border: 3px white solid; */
 }
 .welcome {
-    display: none;
+    /* display: none; */
     position: fixed;
     margin: 0;
     box-sizing: border-box;
@@ -44,7 +44,7 @@ body {
 }
 
 .start_buttons, .startBtn{
-    display: none;
+    /* display: none; */
     margin: 1%;
     font-size: 24px;
     text-align: center;
