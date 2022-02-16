@@ -37,7 +37,7 @@ let zaichik = [
     ];
 
 let vorobey = [
-    {text: 'Ой мороз, белеет нос.', formula: ['YO','RA','ZO','RA','YO','RA','ZO']},
+    {all: 26, text: 'Ой мороз, белеет нос.', formula: ['YO','RA','ZO','RA','YO','RA','ZO']},
     {text: 'Что же это значит?', formula: ['YO','RA','ZO','RA','YO','YO']},
     {text: 'Почему же воробей', formula: ['YO','RA','ZO','RA','YO','RA','ZO']},
     {text: 'Скачет и не плачет?', formula: ['YO','RA','ZO','RA','YO','YO']}
@@ -102,6 +102,11 @@ let container_notes = document.querySelector('.container_notes');
 let monitor_for_text = document.querySelector('.monitor_for_text');
 let nameStage = ['ZO_up','NA','WI','LE','YO','TI','RA','ZO'];
 
+let all_page_pigs;
+const audioAll = document.querySelectorAll('audio');
+let stop = 0;
+let reverse_item = 0;
+
 let start_ZO = -1;
 //прячем лишние горизонтальные линии
 let allLine = document.querySelectorAll('.line');
@@ -159,29 +164,77 @@ start_buttons.forEach(function(btn) {
   let welcome = document.querySelector('.welcome');
   startBtn.addEventListener('click', function () {
     welcome.style.display = 'none';
+
+    reverse_item = startVariable[0].all;
+    console.log(reverse_item);
+
     start_game(startVariable);
+    
   });
-console.log(startVariable);
+// console.log(startVariable);
+
+
+
 // запуск одной страницы
 let start = function(pageArr){
+    stop = pageArr.formula.length;
+    
 for(let i = 0; i < pageArr.formula.length; i++){
             let newDiv = document.createElement('div');
             newDiv.classList.add('note');
             if(pageArr.formula[i] == 0){
                 newDiv.style.width = '0px';
+                stop = stop -1;
             } else {
                 newDiv.style.backgroundImage = "url(../image/staff/" + pageArr.formula[i]+ ".svg)";
             }
             newDiv.style.left = grid_X[i] + 'px';
             for(let j = allLine.length-1; j >= 0 ; j--){
                 if(pageArr.formula[i] == allLine[j].dataset.name){
+                    newDiv.dataset.name = pageArr.formula[i];
                     // console.log(allLine[j].dataset.name);
                     allLine[j].append(newDiv);
+                    
                 }
             }
     }
     monitor_for_text.innerHTML = pageArr.text;
+//собрать массив с полученными нотами
+let find_all_page_pigs = function(){
+    all_page_pigs = document.querySelectorAll('.note');
+    let audio = new Audio();
+for (let i = 0; i < all_page_pigs.length; i++){
+    all_page_pigs[i].addEventListener('click', function () {
+        for(let jj = 0; jj < audioAll.length; jj++){
+            
+            if(audioAll[jj].dataset.name == all_page_pigs[i].dataset.name){
+                audio.src = audioAll[jj].src;
+                reverse_item = reverse_item -1;
+                all_page_pigs[i].remove();
+                stop = stop -1;
+                console.log(reverse_item);
+                
+                
+            }
+        }
+        audio.load();
+        audio.play();
+
+        if(stop == 0 && reverse_item > 0){
+            page_number++;
+            start_game(startVariable);
+        }
+    });  
+    
+};
 }
+find_all_page_pigs();
+// console.log(all_page_pigs[1].dataset.name);
+}
+
+
+
+
 // startVariable = parowoz[0];
 // start_new_page(startVariable);
 
@@ -193,14 +246,28 @@ start_game = function(game){
 
 let button_left = document.querySelector('.button_left');
 let button_right = document.querySelector('.button_right');
+let button_menu = document.querySelector('.button_menu');
 let length_song = 0;
-// let page_number = 0;
 
+//кнопка МЕНЮ
+button_menu.addEventListener('click', function() {
+    // length_song = esli.length;
+    // console.log('right =' + page_number);
+    
+    if(page_number <= length_song){
+        let note_delete = document.querySelectorAll('.note');
+    for(let item of note_delete){
+        item.remove();
+    }
+    welcome.style.display = 'block';
+        // start_game(startVariable);
+    }
+});
 
 //кнопка Left
 button_left.addEventListener('click', function() { 
     // length_song = esli.length;
-    console.log('left =' + page_number);
+    // console.log('left =' + page_number);
     if(page_number > 0){
         let note_delete = document.querySelectorAll('.note');
     for(let item of note_delete){
@@ -214,7 +281,7 @@ button_left.addEventListener('click', function() {
 //кнопки Right
 button_right.addEventListener('click', function() {
     // length_song = esli.length;
-    console.log('right =' + page_number);
+    // console.log('right =' + page_number);
     if(page_number < length_song){
         let note_delete = document.querySelectorAll('.note');
     for(let item of note_delete){
@@ -224,3 +291,9 @@ button_right.addEventListener('click', function() {
         start_game(startVariable);
     }
 });
+
+
+
+//РАБОТА СО ЗВУКОМ
+//озвучка клавиатуры событием касания и клика
+
