@@ -179,7 +179,6 @@ for(let i = 0; i < 15; i++){
     oneItemRightLeftArr += interval_x;
 };
 
-//первый тон для этажа --зо
 let firstTon = 3;
 
 for(let i = 0; i < 12; i++){
@@ -212,16 +211,14 @@ let start = function(mass){
     monitor_for_text.innerHTML = mass.text;
 }
 
-
-//старт игры
 start_game = function(game){
-    // console.log(game);
-    // console.log(game[page_number]);
+    console.log(game);
+    console.log(game[page_number]);
     start(game[page_number]);
     length_song = game.length-1;
 }
 
-//кнопка Left
+
 button_left.addEventListener('click', function() { 
     // length_song = esli.length;
     if(page_number > 0){
@@ -234,7 +231,7 @@ button_left.addEventListener('click', function() {
     } 
 });
 
-//кнопки Right
+
 button_right.addEventListener('click', function() {
     // length_song = esli.length;
     if(page_number < length_song){
