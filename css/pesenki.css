@@ -11,11 +11,13 @@ body {
     border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
 }
 .start_menu_header{
+    
     margin: 1%;
     text-align: center;
     /* border: 3px white solid; */
 }
 .welcome {
+    display: none;
     position: fixed;
     margin: 0;
     box-sizing: border-box;
@@ -42,6 +44,7 @@ body {
 }
 
 .start_buttons, .startBtn{
+    display: none;
     margin: 1%;
     font-size: 24px;
     text-align: center;
@@ -96,10 +99,16 @@ body {
 .line{
     width: 94vw;
     height: 2px;
-    margin-top: 33px;
+    margin-top: 16.5px;
     background-color: white;
 }
 
+.line_short{
+    width: 4vw;
+    height: 2px;
+    /* margin-top: 16.5px; */
+    background-color: white;
+}
 
 /* .container_clief{
     display: flex;
@@ -138,7 +147,8 @@ body {
     /* top: 50%; */
     /* margin-top: -72px; */
     /* bottom: 50%; */
-
+    opacity: 1;
+    margin: -16px 0 0 0;
     width: 33px;
     height: 33px;
     background: url(../image/staff/YO.svg) no-repeat center;

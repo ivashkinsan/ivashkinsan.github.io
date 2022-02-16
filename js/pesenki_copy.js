@@ -1,33 +1,18 @@
-let staff_5 = document.querySelectorAll('.line');
-let notes = document.querySelectorAll('.note');
-let margin_left = 60;
-let interval_x = 37;
-let nameStage = ['ZO','RA','TI','YO','LE','WI','NA','ZO_up'];
-let tonalnost_os_Y = {};
-let monitor_for_text = document.querySelector('.monitor_for_text');
-let container_notes = document.querySelector('.container_notes');
-let button_left = document.querySelector('.button_left');
-let button_right = document.querySelector('.button_right');
-let length_song = 0;
-let page_number = 0;
-let start_game;
-
-
 let parowoz = [
-{text: '- Паровоз, паровоз, ты куда нас повез?', formula: ['ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO']},
-{text: '- Я стучу, я пыхчу, я качу, где хочу.', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
-{text: '- Паровоз, паровоз, ты зачем нас повез?', formula: ['ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO']},
-{text: '- Что б узнать вы смогли: нет конца у земли', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
-{text: '- Паровоз, паровоз, ты куда нас привез?', formula: ['YO','YO','YO',0,'YO','YO','YO',0,'YO','YO','YO',0,'YO','YO','YO']},
-{text: '- Зеленей здесь леса и синей небеса -', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
-{text: 'постоим, отдохнём и назад повернём.', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
-{text: '- А теперь, паровоз, ты куда нас повёз?', formula: ['YO','YO','ZO',0,'YO','YO','ZO',0,'YO','YO','ZO',0,'YO','YO','ZO']},
-{text: '- Через дождь и грозу я домой вас везу,', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
-{text: 'по горам, по долам, развезу по домам.', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
-{text: '- Паровоз, паровоз, ты куда нас привёз?', formula: ['ZO','ZO','ZO',0,'ZO','ZO','ZO',0,'ZO','ZO','ZO',0,'ZO','ZO','ZO']},
-{text: '- Дыма нет над трубой, я привёз вас домой.', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
-{text: '- Хорошо, что привёз! Молодец, паровоз!', formula: ['ZO','ZO','ZO',0,'ZO','ZO','ZO',0,'ZO','ZO','ZO',0,'ZO','ZO','ZO']}
-];
+    {text: '- Паровоз, паровоз, ты куда нас повез?', formula: ['ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO']},
+    {text: '- Я стучу, я пыхчу, я качу, где хочу.', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
+    {text: '- Паровоз, паровоз, ты зачем нас повез?', formula: ['ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO',0,'ZO','ZO','YO']},
+    {text: '- Что б узнать вы смогли: нет конца у земли', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
+    {text: '- Паровоз, паровоз, ты куда нас привез?', formula: ['YO','YO','YO',0,'YO','YO','YO',0,'YO','YO','YO',0,'YO','YO','YO']},
+    {text: '- Зеленей здесь леса и синей небеса -', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
+    {text: 'постоим, отдохнём и назад повернём.', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
+    {text: '- А теперь, паровоз, ты куда нас повёз?', formula: ['YO','YO','ZO',0,'YO','YO','ZO',0,'YO','YO','ZO',0,'YO','YO','ZO']},
+    {text: '- Через дождь и грозу я домой вас везу,', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
+    {text: 'по горам, по долам, развезу по домам.', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
+    {text: '- Паровоз, паровоз, ты куда нас привёз?', formula: ['ZO','ZO','ZO',0,'ZO','ZO','ZO',0,'ZO','ZO','ZO',0,'ZO','ZO','ZO']},
+    {text: '- Дыма нет над трубой, я привёз вас домой.', formula: ['RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA',0,'RA','RA','RA']},
+    {text: '- Хорошо, что привёз! Молодец, паровоз!', formula: ['ZO','ZO','ZO',0,'ZO','ZO','ZO',0,'ZO','ZO','ZO',0,'ZO','ZO','ZO']}
+    ];
 
 let esli = [
     {text: 'Если очень захотеть,', formula: ['ZO','ZO','ZO','ZO','ZO','ZO','YO']},
@@ -112,13 +97,40 @@ let full_menu = [
     { name: 'Кораблик', arr: korablik}
 ];
 
+let page_number = 0;
+let container_notes = document.querySelector('.container_notes');
+let monitor_for_text = document.querySelector('.monitor_for_text');
+let nameStage = ['ZO','RA','TI','YO','LE','WI','NA','ZO_up'];
+
+
+//прячем лишние горизонтальные линии
+let allLine = document.querySelectorAll('.line');
+for(let i=0; i<allLine.length; i++){
+    allLine[i].dataset.name = nameStage[i];
+        if(i % 2 == 0 || i == 11){
+        allLine[i].style.backgroundColor = 'transparent';
+    }   
+}
+
+
+// Создание массива с координатами горизонтального расположения
+// let start_Line_Left = 60;
+let grid_X = [];
+let interval_x = 50;
+let one_Item_Grid_X = 60; // первая нота отступ слева
+for(let i = 0; i < 20; i++){
+    grid_X.push(one_Item_Grid_X);
+    one_Item_Grid_X += interval_x;
+};
+
+
 //генерируем стартовое меню
 let NewGridStartMenuElements;
 let buttonsBlock = document.querySelector('.buttons_block');
 //контейнер для стартовой игры
 let startVariable;
 //функция создания элементов
-  let NewGridStartMenuGO = function(allNames){
+let NewGridStartMenuGO = function(allNames){
     for(let i = 0; i < allNames.length; i++){
       NewGridStartMenuElements = document.createElement('div');
       NewGridStartMenuElements.textContent = allNames[i].name;
@@ -129,9 +141,9 @@ let startVariable;
 }
 
 
-
 //запуск стартового меню
 NewGridStartMenuGO(full_menu);
+
 
 //слушаем события на start_buttons
 let start_buttons = document.querySelectorAll('.start_buttons');
@@ -143,106 +155,67 @@ start_buttons.forEach(function(btn) {
       }
       btn.classList.toggle('active_btn');
       startVariable = btn.dataSrc;
-      console.log(startVariable);
+    //   console.log(startVariable);
        });
   });
 
 
+
+// функция для кнопки старт
   let startBtn = document.querySelector('.startBtn');
   let welcome = document.querySelector('.welcome');
-  // функция для кнопки старт
   startBtn.addEventListener('click', function () {
-    console.log(startVariable);
     welcome.style.display = 'none';
-    
     start_game(startVariable);
   });
 
-
-
-// Создание массива с координатами высот
-let topBottomArr = [];
-let startLineDo = staff_5[4].getBoundingClientRect().y + 2 + 17.5;
-let oneItemArrTopBottom = Math.round(startLineDo);
-for(let i = 0; i < 12; i++){
-    topBottomArr.push(oneItemArrTopBottom);
-    oneItemArrTopBottom -= 17.5;
-};
-// console.log(oneItemArrTopBottom);
-
-// Создание массива с координатами горизонтального расположения
-let rightLeftArr = [];
-let startLineLeft = margin_left;
-let oneItemRightLeftArr = startLineLeft;
-for(let i = 0; i < 15; i++){
-    rightLeftArr.push(oneItemRightLeftArr);
-    oneItemRightLeftArr += interval_x;
-};
-
-//первый тон для этажа --зо
-let firstTon = 3;
-
-for(let i = 0; i < 12; i++){
-    tonalnost_os_Y[nameStage[i]] = topBottomArr[firstTon];
-    firstTon++;
+// ориентация по горизонтали
+for(let i = 0; i < parowoz[0].formula.length; i++){
+            let newDiv = document.createElement('div');
+            newDiv.classList.add('note');
+            if(parowoz[0].formula[i] == 0){
+                newDiv.style.width = '0px';
+            } else {
+                newDiv.style.backgroundImage = "url(../image/staff/" + parowoz[0].formula[i]+ ".svg)";
+            }
+            newDiv.style.left = grid_X[i] + 'px';
+            // console.log(newDiv.style.left)
+            for(let j = allLine.length; j > 0; j--){
+                allLine[j].append(newDiv);
+            }
 }
+
+
 
 // запуск странички с частью песни
-let start = function(mass){
+// let interval = 0;
+// let start = function(mass){
     
-    let interval = 0;
-    for(let i = 0; i < mass.formula.length; i++){
-        let newDiv = document.createElement('div');
-        newDiv.classList.add('note');
-        if(mass.formula[i] == 0){
-            newDiv.style.width = '0px';
-            newDiv.style.top = tonalnost_os_Y[mass.formula[i]] + 'px';
-            newDiv.style.left = margin_left + interval + 'px';
-            interval += 37;
-            // console.log(parowoz[1].formula[3]);
-        } else {
-            
-            newDiv.style.backgroundImage = "url(../image/staff/" + mass.formula[i]+ ".svg)";
-            newDiv.style.top = tonalnost_os_Y[mass.formula[i]] + 'px';
-            newDiv.style.left = margin_left + interval + 'px';
-            interval += 37;
-        }
-        container_notes.append(newDiv);
-    }
-    monitor_for_text.innerHTML = mass.text;
-}
-
+   
+//     for(let i = 0; i < mass.formula.length-1; i++){
+//         let newDiv = document.createElement('div');
+//         newDiv.classList.add('note');
+        
+//         if(mass.formula[i] == 0){
+//             newDiv.style.width = '0px';
+//             newDiv.style.left = grid_X[i] +'px';
+//         } else {
+//             newDiv.style.left = grid_X[i] +'px';
+//             newDiv.style.backgroundImage = "url(../image/staff/" + mass.formula[i]+ ".svg)";
+//             for(let j=mass.formula[i].length; j > 0 ; j--){
+//                 if(mass.formula[i] == allLine[j].dataset.name){
+//                     allLine[j].append(newDiv);
+//                 }
+//         }
+        
+//         }
+        
+//     }
+//     monitor_for_text.innerHTML = mass.text;
+// }
 
 //старт игры
 start_game = function(game){
-    // console.log(game);
-    // console.log(game[page_number]);
     start(game[page_number]);
     length_song = game.length-1;
 }
-
-//кнопка Left
-button_left.addEventListener('click', function() { 
-    // length_song = esli.length;
-    if(page_number > 0){
-        let note_delete = document.querySelectorAll('.note');
-    for(let item of note_delete){
-        item.remove();
-    }
-        page_number--;
-        start_game(startVariable);
-    } 
-});
-
-//кнопки Right
-button_right.addEventListener('click', function() {
-    // length_song = esli.length;
-    if(page_number < length_song){
-        let note_delete = document.querySelectorAll('.note');
-    for(let item of note_delete){
-        item.remove();
-    }
-        page_number++;
-        start_game(startVariable);
-    }
-});
