@@ -1,0 +1,47 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    height: auto;
+    color: #F4D6B1;
+    font-size: 20px;
+    background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
+    border: 10px solid;
+    border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
+}
+.header{
+    text-align: center;
+}
+.container{
+    display: grid;
+    grid-template-rows: 50px 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.section_music_item{
+    margin-left: 20%;
+    margin-right: 20%;
+
+}
+
+.audio_track_item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+audio{
+    margin: 5px;
+}
+
+@media (max-width: 700px){
+    .container{
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    }
+    .section_music_item{
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+

@@ -27,7 +27,7 @@ body {
     font-size: 1em;
 }
 
-#sidebar-1, #sidebar-2, #sidebar-3, #sidebar-4,#sidebar-5,#sidebar-6,#sidebar-7  {
+.sidebar {
     display: flex;
     align-items: center;
     padding: 5px;

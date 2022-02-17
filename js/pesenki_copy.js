@@ -57,6 +57,13 @@ let koza = [
     {text: 'того бу! забоду! на рога посажу!', formula: ['ZO','TI','YO','YO','TI','ZO','ZO','TI','YO','YO','TI','ZO']}
     ];
 
+let kuznechik = [
+    {all: 27, text: 'В траве сидел кузнечик', formula: ['YO','ZO','YO','ZO','YO','TI','TI']},
+    {text: 'Совсем как огуречик', formula: ['TI','ZO','TI','ZO','TI','YO','YO']},
+    {text: 'Совсем как огуречик', formula: ['YO','ZO','YO','ZO','YO','TI','TI']},
+    {text: 'Зелёненький он был', formula: ['TI','ZO','TI','ZO','TI','YO']}
+    ];
+
 let solnishko = [
     {all: 36, text: 'Солнышко, солнышко,', formula: ['YO',0,'TI','TI','YO',0,'ZO','ZO']},
     {text: 'выгляни в окошечко.', formula: ['YO','YO','TI','TI','YO',0,'ZO','ZO']},
@@ -73,6 +80,21 @@ let dveteteri = [
     {text: 'поклевали, улетели.', formula: ['ZO','ZO','RA','RA','TI','TI','YO']}
     ];
 
+let kurochka = [
+    {all: 78, text: 'Вышла курочка гулять,', formula: ['YO','YO','ZO','ZO','RA','RA','ZO']},
+    {text: 'свежей травки пощипать.', formula: ['YO','YO','ZO','ZO','RA','RA','ZO']},
+    {text: 'А за ней ребятки', formula: ['ZO','ZO','RA','TI','YO','YO']},
+    {text: 'жёлтые цыплятки.', formula: ['ZO','ZO','RA','TI','YO','YO']},
+    {text: 'Ко-ко-ко, ко-ко-ко,', formula: ['YO','YO','ZO','ZO','RA','RA','ZO']},
+    {text: 'не ходите далеко.', formula: ['YO','YO','ZO','ZO','RA','RA','ZO']},
+    {text: 'Лапками гребите,', formula: ['ZO','ZO','RA','TI','YO','YO']},
+    {text: 'зёрнышки ищите.', formula: ['ZO','ZO','RA','TI','YO','YO']},
+    {text: 'Съели толстого жука,', formula: ['YO','YO','ZO','ZO','RA','RA','ZO']},
+    {text: 'дождевого червяка.', formula: ['YO','YO','ZO','ZO','RA','RA','ZO']},
+    {text: 'Выпили водицы', formula: ['ZO','ZO','RA','TI','YO','YO']},
+    {text: 'полное корытце.', formula: ['ZO','ZO','RA','TI','YO','YO']}
+    ];
+
 let korablik = [
     {all: 64, text: 'Наш кораблик по волнам плывёт,', formula: ['YO',0,'YO','TI','TI','RA','TI','YO',0,'YO',0,'ZO']},
     {text: 'капитаном одноглазый кот,', formula: ['YO',0,'YO','TI','TI','RA','TI','YO',0,'YO',0,'ZO']},
@@ -83,7 +105,16 @@ let korablik = [
     {text: 'Ну и что же? Зато наш флаг', formula: ['RA',0,'TI','YO',0,'YO','TI','RA',0,'TI',0,'YO']},
     {text: 'прочих флагов выше!', formula: ['TI',0,'TI','RA',0,'TI',0,'YO',0,'YO']}
     ];
-    
+
+let kolibelnaya = [
+    {all: 42, text: 'Баю, баюшки, баю,', formula: ['YO','TI','RA','ZO','RA','TI','YO']},
+    {text: 'не ложися на краю -', formula: ['TI','RA','ZO','ZO','ZO','RA','TI']},
+    {text: 'придёт серенький волчок', formula: ['YO','TI','RA','ZO','RA','TI','YO']},
+    {text: 'и ухватит за бочок,', formula: ['TI','RA','ZO','ZO','ZO','RA','TI']},
+    {text: 'и потащит во лесок,', formula: ['YO','TI','RA','ZO','RA','TI','YO']},
+    {text: 'под ракитовый кусток.', formula: ['TI','RA','ZO','ZO','ZO','RA','TI']}
+    ];
+
 let full_menu = [
     { name: 'Паровоз', arr: parowoz},
     { name: 'Если очень захотеть', arr: esli},
@@ -91,10 +122,14 @@ let full_menu = [
     { name: 'Зайчик', arr: zaichik},
     { name: 'Воробей', arr: vorobey},
     { name: 'Медведь', arr: medved},
+    { name: 'Кузнечик', arr: kuznechik},
     { name: 'Коза', arr: koza},
     { name: 'Солнышко', arr: solnishko},
     { name: 'Две тетери', arr: dveteteri},
+    { name: 'Вышла курочка гулять', arr: kurochka},
+    { name: 'Колыбельная', arr: kolibelnaya},
     { name: 'Кораблик', arr: korablik}
+    
 ];
 let winner_image = document.querySelector('.winner_image');
 
