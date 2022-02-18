@@ -109,10 +109,16 @@ function getRandomIntInclusive(min, max) {
     if(symBtnLevel.dataset.number == 'harm_tetrachord'){symBtnLevelGO = [(ti+1),(ti+2),(ti+5),(ti+6)];}
     if(symBtnLevel.dataset.number == 'whole_tetrachord'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+7)];}
 
-    if(symBtnLevel.dataset.number == 'major_35'){symBtnLevelGO = [(ti+1),(ti+5),(ti+8)];}
-    if(symBtnLevel.dataset.number == 'minor_35'){symBtnLevelGO = [(ti+1),(ti+4),(ti+8)];}
-    if(symBtnLevel.dataset.number == 'diminished'){symBtnLevelGO = [(ti+1),(ti+5),(ti+9)];}
-    if(symBtnLevel.dataset.number == 'augmented'){symBtnLevelGO = [(ti+1),(ti+4),(ti+7)];}
+    if(symBtnLevel.dataset.number == '3_AUG'){symBtnLevelGO = [(ti+1),(ti+5),(ti+9)];}
+    if(symBtnLevel.dataset.number == '3_MAJ'){symBtnLevelGO = [(ti+1),(ti+5),(ti+8)];}
+    if(symBtnLevel.dataset.number == '3_MIN'){symBtnLevelGO = [(ti+1),(ti+4),(ti+8)];}
+    if(symBtnLevel.dataset.number == '3_DIM'){symBtnLevelGO = [(ti+1),(ti+4),(ti+7)];}
+    if(symBtnLevel.dataset.number == '3_SUS2'){symBtnLevelGO = [(ti+1),(ti+3),(ti+8)];}
+    if(symBtnLevel.dataset.number == '3_SUS4'){symBtnLevelGO = [(ti+1),(ti+6),(ti+8)];}
+    if(symBtnLevel.dataset.number == '3_ADD2_maj'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+8)];}
+    if(symBtnLevel.dataset.number == '3_ADD2_min'){symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+8)];}
+    if(symBtnLevel.dataset.number == '3_ADD4_maj'){symBtnLevelGO = [(ti+1),(ti+5),(ti+6),(ti+8)];}
+    if(symBtnLevel.dataset.number == '3_ADD4_min'){symBtnLevelGO = [(ti+1),(ti+4),(ti+6),(ti+8)];}
 
     if(symBtnLevel.dataset.number == 'М2'){symBtnLevelGO = [(ti+1),(ti+2)];}
     if(symBtnLevel.dataset.number == 'Б2'){symBtnLevelGO = [(ti+1),(ti+3)];}
@@ -125,6 +131,14 @@ function getRandomIntInclusive(min, max) {
     if(symBtnLevel.dataset.number == 'Б6'){symBtnLevelGO = [(ti+1),(ti+10)];}
     if(symBtnLevel.dataset.number == 'М7'){symBtnLevelGO = [(ti+1),(ti+11)];}
     if(symBtnLevel.dataset.number == 'Б7'){symBtnLevelGO = [(ti+1),(ti+12)];}
+
+    if(symBtnLevel.dataset.number == 'MAJ_DIATONIK_LYD'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+7),(ti+8),(ti+10),(ti+12),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'MAJ_DIATONIK_ION'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+6),(ti+8),(ti+10),(ti+12),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'MAJ_DIATONIK_MIX'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+6),(ti+8),(ti+10),(ti+11),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'MAJ_DIATONIK_DOR'){symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6),(ti+8),(ti+10),(ti+11),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'MAJ_DIATONIK_EOL'){symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6),(ti+8),(ti+9),(ti+11),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'MAJ_DIATONIK_FRI'){symBtnLevelGO = [(ti+1),(ti+2),(ti+4),(ti+6),(ti+8),(ti+9),(ti+11),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'MAJ_DIATONIK_LOC'){symBtnLevelGO = [(ti+1),(ti+2),(ti+4),(ti+6),(ti+7),(ti+9),(ti+11),(ti+13)];}
 };
 
 //ПОИСК ВЫБРАННЫХ ЭЛЕМЕНТОВ
