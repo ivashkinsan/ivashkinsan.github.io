@@ -9,6 +9,10 @@ body{
     background-color: beige;
 }
 
+* {
+    user-select: none;
+  }
+
 img {
     max-width: 100%;
     border: 10px solid white;

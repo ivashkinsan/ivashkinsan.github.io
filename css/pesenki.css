@@ -10,6 +10,11 @@ body {
     border: 20px solid;
     border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
 }
+
+* {
+    user-select: none;
+  }
+  
 .start_menu_header{
     
     margin: 1%;

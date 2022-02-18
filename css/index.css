@@ -7,6 +7,11 @@ body {
     border: 20px solid;
     border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
 }
+
+* {
+    user-select: none;
+  }
+
 .container{
     display: grid;
     grid-template-rows: 50px 1fr 1fr 1fr 1fr 1fr 1fr;

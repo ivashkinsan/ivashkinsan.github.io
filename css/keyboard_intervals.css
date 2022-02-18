@@ -4,6 +4,10 @@ body {
     box-sizing: border-box;
 }
 
+* {
+    user-select: none;
+  }
+
 .monitor_header {
     display: flex;
     justify-content: center;
