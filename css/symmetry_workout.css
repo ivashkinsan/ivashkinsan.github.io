@@ -3,7 +3,7 @@ body {
     height: 100vh;
     margin: 0;
     color: #F4D6B1;
-    font-size: 12px;
+    font-size: 22px;
     background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
     /* border-style: inset; */
     border: 20px solid;
@@ -14,6 +14,7 @@ p{
   color: blue;
   /* font-size: 20px; */
 }
+
 .section{
     display: flex;
     
@@ -37,28 +38,44 @@ p{
 
 .section_button{
   display: flex;
-  flex-direction: row;
-  justify-content: stretch;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  /* padding-left: 50%;
+  padding-right: 50%; */
+  /* border: 2px solid blue; */
 }
 
 .button{
-  
-  box-sizing: border-box;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  box-sizing: border-box;
   /* white-space: pre-wrap; */
   /* flex: 1 2 3 auto; */
   padding: 2px 5px 2px 5px;
-  margin: 4px;
+  /* margin: 4px; */
   font-size: 20px;
   flex-wrap: nowrap;
   overflow: hidden;
   text-align: center;
-  border: 1px solid #F4D6B1;
+  /* border: 1px solid #F4D6B1; */
   border-radius: 4px;
   cursor: pointer;
+  opacity: 0.5;
 }  
+
+.button_gold{ 
+  background-color: #F4D6B1; 
+  /* transition-property: background-color; */
+  /* transition-duration: 300ms; */
+  color: rgb(5, 5, 114);
+  box-shadow: inset 0px 0px 15px 0px #F4D6B1;
+  opacity: 1;
+  transform: scale(1.2);
+  transition: transform 0.5s, background 0.5s;
+}
 
 .circle{
   width: auto;
@@ -134,12 +151,7 @@ p{
     box-shadow: inset 0px 0px 15px 0px #000000;
   }
   
-  .ledGoldON { 
-    background-color: #F4D6B1; 
-    transition-property: background-color;
-    transition-duration: 300ms;
-    box-shadow: inset 0px 0px 15px 0px #F4D6B1;
-  }
+  
 
   .ledWin { 
     background-color: #d6a86f; 
@@ -168,3 +180,77 @@ p{
   
   
 
+/* slider zone */
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+/* header {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: hsla(50, 100%, 50%, 1);
+} */
+.slider {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  /* border: 2px solid white; */
+}
+
+.slide {
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: all 1s ease-in-out;
+  /* border: 2px solid red; */
+}
+
+.slide:nth-child(1) {
+  background-color: transparent;
+}
+.slide:nth-child(2) {
+  background-color: transparent;
+}
+.slide:nth-child(3) {
+  background-color: transparent;
+}
+
+.prev,
+.next {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 2rem;
+  border-radius: 2rem;
+  background-color: white;
+  z-index: 100;
+  top: 50%;
+  transform: translatey(-50%);
+  transition: transform 0.2s, background 0.5s;
+  cursor: pointer;
+
+  &:hover {
+    transform: translatey(-50%) scale(1.2);
+    background: hsla(50, 100%, 50%, 1);
+  }
+}
+
+.prev {
+  left: 2%;
+}
+.next {
+  right: 2%;
+}

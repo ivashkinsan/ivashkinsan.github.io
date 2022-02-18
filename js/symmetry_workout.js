@@ -34,7 +34,7 @@ for (let item of buttons) {
         clear_ledOn();
         startWork();
         remove_border_color();
-        item.classList.toggle('ledGoldON');
+        item.classList.toggle('button_gold');
         let circle = item.children;
         for(let itemCircle of circle){
             itemCircle.classList.toggle('border_color');
@@ -48,7 +48,7 @@ let remove_border_color = function(){
         item.classList.remove('border_color');
     }
     for(let item of buttons){
-        item.classList.remove('ledGoldON');
+        item.classList.remove('button_gold');
     }
 }
 
@@ -107,11 +107,24 @@ function getRandomIntInclusive(min, max) {
     if(symBtnLevel.dataset.number == 'min_tetrachord'){symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6)];}
     if(symBtnLevel.dataset.number == 'frig_tetrachord'){symBtnLevelGO = [(ti+1),(ti+2),(ti+4),(ti+6)];}
     if(symBtnLevel.dataset.number == 'harm_tetrachord'){symBtnLevelGO = [(ti+1),(ti+2),(ti+5),(ti+6)];}
+    if(symBtnLevel.dataset.number == 'whole_tetrachord'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+7)];}
 
     if(symBtnLevel.dataset.number == 'major_35'){symBtnLevelGO = [(ti+1),(ti+5),(ti+8)];}
     if(symBtnLevel.dataset.number == 'minor_35'){symBtnLevelGO = [(ti+1),(ti+4),(ti+8)];}
     if(symBtnLevel.dataset.number == 'diminished'){symBtnLevelGO = [(ti+1),(ti+5),(ti+9)];}
     if(symBtnLevel.dataset.number == 'augmented'){symBtnLevelGO = [(ti+1),(ti+4),(ti+7)];}
+
+    if(symBtnLevel.dataset.number == 'М2'){symBtnLevelGO = [(ti+1),(ti+2)];}
+    if(symBtnLevel.dataset.number == 'Б2'){symBtnLevelGO = [(ti+1),(ti+3)];}
+    if(symBtnLevel.dataset.number == 'М3'){symBtnLevelGO = [(ti+1),(ti+4)];}
+    if(symBtnLevel.dataset.number == 'Б3'){symBtnLevelGO = [(ti+1),(ti+5)];}
+    if(symBtnLevel.dataset.number == 'ч4'){symBtnLevelGO = [(ti+1),(ti+6)];}
+    if(symBtnLevel.dataset.number == 'ТТТ'){symBtnLevelGO = [(ti+1),(ti+7)];}
+    if(symBtnLevel.dataset.number == 'ч5'){symBtnLevelGO = [(ti+1),(ti+8)];}
+    if(symBtnLevel.dataset.number == 'М6'){symBtnLevelGO = [(ti+1),(ti+9)];}
+    if(symBtnLevel.dataset.number == 'Б6'){symBtnLevelGO = [(ti+1),(ti+10)];}
+    if(symBtnLevel.dataset.number == 'М7'){symBtnLevelGO = [(ti+1),(ti+11)];}
+    if(symBtnLevel.dataset.number == 'Б7'){symBtnLevelGO = [(ti+1),(ti+12)];}
 };
 
 //ПОИСК ВЫБРАННЫХ ЭЛЕМЕНТОВ
@@ -138,7 +151,7 @@ let sravniElem = function(a,b){
         // console.log('rabotaet' + sovpadeniya);
         // console.log(answerArr);
         win_ledOn(answerArr);
-        setTimeout(startWork,1300);
+        setTimeout(startWork,1000);
     }
 };
 
@@ -156,3 +169,54 @@ let win_ledOn = function(winArr){
 //    if(level == 'symmetry6'){monitor.textContent = 'СИММЕТРИЯ из 6';}
 // };
 
+//SLIDER ZONE
+
+const slider = document.querySelector(".slider");
+
+const slides = slider.querySelectorAll(".slide");
+
+const prev = document.querySelector(".prev");
+const next = document.querySelector(".next");
+
+/* Set Current Slide */
+let currSlide = 0;
+
+/* define max length */
+const maxSlide = slides.length;
+
+/* Function to go to slide based on index number provided as argument  */
+
+const goToSlide = function (slide = 1) {
+  slides.forEach((s, i) => {
+    s.style.transform = `translatex(${100 * (i - slide)}%)`;
+  });
+};
+
+const nextSlide = function () {
+  if (currSlide === maxSlide - 1) {
+    currSlide = 0;
+  } else {
+    currSlide++;
+  }
+
+  goToSlide(currSlide);
+};
+
+const prevSlide = function () {
+  if (currSlide === 0) {
+    currSlide = maxSlide - 1;
+  } else {
+    currSlide--;
+  }
+  goToSlide(currSlide);
+};
+
+next.addEventListener("click", nextSlide);
+prev.addEventListener("click", prevSlide);
+// goToSlide(2);
+
+const init = function () {
+  goToSlide(0);
+};
+
+init();
