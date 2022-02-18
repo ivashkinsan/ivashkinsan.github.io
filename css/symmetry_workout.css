@@ -63,11 +63,11 @@ p{
   /* border: 1px solid #F4D6B1; */
   border-radius: 4px;
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 0.7;
 }  
 
 .button_gold{ 
-  background-color: #F4D6B1; 
+  background-color: #f4d6b19a; 
   /* transition-property: background-color; */
   /* transition-duration: 300ms; */
   color: rgb(5, 5, 114);
