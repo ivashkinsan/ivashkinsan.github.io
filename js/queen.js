@@ -57,14 +57,6 @@ playButton.addEventListener('click', function () {
 
 //озвучка клавиатуры событием касания и клика
 for (let i = 0; i < keys.length; i++){
-    keys[i].addEventListener('touchstart', function () {
-        console.log('KLICK');
-        let sound = audioAll[i];
-        sound.play();
-        noteAnswer = audioAll[i];
-          compare(noteQuest,noteAnswer)
-          setTimeout(playNewWork, 2000, queenArr[getRandomInt(queenArr.length)]);
-          });
     keys[i].addEventListener('mousedown', function () {
         // console.log('KLICK mousedown');
         let sound = audioAll[i];
@@ -97,10 +89,12 @@ for (let i = 0; i < queen_button_item.length; i++){
   return Math.floor(Math.random() * max);
 }
 
+
+//запуск нового задания
  function playNewWork(queenOneElem){
   for(j = 0; j < audioAll.length; j++){
     if(audioAll[j].dataset.key == queenOneElem){
-    // console.log("РАБОТАЕТ" + audioAll[j].dataset.key);
+    console.log("РАБОТАЕТ" + audioAll[j].dataset.key);
     audioAll[j].play();
     noteQuest = audioAll[j];
     
