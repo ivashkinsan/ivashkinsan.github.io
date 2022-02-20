@@ -68,6 +68,10 @@ for (let item of keys) {
 };
 };
 
+//повторяющиеся число
+let ti_repeat_one = 0;
+let ti_repeat_two = 0;
+
 // ФУНКЦИЯ РАНДОМНОЕ ЧИСЛО
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
@@ -80,10 +84,11 @@ function getRandomIntInclusive(min, max) {
   let startWork = function(){
     clear_ledOn();
     let startOneNote = getRandomIntInclusive(0,12);
+    ti_repeat_one = startOneNote;
+    console.log(ti_repeat_one + '=' + ti_repeat_two);
     let startTwoNote = startOneNote+12;
     keys[startOneNote].classList.toggle('ledON');
     
-
     ti = startOneNote;
     if(symBtnLevel.dataset.number == 'symmetry2'){
         keys[startTwoNote].classList.toggle('ledON');

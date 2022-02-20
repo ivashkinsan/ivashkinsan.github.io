@@ -1,12 +1,11 @@
 body{
-    font-family: Arial, Helvetica, sans-serif;
-    display: block;
-    width: 100%;
-    height: 100%;
-    max-height: 1080px;
     box-sizing: border-box;
-    text-align: center;
-    background-color: beige;
+    margin: 0;
+    height: 100vh;
+    /* color: #F4D6B1; */
+    background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
+    border: 20px solid;
+    border-color: #DDB078;
 }
 
 * {
@@ -15,8 +14,8 @@ body{
 
 img {
     max-width: 100%;
-    border: 10px solid white;
-    border-radius: 20px;
+    margin: 0;
+    padding: 0;
   }
   @media (min-width: 800px) {
     .img {
@@ -26,171 +25,179 @@ img {
 
 .welcome{
     display: flex;
+    position: absolute;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    top: 0; left: 0; right: 0;
-    position: absolute;
+    margin-top: 20px;
+    color: #DDB078;
+    font-size: 30px;
+    top: 20px; 
+    left: 20px; 
+    right: 20px; 
+    bottom: 20px;
     z-index: 1;
-    background-color: azure;
+    background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
 }
 
 .start {
-    display: grid;
-    position: relative;
-    width: 100vw;
-    padding: 30px;
-    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    grid-template-areas:
-    "yourname yourname yourname yourname"
-    "user user user user"
-    "yourvariant yourvariant yourvariant yourvariant"
-    "checkbox1Label checkbox2Label checkbox3Label checkbox4Label"
-    "checkbox5Label checkbox5Label checkbox5Label checkbox5Label"
-    "submit submit allBtn reset"
-    ;
-    grid-row-gap: 20px;
-    grid-template-rows: auto;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    list-style: none;
-    border: 5px rgb(83, 79, 79) solid;
+    width: 100%;
+    height: 100%;
+    /* border: 5px rgb(255, 0, 0) solid; */
     border-radius: 20px;
-    
+}
+
+.checkbox_container{
+    display: flex;
+    justify-content: center;
 }
 
 input[type="checkbox"] {
     transform: scale(4.5);
 }
 
-.yourname {
-    padding: 20px;
-    background: rgb(245, 245, 245);
-    grid-area: yourname;
-    text-align: center;
-    font-size: 2em;
-}
-
-.yourvariant{
-    padding: 20px;
-    background: rgb(245, 245, 245);
-    grid-area: yourvariant;
-    text-align: center;
-    font-size: 2em;
-}
-
-.user {
-    padding: 20px;
-    background: rgb(245, 245, 245);
-    grid-area: user;
-    text-align: center;
-    font-size: 2em;
-}
-
 .checkbox{
-    min-height: 150px;
-    min-width: 150px;
+    box-sizing: border-box;
     text-align: center;
-    background-size: 80%;
-    background-position-y: 15px;
-    background-position-x: center;
-    background-repeat: no-repeat;
+    padding: 5px;
+    color: black;
+    font-size: 14px;
+    margin: 10px;
+    width: 150px;
+    height: 150px;
     border: 2px solid black;
     border: 5px solid transparent;
     border-radius: 5px;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    background-color: whitesmoke;
+    overflow: hidden;
+}
+
+.button{
+    box-sizing: border-box;
+    text-align: center;
+    padding: 5px;
+    color: black;
+    font-size: 14px;
+    margin: 10px;
+    width: 150px;
+    height: 150px;
+    border: 2px solid black;
+    border: 5px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: whitesmoke;
+    overflow: hidden;
+}
+.box{
+    box-sizing: border-box;
+    text-align: center;
+    padding: 5px;
+    color: black;
+    font-size: 14px;
+    margin: 10px;
+    width: 150px;
+    height: 150px;
+    border: 2px solid black;
+    border: 5px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: whitesmoke;
+    overflow: hidden;
+}
+.margin_0{
+    margin: 0;
+    border: 0.5px solid black;
+}
+
+@media (max-width: 1075px), (max-height: 650px) {
+    .start{
+        font-size: 14px;
+    }
+    .checkbox_container{
+        flex-wrap: wrap;
+    }
+    .button, .box{
+    width: 100px;
+    font-size: 10px;
+    height: 100px;
+    margin: 2px;
+        /* border: 25px solid red; */
+    }
+    .button_action{
+    width: 75px;
+    height: 25px;
+    }
+    .box > .flex_allign > img{
+        width: 85%;
+        /* border: 5px solid red; */
+    }
+  }
+
+.checkbox > .flex_allign > img{
+    width: 85%;
+    /* border: 5px solid red; */
+}
+.box > .flex_allign > img{
+    width: 85%;
+    /* border: 5px solid red; */
 }
 
 .checkbox_active {
-    border: 5px solid rgb(21, 17, 238);
+    border: 5px solid #DDB078;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
 }
 
-.checkbox1Label {
-    grid-area: checkbox1Label;
-    background-image: url(../image/buttons/di-din.png);
+.flex_allign{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.checkbox2Label {
-    grid-area: checkbox2Label;
-    background-image: url(../image/buttons/dili-din.png);
-}
 
-.checkbox3Label {
-    grid-area: checkbox3Label;
-    background-image: url(../image/buttons/dili-dinli.png);
-}
-
-.checkbox4Label {
-    grid-area: checkbox4Label;
-    background-image: url(../image/buttons/di-dinli.png);
-}
-
-.checkbox5Label {
-    grid-area: checkbox5Label;
-    background-image: url(../image/buttons/play.png);
-}
-
-.checkbox1 { grid-area: checkbox1; }
-.checkbox2 { grid-area: checkbox2; }
-.checkbox3 { grid-area: checkbox3; }
-.checkbox4 { grid-area: checkbox4; }
-.checkbox5 { grid-area: checkbox5; }
-
-.submit {
-    padding: 20px;
-    background: rgb(245, 245, 245);
-    grid-area: submit;
-    text-align: center;
-    font-size: 2em;
-}
-
-.allBtn {
-    padding: 20px;
-    background: rgb(245, 245, 245);
-    grid-area: allBtn;
-    text-align: center;
-    font-size: 2em;
-}
-
-.reset {
-    padding: 20px;
-    background: rgb(245, 245, 245);
-    grid-area: reset;
-    text-align: center;
-    font-size: 2em;
+.button_action{
+    width: 150px;
+    height: 50px;
 }
 
 p{
     font-weight: bold;
 }
 
-/* .show_hide{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0; left: 0; bottom: 0; right: 0;
-    background-color: azure;
-} */
-
 .displayNONE {
     display: none;
 }
 
+
+/* 2 СТРАНИЦА ИГРЫ */
+
 .container_image {
     display: flex;
-    height: 60%;
+    height: 50%;
     justify-content: center;
     overflow: hidden;
-    margin: 30px;
+    margin: 5px;
 }
 
 .container_moni{
-    width: 100vw;
     display: flex;
     flex-wrap: nowrap;
-    height: auto;
     text-align: center;
+    /* border: 4px solid red; */
+}
+
+@media (max-width: 958px) {
+    .container_moni{
+         height: 15%;
+         font-size: 0.5em;
+    }
+    /* button {
+        width: 50%;
+    } */
 }
 
 .points {
@@ -208,7 +215,7 @@ p{
 }
 
 .like>.like_points, .dislike>.dislike_points{
-    font-size: 3em;
+    font-size: 2em;
     line-height: 0.1em;
     font-weight: bold;
 }
@@ -216,61 +223,10 @@ p{
 
 .four_buttons {
     display: flex;
-    width: 100%;
-    justify-content: center;  
+    justify-content: center; 
 }
 
-button {
-    padding-top: 160px;
-    font-size: 1.1em;
-    font-style: italic;
-    border-radius: 10px;
-    width: 200px;
-    height: 200px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    background-size: 90%;
-    background-position-y: 5px;
-    background-position-x: center;
-    background-repeat: no-repeat;
-    background-color: rgb(236, 236, 236);
- }
- 
- .button_1 {
-    display: none;
-    background-image: url(../image/buttons/di-din.png);
- }
-
- .button_2 {
-    display: none;
-    background-image: url(../image/buttons/dili-din.png);
- }
-
- .button_3 {
-    display: none;
-    background-image: url(../image/buttons/dili-dinli.png);
- }
-
- .button_4 {
-    display: none;
-    background-image: url(../image/buttons/di-dinli.png);
- }
-
- .button_5 {
-    background-image: url(../image/Lisenok/like.png);
-    background-position-y: center;
-    background-size: 90%;
- }
- 
- .playBtn {
-    display: none;
-    background-image: url(../image/buttons/play.png);
-    background-position-y: center;
-    background-size: 70%;
- }
-
-
- .prize {
+.prize {
      display: none;
      position: absolute;
      width: 100%;
@@ -285,7 +241,6 @@ button {
      background-position-y: 60%;
      background-position-x: center;
      background-repeat: no-repeat;
-    
  }
 
  .happy_end {

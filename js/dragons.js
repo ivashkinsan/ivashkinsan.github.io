@@ -14,6 +14,7 @@ let blockUser = document.querySelector('.user');
 
 let welcome = document.querySelector('.welcome');
 let checkboxes = document.querySelectorAll('.start .checkbox');
+
 let allBtn = document.querySelector('.allBtn');
 let prize = document.querySelector('.prize');
 
@@ -21,7 +22,6 @@ let prize = document.querySelector('.prize');
 // console.log(checkboxes);
 //переменная блока основной картинки
 let image = document.querySelector('.image');
-let btns = document.querySelectorAll('button');
 let playBtn = document.querySelector('.playBtn');
 
 //переменные монитора
@@ -32,7 +32,8 @@ let dislike_points_elem = document.querySelector('.dislike_points');
 let dislike_points = dislike_points_elem.textContent;
 //переменные кнопок button
 let buttons = document.querySelectorAll('.button');
-let lisenok = document.querySelector('.button_5');
+console.log(buttons);
+let lisenok = document.querySelector('.lisenok');
 
 let prizeCheck = true;
 let happy_end = document.querySelector('.happy_end');
@@ -170,7 +171,7 @@ nePlach:[
   ]
 
 };
-console.log(schitalki.neSpat[6].text)
+
 
 
 let schitalka_Parovoz = [ 
@@ -282,11 +283,10 @@ checkboxes.forEach(function(btn) {
   
   // Вешаем событие клик
   btn.addEventListener('click', function() { 
-    // console.log(btn.classList..checkbox_active::after);
     btn.classList.toggle('checkbox_active');
-    // console.log(checkboxes[0]);
     });
 });
+
 
 //функция вывода данных из формы
 document.forms.start.onsubmit = function() {
@@ -330,13 +330,11 @@ document.forms.start.onsubmit = function() {
   welcome.remove();
   user = blockUser.value;
   randomDragon();
-  // console.log(user);
   // return false;
 };
 
 //кнопка выделить ВСЕ
 allBtn.addEventListener('click', function(){
-  console.log('all');
 for(i = 0; i < checkboxes.length; i++){
   checkboxes[i].classList.add('checkbox_active');
 };
@@ -344,7 +342,6 @@ for(i = 0; i < checkboxes.length; i++){
 
 //кнопка СБРОС
 document.forms.start.onreset = function() {
-  console.log('reset');
   level = [];
   user = null;
 for(i = 0; i < checkboxes.length; i++){
@@ -358,19 +355,26 @@ for(i = 0; i < checkboxes.length; i++){
 // Проходим по массиву
 buttons.forEach(function(btn) {
   // Вешаем событие клик
-  btn.addEventListener('click', function(e) {   
-    //console.log('Button clicked' + e.target.classList + "  " +  dragon.answer + "  " + e.target.name);
-    if(dragon.answer == e.target.name){
+  
+  btn.addEventListener('click', function(e) {
+    console.log(btn);
+    console.log(e);
+    console.log(e.target.classList);   
+    console.log(dragon.answer); 
+    console.log(e.target.name); 
+
+    console.log('карточка' + btn.classList + "  " +  dragon.answer + "  " + btn.dataset.name);
+    if(dragon.answer == btn.dataset.name){
         like_points = Number(like_points) + 1;
         like_points_elem.textContent = like_points;
         console.log('МОЛОДЕЦ' + "   " + like_points);
-        lisenok.style.backgroundImage = 'url(image/Lisenok/like.png)';
+        lisenok.src = './image/Lisenok/like.png';
         // playBtn.style.display = "none";
     } else {
         dislike_points = Number(dislike_points) + 1;
         dislike_points_elem.textContent = dislike_points;
         console.log('ПОПРОБУЙ ЕЩЁ');
-        lisenok.style.backgroundImage = 'url(image/Lisenok/dislike.png)';
+        lisenok.src = './image/Lisenok/dislike.png';
         // playBtn.style.display = "none";
     };
     
