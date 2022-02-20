@@ -31,6 +31,7 @@ img {
     margin-top: 20px;
     color: #DDB078;
     font-size: 30px;
+    padding-top: 60px;
     top: 0px; 
     left: 20px; 
     right: 20px; 
@@ -172,7 +173,10 @@ p{
     display: none;
 }
 
-
+.button_action{
+    height: 80px;
+    font-size: 20px;
+}
 /* 2 СТРАНИЦА ИГРЫ */
 
 .container_image {
@@ -260,12 +264,12 @@ p{
     align-items: center;
     width: 80px;
     height: 30px;
-    top: 20px;
-    left: 20px;
-    color: #d6a86f;
+    top: 24px;
+    left: 24px;
+    color: #F4D6B1;
     font-size: 14px;
     z-index: 999;
-    border: 3px #d6a86f solid;
+    border: 3px #F4D6B1 solid;
   }
 
  
