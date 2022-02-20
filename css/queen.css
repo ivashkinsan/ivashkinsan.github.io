@@ -226,6 +226,17 @@ body {
     background-color: #ffffcc;
     background-image: url("../image/staff/F4.svg");}
 
+/* .preload-images {
+        display: none; 
+        width: 0;
+        height: 0;
+        background: url("../image/Queen/queen_G.png"),
+                    url("../image/Queen/queen_D.png"),
+                    url("../image/Queen/queen_A.png"),
+                    url("../image/Queen/queen_E.png"),
+                    url("../image/Queen/queen_B.png"),
+                    url("../image/Queen/queen_F.png");
+      } */
 
 .G1:hover {background-image: url("../image/Queen/queen_G.png");}
 .D2:hover {background-image: url("../image/Queen/queen_D.png");}
