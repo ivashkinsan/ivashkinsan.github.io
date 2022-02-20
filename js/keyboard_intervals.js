@@ -153,7 +153,7 @@ setTimeout(find_interval, 700, allSrcSound);
 find_interval(allSrcSound);
 
 //таймер
-let timeMinut = 2 * 60;
+let timeMinut = 1 * 60;
 
 timer = setInterval(function () {
   seconds = timeMinut%60 // Получаем секунды

@@ -1,7 +1,11 @@
 body {
-    height: 100vh;
-    margin: 0;
     box-sizing: border-box;
+    margin: 0;
+    height: 100vh;
+    color: #F4D6B1;
+    background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
+    border: 20px solid;
+    border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
 }
 
 * {
@@ -16,7 +20,7 @@ body {
     font-weight: bold;
     width: 100vw;
     height: 30vh;
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 
 .big_container {
@@ -76,7 +80,7 @@ body {
       display: flex;
       font-size: 2em;
       justify-content: center;
-      border: 3px solid blue;
+      /* border: 3px solid blue; */
   }
 
   .active_one_key {
@@ -91,6 +95,21 @@ body {
       top: 0; right: 0; bottom: 0; left: 0;
       font-size: 3em;
       text-align: center;
-      background-color: rgb(221, 221, 221);
+      background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
       z-index: 1;
+  }
+
+  .go_start_menu {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 30px;
+    top: 20px;
+    left: 20px;
+    color: #d6a86f;
+    font-size: 14px;
+    z-index: 999;
+    border: 3px #d6a86f solid;
   }
