@@ -76,8 +76,8 @@ let solnishko = [
 let dveteteri = [
     {all: 28, text: 'На зелёном на лугу', formula: ['YO','TI','RA','YO','TI','TI','YO']},
     {text: 'стоит чашка творогу.', formula: ['YO','TI','RA','YO','TI','TI','YO']},
-    {text: 'Прилетели две тетери,', formula: ['ZO','ZO','RA','RA','TI','TI','YO']},
-    {text: 'поклевали, улетели.', formula: ['ZO','ZO','RA','RA','TI','TI','YO']}
+    {text: 'Прилетели две тетери,', formula: ['ZO','ZO','RA','RA','TI','TI','YO','YO']},
+    {text: 'поклевали, улетели.', formula: ['ZO','ZO','RA','RA','TI','TI','YO','YO']}
     ];
 
 let kurochka = [

@@ -1,0 +1,116 @@
+body {
+    box-sizing: border-box;
+    height: 100vh;
+    margin: 0;
+    color: #F4D6B1;
+    font-size: 2px;
+    background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
+    border: 20px solid;
+    border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
+}
+
+* {
+  user-select: none;
+}
+
+p{
+  color: blue;
+  /* font-size: 20px; */
+}
+
+Img { 
+  max-width: 100%;
+}
+
+.big_section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+}
+
+@media (orientation: landscape){
+  .big_section{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+  }
+}
+
+/* @media (min-width: 800px){
+  .big_section {
+    background-color: aqua;
+  }
+} */
+
+
+
+.container {
+    display: flex;
+    justify-content: flex-start;
+    margin: 2px;
+    /* width: 20%; */
+    /* height: 10%; */
+    /* border: 2px solid red; */
+  }
+
+  .elem {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /*опускает цифры вниз клавиш*/
+    /* padding-top: 20px; */
+    width: 16px;
+    height: 55px;
+    border: 1px #9c9c9c solid;
+    border-radius: 0 0 2px 2px;
+    background-color: white;
+    transition-property: background-color;
+    transition-duration: 300ms;
+    z-index: 1;
+  }
+
+   .black_key {
+    background-color: rgb(154, 154, 154);
+    width: 8px;
+    height: 30px;
+    margin-left: -6.5px;
+    margin-right: -6.5px;
+    background-color: white;
+    border: 2px #9c9c9c solid;
+    transition-property: background-color;
+    transition-duration: 300ms;
+    z-index: 999;
+  }
+
+  @media (min-width: 800px){
+    .elem {
+      width: 26px;
+      height: 100px;
+    }
+  
+    .black_key {
+      width: 18px;
+      height: 55px;
+      margin-left: -11px;
+      margin-right: -11px;
+    }
+  }
+
+  .go_start_menu {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #F4D6B1;
+    font-size: 14px;
+    z-index: 999;
+    width: 80px;
+    height: 30px;
+    top: 24px;
+    left: 24px;
+    border: 3px #F4D6B1 solid;
+  }
+
