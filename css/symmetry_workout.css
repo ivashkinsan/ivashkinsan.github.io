@@ -297,6 +297,27 @@ Img {
     cursor: pointer;
 }
 
+.long_button{
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #F4D6B1;
+  font-size: 14px;
+  z-index: 999;
+  width: 30px;
+  height: 30px;
+  top: 24px;
+  left: 154px;
+  border: 3px #F4D6B1 solid;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.long_key{
+  height: auto;
+}
+
+
 .popup-checkbox, .popup {
   display: none;
 }
@@ -325,6 +346,9 @@ Img {
 }
 
 .popup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 60%;
   height: 80%;
   position: absolute;
@@ -335,14 +359,27 @@ Img {
   right: 0;
   z-index: 1;
   margin: auto;
-  font-size: 24px;
+  font-size: 16px;
   background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
   border: 2px solid #F4D6B1;
   border-radius: 1%;
   padding: 20px;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  overflow: scroll;
+  overflow-y: scroll;
+}
+
+/* ul{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style-type: none;
+} */
+
+li {
+  display: block;
 }
 
 .popup-shower {

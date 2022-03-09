@@ -1,15 +1,22 @@
 document.oncontextmenu = cmenu; function cmenu() { return false; };
 
+let info_button = document.querySelector('.info_button');
+
 let infoObj = {
-    'symmetry2': ['симметрия 2х',0,0],
-    'symmetry3': ['симметрия 3х',0,0],
-    'symmetry4': ['симметрия 4х',0,0],
-    'symmetry6': ['симметрия 6ти',0,0],
-    'maj_tetrachord': ['тетрахорд маж',0,0],
-    'min_tetrachord': ['тетрахорд мин',0,0],
-    'frig_tetrachord': ['тетрахорд фриг',0,0],
-    'harm_tetrachord': ['тетрахорд гарм',0,0],
-    'whole_tetrachord': ['тетрахорд ТТТ',0,0],
+    'header_1': ['СИММЕТРИИ',' ',0],
+    'symmetry2': ['на 2ч',0,0],
+    'symmetry3': ['на 3ч',0,0],
+    'symmetry4': ['на 4ч',0,0],
+    'symmetry6': ['на 6ч',0,0],
+    'br0': [' ',' '],
+    'header_2': ['ТЕТРАХОРДЫ','-',0],
+    'maj_tetrachord': ['маж',0,0],
+    'min_tetrachord': ['мин',0,0],
+    'frig_tetrachord': ['фриг',0,0],
+    'harm_tetrachord': ['гарм',0,0],
+    'whole_tetrachord': ['ТТТ',0,0],
+    'br1': [' ',' '],
+    'header_3': ['ИНТЕРВАЛЫ','-',0],
     'm2': ['м2',0,0],
     'B2': ['Б2',0,0],
     'm3': ['м3',0,0],
@@ -21,11 +28,14 @@ let infoObj = {
     'B6': ['Б6',0,0],
     'm7': ['м7',0,0],
     'B7': ['Б7',0,0],
-    'maj': ['маж',0,0],
-    'min': ['мин',0,0],
-    'frig': ['фриг',0,0],
-    'harm': ['гарм',0,0],
-    'TTT': ['ТТТ',0,0],
+    'br2': [' ',' '],
+    'header_4': ['КОМБИНАЦИИ ЦЕЛОТОНОВ','-',0],
+    'melodic_minor': ['2+5',0,0],
+    'ionian': ['3+4',0,0],
+    'lydian': ['4+3',0,0],
+    'lydian_aug': ['5+2',0,0],
+    'br3': [' ',' '],
+    'header_5': ['ДИАТОНИКА МАЖОРА','-',0],
     'TTT_&_maj': ['лидийский',0,0],
     'maj_&_maj': ['ионийский',0,0],
     'maj_&_min': ['миксолидийский',0,0],
@@ -33,10 +43,12 @@ let infoObj = {
     'min_&_frig': ['эолийский',0,0],
     'frig_&_frig': ['фригийский',0,0],
     'frig_&_TTT': ['локрийский',0,0],
-    'aug_triads': ['трезвучие увеличенное',0,0],
-    'maj_triads': ['трезвучие мажорное',0,0],
-    'min_triads': ['трезвучие минорное',0,0],
-    'dim_triads': ['трезвучие уменьшённое',0,0],
+    'br4': [' ',' '],
+    'header_6': ['ТРЕЗВУЧИЯ','-',0],
+    'aug_triads': ['увеличенное',0,0],
+    'maj_triads': ['мажорное',0,0],
+    'min_triads': ['минорное',0,0],
+    'dim_triads': ['уменьшённое',0,0],
     'sus2_triads': ['sus2',0,0],
     'sus4_triads': ['sus4',0,0],
     'maj_add2_triads': ['maj add2',0,0],
@@ -68,7 +80,7 @@ let symBtnLevelGO;
 
 //ВЫБОР РЕЖИМА РАНДОМ
 let symmetryNameArr = [symmetry2, symmetry3, symmetry4, symmetry6];
-let startSymmetry = getRandomIntInclusive(0,3);
+// let startSymmetry = getRandomIntInclusive(0,3);
 
 //запуск при нажатии на кнопку режима
 for (let item of buttons) {
@@ -118,19 +130,46 @@ let ti_repeat_one = 0;
 let ti_repeat_two = 0;
 
 // ФУНКЦИЯ РАНДОМНОЕ ЧИСЛО
-function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
-  }
+// function getRandomIntInclusive(min, max) {
+//     min = Math.ceil(min);
+//     max = Math.floor(max);
+//     return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+//   }
+
+Array.prototype.shuffle = function () {
+  for (var i = this.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = this[i];
+      this[i] = this[j];
+      this[j] = tmp;
+  };
+
+  return this;
+};
 
 // console.log('YYYYEEESSS')
+let startNoteArr = [0,1,2,3,4,5,6,7,8,9,10,11,12];
+    startNoteArr.shuffle();
 // ФУНКЦИЯ ПОДСВЕТКИ СТАРТОВОЙ ОКТАВЫ, ПРИСВОЕНИЕ ИСХОДНЫХ ЦИФР
   let startWork = function(){
     clear_ledOn();
-    let startOneNote = getRandomIntInclusive(0,12);
+    let startOneNote;
+
+    if(startNoteArr.length > 0){
+      let x = startNoteArr.shift();
+      startOneNote = Number(x);
+        console.log(startOneNote);
+    } else {
+      startNoteArr = [0,1,2,3,4,5,6,7,8,9,10,11,12];
+      startNoteArr.shuffle();
+      let x = startNoteArr.shift();
+      startOneNote = Number(x);
+      console.log('пересборка');
+    }
+    
+
     ti_repeat_one = startOneNote;
-    console.log(ti_repeat_one + '=' + ti_repeat_two);
+    // console.log(ti_repeat_one + '=' + ti_repeat_two);
     let startTwoNote = startOneNote+12;
     keys[startOneNote].classList.toggle('ledON');
     
@@ -233,8 +272,9 @@ let win_ledOn = function(winArr){
     for (let item of winArr) {
         item.classList.add('ledWin');  
     };
-    create_result();
+    
 };
+
 
 
 // СОЗДАНИЕ СПИСКА РЕЗУЛЬТАТОВ
@@ -251,6 +291,8 @@ let create_result = function(){
     result_ul.append(result_ul_li);
   }
 };
+
+info_button.addEventListener("click", create_result);
 
 //SLIDER ZONE
 const slider = document.querySelector(".slider");
@@ -305,3 +347,40 @@ init();
 
 let popup_text = document.querySelector('.popup-text');
 // console.log(popup_text);
+
+function clock() {
+  var d = new Date();
+  var month_num = d.getMonth()
+  var day = d.getDate();
+  var hours = d.getHours();
+  var minutes = d.getMinutes();
+  var seconds = d.getSeconds();
+   
+  month=new Array("января", "февраля", "марта", "апреля", "мая", "июня",
+  "июля", "августа", "сентября", "октября", "ноября", "декабря");
+   
+  if (day <= 9) day = "0" + day;
+  if (hours <= 9) hours = "0" + hours;
+  if (minutes <= 9) minutes = "0" + minutes;
+  if (seconds <= 9) seconds = "0" + seconds;
+   
+  date_time = "Сегодня - " + day + " " + month[month_num] + " " + d.getFullYear() +
+  " г.&nbsp;&nbsp;&nbsp;Текущее время - "+ hours + ":" + minutes + ":" + seconds;
+  if (document.layers) {
+   document.layers.doc_time.document.write(date_time);
+   document.layers.doc_time.document.close();
+  } else { document.getElementById("doc_time").innerHTML = date_time;
+   setTimeout("clock()", 1000);
+  }
+}
+  clock();
+
+  let long_button = document.querySelector('.long_button');
+ 
+  let long_black_keys = function(){
+    let arr_black_keys = document.querySelectorAll('.black_key');
+    for(item of arr_black_keys){
+      item.classList.toggle('long_key');
+    }
+  }
+  long_button.addEventListener("click", long_black_keys);
