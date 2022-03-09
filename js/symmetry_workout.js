@@ -244,6 +244,17 @@ let finderLed = function () {
     return ledElement;
 };
 
+let big_number = 0;
+let fakty_window = document.querySelector('.fakty_window');
+let displayNone = function(){
+  fakty_window.style.display = 'none';
+}
+fakty_window.addEventListener("click", displayNone);
+faktyArr.shuffle()
+
+
+
+
 // ПРОВЕРКА ОТВЕТА - СРАВНЕНИЕ
 let sravniElem = function(a,b){
     let sovpadeniya = 0;
@@ -258,6 +269,8 @@ let sravniElem = function(a,b){
         infoObj[symBtnLevel.dataset.number][1] += 1;
         win_ledOn(answerArr);
         setTimeout(startWork,1000);
+        big_number += 1;
+        setTimeout(add_windows_facty,1000);
     } 
     // else {infoObj[symBtnLevel.dataset.number][2] += 0.5;}
     
@@ -267,6 +280,17 @@ let sravniElem = function(a,b){
 
 };
 
+//функция демонстрации советов
+let add_windows_facty = function(){
+  if(big_number % 5 == 0){
+          
+    fakty_window.style.display = 'flex';
+    
+    if(faktyArr.length > 0){
+      fakty_window.innerHTML = faktyArr.shift();
+    }
+  }
+}
 //функция подсветки в случае верного ответа   
 let win_ledOn = function(winArr){
     for (let item of winArr) {
@@ -296,9 +320,7 @@ info_button.addEventListener("click", create_result);
 
 //SLIDER ZONE
 const slider = document.querySelector(".slider");
-
 const slides = slider.querySelectorAll(".slide");
-
 const prev = document.querySelector(".prev");
 const next = document.querySelector(".next");
 
@@ -384,3 +406,44 @@ function clock() {
     }
   }
   long_button.addEventListener("click", long_black_keys);
+
+
+
+  //таймер
+let timeMinut = 1 * 0;
+let monitor_footer = document.querySelector('.monitor_footer');
+
+timer = setInterval(function () {
+  seconds = timeMinut%60 // Получаем секунды
+  minutes = timeMinut/60%60 // Получаем минуты
+ // Условие если время закончилось то...
+  if (timeMinut == 1800) {
+      // Таймер удаляется
+      clearInterval(timer);
+      // Выводит сообщение что время закончилось
+      alert("Время закончилось");
+      result.style.display = 'flex';
+      print_result();
+
+  } else { // Иначе
+      // Создаём строку с выводом времени
+      if(seconds <= 9){
+        seconds = '0' + seconds;
+      }
+      let strTimer = 'время проведённое на странице ' + `0${Math.trunc(minutes)} : ${seconds}`;
+      // Выводим строку в блок для показа таймера
+      monitor_footer.innerHTML = strTimer;  
+  }
+  ++timeMinut; // Уменьшаем таймер
+}, 1000)
+
+
+let print_result = function(){
+  console.log(all_answer.length);
+  
+  result.innerHTML += '<br>' + `из ${all_answer.length} ответов`;
+  result.innerHTML += '<br>' + `правильно - ${right_answer}`;
+  result.innerHTML += '<br>';
+  
+}
+

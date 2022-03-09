@@ -417,3 +417,26 @@ li {
   opacity: 1;
   display: block;
 }
+
+.fakty_window{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  padding: 5%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  border: 3px red solid;
+  color: #F4D6B1;
+    font-size: 36px;
+    background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
+    border: 20px solid;
+    border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
+    z-index: 999;
+    cursor: pointer;
+    /* transition-property: opacity;
+    transition-duration: 1s; */
+}
