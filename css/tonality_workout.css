@@ -21,6 +21,12 @@ body{
     overflow: hidden;
 } */
 
+image{
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 10%;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -87,6 +93,7 @@ body{
   display: grid;
   grid-template-columns: 1fr 2fr 2fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  
   /* width: 50%; */
   /* border: red 2px solid; */
 }
@@ -98,6 +105,7 @@ body{
   color: white;
   font-size: 1em;
   text-shadow: 1px 1px #000000;
+  box-sizing: inherit;
 }
 
 .orange{
@@ -117,10 +125,12 @@ body{
 }
 
 .button:hover{
-  transform: translate(-2px,-5px);
+  /* transform: translate(-2px,-5px); */
   cursor: pointer;
-  border: #ffffff 3px solid;
-  box-shadow: 2px 2px 5px black;
+  /* border: #ffffff 3px solid; */
+  /* box-shadow: 2px 2px 5px black; */
+  outline: 2px solid rgb(255, 255, 255);
+  outline-offset:-4px;
 }
 
 .container_of_keys {
