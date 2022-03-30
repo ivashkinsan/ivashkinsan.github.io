@@ -282,7 +282,7 @@ let sravniElem = function(a,b){
 
 //функция демонстрации советов
 let add_windows_facty = function(){
-  if(big_number % 5 == 0){
+  if(big_number % 1 == 0){
           
     fakty_window.style.display = 'flex';
     
