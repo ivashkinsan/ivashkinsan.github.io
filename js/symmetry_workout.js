@@ -54,13 +54,21 @@ let infoObj = {
     'maj_add2_triads': ['maj add2',0,0],
     'min_add2_triads': ['min add2',0,0],
     'maj_add4_triads': ['maj add4',0,0],
-    'min_add4_triads': ['min add4',0,0]
+    'min_add4_triads': ['min add4',0,0],
+    'br5': [' ',' '],
+    'header_7': ['ИСКУССТВЕННЫЕ ЛАДЫ','-',0],
+    'iscustv_melodic_minor': ['мел минор',0,0],
+    'iscustv_minor_harmony': ['гарм минор',0,0],
+    'iscustv_major_harmony': ['гарм мажор',0,0],
+    'iscustv_major_melodic': ['мел мажор',0,0],
+    'iscustv_2_major_harmony': ['х2 гарм мажор',0,0]
+    
 };
 
-let marker = document.querySelectorAll('p');
-for(let item of marker){
-    item.innerHTML = '';
-}
+// let marker = document.querySelectorAll('p');
+// for(let item of marker){
+//     item.innerHTML = '';
+// }
 
 let keys = document.querySelectorAll('.key');
 let elements = document.querySelectorAll('.elem');
@@ -229,7 +237,21 @@ let startNoteArr = [0,1,2,3,4,5,6,7,8,9,10,11,12];
     if(symBtnLevel.dataset.number == 'frig_&_frig'){symBtnLevelGO = [(ti+1),(ti+2),(ti+4),(ti+6),(ti+8),(ti+9),(ti+11),(ti+13)];}
     if(symBtnLevel.dataset.number == 'frig_&_TTT'){symBtnLevelGO = [(ti+1),(ti+2),(ti+4),(ti+6),(ti+7),(ti+9),(ti+11),(ti+13)];}
 
-    
+    if(symBtnLevel.dataset.number == 'iscustv_melodic_minor'){
+      keys[startTwoNote].classList.toggle('ledON');
+      symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6),(ti+8),(ti+10),(ti+12),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'iscustv_minor_harmony'){
+      keys[startTwoNote].classList.toggle('ledON');
+      symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6),(ti+8),(ti+9),(ti+12),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'iscustv_major_harmony'){
+      keys[startTwoNote].classList.toggle('ledON');
+      symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+6),(ti+8),(ti+9),(ti+12),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'iscustv_major_melodic'){
+      keys[startTwoNote].classList.toggle('ledON');
+      symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+6),(ti+8),(ti+9),(ti+11),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'iscustv_2_major_harmony'){
+      keys[startTwoNote].classList.toggle('ledON');
+      symBtnLevelGO = [(ti+1),(ti+2),(ti+5),(ti+6),(ti+8),(ti+9),(ti+12),(ti+13)];}
   };
 
 //ПОИСК ВЫБРАННЫХ ЭЛЕМЕНТОВ
