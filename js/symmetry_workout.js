@@ -65,10 +65,10 @@ let infoObj = {
     
 };
 
-// let marker = document.querySelectorAll('p');
-// for(let item of marker){
-//     item.innerHTML = '';
-// }
+let marker = document.querySelectorAll('p');
+for(let item of marker){
+    item.innerHTML = '';
+}
 
 let keys = document.querySelectorAll('.key');
 let elements = document.querySelectorAll('.elem');
