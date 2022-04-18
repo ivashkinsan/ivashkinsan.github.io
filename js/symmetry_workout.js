@@ -49,6 +49,8 @@ let infoObj = {
     'maj_triads': ['мажорное',0,0],
     'min_triads': ['минорное',0,0],
     'dim_triads': ['уменьшённое',0,0],
+    'maj_add6_triads': ['maj6',0,0],
+    'min_add6_triads': ['min6',0,0],
     'sus2_triads': ['sus2',0,0],
     'sus4_triads': ['sus4',0,0],
     'maj_add2_triads': ['maj add2',0,0],
@@ -61,8 +63,16 @@ let infoObj = {
     'iscustv_minor_harmony': ['гарм минор',0,0],
     'iscustv_major_harmony': ['гарм мажор',0,0],
     'iscustv_major_melodic': ['мел мажор',0,0],
-    'iscustv_2_major_harmony': ['х2 гарм мажор',0,0]
-    
+    'iscustv_2_major_harmony': ['х2 гарм мажор',0,0],
+    'br6': [' ',' '],
+    'header_8': ['СЕПТ-АККОРДЫ','-',0],
+    'maj_aug_chord': ['X^#5',0,0],
+    'maj_original_chord': ['X^',0,0],
+    'seventh_chord': ['X7',0,0],
+    'minor_maj_chord': ['Xm^',0,0],
+    'minor_seventh_chord': ['Xm7',0,0],
+    'half_diminished_chord': ['Xm7b5',0,0],
+    'diminished_chord': ['Xo',0,0]
 };
 
 let marker = document.querySelectorAll('p');
@@ -210,6 +220,8 @@ let startNoteArr = [0,1,2,3,4,5,6,7,8,9,10,11,12];
     if(symBtnLevel.dataset.number == 'maj_triads'){symBtnLevelGO = [(ti+1),(ti+5),(ti+8)];}
     if(symBtnLevel.dataset.number == 'min_triads'){symBtnLevelGO = [(ti+1),(ti+4),(ti+8)];}
     if(symBtnLevel.dataset.number == 'dim_triads'){symBtnLevelGO = [(ti+1),(ti+4),(ti+7)];}
+    if(symBtnLevel.dataset.number == 'maj_add6_triads'){symBtnLevelGO = [(ti+1),(ti+5),(ti+8),(ti+10)];}
+    if(symBtnLevel.dataset.number == 'min_add6_triads'){symBtnLevelGO = [(ti+1),(ti+4),(ti+8),(ti+10)];}
     if(symBtnLevel.dataset.number == 'sus2_triads'){symBtnLevelGO = [(ti+1),(ti+3),(ti+8)];}
     if(symBtnLevel.dataset.number == 'sus4_triads'){symBtnLevelGO = [(ti+1),(ti+6),(ti+8)];}
     if(symBtnLevel.dataset.number == 'maj_add2_triads'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+8)];}
@@ -252,6 +264,15 @@ let startNoteArr = [0,1,2,3,4,5,6,7,8,9,10,11,12];
     if(symBtnLevel.dataset.number == 'iscustv_2_major_harmony'){
       keys[startTwoNote].classList.toggle('ledON');
       symBtnLevelGO = [(ti+1),(ti+2),(ti+5),(ti+6),(ti+8),(ti+9),(ti+12),(ti+13)];}
+
+    if(symBtnLevel.dataset.number == 'maj_aug_chord'){symBtnLevelGO = [(ti+1),(ti+5),(ti+9),(ti+12)];}
+    if(symBtnLevel.dataset.number == 'maj_original_chord'){symBtnLevelGO = [(ti+1),(ti+5),(ti+8),(ti+12)];}
+    if(symBtnLevel.dataset.number == 'seventh_chord'){symBtnLevelGO = [(ti+1),(ti+5),(ti+8),(ti+11)];}
+    if(symBtnLevel.dataset.number == 'minor_maj_chord'){symBtnLevelGO = [(ti+1),(ti+4),(ti+8),(ti+12)];}
+    if(symBtnLevel.dataset.number == 'minor_seventh_chord'){symBtnLevelGO = [(ti+1),(ti+4),(ti+8),(ti+11)];}
+    if(symBtnLevel.dataset.number == 'half_diminished_chord'){symBtnLevelGO = [(ti+1),(ti+4),(ti+7),(ti+11)];}
+    if(symBtnLevel.dataset.number == 'diminished_chord'){symBtnLevelGO = [(ti+1),(ti+4),(ti+7),(ti+10)];}  
+  
   };
 
 //ПОИСК ВЫБРАННЫХ ЭЛЕМЕНТОВ
