@@ -115,6 +115,21 @@ let kolibelnaya = [
     {text: 'под ракитовый кусток.', formula: ['TI','RA','ZO','ZO','ZO','RA','TI']}
     ];
 
+    let tausen = [
+        {all: 82, text: 'Таусеньки, таусень', formula: ['LE','LE','YO','RA','LE','RA','YO']},
+        {text: 'Варит бабушка кисель', formula: ['LE','LE','YO','RA','LE','LE','YO']},
+        {text: 'На горушечке,', formula: ['LE','LE','YO','RA','LE','RA','YO']},
+        {text: 'В черепушечке', formula: ['LE','LE','YO','RA','LE',0,'YO']},
+        {text: 'Летел, летел голубок.', formula: ['LE','LE','YO','RA','LE','RA','YO']},
+        {text: 'Через бабушкин дворок.', formula: ['LE','LE','YO','RA','LE','LE','YO']},
+        {text: 'Голубь крыльями забил,', formula: ['LE','LE','YO','RA','LE','RA','YO']},
+        {text: 'По земле кисель разлил', formula: ['LE','LE','YO','RA','LE','LE','YO']},
+        {text: 'Вот и нету киселя', formula: ['LE','LE','YO','RA','LE','RA','YO']},
+        {text: 'На горушечке.', formula: ['LE','LE','YO','RA','LE','LE','YO']},
+        {text: 'На горушечке,', formula: ['LE','LE','YO','RA','LE','RA','YO']},
+        {text: 'В черепушечке', formula: ['LE','LE','YO','RA','LE',0,'YO']}
+        ];
+
 let kukla = [
     {all: 48, text: 'Кукла плачет, весь день лежит', formula: ['ZO','ZO','YO','LE','YO','ZO','ZO','YO']},
     {text: 'у неё голова болит.', formula: ['ZO','ZO','YO','LE','YO','ZO','LE','YO']},
@@ -122,7 +137,50 @@ let kukla = [
     {text: 'отвезу я её к врачу.', formula: ['RA','LE','LE','YO','LE','RA','LE','RA']},
     {text: 'Вот опять она весела - ', formula: ['ZO','ZO','YO','LE','YO','ZO','ZO','YO']},
     {text: 'голова у неё прошла.', formula: ['ZO','ZO','YO','LE','YO','ZO','LE','YO']}
-    ];    
+    ];
+
+let rucheek = [
+    {all: 39, text: 'В ручье найдется заводь,', formula: ['ZO','YO',0,'YO','RA',0,'YO','ZO',0,'ZO']},
+    {text: 'в ней тихая вода.', formula: ['ZO','YO',0,'YO','RA',0,'YO','ZO']},
+    {text: 'Я там хочу поплавать,', formula: ['ZO','RA',0,'RA','TI',0,'YO','LE',0,'RA']},
+    {text: 'возьми меня туда.', formula: ['RA','LE',0,'LE','RA',0,'TI','YO']},
+    {text: 'Я там хочу поплавать,', formula: ['ZO','RA',0,'RA','TI',0,'YO','LE',0,'RA']},
+    {text: 'возьми меня туда.', formula: ['RA','LE',0,'LE','RA',0,'TI','YO']}
+    ];
+
+let zvezdi = [
+    {all: 56, text: 'Звёзды смотрят с высоты,', formula: ['LE','LE','RA','LE','YO','YO','ZO']},
+    {text: 'ночью спишь не только ты -', formula: ['LE','LE','RA','TI','YO','RA','ZO']},
+    {text: 'Ночь настала для телят,', formula: ['RA','RA','LE','LE','ZO','ZO','YO']},
+    {text: 'и зайчата ночью спят.', formula: ['RA','RA','LE','RA','TI','ZO','YO']},
+    {text: 'В стойле, в норке, здесь и там', formula: ['LE','LE','RA','LE','YO','YO','ZO']},
+    {text: 'спят малышки возле мам.', formula: ['LE','LE','RA','TI','YO','RA','ZO']},
+    {text: 'Тишина стоит кругом,', formula: ['RA','RA','LE','LE','ZO','ZO','YO']},
+    {text: 'сон приходит в каждый дом.', formula: ['RA','RA','LE','RA','TI','ZO','YO']}
+    ];  
+
+let tuzik = [
+    {all: 53, text: 'Тузик отважен и суров', formula: ['WI','WI',0,'WI','WI','LE','YO','LE','WI']},
+    {text: 'страху нагонит на воров', formula: ['WI','WI',0,'WI','WI','LE','YO','LE','WI']},
+    {text: 'и один, без меня,', formula: ['LE','LE','RA',0,'LE','LE','RA']},
+    {text: 'может оставаться.', formula: ['LE','YO','TI','RA','ZO',0,'ZO']},
+    {text: 'Если посмеет кто-нибудь', formula: ['WI','WI',0,'WI','WI','LE','YO','LE','WI']},
+    {text: 'что-то чужое утянуть.', formula: ['WI','WI',0,'WI','WI','LE','YO','LE','WI']},
+    {text: 'Тузик наш скажет "Гав!" - просто жуть!', formula: ['LE','LE','RA',0,'LE','LE','RA',0,'LE',0,'WI',0,'YO']}
+    ];  
+    
+let karavai = [
+    {all: 68, text: 'Как на Дашины именины', formula: ['ZO','ZO','YO','YO','YO','WI','WI','LE','LE']},
+    {text: 'испекли мы каравай -', formula: ['ZO','ZO','YO','YO','WI','WI','LE']},
+    {text: 'вот такой вышины,', formula: ['LE','LE','RA',0,'LE','LE','TI']},
+    {text: 'вот такой нижины,', formula: ['LE','LE','RA',0,'LE','LE','TI']},
+    {text: 'вот такой ширины,', formula: ['LE','LE','RA',0,'LE','LE','TI']},
+    {text: 'вот такой ужины.', formula: ['LE','LE','LE','YO','TI','RA','ZO']},
+    {text: '- Каравай, каравай,', formula: ['ZO','ZO','YO',0,'WI','WI','LE']},
+    {text: 'кого любишь - выбирай!', formula: ['ZO','ZO','YO','YO','WI','WI','LE']},
+    {text: '- Я люблю, конечно, всех.', formula: ['LE','LE','RA','RA','LE','LE','TI']},
+    {text: 'а вот Лизу больше всех.', formula: ['LE','LE','LE','YO','TI','RA','ZO']}
+    ];  
 
 let full_menu = [
     { name: 'Паровоз', arr: parowoz},
@@ -138,7 +196,13 @@ let full_menu = [
     { name: 'Вышла курочка гулять', arr: kurochka},
     { name: 'Колыбельная', arr: kolibelnaya},
     { name: 'Кораблик', arr: korablik},
-    { name: 'Кукла', arr: kukla}
+    { name: 'Таусень', arr: tausen},
+    { name: 'Кукла', arr: kukla},
+    { name: 'Ручеёк', arr: rucheek},
+    { name: 'Звёзды', arr: zvezdi},
+    { name: 'Тузик', arr: tuzik},
+    { name: 'Каравай', arr: karavai}
+    
     
 ];
 let winner_image = document.querySelector('.winner_image');
