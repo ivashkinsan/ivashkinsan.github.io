@@ -34,6 +34,7 @@ let infoObj = {
     'ionian': ['3+4',0,0],
     'lydian': ['4+3',0,0],
     'lydian_aug': ['5+2',0,0],
+    'WH': ['Тон-полутон',0,0],
     'br3': [' ',' '],
     'header_5': ['ДИАТОНИКА МАЖОРА','-',0],
     'TTT_&_maj': ['лидийский',0,0],
@@ -208,7 +209,8 @@ let startNoteArr = [0,1,2,3,4,5,6,7,8,9,10,11,12];
     if(symBtnLevel.dataset.number == 'melodic_minor'){symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6),(ti+8),(ti+10),(ti+12)];}
     if(symBtnLevel.dataset.number == 'ionian'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+6),(ti+8),(ti+10),(ti+12)];}
     if(symBtnLevel.dataset.number == 'lydian'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+7),(ti+8),(ti+10),(ti+12)];}
-    if(symBtnLevel.dataset.number == 'lydian_aug'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+7),(ti+9),(ti+10),(ti+12)];}    
+    if(symBtnLevel.dataset.number == 'lydian_aug'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+7),(ti+9),(ti+10),(ti+12)];}
+    if(symBtnLevel.dataset.number == 'WH'){symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6),(ti+7),(ti+9),(ti+10),(ti+12)];}     
 
     if(symBtnLevel.dataset.number == 'maj_tetrachord'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+6)];}
     if(symBtnLevel.dataset.number == 'min_tetrachord'){symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6)];}
