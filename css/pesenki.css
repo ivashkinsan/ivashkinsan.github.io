@@ -70,6 +70,14 @@ body {
     border-radius: 5px;
 }
 
+.startBtn{
+    position: fixed;
+    /* margin:auto; */
+    left:0;
+    right:0;
+    bottom: 30px;
+}
+
 .active_btn {
     box-sizing: content-box;
     border: 6px solid white;

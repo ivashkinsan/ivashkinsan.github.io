@@ -180,7 +180,67 @@ let karavai = [
     {text: 'кого любишь - выбирай!', formula: ['ZO','ZO','YO','YO','WI','WI','LE']},
     {text: '- Я люблю, конечно, всех.', formula: ['LE','LE','RA','RA','LE','LE','TI']},
     {text: 'а вот Лизу больше всех.', formula: ['LE','LE','LE','YO','TI','RA','ZO']}
+    ];
+    
+let kolokolchik = [
+    {all: 23, text: 'Дили динь, дили дон,', formula: ['YO','ZO','YO',0,'ZO','RA','ZO']},
+    {text: 'В далеке слышен звон.', formula: ['YO','ZO','YO',0,'ZO','RA','ZO']},
+    {text: 'Серебристый такой -', formula: ['LE','ZO','LE',0,'ZO','RA','ZO']},
+    {text: 'Где-то за рекой.', formula: ['YO','ZO','YO','ZO','YO']}
+    ]; 
+
+let zvony = [
+    {all: 25, text: 'Ой, звоны звонят,', formula: ['WI',0,'YO','YO','LE',0,'YO']},
+    {text: 'Злого волка гонят.', formula: ['WI','WI','YO','YO','LE',0,'YO']},
+    {text: 'По болотам, по оврагам.', formula: ['WI','WI','YO','YO','LE','LE','YO','YO']},
+    {text: 'Где никто не ходит.', formula: ['WI','WI','YO','YO','LE',0,'YO']}
     ];  
+
+let kotok = [
+    {all: 14, text: 'Как повадился коток', formula: ['YO','TI','RA','ZO','LE','WI','YO']},
+    {text: 'На сметану, да творог', formula: ['YO','TI','RA','ZO','LE','WI','YO']}
+    ];
+
+let kolybelnaya_Soni = [
+    {all: 56, text: 'Баю-баюшки, баю,', formula: ['ZO','ZO','ZO','ZO','ZO','WI','LE']},
+    {text: 'Баю Сонечку мою.', formula: ['LE','LE','WI','LE','RA','TI','YO']},
+    {text: 'Приди котик ночевать', formula: ['ZO','ZO','ZO','ZO','ZO','WI','LE']},
+    {text: 'Мою Сонечку качать.', formula: ['LE','LE','WI','LE','RA','TI','YO']},
+    {text: 'Как у котика, кота', formula: ['ZO','ZO','ZO','ZO','ZO','WI','LE']},
+    {text: 'Колыбелька хороша.', formula: ['LE','LE','WI','LE','RA','TI','YO']},
+    {text: 'У моей у Сонечки,', formula: ['ZO','ZO','ZO','ZO','ZO','WI','LE']},
+    {text: 'Что получше, да его.', formula: ['LE','LE','WI','LE','RA','TI','YO']}
+    ];
+
+let gusi = [
+    {all: 160, text: 'Жили у бабуси', formula: ['NA','WI','LE','YO','ZO_up',0,'ZO_up']},
+    {text: 'Два веселых гуся.', formula: ['NA','WI','LE','YO','ZO_up',0,'ZO_up']},
+    {text: 'Один серый, другой белый-', formula: ['NA','RA_up','RA_up','NA','WI','ZO_up','ZO_up','WI']},
+    {text: 'Два веселых гуся.', formula: ['LE','WI','NA','LE','YO',0,'YO']},
+    {text: 'Один серый, другой белый-', formula: ['NA','RA_up','RA_up','NA','WI','ZO_up','ZO_up','WI']},
+    {text: 'Два веселых гуся.', formula: ['LE','WI','NA','LE','YO',0,'YO']},
+
+    {text: 'Мыли гуси лапки', formula: ['NA','WI','LE','YO','ZO_up',0,'ZO_up']},
+    {text: 'В луже у канавки.', formula: ['NA','WI','LE','YO','ZO_up',0,'ZO_up']},
+    {text: 'Один серый, другой белый-', formula: ['NA','RA_up','RA_up','NA','WI','ZO_up','ZO_up','WI']},
+    {text: 'Спрятались в канавке.', formula: ['LE','WI','NA','LE','YO',0,'YO']},
+    {text: 'Один серый, другой белый-', formula: ['NA','RA_up','RA_up','NA','WI','ZO_up','ZO_up','WI']},
+    {text: 'Спрятались в канавке.', formula: ['LE','WI','NA','LE','YO',0,'YO']},
+
+    {text: 'Вот кричит бабуся:', formula: ['NA','WI','LE','YO','ZO_up',0,'ZO_up']},
+    {text: 'Ой, пропали гуси!', formula: ['NA','WI','LE','YO','ZO_up',0,'ZO_up']},
+    {text: 'Один серый, другой белый-', formula: ['NA','RA_up','RA_up','NA','WI','ZO_up','ZO_up','WI']},
+    {text: 'Гуси мои, гуси!', formula: ['LE','WI','NA','LE','YO',0,'YO']},
+    {text: 'Один серый, другой белый-', formula: ['NA','RA_up','RA_up','NA','WI','ZO_up','ZO_up','WI']},
+    {text: 'Гуси мои, гуси!', formula: ['LE','WI','NA','LE','YO',0,'YO']},
+
+    {text: 'Выходили гуси,', formula: ['NA','WI','LE','YO','ZO_up',0,'ZO_up']},
+    {text: 'Кланялись бабусе.', formula: ['NA','WI','LE','YO','ZO_up',0,'ZO_up']},
+    {text: 'Один серый, другой белый-', formula: ['NA','RA_up','RA_up','NA','WI','ZO_up','ZO_up','WI']},
+    {text: 'Кланялись бабусе.', formula: ['LE','WI','NA','LE','YO',0,'YO']},
+    {text: 'Один серый, другой белый-', formula: ['NA','RA_up','RA_up','NA','WI','ZO_up','ZO_up','WI']},
+    {text: 'Кланялись бабусе.', formula: ['LE','WI','NA','LE','YO',0,'YO']}
+    ];
 
 let full_menu = [
     { name: 'Паровоз', arr: parowoz},
@@ -201,7 +261,12 @@ let full_menu = [
     { name: 'Ручеёк', arr: rucheek},
     { name: 'Звёзды', arr: zvezdi},
     { name: 'Тузик', arr: tuzik},
-    { name: 'Каравай', arr: karavai}
+    { name: 'Каравай', arr: karavai},
+    { name: 'Колокольчик', arr: kolokolchik},
+    { name: 'Звоны', arr: zvony},
+    { name: 'Коток', arr: kotok},
+    { name: 'Колыбельная Сонечке', arr: kolybelnaya_Soni},
+    { name: 'Гуси', arr: gusi}
     
     
 ];
@@ -210,7 +275,7 @@ let winner_image = document.querySelector('.winner_image');
 let page_number = 0;
 let container_notes = document.querySelector('.container_notes');
 let monitor_for_text = document.querySelector('.monitor_for_text');
-let nameStage = ['ZO_up','NA','WI','LE','YO','TI','RA','ZO'];
+let nameStage = ['RA_up','ZO_up','NA','WI','LE','YO','TI','RA','ZO'];
 
 let all_page_pigs;
 const audioAll = document.querySelectorAll('audio');
