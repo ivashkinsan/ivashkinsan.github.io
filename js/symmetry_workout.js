@@ -73,13 +73,21 @@ let infoObj = {
     'minor_maj_chord': ['Xm^',0,0],
     'minor_seventh_chord': ['Xm7',0,0],
     'half_diminished_chord': ['Xm7b5',0,0],
-    'diminished_chord': ['Xo',0,0]
+    'diminished_chord': ['Xo',0,0],
+
+    'min_&_maj': ['мел минор',0,0],
+    'frig_&_min': ['дор b9',0,0],
+    'TTTT_&_maj': ['лид #4',0,0],
+    'TTT_&_min': ['микс #4',0,0],
+    'maj_&_frig': ['микс b6',0,0],
+    'min_&_TTT': ['лок #2',0,0],
+    'frig_&_TTTT': ['alt',0,0]
 };
 
-let marker = document.querySelectorAll('p');
-for(let item of marker){
-    item.innerHTML = '';
-}
+// let marker = document.querySelectorAll('p');
+// for(let item of marker){
+//     item.innerHTML = '';
+// }
 
 let keys = document.querySelectorAll('.key');
 let elements = document.querySelectorAll('.elem');
@@ -250,6 +258,14 @@ let startNoteArr = [0,1,2,3,4,5,6,7,8,9,10,11,12];
     if(symBtnLevel.dataset.number == 'min_&_frig'){symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6),(ti+8),(ti+9),(ti+11),(ti+13)];}
     if(symBtnLevel.dataset.number == 'frig_&_frig'){symBtnLevelGO = [(ti+1),(ti+2),(ti+4),(ti+6),(ti+8),(ti+9),(ti+11),(ti+13)];}
     if(symBtnLevel.dataset.number == 'frig_&_TTT'){symBtnLevelGO = [(ti+1),(ti+2),(ti+4),(ti+6),(ti+7),(ti+9),(ti+11),(ti+13)];}
+
+    if(symBtnLevel.dataset.number == 'min_&_maj'){symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6),(ti+8),(ti+10),(ti+12),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'frig_&_min'){symBtnLevelGO = [(ti+1),(ti+2),(ti+4),(ti+6),(ti+8),(ti+10),(ti+11),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'TTTT_&_maj'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+7),(ti+9),(ti+10),(ti+12),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'TTT_&_min'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+7),(ti+8),(ti+10),(ti+11),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'maj_&_frig'){symBtnLevelGO = [(ti+1),(ti+3),(ti+5),(ti+6),(ti+8),(ti+9),(ti+11),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'min_&_TTT'){symBtnLevelGO = [(ti+1),(ti+3),(ti+4),(ti+6),(ti+7),(ti+9),(ti+11),(ti+13)];}
+    if(symBtnLevel.dataset.number == 'frig_&_TTTT'){symBtnLevelGO = [(ti+1),(ti+2),(ti+4),(ti+5),(ti+7),(ti+9),(ti+11),(ti+13)];}
 
     if(symBtnLevel.dataset.number == 'iscustv_melodic_minor'){
       keys[startTwoNote].classList.toggle('ledON');
