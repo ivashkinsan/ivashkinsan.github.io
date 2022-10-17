@@ -129,10 +129,12 @@ Img {
   transition: transform 0.2s, background 0.5s;
   cursor: pointer;
 
-  &:hover {
-    transform: translatey(-50%) scale(1.2);
-    background: hsla(50, 100%, 50%, 1);
-  }
+  
+} 
+
+.material-icons:hover {
+  transform: translatey(-50%) scale(1.2);
+  background: #F4D6B1;
 }
 
 .prev {
@@ -141,6 +143,58 @@ Img {
 .next {
   right: 2%;
 }
+
+.header_keyboard{
+  display: flex;
+  flex-direction: column;
+  
+  /* width: 100%; */
+}
+
+.stroke_fakty_monitor{
+  height: auto;
+  /* flex: 5; */
+  text-align: center;
+  /* background: #d6a86f; */
+  opacity: 1;
+  transition: 1000ms;
+  font-size: 0.5em;
+}
+
+input[type=range]  {
+  width: 100px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  overflow: hidden;
+  height: 7px;
+}
+.range_checkbox_container{
+  font-size: 8px;
+/* transform: scale(0.5); */
+}
+
+.checkbox_container{
+  /* flex: 1; */
+  display: flex;
+/* flex-direction: column; */
+font-size: 8px;
+  justify-content: center;
+  align-items: center;
+}
+.checkbox_container > input{
+  cursor: pointer;
+  transform: scale(0.5);
+}
+.checkbox_container > label {
+  
+}
+.input_range{
+  margin: 0;
+  padding: 0;
+}
+
 
 .container {
   display: flex;

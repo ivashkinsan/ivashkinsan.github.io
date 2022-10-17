@@ -341,17 +341,45 @@ let sravniElem = function(a,b){
 
 };
 
+let strokeFaktyDiv = document.querySelector('.stroke_fakty_monitor');
+let checkBoxElem = document.querySelector('.checkbox_fakty');
+
+checkBoxElem.onclick = function (){
+    console.log(checkBoxElem.checked);
+    if(checkBoxElem.checked){
+      strokeFaktyDiv.style.opacity = 1;
+    } else {
+      strokeFaktyDiv.style.opacity = 0;
+    }
+    
+}
 //функция демонстрации советов
+
+
 let add_windows_facty = function(){
-  if(big_number % 5 == 0){
+  if(big_number % 1 == 0){
           
-    fakty_window.style.display = 'flex';
+    // fakty_window.style.display = 'flex';
     
     if(faktyArr.length > 0){
-      fakty_window.innerHTML = faktyArr.shift();
+      // fakty_window.innerHTML = faktyArr.shift();
+      strokeFaktyDiv.innerHTML = faktyArr.shift();
     }
   }
 }
+
+//функция изменения размера шрифта
+document.querySelector('.input_range').onchange = ()=>{
+  sizePic();
+}
+function sizePic() {
+  let size = document.querySelector('.input_range').value + 'px';
+  strokeFaktyDiv.style.fontSize = size;
+
+ }
+
+
+
 //функция подсветки в случае верного ответа   
 let win_ledOn = function(winArr){
     for (let item of winArr) {
