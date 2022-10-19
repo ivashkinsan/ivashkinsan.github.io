@@ -1,4 +1,13 @@
+@font-face {
+  font-family: "Musisync-KVLZ";
+    /* Браузер сначала попробует найти шрифт локально */
+  src: url("/Musisync-KVLZ.ttf") format("truetype");
+  font-style: normal; 
+font-weight: normal;
+}
+
 body {
+
     box-sizing: border-box;
     height: 100vh;
     margin: 0;
@@ -145,51 +154,47 @@ Img {
 }
 
 .header_keyboard{
+  position: relative;
   display: flex;
+  width: 100%;
+  height: 200px;
   flex-direction: column;
-  
-  /* width: 100%; */
+ 
 }
 
 .stroke_fakty_monitor{
-  height: auto;
-  /* flex: 5; */
+  height: 100%;
   text-align: center;
-  /* background: #d6a86f; */
+  font-family: "RMusisync-KVLZ";
+  justify-content: center;
   opacity: 1;
   transition: 1000ms;
-  font-size: 0.5em;
+  /* font-size: 0.5em; */
 }
 
 input[type=range]  {
-  width: 100px;
+  width: 150px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   outline: none;
   overflow: hidden;
-  height: 7px;
-}
-.range_checkbox_container{
-  font-size: 8px;
-/* transform: scale(0.5); */
+  height: 20px;
 }
 
 .checkbox_container{
-  /* flex: 1; */
+  position: absolute;
   display: flex;
-/* flex-direction: column; */
-font-size: 8px;
+  /* font-size: 8px; */
   justify-content: center;
   align-items: center;
+  bottom: 0;
 }
 .checkbox_container > input{
   cursor: pointer;
   transform: scale(0.5);
 }
-.checkbox_container > label {
-  
-}
+
 .input_range{
   margin: 0;
   padding: 0;
