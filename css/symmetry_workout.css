@@ -59,9 +59,10 @@ Img {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 60vw;
   height: 40%;
-  position: relative;
+  padding: 10px;
+  /* position: relative; */
   overflow: hidden;
   /* border: 5px solid rgb(255, 0, 212); */
 }
@@ -101,14 +102,23 @@ Img {
   border-radius: 4px;
   cursor: pointer;
   opacity: 0.7;
-}  
+} 
+
+.static_button{
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.static_button_bottom{
+  opacity: 0.7;
+}
 
 .button_gold{ 
   background-color: #f4d6b19a; 
   color: rgb(5, 5, 114);
   box-shadow: inset 0px 0px 15px 0px #F4D6B1;
   opacity: 1;
-  transform: scale(1.2);
+  transform: scale(1.1);
   transition: transform 0.5s, background 0.5s;
 }
 /* .slide:nth-child(1) {
@@ -125,11 +135,13 @@ Img {
 .next {
   position: absolute;
   display: flex;
+  margin: 0 30px;
   justify-content: center;
   align-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+  color: #000;
+  font-size: 1rem;
   border-radius: 2rem;
   background-color: white;
   z-index: 100;
@@ -137,8 +149,6 @@ Img {
   transform: translatey(-50%);
   transition: transform 0.2s, background 0.5s;
   cursor: pointer;
-
-  
 } 
 
 .material-icons:hover {
@@ -154,22 +164,32 @@ Img {
 }
 
 .header_keyboard{
-  position: relative;
+  position: fixed;
   display: flex;
-  width: 100%;
-  height: 200px;
+  align-items: stretch;
+  top: 30px;
+  right: 20px;
+  width: 200px;
+  height: 300px;
   flex-direction: column;
- 
+  font-size: 14px;
+ /* background-color: #DDB078; */
 }
 
-.stroke_fakty_monitor{
+.container_monitor{
+
+  display: flex;
   height: 100%;
-  text-align: center;
-  font-family: "RMusisync-KVLZ";
   justify-content: center;
-  opacity: 1;
+
+}
+.stroke_fakty_monitor{
+   text-align: center;
+  font-family: "RMusisync-KVLZ";
+  margin-top: 15%;
+   opacity: 1;
   transition: 1000ms;
-  /* font-size: 0.5em; */
+  
 }
 
 input[type=range]  {
@@ -183,16 +203,18 @@ input[type=range]  {
 }
 
 .checkbox_container{
-  position: absolute;
+  /* position: absolute; */
+  /* flex: 1; */
   display: flex;
   /* font-size: 8px; */
   justify-content: center;
   align-items: center;
-  bottom: 0;
+  top: 0;
 }
 .checkbox_container > input{
   cursor: pointer;
-  transform: scale(0.5);
+  transform: scale(0.8);
+  z-index: 999;
 }
 
 .input_range{

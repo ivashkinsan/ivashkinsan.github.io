@@ -110,24 +110,28 @@ let symBtnLevel;
 let symBtnLevelGO;
 
 // функция смены 1 блока симметрии
-let clicks = 0;
+let clicks = 1;
 
 document.querySelector('.hrom').onclick = function () {
   switch (clicks) {
     case 0:
-      this.childNodes[0].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top.svg';
+      this.childNodes[0].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_null.svg';
       clicks += 1;
       break;
     case 1:
-      this.childNodes[0].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hide.svg';
+      this.childNodes[0].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
       clicks += 1;
       break;
     case 2:
-      this.childNodes[0].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers.svg';
+      this.childNodes[0].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
       clicks += 1;
       break;
     case 3:
-      this.childNodes[0].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_steps.svg';
+      this.childNodes[0].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
+      clicks += 1;
+      break;
+    case 4:
+      this.childNodes[0].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_steps_1_7.svg';
       clicks = 0;
       break;
   }
@@ -518,23 +522,11 @@ Object.defineProperty(
 let add_windows_facty = function () {
   if (faktyAllObj[symBtnLevel.dataset.number]) {
     for (let i = 0; i < faktyAllObj[symBtnLevel.dataset.number].length; i++) {
-      strokeFaktyDiv.innerHTML = faktyAllObj[symBtnLevel.dataset.number].randElement();
+      let item = faktyAllObj[symBtnLevel.dataset.number].randElement();
+      strokeFaktyDiv.innerHTML = item.join('</br>');
     }
   }
 }
-
-//функция изменения размера шрифта
-document.querySelector('.input_range').onchange = () => {
-  sizeInPx();
-}
-
-function sizeInPx() {
-  let size = document.querySelector('.input_range').value + 'px';
-  strokeFaktyDiv.style.fontSize = size;
-
-}
-
-
 
 //функция подсветки в случае верного ответа   
 let win_ledOn = function (winArr) {
