@@ -1,10 +1,10 @@
-document.oncontextmenu = cmenu;
+// document.oncontextmenu = cmenu;
 
-function cmenu() {
-  return false;
-};
+// function cmenu() {
+//   return false;
+// };
 
-let info_button = document.querySelector('.info_button');
+
 
 let infoObj = {
   'header_1': ['СИММЕТРИИ', ' ', 0],
@@ -512,11 +512,11 @@ checkBoxElem.onclick = function () {
 Object.defineProperty(
   Object.prototype,
   'randElement', {
-    value: function () {
-      var rand = Math.floor(Math.random() * this.length);
-      return this[rand];
-    }
+  value: function () {
+    var rand = Math.floor(Math.random() * this.length);
+    return this[rand];
   }
+}
 );
 
 let add_windows_facty = function () {
@@ -539,6 +539,8 @@ let win_ledOn = function (winArr) {
 
 
 // СОЗДАНИЕ СПИСКА РЕЗУЛЬТАТОВ
+let info_button = document.querySelector('.info_button');
+
 let create_result = function () {
   let result_ul = document.querySelector('.result_ul');
   let arr_info_obj = Object.keys(infoObj);
