@@ -2,63 +2,96 @@ const startButtons = [{
         'name': 'G',
         'sound': 'G1',
         'name_rus': 'соль',
-        'checked': false
+        'checked': false,
+        'number_line': 21
     },
     {
         'name': 'D',
         'sound': 'D2',
         'name_rus': 'ре',
-        'checked': false
+        'checked': false,
+        'number_line': 38
     },
     {
         'name': 'A',
         'sound': 'A2',
         'name_rus': 'ля',
-        'checked': false
+        'checked': false,
+        'number_line': 55
     },
     {
         'name': 'E',
         'sound': 'E1',
         'name_rus': 'ми',
-        'checked': false
+        'checked': false,
+        'number_line': 72
     },
     {
         'name': 'B',
         'sound': 'B1',
         'name_rus': 'си',
-        'checked': false
+        'checked': false,
+        'number_line': 89
     },
     {
         'name': 'F',
         'sound': 'F2',
         'name_rus': 'фа',
-        'checked': false
+        'checked': false,
+        'number_line': 106
     },
 
 
 ];
 
+let startContainerCard = document.querySelector('.startContainerCard')
+let lineNoHideArr = [];
+let koordinat = [];
+let iii = 0;
+
 function generateButtons(divIn) {
 
     for (let item of divIn) {
+
+        //создание карточки
         let newDiv = document.createElement('div');
         newDiv.classList.add('startCard');
-        // newDiv = item;
+        startContainerCard.appendChild(newDiv);
+
+        //добавление скрипичного и басового ключа
+        let newTrebleClief = document.createElement('div');
+        let newBassClief = document.createElement('div');
+
+        newTrebleClief.classList.add('new_treble_clief')
+        newBassClief.classList.add('new_bass_clief')
+
+        // добавление ноты
+        let noteQueenInCards = document.createElement('div');
+        noteQueenInCards.classList.add('note_queen_in_cards');
+        newDiv.appendChild(noteQueenInCards);
+
         //добавление линеек
         for (let i = 0; i < 21; i++) {
             let newLine = document.createElement('div');
             newLine.classList.add('line');
             if (i == 10) {
                 newLine.classList.add('short_line')
+
             };
             if (i % 2 != 0) {
                 newLine.classList.add('hide_line')
             };
-
             newDiv.appendChild(newLine);
+            lineNoHideArr.push(newLine);
+
+
         }
 
-        document.querySelector('.startContainerCard').appendChild(newDiv);
+        koordinat.push(lineNoHideArr[item.number_line - 1].offsetTop);
+        noteQueenInCards.style.top = koordinat[koordinat.length - 1] - 3 + 'px';
+
+        newDiv.appendChild(newTrebleClief);
+        newDiv.appendChild(newBassClief);
     }
 }
 generateButtons(startButtons);

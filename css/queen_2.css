@@ -15,30 +15,37 @@ body {
     border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
 }
 
+
 .startContainerCard{
     width: 100vw;
-    height: 100vh;
+    margin-top: 50px;
+    /* height: 100vh; */
     display: flex;
-    gap: 30px;
+    gap: 10px;
     justify-content: center;
     align-items: center;
     /* z-index: 3; */
 }
+
 .startCard{
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    height: 100px;
+    /* width: 100px; */
+    /* height: 100px; */
+    padding: 5px;
+    min-width: 60px;
+    min-height: 60px;
     background-color: #F4D6B1;
     border-radius: 5px;
    
 }
 
 .line{
-    width: 90%;
-    margin-top: 3px;
+    width: 84%;
+    margin-top: 3%;
     /* margin: 3px 5px 0 5px; */
     height: 1px;
     background-color: black;
@@ -47,5 +54,57 @@ body {
     opacity: 0;
 }
 .short_line{
-    width: 15px;
+    width: 12px;
+}
+.treble_clief{
+    position: absolute;
+    /* left: 3%;
+    width: 30px;
+    height: 30px;
+    background-image: url(/image/staff/treble_clief_black.svg);
+    background-size: contain;
+    z-index: 99; */
+}
+
+.new_treble_clief{
+    position: absolute;
+    width: 30px;
+    height: 33px;
+
+    top: 3px;
+    left: 10px;
+    background-image: url(/image/staff/treble_clief_black_PNG.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.new_bass_clief{
+    position: absolute;
+    width: 36px;
+    height: 38px;
+
+    top: 34px;
+    left: 10px;
+    background-image: url(/image/staff/bass_clief_black_PNG.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.note_queen_in_cards{
+    position: absolute;
+    top: 0;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: black;
+    transform: scale3d(1.2, 0.8, 1);
+}
+
+.containerButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
 }
