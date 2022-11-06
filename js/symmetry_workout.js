@@ -6,7 +6,7 @@
 
 
 
-let infoObj = {
+let spisokNamesForInfoMoni = {
   'header_1': ['СИММЕТРИИ', ' ', 0],
   'symmetry2': ['на 2ч', 0, 0],
   'symmetry3': ['на 3ч', 0, 0],
@@ -78,7 +78,8 @@ let infoObj = {
   'minor_seventh_chord': ['Xm7', 0, 0],
   'half_diminished_chord': ['Xm7b5', 0, 0],
   'diminished_chord': ['Xo', 0, 0],
-
+  'br7': [' ', ' '],
+  'header_9': ['ДИАТОНИКА МЕЛ МИНОРА', '-', 0],
   'min_&_maj': ['мел минор', 0, 0],
   'frig_&_min': ['дор b9', 0, 0],
   'TTTT_&_maj': ['лид #4', 0, 0],
@@ -110,28 +111,29 @@ let symBtnLevel;
 let symBtnLevelGO;
 
 // функция смены 1 блока симметрии
-let clicks = 1;
+let clicks = 0;
 
-document.querySelector('.hrom').onclick = function () {
+const oneBlockFirstSlide = document.querySelector('.hrom');
+oneBlockFirstSlide.onclick = function () {
   switch (clicks) {
     case 0:
-      this.childNodes[0].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_null.svg';
+      this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_null.svg';
       clicks += 1;
       break;
     case 1:
-      this.childNodes[0].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
+      this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
       clicks += 1;
       break;
     case 2:
-      this.childNodes[0].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
+      this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
       clicks += 1;
       break;
     case 3:
-      this.childNodes[0].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
+      this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
       clicks += 1;
       break;
     case 4:
-      this.childNodes[0].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_steps_1_7.svg';
+      this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_steps_1_7.svg';
       clicks = 0;
       break;
   }
@@ -234,6 +236,8 @@ let startWork = function () {
   keys[startOneNote].classList.toggle('ledON');
 
   ti = startOneNote;
+
+  // СИММЕТРИИ
   if (symBtnLevel.dataset.number == 'symmetry2') {
     keys[startTwoNote].classList.toggle('ledON');
     symBtnLevelGO = [(ti + 1), (ti + 7), (ti + 13)];
@@ -251,6 +255,7 @@ let startWork = function () {
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 7), (ti + 9), (ti + 11), (ti + 13)];
   };
 
+  // КОМБИНАЦИИ ЦЕЛОТОНОВЫХ ГАММ
   if (symBtnLevel.dataset.number == 'melodic_minor') {
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 6), (ti + 8), (ti + 10), (ti + 12)];
   }
@@ -267,6 +272,7 @@ let startWork = function () {
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 6), (ti + 7), (ti + 9), (ti + 10), (ti + 12)];
   }
 
+  // ТЕТРАХОРДЫ
   if (symBtnLevel.dataset.number == 'maj_tetrachord') {
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 6)];
   }
@@ -283,6 +289,7 @@ let startWork = function () {
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 7)];
   }
 
+  // ТРЕЗВУЧИЯ
   if (symBtnLevel.dataset.number == 'aug_triads') {
     symBtnLevelGO = [(ti + 1), (ti + 5), (ti + 9)];
   }
@@ -320,6 +327,7 @@ let startWork = function () {
     symBtnLevelGO = [(ti + 1), (ti + 4), (ti + 6), (ti + 8)];
   }
 
+  //ИНТЕРВАЛЫ
   if (symBtnLevel.dataset.number == 'm2') {
     symBtnLevelGO = [(ti + 1), (ti + 2)];
   }
@@ -354,6 +362,7 @@ let startWork = function () {
     symBtnLevelGO = [(ti + 1), (ti + 12)];
   }
 
+  // диатоника мажора
   if (symBtnLevel.dataset.number == 'TTT_&_maj') {
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 7), (ti + 8), (ti + 10), (ti + 12), (ti + 13)];
   }
@@ -376,6 +385,7 @@ let startWork = function () {
     symBtnLevelGO = [(ti + 1), (ti + 2), (ti + 4), (ti + 6), (ti + 7), (ti + 9), (ti + 11), (ti + 13)];
   }
 
+  // диатоника мелодического минора
   if (symBtnLevel.dataset.number == 'min_&_maj') {
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 6), (ti + 8), (ti + 10), (ti + 12), (ti + 13)];
   }
@@ -398,6 +408,7 @@ let startWork = function () {
     symBtnLevelGO = [(ti + 1), (ti + 2), (ti + 4), (ti + 5), (ti + 7), (ti + 9), (ti + 11), (ti + 13)];
   }
 
+  // искусственные лады
   if (symBtnLevel.dataset.number == 'iscustv_melodic_minor') {
     keys[startTwoNote].classList.toggle('ledON');
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 6), (ti + 8), (ti + 10), (ti + 12), (ti + 13)];
@@ -479,17 +490,17 @@ let sravniElem = function (a, b) {
   if (a.length == b.length && a.length == sovpadeniya) {
     // console.log('rabotaet' + sovpadeniya);
     // console.log(answerArr);
-    infoObj[symBtnLevel.dataset.number][1] += 1;
+    spisokNamesForInfoMoni[symBtnLevel.dataset.number][1] += 1;
     win_ledOn(answerArr);
     setTimeout(startWork, 1000);
     big_number += 1;
     setTimeout(add_windows_facty, 1000);
   }
-  // else {infoObj[symBtnLevel.dataset.number][2] += 0.5;}
+  // else {spisokNamesForInfoMoni[symBtnLevel.dataset.number][2] += 0.5;}
 
   // console.log(symBtnLevel.dataset.number);
-  // console.log(infoObj.symmetry2);
-  // console.log(infoObj)
+  // console.log(spisokNamesForInfoMoni.symmetry2);
+  // console.log(spisokNamesForInfoMoni)
 
 };
 
@@ -512,11 +523,11 @@ checkBoxElem.onclick = function () {
 Object.defineProperty(
   Object.prototype,
   'randElement', {
-  value: function () {
-    var rand = Math.floor(Math.random() * this.length);
-    return this[rand];
+    value: function () {
+      var rand = Math.floor(Math.random() * this.length);
+      return this[rand];
+    }
   }
-}
 );
 
 let add_windows_facty = function () {
@@ -539,23 +550,34 @@ let win_ledOn = function (winArr) {
 
 
 // СОЗДАНИЕ СПИСКА РЕЗУЛЬТАТОВ
+let popupWindow = document.querySelector('.popup');
 let info_button = document.querySelector('.info_button');
-
 let create_result = function () {
+
+  //находим список ul
+
   let result_ul = document.querySelector('.result_ul');
-  let arr_info_obj = Object.keys(infoObj);
-  // console.log(result_ul.firstChild);
-  for (i = 0; i < Object.keys(infoObj).length && result_ul.firstChild; i++) {
+
+  // создаем массив с ключами всех объектов
+  let arr_info_obj = Object.keys(spisokNamesForInfoMoni);
+
+  for (i = 0; i < Object.keys(spisokNamesForInfoMoni).length && result_ul.firstChild; i++) {
     result_ul.firstChild.remove();
   }
-  for (i = 0; i < Object.keys(infoObj).length; i++) {
+  for (i = 0; i < Object.keys(spisokNamesForInfoMoni).length; i++) {
     let result_ul_li = document.createElement('li');
-    result_ul_li.innerHTML = infoObj[arr_info_obj[i]][0] + ' - ' + infoObj[arr_info_obj[i]][1];
+    result_ul_li.innerHTML = spisokNamesForInfoMoni[arr_info_obj[i]][0] + ' - ' + spisokNamesForInfoMoni[arr_info_obj[i]][1];
     result_ul.append(result_ul_li);
+    // console.log('Go');
   }
+
+  popupWindow.classList.toggle('show_result');
 };
 
 info_button.addEventListener("click", create_result);
+document.querySelector('.popup-closer').onclick = () => {
+  popupWindow.classList.toggle('show_result');
+}
 
 //SLIDER ZONE
 const slider = document.querySelector(".slider");
@@ -570,7 +592,6 @@ let currSlide = 0;
 const maxSlide = slides.length;
 
 /* Function to go to slide based on index number provided as argument  */
-
 const goToSlide = function (slide = 1) {
   slides.forEach((s, i) => {
     s.style.transform = `translatex(${100 * (i - slide)}%)`;

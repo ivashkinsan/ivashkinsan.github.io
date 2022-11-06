@@ -1,4 +1,5 @@
 *{
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
@@ -35,43 +36,48 @@ body {
     align-items: center;
     /* width: 100px; */
     /* height: 100px; */
-    padding: 5px;
-    min-width: 60px;
-    min-height: 60px;
+    /* padding: 5px; */
+    min-width: 120px;
+    min-height: 120px;
     background-color: #F4D6B1;
     border-radius: 5px;
+    border: 1px solid transparent;
+   cursor: pointer;
    
 }
 
+.startCard:hover {
+    border: 1px white solid;
+    box-shadow: 2px 2px 5px white inset,
+                -2px -2px 5px white inset,
+                2px 2px 5px white,
+                -2px -2px 5px white;
+}
+
+
 .line{
-    width: 84%;
-    margin-top: 3%;
+    /* position: absolute; */
+    width: 95%;
+    margin-top: 3px;
     /* margin: 3px 5px 0 5px; */
     height: 1px;
     background-color: black;
 }
+
 .hide_line{
     opacity: 0;
 }
 .short_line{
-    width: 12px;
+    width: 17px;
 }
-.treble_clief{
-    position: absolute;
-    /* left: 3%;
-    width: 30px;
-    height: 30px;
-    background-image: url(/image/staff/treble_clief_black.svg);
-    background-size: contain;
-    z-index: 99; */
-}
+
 
 .new_treble_clief{
     position: absolute;
-    width: 30px;
-    height: 33px;
+    width: 43%;
+    height: 43%;
 
-    top: 3px;
+    top: 9px;
     left: 10px;
     background-image: url(/image/staff/treble_clief_black_PNG.png);
     background-size: contain;
@@ -80,24 +86,35 @@ body {
 
 .new_bass_clief{
     position: absolute;
-    width: 36px;
-    height: 38px;
+    width: 45%;
+    height: 45%;
 
-    top: 34px;
+    top: 58.5px;
     left: 10px;
     background-image: url(/image/staff/bass_clief_black_PNG.png);
     background-size: contain;
     background-repeat: no-repeat;
 }
 
+/* .boxHorisont{
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    left: 44%;
+} */
+
+
+
+
+
 .note_queen_in_cards{
     position: absolute;
     top: 0;
-    width: 7px;
-    height: 7px;
+    width: 10px;
+    height: 9px;
     border-radius: 50%;
     background-color: black;
-    transform: scale3d(1.2, 0.8, 1);
+    transform: scale3d(1, 0.8, 1);
 }
 
 .containerButton{
