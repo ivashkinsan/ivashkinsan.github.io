@@ -560,7 +560,7 @@ let create_result = function () {
 
   // создаем массив с ключами всех объектов
   let arr_info_obj = Object.keys(spisokNamesForInfoMoni);
-  console.log(spisokNamesForInfoMoni.probel)
+  // console.log(spisokNamesForInfoMoni.probel)
 
   // очистка списка
   for (i = 0; i < Object.keys(spisokNamesForInfoMoni).length && result_ul.firstChild; i++) {
@@ -570,9 +570,9 @@ let create_result = function () {
   // ФОРМИРОВАНИЕ СПИСКА
   for (i = 0; i < Object.keys(spisokNamesForInfoMoni).length; i++) {
     let result_ul_li = document.createElement('li');
-    console.log(spisokNamesForInfoMoni[arr_info_obj[i]][3]);
+    // console.log(spisokNamesForInfoMoni[arr_info_obj[i]][3]);
     if (spisokNamesForInfoMoni[arr_info_obj[i]][3] == 'row') {
-      console.log(result_ul_li);
+      // console.log(result_ul_li);
       result_ul_li.classList.add('row');
     }
     result_ul_li.innerHTML = spisokNamesForInfoMoni[arr_info_obj[i]][0] + ' - ' + spisokNamesForInfoMoni[arr_info_obj[i]][1];
