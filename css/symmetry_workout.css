@@ -421,6 +421,7 @@ input[type=range] {
   height: 100%;
   opacity: 0;
   z-index: 101;
+ 
 }
 /* 
 .popup:before {
@@ -456,20 +457,27 @@ input[type=range] {
   padding: 20px;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  overflow-y: scroll;
+  overflow:auto
+  /* overflow: hidden; */
 }
 
-/* ul{
-  display: flex;
+.popup-content > ul{
+  display: grid;
+  width: 90%;
+  grid-template-columns: 1fr 1fr;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  list-style-type: none;
-} */
+  /* background-color: red; */
+}
 
 li {
+  width: 50%;
   display: block;
+}
+
+.row{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  margin-top: 10px;
 }
 /* 
 .popup-shower {

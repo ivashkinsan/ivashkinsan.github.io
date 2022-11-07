@@ -7,20 +7,20 @@
 
 
 let spisokNamesForInfoMoni = {
-  'header_1': ['СИММЕТРИИ', ' ', 0],
+  'header_1': ['СИММЕТРИИ', ' ', 0, 'row'],
   'symmetry2': ['на 2ч', 0, 0],
   'symmetry3': ['на 3ч', 0, 0],
   'symmetry4': ['на 4ч', 0, 0],
   'symmetry6': ['на 6ч', 0, 0],
-  'br0': [' ', ' '],
-  'header_2': ['ТЕТРАХОРДЫ', '-', 0],
+
+  'header_2': ['ТЕТРАХОРДЫ', '-', 0, 'row'],
   'maj_tetrachord': ['маж', 0, 0],
   'min_tetrachord': ['мин', 0, 0],
   'frig_tetrachord': ['фриг', 0, 0],
   'harm_tetrachord': ['гарм', 0, 0],
   'whole_tetrachord': ['ТТТ', 0, 0],
-  'br1': [' ', ' '],
-  'header_3': ['ИНТЕРВАЛЫ', '-', 0],
+
+  'header_3': ['ИНТЕРВАЛЫ', '-', 0, 'row'],
   'm2': ['м2', 0, 0],
   'B2': ['Б2', 0, 0],
   'm3': ['м3', 0, 0],
@@ -32,15 +32,15 @@ let spisokNamesForInfoMoni = {
   'B6': ['Б6', 0, 0],
   'm7': ['м7', 0, 0],
   'B7': ['Б7', 0, 0],
-  'br2': [' ', ' '],
-  'header_4': ['КОМБИНАЦИИ ЦЕЛОТОНОВ', '-', 0],
+
+  'header_4': ['КОМБИНАЦИИ ЦЕЛОТОНОВ', '-', 0, 'row'],
   'melodic_minor': ['2+5', 0, 0],
   'ionian': ['3+4', 0, 0],
   'lydian': ['4+3', 0, 0],
   'lydian_aug': ['5+2', 0, 0],
   'WH': ['Тон-полутон', 0, 0],
-  'br3': [' ', ' '],
-  'header_5': ['ДИАТОНИКА МАЖОРА', '-', 0],
+
+  'header_5': ['ДИАТОНИКА МАЖОРА', '-', 0, 'row'],
   'TTT_&_maj': ['лидийский', 0, 0],
   'maj_&_maj': ['ионийский', 0, 0],
   'maj_&_min': ['миксолидийский', 0, 0],
@@ -48,8 +48,8 @@ let spisokNamesForInfoMoni = {
   'min_&_frig': ['эолийский', 0, 0],
   'frig_&_frig': ['фригийский', 0, 0],
   'frig_&_TTT': ['локрийский', 0, 0],
-  'br4': [' ', ' '],
-  'header_6': ['ТРЕЗВУЧИЯ', '-', 0],
+
+  'header_6': ['ТРЕЗВУЧИЯ', '-', 0, 'row'],
   'aug_triads': ['увеличенное', 0, 0],
   'maj_triads': ['мажорное', 0, 0],
   'min_triads': ['минорное', 0, 0],
@@ -62,15 +62,15 @@ let spisokNamesForInfoMoni = {
   'min_add2_triads': ['min add2', 0, 0],
   'maj_add4_triads': ['maj add4', 0, 0],
   'min_add4_triads': ['min add4', 0, 0],
-  'br5': [' ', ' '],
-  'header_7': ['ИСКУССТВЕННЫЕ ЛАДЫ', '-', 0],
+
+  'header_7': ['ИСКУССТВЕННЫЕ ЛАДЫ', '-', 0, 'row'],
   'iscustv_melodic_minor': ['мел минор', 0, 0],
   'iscustv_minor_harmony': ['гарм минор', 0, 0],
   'iscustv_major_harmony': ['гарм мажор', 0, 0],
   'iscustv_major_melodic': ['мел мажор', 0, 0],
   'iscustv_2_major_harmony': ['х2 гарм мажор', 0, 0],
-  'br6': [' ', ' '],
-  'header_8': ['СЕПТ-АККОРДЫ', '-', 0],
+
+  'header_8': ['СЕПТ-АККОРДЫ', '-', 0, 'row'],
   'maj_aug_chord': ['X^#5', 0, 0],
   'maj_original_chord': ['X^', 0, 0],
   'seventh_chord': ['X7', 0, 0],
@@ -78,8 +78,8 @@ let spisokNamesForInfoMoni = {
   'minor_seventh_chord': ['Xm7', 0, 0],
   'half_diminished_chord': ['Xm7b5', 0, 0],
   'diminished_chord': ['Xo', 0, 0],
-  'br7': [' ', ' '],
-  'header_9': ['ДИАТОНИКА МЕЛ МИНОРА', '-', 0],
+
+  'header_9': ['ДИАТОНИКА МЕЛ МИНОРА', '-', 0, 'row'],
   'min_&_maj': ['мел минор', 0, 0],
   'frig_&_min': ['дор b9', 0, 0],
   'TTTT_&_maj': ['лид #4', 0, 0],
@@ -560,12 +560,21 @@ let create_result = function () {
 
   // создаем массив с ключами всех объектов
   let arr_info_obj = Object.keys(spisokNamesForInfoMoni);
+  console.log(spisokNamesForInfoMoni.probel)
 
+  // очистка списка
   for (i = 0; i < Object.keys(spisokNamesForInfoMoni).length && result_ul.firstChild; i++) {
     result_ul.firstChild.remove();
   }
+
+  // ФОРМИРОВАНИЕ СПИСКА
   for (i = 0; i < Object.keys(spisokNamesForInfoMoni).length; i++) {
     let result_ul_li = document.createElement('li');
+    console.log(spisokNamesForInfoMoni[arr_info_obj[i]][3]);
+    if (spisokNamesForInfoMoni[arr_info_obj[i]][3] == 'row') {
+      console.log(result_ul_li);
+      result_ul_li.classList.add('row');
+    }
     result_ul_li.innerHTML = spisokNamesForInfoMoni[arr_info_obj[i]][0] + ' - ' + spisokNamesForInfoMoni[arr_info_obj[i]][1];
     result_ul.append(result_ul_li);
     // console.log('Go');
