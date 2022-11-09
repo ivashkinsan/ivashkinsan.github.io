@@ -789,3 +789,17 @@ let addElementsDimToneLabel = function () {
   }
 }
 document.querySelector('.DIM_button').onclick = addElementsDimToneLabel;
+
+// if (window.matchMedia("(orientation: portrait)").matches) {
+//   alert('Переключитесь в ландшафтный режим!');
+// }
+
+// Listen for orientation changes
+window.addEventListener("orientationchange", function () {
+  // Announce the new orientation number
+  // alert(window.orientation);
+  if (window.orientation == 0) {
+    this.alert('ПОВЕРНИТЕ УСТРОЙСТВО В ГОРИЗОНТАЛЬНЫЙ РЕЖИМ');
+  }
+
+}, false);
