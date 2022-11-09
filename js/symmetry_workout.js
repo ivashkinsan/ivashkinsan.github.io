@@ -7,49 +7,50 @@
 
 
 let spisokNamesForInfoMoni = {
-  'header_1': ['СИММЕТРИИ', ' ', 0, 'row'],
+  'header_1': ['СИММЕТРИИ', ' ', 0, 'headerOfResult'],
   'symmetry2': ['на 2ч', 0, 0],
   'symmetry3': ['на 3ч', 0, 0],
   'symmetry4': ['на 4ч', 0, 0],
   'symmetry6': ['на 6ч', 0, 0],
 
-  'header_2': ['ТЕТРАХОРДЫ', '-', 0, 'row'],
-  'maj_tetrachord': ['маж', 0, 0],
-  'min_tetrachord': ['мин', 0, 0],
-  'frig_tetrachord': ['фриг', 0, 0],
-  'harm_tetrachord': ['гарм', 0, 0],
-  'whole_tetrachord': ['ТТТ', 0, 0],
+  'header_2': ['ТЕТРАХОРДЫ', '-', 0, 'headerOfResult'],
+  'maj_tetrachord': ['мажорный', 0, 0],
+  'min_tetrachord': ['минорный', 0, 0],
+  'frig_tetrachord': ['фригийский', 0, 0],
+  'harm_tetrachord': ['гармонический', 0, 0],
+  'whole_tetrachord': ['целотоновый', 0, 0, 'rowBlock'],
 
-  'header_3': ['ИНТЕРВАЛЫ', '-', 0, 'row'],
-  'm2': ['м2', 0, 0],
-  'B2': ['Б2', 0, 0],
-  'm3': ['м3', 0, 0],
-  'B3': ['Б3', 0, 0],
-  'ch4': ['ч4', 0, 0],
-  'TTT': ['ТТТ', 0, 0],
-  'ch5': ['ч5', 0, 0],
-  'm6': ['м6', 0, 0],
-  'B6': ['Б6', 0, 0],
-  'm7': ['м7', 0, 0],
-  'B7': ['Б7', 0, 0],
+  'header_3': ['ИНТЕРВАЛЫ', '-', 0, 'headerOfResult'],
+  'm2': ['м2', 0, 0],   //left
+  'm6': ['м6', 0, 0],   //right
+  'B2': ['Б2', 0, 0],   //left
+  'B6': ['Б6', 0, 0],   //right
+  'm3': ['м3', 0, 0],   //left
+  'm7': ['м7', 0, 0],   //right
+  'B3': ['Б3', 0, 0],   //left
+  'B7': ['Б7', 0, 0],   //right
+  'ch4': ['Ч4', 0, 0],  //left
+  'ch5': ['Ч5', 0, 0],  //right
+  'TTT': ['ТТТ', 0, 0, 'rowBlock'],
 
-  'header_4': ['КОМБИНАЦИИ ЦЕЛОТОНОВ', '-', 0, 'row'],
-  'melodic_minor': ['2+5', 0, 0],
-  'ionian': ['3+4', 0, 0],
-  'lydian': ['4+3', 0, 0],
-  'lydian_aug': ['5+2', 0, 0],
-  'WH': ['Тон-полутон', 0, 0],
 
-  'header_5': ['ДИАТОНИКА МАЖОРА', '-', 0, 'row'],
-  'TTT_&_maj': ['лидийский', 0, 0],
-  'maj_&_maj': ['ионийский', 0, 0],
-  'maj_&_min': ['миксолидийский', 0, 0],
-  'min_&_min': ['дорийский', 0, 0],
-  'min_&_frig': ['эолийский', 0, 0],
-  'frig_&_frig': ['фригийский', 0, 0],
-  'frig_&_TTT': ['локрийский', 0, 0],
+  'header_4': ['КОМБИНАЦИИ ЦЕЛОТОНОВ', '-', 0, 'headerOfResult'],
+  'melodic_minor': ['2+5 ( мел минор )', 0, 0],
+  'ionian': ['3+4 ( нат мажор )', 0, 0],
+  'lydian': ['4+3 ( лидийский )', 0, 0],
+  'lydian_aug': ['5+2 ( лидийский #5)', 0, 0],
+  'WH': ['Тон-полутон', 0, 0, 'rowBlock'],
 
-  'header_6': ['ТРЕЗВУЧИЯ', '-', 0, 'row'],
+  'header_5': ['ДИАТОНИКА МАЖОРА', '-', 0, 'headerOfResult'],
+  'TTT_&_maj': ['лидийский', 0, 0],     //left
+  'min_&_min': ['дорийский', 0, 0],     //right
+  'maj_&_maj': ['ионийский', 0, 0],     //left
+  'min_&_frig': ['эолийский', 0, 0],    //right
+  'maj_&_min': ['миксолидийский', 0, 0],//left
+  'frig_&_frig': ['фригийский', 0, 0],  //right
+  'frig_&_TTT': ['локрийский', 0, 0, 'rowBlock'],
+
+  'header_6': ['ТРЕЗВУЧИЯ', '-', 0, 'headerOfResult'],
   'aug_triads': ['увеличенное', 0, 0],
   'maj_triads': ['мажорное', 0, 0],
   'min_triads': ['минорное', 0, 0],
@@ -63,30 +64,30 @@ let spisokNamesForInfoMoni = {
   'maj_add4_triads': ['maj add4', 0, 0],
   'min_add4_triads': ['min add4', 0, 0],
 
-  'header_7': ['ИСКУССТВЕННЫЕ ЛАДЫ', '-', 0, 'row'],
+  'header_7': ['ИСКУССТВЕННЫЕ ЛАДЫ', '-', 0, 'headerOfResult'],
   'iscustv_melodic_minor': ['мел минор', 0, 0],
   'iscustv_minor_harmony': ['гарм минор', 0, 0],
   'iscustv_major_harmony': ['гарм мажор', 0, 0],
   'iscustv_major_melodic': ['мел мажор', 0, 0],
-  'iscustv_2_major_harmony': ['х2 гарм мажор', 0, 0],
+  'iscustv_2_major_harmony': ['х2 гарм мажор', 0, 0, 'rowBlock'],
 
-  'header_8': ['СЕПТ-АККОРДЫ', '-', 0, 'row'],
+  'header_8': ['СЕПТ-АККОРДЫ', '-', 0, 'headerOfResult'],
   'maj_aug_chord': ['X^#5', 0, 0],
   'maj_original_chord': ['X^', 0, 0],
   'seventh_chord': ['X7', 0, 0],
   'minor_maj_chord': ['Xm^', 0, 0],
   'minor_seventh_chord': ['Xm7', 0, 0],
   'half_diminished_chord': ['Xm7b5', 0, 0],
-  'diminished_chord': ['Xo', 0, 0],
+  'diminished_chord': ['Xo', 0, 0, 'rowBlock'],
 
-  'header_9': ['ДИАТОНИКА МЕЛ МИНОРА', '-', 0, 'row'],
-  'min_&_maj': ['мел минор', 0, 0],
-  'frig_&_min': ['дор b9', 0, 0],
-  'TTTT_&_maj': ['лид #4', 0, 0],
-  'TTT_&_min': ['микс #4', 0, 0],
-  'maj_&_frig': ['микс b6', 0, 0],
-  'min_&_TTT': ['лок #2', 0, 0],
-  'frig_&_TTTT': ['alt', 0, 0]
+  'header_9': ['ДИАТОНИКА МЕЛ МИНОРА', '-', 0, 'headerOfResult'],
+  'min_&_maj': ['мелодический минор', 0, 0],
+  'frig_&_min': ['дорийский b9', 0, 0],
+  'TTTT_&_maj': ['лидийский #5', 0, 0],
+  'TTT_&_min': ['миксолидийский #4', 0, 0],
+  'maj_&_frig': ['миксолидийский b6', 0, 0],
+  'min_&_TTT': ['локрийский #2', 0, 0],
+  'frig_&_TTTT': ['альтерированный', 0, 0, 'rowBlock']
 };
 
 let marker = document.querySelectorAll('p');
@@ -523,11 +524,11 @@ checkBoxElem.onclick = function () {
 Object.defineProperty(
   Object.prototype,
   'randElement', {
-    value: function () {
-      var rand = Math.floor(Math.random() * this.length);
-      return this[rand];
-    }
+  value: function () {
+    var rand = Math.floor(Math.random() * this.length);
+    return this[rand];
   }
+}
 );
 
 let add_windows_facty = function () {
@@ -571,9 +572,13 @@ let create_result = function () {
   for (i = 0; i < Object.keys(spisokNamesForInfoMoni).length; i++) {
     let result_ul_li = document.createElement('li');
     // console.log(spisokNamesForInfoMoni[arr_info_obj[i]][3]);
-    if (spisokNamesForInfoMoni[arr_info_obj[i]][3] == 'row') {
+    if (spisokNamesForInfoMoni[arr_info_obj[i]][3] == 'headerOfResult') {
       // console.log(result_ul_li);
-      result_ul_li.classList.add('row');
+      result_ul_li.classList.add('headerOfResult');
+    }
+    if (spisokNamesForInfoMoni[arr_info_obj[i]][3] == 'rowBlock') {
+      // console.log(result_ul_li);
+      result_ul_li.classList.add('rowBlock');
     }
     result_ul_li.innerHTML = spisokNamesForInfoMoni[arr_info_obj[i]][0] + ' - ' + spisokNamesForInfoMoni[arr_info_obj[i]][1];
     result_ul.append(result_ul_li);
