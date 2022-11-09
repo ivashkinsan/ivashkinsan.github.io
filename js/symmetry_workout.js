@@ -730,22 +730,37 @@ for (let item of elements) {
   item.append(newDivBlock);
 }
 
+
+// добавление целотоновых звукорядов
 let addElementsWToneLabel = function () {
-
   for (let item of elements) {
-    console.log(item.childNodes[3])
     if (item.dataset.number % 2 != 0) {
-
-      // item.childNodes[3].textContent = '+';
       item.childNodes[3].classList.toggle('WT_PLUS');
-
     } else {
-      // newDivBlockWT.textContent = '+';
       item.childNodes[3].classList.toggle('WT_CIRCLE');
     }
   }
-
-
 }
 document.querySelector('.WT_button').onclick = addElementsWToneLabel;
-// addElementsWToneLabel();
+
+// добавление уменьшённых симметрий
+let addElementsDimToneLabel = function () {
+  for (let item of elements) {
+    console.log(item.dataset.number)
+    switch (item.dataset.number) {
+      case '1':
+      case '4':
+      case '7':
+      case '10':
+      case '13':
+      case '16':
+      case '19':
+      case '22':
+      case '25':
+        item.childNodes[3].classList.toggle('WT_PLUS');
+        break;
+    }
+
+  }
+}
+// addElementsDimToneLabel();
