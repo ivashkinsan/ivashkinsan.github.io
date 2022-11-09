@@ -21,16 +21,16 @@ let spisokNamesForInfoMoni = {
   'whole_tetrachord': ['целотоновый', 0, 0, 'rowBlock'],
 
   'header_3': ['ИНТЕРВАЛЫ', '-', 0, 'headerOfResult'],
-  'm2': ['м2', 0, 0],   //left
-  'm6': ['м6', 0, 0],   //right
-  'B2': ['Б2', 0, 0],   //left
-  'B6': ['Б6', 0, 0],   //right
-  'm3': ['м3', 0, 0],   //left
-  'm7': ['м7', 0, 0],   //right
-  'B3': ['Б3', 0, 0],   //left
-  'B7': ['Б7', 0, 0],   //right
-  'ch4': ['Ч4', 0, 0],  //left
-  'ch5': ['Ч5', 0, 0],  //right
+  'm2': ['м2', 0, 0], //left
+  'm6': ['м6', 0, 0], //right
+  'B2': ['Б2', 0, 0], //left
+  'B6': ['Б6', 0, 0], //right
+  'm3': ['м3', 0, 0], //left
+  'm7': ['м7', 0, 0], //right
+  'B3': ['Б3', 0, 0], //left
+  'B7': ['Б7', 0, 0], //right
+  'ch4': ['Ч4', 0, 0], //left
+  'ch5': ['Ч5', 0, 0], //right
   'TTT': ['ТТТ', 0, 0, 'rowBlock'],
 
 
@@ -42,12 +42,12 @@ let spisokNamesForInfoMoni = {
   'WH': ['Тон-полутон', 0, 0, 'rowBlock'],
 
   'header_5': ['ДИАТОНИКА МАЖОРА', '-', 0, 'headerOfResult'],
-  'TTT_&_maj': ['лидийский', 0, 0],     //left
-  'min_&_min': ['дорийский', 0, 0],     //right
-  'maj_&_maj': ['ионийский', 0, 0],     //left
-  'min_&_frig': ['эолийский', 0, 0],    //right
-  'maj_&_min': ['миксолидийский', 0, 0],//left
-  'frig_&_frig': ['фригийский', 0, 0],  //right
+  'TTT_&_maj': ['лидийский', 0, 0], //left
+  'min_&_min': ['дорийский', 0, 0], //right
+  'maj_&_maj': ['ионийский', 0, 0], //left
+  'min_&_frig': ['эолийский', 0, 0], //right
+  'maj_&_min': ['миксолидийский', 0, 0], //left
+  'frig_&_frig': ['фригийский', 0, 0], //right
   'frig_&_TTT': ['локрийский', 0, 0, 'rowBlock'],
 
   'header_6': ['ТРЕЗВУЧИЯ', '-', 0, 'headerOfResult'],
@@ -524,11 +524,11 @@ checkBoxElem.onclick = function () {
 Object.defineProperty(
   Object.prototype,
   'randElement', {
-  value: function () {
-    var rand = Math.floor(Math.random() * this.length);
-    return this[rand];
+    value: function () {
+      var rand = Math.floor(Math.random() * this.length);
+      return this[rand];
+    }
   }
-}
 );
 
 let add_windows_facty = function () {
@@ -731,9 +731,12 @@ for (let item of elements) {
 }
 
 
+
 // добавление целотоновых звукорядов
 let addElementsWToneLabel = function () {
+
   for (let item of elements) {
+    item.childNodes[3].classList.remove('DIM_znak1', 'DIM_znak2', 'DIM_znak3');
     if (item.dataset.number % 2 != 0) {
       item.childNodes[3].classList.toggle('WT_PLUS');
     } else {
@@ -745,8 +748,10 @@ document.querySelector('.WT_button').onclick = addElementsWToneLabel;
 
 // добавление уменьшённых симметрий
 let addElementsDimToneLabel = function () {
+
   for (let item of elements) {
-    console.log(item.dataset.number)
+    item.childNodes[3].classList.remove('WT_PLUS', 'WT_CIRCLE');
+    // console.log(item.dataset.number)
     switch (item.dataset.number) {
       case '1':
       case '4':
@@ -757,10 +762,30 @@ let addElementsDimToneLabel = function () {
       case '19':
       case '22':
       case '25':
-        item.childNodes[3].classList.toggle('WT_PLUS');
+        item.childNodes[3].classList.toggle('DIM_znak1');
+        break;
+      case '2':
+      case '5':
+      case '8':
+      case '11':
+      case '14':
+      case '17':
+      case '20':
+      case '23':
+        item.childNodes[3].classList.toggle('DIM_znak2');
+        break;
+      case '3':
+      case '6':
+      case '9':
+      case '12':
+      case '15':
+      case '18':
+      case '21':
+      case '24':
+        item.childNodes[3].classList.toggle('DIM_znak3');
         break;
     }
 
   }
 }
-// addElementsDimToneLabel();
+document.querySelector('.DIM_button').onclick = addElementsDimToneLabel;
