@@ -247,8 +247,8 @@ input[type=range] {
   position: relative;
   justify-content: flex-start;
   width: 100%;
-  height: 60%;
-  /* border: 3px solid orange; */
+  min-height: 23vw;
+
 }
 
 
@@ -266,6 +266,46 @@ input[type=range] {
   transition-property: background-color;
   transition-duration: 300ms;
   z-index: 1;
+}
+
+.WT_PLUS {
+  width: 2.5vw;
+  height: 2.5vw;
+  margin-bottom: 10px;
+  background-image: url(/image/Symmetry/WT_PLUS_of_element.svg);
+  background-size: 100% 100%;
+}
+
+.WT_CIRCLE {
+  width: 2.5vw;
+  height: 2.5vw;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  background-color: #0d45c8;
+}
+
+.DIM_znak1 {
+  width: 2.5vw;
+  height: 2.5vw;
+  margin-bottom: 10px;
+  background-image: url(/image/Symmetry/WT_PLUS_of_element.svg);
+  background-size: 100% 100%;
+}
+
+.DIM_znak2 {
+  width: 2.5vw;
+  height: 2.5vw;
+  margin-bottom: 10px;
+  background-image: url(/image/Symmetry/WT_PLUS_of_element.svg);
+  background-size: 100% 100%;
+}
+
+.DIM_znak3 {
+  width: 2.5vw;
+  height: 2.5vw;
+  margin-bottom: 10px;
+  background-image: url(/image/Symmetry/WT_PLUS_of_element.svg);
+  background-size: 100% 100%;
 }
 
 .black_key {
@@ -384,18 +424,22 @@ input[type=range] {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* gap: 5px; */
+  gap: 5px;
 }
 
 .go_start_menu,
 .info_button,
-.long_button {
+.long_button,
+.WT_button,
+.DIM_button {
 
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 20px;
-  height: 20px;
+  padding: 13px;
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
   border: 1px #F4D6B1 solid;
   border-radius: 3px;
   cursor: pointer;
