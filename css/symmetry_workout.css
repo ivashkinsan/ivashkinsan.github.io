@@ -85,8 +85,8 @@ Img {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0;
-  right: 0;
+  left: -1px;
+  right: -1px;
   transition: all 1s ease-in-out;
   /* border: 2px solid red; */
 
@@ -191,7 +191,7 @@ Img {
   display: flex;
   align-items: stretch;
   top: 30px;
-  right: 25px;
+  right: 45px;
   width: auto;
   height: auto;
   flex-direction: column;
@@ -214,7 +214,6 @@ Img {
   margin-top: 15%;
   opacity: 1;
   transition: 1000ms;
-
 }
 
 input[type=range] {

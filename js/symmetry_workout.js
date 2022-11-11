@@ -524,11 +524,11 @@ checkBoxElem.onclick = function () {
 Object.defineProperty(
   Object.prototype,
   'randElement', {
-    value: function () {
-      var rand = Math.floor(Math.random() * this.length);
-      return this[rand];
-    }
+  value: function () {
+    var rand = Math.floor(Math.random() * this.length);
+    return this[rand];
   }
+}
 );
 
 let add_windows_facty = function () {
@@ -589,7 +589,10 @@ let create_result = function () {
 };
 
 info_button.addEventListener("click", create_result);
-document.querySelector('.popup-closer').onclick = () => {
+// document.querySelector('.popup-closer').onclick = () => {
+//   popupWindow.classList.toggle('show_result');
+// }
+document.querySelector('.popup-content').onclick = () => {
   popupWindow.classList.toggle('show_result');
 }
 
