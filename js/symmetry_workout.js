@@ -177,6 +177,8 @@ for (let item of keys) {
   item.onclick = function () {
     item.classList.toggle('ledON');
     finderLed();
+    // console.log(item);
+    // playNotesAnsver(item);
   }
 };
 
@@ -221,7 +223,7 @@ let startWork = function () {
   if (startNoteArr.length > 0) {
     let x = startNoteArr.shift();
     startOneNote = Number(x);
-    console.log(startOneNote);
+    // console.log(startOneNote);
   } else {
     startNoteArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     startNoteArr.shuffle();
@@ -235,12 +237,14 @@ let startWork = function () {
   // console.log(ti_repeat_one + '=' + ti_repeat_two);
   let startTwoNote = startOneNote + 12;
   keys[startOneNote].classList.toggle('ledON');
-
+  // console.log(keys[startOneNote]);
+  // playNotesAnsver(keys[startOneNote]);
   ti = startOneNote;
 
   // СИММЕТРИИ
   if (symBtnLevel.dataset.number == 'symmetry2') {
     keys[startTwoNote].classList.toggle('ledON');
+    // playNotesAnsver(keys[startTwoNote]);
     symBtnLevelGO = [(ti + 1), (ti + 7), (ti + 13)];
   }
   if (symBtnLevel.dataset.number == 'symmetry3') {
@@ -463,7 +467,10 @@ let finderLed = function () {
     answer.push(ledElement[i].dataset.number)
   };
   answerArr = ledElement;
+  // console.log(symBtnLevelGO);
   sravniElem(answer, symBtnLevelGO);
+  // console.log(ledElement); //------------------------------------------
+  // console.log(answerArr);
   return ledElement;
 };
 
@@ -496,6 +503,8 @@ let sravniElem = function (a, b) {
     setTimeout(startWork, 1000);
     big_number += 1;
     setTimeout(add_windows_facty, 1000);
+    // console.log(answerArr);
+    playArray(answerArr);
   }
   // else {spisokNamesForInfoMoni[symBtnLevel.dataset.number][2] += 0.5;}
 
@@ -509,7 +518,7 @@ let strokeFaktyDiv = document.querySelector('.stroke_fakty_monitor');
 let checkBoxElem = document.querySelector('.checkbox_fakty');
 
 checkBoxElem.onclick = function () {
-  console.log(checkBoxElem.checked);
+  // console.log(checkBoxElem.checked);
   if (checkBoxElem.checked) {
     strokeFaktyDiv.style.opacity = 1;
   } else {
@@ -524,11 +533,11 @@ checkBoxElem.onclick = function () {
 Object.defineProperty(
   Object.prototype,
   'randElement', {
-  value: function () {
-    var rand = Math.floor(Math.random() * this.length);
-    return this[rand];
+    value: function () {
+      var rand = Math.floor(Math.random() * this.length);
+      return this[rand];
+    }
   }
-}
 );
 
 let add_windows_facty = function () {
@@ -806,3 +815,31 @@ window.addEventListener("orientationchange", function () {
   }
 
 }, false);
+
+
+// озвучка правильного ответа
+// const audioAll = document.querySelectorAll('audio');
+// let audio = new Audio();
+
+let soundON = true;
+
+function playArray(newArray) {
+  if (soundON) {
+    let list = Array.from(newArray);
+    let audioElements = [];
+    let int = 0;
+    for (let i = 0; i < list.length; i++) {
+      let audio = new Audio(list[i].dataset.src);
+      audioElements.push(audio);
+      setTimeout(function () {
+        audioElements[i].play()
+      }, int * 300);
+      int += 1;
+    }
+  }
+}
+
+document.querySelector('.audio_button').onclick = function () {
+  this.classList.toggle('noSound');
+  soundON = soundON ? false : true;
+}

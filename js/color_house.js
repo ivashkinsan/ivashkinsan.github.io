@@ -1,5 +1,9 @@
 //запрещает нажатие правой кнопки мыши на сайте
-document.oncontextmenu = cmenu; function cmenu() { return false; };
+document.oncontextmenu = cmenu;
+
+function cmenu() {
+    return false;
+};
 
 const container_dom = document.querySelector('.container_dom');
 const dom_item = document.querySelectorAll('svg');
@@ -15,26 +19,22 @@ const audioAll = document.querySelectorAll('audio');
 // });
 //присвоение дата атрибутов SVG объектам
 let j = 25;
-for(let i = dom_item.length-1; i >= 0; i--){
-    dom_item[i].setAttribute('data-key',audioAll[j].dataset.key);
+for (let i = dom_item.length - 1; i >= 0; i--) {
+    dom_item[i].setAttribute('data-key', audioAll[j].dataset.key);
     // console.log(dom_item[i]);
-    j +=1;
+    j += 1;
 }
 
 //озвучка клавиатуры событием касания и клика
 let audio = new Audio();
-for (let i = 0; i < dom_item.length; i++){
+for (let i = 0; i < dom_item.length; i++) {
     dom_item[i].addEventListener('click', function () {
-        for(let jj = 0; jj < audioAll.length; jj++){
-            if(audioAll[jj].dataset.key == dom_item[i].dataset.key){
+        for (let jj = 0; jj < audioAll.length; jj++) {
+            if (audioAll[jj].dataset.key == dom_item[i].dataset.key) {
                 audio.src = audioAll[jj].src;
                 audio.load();
                 audio.play();
             }
         }
-    });  
+    });
 };
-
-
-
-
