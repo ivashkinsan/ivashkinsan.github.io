@@ -9,7 +9,7 @@ let monitoringBaseArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 for (let item of click_items) {
     item.addEventListener('click', function add(elem) {
         item.classList.toggle('border_active');
-       
+
         switch (true) {
             case item.classList.contains('whole_note'):
                 monitoringBaseArr.splice(item.dataset.position - 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
@@ -26,13 +26,13 @@ for (let item of click_items) {
             case item.classList.contains('sixteenth'):
                 monitoringBaseArr.splice(item.dataset.position - 1, 1, 1);
                 break;
-                // case item.classList.contains('whole_note') && !item.classList.contains('border_active'):
-                //     monitoringBaseArr.splice(item.dataset.position - 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-                //     break;
+            // case item.classList.contains('whole_note') && !item.classList.contains('border_active'):
+            //     monitoringBaseArr.splice(item.dataset.position - 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            //     break;
         };
 
 
-        monitoringStart(0);
+        // monitoringStart(0);
         elem.stopPropagation(); // глушим всплывающее событие
         console.log('this children = ' + this.children);
         // for(let newItem of this.childrens){
