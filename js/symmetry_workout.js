@@ -234,11 +234,8 @@ let startWork = function () {
 
 
   ti_repeat_one = startOneNote;
-  // console.log(ti_repeat_one + '=' + ti_repeat_two);
   let startTwoNote = startOneNote + 12;
   keys[startOneNote].classList.toggle('ledON');
-  // console.log(keys[startOneNote]);
-  // playNotesAnsver(keys[startOneNote]);
   ti = startOneNote;
 
   // СИММЕТРИИ
