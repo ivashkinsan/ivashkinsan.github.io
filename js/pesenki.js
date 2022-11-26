@@ -251,6 +251,13 @@ let elochka = [
     { text: 'Зеленая была.', formula: ['ZO', 'WI', 'WI', 'LE', 'WI', 'YO'] }
 ];
 
+let kotenok = [
+    { all: 30, text: 'Шёл котенок по дорожке,', formula: ['WI', 'WI', 'WI', 'WI', 'WI', 'LE', 'YO', 'WI'] },
+    { text: 'И мяукнул ноту до.', formula: ['LE', 'LE', 'LE', 'LE', 'ZO', 'TI', 'YO'] },
+    { text: 'Встретил он котёнка моську,', formula: ['WI', 'WI', 'WI', 'WI', 'WI', 'LE', 'YO', 'WI'] },
+    { text: 'Дружба это хорошо.', formula: ['LE', 'LE', 'LE', 'LE', 'ZO', 'TI', 'YO'] }
+];
+
 let full_menu = [
     { name: 'Паровоз', arr: parowoz },
     { name: 'Если очень захотеть', arr: esli },
@@ -276,7 +283,8 @@ let full_menu = [
     { name: 'Коток', arr: kotok },
     { name: 'Колыбельная Сонечке', arr: kolybelnaya_Soni },
     { name: 'Гуси', arr: gusi },
-    { name: 'Ёлочка', arr: elochka }
+    { name: 'Ёлочка', arr: elochka },
+    { name: 'Котёнок', arr: kotenok },
 
 
 ];
