@@ -101,7 +101,7 @@ line-height: 120%;
     position: absolute;
     display: flex;
     bottom: 3%;
-    gap: 20px;
+    gap: 6px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -113,9 +113,11 @@ line-height: 120%;
     -moz-user-select: none;
 -khtml-user-select: none;
 user-select: none;  
+word-wrap: normal;
 }
 .button_container_elem:hover{
-    transform: scale(1.2);
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .click_item_square{
@@ -128,4 +130,8 @@ user-select: none;
 
 .font__standart{
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.hide{
+    opacity: 0;
 }
