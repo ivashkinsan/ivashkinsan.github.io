@@ -16,43 +16,107 @@ let cheked = true;
 
 for (let item of click_items) {
     item.addEventListener('click', function add(elem) {
-        console.log(item.classList.contains('border_active'));
-        if (cheked && !item.classList.contains('border_active')) {
-            item.classList.toggle('border_active');
+        // console.log(item.classList.contains('border_active'));
+
+        if (item.children[0].dataset.status == '0') {
+            switch (item.children[0].dataset.note) {
+                case '1':
+                    item.children[0].innerHTML = 'w';
+                    item.children[0].dataset.status = 'note';
+                    break;
+                case '2':
+                    item.children[0].innerHTML = 'h';
+                    item.children[0].dataset.status = 'note';
+                    break;
+                case '4':
+                    item.children[0].innerHTML = 'q';
+                    item.children[0].dataset.status = 'note';
+                    break;
+                case '8':
+                    item.children[0].innerHTML = 'e';
+                    item.children[0].dataset.status = 'note';
+                    break;
+                case '16':
+                    item.children[0].innerHTML = 's';
+                    item.children[0].dataset.status = 'note';
+                    break;
+            }
+        } else if (item.children[0].dataset.status == 'note') {
+            console.log(item.children[0].dataset.status);
+            switch (item.children[0].dataset.note) {
+                case '1':
+                    item.children[0].innerHTML = 'W';
+                    item.children[0].dataset.status = 'pause';
+                    break;
+                case '2':
+                    item.children[0].innerHTML = 'H';
+                    item.children[0].dataset.status = 'pause';
+                    break;
+                case '4':
+                    item.children[0].innerHTML = 'Q';
+                    item.children[0].dataset.status = 'pause';
+                    break;
+                case '8':
+                    item.children[0].innerHTML = 'E';
+                    item.children[0].dataset.status = 'pause';
+                    break;
+                case '16':
+                    item.children[0].innerHTML = 'S';
+                    item.children[0].dataset.status = 'pause';
+                    break;
+            }
+        } else if (item.children[0].dataset.status == 'pause') {
+            switch (item.children[0].dataset.note) {
+                case '1':
+                    item.children[0].innerHTML = '';
+                    item.children[0].dataset.status = '0';
+                    break;
+                case '2':
+                    item.children[0].innerHTML = '';
+                    item.children[0].dataset.status = '0';
+                    break;
+                case '4':
+                    item.children[0].innerHTML = '';
+                    item.children[0].dataset.status = '0';
+                    break;
+                case '8':
+                    item.children[0].innerHTML = '';
+                    item.children[0].dataset.status = '0';
+                    break;
+                case '16':
+                    item.children[0].innerHTML = '';
+                    item.children[0].dataset.status = '0';
+                    break;
+            }
         }
 
 
-        switch (true) {
-            case item.classList.contains('whole_note'):
-                monitoringBaseArr.splice(item.dataset.position - 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-                break;
-            case item.classList.contains('half_note'):
-                monitoringBaseArr.splice(item.dataset.position - 1, 8, 1, 1, 1, 1, 1, 1, 1, 1);
-                break;
-            case item.classList.contains('quarter_note'):
-                monitoringBaseArr.splice(item.dataset.position - 1, 4, 1, 1, 1, 1);
-                break;
-            case item.classList.contains('eighth'):
-                monitoringBaseArr.splice(item.dataset.position - 1, 2, 1, 1);
-                break;
-            case item.classList.contains('sixteenth'):
-                monitoringBaseArr.splice(item.dataset.position - 1, 1, 1);
-                break;
-                // case item.classList.contains('whole_note') && !item.classList.contains('border_active'):
-                //     monitoringBaseArr.splice(item.dataset.position - 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-                //     break;
-        };
 
 
-        // monitoringStart(0);
+
+        // switch (true) {
+        //     case item.classList.contains('whole_note'):
+        //         monitoringBaseArr.splice(item.dataset.position - 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+        //         break;
+        //     case item.classList.contains('half_note'):
+        //         monitoringBaseArr.splice(item.dataset.position - 1, 8, 1, 1, 1, 1, 1, 1, 1, 1);
+        //         break;
+        //     case item.classList.contains('quarter_note'):
+        //         monitoringBaseArr.splice(item.dataset.position - 1, 4, 1, 1, 1, 1);
+        //         break;
+        //     case item.classList.contains('eighth'):
+        //         monitoringBaseArr.splice(item.dataset.position - 1, 2, 1, 1);
+        //         break;
+        //     case item.classList.contains('sixteenth'):
+        //         monitoringBaseArr.splice(item.dataset.position - 1, 1, 1);
+        //         break;
+        // };
+
+
         elem.stopPropagation(); // глушим всплывающее событие
-        console.log('this children = ' + this.children);
-        // for(let newItem of this.childrens){
-        //     newItem.stopImmediatePropagation();
-        // }
-        this.children[0].classList.toggle('hide');
-        // console.log(this.children);
-        // console.log( elem);
+        // console.log('this children = ' + this.children);
+        // this.children[0].classList.toggle('hide');
+
     })
 }
 
@@ -67,66 +131,35 @@ for (let item of click_items) {
         elem.stopPropagation();
         this.children;
         // console.log(this.children[0].dataset);
-        switch (this.children[0].innerHTML) {
-            case 'w':
-                this.children[0].innerHTML = 'W';
-                break;
-            case 'h':
-                this.children[0].innerHTML = 'H';
-                break;
-            case 'q':
-                this.children[0].innerHTML = 'Q';
-                break;
-            case 'e':
-                this.children[0].innerHTML = 'E';
-                break;
-            case 's':
-                this.children[0].innerHTML = 'S';
-                break;
 
-            case 'W':
-                this.children[0].innerHTML = 'w';
-                break;
-            case 'H':
-                this.children[0].innerHTML = 'h';
-                break;
-            case 'Q':
-                this.children[0].innerHTML = 'q';
-                break;
-            case 'E':
-                this.children[0].innerHTML = 'e';
-                break;
-            case 'S':
-                this.children[0].innerHTML = 's';
-                break;
-        }
 
     })
 }
 
+let font_size = 6;
 function addFontSize() {
     for (let item of p_numb) {
 
         switch (item.dataset.note) {
             case '1':
-                item.style.fontSize = 'calc(16em / 1)';
-                // item.style.lineHeight = '70%';
+                item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 1)`;
+                item.style.lineHeight = '70%';
                 break;
             case '2':
-                item.style.fontSize = 'calc(16em / 2)';
-                // item.style.lineHeight = '70%';
+                item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 2)`;
+                item.style.lineHeight = '70%';
                 break;
             case '4':
-                item.style.fontSize = 'calc(16em / 3)';
-                // item.style.lineHeight = '70%';
+                item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 3)`;
+                item.style.lineHeight = '70%';
                 break;
             case '8':
-                item.style.fontSize = 'calc(15em / 4)';
-                // item.style.lineHeight = '70%';
+                item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 5)`;
+                item.style.lineHeight = '100%';
                 break;
             case '16':
-                item.style.fontSize = 'calc(15em / 5)';
-                // item.style.lineHeight = '150%';
+                item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 5)`;
+                item.style.lineHeight = '70%';
                 break;
 
         }
@@ -158,7 +191,7 @@ function addFontNote() {
     }
 }
 
-addFontNote();
+// addFontNote();
 addFontSize();
 
 function monitoringStart(all) {
