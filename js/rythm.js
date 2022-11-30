@@ -4,14 +4,23 @@ document.oncontextmenu = function () {
 const click_items = document.querySelectorAll('.click_item');
 const p_numb = document.querySelectorAll('.numb');
 
+const taka = ['ТА', 'КА'];
+const takita = ['ТА', 'КИ', 'ТА'];
+const takadimi = ['ТА', 'КА', 'ДИ', 'МИ'];
+
 let monitoringDIV = document.querySelector('.monitoring');
 
 // console.log(click_items);
 let monitoringBaseArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+let cheked = true;
 
 for (let item of click_items) {
     item.addEventListener('click', function add(elem) {
-        item.classList.toggle('border_active');
+        console.log(item.classList.contains('border_active'));
+        if (cheked && !item.classList.contains('border_active')) {
+            item.classList.toggle('border_active');
+        }
+
 
         switch (true) {
             case item.classList.contains('whole_note'):
@@ -37,20 +46,25 @@ for (let item of click_items) {
 
         // monitoringStart(0);
         elem.stopPropagation(); // глушим всплывающее событие
-        // console.log('this children = ' + this.children);
+        console.log('this children = ' + this.children);
         // for(let newItem of this.childrens){
         //     newItem.stopImmediatePropagation();
         // }
-        this.children;
+        this.children[0].classList.toggle('hide');
         // console.log(this.children);
         // console.log( elem);
     })
 }
 
 for (let item of click_items) {
-    item.addEventListener('dblclick', function add(elem) {
+    item.addEventListener('contextmenu', function add(elem) {
         // item.classList.toggle('border_active_doble');
-        elem.stopPropagation(); // глушим всплывающее событие
+        if (cheked) {
+            item.classList.toggle('border_active');
+        }
+
+        elem.preventDefault();
+        elem.stopPropagation();
         this.children;
         // console.log(this.children[0].dataset);
         switch (this.children[0].innerHTML) {
@@ -95,23 +109,23 @@ function addFontSize() {
 
         switch (item.dataset.note) {
             case '1':
-                item.style.fontSize = 'calc(12em / 1)';
+                item.style.fontSize = 'calc(16em / 1)';
                 // item.style.lineHeight = '70%';
                 break;
             case '2':
-                item.style.fontSize = 'calc(12em / 2)';
+                item.style.fontSize = 'calc(16em / 2)';
                 // item.style.lineHeight = '70%';
                 break;
             case '4':
-                item.style.fontSize = 'calc(12em / 3)';
+                item.style.fontSize = 'calc(16em / 3)';
                 // item.style.lineHeight = '70%';
                 break;
             case '8':
-                item.style.fontSize = 'calc(12em / 4)';
+                item.style.fontSize = 'calc(15em / 4)';
                 // item.style.lineHeight = '70%';
                 break;
             case '16':
-                item.style.fontSize = 'calc(12em / 5)';
+                item.style.fontSize = 'calc(15em / 5)';
                 // item.style.lineHeight = '150%';
                 break;
 
@@ -358,7 +372,7 @@ document.querySelector('.button_reset_shadow').onclick = () => {
 
 // действие правой кнопкой мыши
 for (let item of click_items) {
-    item.addEventListener('contextmenu', function add(elem) {
+    item.addEventListener('', function add(elem) {
         console.log(item);
         elem.preventDefault();
         elem.stopPropagation(); // глушим всплывающее событие
@@ -379,4 +393,37 @@ document.querySelector('.button_opacity_off').onclick = () => {
     for (let item of p_numb) {
         item.classList.remove('hide');
     }
+}
+
+// отображение двоичной системы в 16
+document.querySelector('.button_ta_ka').onclick = () => {
+    function ta_ka() {
+        let chelnok = 0;
+        for (let item of click_items) {
+            item.children[0].style.fontSize = '100%';
+            switch (item.children[0].dataset.note) {
+                case '1':
+                    item.children[0].innerHTML = 'ТА_КА ТА_КА ТА_КА ТА_КА ТА_КА ТА_КА ТА_КА ТА_КА';
+                    break;
+                case '2':
+                    item.children[0].innerHTML = 'ТА_КА ТА_КА ТА_КА ТА_КА';
+                    break;
+                case '4':
+                    item.children[0].innerHTML = 'ТА_КА ТА_КА';
+                    break;
+                case '8':
+                    item.children[0].innerHTML = 'ТА_КА';
+                    break;
+                case '16':
+                    item.children[0].innerHTML = 'ТА';
+                    item.children[0].innerHTML = 'КА';
+                    break;
+
+
+            }
+            chelnok += 1;
+            console.log(chelnok);
+        }
+    }
+    ta_ka();
 }
