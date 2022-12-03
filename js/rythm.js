@@ -14,6 +14,7 @@ let monitoringDIV = document.querySelector('.monitoring');
 let monitoringBaseArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 let cheked = true;
 
+// логика последовательного клика по элементу
 for (let item of click_items) {
     item.addEventListener('click', function add(elem) {
         // console.log(item.classList.contains('border_active'));
@@ -120,6 +121,40 @@ for (let item of click_items) {
     })
 }
 
+// очистка innerHTML параграфов <p>
+function clear_p() {
+    for (let item of click_items) {
+        switch (item.children[0].dataset.note) {
+            case '1':
+                item.children[0].innerHTML = '';
+                item.children[0].dataset.status = '0';
+                break;
+            case '2':
+                item.children[0].innerHTML = '';
+                item.children[0].dataset.status = '0';
+                break;
+            case '4':
+                item.children[0].innerHTML = '';
+                item.children[0].dataset.status = '0';
+                break;
+            case '8':
+                item.children[0].innerHTML = '';
+                item.children[0].dataset.status = '0';
+                break;
+            case '16':
+                item.children[0].innerHTML = '';
+                item.children[0].dataset.status = '0';
+                break;
+        }
+    }
+}
+
+// кнопка сброс
+document.querySelector('.button_clear_p').onclick = function () {
+    clear_p();
+    addFontSize();
+}
+
 for (let item of click_items) {
     item.addEventListener('contextmenu', function add(elem) {
         // item.classList.toggle('border_active_doble');
@@ -137,6 +172,7 @@ for (let item of click_items) {
 }
 
 let font_size = 6;
+
 function addFontSize() {
     for (let item of p_numb) {
 
@@ -160,31 +196,6 @@ function addFontSize() {
             case '16':
                 item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 5)`;
                 item.style.lineHeight = '70%';
-                break;
-
-        }
-    }
-}
-
-
-function addFontNote() {
-    for (let item of p_numb) {
-
-        switch (item.dataset.note) {
-            case '1':
-                item.innerHTML = 'w';
-                break;
-            case '2':
-                item.innerHTML = 'h';
-                break;
-            case '4':
-                item.innerHTML = 'q';
-                break;
-            case '8':
-                item.innerHTML = 'e';
-                break;
-            case '16':
-                item.innerHTML = 's';
                 break;
 
         }
@@ -217,190 +228,35 @@ document.querySelector('.button_position').onclick = function () {
     }
 }
 
-// кнопка показа длительностей
-document.querySelector('.button_label_duration').onclick = function () {
-    addFontNote();
-    addFontSize();
-}
-
-// кнопка паузы
-document.querySelector('.button_label_pause').onclick = addPause;
-
-function addPause() {
-    for (let item of p_numb) {
-        switch (item.dataset.note) {
-            case '1':
-                item.innerHTML = 'W';
-                break;
-            case '2':
-                item.innerHTML = 'H';
-                break;
-            case '4':
-                item.innerHTML = 'Q';
-                break;
-            case '8':
-                item.innerHTML = 'E';
-                break;
-            case '16':
-                item.innerHTML = 'S';
-                break;
-        }
-
-    }
-}
-
-// кнопка показа чисел
-document.querySelector('.button_label_numb').onclick = function () {
-    addFontSize();
-    for (let item of p_numb) {
-        switch (item.dataset.note) {
-            case '1':
-                item.innerHTML = '1';
-                break;
-            case '2':
-                item.innerHTML = '2';
-                break;
-            case '4':
-                item.innerHTML = '4';
-                break;
-            case '8':
-                item.innerHTML = '8';
-                break;
-            case '16':
-                item.innerHTML = '16';
-                break;
-        }
-
-    }
-}
-
-// функция расчета скорости 1 2 4 8 16
-function speedCalculation(e) {
-    for (let item of p_numb) {
-        switch (item.dataset.note) {
-            case '1':
-                item.innerHTML = e / 2;
-                break;
-            case '2':
-                item.innerHTML = e / 4;
-                break;
-            case '4':
-                item.innerHTML = e / 8;
-                break;
-            case '8':
-                item.innerHTML = e / 16;
-                break;
-            case '16':
-                item.innerHTML = e / 32;
-                break;
-        }
-    }
-}
-
-
-
-
-// кнопка скорости шестнадцатых
-document.querySelector('.button_label_16').onclick = () => {
-    speedCalculation(32);
-}
-
-// кнопка скорости восьмых
-document.querySelector('.button_label_8').onclick = () => {
-    speedCalculation(16);
-}
-// кнопка скорости четвертей
-document.querySelector('.button_label_4').onclick = () => {
-    speedCalculation(8);
-}
-
-// кнопка скорости половинных
-document.querySelector('.button_label_2').onclick = () => {
-    speedCalculation(4);
-}
-
-// кнопка скорости целых
-document.querySelector('.button_label_1').onclick = () => {
-    speedCalculation(2);
-}
-
-// двойная кнопка скорости шестнадцатых
-document.querySelector('.button_label_16').addEventListener('dblclick', (event) => {
-    speedCalculationProporzion(16);
-})
-
-// двойная кнопка скорости восьмых
-document.querySelector('.button_label_8').addEventListener('dblclick', (event) => {
-    speedCalculationProporzion(8);
-})
-
-// двойная кнопка скорости четвертей
-document.querySelector('.button_label_4').addEventListener('dblclick', (event) => {
-    speedCalculationProporzion(4);
-})
-
 // двойного клика на кнопке
-function speedCalculationProporzion(e) {
-    for (let item of p_numb) {
-        switch (item.dataset.note) {
-            case '1':
-                item.innerHTML = e * 1 + '/' + e;
-                break;
-            case '2':
-                item.innerHTML = e / 2 + '/' + e;
-                break;
-            case '4':
-                item.innerHTML = e / 4 + '/' + e;
-                break;
-            case '8':
-                item.innerHTML = e / 8 + '/' + e;
-                break;
-            case '16':
-                item.innerHTML = e / 16 + '/' + e;
-                break;
-        }
-    }
-}
+// function speedCalculationProporzion(e) {
+//     for (let item of p_numb) {
+//         switch (item.dataset.note) {
+//             case '1':
+//                 item.innerHTML = e * 1 + '/' + e;
+//                 break;
+//             case '2':
+//                 item.innerHTML = e / 2 + '/' + e;
+//                 break;
+//             case '4':
+//                 item.innerHTML = e / 4 + '/' + e;
+//                 break;
+//             case '8':
+//                 item.innerHTML = e / 8 + '/' + e;
+//                 break;
+//             case '16':
+//                 item.innerHTML = e / 16 + '/' + e;
+//                 break;
+//         }
+//     }
+// }
 
-// кнопка проценты
-document.querySelector('.button_procent').onclick = () => {
 
-    for (let item of p_numb) {
-        switch (item.dataset.note) {
-            case '1':
-                item.innerHTML = '100';
-                break;
-            case '2':
-                item.innerHTML = '50';
-                break;
-            case '4':
-                item.innerHTML = '25';
-                break;
-            case '8':
-                item.innerHTML = '12,5';
-                break;
-            case '16':
-                item.innerHTML = '6.25';
-                break;
-        }
-    }
-}
 
 // функция подключения простого шрифта
 function addBodyFontOPUSTEXT() {
     addFontSize();
     document.querySelector('body').style.fontFamily = 'OPUSTEXT';
-}
-
-// кнопка сброса
-document.querySelector('.button_reset_shadow').onclick = () => {
-    addFontNote();
-    addFontSize();
-    for (let item of click_items) {
-        // console.log('reset');
-        item.classList.remove('border_active');
-        item.classList.remove('border_active_doble');
-    }
 }
 
 // действие правой кнопкой мыши
@@ -415,18 +271,18 @@ for (let item of click_items) {
 }
 
 // кнопка прозрачности
-document.querySelector('.button_opacity_on').onclick = () => {
-    for (let item of click_items) {
-        item.children[0].classList.add('hide');
-    }
-}
+// document.querySelector('.button_opacity_on').onclick = () => {
+//     for (let item of click_items) {
+//         item.children[0].classList.add('hide');
+//     }
+// }
 
 // кнопка прозрачности
-document.querySelector('.button_opacity_off').onclick = () => {
-    for (let item of p_numb) {
-        item.classList.remove('hide');
-    }
-}
+// document.querySelector('.button_opacity_off').onclick = () => {
+//     for (let item of p_numb) {
+//         item.classList.remove('hide');
+//     }
+// }
 
 // отображение двоичной системы в 16
 document.querySelector('.button_ta_ka').onclick = () => {
@@ -460,3 +316,148 @@ document.querySelector('.button_ta_ka').onclick = () => {
     }
     ta_ka();
 }
+
+
+// console.log(document.querySelector('.select_variation'));
+// select
+document.querySelector('.select_variation').addEventListener('change', function (elem) {
+
+    // функция расчета скорости 1 2 4 8 16 и записи в элементы
+    function speedCalculation(e) {
+        for (let item of p_numb) {
+            switch (item.dataset.note) {
+                case '1':
+                    item.innerHTML = e / 2;
+                    break;
+                case '2':
+                    item.innerHTML = e / 4;
+                    break;
+                case '4':
+                    item.innerHTML = e / 8;
+                    break;
+                case '8':
+                    item.innerHTML = e / 16;
+                    break;
+                case '16':
+                    item.innerHTML = e / 32;
+                    break;
+            }
+        }
+    }
+
+    switch (this.value) {
+        case 'value_NO':
+            clear_p();
+            break;
+        case 'value_notes':
+            // запись в нотах
+            for (let item of p_numb) {
+
+                switch (item.dataset.note) {
+                    case '1':
+                        item.innerHTML = 'w';
+                        break;
+                    case '2':
+                        item.innerHTML = 'h';
+                        break;
+                    case '4':
+                        item.innerHTML = 'q';
+                        break;
+                    case '8':
+                        item.innerHTML = 'e';
+                        break;
+                    case '16':
+                        item.innerHTML = 's';
+                        break;
+
+                }
+            }
+            break;
+        case 'value_pause':
+            // запись в паузах
+            for (let item of p_numb) {
+                switch (item.dataset.note) {
+                    case '1':
+                        item.innerHTML = 'W';
+                        break;
+                    case '2':
+                        item.innerHTML = 'H';
+                        break;
+                    case '4':
+                        item.innerHTML = 'Q';
+                        break;
+                    case '8':
+                        item.innerHTML = 'E';
+                        break;
+                    case '16':
+                        item.innerHTML = 'S';
+                        break;
+                }
+
+            }
+            break;
+        case 'value_number':
+            // запись в числах
+            for (let item of p_numb) {
+                switch (item.dataset.note) {
+                    case '1':
+                        item.innerHTML = '1';
+                        break;
+                    case '2':
+                        item.innerHTML = '2';
+                        break;
+                    case '4':
+                        item.innerHTML = '4';
+                        break;
+                    case '8':
+                        item.innerHTML = '8';
+                        break;
+                    case '16':
+                        item.innerHTML = '16';
+                        break;
+                }
+            }
+            break;
+        case 'value_1':
+            // кнопка скорости целых
+            speedCalculation(2);
+            break;
+        case 'value_2':
+            // кнопка скорости целых
+            speedCalculation(4);
+            break;
+        case 'value_4':
+            // кнопка скорости целых
+            speedCalculation(8);
+            break;
+        case 'value_8':
+            // кнопка скорости целых
+            speedCalculation(16);
+            break;
+        case 'value_16':
+            // кнопка скорости целых
+            speedCalculation(32);
+            break;
+        case 'procent':
+            // запись в процентах
+            for (let item of p_numb) {
+                switch (item.dataset.note) {
+                    case '1':
+                        item.innerHTML = '100';
+                        break;
+                    case '2':
+                        item.innerHTML = '50';
+                        break;
+                    case '4':
+                        item.innerHTML = '25';
+                        break;
+                    case '8':
+                        item.innerHTML = '12,5';
+                        break;
+                    case '16':
+                        item.innerHTML = '6.25';
+                        break;
+                }
+            }
+    }
+})
