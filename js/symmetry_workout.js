@@ -530,11 +530,11 @@ checkBoxElem.onclick = function () {
 Object.defineProperty(
   Object.prototype,
   'randElement', {
-    value: function () {
-      var rand = Math.floor(Math.random() * this.length);
-      return this[rand];
-    }
+  value: function () {
+    var rand = Math.floor(Math.random() * this.length);
+    return this[rand];
   }
+}
 );
 
 let add_windows_facty = function () {
@@ -824,7 +824,7 @@ function playArray(newArray) {
   if (soundON) {
     let list = Array.from(newArray);
     let audioElements = [];
-    let int = 0;
+    let int = 1;
     for (let i = 0; i < list.length; i++) {
       let audio = new Audio(list[i].dataset.src);
       audioElements.push(audio);
