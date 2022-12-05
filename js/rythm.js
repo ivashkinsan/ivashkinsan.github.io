@@ -256,6 +256,12 @@ function addFontSize() {
     }
 }
 
+function customFontSize(e) {
+    for (let item of p_numb) {
+        item.style.fontSize = e + 'px';
+    }
+}
+
 // addFontNote();
 addFontSize();
 
@@ -531,7 +537,7 @@ document.querySelector('.button_hide_grani').onclick = function () {
 
         item.classList.toggle('button_grani_hide');
     }
-
+    customFontSize(60);
 }
 
 // кнопка выравнивания <p></p>
@@ -546,6 +552,7 @@ document.querySelector('.input_range_width').addEventListener('change', function
     console.log(this.value);
     border.style.width = this.value + 'vw';
     // border.style.height = this.value + 'vw';
+
 });
 
 document.querySelector('.reset_width').onclick = function () {
