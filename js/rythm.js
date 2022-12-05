@@ -1,6 +1,10 @@
 document.oncontextmenu = function () {
-    return false
+    return false;
 };
+document.onselectstart = function () {
+    return false;
+}
+
 const click_items = document.querySelectorAll('.click_item');
 const p_numb = document.querySelectorAll('.numb');
 
@@ -209,22 +213,6 @@ document.querySelector('.button_clear_p').onclick = function () {
     }
 }
 
-// активность правой кнопки мыши
-for (let item of click_items) {
-    item.addEventListener('contextmenu', function add(elem) {
-        // item.classList.toggle('border_active_doble');
-        if (cheked) {
-            item.classList.toggle('border_active_dashed');
-        }
-
-        elem.preventDefault();
-        elem.stopPropagation();
-        this.children;
-        // console.log(this.children[0].dataset);
-
-
-    })
-}
 
 let font_size = 6;
 
@@ -526,7 +514,7 @@ document.querySelector('.button_hide_grani').onclick = function () {
 
         item.classList.toggle('button_grani_hide');
     }
-    customFontSize(60);
+    // customFontSize(50);
 }
 
 // кнопка выравнивания <p></p>
@@ -548,3 +536,69 @@ document.querySelector('.input_range_width').addEventListener('change', function
 document.querySelector('.reset_width').onclick = function () {
     border.style.width = 85 + 'vw'
 }
+
+// let number_i = 0;
+// for (let item of click_items) {
+//     // console.log(item);
+//     let newElement = document.createElement('p');
+//     newElement.classList.add('p_center');
+//     newElement.innerHTML = number_i;
+//     number_i++;
+//     item.append(newElement);
+
+
+//     item.addEventListener('mousedown', function (elem) {
+//         console.log('mousedown');
+//         // console.log(item);
+//         elem.stopPropagation();
+//     });
+
+//     item.addEventListener('mouseup', function (elem) {
+//         console.log('mouseup');
+//         // console.log(item);
+//         elem.stopPropagation();
+//     });
+
+// }
+
+// активность правой кнопки мыши ---------------------------------------------------------------------
+for (let item of click_items) {
+    item.addEventListener('contextmenu', function add(elem) {
+        if (cheked) {
+            item.classList.toggle('border_press_contextmenu');
+        }
+        elem.preventDefault();
+        elem.stopPropagation();
+
+        for (let i of item.childNodes.entries()) {
+            console.log(i);
+        }
+
+        // item.lastChild.classList.toggle('triple_show');
+        item.lastChild.addEventListener('click', function (elem) {
+            elem.stopPropagation();
+            console.log(item.children[1]);
+            let clone = item.children[1].cloneNode(true);
+            item.append(clone);
+        });
+    })
+}
+
+
+for (let item of click_items) {
+    // console.log(item);
+    let newElement = document.createElement('p');
+    newElement.classList.add('triple');
+    newElement.innerHTML = '[-3-]';
+    item.append(newElement);
+}
+
+// let triple_all_elements = document.querySelectorAll('.triple');
+// for (let item of triple_all_elements) {
+//     item.addEventListener('click', function (elem) {
+//         console.log(item);
+//         elem.stopPropagation();
+//     })
+// }
+
+// ------------------------------------------------------------------------------------------------
