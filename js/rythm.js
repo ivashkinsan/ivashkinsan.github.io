@@ -203,12 +203,13 @@ function clear_p() {
 // кнопка сброс
 document.querySelector('.button_clear_p').onclick = function () {
     clear_p();
-    addFontSize();
+    // addFontSize();
     for (let item of click_items) {
         item.classList.remove('border_active');
     }
 }
 
+// активность правой кнопки мыши
 for (let item of click_items) {
     item.addEventListener('contextmenu', function add(elem) {
         // item.classList.toggle('border_active_doble');
@@ -227,34 +228,34 @@ for (let item of click_items) {
 
 let font_size = 6;
 
-function addFontSize() {
-    for (let item of p_numb) {
+// function addFontSize() {
+//     for (let item of p_numb) {
 
-        switch (item.dataset.note) {
-            case '1':
-                item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 1)`;
-                item.style.lineHeight = '70%';
-                break;
-            case '2':
-                item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 2)`;
-                item.style.lineHeight = '70%';
-                break;
-            case '4':
-                item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 3)`;
-                item.style.lineHeight = '70%';
-                break;
-            case '8':
-                item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 5)`;
-                item.style.lineHeight = '100%';
-                break;
-            case '16':
-                item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 5)`;
-                item.style.lineHeight = '70%';
-                break;
+//         switch (item.dataset.note) {
+//             case '1':
+//                 item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 1)`;
+//                 item.style.lineHeight = '70%';
+//                 break;
+//             case '2':
+//                 item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 2)`;
+//                 item.style.lineHeight = '70%';
+//                 break;
+//             case '4':
+//                 item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 3)`;
+//                 item.style.lineHeight = '70%';
+//                 break;
+//             case '8':
+//                 item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 5)`;
+//                 item.style.lineHeight = '100%';
+//                 break;
+//             case '16':
+//                 item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 5)`;
+//                 item.style.lineHeight = '70%';
+//                 break;
 
-        }
-    }
-}
+//         }
+//     }
+// }
 
 function customFontSize(e) {
     for (let item of p_numb) {
@@ -263,7 +264,7 @@ function customFontSize(e) {
 }
 
 // addFontNote();
-addFontSize();
+// addFontSize();
 
 function monitoringStart(all) {
 
@@ -315,20 +316,11 @@ document.querySelector('.button_position').onclick = function () {
 
 // функция подключения простого шрифта
 function addBodyFontOPUSTEXT() {
-    addFontSize();
+    // addFontSize();
     document.querySelector('body').style.fontFamily = 'OPUSTEXT';
 }
 
-// действие правой кнопкой мыши
-for (let item of click_items) {
-    item.addEventListener('', function add(elem) {
-        console.log(item);
-        elem.preventDefault();
-        elem.stopPropagation(); // глушим всплывающее событие
-        this.children;
-        item.children[0].classList.toggle('hide');
-    })
-}
+
 
 // кнопка прозрачности
 // document.querySelector('.button_opacity_on').onclick = () => {
@@ -377,9 +369,6 @@ for (let item of click_items) {
 //     ta_ka();
 // }
 
-
-// console.log(document.querySelector('.select_variation'));
-// select
 document.querySelector('.select_variation').addEventListener('change', function (elem) {
 
     // функция расчета скорости 1 2 4 8 16 и записи в элементы
@@ -555,6 +544,7 @@ document.querySelector('.input_range_width').addEventListener('change', function
 
 });
 
+// активность инпут рэйндж
 document.querySelector('.reset_width').onclick = function () {
     border.style.width = 85 + 'vw'
 }
