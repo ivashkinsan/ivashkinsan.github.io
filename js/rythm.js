@@ -16,10 +16,48 @@ let cheked = true;
 
 // логика последовательного клика по элементу
 for (let item of click_items) {
+    if (item.children[0].dataset.clickstatus == 'true') {
+        // console.log('clickstatus true');
+    }
+
     item.addEventListener('click', function add(elem) {
+
         // console.log(item.classList.contains('border_active'));
+        // console.log(elem.target.querySelectorAll('div'));
+        console.log(elem.target.parentNode);
+        // elem.target.parentNode.classList.add('no-click');
+        // console.log(elem.target.nodeName.toUpperCase() == 'DIV');
+
+        // сбор дочерних элементов
+        let collection_child_div_elem = elem.target.querySelectorAll('div');
+        let collection_child_p_elem = elem.target.querySelectorAll('p');
+
+
 
         if (item.children[0].dataset.status == '0') {
+            // добавление рамки
+            item.classList.add('border_active');
+
+            // отключение в дочерних элементах кликабельности
+            if (item.children[1] && item.children[2]) {
+                item.children[1].classList.add('no-click');
+                item.children[2].classList.add('no-click');
+            }
+
+
+            // сброс с внутренних элементов классов border-active и очистка textContent
+            for (let child_elem of collection_child_div_elem) {
+                child_elem.classList.remove('border_active');
+            }
+            for (let child_elem of collection_child_p_elem) {
+                if (child_elem.textContent != '') {
+                    child_elem.textContent = '';
+                    child_elem.dataset.status = '0'
+                }
+            }
+
+            // отключение в родительском элементе кликабельности
+
             switch (item.children[0].dataset.note) {
                 case '1':
                     item.children[0].innerHTML = 'w';
@@ -43,7 +81,7 @@ for (let item of click_items) {
                     break;
             }
         } else if (item.children[0].dataset.status == 'note') {
-            console.log(item.children[0].dataset.status);
+            item.classList.remove('border_active');
             switch (item.children[0].dataset.note) {
                 case '1':
                     item.children[0].innerHTML = 'W';
@@ -67,6 +105,17 @@ for (let item of click_items) {
                     break;
             }
         } else if (item.children[0].dataset.status == 'pause') {
+
+            // включение в дочерних элементах кликабельности
+            // if (item.children[1] && item.children[2]) {
+            //     item.children[1].classList.remove('no-click');
+            //     item.children[2].classList.remove('no-click');
+            // }
+
+            for (let child_elem of collection_child_div_elem) {
+                child_elem.classList.remove('no-click');
+            }
+
             switch (item.children[0].dataset.note) {
                 case '1':
                     item.children[0].innerHTML = '';
@@ -119,7 +168,9 @@ for (let item of click_items) {
         // this.children[0].classList.toggle('hide');
 
     })
+
 }
+
 
 // очистка innerHTML параграфов <p>
 function clear_p() {
@@ -153,13 +204,16 @@ function clear_p() {
 document.querySelector('.button_clear_p').onclick = function () {
     clear_p();
     addFontSize();
+    for (let item of click_items) {
+        item.classList.remove('border_active');
+    }
 }
 
 for (let item of click_items) {
     item.addEventListener('contextmenu', function add(elem) {
         // item.classList.toggle('border_active_doble');
         if (cheked) {
-            item.classList.toggle('border_active');
+            item.classList.toggle('border_active_dashed');
         }
 
         elem.preventDefault();
@@ -285,37 +339,37 @@ for (let item of click_items) {
 // }
 
 // отображение двоичной системы в 16
-document.querySelector('.button_ta_ka').onclick = () => {
-    function ta_ka() {
-        let chelnok = 0;
-        for (let item of click_items) {
-            item.children[0].style.fontSize = '100%';
-            switch (item.children[0].dataset.note) {
-                case '1':
-                    item.children[0].innerHTML = 'ТА_КА ТА_КА ТА_КА ТА_КА ТА_КА ТА_КА ТА_КА ТА_КА';
-                    break;
-                case '2':
-                    item.children[0].innerHTML = 'ТА_КА ТА_КА ТА_КА ТА_КА';
-                    break;
-                case '4':
-                    item.children[0].innerHTML = 'ТА_КА ТА_КА';
-                    break;
-                case '8':
-                    item.children[0].innerHTML = 'ТА_КА';
-                    break;
-                case '16':
-                    item.children[0].innerHTML = 'ТА';
-                    item.children[0].innerHTML = 'КА';
-                    break;
+// document.querySelector('.button_ta_ka').onclick = () => {
+//     function ta_ka() {
+//         let chelnok = 0;
+//         for (let item of click_items) {
+//             item.children[0].style.fontSize = '100%';
+//             switch (item.children[0].dataset.note) {
+//                 case '1':
+//                     item.children[0].innerHTML = 'ТА_КА ТА_КА ТА_КА ТА_КА ТА_КА ТА_КА ТА_КА ТА_КА';
+//                     break;
+//                 case '2':
+//                     item.children[0].innerHTML = 'ТА_КА ТА_КА ТА_КА ТА_КА';
+//                     break;
+//                 case '4':
+//                     item.children[0].innerHTML = 'ТА_КА ТА_КА';
+//                     break;
+//                 case '8':
+//                     item.children[0].innerHTML = 'ТА_КА';
+//                     break;
+//                 case '16':
+//                     item.children[0].innerHTML = 'ТА';
+//                     item.children[0].innerHTML = 'КА';
+//                     break;
 
 
-            }
-            chelnok += 1;
-            console.log(chelnok);
-        }
-    }
-    ta_ka();
-}
+//             }
+//             chelnok += 1;
+//             console.log(chelnok);
+//         }
+//     }
+//     ta_ka();
+// }
 
 
 // console.log(document.querySelector('.select_variation'));
@@ -461,3 +515,39 @@ document.querySelector('.select_variation').addEventListener('change', function 
             }
     }
 })
+
+// кнопка скрытия фона
+document.querySelector('.button_hide_fon').onclick = function () {
+    for (let item of click_items) {
+
+        item.classList.toggle('button_fon_hide');
+    }
+
+}
+
+// кнопка скрытия всех граней
+document.querySelector('.button_hide_grani').onclick = function () {
+    for (let item of click_items) {
+
+        item.classList.toggle('button_grani_hide');
+    }
+
+}
+
+// кнопка выравнивания <p></p>
+document.querySelector('.button_p_center').onclick = function () {
+    for (let item of p_numb) {
+        item.classList.toggle('p_allign_center');
+    }
+}
+// кнопка ширины бордера
+let border = document.querySelector('.border');
+document.querySelector('.input_range_width').addEventListener('change', function () {
+    console.log(this.value);
+    border.style.width = this.value + 'vw';
+    // border.style.height = this.value + 'vw';
+});
+
+document.querySelector('.reset_width').onclick = function () {
+    border.style.width = 85 + 'vw'
+}
