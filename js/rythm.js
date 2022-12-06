@@ -517,6 +517,15 @@ document.querySelector('.button_hide_grani').onclick = function () {
     // customFontSize(50);
 }
 
+// кнопка скрытия всех граней
+document.querySelector('.button_size_even').onclick = function () {
+    for (let item of click_items) {
+
+        item.classList.toggle('font_size_even');
+    }
+    // customFontSize(50);
+}
+
 // кнопка выравнивания <p></p>
 document.querySelector('.button_p_center').onclick = function () {
     for (let item of p_numb) {
@@ -570,9 +579,7 @@ for (let item of click_items) {
         elem.preventDefault();
         elem.stopPropagation();
 
-        for (let i of item.childNodes.entries()) {
-            console.log(i);
-        }
+        item.lastChild.classList.toggle('triple_show');
 
         // item.lastChild.classList.toggle('triple_show');
         item.lastChild.addEventListener('click', function (elem) {
@@ -580,6 +587,7 @@ for (let item of click_items) {
             console.log(item.children[1]);
             let clone = item.children[1].cloneNode(true);
             item.append(clone);
+
         });
     })
 }
@@ -593,12 +601,12 @@ for (let item of click_items) {
     item.append(newElement);
 }
 
-// let triple_all_elements = document.querySelectorAll('.triple');
-// for (let item of triple_all_elements) {
-//     item.addEventListener('click', function (elem) {
-//         console.log(item);
-//         elem.stopPropagation();
-//     })
-// }
+let triple_all_elements = document.querySelectorAll('.triple');
+for (let item of triple_all_elements) {
+    item.addEventListener('click', function (elem) {
+        console.log(item);
+        elem.stopPropagation();
+    })
+}
 
 // ------------------------------------------------------------------------------------------------
