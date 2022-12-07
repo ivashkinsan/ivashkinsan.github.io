@@ -5,8 +5,14 @@ document.onselectstart = function () {
     return false;
 }
 
-const click_items = document.querySelectorAll('.click_item');
-const p_numb = document.querySelectorAll('.numb');
+let click_items;
+let p_numb;
+
+let all_variable_search = function () {
+    click_items = document.querySelectorAll('.click_item');
+    p_numb = document.querySelectorAll('.numb');
+}
+all_variable_search();
 
 const taka = ['ТА', 'КА'];
 const takita = ['ТА', 'КИ', 'ТА'];
@@ -19,161 +25,165 @@ let monitoringBaseArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 let cheked = true;
 
 // логика последовательного клика по элементу
-for (let item of click_items) {
-    if (item.children[0].dataset.clickstatus == 'true') {
-        // console.log('clickstatus true');
-    }
+let go_click_function = function () {
+    for (let item of click_items) {
+        // if (item.children[0].dataset.clickstatus == 'true') {
+        //     // console.log('clickstatus true');
+        // }
 
-    item.addEventListener('click', function add(elem) {
+        item.addEventListener('click', function add(elem) {
 
-        // console.log(item.classList.contains('border_active'));
-        // console.log(elem.target.querySelectorAll('div'));
-        console.log(elem.target.parentNode);
-        // elem.target.parentNode.classList.add('no-click');
-        // console.log(elem.target.nodeName.toUpperCase() == 'DIV');
+            // console.log(item.classList.contains('border_active'));
+            // console.log(elem.target.querySelectorAll('div'));
+            console.log(elem.target.parentNode);
+            // elem.target.parentNode.classList.add('no-click');
+            // console.log(elem.target.nodeName.toUpperCase() == 'DIV');
 
-        // сбор дочерних элементов
-        let collection_child_div_elem = elem.target.querySelectorAll('div');
-        let collection_child_p_elem = elem.target.querySelectorAll('p');
-
-
-
-        if (item.children[0].dataset.status == '0') {
-            // добавление рамки
-            item.classList.add('border_active');
-
-            // отключение в дочерних элементах кликабельности
-            if (item.children[1] && item.children[2]) {
-                item.children[1].classList.add('no-click');
-                item.children[2].classList.add('no-click');
-            }
+            // сбор дочерних элементов
+            let collection_child_div_elem = elem.target.querySelectorAll('div');
+            let collection_child_p_elem = elem.target.querySelectorAll('.numb');
 
 
-            // сброс с внутренних элементов классов border-active и очистка textContent
-            for (let child_elem of collection_child_div_elem) {
-                child_elem.classList.remove('border_active');
-            }
-            for (let child_elem of collection_child_p_elem) {
-                if (child_elem.textContent != '') {
-                    child_elem.textContent = '';
-                    child_elem.dataset.status = '0'
+
+            if (item.children[0].dataset.status == '0') {
+                // добавление рамки
+                item.classList.add('border_active');
+
+                // отключение в дочерних элементах кликабельности
+                if (item.children[1] && item.children[2]) {
+                    item.children[1].classList.add('no-click');
+                    item.children[2].classList.add('no-click');
+                }
+
+
+                // сброс с внутренних элементов классов border-active и очистка textContent
+                for (let child_elem of collection_child_div_elem) {
+                    child_elem.classList.remove('border_active');
+                }
+                for (let child_elem of collection_child_p_elem) {
+                    if (child_elem.textContent != '') {
+                        child_elem.textContent = '';
+                        child_elem.dataset.status = '0'
+                    }
+                }
+
+                // отключение в родительском элементе кликабельности
+
+                switch (item.children[0].dataset.note) {
+                    case '1':
+                        item.children[0].innerHTML = 'w';
+                        item.children[0].dataset.status = 'note';
+                        break;
+                    case '2':
+                        item.children[0].innerHTML = 'h';
+                        item.children[0].dataset.status = 'note';
+                        break;
+                    case '4':
+                        item.children[0].innerHTML = 'q';
+                        item.children[0].dataset.status = 'note';
+                        break;
+                    case '8':
+                        item.children[0].innerHTML = 'e';
+                        item.children[0].dataset.status = 'note';
+                        break;
+                    case '16':
+                        item.children[0].innerHTML = 's';
+                        item.children[0].dataset.status = 'note';
+                        break;
+                }
+            } else if (item.children[0].dataset.status == 'note') {
+                item.classList.remove('border_active');
+                switch (item.children[0].dataset.note) {
+                    case '1':
+                        item.children[0].innerHTML = 'W';
+                        item.children[0].dataset.status = 'pause';
+                        break;
+                    case '2':
+                        item.children[0].innerHTML = 'H';
+                        item.children[0].dataset.status = 'pause';
+                        break;
+                    case '4':
+                        item.children[0].innerHTML = 'Q';
+                        item.children[0].dataset.status = 'pause';
+                        break;
+                    case '8':
+                        item.children[0].innerHTML = 'E';
+                        item.children[0].dataset.status = 'pause';
+                        break;
+                    case '16':
+                        item.children[0].innerHTML = 'S';
+                        item.children[0].dataset.status = 'pause';
+                        break;
+                }
+            } else if (item.children[0].dataset.status == 'pause') {
+
+                // включение в дочерних элементах кликабельности
+                // if (item.children[1] && item.children[2]) {
+                //     item.children[1].classList.remove('no-click');
+                //     item.children[2].classList.remove('no-click');
+                // }
+
+                for (let child_elem of collection_child_div_elem) {
+                    child_elem.classList.remove('no-click');
+                }
+
+                switch (item.children[0].dataset.note) {
+                    case '1':
+                        item.children[0].innerHTML = '';
+                        item.children[0].dataset.status = '0';
+                        break;
+                    case '2':
+                        item.children[0].innerHTML = '';
+                        item.children[0].dataset.status = '0';
+                        break;
+                    case '4':
+                        item.children[0].innerHTML = '';
+                        item.children[0].dataset.status = '0';
+                        break;
+                    case '8':
+                        item.children[0].innerHTML = '';
+                        item.children[0].dataset.status = '0';
+                        break;
+                    case '16':
+                        item.children[0].innerHTML = '';
+                        item.children[0].dataset.status = '0';
+                        break;
                 }
             }
 
-            // отключение в родительском элементе кликабельности
-
-            switch (item.children[0].dataset.note) {
-                case '1':
-                    item.children[0].innerHTML = 'w';
-                    item.children[0].dataset.status = 'note';
-                    break;
-                case '2':
-                    item.children[0].innerHTML = 'h';
-                    item.children[0].dataset.status = 'note';
-                    break;
-                case '4':
-                    item.children[0].innerHTML = 'q';
-                    item.children[0].dataset.status = 'note';
-                    break;
-                case '8':
-                    item.children[0].innerHTML = 'e';
-                    item.children[0].dataset.status = 'note';
-                    break;
-                case '16':
-                    item.children[0].innerHTML = 's';
-                    item.children[0].dataset.status = 'note';
-                    break;
-            }
-        } else if (item.children[0].dataset.status == 'note') {
-            item.classList.remove('border_active');
-            switch (item.children[0].dataset.note) {
-                case '1':
-                    item.children[0].innerHTML = 'W';
-                    item.children[0].dataset.status = 'pause';
-                    break;
-                case '2':
-                    item.children[0].innerHTML = 'H';
-                    item.children[0].dataset.status = 'pause';
-                    break;
-                case '4':
-                    item.children[0].innerHTML = 'Q';
-                    item.children[0].dataset.status = 'pause';
-                    break;
-                case '8':
-                    item.children[0].innerHTML = 'E';
-                    item.children[0].dataset.status = 'pause';
-                    break;
-                case '16':
-                    item.children[0].innerHTML = 'S';
-                    item.children[0].dataset.status = 'pause';
-                    break;
-            }
-        } else if (item.children[0].dataset.status == 'pause') {
-
-            // включение в дочерних элементах кликабельности
-            // if (item.children[1] && item.children[2]) {
-            //     item.children[1].classList.remove('no-click');
-            //     item.children[2].classList.remove('no-click');
-            // }
-
-            for (let child_elem of collection_child_div_elem) {
-                child_elem.classList.remove('no-click');
-            }
-
-            switch (item.children[0].dataset.note) {
-                case '1':
-                    item.children[0].innerHTML = '';
-                    item.children[0].dataset.status = '0';
-                    break;
-                case '2':
-                    item.children[0].innerHTML = '';
-                    item.children[0].dataset.status = '0';
-                    break;
-                case '4':
-                    item.children[0].innerHTML = '';
-                    item.children[0].dataset.status = '0';
-                    break;
-                case '8':
-                    item.children[0].innerHTML = '';
-                    item.children[0].dataset.status = '0';
-                    break;
-                case '16':
-                    item.children[0].innerHTML = '';
-                    item.children[0].dataset.status = '0';
-                    break;
-            }
-        }
 
 
 
 
+            // switch (true) {
+            //     case item.classList.contains('whole_note'):
+            //         monitoringBaseArr.splice(item.dataset.position - 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+            //         break;
+            //     case item.classList.contains('half_note'):
+            //         monitoringBaseArr.splice(item.dataset.position - 1, 8, 1, 1, 1, 1, 1, 1, 1, 1);
+            //         break;
+            //     case item.classList.contains('quarter_note'):
+            //         monitoringBaseArr.splice(item.dataset.position - 1, 4, 1, 1, 1, 1);
+            //         break;
+            //     case item.classList.contains('eighth'):
+            //         monitoringBaseArr.splice(item.dataset.position - 1, 2, 1, 1);
+            //         break;
+            //     case item.classList.contains('sixteenth'):
+            //         monitoringBaseArr.splice(item.dataset.position - 1, 1, 1);
+            //         break;
+            // };
 
-        // switch (true) {
-        //     case item.classList.contains('whole_note'):
-        //         monitoringBaseArr.splice(item.dataset.position - 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-        //         break;
-        //     case item.classList.contains('half_note'):
-        //         monitoringBaseArr.splice(item.dataset.position - 1, 8, 1, 1, 1, 1, 1, 1, 1, 1);
-        //         break;
-        //     case item.classList.contains('quarter_note'):
-        //         monitoringBaseArr.splice(item.dataset.position - 1, 4, 1, 1, 1, 1);
-        //         break;
-        //     case item.classList.contains('eighth'):
-        //         monitoringBaseArr.splice(item.dataset.position - 1, 2, 1, 1);
-        //         break;
-        //     case item.classList.contains('sixteenth'):
-        //         monitoringBaseArr.splice(item.dataset.position - 1, 1, 1);
-        //         break;
-        // };
 
+            elem.stopPropagation(); // глушим всплывающее событие
+            // console.log('this children = ' + this.children);
+            // this.children[0].classList.toggle('hide');
 
-        elem.stopPropagation(); // глушим всплывающее событие
-        // console.log('this children = ' + this.children);
-        // this.children[0].classList.toggle('hide');
+        })
 
-    })
-
+    }
 }
+// конец функции --------------------------------------------------------------------
+go_click_function();
 
 
 // очистка innerHTML параграфов <p>
@@ -533,17 +543,17 @@ document.querySelector('.button_p_center').onclick = function () {
     }
 }
 // кнопка ширины бордера
-let border = document.querySelector('.border');
+let container = document.querySelector('.container');
 document.querySelector('.input_range_width').addEventListener('change', function () {
     console.log(this.value);
-    border.style.width = this.value + 'vw';
+    container.style.width = this.value + 'vw';
     // border.style.height = this.value + 'vw';
 
 });
 
 // активность инпут рэйндж
 document.querySelector('.reset_width').onclick = function () {
-    border.style.width = 85 + 'vw'
+    container.style.width = 800 + 'px';
 }
 
 // let number_i = 0;
@@ -578,21 +588,82 @@ for (let item of click_items) {
         }
         elem.preventDefault();
         elem.stopPropagation();
+        // let clg = item.forEach();
+        // console.log(this.querySelector('.triple'));
 
-        item.lastChild.classList.toggle('triple_show');
-
-        // item.lastChild.classList.toggle('triple_show');
-        item.lastChild.addEventListener('click', function (elem) {
+        let tripleAll = item.querySelectorAll('.triple');
+        let plusAll = item.querySelectorAll('.plus');
+        tripleAll[tripleAll.length - 1].classList.toggle('triple_show');
+        plusAll[plusAll.length - 1].classList.toggle('plus_show');
+        // прослушка кнопки [-3-]
+        item.childNodes[item.childNodes.length - 2].addEventListener('click', function (elem) {
             elem.stopPropagation();
-            console.log(item.children[1]);
             let clone = item.children[1].cloneNode(true);
-            item.append(clone);
-
+            item.childNodes[2].after(clone);
+            let new_arr_click_items = item.querySelectorAll('.' + item.children[1].classList[0]);
+            for (let jey of new_arr_click_items) {
+                jey.classList.add('height_del_3');
+            }
+            all_variable_search();
+            go_click_function();
+            item.classList.toggle('border_press_contextmenu');
+            tripleAll[tripleAll.length - 1].classList.toggle('triple_show');
+            plusAll[plusAll.length - 1].classList.toggle('plus_show');
         });
+        // прослушка кнопки [+]
+        item.childNodes[item.childNodes.length - 1].addEventListener('click', function (elem) {
+            elem.stopPropagation();
+            let new_circle_element = document.createElement('div');
+            let new_p_element_in_circle_element = document.createElement('p');
+            // console.log(Number(item.childNodes[1].dataset.note));
+            let numb_for_dts_new_p = Number(item.childNodes[1].dataset.note);
+            new_p_element_in_circle_element.dataset.note = numb_for_dts_new_p + (numb_for_dts_new_p / 2);
+            switch (new_p_element_in_circle_element.dataset.note) {
+                case '12':
+                    new_p_element_in_circle_element.innerHTML = 'i';
+                    new_circle_element.classList.add('eighth_dotted_note');
+                    break;
+                case '6':
+                    new_p_element_in_circle_element.innerHTML = 'j';
+                    new_circle_element.classList.add('quarter_dotted_note');
+                    break;
+                case '3':
+                    new_p_element_in_circle_element.innerHTML = 'd';
+                    new_circle_element.classList.add('half_dotted_note');
+                    break;
+            }
+            // console.log(new_p_element_in_circle_element.dataset.note);
+            new_p_element_in_circle_element.dataset.status = '0';
+            new_p_element_in_circle_element.dataset.clickstatus = 'true';
+            new_p_element_in_circle_element.classList.add('numb');
+            new_p_element_in_circle_element.classList.add('center');
+
+            new_circle_element.classList.add('click_item');
+            new_circle_element.classList.add('click_item_absolute');
+
+            new_circle_element.append(new_p_element_in_circle_element);
+            item.childNodes[3].append(new_circle_element);
+            console.log(item.childNodes[3].style.width);
+            // let new_arr_click_items = item.querySelectorAll('.' + item.children[1].classList[0]);
+            // for (let jey of new_arr_click_items) {
+            //     jey.classList.add('height_del_3');
+            // }
+            all_variable_search();
+            go_click_function();
+            item.classList.toggle('border_press_contextmenu');
+            tripleAll[tripleAll.length - 1].classList.toggle('triple_show');
+            plusAll[plusAll.length - 1].classList.toggle('plus_show');
+
+            // click_item_absolute REMOVE---------------------------------
+            document.querySelector('.click_item_absolute').onclick = function () {
+                this.remove();
+            }
+        });
+
     })
 }
 
-
+// запись во все дивы нового элемента-кнопки [-3-]
 for (let item of click_items) {
     // console.log(item);
     let newElement = document.createElement('p');
@@ -601,12 +672,24 @@ for (let item of click_items) {
     item.append(newElement);
 }
 
-let triple_all_elements = document.querySelectorAll('.triple');
-for (let item of triple_all_elements) {
-    item.addEventListener('click', function (elem) {
-        console.log(item);
-        elem.stopPropagation();
-    })
+// запись во все дивы нового элемента-кнопки [+]
+for (let item of click_items) {
+    // console.log(item);
+    let newElement = document.createElement('p');
+    newElement.classList.add('plus');
+    newElement.innerHTML = '[+]';
+    item.append(newElement);
 }
+
+
+
+
+// let triple_all_elements = document.querySelectorAll('.triple');
+// for (let item of triple_all_elements) {
+//     item.addEventListener('click', function (elem) {
+//         console.log(item);
+//         elem.stopPropagation();
+//     })
+// }
 
 // ------------------------------------------------------------------------------------------------
