@@ -90,6 +90,18 @@ let go_click_function = function () {
                         item.children[0].innerHTML = 's';
                         item.children[0].dataset.status = 'note';
                         break;
+                    case '12':
+                        item.children[0].innerHTML = 'i';
+                        item.children[0].dataset.status = 'note';
+                        break;
+                    case '6':
+                        item.children[0].innerHTML = 'j';
+                        item.children[0].dataset.status = 'note';
+                        break;
+                    case '3':
+                        item.children[0].innerHTML = 'd';
+                        item.children[0].dataset.status = 'note';
+                        break;
                 }
             } else if (item.children[0].dataset.status == 'note') {
                 item.classList.remove('border_active');
@@ -114,6 +126,19 @@ let go_click_function = function () {
                         item.children[0].innerHTML = 'S';
                         item.children[0].dataset.status = 'pause';
                         break;
+                    case '12':
+                        item.children[0].innerHTML = 'I';
+                        item.children[0].dataset.status = 'pause';
+                        break;
+                    case '6':
+                        item.children[0].innerHTML = 'J';
+                        item.children[0].dataset.status = 'pause';
+                        break;
+                    case '3':
+                        item.children[0].innerHTML = 'D';
+                        item.children[0].dataset.status = 'pause';
+                        break;
+
                 }
             } else if (item.children[0].dataset.status == 'pause') {
 
@@ -145,6 +170,18 @@ let go_click_function = function () {
                         item.children[0].dataset.status = '0';
                         break;
                     case '16':
+                        item.children[0].innerHTML = '';
+                        item.children[0].dataset.status = '0';
+                        break;
+                    case '12':
+                        item.children[0].innerHTML = '';
+                        item.children[0].dataset.status = '0';
+                        break;
+                    case '6':
+                        item.children[0].innerHTML = '';
+                        item.children[0].dataset.status = '0';
+                        break;
+                    case '3':
                         item.children[0].innerHTML = '';
                         item.children[0].dataset.status = '0';
                         break;
@@ -583,103 +620,146 @@ document.querySelector('.reset_width').onclick = function () {
 // активность правой кнопки мыши ---------------------------------------------------------------------
 for (let item of click_items) {
     item.addEventListener('contextmenu', function add(elem) {
-        if (cheked) {
-            item.classList.toggle('border_press_contextmenu');
-        }
         elem.preventDefault();
         elem.stopPropagation();
-        // let clg = item.forEach();
-        // console.log(this.querySelector('.triple'));
 
-        let tripleAll = item.querySelectorAll('.triple');
-        let plusAll = item.querySelectorAll('.plus');
-        tripleAll[tripleAll.length - 1].classList.toggle('triple_show');
-        plusAll[plusAll.length - 1].classList.toggle('plus_show');
+        console.log(item.dataset)
+        if (item.dataset.contextmenu == 'false') {
+            item.classList.toggle('border_press_contextmenu');
+            // создание всплывающих кнопок и их род элемента 
+            let circle_container_of_button = document.createElement('div');
+            circle_container_of_button.classList.add('circle_container_of_button');
+            // создание кнопки [-3-]
+            let button_of_triple = document.createElement('p');
+            button_of_triple.classList.add('triple');
+            button_of_triple.innerHTML = '[-3-]';
+            circle_container_of_button.append(button_of_triple);
+            // её активность
+            circle_container_of_button.querySelector('.triple').onclick = function (elem) {
+                console.log('triple')
+                elem.stopPropagation();
+                let clone_node = item.parentNode.children[2].children[1];
+                item.parentNode.children[2].children[1].remove();
+                item.append(clone_node);
+                console.log(item.parentNode.children[2].children[1])
+            }
+
+
+
+            // создание кнопки [+]
+            let button_of_plus = document.createElement('p');
+            button_of_plus.classList.add('plus');
+            button_of_plus.innerHTML = '[+]';
+            circle_container_of_button.append(button_of_plus);
+            // её активность
+            circle_container_of_button.querySelector('.plus').onclick = function (elem) {
+                console.log('plus')
+                elem.stopPropagation();
+            }
+
+
+            item.append(circle_container_of_button);
+            item.dataset.contextmenu = 'true';
+
+
+
+        } else {
+            item.classList.toggle('border_press_contextmenu');
+            item.lastChild.remove();
+            item.dataset.contextmenu = 'false';
+        }
+
+
+
+        // нахождение внутри элемента всех объектов с нужными классами
+        // let tripleAll = item.querySelectorAll('.triple');
+        // let plusAll = item.querySelectorAll('.plus');
+
+        // показ кнопок
+        // tripleAll[tripleAll.length - 1].classList.toggle('triple_show');
+        // plusAll[plusAll.length - 1].classList.toggle('plus_show');
+
         // прослушка кнопки [-3-]
-        item.childNodes[item.childNodes.length - 2].addEventListener('click', function (elem) {
-            elem.stopPropagation();
-            let clone = item.children[1].cloneNode(true);
-            item.childNodes[2].after(clone);
-            let new_arr_click_items = item.querySelectorAll('.' + item.children[1].classList[0]);
-            for (let jey of new_arr_click_items) {
-                jey.classList.add('height_del_3');
-            }
-            all_variable_search();
-            go_click_function();
-            item.classList.toggle('border_press_contextmenu');
-            tripleAll[tripleAll.length - 1].classList.toggle('triple_show');
-            plusAll[plusAll.length - 1].classList.toggle('plus_show');
-        });
+        // item.childNodes[item.childNodes.length - 2].addEventListener('click', function (elem) {
+        //     elem.stopPropagation(); // остановка всплывающего события
+        //     let new_arr_click_items = item.querySelectorAll('.' + item.children[1].classList[0]);
+        //     for (let jey of new_arr_click_items) {
+        //         jey.classList.add('height_del_3');
+        //     }
+
+        //     all_variable_search();
+        //     go_click_function();
+        //     item.classList.toggle('border_press_contextmenu'); // подсветка бордера
+        //     tripleAll[tripleAll.length - 1].classList.toggle('triple_show');// скрытие кнопки [-3-] после нажатия
+        //     plusAll[plusAll.length - 1].classList.toggle('plus_show');// скрытие кнопки [+] после нажатия
+        // });
+
+        // console.log(item.parentNode.parentNode);
         // прослушка кнопки [+]
-        item.childNodes[item.childNodes.length - 1].addEventListener('click', function (elem) {
-            elem.stopPropagation();
-            let new_circle_element = document.createElement('div');
-            let new_p_element_in_circle_element = document.createElement('p');
-            // console.log(Number(item.childNodes[1].dataset.note));
-            let numb_for_dts_new_p = Number(item.childNodes[1].dataset.note);
-            new_p_element_in_circle_element.dataset.note = numb_for_dts_new_p + (numb_for_dts_new_p / 2);
-            switch (new_p_element_in_circle_element.dataset.note) {
-                case '12':
-                    new_p_element_in_circle_element.innerHTML = 'i';
-                    new_circle_element.classList.add('eighth_dotted_note');
-                    break;
-                case '6':
-                    new_p_element_in_circle_element.innerHTML = 'j';
-                    new_circle_element.classList.add('quarter_dotted_note');
-                    break;
-                case '3':
-                    new_p_element_in_circle_element.innerHTML = 'd';
-                    new_circle_element.classList.add('half_dotted_note');
-                    break;
-            }
-            // console.log(new_p_element_in_circle_element.dataset.note);
-            new_p_element_in_circle_element.dataset.status = '0';
-            new_p_element_in_circle_element.dataset.clickstatus = 'true';
-            new_p_element_in_circle_element.classList.add('numb');
-            new_p_element_in_circle_element.classList.add('center');
+        // item.childNodes[item.childNodes.length - 1].addEventListener('click', function (elem) {
+        //     elem.stopPropagation();
 
-            new_circle_element.classList.add('click_item');
-            new_circle_element.classList.add('click_item_absolute');
 
-            new_circle_element.append(new_p_element_in_circle_element);
-            item.childNodes[3].append(new_circle_element);
-            console.log(item.childNodes[3].style.width);
-            // let new_arr_click_items = item.querySelectorAll('.' + item.children[1].classList[0]);
-            // for (let jey of new_arr_click_items) {
-            //     jey.classList.add('height_del_3');
-            // }
-            all_variable_search();
-            go_click_function();
-            item.classList.toggle('border_press_contextmenu');
-            tripleAll[tripleAll.length - 1].classList.toggle('triple_show');
-            plusAll[plusAll.length - 1].classList.toggle('plus_show');
 
-            // click_item_absolute REMOVE---------------------------------
-            document.querySelector('.click_item_absolute').onclick = function () {
-                this.remove();
-            }
-        });
 
-    })
+        // let new_circle_element = document.createElement('div');
+
+        // создание начинки нового элемента
+        // let new_p_element_in_circle_element = document.createElement('p');
+        // let numb_for_dts_new_p = Number(item.childNodes[1].dataset.note);
+
+        // зависимость дата атрибута от родителя
+        // new_p_element_in_circle_element.dataset.note = numb_for_dts_new_p + (numb_for_dts_new_p / 2);
+        // switch (new_p_element_in_circle_element.dataset.note) {
+
+        // }
+
+        // присвоение ему дата атрибутов и классов
+        // new_p_element_in_circle_element.dataset.status = '0';
+        // new_p_element_in_circle_element.dataset.clickstatus = 'true';
+        // new_p_element_in_circle_element.classList.add('numb');
+        // new_p_element_in_circle_element.classList.add('center');
+
+        // new_circle_element.classList.add('click_item');
+        // new_circle_element.classList.add('click_item_absolute');
+
+        // new_circle_element.append(new_p_element_in_circle_element);
+        // item.childNodes[3].append(new_circle_element);
+        // console.log(item.childNodes[3].style.width);
+        // let new_arr_click_items = item.querySelectorAll('.' + item.children[1].classList[0]);
+        // for (let jey of new_arr_click_items) {
+        //     jey.classList.add('height_del_3');
+        // }
+        all_variable_search();
+        go_click_function();
+        // item.classList.toggle('border_press_contextmenu');
+        // tripleAll[tripleAll.length - 1].classList.toggle('triple_show');
+        // plusAll[plusAll.length - 1].classList.toggle('plus_show');
+
+        // click_item_absolute REMOVE---------------------------------
+        // document.querySelector('.click_item_absolute').onclick = function () {
+        //     this.remove();
+        // }
+    });
+
 }
-
 // запись во все дивы нового элемента-кнопки [-3-]
-for (let item of click_items) {
-    // console.log(item);
-    let newElement = document.createElement('p');
-    newElement.classList.add('triple');
-    newElement.innerHTML = '[-3-]';
-    item.append(newElement);
-}
+// for (let item of click_items) {
+//     // console.log(item);
+//     let newElement = document.createElement('p');
+//     newElement.classList.add('triple');
+//     newElement.innerHTML = '[-3-]';
+//     item.append(newElement);
+// }
 
 // запись во все дивы нового элемента-кнопки [+]
-for (let item of click_items) {
-    // console.log(item);
-    let newElement = document.createElement('p');
-    newElement.classList.add('plus');
-    newElement.innerHTML = '[+]';
-    item.append(newElement);
-}
+// for (let item of click_items) {
+//     // console.log(item);
+//     let newElement = document.createElement('p');
+//     newElement.classList.add('plus');
+//     newElement.innerHTML = '[+]';
+//     item.append(newElement);
+// }
 
 
 
