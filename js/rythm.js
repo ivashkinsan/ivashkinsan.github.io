@@ -623,7 +623,7 @@ for (let item of click_items) {
         elem.preventDefault();
         elem.stopPropagation();
 
-        console.log(item.dataset)
+        // console.log(item.dataset);
         if (item.dataset.contextmenu == 'false') {
             item.classList.toggle('border_press_contextmenu');
             // создание всплывающих кнопок и их род элемента 
@@ -638,10 +638,9 @@ for (let item of click_items) {
             circle_container_of_button.querySelector('.triple').onclick = function (elem) {
                 console.log('triple')
                 elem.stopPropagation();
-                let clone_node = item.parentNode.children[2].children[1];
-                item.parentNode.children[2].children[1].remove();
+                let clone_node = item.children[1].cloneNode(true);
+
                 item.append(clone_node);
-                console.log(item.parentNode.children[2].children[1])
             }
 
 
