@@ -8,11 +8,11 @@ document.onselectstart = function () {
 let click_items;
 let p_numb;
 
-let all_variable_search = function () {
+let search_all_click_items = function () {
     click_items = document.querySelectorAll('.click_item');
     p_numb = document.querySelectorAll('.numb');
 }
-all_variable_search();
+search_all_click_items();
 
 const taka = ['ТА', 'КА'];
 const takita = ['ТА', 'КИ', 'ТА'];
@@ -25,202 +25,170 @@ let monitoringBaseArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 let cheked = true;
 
 // логика последовательного клика по элементу
-let go_click_function = function () {
-    for (let item of click_items) {
-        // if (item.children[0].dataset.clickstatus == 'true') {
-        //     // console.log('clickstatus true');
-        // }
-
-        item.addEventListener('click', function add(elem) {
-
-            // console.log(item.classList.contains('border_active'));
-            // console.log(elem.target.querySelectorAll('div'));
-            console.log(elem.target.parentNode);
-            // elem.target.parentNode.classList.add('no-click');
-            // console.log(elem.target.nodeName.toUpperCase() == 'DIV');
-
-            // сбор дочерних элементов
-            let collection_child_div_elem = elem.target.querySelectorAll('div');
-            let collection_child_p_elem = elem.target.querySelectorAll('.numb');
+// let go_click_function = function () {
+//     for (let item of click_items) {
+// if (item.children[0].dataset.clickstatus == 'true') {
+//     // console.log('clickstatus true');
+// }
 
 
+// item.addEventListener('click', 
 
-            if (item.children[0].dataset.status == '0') {
-                // добавление рамки
-                item.classList.add('border_active');
+function clickability(elem) {
+    // console.log(elem);
+    event.stopPropagation();
+    // сбор дочерних элементов
+    let collection_child_div_elem = elem.querySelectorAll('div');
+    let collection_child_p_elem = elem.querySelectorAll('.numb');
 
-                // отключение в дочерних элементах кликабельности
-                if (item.children[1] && item.children[2]) {
-                    item.children[1].classList.add('no-click');
-                    item.children[2].classList.add('no-click');
-                }
+    if (elem.children[0].dataset.status == '0') {
+        // добавление рамки
+        // глушим всплывающее событие
+
+        elem.classList.add('border_active');
+
+        // отключение в дочерних элементах кликабельности
+        if (elem.children[1] && elem.children[2]) {
+            elem.children[1].classList.add('no-click');
+            elem.children[2].classList.add('no-click');
+        }
 
 
-                // сброс с внутренних элементов классов border-active и очистка textContent
-                for (let child_elem of collection_child_div_elem) {
-                    child_elem.classList.remove('border_active');
-                }
-                for (let child_elem of collection_child_p_elem) {
-                    if (child_elem.textContent != '') {
-                        child_elem.textContent = '';
-                        child_elem.dataset.status = '0'
-                    }
-                }
-
-                // отключение в родительском элементе кликабельности
-
-                switch (item.children[0].dataset.note) {
-                    case '1':
-                        item.children[0].innerHTML = 'w';
-                        item.children[0].dataset.status = 'note';
-                        break;
-                    case '2':
-                        item.children[0].innerHTML = 'h';
-                        item.children[0].dataset.status = 'note';
-                        break;
-                    case '4':
-                        item.children[0].innerHTML = 'q';
-                        item.children[0].dataset.status = 'note';
-                        break;
-                    case '8':
-                        item.children[0].innerHTML = 'e';
-                        item.children[0].dataset.status = 'note';
-                        break;
-                    case '16':
-                        item.children[0].innerHTML = 's';
-                        item.children[0].dataset.status = 'note';
-                        break;
-                    case '12':
-                        item.children[0].innerHTML = 'i';
-                        item.children[0].dataset.status = 'note';
-                        break;
-                    case '6':
-                        item.children[0].innerHTML = 'j';
-                        item.children[0].dataset.status = 'note';
-                        break;
-                    case '3':
-                        item.children[0].innerHTML = 'd';
-                        item.children[0].dataset.status = 'note';
-                        break;
-                }
-            } else if (item.children[0].dataset.status == 'note') {
-                item.classList.remove('border_active');
-                switch (item.children[0].dataset.note) {
-                    case '1':
-                        item.children[0].innerHTML = 'W';
-                        item.children[0].dataset.status = 'pause';
-                        break;
-                    case '2':
-                        item.children[0].innerHTML = 'H';
-                        item.children[0].dataset.status = 'pause';
-                        break;
-                    case '4':
-                        item.children[0].innerHTML = 'Q';
-                        item.children[0].dataset.status = 'pause';
-                        break;
-                    case '8':
-                        item.children[0].innerHTML = 'E';
-                        item.children[0].dataset.status = 'pause';
-                        break;
-                    case '16':
-                        item.children[0].innerHTML = 'S';
-                        item.children[0].dataset.status = 'pause';
-                        break;
-                    case '12':
-                        item.children[0].innerHTML = 'I';
-                        item.children[0].dataset.status = 'pause';
-                        break;
-                    case '6':
-                        item.children[0].innerHTML = 'J';
-                        item.children[0].dataset.status = 'pause';
-                        break;
-                    case '3':
-                        item.children[0].innerHTML = 'D';
-                        item.children[0].dataset.status = 'pause';
-                        break;
-
-                }
-            } else if (item.children[0].dataset.status == 'pause') {
-
-                // включение в дочерних элементах кликабельности
-                // if (item.children[1] && item.children[2]) {
-                //     item.children[1].classList.remove('no-click');
-                //     item.children[2].classList.remove('no-click');
-                // }
-
-                for (let child_elem of collection_child_div_elem) {
-                    child_elem.classList.remove('no-click');
-                }
-
-                switch (item.children[0].dataset.note) {
-                    case '1':
-                        item.children[0].innerHTML = '';
-                        item.children[0].dataset.status = '0';
-                        break;
-                    case '2':
-                        item.children[0].innerHTML = '';
-                        item.children[0].dataset.status = '0';
-                        break;
-                    case '4':
-                        item.children[0].innerHTML = '';
-                        item.children[0].dataset.status = '0';
-                        break;
-                    case '8':
-                        item.children[0].innerHTML = '';
-                        item.children[0].dataset.status = '0';
-                        break;
-                    case '16':
-                        item.children[0].innerHTML = '';
-                        item.children[0].dataset.status = '0';
-                        break;
-                    case '12':
-                        item.children[0].innerHTML = '';
-                        item.children[0].dataset.status = '0';
-                        break;
-                    case '6':
-                        item.children[0].innerHTML = '';
-                        item.children[0].dataset.status = '0';
-                        break;
-                    case '3':
-                        item.children[0].innerHTML = '';
-                        item.children[0].dataset.status = '0';
-                        break;
-                }
+        // сброс с внутренних элементов классов border-active и очистка textContent
+        for (let child_elem of collection_child_div_elem) {
+            child_elem.classList.remove('border_active');
+        }
+        for (let child_elem of collection_child_p_elem) {
+            if (child_elem.textContent != '') {
+                child_elem.textContent = '';
+                child_elem.dataset.status = '0'
             }
+        }
 
+        // отключение в родительском элементе кликабельности
 
+        switch (elem.children[0].dataset.note) {
+            case '1':
+                elem.children[0].innerHTML = 'w';
+                elem.children[0].dataset.status = 'note';
+                break;
+            case '2':
+                elem.children[0].innerHTML = 'h';
+                elem.children[0].dataset.status = 'note';
+                break;
+            case '4':
+                elem.children[0].innerHTML = 'q';
+                elem.children[0].dataset.status = 'note';
+                break;
+            case '8':
+                elem.children[0].innerHTML = 'e';
+                elem.children[0].dataset.status = 'note';
+                break;
+            case '16':
+                elem.children[0].innerHTML = 's';
+                elem.children[0].dataset.status = 'note';
+                break;
+            case '12':
+                elem.children[0].innerHTML = 'i';
+                elem.children[0].dataset.status = 'note';
+                break;
+            case '6':
+                elem.children[0].innerHTML = 'j';
+                elem.children[0].dataset.status = 'note';
+                break;
+            case '3':
+                elem.children[0].innerHTML = 'd';
+                elem.children[0].dataset.status = 'note';
+                break;
+        }
+    } else if (elem.children[0].dataset.status == 'note') {
+        elem.classList.remove('border_active');
+        switch (elem.children[0].dataset.note) {
+            case '1':
+                elem.children[0].innerHTML = 'W';
+                elem.children[0].dataset.status = 'pause';
+                break;
+            case '2':
+                elem.children[0].innerHTML = 'H';
+                elem.children[0].dataset.status = 'pause';
+                break;
+            case '4':
+                elem.children[0].innerHTML = 'Q';
+                elem.children[0].dataset.status = 'pause';
+                break;
+            case '8':
+                elem.children[0].innerHTML = 'E';
+                elem.children[0].dataset.status = 'pause';
+                break;
+            case '16':
+                elem.children[0].innerHTML = 'S';
+                elem.children[0].dataset.status = 'pause';
+                break;
+            case '12':
+                elem.children[0].innerHTML = 'I';
+                elem.children[0].dataset.status = 'pause';
+                break;
+            case '6':
+                elem.children[0].innerHTML = 'J';
+                elem.children[0].dataset.status = 'pause';
+                break;
+            case '3':
+                elem.children[0].innerHTML = 'D';
+                elem.children[0].dataset.status = 'pause';
+                break;
 
+        }
+    } else if (elem.children[0].dataset.status == 'pause') {
 
+        for (let child_elem of collection_child_div_elem) {
+            child_elem.classList.remove('no-click');
+        }
 
-            // switch (true) {
-            //     case item.classList.contains('whole_note'):
-            //         monitoringBaseArr.splice(item.dataset.position - 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-            //         break;
-            //     case item.classList.contains('half_note'):
-            //         monitoringBaseArr.splice(item.dataset.position - 1, 8, 1, 1, 1, 1, 1, 1, 1, 1);
-            //         break;
-            //     case item.classList.contains('quarter_note'):
-            //         monitoringBaseArr.splice(item.dataset.position - 1, 4, 1, 1, 1, 1);
-            //         break;
-            //     case item.classList.contains('eighth'):
-            //         monitoringBaseArr.splice(item.dataset.position - 1, 2, 1, 1);
-            //         break;
-            //     case item.classList.contains('sixteenth'):
-            //         monitoringBaseArr.splice(item.dataset.position - 1, 1, 1);
-            //         break;
-            // };
-
-
-            elem.stopPropagation(); // глушим всплывающее событие
-            // console.log('this children = ' + this.children);
-            // this.children[0].classList.toggle('hide');
-
-        })
-
+        switch (elem.children[0].dataset.note) {
+            case '1':
+                elem.children[0].innerHTML = '';
+                elem.children[0].dataset.status = '0';
+                break;
+            case '2':
+                elem.children[0].innerHTML = '';
+                elem.children[0].dataset.status = '0';
+                break;
+            case '4':
+                elem.children[0].innerHTML = '';
+                elem.children[0].dataset.status = '0';
+                break;
+            case '8':
+                elem.children[0].innerHTML = '';
+                elem.children[0].dataset.status = '0';
+                break;
+            case '16':
+                elem.children[0].innerHTML = '';
+                elem.children[0].dataset.status = '0';
+                break;
+            case '12':
+                elem.children[0].innerHTML = '';
+                elem.children[0].dataset.status = '0';
+                break;
+            case '6':
+                elem.children[0].innerHTML = '';
+                elem.children[0].dataset.status = '0';
+                break;
+            case '3':
+                elem.children[0].innerHTML = '';
+                elem.children[0].dataset.status = '0';
+                break;
+        }
     }
+
+
 }
+//---------
+
+//     }
+// }
 // конец функции --------------------------------------------------------------------
-go_click_function();
+
+// go_click_function();
 
 
 // очистка innerHTML параграфов <p>
@@ -623,36 +591,74 @@ for (let item of click_items) {
         elem.preventDefault();
         elem.stopPropagation();
 
+
+
         // console.log(item.dataset);
         if (item.dataset.contextmenu == 'false') {
-            item.classList.toggle('border_press_contextmenu');
+            // создание шторки
+            let shtorka = document.createElement('div');
+            shtorka.classList.add('shtorka');
+            document.querySelector('.container').append(shtorka);
             // создание всплывающих кнопок и их род элемента 
             let circle_container_of_button = document.createElement('div');
             circle_container_of_button.classList.add('circle_container_of_button');
-            // создание кнопки [-3-]
-            let button_of_triple = document.createElement('p');
-            button_of_triple.classList.add('triple');
-            button_of_triple.innerHTML = '[-3-]';
-            circle_container_of_button.append(button_of_triple);
+            circle_container_of_button.classList.add('border_press_contextmenu');
+
+            // создание кнопки [+1]-----------------------------------------------------------
+            let button_of_plus_one = document.createElement('p');
+            button_of_plus_one.classList.add('plus_one');
+            button_of_plus_one.innerHTML = '[ +1 ]';
+            circle_container_of_button.append(button_of_plus_one);
             // её активность
-            circle_container_of_button.querySelector('.triple').onclick = function (elem) {
-                console.log('triple')
+            circle_container_of_button.querySelector('.plus_one').onclick = function (elem) {
                 elem.stopPropagation();
                 let clone_node = item.children[1].cloneNode(true);
-
+                clone_node.classList.add('new_clone_element');
                 item.append(clone_node);
+
+                // адаптируем размер элементов
+                for (let i = 1; i < item.children.length; i++) {
+                    if (item.children[i].classList.contains('click_item')) {
+                        item.children[i].style.height = (100 / (item.children.length - 2)) + '%';
+                    }
+                }
+
+            }
+
+            // создание кнопки [ -1 ]---------------------------------------------------------------
+            let button_of_minus_one = document.createElement('p');
+            button_of_minus_one.classList.add('minus_one');
+            button_of_minus_one.innerHTML = '[ -1 ]';
+            circle_container_of_button.append(button_of_minus_one);
+            // её активность
+            circle_container_of_button.querySelector('.minus_one').onclick = function (elem) {
+                elem.stopPropagation();
+                for (let i = 1; i < item.children.length; i++) {
+                    if (item.children[i].classList.contains('new_clone_element')) {
+                        item.querySelector('.new_clone_element').remove();
+                    }
+                }
+
+                // адаптируем размер элементов
+                for (let i = 1; i < item.children.length; i++) {
+                    if (item.children[i].classList.contains('click_item')) {
+                        item.children[i].style.height = (100 / (item.children.length - 2)) + '%';
+                    }
+                }
+
             }
 
 
 
-            // создание кнопки [+]
+
+            // создание кнопки [++]
             let button_of_plus = document.createElement('p');
-            button_of_plus.classList.add('plus');
-            button_of_plus.innerHTML = '[+]';
+            button_of_plus.classList.add('plus_plus');
+            button_of_plus.innerHTML = '[ ++ ]';
             circle_container_of_button.append(button_of_plus);
             // её активность
-            circle_container_of_button.querySelector('.plus').onclick = function (elem) {
-                console.log('plus')
+            circle_container_of_button.querySelector('.plus_plus').onclick = function (elem) {
+                console.log('plus_plus')
                 elem.stopPropagation();
             }
 
@@ -660,22 +666,22 @@ for (let item of click_items) {
             item.append(circle_container_of_button);
             item.dataset.contextmenu = 'true';
 
-
+            console.log(item);
 
         } else {
-            item.classList.toggle('border_press_contextmenu');
-            item.lastChild.remove();
+            document.querySelector('.shtorka').remove();
+            document.querySelector('.circle_container_of_button').remove();
             item.dataset.contextmenu = 'false';
         }
 
 
 
         // нахождение внутри элемента всех объектов с нужными классами
-        // let tripleAll = item.querySelectorAll('.triple');
+        // let plus_oneAll = item.querySelectorAll('.plus_one');
         // let plusAll = item.querySelectorAll('.plus');
 
         // показ кнопок
-        // tripleAll[tripleAll.length - 1].classList.toggle('triple_show');
+        // plus_oneAll[plus_oneAll.length - 1].classList.toggle('plus_one_show');
         // plusAll[plusAll.length - 1].classList.toggle('plus_show');
 
         // прослушка кнопки [-3-]
@@ -686,10 +692,10 @@ for (let item of click_items) {
         //         jey.classList.add('height_del_3');
         //     }
 
-        //     all_variable_search();
+        //     search_all_click_items();
         //     go_click_function();
         //     item.classList.toggle('border_press_contextmenu'); // подсветка бордера
-        //     tripleAll[tripleAll.length - 1].classList.toggle('triple_show');// скрытие кнопки [-3-] после нажатия
+        //     plus_oneAll[plus_oneAll.length - 1].classList.toggle('plus_one_show');// скрытие кнопки [-3-] после нажатия
         //     plusAll[plusAll.length - 1].classList.toggle('plus_show');// скрытие кнопки [+] после нажатия
         // });
 
@@ -729,10 +735,9 @@ for (let item of click_items) {
         // for (let jey of new_arr_click_items) {
         //     jey.classList.add('height_del_3');
         // }
-        all_variable_search();
-        go_click_function();
+
         // item.classList.toggle('border_press_contextmenu');
-        // tripleAll[tripleAll.length - 1].classList.toggle('triple_show');
+        // plus_oneAll[plus_oneAll.length - 1].classList.toggle('plus_one_show');
         // plusAll[plusAll.length - 1].classList.toggle('plus_show');
 
         // click_item_absolute REMOVE---------------------------------
@@ -741,12 +746,14 @@ for (let item of click_items) {
         // }
     });
 
+    search_all_click_items();
+    // go_click_function();
 }
 // запись во все дивы нового элемента-кнопки [-3-]
 // for (let item of click_items) {
 //     // console.log(item);
 //     let newElement = document.createElement('p');
-//     newElement.classList.add('triple');
+//     newElement.classList.add('plus_one');
 //     newElement.innerHTML = '[-3-]';
 //     item.append(newElement);
 // }
@@ -763,8 +770,8 @@ for (let item of click_items) {
 
 
 
-// let triple_all_elements = document.querySelectorAll('.triple');
-// for (let item of triple_all_elements) {
+// let plus_one_all_elements = document.querySelectorAll('.plus_one');
+// for (let item of plus_one_all_elements) {
 //     item.addEventListener('click', function (elem) {
 //         console.log(item);
 //         elem.stopPropagation();
