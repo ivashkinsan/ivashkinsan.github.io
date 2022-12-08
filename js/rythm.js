@@ -515,7 +515,7 @@ document.querySelector('.button_clear_p').onclick = function () {
 document.querySelector('.button_setka').onclick = function () {
     for (let item of click_items) {
 
-        item.classList.toggle('button_setka_hide');// скрыть сетку
+        item.classList.toggle('button_setka_hide'); // скрыть сетку
     }
 
 }
@@ -523,7 +523,7 @@ document.querySelector('.button_setka').onclick = function () {
 // изменение центровки длительностей
 document.querySelector('.button_position').onclick = function () {
     for (let item of click_items) {
-        item.classList.toggle('click_item_position');// изменение центровки длительностей
+        item.classList.toggle('click_item_position'); // изменение центровки длительностей
     }
 }
 
@@ -531,7 +531,7 @@ document.querySelector('.button_position').onclick = function () {
 document.querySelector('.button_hide_circkle').onclick = function () {
     for (let item of click_items) {
 
-        item.classList.toggle('button_hide_circkle');// скрыть круги
+        item.classList.toggle('button_hide_circkle'); // скрыть круги
     }
     // customFontSize(50);
 }
@@ -540,7 +540,7 @@ document.querySelector('.button_hide_circkle').onclick = function () {
 document.querySelector('.button_size_even').onclick = function () {
     for (let item of click_items) {
 
-        item.classList.toggle('font_size_even');// увеличить шрифт
+        item.classList.toggle('font_size_even'); // увеличить шрифт
     }
 
 }
@@ -548,7 +548,7 @@ document.querySelector('.button_size_even').onclick = function () {
 // кнопка выравнивания <p></p> в линию --------------------------------------
 document.querySelector('.button_p_allgn_line').onclick = function () {
     for (let item of p_numb) {
-        item.classList.toggle('button_p_allgn_line');// выровнять шрифт в линию
+        item.classList.toggle('button_p_allgn_line'); // выровнять шрифт в линию
     }
 }
 // кнопка ширины бордера--------------------------------------
@@ -626,7 +626,6 @@ for (let item of click_items) {
                         item.children[i].style.height = (100 / (item.children.length - 2)) + '%';
                     }
                 }
-
             }
 
             // создание кнопки [ -1 ]---------------------------------------------------------------
@@ -642,14 +641,13 @@ for (let item of click_items) {
                         item.querySelector('.new_clone_element').remove();
                     }
                 }
-
                 // адаптируем размер элементов
                 for (let i = 1; i < item.children.length; i++) {
                     if (item.children[i].classList.contains('click_item')) {
                         item.children[i].style.height = (100 / (item.children.length - 2)) + '%';
+                        item.children[i].style.width = (100 / (item.children.length - 2)) + '%';
                     }
                 }
-
             }
 
 
@@ -664,7 +662,66 @@ for (let item of click_items) {
             circle_container_of_button.querySelector('.plus_plus').onclick = function (elem) {
                 console.log('plus_plus')
                 elem.stopPropagation();
+                console.log(item.parentNode);
+
             }
+
+
+            // создание кнопки [del]
+            let button_of_del = document.createElement('p');
+            button_of_del.classList.add('del');
+            button_of_del.innerHTML = '[ Х ]';
+            circle_container_of_button.append(button_of_del);
+            // её активность
+            circle_container_of_button.querySelector('.del').onclick = function (elem) {
+                console.log('del')
+                elem.stopPropagation();
+                // console.log(item.parentNode);
+                let clone = item.cloneNode(true);
+                let parent = item.parentNode;
+                // console.log('clone = ', clone);
+                // console.log('parent = ', parent);
+                // console.log('clone.children = ', clone.children);
+                // console.log('clone.childNode = ', clone.childNode);
+                // console.log('clone.children[1] = ', clone.children[1]);
+                // console.log('clone.children[2] =', clone.children[2]);
+                // console.log('clone.children.length)', clone.children.length);
+                // document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2]);
+
+
+
+                switch (clone.children.length) {
+                    case 3:
+                        item.replaceWith(clone.children[1], clone.children[2]);
+                        del_context_menu(item);
+                        break;
+                    case 4:
+                        item.replaceWith(clone.children[1], clone.children[2], clone.children[3]);
+                        del_context_menu(item);
+                        break;
+                    case 5:
+                        item.replaceWith(clone.children[1], clone.children[2], clone.children[3], clone.children[4]);
+                        del_context_menu(item);
+                        break;
+                    case 6:
+                        item.replaceWith(clone.children[1], clone.children[2], clone.children[3], clone.children[4], clone.children[5]);
+                        del_context_menu(item);
+                        break;
+                }
+
+                // адаптируем размер элементов
+                for (let i = 1; i < parent.children.length; i++) {
+                    console.log('parent.children.length', parent.children.length);
+                    if (parent.children[i].classList.contains('click_item')) {
+                        console.log(parent.children[i].style.height);
+                        parent.children[i].style.height = (100 / (parent.children.length - 1)) + '%';
+                        // item.children[i].style.width = (100 / (item.children.length - 3)) + '%';
+                    }
+                }
+            }
+
+
+
 
 
             item.append(circle_container_of_button);
@@ -673,85 +730,21 @@ for (let item of click_items) {
             console.log(item);
 
         } else {
-            document.querySelector('.shtorka').remove();
-            document.querySelector('.circle_container_of_button').remove();
-            item.dataset.contextmenu = 'false';
+            // document.querySelector('.shtorka').remove();
+            // document.querySelector('.circle_container_of_button').remove();
+            // item.dataset.contextmenu = 'false';
+            del_context_menu(item);
         }
-
-
-
-        // нахождение внутри элемента всех объектов с нужными классами
-        // let plus_oneAll = item.querySelectorAll('.plus_one');
-        // let plusAll = item.querySelectorAll('.plus');
-
-        // показ кнопок
-        // plus_oneAll[plus_oneAll.length - 1].classList.toggle('plus_one_show');
-        // plusAll[plusAll.length - 1].classList.toggle('plus_show');
-
-        // прослушка кнопки [-3-]
-        // item.childNodes[item.childNodes.length - 2].addEventListener('click', function (elem) {
-        //     elem.stopPropagation(); // остановка всплывающего события
-        //     let new_arr_click_items = item.querySelectorAll('.' + item.children[1].classList[0]);
-        //     for (let jey of new_arr_click_items) {
-        //         jey.classList.add('height_del_3');
-        //     }
-
-        //     search_all_click_items();
-        //     go_click_function();
-        //     item.classList.toggle('border_press_contextmenu'); // подсветка бордера
-        //     plus_oneAll[plus_oneAll.length - 1].classList.toggle('plus_one_show');// скрытие кнопки [-3-] после нажатия
-        //     plusAll[plusAll.length - 1].classList.toggle('plus_show');// скрытие кнопки [+] после нажатия
-        // });
-
-        // console.log(item.parentNode.parentNode);
-        // прослушка кнопки [+]
-        // item.childNodes[item.childNodes.length - 1].addEventListener('click', function (elem) {
-        //     elem.stopPropagation();
-
-
-
-
-        // let new_circle_element = document.createElement('div');
-
-        // создание начинки нового элемента
-        // let new_p_element_in_circle_element = document.createElement('p');
-        // let numb_for_dts_new_p = Number(item.childNodes[1].dataset.note);
-
-        // зависимость дата атрибута от родителя
-        // new_p_element_in_circle_element.dataset.note = numb_for_dts_new_p + (numb_for_dts_new_p / 2);
-        // switch (new_p_element_in_circle_element.dataset.note) {
-
-        // }
-
-        // присвоение ему дата атрибутов и классов
-        // new_p_element_in_circle_element.dataset.status = '0';
-        // new_p_element_in_circle_element.dataset.clickstatus = 'true';
-        // new_p_element_in_circle_element.classList.add('numb');
-        // new_p_element_in_circle_element.classList.add('center');
-
-        // new_circle_element.classList.add('click_item');
-        // new_circle_element.classList.add('click_item_absolute');
-
-        // new_circle_element.append(new_p_element_in_circle_element);
-        // item.childNodes[3].append(new_circle_element);
-        // console.log(item.childNodes[3].style.width);
-        // let new_arr_click_items = item.querySelectorAll('.' + item.children[1].classList[0]);
-        // for (let jey of new_arr_click_items) {
-        //     jey.classList.add('height_del_3');
-        // }
-
-        // item.classList.toggle('border_press_contextmenu');
-        // plus_oneAll[plus_oneAll.length - 1].classList.toggle('plus_one_show');
-        // plusAll[plusAll.length - 1].classList.toggle('plus_show');
-
-        // click_item_absolute REMOVE---------------------------------
-        // document.querySelector('.click_item_absolute').onclick = function () {
-        //     this.remove();
-        // }
     });
 
     search_all_click_items();
     // go_click_function();
+}
+
+function del_context_menu(elem) {
+    document.querySelector('.shtorka').remove();
+    document.querySelector('.circle_container_of_button').remove();
+    elem.dataset.contextmenu = 'false';
 }
 // запись во все дивы нового элемента-кнопки [-3-]
 // for (let item of click_items) {
@@ -783,3 +776,31 @@ for (let item of click_items) {
 // }
 
 // ------------------------------------------------------------------------------------------------
+
+document.querySelector('body').onclick = function () {
+    let clone = document.querySelector('.border_active').cloneNode(true);
+    let parent = document.querySelector('.border_active').parentNode;
+    console.log(clone);
+    console.log(parent);
+    console.log(clone.children[1]);
+    console.log(clone.children[2]);
+    console.log(clone.children.length);
+    // document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2]);
+
+    switch (clone.children.length) {
+        case 3:
+            document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2]);
+            break;
+        case 4:
+            document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2], clone.children[3]);
+            break;
+        case 5:
+            document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2], clone.children[3], clone.children[4]);
+            break;
+        case 6:
+            document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2], clone.children[3], clone.children[4], clone.children[5]);
+            break;
+    }
+
+    // document.querySelector('.border_active').remove();
+}
