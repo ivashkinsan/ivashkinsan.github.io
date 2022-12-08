@@ -219,14 +219,7 @@ function clear_p() {
     }
 }
 
-// кнопка сброс
-document.querySelector('.button_clear_p').onclick = function () {
-    clear_p();
-    // addFontSize();
-    for (let item of click_items) {
-        item.classList.remove('border_active');
-    }
-}
+
 
 
 let font_size = 6;
@@ -285,12 +278,7 @@ document.querySelector('.button_square').onclick = function () {
     }
 }
 
-// изменение центровки длительностей
-document.querySelector('.button_position').onclick = function () {
-    for (let item of click_items) {
-        item.classList.toggle('click_item_position');
-    }
-}
+
 
 // двойного клика на кнопке
 // function speedCalculationProporzion(e) {
@@ -514,40 +502,56 @@ document.querySelector('.select_variation').addEventListener('change', function 
     }
 })
 
-// кнопка скрытия фона
-document.querySelector('.button_hide_fon').onclick = function () {
+// кнопка сброс
+document.querySelector('.button_clear_p').onclick = function () {
+    clear_p();
+    // addFontSize();
+    for (let item of click_items) {
+        item.classList.remove('border_active');
+    }
+}
+
+// кнопка скрытия сетки--------------------------------------
+document.querySelector('.button_setka').onclick = function () {
     for (let item of click_items) {
 
-        item.classList.toggle('button_fon_hide');
+        item.classList.toggle('button_setka_hide');// скрыть сетку
     }
 
 }
 
-// кнопка скрытия всех граней
-document.querySelector('.button_hide_grani').onclick = function () {
+// изменение центровки длительностей
+document.querySelector('.button_position').onclick = function () {
+    for (let item of click_items) {
+        item.classList.toggle('click_item_position');// изменение центровки длительностей
+    }
+}
+
+// кнопка скрытия всех граней--------------------------------------
+document.querySelector('.button_hide_circkle').onclick = function () {
     for (let item of click_items) {
 
-        item.classList.toggle('button_grani_hide');
+        item.classList.toggle('button_hide_circkle');// скрыть круги
     }
     // customFontSize(50);
 }
 
-// кнопка скрытия всех граней
+// кнопка размера шрифта--------------------------------------
 document.querySelector('.button_size_even').onclick = function () {
     for (let item of click_items) {
 
-        item.classList.toggle('font_size_even');
+        item.classList.toggle('font_size_even');// увеличить шрифт
     }
-    // customFontSize(50);
+
 }
 
-// кнопка выравнивания <p></p>
-document.querySelector('.button_p_center').onclick = function () {
+// кнопка выравнивания <p></p> в линию --------------------------------------
+document.querySelector('.button_p_allgn_line').onclick = function () {
     for (let item of p_numb) {
-        item.classList.toggle('p_allign_center');
+        item.classList.toggle('button_p_allgn_line');// выровнять шрифт в линию
     }
 }
-// кнопка ширины бордера
+// кнопка ширины бордера--------------------------------------
 let container = document.querySelector('.container');
 document.querySelector('.input_range_width').addEventListener('change', function () {
     console.log(this.value);
@@ -556,7 +560,7 @@ document.querySelector('.input_range_width').addEventListener('change', function
 
 });
 
-// активность инпут рэйндж
+// активность инпут рэйндж--------------------------------------
 document.querySelector('.reset_width').onclick = function () {
     container.style.width = 800 + 'px';
 }

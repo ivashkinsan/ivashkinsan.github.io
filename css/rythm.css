@@ -151,13 +151,16 @@ body {
     position: absolute;
     bottom: -20px;
 }
+
 .plus_one:hover {
     transform: scale(1.2);
 }
-.minus_one{
+
+.minus_one {
     position: absolute;
     top: -20px;
 }
+
 .minus_one:hover {
     transform: scale(1.2);
 }
@@ -167,11 +170,12 @@ body {
     right: -43px;
     z-index: 999;
 }
+
 .plus_plus:hover {
     transform: scale(1.2);
 }
 
-.shtorka{
+.shtorka {
     position: absolute;
     top: 0;
     right: 0;
@@ -278,11 +282,11 @@ line-height: 120%;
     /* background-color: #516AA4; */
 }
 
-.button_fon_hide {
+.button_setka_hide {
     outline: 1px solid rgba(255, 255, 255, 0);
 }
 
-.button_grani_hide {
+.button_hide_circkle {
     box-shadow: inset 0 0 0 0px;
 }
 
@@ -290,7 +294,7 @@ line-height: 120%;
     font-size: calc(var(--text-size) * 3);
 }
 
-.p_allign_center {
+.button_p_allgn_line {
     top: auto;
     right: auto;
     bottom: auto;
