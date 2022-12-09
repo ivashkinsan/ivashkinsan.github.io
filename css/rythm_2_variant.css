@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+:root {
+    --text-size: 3vh;
+    --container-size: 800px;
+    --dashed-color: rgba(255, 255, 255, 0.5) dashed 3px;
+}
+
+@font-face {
+    font-family: OPUSTEXT;
+    /* Гарнитура шрифта */
+    src: url(/fonts/Musisync-KVLZ.ttf);
+    /* Путь к файлу со шрифтом */
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: OPUSTEXT;
+    color: #F4D6B1;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
+    border: 20px solid #DDB078;
+    border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: var(--container-size);
+    height: var(--container-size);
+    background-color: #516AA4;
+}
+
+.whole_note,
+.half_note,
+.quarter_note,
+.eighth,
+.sixteenth {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.sixteenth {
+    width: 40px;
+    height: 40px;
+    background-color: aqua;
+    border-radius: 20px;
+}
+
+.button_container {
+    display: flex;
+
+}
