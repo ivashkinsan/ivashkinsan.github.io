@@ -277,6 +277,19 @@ document.querySelector('.button_square').onclick = function () {
         item.classList.toggle('click_item_square');
     }
 }
+// добавление тени
+document.querySelector('.button_box_shadows').onclick = function () {
+    for (let item of click_items) {
+        item.classList.toggle('box_shadows');
+    }
+}
+
+// добавление space
+document.querySelector('.button_space').onclick = function () {
+    for (let item of click_items) {
+        item.classList.toggle('space');
+    }
+}
 
 
 
@@ -514,8 +527,11 @@ document.querySelector('.button_clear_p').onclick = function () {
 // кнопка скрытия сетки--------------------------------------
 document.querySelector('.button_setka').onclick = function () {
     for (let item of click_items) {
-
-        item.classList.toggle('button_setka_hide'); // скрыть сетку
+        if (!item.classList.contains('button_setka_hide')) {
+            item.classList.add('button_setka_hide'); // скрыть сетку
+        } else {
+            item.classList.remove('button_setka_hide'); // скрыть сетку
+        }
     }
 
 }
@@ -777,30 +793,70 @@ function del_context_menu(elem) {
 
 // ------------------------------------------------------------------------------------------------
 
-document.querySelector('body').onclick = function () {
-    let clone = document.querySelector('.border_active').cloneNode(true);
-    let parent = document.querySelector('.border_active').parentNode;
-    console.log(clone);
-    console.log(parent);
-    console.log(clone.children[1]);
-    console.log(clone.children[2]);
-    console.log(clone.children.length);
-    // document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2]);
 
-    switch (clone.children.length) {
-        case 3:
-            document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2]);
-            break;
-        case 4:
-            document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2], clone.children[3]);
-            break;
-        case 5:
-            document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2], clone.children[3], clone.children[4]);
-            break;
-        case 6:
-            document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2], clone.children[3], clone.children[4], clone.children[5]);
-            break;
+//-----------------experiment
+// document.querySelector('body').onclick = function () {
+//     let clone = document.querySelector('.border_active').cloneNode(true);
+//     let parent = document.querySelector('.border_active').parentNode;
+//     // console.log(clone);
+//     // console.log(parent);
+//     // console.log(clone.children[1]);
+//     // console.log(clone.children[2]);
+//     // console.log(clone.children.length);
+//     // document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2]);
+
+//     switch (clone.children.length) {
+//         case 3:
+//             document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2]);
+//             break;
+//         case 4:
+//             document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2], clone.children[3]);
+//             break;
+//         case 5:
+//             document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2], clone.children[3], clone.children[4]);
+//             break;
+//         case 6:
+//             document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2], clone.children[3], clone.children[4], clone.children[5]);
+//             break;
+//     }
+
+//     // document.querySelector('.border_active').remove();
+// }
+
+//функция подсветки скоростей
+
+let speed_buttons = document.querySelectorAll('.speed');
+console.log(speed_buttons);
+
+function add_speed_board_activ(duration) {
+    for (let click_item of click_items) {
+        switch (click_item.classList[0]) {
+            case duration:
+                click_item.classList.toggle('add_speed_board_activ');
+        }
     }
+}
 
-    // document.querySelector('.border_active').remove();
+
+
+for (let speed_button of speed_buttons) {
+    speed_button.addEventListener('click', function addClick(event) {
+        switch (speed_button.classList[1]) {
+            case 'button_speed_16':
+                add_speed_board_activ('sixteenth');
+                break;
+            case 'button_speed_8':
+                add_speed_board_activ('eighth');
+                break;
+            case 'button_speed_4':
+                add_speed_board_activ('quarter_note');
+                break;
+            case 'button_speed_2':
+                add_speed_board_activ('half_note');
+                break;
+            case 'button_speed_1':
+                add_speed_board_activ('whole_note');
+                break;
+        }
+    })
 }
