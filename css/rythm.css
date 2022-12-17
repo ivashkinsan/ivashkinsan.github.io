@@ -262,7 +262,7 @@ line-height: 120%;
     position: fixed;
     margin: 0 25px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     bottom: 25px;
     gap: 6px;
     font-family: Arial, Helvetica, sans-serif;
