@@ -36,6 +36,10 @@ body{
     border-radius: 10px;
     cursor: pointer;
 }
+/* .container_dom > svg:hover{
+    transform: scale(1.2);
+    
+} */
 
 .scale_transform{
     transform: scale(2);

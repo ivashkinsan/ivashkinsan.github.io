@@ -7,7 +7,7 @@
 
 :root {
     --text-size: 3vh;
-    --circle-size: 800px;
+    --circle-size: 88vh;
     --dashed-color: rgba(255, 255, 255, 0.5) dashed 3px;
 }
 
@@ -25,11 +25,13 @@ body {
     flex-direction: column;
     font-family: OPUSTEXT;
     color: #F4D6B1;
-    justify-content: center;
+    padding-top: 15px;
+    justify-content: start;
     align-items: center;
     background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
     border: 20px solid #DDB078;
     border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
+    /* overflow: scroll; */
 }
 
 
@@ -250,11 +252,14 @@ line-height: 120%;
 
 .button_container {
     position: absolute;
+    margin: 0 25px;
     display: flex;
-    bottom: 3%;
+    justify-content: center;
+    bottom: 25px;
     gap: 6px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-size: calc(var(--text-size) / 2);
+    flex-wrap: wrap;
 }
 
 .button_container_elem {
