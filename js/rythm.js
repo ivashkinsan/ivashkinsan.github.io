@@ -5,6 +5,26 @@ document.onselectstart = function () {
     return false;
 }
 
+// отключить стандартную реакцию компонента WebView на события
+// document.addEventListener('touchstart', function (event) {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     /* Здесь ваш код обработки события*/
+// }, false);
+
+// document.addEventListener('touchmove', function (event) {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     /* Здесь ваш код обработки события*/
+// }, false);
+
+// document.addEventListener('touchend', function (event) {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     /* Здесь ваш код обработки события*/
+// }, false);
+
+
 let click_items;
 let p_numb;
 

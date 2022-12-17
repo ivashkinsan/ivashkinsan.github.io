@@ -93,11 +93,7 @@ body {
     width: 50%;
     height: 50%;
     border-radius: 50%;
-    -moz-border-radius: 50%;
-	-webkit-border-radius: 50%;
-    -moz-outline-radius: 50%;
-    -webkit-outline-radius: 50%;
-    outline: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.2) inset;
     cursor: pointer;
     transition: all 400ms;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -307,11 +303,7 @@ line-height: 120%;
 }
 
 .click_item_square {
-    border-radius: 0%;
-    -moz-border-radius: 0%;
-	-webkit-border-radius: 0%;
-    -moz-outline-radius: 0%;
-    -webkit-outline-radius: 0%;
+    border-radius: 0%;    
 }
 
 .box_shadows{
@@ -342,7 +334,7 @@ line-height: 120%;
 }
 
 .button_setka_hide {
-    outline: 1px solid rgba(255, 255, 255, 0);
+    box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0) inset;
 }
 
 .button_hide_circkle {
