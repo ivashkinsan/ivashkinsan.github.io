@@ -7,7 +7,7 @@
 
 :root {
     --text-size: 3vh;
-    --circle-size: 88vh;
+    --circle-size: 88%;
     --dashed-color: rgba(255, 255, 255, 0.5) dashed 3px;
 }
 
@@ -65,11 +65,19 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: var(--circle-size);
-    height: var(--circle-size);
-    max-height: 97vh;
-    max-width: 97vw;
+    width: 88vw;
+    height: 88vw;
+    /* padding-top: 100%; */
+    /* max-height: var(--circle-size);
+    max-width: var(--circle-size); */
+  /* padding-top: 100%; */
 }
+@media screen and (min-aspect-ratio: 4/3) {
+    .container {
+      width: 90vh;
+      height: 90vh;
+    }
+  }
 
 .whole_note,
 .half_note,
@@ -86,7 +94,7 @@ body {
     outline: 1px solid rgba(255, 255, 255, 0.2);
     cursor: pointer;
     transition: all 400ms;
-    
+    webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .whole_note {
