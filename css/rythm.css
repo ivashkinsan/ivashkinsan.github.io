@@ -68,6 +68,7 @@ body {
     width: var(--circle-size);
     height: var(--circle-size);
     max-height: 97vh;
+    max-width: 97vw;
 }
 
 .whole_note,
