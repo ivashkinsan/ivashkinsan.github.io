@@ -307,6 +307,8 @@ line-height: 120%;
 
 .click_item_square {
     border-radius: 0%;
+    -moz-border-radius: 0%;
+	-webkit-border-radius: 0%;
 }
 
 .box_shadows{
