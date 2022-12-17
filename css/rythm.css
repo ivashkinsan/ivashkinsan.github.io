@@ -2,7 +2,9 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 :root {
@@ -93,6 +95,8 @@ body {
     border-radius: 50%;
     -moz-border-radius: 50%;
 	-webkit-border-radius: 50%;
+    -moz-outline-radius: 50%;
+    -webkit-outline-radius: 50%;
     outline: 1px solid rgba(255, 255, 255, 0.2);
     cursor: pointer;
     transition: all 400ms;
@@ -232,9 +236,6 @@ body {
     top: 0;
     /* line-height: 2.5vh; */
     /* margin-left: 5px; */
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     pointer-events: none;
 }
 
@@ -262,7 +263,7 @@ line-height: 120%;
 }
 
 .button_container {
-    position: absolute;
+    position: fixed;
     margin: 0 25px;
     display: flex;
     justify-content: center;
@@ -309,6 +310,8 @@ line-height: 120%;
     border-radius: 0%;
     -moz-border-radius: 0%;
 	-webkit-border-radius: 0%;
+    -moz-outline-radius: 0%;
+    -webkit-outline-radius: 0%;
 }
 
 .box_shadows{
