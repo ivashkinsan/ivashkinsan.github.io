@@ -9,7 +9,8 @@
 
 :root {
     --text-size: 3vh;
-    --circle-size: 88%;
+    --circle-size: 88vw;
+    --circle-size-vh: 90vh;
     --dashed-color: rgba(255, 255, 255, 0.5) dashed 3px;
 }
 
@@ -67,8 +68,8 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 88vw;
-    height: 88vw;
+    width: var(--circle-size);
+    height: var(--circle-size);
     /* padding-top: 100%; */
     /* max-height: var(--circle-size);
     max-width: var(--circle-size); */
@@ -76,10 +77,14 @@ body {
 }
 @media screen and (min-aspect-ratio: 4/3) {
     .container {
-      width: 90vh;
-      height: 90vh;
+      width: var(--circle-size-vh);
+      height: var(--circle-size-vh);
     }
   }
+
+/* .container_adaptiv{
+    display: flex;
+} */
 
 .whole_note,
 .half_note,
@@ -261,18 +266,27 @@ line-height: 120%;
 .button_container {
     position: fixed;
     margin: 0 25px;
+    width: 85vw;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    /* display: grid; */
+    /* grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(4, 20px); */
+    /* grid-auto-flow: dense; */
+    /* grid-auto-rows: minmax(20px, auto); */
+    /* justify-content: space-between; */
     bottom: 25px;
     gap: 6px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: calc(var(--text-size) / 2);
-    flex-wrap: wrap;
+    font-size: 1vw;
+    /* flex-wrap: wrap; */
 }
 
 .button_container_elem {
     display: flex;
+    flex: 1;
     align-items: center;
+    justify-content: center;
     padding: 3px 10px 5px 10px;
     border: 1px #DDB078 solid;
     cursor: pointer;
@@ -284,7 +298,7 @@ line-height: 120%;
 }
 
 .button_container_elem:hover {
-    transform: scale(1.1);
+    /* transform: scale(1.1); */
     background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -369,6 +383,7 @@ line-height: 120%;
    /* box-shadow: inset rgba(255, 255, 255, 0.4) 3px 3px 3px, 
    inset rgba(255, 255, 255, 0.4) -3px -3px 3px; */
 
-   outline: 2px solid rgba(0, 255, 179,0.6);
+   /* outline: 2px solid rgba(0, 255, 179,0.6); */
+   border: 1px solid rgba(0, 255, 179, 1);
 }
 

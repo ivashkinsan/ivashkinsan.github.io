@@ -587,18 +587,24 @@ document.querySelector('.button_p_allgn_line').onclick = function () {
         item.classList.toggle('button_p_allgn_line'); // выровнять шрифт в линию
     }
 }
-// кнопка ширины бордера--------------------------------------
+// кнопка ширины бордера --------------------------------------
 let container = document.querySelector('.container');
+const container_before_width = container.style.width;
 document.querySelector('.input_range_width').addEventListener('change', function () {
     console.log(this.value);
+    console.log(container.style.width);
+
+    console.log(container_before_width);
+    // container_before_width = container.style.width;
+    container.classList.add('container_adaptiv');
     container.style.width = this.value + 'vw';
     // border.style.height = this.value + 'vw';
 
 });
 
-// активность инпут рэйндж--------------------------------------
+// сброс ширины контейнера --------------------------------------
 document.querySelector('.reset_width').onclick = function () {
-    container.style.width = 800 + 'px';
+    container.style.width = container_before_width;
 }
 
 // let number_i = 0;
