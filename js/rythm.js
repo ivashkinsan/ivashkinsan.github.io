@@ -121,6 +121,9 @@ function clickability(elem) {
                 elem.children[0].dataset.status = 'note';
                 break;
         }
+
+        elem.dataset.active = 'true';
+
     } else if (elem.children[0].dataset.status == 'note') {
         elem.classList.remove('border_active');
         switch (elem.children[0].dataset.note) {
@@ -158,6 +161,9 @@ function clickability(elem) {
                 break;
 
         }
+
+        elem.dataset.active = 'true';
+
     } else if (elem.children[0].dataset.status == 'pause') {
 
         for (let child_elem of collection_child_div_elem) {
@@ -198,6 +204,8 @@ function clickability(elem) {
                 elem.children[0].dataset.status = '0';
                 break;
         }
+
+        elem.dataset.active = 'false';
     }
 
 
@@ -550,14 +558,16 @@ document.querySelector('.button_setka').onclick = function () {
 
 // изменение центровки длительностей, как в такте
 document.querySelector('.button_position').onclick = function () {
+    search_all_click_items();
     for (let item of click_items) {
-        item.classList.toggle('click_item_position'); // изменение центровки длительностей
+        // item.classList.toggle('click_item_position'); // изменение центровки длительностей
 
         item.classList.toggle('button_hide_circkle'); // скрыть круги
         item.classList.toggle('font_size_even'); // увеличить шрифт
-        item.children[0].classList.toggle('button_p_allgn_line'); // выровнять шрифт в линию
-    }
+        item.classList.toggle('button_p_allgn_line'); // выровнять шрифт в линию
 
+    }
+    add_staff_line();
 }
 
 // кнопка скрытия всех граней--------------------------------------
@@ -579,8 +589,8 @@ document.querySelector('.button_size_even').onclick = function () {
 }
 
 // кнопка выравнивания <p></p> в линию --------------------------------------
-document.querySelector('.button_p_allgn_line').onclick = function () {
-    for (let item of p_numb) {
+document.querySelector('.button_line').onclick = function () {
+    for (let item of click_items) {
         item.classList.toggle('button_p_allgn_line'); // выровнять шрифт в линию
     }
 }
@@ -667,6 +677,7 @@ for (let item of click_items) {
                 let clone_node = item.children[1].cloneNode(true);
                 clone_node.classList.add('new_clone_element');
                 item.append(clone_node);
+                item.children[0].innerHTML = '--- 3 ---';
 
                 // адаптируем размер элементов
                 for (let i = 1; i < item.children.length; i++) {
@@ -891,4 +902,18 @@ for (let speed_button of speed_buttons) {
                 break;
         }
     })
+}
+
+
+let add_staff_line = function () {
+    let all_elements = document.querySelectorAll('.click_item');
+    let all_active_elements = [];
+    for (let item of all_elements) {
+        if (item.dataset.active == 'true') {
+            all_active_elements.push(item);
+        }
+    }
+    console.log(all_active_elements);
+    all_active_elements[0].children[0].classList.toggle('left_border');
+    all_active_elements[all_active_elements.length - 1].children[0].classList.toggle('right_border');
 }

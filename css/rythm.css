@@ -38,31 +38,6 @@ body {
 }
 
 
-/* .experiment{
-    display: flex;
-    flex-direction: row;
-   
-    width: 100vw;
-    height: 100vw;
-    justify-items: stretch;
-    justify-content: stretch;
-    align-items: stretch;
-    background-color: #182A48;
-    border-radius: 50%;
-    overflow: hidden;
-}
-
-.one{
-    background-color: #DDB078;
-    border-radius: 50%;
-    flex-shrink: 50%;
-}
-.two{
-    background-color: #8b78dd;
-    border-radius: 50%;
-    flex-shrink: 50%;
-} */
-
 .container {
     position: relative;
     display: flex;
@@ -70,11 +45,7 @@ body {
     align-items: center;
     width: var(--circle-size);
     height: var(--circle-size);
-    /* padding-top: 100%; */
-    /* max-height: var(--circle-size);
-    max-width: var(--circle-size); */
-  /* padding-top: 100%; */
-}
+  }
 @media screen and (min-aspect-ratio: 4/3) {
     .container {
       width: var(--circle-size-vh);
@@ -82,10 +53,8 @@ body {
     }
   }
 
-/* .container_adaptiv{
-    display: flex;
-} */
 
+/*--------------- стили для всех длительностей ----------------*/
 .whole_note,
 .half_note,
 .quarter_note,
@@ -95,108 +64,79 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: 50%;
     height: 50%;
     border-radius: 50%;
     box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.2) inset;
     cursor: pointer;
-    transition: all 400ms;
+    transition: all 700ms;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
-.whole_note {
-    font-size: calc(var(--text-size) * 3);
-    /* width: calc(var(--circle-size) / 1);
-    height: calc(var(--circle-size) / 1); */
-}
-
-.half_note {
-    font-size: calc(var(--text-size) * 2.5);
-    /* width: calc(var(--circle-size) / 2);
-    height: calc(var(--circle-size) / 2); */
-}
-
-.half_dotted_note {
-    font-size: calc(var(--text-size) * 2.8);
-    /* width: calc(var(--circle-size) / 3);
-    height: calc(var(--circle-size) / 3); */
-}
-
-.quarter_note {
-    font-size: calc(var(--text-size) * 1.7);
-    /* width: calc(var(--circle-size) / 4);
-    height: calc(var(--circle-size) / 4); */
-}
-
-.quarter_dotted_note {
-    font-size: calc(var(--text-size) * 2);
-    /* width: calc(var(--circle-size) / 6);
-    height: calc(var(--circle-size) / 6); */
-}
-
-.eighth {
-    font-size: calc(var(--text-size) * 1.3);
-    /* width: calc(var(--circle-size) / 8);
-    height: calc(var(--circle-size) / 8); */
-}
-
-.eighth_dotted_note {
-    font-size: calc(var(--text-size) * 1.5);
-    /* width: calc(var(--circle-size) / 12);
-    height: calc(var(--circle-size) / 12); */
-}
-
-.sixteenth {
-    font-size: calc(var(--text-size) * 1);
-    /* width: calc(var(--circle-size) / 16);
-    height: calc(var(--circle-size) / 16); */
-}
-
-/* .eighth>p {
-    top: -7%;
-} */
-
 .whole_note {
     width: 100%;
     height: 100%;
 }
+.whole_note {
+    font-size: calc(var(--text-size) * 3);
+}
+.half_note {
+    font-size: calc(var(--text-size) * 2.5);
+}
+
+.half_dotted_note {
+    font-size: calc(var(--text-size) * 2.8);
+}
+.quarter_note {
+    font-size: calc(var(--text-size) * 1.7);
+}
+
+.quarter_dotted_note {
+    font-size: calc(var(--text-size) * 2);
+}
+.eighth {
+    font-size: calc(var(--text-size) * 1.3);
+}
+.eighth_dotted_note {
+    font-size: calc(var(--text-size) * 1.5);
+}
+.sixteenth {
+    font-size: calc(var(--text-size) * 1);
+}
 
 
 
+/*--------------- стили левой клавиши мыши круговая подсветка ----------------*/
 .border_active {
     box-shadow: inset 0 0 0 3px;
     /* background-color: rgba(124, 124, 124, 0.2); */
 }
 
+
+
+
+/*===================================== стили правой клавиши мыши ============================*/
 .border_press_contextmenu {
-    /* stroke: #F4D6B1; */
     border: var(--dashed-color);
-    /* background-color: rgba(124, 124, 124, 0.5); */
     z-index: 999;
 }
-
 .plus_one,
 .minus_one,
 .plus_plus {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
 }
-
 .plus_one {
     position: absolute;
     bottom: -20px;
 }
-
 .plus_one:hover {
     transform: scale(1.2);
 }
-
 .minus_one {
     position: absolute;
     top: -20px;
 }
-
 .minus_one:hover {
     transform: scale(1.2);
 }
@@ -205,7 +145,6 @@ body {
     right: -43px;
     z-index: 999;
 }
-
 .plus_plus:hover {
     transform: scale(1.2);
 }
@@ -214,11 +153,9 @@ body {
     left: -43px;
     z-index: 999;
 }
-
 .del:hover {
     transform: scale(1.2);
 }
-
 .shtorka {
     position: absolute;
     top: 0;
@@ -229,7 +166,7 @@ body {
     background-color: rgba(124, 124, 124, 0.1);
     z-index: 998;
 }
-
+/*========================================================================================*/
 
 
 .numb {
@@ -237,50 +174,23 @@ body {
     position: absolute;
     top: 0;
     /* line-height: 2.5vh; */
-    /* margin-left: 5px; */
+    margin-left: 5px;
     pointer-events: none;
 }
 
-/* .center{
-line-height: 120%;
-} */
-/* 
-.fontMus {
-    font-size: 50px;
-} */
 
-.monitoring {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 60px;
-    width: 60%;
-    height: 60px;
-    /* text-align: center; */
-    /* color: orangered; */
-    /* font-size: 60px; */
-    /* background: rgba(255,255,255, 0.7); */
-    border-radius: 30px;
-}
 
+/*=========================== стили кнопок и контейнера ========================*/
 .button_container {
     position: fixed;
     margin: 0 25px;
     width: 85vw;
     display: flex;
     flex-wrap: wrap;
-    /* display: grid; */
-    /* grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(4, 20px); */
-    /* grid-auto-flow: dense; */
-    /* grid-auto-rows: minmax(20px, auto); */
-    /* justify-content: space-between; */
     bottom: 25px;
     gap: 6px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1vw;
-    /* flex-wrap: wrap; */
 }
 
 .button_container_elem {
@@ -299,7 +209,6 @@ line-height: 120%;
 }
 
 .button_container_elem:hover {
-    /* transform: scale(1.1); */
     background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -314,60 +223,66 @@ line-height: 120%;
     left: 0;
     border-radius: 50%;
     font-size: 20px;
-    /* background-color: aqua; */
 }
+/*========================================================================================*/
 
+
+
+
+/*=========================== стили активностей ===============================*/
+/*--------------- квадрат ----------------*/
 .click_item_square {
     border-radius: 0%;    
 }
-
+/*--------------- тень ----------------*/
 .box_shadows{
     box-shadow: inset black 6px 5px 3px;
 }
-
+/*--------------- спэйс ----------------*/
 .space{
-        /* background: rgb(0, 80, 184); */
         box-shadow: inset 0px -10px 30px rgb(0, 185, 179),
   0px 20px 40px -40px rgb(2, 84, 173);
 }
-
+/*--------------- смещение нот в позицию старт ----------------*/
 .click_item_position {
     justify-content: start;
 }
-
-.font__standart {
-    font-family: Arial, Helvetica, sans-serif;
+/*--------------- скрытие сетки бэкграунда ----------------*/
+.button_setka_hide {
+    box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0) inset;
 }
+/*--------------- скрытие круглой обводки элемента (выравнивание с бэкграундом) ----------------*/
+.button_hide_circkle {
+    box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.2) inset;
+}
+/*--------------- увеличение размера шрифта ----------------*/
+.font_size_even {
+    font-size: calc(var(--text-size) * 3);
+}
+/*--------------- выравнивание в линию ----------------*/
+.button_p_allgn_line {
+    height: 0;
+}
+/*====================================================================*/
 
+
+
+/* p{
+    background-color: #DDB078;
+} */
+
+/*--------------- подключение прозрачности ----------------*/
 .hide {
     opacity: 0;
 }
-
+/*--------------- отключение курсора поинтера ----------------*/
 .no-click {
     pointer-events: none;
     /* background-color: #516AA4; */
 }
-
-.button_setka_hide {
-    box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0) inset;
-}
-
-.button_hide_circkle {
-    box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.2) inset;
-}
-
-.font_size_even {
-    font-size: calc(var(--text-size) * 3);
-}
-
-.button_p_allgn_line {
-    top: 0;
-    bottom: 0;
-}
-
-.p_center {
-    position: absolute;
-    top: 0;
+/*--------------- применение стандартного шрифта ----------------*/
+.font__standart {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .display_none {
@@ -379,10 +294,16 @@ line-height: 120%;
 }
 
 .add_speed_board_activ{
-   /* box-shadow: inset rgba(255, 255, 255, 0.4) 3px 3px 3px, 
-   inset rgba(255, 255, 255, 0.4) -3px -3px 3px; */
-
-   /* outline: 2px solid rgba(0, 255, 179,0.6); */
-   border: 1px solid rgba(0, 255, 179, 1);
+  border: 1px solid rgba(0, 255, 179, 1);
 }
 
+
+/*========================= добавление тактовых черт ==============================*/
+.left_border{
+    padding-left: 3px;
+    border-left: 1px solid white;
+}
+.right_border{
+    border-right: 1px solid white;
+}
+/*=================================================================================*/
