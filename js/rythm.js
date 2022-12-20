@@ -535,32 +535,29 @@ document.querySelector('.select_variation').addEventListener('change', function 
     }
 })
 
-// кнопка сброс
-document.querySelector('.button_clear_p').onclick = function () {
-    clear_p();
-    // addFontSize();
-    for (let item of click_items) {
-        item.classList.remove('border_active');
-    }
-}
+
 
 // кнопка скрытия сетки--------------------------------------
 document.querySelector('.button_setka').onclick = function () {
+    search_all_click_items();
     for (let item of click_items) {
-        if (!item.classList.contains('button_setka_hide')) {
-            item.classList.add('button_setka_hide'); // скрыть сетку
-        } else {
-            item.classList.remove('button_setka_hide'); // скрыть сетку
+        if (!item.classList.contains('border_active')) {
+            item.classList.toggle('button_setka_hide'); // скрыть сетку
         }
     }
 
 }
 
-// изменение центровки длительностей
+// изменение центровки длительностей, как в такте
 document.querySelector('.button_position').onclick = function () {
     for (let item of click_items) {
         item.classList.toggle('click_item_position'); // изменение центровки длительностей
+
+        item.classList.toggle('button_hide_circkle'); // скрыть круги
+        item.classList.toggle('font_size_even'); // увеличить шрифт
+        item.children[0].classList.toggle('button_p_allgn_line'); // выровнять шрифт в линию
     }
+
 }
 
 // кнопка скрытия всех граней--------------------------------------
@@ -605,6 +602,15 @@ document.querySelector('.input_range_width').addEventListener('change', function
 // сброс ширины контейнера --------------------------------------
 document.querySelector('.reset_width').onclick = function () {
     container.style.width = container_before_width;
+}
+
+// кнопка сброс
+document.querySelector('.button_clear_p').onclick = function () {
+    clear_p();
+    // addFontSize();
+    for (let item of click_items) {
+        item.classList.remove('border_active');
+    }
 }
 
 // let number_i = 0;
