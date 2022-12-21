@@ -42,7 +42,7 @@ let add_width_and_height_attr = function () {
         item.style.height = item.clientWidth + 'px';
     }
 }
-add_width_and_height_attr();
+// add_width_and_height_attr();
 
 
 const taka = ['ТА', 'КА'];
@@ -790,14 +790,17 @@ for (let item of click_items) {
                 }
 
                 // адаптируем размер элементов
-                for (let i = 1; i < parent.children.length; i++) {
+                for (let i = 1; i < parent.children.length - 1; i++) {
                     console.log('parent.children.length', parent.children.length);
                     if (parent.children[i].classList.contains('click_item')) {
-                        console.log(parent.children[i].style.height);
-                        // parent.children[i].style.height = (100 / (parent.children.length - 1)) + '%';
-                        // item.children[i].style.width = (100 / (item.children.length - 3)) + '%';
+                        // console.log(parent.children[i].style.height);
+                        parent.children[i].style.height = (100 / (parent.children.length)) + '%';
+                        // console.log(parent.children.length);
+                        parent.children[i].style.width = (100 / (parent.children.length)) + '%';
                     }
                 }
+
+
             }
 
 
