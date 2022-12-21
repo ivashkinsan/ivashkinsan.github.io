@@ -34,6 +34,17 @@ let search_all_click_items = function () {
 }
 search_all_click_items();
 
+
+// функция заморозки ширины и высоты элементов
+let add_width_and_height_attr = function () {
+    for (let item of click_items) {
+        item.style.width = item.clientWidth + 'px';
+        item.style.height = item.clientWidth + 'px';
+    }
+}
+add_width_and_height_attr();
+
+
 const taka = ['ТА', 'КА'];
 const takita = ['ТА', 'КИ', 'ТА'];
 const takadimi = ['ТА', 'КА', 'ДИ', 'МИ'];
@@ -616,8 +627,10 @@ document.querySelector('.reset_width').onclick = function () {
 
 // кнопка сброс
 document.querySelector('.button_clear_p').onclick = function () {
+    search_all_click_items();
     clear_p();
     // addFontSize();
+    // let all_el_border_active = document.querySelectorAll('.border_active')
     for (let item of click_items) {
         item.classList.remove('border_active');
     }
@@ -677,7 +690,8 @@ for (let item of click_items) {
                 let clone_node = item.children[1].cloneNode(true);
                 clone_node.classList.add('new_clone_element');
                 item.append(clone_node);
-                item.children[0].innerHTML = '--- 3 ---';
+                item.children[0].innerHTML = `--- ${item.children.length-2} ---`;
+                item.dataset.triple_mode = 'true';
 
                 // адаптируем размер элементов
                 for (let i = 1; i < item.children.length; i++) {
@@ -700,6 +714,13 @@ for (let item of click_items) {
                         item.querySelector('.new_clone_element').remove();
                     }
                 }
+                if (item.children.length - 2 > 2) {
+                    item.children[0].innerHTML = `--- ${item.children.length-2} ---`;
+                } else {
+                    item.children[0].innerHTML = '';
+                    item.dataset.triple_mode = 'false';
+                }
+
                 // адаптируем размер элементов
                 for (let i = 1; i < item.children.length; i++) {
                     if (item.children[i].classList.contains('click_item')) {
@@ -773,7 +794,7 @@ for (let item of click_items) {
                     console.log('parent.children.length', parent.children.length);
                     if (parent.children[i].classList.contains('click_item')) {
                         console.log(parent.children[i].style.height);
-                        parent.children[i].style.height = (100 / (parent.children.length - 1)) + '%';
+                        // parent.children[i].style.height = (100 / (parent.children.length - 1)) + '%';
                         // item.children[i].style.width = (100 / (item.children.length - 3)) + '%';
                     }
                 }
@@ -785,6 +806,7 @@ for (let item of click_items) {
 
             item.append(circle_container_of_button);
             item.dataset.contextmenu = 'true';
+            item.classList.add('background');
 
             console.log(item);
 
@@ -793,10 +815,16 @@ for (let item of click_items) {
             // document.querySelector('.circle_container_of_button').remove();
             // item.dataset.contextmenu = 'false';
             del_context_menu(item);
+            item.classList.remove('background');
         }
+
+
+
+
     });
 
     search_all_click_items();
+
     // go_click_function();
 }
 
@@ -804,6 +832,7 @@ function del_context_menu(elem) {
     document.querySelector('.shtorka').remove();
     document.querySelector('.circle_container_of_button').remove();
     elem.dataset.contextmenu = 'false';
+    elem.classList.remove('background');
 }
 // запись во все дивы нового элемента-кнопки [-3-]
 // for (let item of click_items) {

@@ -9,9 +9,10 @@
 
 :root {
     --text-size: 3vh;
-    --circle-size: 88vw;
-    --circle-size-vh: 90vh;
+    --circle-size: 85vw;
+    --circle-size-vh: 85vh;
     --dashed-color: rgba(255, 255, 255, 0.5) dashed 3px;
+    --background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
 }
 
 @font-face {
@@ -31,7 +32,7 @@ body {
     padding-top: 15px;
     justify-content: start;
     align-items: center;
-    background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
+    background: var(--background);
     border: 20px solid #DDB078;
     border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
     /* overflow: scroll; */
@@ -45,7 +46,9 @@ body {
     align-items: center;
     width: var(--circle-size);
     height: var(--circle-size);
+    transition: ease-in-out 500ms;
   }
+
 @media screen and (min-aspect-ratio: 4/3) {
     .container {
       width: var(--circle-size-vh);
@@ -163,8 +166,9 @@ body {
     bottom: 0;
     left: 0;
     border-radius: 50%;
-    background-color: rgba(124, 124, 124, 0.1);
+    background-color: rgba(7, 1, 48, 0.6);
     z-index: 998;
+   
 }
 /*========================================================================================*/
 
@@ -307,3 +311,9 @@ body {
     border-right: 1px solid white;
 }
 /*=================================================================================*/
+
+
+.background{
+    background: var(--background);
+    z-index: 999;
+}
