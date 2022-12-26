@@ -933,7 +933,7 @@ for (let speed_button of speed_buttons) {
     })
 }
 
-
+// добавление тактовой черты
 let add_staff_line = function () {
     let all_elements = document.querySelectorAll('.click_item');
     let all_active_elements = [];
@@ -948,24 +948,9 @@ let add_staff_line = function () {
 }
 
 
-
-
 // нумерация элементов для отладки кода
-let i = 0;
-for (let item of click_items) {
-    item.children[0].innerHTML = i;
-    i++;
-}
-
-
-
-// drag & drop логика
-let dragObject = {};
-
-document.onmousedown = function (e) {
-
-    if (e.which != 1) { // если клик правой кнопкой мыши
-        return; // то он не запускает перенос
-    }
-
-}
+// let i = 0;
+// for (let item of click_items) {
+//     item.children[0].innerHTML = i;
+//     i++;
+// }
