@@ -609,10 +609,10 @@ document.querySelector('.button_line').onclick = function () {
 let container = document.querySelector('.container');
 const container_before_width = container.style.width;
 document.querySelector('.input_range_width').addEventListener('change', function () {
-    console.log(this.value);
-    console.log(container.style.width);
+    // console.log(this.value);
+    // console.log(container.style.width);
+    // console.log(container_before_width);
 
-    console.log(container_before_width);
     // container_before_width = container.style.width;
     container.classList.add('container_adaptiv');
     container.style.width = this.value + 'vw';
@@ -668,6 +668,10 @@ for (let item of click_items) {
 
 
 
+        // резерв наполнения p
+        let reserve_p_content = item.children[0].innerHTML;
+        console.log(reserve_p_content);
+
         // console.log(item.dataset);
         if (item.dataset.contextmenu == 'false') {
             // создание шторки
@@ -684,6 +688,8 @@ for (let item of click_items) {
             button_of_plus_one.classList.add('plus_one');
             button_of_plus_one.innerHTML = '[ +1 ]';
             circle_container_of_button.append(button_of_plus_one);
+
+
             // её активность
             circle_container_of_button.querySelector('.plus_one').onclick = function (elem) {
                 elem.stopPropagation();
@@ -717,7 +723,7 @@ for (let item of click_items) {
                 if (item.children.length - 2 > 2) {
                     item.children[0].innerHTML = `--- ${item.children.length-2} ---`;
                 } else {
-                    item.children[0].innerHTML = '';
+                    item.children[0].innerHTML = reserve_p_content; // возврат резерва
                     item.dataset.triple_mode = 'false';
                 }
 
@@ -754,23 +760,14 @@ for (let item of click_items) {
             circle_container_of_button.append(button_of_del);
             // её активность
             circle_container_of_button.querySelector('.del').onclick = function (elem) {
-                console.log('del')
                 elem.stopPropagation();
                 // console.log(item.parentNode);
-                let clone = item.cloneNode(true);
-                let parent = item.parentNode;
-                // console.log('clone = ', clone);
-                // console.log('parent = ', parent);
-                // console.log('clone.children = ', clone.children);
-                // console.log('clone.childNode = ', clone.childNode);
-                // console.log('clone.children[1] = ', clone.children[1]);
-                // console.log('clone.children[2] =', clone.children[2]);
-                // console.log('clone.children.length)', clone.children.length);
-                // document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2]);
+                let clone = item.cloneNode(true); // копия начинки элемента
+                let parent = item.parentNode; // копия родителя элемента
 
 
 
-                switch (clone.children.length) {
+                switch (clone.children.length) { // вставка дочерних клонированных элементов вместо удаляемого элемента
                     case 3:
                         item.replaceWith(clone.children[1], clone.children[2]);
                         del_context_menu(item);
@@ -948,4 +945,27 @@ let add_staff_line = function () {
     console.log(all_active_elements);
     all_active_elements[0].children[0].classList.toggle('left_border');
     all_active_elements[all_active_elements.length - 1].children[0].classList.toggle('right_border');
+}
+
+
+
+
+// нумерация элементов для отладки кода
+let i = 0;
+for (let item of click_items) {
+    item.children[0].innerHTML = i;
+    i++;
+}
+
+
+
+// drag & drop логика
+let dragObject = {};
+
+document.onmousedown = function (e) {
+
+    if (e.which != 1) { // если клик правой кнопкой мыши
+        return; // то он не запускает перенос
+    }
+
 }
