@@ -1,36 +1,36 @@
 class Metronome {
     constructor(tempo = 80) {
         this.audioContext = null;
-        this.notesInQueue = []; // notes that have been put into the web audio and may or may not have been played yet {note, time}
+        this.notesInQueue = []; // заметки, которые были помещены в веб-аудио и могут быть или не быть воспроизведены еще {note, time}
         this.currentBeatInBar = 0;
         this.beatsPerBar = 4;
         this.tempo = tempo;
-        this.lookahead = 25; // How frequently to call scheduling function (in milliseconds)
-        this.scheduleAheadTime = 0.1; // How far ahead to schedule audio (sec)
-        this.nextNoteTime = 0.0; // when the next note is due
+        this.lookahead = 25; // Как часто вызывать функцию планирования (в миллисекундах)
+        this.scheduleAheadTime = 0.1; // Насколько далеко вперед запланировать аудио (сек)
+        this.nextNoteTime = 0.0; // когда нужно сделать следующую ноту
         this.isRunning = false;
         this.intervalID = null;
     }
 
     nextNote() {
-        // Advance current note and time by a quarter note (crotchet if you're posh)
-        var secondsPerBeat = 60.0 / this.tempo; // Notice this picks up the CURRENT tempo value to calculate beat length.
-        this.nextNoteTime += secondsPerBeat; // Add beat length to last beat time
+        // Передвинуть текущую ноту и время на четвертную ноту (с крючком, если вы аристократичны)
+        var secondsPerBeat = 60.0 / this.tempo; // Обратите внимание, что для расчета длительности доли используется ТЕКУЩЕЕ значение темпа.
+        this.nextNoteTime += secondsPerBeat; // Добавляем длину удара к времени последнего удара
 
-        this.currentBeatInBar++; // Advance the beat number, wrap to zero
+        this.currentBeatInBar++; // Увеличиваем номер доли, переносим на ноль
         if (this.currentBeatInBar == this.beatsPerBar) {
             this.currentBeatInBar = 0;
         }
     }
 
     scheduleNote(beatNumber, time) {
-        // push the note on the queue, even if we're not playing.
+        // помещаем ноту в очередь, даже если мы не играем.
         this.notesInQueue.push({
             note: beatNumber,
             time: time
         });
 
-        // create an oscillator
+        // создаем осциллятор
         const osc = this.audioContext.createOscillator();
         const envelope = this.audioContext.createGain();
 
@@ -47,7 +47,7 @@ class Metronome {
     }
 
     scheduler() {
-        // while there are notes that will need to play before the next interval, schedule them and advance the pointer.
+        // пока есть ноты, которые нужно будет сыграть перед следующим интервалом, запланируйте их и переместите указатель.
         while (this.nextNoteTime < this.audioContext.currentTime + this.scheduleAheadTime) {
             this.scheduleNote(this.currentBeatInBar, this.nextNoteTime);
             this.nextNote();
@@ -58,7 +58,7 @@ class Metronome {
         if (this.isRunning) return;
 
         if (this.audioContext == null) {
-            this.audioContext = new(window.AudioContext || window.webkitAudioContext)();
+            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
         }
 
         this.isRunning = true;
