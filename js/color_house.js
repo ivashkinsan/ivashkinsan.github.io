@@ -5,8 +5,8 @@ function cmenu() {
     return false;
 };
 
-const container_dom = document.querySelector('.container_dom');
-const dom_item = document.querySelectorAll('svg');
+const container_dom = document.querySelector('.house_container');
+const dom_item = document.querySelectorAll('.levels_elem');
 const audioAll = document.querySelectorAll('audio');
 
 // let scaleButton = document.querySelector('.scale');
@@ -17,11 +17,12 @@ const audioAll = document.querySelectorAll('audio');
 //     container_dom.classList.toggle('scale_transform');
 //     console.log(container_dom);
 // });
-//присвоение дата атрибутов SVG объектам
+
+//присвоение дата атрибутов объектам дома
 let j = 25;
 for (let i = dom_item.length - 1; i >= 0; i--) {
     dom_item[i].setAttribute('data-key', audioAll[j].dataset.key);
-    // console.log(dom_item[i]);
+    console.log(dom_item[i]);
     j += 1;
 }
 
