@@ -114,7 +114,7 @@
         <div class="house_container">
             <div class="levels_elem display_none">
                 <img class="click_elem" src=""></img>
-                <p class="label p_up">Ё</p>
+                <p class="label p_line">Ё</p>
             </div>
             <div class="levels_elem display_none">
                 <img class="click_elem" src=""></img>
@@ -202,7 +202,7 @@
             </div>
             <div class="levels_elem display_none">
                 <img class="click_elem" src=""></img>
-                <p class="label p_down">ЛЕ</p>
+                <p class="label p_up">ЛЕ</p>
             </div>
             <div class="levels_elem display_none">
                 <img class="click_elem" src=""></img>
@@ -210,7 +210,7 @@
             </div>
             <div class="levels_elem display_none">
                 <img class="click_elem" src=""></img>
-                <p class="label p_down">Ё</p>
+                <p class="label p_line">Ё</p>
             </div>
         </div>
     </div>
@@ -275,6 +275,23 @@
             <p class="minus_down display_none">-</p>
         </div>
         <div class="go_nat_minor_home" onclick="go_nat_minor_home()"></div>
+
+        <div class="select_variation_container">
+            <label for="select_variation">вариант</label>
+            <select class="select_variation" id="select_variation">
+                <option value="lydian">лидийский</option>
+                <option value="ionian" selected>ионийский</option>
+                <option value="mixolydian">миксолидийский</option>
+                <option value="dorian">дорийский</option>
+                <option value="eolian">эолийский</option>
+                <option value="frigian">фригийский</option>
+                <option value="locrian">локрийский</option>
+                <option value="undefined">----------</option>
+                <option value="harmonian">гармонический</option>
+                <option value="melodyan">мелодический</option>
+            </select>
+        </div>
+
     </div>
     <script src="js/color_house.js"></script>
 </body>

@@ -101,7 +101,7 @@ let major_keys_of_image = [
 
 
 const all_levels_elem = document.querySelectorAll('.levels_elem');
-
+// функция с запуском цветого дома
 let go_formula_home = function (all, home) {
     let indx = 0;
     for (let item of all) {
@@ -112,8 +112,10 @@ let go_formula_home = function (all, home) {
 go_formula_home(all_levels_elem, major_keys_of_image);
 
 // console.log(Object.keys(all_src_svg_image));
-
+// сбор все хскрытых объектов
 let display_none_elem_ALL = document.querySelectorAll('.display_none');
+
+// массив с номерами скрытых объектов в шапке
 let add_elem_up = [4, 3, 2, 1, 0, 0, 1, 2, 3, 4];
 let add_elem_up_reload = () => {
     if (add_elem_up.length == 0) {
@@ -126,6 +128,8 @@ let add_elem_up_reload = () => {
         document.querySelector('.minus_up').classList.remove('display_none');
     }
 }
+
+// массив с номерами скрытых объектов в подвале
 let add_elem_down = [5, 6, 7, 8, 9, 10, 11, 11, 10, 9, 8, 7, 6, 5];
 let add_elem_down_reload = () => {
     if (add_elem_down.length == 0) {
@@ -138,6 +142,7 @@ let add_elem_down_reload = () => {
         document.querySelector('.minus_down').classList.remove('display_none');
     }
 }
+
 document.querySelector('.button_container').onclick = (e) => {
     switch (true) {
         case e.target.classList.contains('plus_up'):
@@ -158,3 +163,15 @@ document.querySelector('.button_container').onclick = (e) => {
             break;
     }
 }
+
+// выбор вариантов отображения дома
+document.querySelector('.select_variation').addEventListener('change', function (elem) {
+    switch (this.value) {
+        case 'value_NO':
+            clear_p();
+            break;
+    }
+}
+);
+
+
