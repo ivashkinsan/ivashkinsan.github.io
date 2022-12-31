@@ -427,6 +427,10 @@ document.querySelector('.rotate_button').onclick = () => {
     }
     let flex_direction_go = function () {
         document.querySelector('.button_container').classList.toggle('flex_direction');
+        let rotate_box = document.querySelector('.rotate_box');
+        rotate_box.classList.toggle('rotate_180_deg');
+        rotate_box.children[0].style.transform = 'rotate(90deg)';
+        rotate_box.children[1].style.transform = 'rotate(90deg)';
     }
     let remove_opacity_animation_class = function () {
         document.querySelector('.button_container').classList.remove('opacity_animation');
