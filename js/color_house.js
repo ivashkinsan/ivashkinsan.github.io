@@ -67,9 +67,38 @@ const all_src_svg_image = {
     LU_0: '/image/Levels/LU_0.svg',
     YO_0: '/image/Levels/YO_0.svg',
     WHITE_down: '/image/Levels/WHITE_down.svg',
-    WHITE_up: '/image/Levels/WHITE_up.svg'
+    WHITE_up: '/image/Levels/WHITE_up.svg',
+    ZO_YO_white: '/image/Levels/ZO_YO_white.svg'
 }
 let all_keys_of_image = Object.keys(all_src_svg_image);
+
+let lydian_keys_of_image = [
+    'YO_2',
+    'TI_2',
+    'WHITE_down',
+    'RA_2',
+    'WHITE_down',
+    'ZO_2',
+    'NI',
+    'WHITE_down',
+    'WI',
+    'WHITE_down',
+    'LE',
+    'WHITE_down',
+    'YO',
+    'TI',
+    'WHITE_down',
+    'RA',
+    'WHITE_down',
+    'ZO',
+    'NI_0',
+    'WHITE_down',
+    'WI_0',
+    'WHITE_down',
+    'LE_0',
+    'WHITE_down',
+    'YO_0'
+];
 
 let major_keys_of_image = [
     'YO_2',
@@ -99,7 +128,196 @@ let major_keys_of_image = [
     'YO_0'
 ];
 
+let mixolydian_keys_of_image = [
+    'YO_2',
+    'WHITE_up',
+    'TU_2',
+    'RA_2',
+    'WHITE_down',
+    'ZO_2',
+    'WHITE_up',
+    'NA',
+    'WI',
+    'WHITE_down',
+    'LE',
+    'WHITE_down',
+    'YO',
+    'WHITE_up',
+    'TU',
+    'RA',
+    'WHITE_down',
+    'ZO',
+    'WHITE_up',
+    'NA_0',
+    'WI_0',
+    'WHITE_down',
+    'LE_0',
+    'WHITE_down',
+    'YO_0'
+];
+let dorian_keys_of_image = [
+    'YO_2',
+    'WHITE_up',
+    'TU_2',
+    'RA_2',
+    'WHITE_down',
+    'ZO_2',
+    'WHITE_up',
+    'NA',
+    'WHITE_up',
+    'WU',
+    'LE',
+    'WHITE_down',
+    'YO',
+    'WHITE_up',
+    'TU',
+    'RA',
+    'WHITE_down',
+    'ZO',
+    'WHITE_up',
+    'NA_0',
+    'WHITE_up',
+    'WU_0',
+    'LE_0',
+    'WHITE_down',
+    'YO_0'
+];
+let eolian_keys_of_image = [
+    'YO_2',
+    'WHITE_up',
+    'TU_2',
+    'WHITE_up',
+    'RU_2',
+    'ZO_2',
+    'WHITE_up',
+    'NA',
+    'WHITE_up',
+    'WU',
+    'LE',
+    'WHITE_down',
+    'YO',
+    'WHITE_up',
+    'TU',
+    'WHITE_up',
+    'RU',
+    'ZO',
+    'WHITE_up',
+    'NA_0',
+    'WHITE_up',
+    'WU_0',
+    'LE_0',
+    'WHITE_down',
+    'YO_0'
+];
+let frigian_keys_of_image = [
+    'YO_2',
+    'WHITE_up',
+    'TU_2',
+    'WHITE_up',
+    'RU_2',
+    'ZO_2',
+    'WHITE_up',
+    'NA',
+    'WHITE_up',
+    'WU',
+    'WHITE_up',
+    'LU',
+    'YO',
+    'WHITE_up',
+    'TU',
+    'WHITE_up',
+    'RU',
+    'ZO',
+    'WHITE_up',
+    'NA_0',
+    'WHITE_up',
+    'WU_0',
+    'WHITE_up',
+    'LU_0',
+    'YO_0'
+];
+let locrian_keys_of_image = [
+    'YO_2',
+    'WHITE_up',
+    'TU_2',
+    'WHITE_up',
+    'RU_2',
+    'ZO_YO_white',
+    'NI',
+    'NA',
+    'WHITE_up',
+    'WU',
+    'WHITE_up',
+    'LU',
+    'YO',
+    'WHITE_up',
+    'TU',
+    'WHITE_up',
+    'RU',
+    'ZO_YO_white',
+    'NI_0',
+    'NA_0',
+    'WHITE_up',
+    'WU_0',
+    'WHITE_up',
+    'LU_0',
+    'YO_0'
+];
 
+let harmonian_keys_of_image = [
+    'YO_2',
+    'TI_2',
+    'WHITE_down',
+    'WHITE_up',
+    'RU_2',
+    'ZO_2',
+    'WHITE_up',
+    'NA',
+    'WHITE_up',
+    'WU',
+    'LE',
+    'WHITE_down',
+    'YO',
+    'TI',
+    'WHITE_down',
+    'WHITE_up',
+    'RU',
+    'ZO',
+    'WHITE_up',
+    'NA_0',
+    'WHITE_up',
+    'WU_0',
+    'LE_0',
+    'WHITE_down',
+    'YO_0'
+];
+let melodyan_keys_of_image = [
+    'YO_2',
+    'TI_2',
+    'WHITE_down',
+    'RA_2',
+    'WHITE_down',
+    'ZO_2',
+    'WHITE_up',
+    'NA',
+    'WHITE_up',
+    'WU',
+    'LE',
+    'WHITE_down',
+    'YO',
+    'TI',
+    'WHITE_down',
+    'RA',
+    'WHITE_down',
+    'ZO',
+    'WHITE_up',
+    'NA_0',
+    'WHITE_up',
+    'WU_0',
+    'LE_0',
+    'WHITE_down',
+    'YO_0'
+];
 const all_levels_elem = document.querySelectorAll('.levels_elem');
 // функция с запуском цветого дома
 let go_formula_home = function (all, home) {
@@ -167,8 +385,35 @@ document.querySelector('.button_container').onclick = (e) => {
 // выбор вариантов отображения дома
 document.querySelector('.select_variation').addEventListener('change', function (elem) {
     switch (this.value) {
-        case 'value_NO':
+        case 'lydian':
+            go_formula_home(all_levels_elem, lydian_keys_of_image);
+            break;
+        case 'ionian':
+            go_formula_home(all_levels_elem, major_keys_of_image);
+            break;
+        case 'mixolydian':
+            go_formula_home(all_levels_elem, mixolydian_keys_of_image);
+            break;
+        case 'dorian':
+            go_formula_home(all_levels_elem, dorian_keys_of_image);
+            break;
+        case 'eolian':
+            go_formula_home(all_levels_elem, eolian_keys_of_image);
+            break;
+        case 'frigian':
+            go_formula_home(all_levels_elem, frigian_keys_of_image);
+            break;
+        case 'locrian':
+            go_formula_home(all_levels_elem, locrian_keys_of_image);
+            break;
+        case 'undefined':
             clear_p();
+            break;
+        case 'harmonian':
+            go_formula_home(all_levels_elem, harmonian_keys_of_image);
+            break;
+        case 'melodyan':
+            go_formula_home(all_levels_elem, melodyan_keys_of_image);
             break;
     }
 }
