@@ -419,4 +419,28 @@ document.querySelector('.select_variation').addEventListener('change', function 
 }
 );
 
+document.querySelector('.rotate_button').onclick = () => {
+    document.querySelector('.house_container').classList.toggle('transform_horizont');
+    let label_All = document.querySelectorAll('.label');
+    for (let item of label_All) {
+        item.classList.toggle('transform_minus_90_deg');
+    }
+    let flex_direction_go = function () {
+        document.querySelector('.button_container').classList.toggle('flex_direction');
+    }
+    let remove_opacity_animation_class = function () {
+        document.querySelector('.button_container').classList.remove('opacity_animation');
+    }
+    document.querySelector('.button_container').classList.toggle('opacity_animation');
 
+
+    setTimeout(flex_direction_go, 1000);
+    setTimeout(remove_opacity_animation_class, 2000);
+};
+
+document.querySelector('.label_button').onclick = () => {
+    let label_All = document.querySelectorAll('.label');
+    for (let item of label_All) {
+        item.classList.toggle('display_none');
+    }
+};

@@ -31,9 +31,22 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* width: 10vh; */
     height: 90vh;
-    /* width: 20vh; */
+
+    font-size: 1.5vh;
+
+    transition: ease-in 500ms;
+}
+
+.transform_horizont {
+    /* font-size: 70px; */
+    font-size: 2.5vh;
+    transform: rotate(90deg);
+    height: 90vw;
+}
+
+.transform_minus_90_deg {
+    transform: rotate(-90deg);
 }
 
 
@@ -60,10 +73,11 @@ body {
 
 .label {
     position: absolute;
-    font-size: 1.5vh;
+
     color: #232323;
     cursor: pointer;
     z-index: 2;
+    transition: ease-in 500ms;
 }
 
 .levels_elem>.p_up {
@@ -101,30 +115,52 @@ body {
     align-items: center;
 }
 
+.flex_direction {
+    flex-direction: row;
+}
+
+.opacity_animation {
+    animation: opacity;
+    animation-duration: 2000ms;
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 .plus_minus_up,
 .plus_minus_down {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
-    margin: 1vh 0;
+    /* margin: 1vh 0; */
 }
 
 .plus_minus_up .plus_up,
 .plus_minus_up .minus_up,
 .plus_minus_down .plus_down,
-.plus_minus_down .minus_down {
-    font-size: 25px;
+.plus_minus_down .minus_down,
+.rotate_button,
+.label_button {
+    /* font-size: 30px; */
     width: 5vh;
     height: 5vh;
     border-radius: 50%;
-    margin: 2px 0;
-    /* height: 2vh; */
-    color: #232323;
-    line-height: 130%;
-    text-align: center;
-    background: #F4D6B1;
+    margin: 1vh 1vh;
     cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .select_variation_container {
@@ -132,4 +168,22 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.plus_up,
+.plus_down {
+    background-image: url(/image/Levels/plus_button.svg);
+}
+
+.minus_up,
+.minus_down {
+    background-image: url(/image/Levels/minus_button.svg);
+}
+
+.rotate_button {
+    background-image: url(/image/Levels/rotate_button.svg);
+}
+
+.label_button {
+    background-image: url(/image/Levels/label_button.svg);
 }
