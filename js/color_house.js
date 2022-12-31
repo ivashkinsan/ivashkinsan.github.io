@@ -72,6 +72,38 @@ const all_src_svg_image = {
 }
 let all_keys_of_image = Object.keys(all_src_svg_image);
 
+const all_src_svg_image_PIGS = {
+    YO_2: '/image/Levels/PIGS_YO.svg',
+    TI_2: '/image/Levels/PIGS_TI.svg',
+    TU_2: '/image/Levels/PIGS_TU.svg',
+    RA_2: '/image/Levels/PIGS_RA.svg',
+    RU_2: '/image/Levels/PIGS_RU.svg',
+    ZO_2: '/image/Levels/PIGS_ZO.svg',
+    NI: '/image/Levels/PIGS_NI.svg',
+    NA: '/image/Levels/PIGS_NA.svg',
+    WI: '/image/Levels/PIGS_WI.svg',
+    WU: '/image/Levels/PIGS_WU.svg',
+    LE: '/image/Levels/PIGS_LE.svg',
+    LU: '/image/Levels/PIGS_LU.svg',
+    YO: '/image/Levels/PIGS_YO.svg',
+    TI: '/image/Levels/PIGS_TI.svg',
+    TU: '/image/Levels/PIGS_TU.svg',
+    RA: '/image/Levels/PIGS_RA.svg',
+    RU: '/image/Levels/PIGS_RU.svg',
+    ZO: '/image/Levels/PIGS_ZO.svg',
+    NI_0: '/image/Levels/PIGS_NI.svg',
+    NA_0: '/image/Levels/PIGS_NA.svg',
+    WI_0: '/image/Levels/PIGS_WI.svg',
+    WU_0: '/image/Levels/PIGS_WU.svg',
+    LE_0: '/image/Levels/PIGS_LE.svg',
+    LU_0: '/image/Levels/PIGS_LU.svg',
+    YO_0: '/image/Levels/PIGS_YO.svg',
+    WHITE_down: '/image/Levels/PIGS_white.svg',
+    WHITE_up: '/image/Levels/PIGS_white.svg',
+    ZO_YO_white: '/image/Levels/PIGS_white.svg'
+}
+let all_keys_of_image_PIGS = Object.keys(all_src_svg_image_PIGS);
+
 let lydian_keys_of_image = [
     'YO_2',
     'TI_2',
@@ -318,6 +350,35 @@ let melodyan_keys_of_image = [
     'WHITE_down',
     'YO_0'
 ];
+let PIGS_keys_of_image = [
+    'YO_2',
+    'TI_2',
+    'WHITE_down',
+    'RA_2',
+    'WHITE_down',
+    'ZO_2',
+    'WHITE_up',
+    'NA',
+    'WHITE_up',
+    'WU',
+    'LE',
+    'WHITE_down',
+    'YO',
+    'TI',
+    'WHITE_down',
+    'RA',
+    'WHITE_down',
+    'ZO',
+    'WHITE_up',
+    'NA_0',
+    'WHITE_up',
+    'WU_0',
+    'LE_0',
+    'WHITE_down',
+    'YO_0'
+];
+
+
 const all_levels_elem = document.querySelectorAll('.levels_elem');
 // функция с запуском цветого дома
 let go_formula_home = function (all, home) {
@@ -328,6 +389,15 @@ let go_formula_home = function (all, home) {
     }
 }
 go_formula_home(all_levels_elem, major_keys_of_image);
+
+// функция с запуском пуговиц
+let go_formula_home_PIGS = function (all, home) {
+    let indx = 0;
+    for (let item of all) {
+        item.children[0].src = all_src_svg_image_PIGS[home[indx]];
+        indx++;
+    }
+}
 
 // console.log(Object.keys(all_src_svg_image));
 // сбор все хскрытых объектов
@@ -414,6 +484,9 @@ document.querySelector('.select_variation').addEventListener('change', function 
             break;
         case 'melodyan':
             go_formula_home(all_levels_elem, melodyan_keys_of_image);
+            break;
+        case 'PIGS':
+            go_formula_home_PIGS(all_levels_elem, major_keys_of_image);
             break;
     }
 }
