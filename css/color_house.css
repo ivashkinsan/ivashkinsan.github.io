@@ -216,3 +216,9 @@ body {
 .label_button {
     background-image: url(/image/Levels/label_button.svg);
 }
+
+.select_variation,
+.select_variation_label,
+.select_variation_tonality {
+    width: 140px;
+}

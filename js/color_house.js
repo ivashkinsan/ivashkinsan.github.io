@@ -8,6 +8,7 @@ function cmenu() {
 const container_dom = document.querySelector('.house_container');
 const dom_item = document.querySelectorAll('.levels_elem');
 const audioAll = document.querySelectorAll('audio');
+let label_All = document.querySelectorAll('.label');
 
 // let scaleButton = document.querySelector('.scale');
 
@@ -400,7 +401,7 @@ let go_formula_home_PIGS = function (all, home) {
 }
 
 // console.log(Object.keys(all_src_svg_image));
-// сбор все хскрытых объектов
+// сбор все скрытых объектов
 let display_none_elem_ALL = document.querySelectorAll('.display_none');
 
 // массив с номерами скрытых объектов в шапке
@@ -492,9 +493,43 @@ document.querySelector('.select_variation').addEventListener('change', function 
 }
 );
 
+
+// функция генерации подписей элементов
+let slogi = ['Ё', 'ТИ', 'ТУ', 'РА', 'РУ', 'ЗО', 'НИ', 'НА', 'ВИ', 'ВУ', 'РА', 'РУ'];
+let numbers = ['1', '7', 'b7', '6', 'b6', '5', '#4_b5', '4', '3', 'b3', '2', 'b2'];
+let numbers_rim = ['I', 'VII', 'bVII', 'VI', 'bVI', 'V', '#IV_bV', 'IV', 'III', 'bIII', 'II', 'bII'];
+let go_new_label = function (e) {
+    let i = 0;
+    e.map(function (item) { e.push(item); }) // удвоение массива
+    e.push(e[0]);
+    for (let item of label_All) {
+        item.innerHTML = e[i];
+        i++;
+    }
+}
+go_new_label(slogi);
+// let double_arr = slogi.map(function (item) { return item; });
+// slogi.map(function (item) { double_arr.push(item); })
+
+// выбор вариантов подписи элементов
+document.querySelector('.select_variation_label').addEventListener('change', function (elem) {
+    switch (this.value) {
+        case 'slogi':
+            go_new_label(slogi);
+            break;
+        case 'numbers':
+            go_new_label(numbers);
+            break;
+        case 'numbers_rim':
+            go_new_label(numbers_rim);
+            break;
+    }
+}
+);
+
 document.querySelector('.rotate_button').onclick = () => {
     document.querySelector('.house_container').classList.toggle('transform_horizont');
-    let label_All = document.querySelectorAll('.label');
+    label_All = document.querySelectorAll('.label');
     for (let item of label_All) {
         item.classList.toggle('transform_minus_90_deg');
     }
