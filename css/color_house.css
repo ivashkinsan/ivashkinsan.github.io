@@ -32,13 +32,13 @@ body {
     justify-content: center;
     align-items: center;
     height: 90vh;
-    font-size: 1.5vh;
+    font-size: calc(0.4rem + 0.4vw);
     transition: ease-in 500ms;
 }
 
 .transform_horizont {
-    /* font-size: 70px; */
-    font-size: 2.5vh;
+    font-size: calc(1rem + 1vw);
+    font-size: 2vh;
     transform: rotate(90deg);
     height: 90vw;
 }
