@@ -20,12 +20,15 @@ let label_All = document.querySelectorAll('.label');
 // });
 
 //присвоение дата атрибутов объектам дома
-let j = 18;
-for (let i = dom_item.length - 1; i >= 0; i--) {
-    dom_item[i].setAttribute('data-key', audioAll[j].dataset.key);
-    // console.log(dom_item[i]);
-    j += 1;
-}
+let add_tonality = function (start) {
+    let j = start;
+    for (let i = dom_item.length - 1; i >= 0; i--) {
+        dom_item[i].setAttribute('data-key', audioAll[j].dataset.key);
+        // console.log(dom_item[i]);
+        j += 1;
+    }
+};
+add_tonality(18);
 
 //озвучка клавиатуры событием касания и клика
 let audio = new Audio();
@@ -498,6 +501,7 @@ document.querySelector('.select_variation').addEventListener('change', function 
 let slogi = ['Ё', 'ТИ', 'ТУ', 'РА', 'РУ', 'ЗО', 'НИ', 'НА', 'ВИ', 'ВУ', 'РА', 'РУ'];
 let numbers = ['1', '7', 'b7', '6', 'b6', '5', '#4_b5', '4', '3', 'b3', '2', 'b2'];
 let numbers_rim = ['I', 'VII', 'bVII', 'VI', 'bVI', 'V', '#IV_bV', 'IV', 'III', 'bIII', 'II', 'bII'];
+let display_none = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
 let go_new_label = function (e) {
     let i = 0;
     e.map(function (item) { e.push(item); }) // удвоение массива
@@ -507,13 +511,16 @@ let go_new_label = function (e) {
         i++;
     }
 }
-go_new_label(slogi);
+// go_new_label(slogi);
 // let double_arr = slogi.map(function (item) { return item; });
 // slogi.map(function (item) { double_arr.push(item); })
 
 // выбор вариантов подписи элементов
 document.querySelector('.select_variation_label').addEventListener('change', function (elem) {
     switch (this.value) {
+        case 'display_none':
+            go_new_label(display_none);
+            break;
         case 'slogi':
             go_new_label(slogi);
             break;
@@ -527,25 +534,30 @@ document.querySelector('.select_variation_label').addEventListener('change', fun
 }
 );
 
+// поведение при использовании кнопки rotate
 document.querySelector('.rotate_button').onclick = () => {
     document.querySelector('.house_container').classList.toggle('transform_horizont');
     label_All = document.querySelectorAll('.label');
+    // поворот внутренних label елементов
     for (let item of label_All) {
         item.classList.toggle('transform_minus_90_deg');
     }
+
     let flex_direction_go = function () {
         document.querySelector('.button_container').classList.toggle('flex_direction');
         let rotate_box = document.querySelector('.rotate_box');
+        // переворот кнопок для правильного восприятия сторон Л ПР и + -
         rotate_box.classList.toggle('rotate_180_deg');
-        rotate_box.children[0].style.transform = 'rotate(90deg)';
-        rotate_box.children[1].style.transform = 'rotate(90deg)';
+        rotate_box.children[0].classList.toggle('transform_90_deg');
+        rotate_box.children[1].classList.toggle('transform_90_deg');
     }
+    // добавление анимации
     let remove_opacity_animation_class = function () {
         document.querySelector('.button_container').classList.remove('opacity_animation');
     }
     document.querySelector('.button_container').classList.toggle('opacity_animation');
 
-
+    // добавление временного интервала для анимации
     setTimeout(flex_direction_go, 1000);
     setTimeout(remove_opacity_animation_class, 2000);
 };
@@ -556,3 +568,47 @@ document.querySelector('.label_button').onclick = () => {
         item.classList.toggle('display_none');
     }
 };
+
+
+// выбор тональности
+document.querySelector('.select_variation_tonality').addEventListener('change', function (elem) {
+    switch (this.value) {
+        case 'ton_C':
+            add_tonality(12);
+            break;
+        case 'ton_Db':
+            add_tonality(13);
+            break;
+        case 'ton_D':
+            add_tonality(14);
+            break;
+        case 'ton_Eb':
+            add_tonality(15);
+            break;
+        case 'ton_E':
+            add_tonality(16);
+            break;
+        case 'ton_F':
+            add_tonality(17);
+            break;
+        case 'ton_Gb':
+            add_tonality(18);
+            break;
+        case 'ton_G':
+            add_tonality(19);
+            break;
+        case 'ton_Ab':
+            add_tonality(20);
+            break;
+        case 'ton_A':
+            add_tonality(21);
+            break;
+        case 'ton_Bb':
+            add_tonality(22);
+            break;
+        case 'ton_B':
+            add_tonality(23);
+            break;
+    }
+}
+);

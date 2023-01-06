@@ -47,6 +47,10 @@ body {
     transform: rotate(-90deg);
 }
 
+.transform_90_deg {
+    transform: rotate(90deg);
+}
+
 
 /* активные элементы дома */
 .levels_elem {
@@ -219,6 +223,7 @@ body {
 
 .select_variation,
 .select_variation_label,
+.select_variation_skin,
 .select_variation_tonality {
     width: 140px;
 }
