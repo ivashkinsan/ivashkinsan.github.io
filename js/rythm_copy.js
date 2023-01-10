@@ -65,30 +65,33 @@ let cheked = true;
 
 // item.addEventListener('click', 
 
-function clickability(elem) {
-    console.log(event);
+let container_for_click = document.querySelector('.container');
+container_for_click.addEventListener('click', function (elem) {
+    console.log(elem);
+    // console.log(event);
     // console.log(elem);
-    event.stopPropagation();
+    // event.stopPropagation();
     // сбор дочерних элементов
-    let collection_child_div_elem = elem.querySelectorAll('div');
-    let collection_child_p_elem = elem.querySelectorAll('.numb');
+    let collection_child_div_elem = elem.target.querySelectorAll('.click_item');
+    let collection_child_p_elem = elem.target.querySelectorAll('.numb');
 
-    if (elem.children[0].dataset.status == '0') {
+    if (elem.target.children[0].dataset.status == '0') {
         // добавление рамки
         // глушим всплывающее событие
 
-        elem.classList.add('border_active');
+        elem.target.classList.add('border_active');
 
         // отключение в дочерних элементах кликабельности
-        if (elem.children[1] && elem.children[2]) {
-            elem.children[1].classList.add('no-click');
-            elem.children[2].classList.add('no-click');
+        if (elem.target.children[1] && elem.target.children[2]) {
+            elem.target.children[1].classList.add('no-click');
+            elem.target.children[2].classList.add('no-click');
         }
 
 
         // сброс с внутренних элементов классов border-active и очистка textContent
-        for (let child_elem of collection_child_div_elem) {
-            child_elem.classList.remove('border_active');
+        console.log(elem.target.children);
+        for (let elem_of_children of collection_child_div_elem) {
+            elem_of_children.classList.remove('border_active');
         }
         for (let child_elem of collection_child_p_elem) {
             if (child_elem.textContent != '') {
@@ -97,130 +100,134 @@ function clickability(elem) {
             }
         }
 
-        // отключение в родительском элементе кликабельности
 
         // присвоение символов в параграф <p>
-        switch (elem.children[0].dataset.note) {
+        switch (elem.target.children[0].dataset.note) {
             case '1':
-                elem.children[0].innerHTML = 'w';
-                elem.children[0].dataset.status = 'note';
+                elem.target.children[0].innerHTML = 'w';
+                elem.target.children[0].dataset.status = 'note';
                 break;
             case '2':
-                elem.children[0].innerHTML = 'h';
-                elem.children[0].dataset.status = 'note';
+                elem.target.children[0].innerHTML = 'h';
+                elem.target.children[0].dataset.status = 'note';
                 break;
             case '4':
-                elem.children[0].innerHTML = 'q';
-                elem.children[0].dataset.status = 'note';
+                elem.target.children[0].innerHTML = 'q';
+                elem.target.children[0].dataset.status = 'note';
                 break;
             case '8':
-                elem.children[0].innerHTML = 'e';
-                elem.children[0].dataset.status = 'note';
+                elem.target.children[0].innerHTML = 'e';
+                elem.target.children[0].dataset.status = 'note';
                 break;
             case '16':
-                elem.children[0].innerHTML = 's';
-                elem.children[0].dataset.status = 'note';
+                elem.target.children[0].innerHTML = 's';
+                elem.target.children[0].dataset.status = 'note';
                 break;
             case '12':
-                elem.children[0].innerHTML = 'i';
-                elem.children[0].dataset.status = 'note';
+                elem.target.children[0].innerHTML = 'i';
+                elem.target.children[0].dataset.status = 'note';
                 break;
             case '6':
-                elem.children[0].innerHTML = 'j';
-                elem.children[0].dataset.status = 'note';
+                elem.target.children[0].innerHTML = 'j';
+                elem.target.children[0].dataset.status = 'note';
                 break;
             case '3':
-                elem.children[0].innerHTML = 'd';
-                elem.children[0].dataset.status = 'note';
+                elem.target.children[0].innerHTML = 'd';
+                elem.target.children[0].dataset.status = 'note';
                 break;
         }
 
-        elem.dataset.active = 'true';
+        elem.target.dataset.active = 'true';
 
-    } else if (elem.children[0].dataset.status == 'note') {
-        elem.classList.remove('border_active');
-        switch (elem.children[0].dataset.note) {
+    } else if (elem.target.children[0].dataset.status == 'note') {
+        elem.target.classList.remove('border_active');
+        switch (elem.target.children[0].dataset.note) {
             case '1':
-                elem.children[0].innerHTML = 'W';
-                elem.children[0].dataset.status = 'pause';
+                elem.target.children[0].innerHTML = 'W';
+                elem.target.children[0].dataset.status = 'pause';
                 break;
             case '2':
-                elem.children[0].innerHTML = 'H';
-                elem.children[0].dataset.status = 'pause';
+                elem.target.children[0].innerHTML = 'H';
+                elem.target.children[0].dataset.status = 'pause';
                 break;
             case '4':
-                elem.children[0].innerHTML = 'Q';
-                elem.children[0].dataset.status = 'pause';
+                elem.target.children[0].innerHTML = 'Q';
+                elem.target.children[0].dataset.status = 'pause';
                 break;
             case '8':
-                elem.children[0].innerHTML = 'E';
-                elem.children[0].dataset.status = 'pause';
+                elem.target.children[0].innerHTML = 'E';
+                elem.target.children[0].dataset.status = 'pause';
                 break;
             case '16':
-                elem.children[0].innerHTML = 'S';
-                elem.children[0].dataset.status = 'pause';
+                elem.target.children[0].innerHTML = 'S';
+                elem.target.children[0].dataset.status = 'pause';
                 break;
             case '12':
-                elem.children[0].innerHTML = 'I';
-                elem.children[0].dataset.status = 'pause';
+                elem.target.children[0].innerHTML = 'I';
+                elem.target.children[0].dataset.status = 'pause';
                 break;
             case '6':
-                elem.children[0].innerHTML = 'J';
-                elem.children[0].dataset.status = 'pause';
+                elem.target.children[0].innerHTML = 'J';
+                elem.target.children[0].dataset.status = 'pause';
                 break;
             case '3':
-                elem.children[0].innerHTML = 'D';
-                elem.children[0].dataset.status = 'pause';
+                elem.target.children[0].innerHTML = 'D';
+                elem.target.children[0].dataset.status = 'pause';
                 break;
 
         }
 
-        elem.dataset.active = 'true';
+        elem.target.dataset.active = 'true';
 
-    } else if (elem.children[0].dataset.status == 'pause') {
+    } else if (elem.target.children[0].dataset.status == 'pause') {
 
         for (let child_elem of collection_child_div_elem) {
             child_elem.classList.remove('no-click');
         }
 
-        switch (elem.children[0].dataset.note) {
+        switch (elem.target.children[0].dataset.note) {
             case '1':
-                elem.children[0].innerHTML = '';
-                elem.children[0].dataset.status = '0';
+                elem.target.children[0].innerHTML = '';
+                elem.target.children[0].dataset.status = '0';
                 break;
             case '2':
-                elem.children[0].innerHTML = '';
-                elem.children[0].dataset.status = '0';
+                elem.target.children[0].innerHTML = '';
+                elem.target.children[0].dataset.status = '0';
                 break;
             case '4':
-                elem.children[0].innerHTML = '';
-                elem.children[0].dataset.status = '0';
+                elem.target.children[0].innerHTML = '';
+                elem.target.children[0].dataset.status = '0';
                 break;
             case '8':
-                elem.children[0].innerHTML = '';
-                elem.children[0].dataset.status = '0';
+                elem.target.children[0].innerHTML = '';
+                elem.target.children[0].dataset.status = '0';
                 break;
             case '16':
-                elem.children[0].innerHTML = '';
-                elem.children[0].dataset.status = '0';
+                elem.target.children[0].innerHTML = '';
+                elem.target.children[0].dataset.status = '0';
                 break;
             case '12':
-                elem.children[0].innerHTML = '';
-                elem.children[0].dataset.status = '0';
+                elem.target.children[0].innerHTML = '';
+                elem.target.children[0].dataset.status = '0';
                 break;
             case '6':
-                elem.children[0].innerHTML = '';
-                elem.children[0].dataset.status = '0';
+                elem.target.children[0].innerHTML = '';
+                elem.target.children[0].dataset.status = '0';
                 break;
             case '3':
-                elem.children[0].innerHTML = '';
-                elem.children[0].dataset.status = '0';
+                elem.target.children[0].innerHTML = '';
+                elem.target.children[0].dataset.status = '0';
                 break;
         }
 
-        elem.dataset.active = 'false';
+        elem.target.dataset.active = 'false';
     }
 
+
+});
+
+
+function clickability(elem) {
 
 }
 //---------
