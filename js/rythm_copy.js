@@ -68,20 +68,12 @@ let cheked = true;
 // item.addEventListener('click', 
 
 let container_for_click = document.querySelector('.container');
-// container_for_click.addEventListener('mousemove', function (elem) {
-//     console.log(elem);
-// })
+
 
 container_for_click.addEventListener('mousedown', function (elem) {
-    console.log(elem);
-    console.log(event);
-    container_for_click.addEventListener('mousemove', function (elem) {
-        console.log(elem.toElement);
-    })
 
-    elem.target.setAttribute('draggable', true);
-    // console.log(elem);
-    // event.stopPropagation();
+    // elem.target.setAttribute('draggable', true);
+
     // сбор дочерних элементов
     let collection_child_div_elem = elem.target.querySelectorAll('.click_item');
     let collection_child_p_elem = elem.target.querySelectorAll('.numb');

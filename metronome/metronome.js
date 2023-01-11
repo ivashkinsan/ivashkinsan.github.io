@@ -1,3 +1,18 @@
+let half_note = document.querySelectorAll('.half_note');
+let quarter_note = document.querySelectorAll('.quarter_note');
+let eighth = document.querySelectorAll('.eighth');
+let sixteenth = document.querySelectorAll('.sixteenth');
+let all_click_items = document.querySelectorAll('.click_item');
+
+let clear_all_elem = function () {
+    // console.log('off');
+    for (let item of all_click_items) {
+        item.classList.remove('add_metronome_click_active');
+        // console.log('off');
+    }
+}
+
+let schet_for_led = 0;
 class Metronome {
     constructor(tempo = 80) {
         this.audioContext = null;
@@ -12,6 +27,8 @@ class Metronome {
         this.intervalID = null;
     }
 
+
+
     nextNote() {
         // Передвинуть текущую ноту и время на четвертную ноту (с крючком, если вы аристократичны)
         var secondsPerBeat = 60.0 / this.tempo; // Обратите внимание, что для расчета длительности доли используется ТЕКУЩЕЕ значение темпа.
@@ -21,6 +38,24 @@ class Metronome {
         if (this.currentBeatInBar == this.beatsPerBar) {
             this.currentBeatInBar = 0;
         }
+
+        //добавление подсветки кликам метронома
+        let led_beat = function (level) {
+            console.log('click');
+            console.log(level[schet_for_led]);
+            for (let item of level) {
+                item.classList.remove('add_metronome_click_active');
+            }
+            level[schet_for_led].classList.add('add_metronome_click_active');
+            // переключение доли
+            schet_for_led += 1;
+            //сброс счетчика
+            if (schet_for_led == level.length) {
+                schet_for_led = 0;
+            }
+        }
+        led_beat(eighth);
+        this.beatsPerBar = eighth.length;
     }
 
     scheduleNote(beatNumber, time) {
@@ -55,6 +90,8 @@ class Metronome {
     }
 
     start() {
+        schet_for_led = 0;
+
         if (this.isRunning) return;
 
         if (this.audioContext == null) {
@@ -82,6 +119,7 @@ class Metronome {
             this.start();
         }
     }
+
 }
 
 let metronome = new Metronome();
@@ -93,11 +131,12 @@ let playPauseIcon = document.getElementById('play-pause-icon');
 let playButton = document.getElementById('play-button');
 playButton.addEventListener('click', function () {
     metronome.startStop();
-
+    clear_all_elem();
     if (metronome.isRunning) {
         playPauseIcon.className = 'pause';
     } else {
         playPauseIcon.className = 'play';
+
     }
 
 });

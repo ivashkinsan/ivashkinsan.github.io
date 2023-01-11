@@ -47,14 +47,14 @@ body {
     width: var(--circle-size);
     height: var(--circle-size);
     transition: ease-in-out 500ms;
-  }
+}
 
 @media screen and (min-aspect-ratio: 4/3) {
     .container {
-      width: var(--circle-size-vh);
-      height: var(--circle-size-vh);
+        width: var(--circle-size-vh);
+        height: var(--circle-size-vh);
     }
-  }
+}
 
 
 /*--------------- стили для всех длительностей ----------------*/
@@ -76,13 +76,16 @@ body {
     transition: all 700ms;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
 .whole_note {
     width: 100%;
     height: 100%;
 }
+
 .whole_note {
     font-size: calc(var(--text-size) * 3);
 }
+
 .half_note {
     font-size: calc(var(--text-size) * 2.5);
 }
@@ -90,6 +93,7 @@ body {
 .half_dotted_note {
     font-size: calc(var(--text-size) * 2.8);
 }
+
 .quarter_note {
     font-size: calc(var(--text-size) * 1.7);
 }
@@ -97,12 +101,15 @@ body {
 .quarter_dotted_note {
     font-size: calc(var(--text-size) * 2);
 }
+
 .eighth {
     font-size: calc(var(--text-size) * 1.3);
 }
+
 .eighth_dotted_note {
     font-size: calc(var(--text-size) * 1.5);
 }
+
 .sixteenth {
     font-size: calc(var(--text-size) * 1);
 }
@@ -123,42 +130,52 @@ body {
     border: var(--dashed-color);
     z-index: 999;
 }
+
 .plus_one,
 .minus_one,
 .plus_plus {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
 }
+
 .plus_one {
     position: absolute;
     bottom: -20px;
 }
+
 .plus_one:hover {
     transform: scale(1.2);
 }
+
 .minus_one {
     position: absolute;
     top: -20px;
 }
+
 .minus_one:hover {
     transform: scale(1.2);
 }
+
 .plus_plus {
     position: absolute;
     right: -43px;
     z-index: 999;
 }
+
 .plus_plus:hover {
     transform: scale(1.2);
 }
+
 .del {
     position: absolute;
     left: -43px;
     z-index: 999;
 }
+
 .del:hover {
     transform: scale(1.2);
 }
+
 .shtorka {
     position: absolute;
     top: 0;
@@ -168,8 +185,9 @@ body {
     border-radius: 50%;
     background-color: rgba(7, 1, 48, 0.6);
     z-index: 998;
-   
+
 }
+
 /*========================================================================================*/
 
 
@@ -228,6 +246,7 @@ body {
     border-radius: 50%;
     font-size: 20px;
 }
+
 /*========================================================================================*/
 
 
@@ -236,37 +255,45 @@ body {
 /*=========================== стили активностей ===============================*/
 /*--------------- квадрат ----------------*/
 .click_item_square {
-    border-radius: 0%;    
+    border-radius: 0%;
 }
+
 /*--------------- тень ----------------*/
-.box_shadows{
+.box_shadows {
     box-shadow: inset black 6px 5px 3px;
 }
+
 /*--------------- спэйс ----------------*/
-.space{
-        box-shadow: inset 0px -10px 30px rgb(0, 185, 179),
-  0px 20px 40px -40px rgb(2, 84, 173);
+.space {
+    box-shadow: inset 0px -10px 30px rgb(0, 185, 179),
+        0px 20px 40px -40px rgb(2, 84, 173);
 }
+
 /*--------------- смещение нот в позицию старт ----------------*/
 .click_item_position {
     justify-content: start;
 }
+
 /*--------------- скрытие сетки бэкграунда ----------------*/
 .button_setka_hide {
     box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0) inset;
 }
+
 /*--------------- скрытие круглой обводки элемента (выравнивание с бэкграундом) ----------------*/
 .button_hide_circkle {
     box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.2) inset;
 }
+
 /*--------------- увеличение размера шрифта ----------------*/
 .font_size_even {
     font-size: calc(var(--text-size) * 3);
 }
+
 /*--------------- выравнивание в линию ----------------*/
 .button_p_allgn_line {
     height: 0;
 }
+
 /*====================================================================*/
 
 
@@ -279,11 +306,13 @@ body {
 .hide {
     opacity: 0;
 }
+
 /*--------------- отключение курсора поинтера ----------------*/
 .no-click {
     pointer-events: none;
     /* background-color: #516AA4; */
 }
+
 /*--------------- применение стандартного шрифта ----------------*/
 .font__standart {
     font-family: Arial, Helvetica, sans-serif;
@@ -297,23 +326,29 @@ body {
     height: calc(100% / 3);
 }
 
-.add_speed_board_activ{
-  border: 1px solid rgba(0, 255, 179, 1);
+.add_speed_board_activ {
+    border: 1px solid rgba(55, 230, 90, 1);
+}
+
+.add_metronome_click_active {
+    box-shadow: 0px 0px 0px 4px rgba(55, 230, 90, 0.6) inset;
 }
 
 
 /*========================= добавление тактовых черт ==============================*/
-.left_border{
+.left_border {
     padding-left: 3px;
     border-left: 1px solid white;
 }
-.right_border{
+
+.right_border {
     border-right: 1px solid white;
 }
+
 /*=================================================================================*/
 
 
-.background{
+.background {
     background: var(--background);
     z-index: 999;
 }
