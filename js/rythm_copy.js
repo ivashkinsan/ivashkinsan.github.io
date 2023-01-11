@@ -38,11 +38,13 @@ search_all_click_items();
 // функция заморозки ширины и высоты элементов
 let add_width_and_height_attr = function () {
     for (let item of click_items) {
-        item.style.width = item.clientWidth + 'px';
-        item.style.height = item.clientWidth + 'px';
+        // item.style.width = item.clientWidth + 'px';
+        // item.style.height = item.clientWidth + 'px';
+        // item.setAttribute('draggable', true);
+        // console.log(item.attributes);
     }
 }
-// add_width_and_height_attr();
+add_width_and_height_attr();
 
 
 const taka = ['ТА', 'КА'];
@@ -66,9 +68,18 @@ let cheked = true;
 // item.addEventListener('click', 
 
 let container_for_click = document.querySelector('.container');
-container_for_click.addEventListener('click', function (elem) {
+// container_for_click.addEventListener('mousemove', function (elem) {
+//     console.log(elem);
+// })
+
+container_for_click.addEventListener('mousedown', function (elem) {
     console.log(elem);
-    // console.log(event);
+    console.log(event);
+    container_for_click.addEventListener('mousemove', function (elem) {
+        console.log(elem.toElement);
+    })
+
+    elem.target.setAttribute('draggable', true);
     // console.log(elem);
     // event.stopPropagation();
     // сбор дочерних элементов
@@ -89,7 +100,7 @@ container_for_click.addEventListener('click', function (elem) {
 
 
         // сброс с внутренних элементов классов border-active и очистка textContent
-        console.log(elem.target.children);
+        // console.log(elem.target.children);
         for (let elem_of_children of collection_child_div_elem) {
             elem_of_children.classList.remove('border_active');
         }
