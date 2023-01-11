@@ -163,6 +163,27 @@
 
 
     <div class="metronome_container">
+        <!-- выбор группы -->
+        <label for="">группа</label>
+        <select class="select_group">
+            <option value="value_NO" selected>---</option>
+            <option value="value_1">1</option>
+            <option value="value_2">2</option>
+            <option value="value_3">3</option>
+            <option value="value_4">4</option>
+            <option value="value_5">5</option>
+            <option value="value_3+2">3+2</option>
+        </select>
+        <!-- выбор подсветки длительностей метронома -->
+        <label for="">подсветка</label>
+        <select class="select_speed">
+            <option value="value_NO" selected>---</option>
+            <option value="value_2">2</option>
+            <option value="value_4">4</option>
+            <option value="value_8">8</option>
+            <option value="value_16">16</option>
+        </select>
+
         <button id="play-button" class="">
             <div id="play-pause-icon" class="play"></div>
         </button>
@@ -189,7 +210,7 @@
 
         <div class="button_label_numb button_container_elem">элементы
             <select class="select_variation">
-                <option value="value_NO" selected>---</ption>
+                <option value="value_NO" selected>---</option>
                 <option value="value_notes">ноты</option>
                 <option value="value_pause">паузы</option>
                 <option value="value_number">числа</option>

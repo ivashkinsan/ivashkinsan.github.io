@@ -910,7 +910,7 @@ function del_context_menu(elem) {
 //функция подсветки скоростей
 
 let speed_buttons = document.querySelectorAll('.speed');
-console.log(speed_buttons);
+// console.log(speed_buttons);
 
 function add_speed_board_activ(duration) {
     for (let click_item of click_items) {

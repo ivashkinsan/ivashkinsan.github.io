@@ -46,7 +46,7 @@ body {
     align-items: center;
     width: var(--circle-size);
     height: var(--circle-size);
-    transition: ease-in-out 500ms;
+    transition: ease-in-out 200ms;
 }
 
 @media screen and (min-aspect-ratio: 4/3) {
@@ -73,7 +73,7 @@ body {
     border-radius: 50%;
     box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.2) inset;
     cursor: pointer;
-    transition: all 700ms;
+    transition: all 200ms;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
@@ -331,7 +331,8 @@ body {
 }
 
 .add_metronome_click_active {
-    box-shadow: 0px 0px 0px 4px rgba(55, 230, 90, 0.6) inset;
+    /* box-shadow: 0px 0px 0px 4px rgba(55, 230, 90, 0.6) inset; */
+    background-color: rgba(238, 241, 229, 0.2);
 }
 
 
