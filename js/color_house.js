@@ -498,7 +498,7 @@ document.querySelector('.select_variation').addEventListener('change', function 
 
 
 // функция генерации подписей элементов
-let slogi = ['Ё', 'ТИ', 'ТУ', 'РА', 'РУ', 'ЗО', 'НИ', 'НА', 'ВИ', 'ВУ', 'РА', 'РУ'];
+let slogi = ['Ё', 'ТИ', 'ТУ', 'РА', 'РУ', 'ЗО', 'НИ', 'НА', 'ВИ', 'ВУ', 'ЛЕ', 'ЛУ'];
 let numbers = ['1', '7', 'b7', '6', 'b6', '5', '#4_b5', '4', '3', 'b3', '2', 'b2'];
 let numbers_rim = ['I', 'VII', 'bVII', 'VI', 'bVI', 'V', '#IV_bV', 'IV', 'III', 'bIII', 'II', 'bII'];
 let display_none = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
