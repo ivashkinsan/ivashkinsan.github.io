@@ -966,3 +966,18 @@ let add_staff_line = function () {
 //     item.children[0].innerHTML = i;
 //     i++;
 // }
+
+let plus_ball_index = 0;
+document.querySelector('.plus_ball').onclick = function () {
+    if (plus_ball_index == 0) {
+        let new_node_element = document.querySelector('.whole_note').cloneNode(true);
+        console.log(new_node_element);
+        let container = document.querySelector('.container');
+        container.append(new_node_element);
+        container.style.width = '80vw';
+        container.style.height = '75vh';
+        plus_ball_index++;
+    }
+
+
+}
