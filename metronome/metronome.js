@@ -1,8 +1,19 @@
-let half_notes = document.querySelectorAll('.half_note');
-let quarter_notes = document.querySelectorAll('.quarter_note');
-let eighth_notes = document.querySelectorAll('.eighth');
-let sixteenth_notes = document.querySelectorAll('.sixteenth');
-let all_click_items = document.querySelectorAll('.click_item');
+let half_notes;
+let quarter_notes;
+let eighth_notes;
+let sixteenth_notes;
+let all_click_items;
+
+function searsh_all_elem() {
+    half_notes = document.querySelectorAll('.half_note');
+    quarter_notes = document.querySelectorAll('.quarter_note');
+    eighth_notes = document.querySelectorAll('.eighth');
+    sixteenth_notes = document.querySelectorAll('.sixteenth');
+    all_click_items = document.querySelectorAll('.click_item');
+}
+
+searsh_all_elem();
+
 
 let clear_all_elem = function () {
     // console.log('off');
@@ -11,35 +22,6 @@ let clear_all_elem = function () {
         // console.log('off');
     }
 }
-
-// let speed_tempo = function () {
-//     switch (document.querySelector('.select_speed').value) {
-//         case 'value_NO':
-//             break;
-//         case 'value_2':
-//             metronome.tempo = metronome.tempo / 2;
-//             tempo.textContent = metronome.tempo;
-//             metronome.currentBeatInBar = 0;
-//             break;
-//         case 'value_4':
-//             metronome.tempo = metronome.tempo;
-//             tempo.textContent = metronome.tempo;
-//             metronome.currentBeatInBar = 0;
-//             break;
-//         case 'value_8':
-//             metronome.tempo = metronome.tempo * 2;
-//             tempo.textContent = metronome.tempo;
-//             metronome.currentBeatInBar = 0;
-//             break;
-//         case 'value_16':
-//             metronome.tempo = metronome.tempo * 4;
-//             tempo.textContent = metronome.tempo;
-
-//             break;
-//     }
-// }
-
-
 
 let schet_for_led = 0;
 
