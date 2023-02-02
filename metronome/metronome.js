@@ -68,7 +68,9 @@ class Metronome {
         }
 
 
+
         switch (document.querySelector('.select_speed').value) {
+
             case 'value_NO':
                 break;
             case 'value_2':
