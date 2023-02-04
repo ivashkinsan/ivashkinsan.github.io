@@ -617,26 +617,26 @@ let tonika = {
     c_dur: [1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1],
 }
 
-//создание клавиатуры фортепиано
-let create_piano = function () {
-    let all_levels_elem = document.querySelectorAll('.levels_elem');
-    // скрытие img элементов
-    for (let item of all_levels_elem) {
-        item.children[0].classList.add('display_none');
-        console.log(item.children[0]);
-    }
+// //создание клавиатуры фортепиано
+// let create_piano = function () {
+//     let all_levels_elem = document.querySelectorAll('.levels_elem');
+//     // скрытие img элементов
+//     for (let item of all_levels_elem) {
+//         item.children[0].classList.add('display_none');
+//         console.log(item.children[0]);
+//     }
 
-    //создание новых элементов для клавиатуры
-    let index_for_all_levels_elem = 0;
-    for (let item of all_levels_elem) {
-        let new_div = document.createElement('div');
-        new_div.classList.add('click_elem', 'piano_elem');
-        // if () {
-        console.log(index_for_all_levels_elem);
-        // }
-        item.appendChild(new_div);
-        index_for_all_levels_elem++;
-    }
+//     //создание новых элементов для клавиатуры
+//     let index_for_all_levels_elem = 0;
+//     for (let item of all_levels_elem) {
+//         let new_div = document.createElement('div');
+//         new_div.classList.add('click_elem', 'piano_elem');
+//         // if () {
+//         console.log(index_for_all_levels_elem);
+//         // }
+//         item.appendChild(new_div);
+//         index_for_all_levels_elem++;
+//     }
 
-}
-create_piano();
+// }
+// create_piano();
