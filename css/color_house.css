@@ -227,3 +227,9 @@ body {
 .select_variation_tonality {
     width: 140px;
 }
+
+.piano_elem {
+    width: 380px;
+    /* height: 60px; */
+    border: 2px solid #DDB078;
+}
