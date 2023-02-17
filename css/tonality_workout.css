@@ -1,12 +1,12 @@
-body{
-    box-sizing: border-box;
-    margin: 0;
-    height: auto;
-    color: #F4D6B1;
-    background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
-    /* border-style: inset; */
-    border: 20px solid;
-    border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
+body {
+  box-sizing: border-box;
+  margin: 0;
+  height: auto;
+  color: #F4D6B1;
+  background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
+  /* border-style: inset; */
+  border: 20px solid;
+  border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
 }
 
 /* .container_dom {
@@ -21,20 +21,20 @@ body{
     overflow: hidden;
 } */
 
-image{
+image {
   margin-left: 5px;
   margin-right: 5px;
   width: 10%;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 
-.container_of_blocks{
+.container_of_blocks {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,12 +43,12 @@ image{
   height: 100%;
 }
 
-.container_of_monitor{
-    display: flex;
-    flex-direction: row;
+.container_of_monitor {
+  display: flex;
+  flex-direction: row;
 }
 
-.keys_monitor{
+.keys_monitor {
   display: flex;
   justify-content: center;
   /* align-items: center; */
@@ -60,25 +60,27 @@ image{
   text-shadow: 1px 1px #000000;
 }
 
-.small_elem{
+.small_elem {
   display: flex;
   flex-direction: column;
-      justify-content: flex-end;
-      align-items: center; /*опускает цифры вниз клавиш*/
-      padding-top: 20px;
-      width: 13.2%;
-      height: 95%;
-      border: 1px #9c9c9c solid;
-      border-radius: 0 0 4px 4px;
-      background-color: white;
-      transition-property: background-color;
-      transition-duration: 300ms;
-      z-index: 1;
+  justify-content: flex-end;
+  align-items: center;
+  /*опускает цифры вниз клавиш*/
+  padding-top: 20px;
+  width: 13.2%;
+  height: 95%;
+  border: 1px #9c9c9c solid;
+  border-radius: 0 0 4px 4px;
+  background-color: white;
+  transition-property: background-color;
+  transition-duration: 300ms;
+  z-index: 1;
 }
 
 .small_black_key {
   background-color: rgb(154, 154, 154);
-  width: 8%;;
+  width: 8%;
+  ;
   height: 55%;
   margin-left: -4.2%;
   margin-right: -4.2%;
@@ -89,16 +91,16 @@ image{
   z-index: 2;
 }
 
-.grid_monitor{
+.grid_monitor {
   display: grid;
   grid-template-columns: 1fr 2fr 2fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  
+
   /* width: 50%; */
   /* border: red 2px solid; */
 }
 
-.grid_elem{
+.grid_elem {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
@@ -108,29 +110,30 @@ image{
   box-sizing: inherit;
 }
 
-.orange{
+.orange {
   padding-left: 15px;
   justify-content: right;
   background-color: rgb(255, 166, 0);
 }
-.blue{
+
+.blue {
   background-color: blue;
   padding-right: 15px;
 }
 
-.pad{
+.pad {
   justify-content: center;
   padding-left: 15px;
   padding-right: 15px;
 }
 
-.button:hover{
+.button:hover {
   /* transform: translate(-2px,-5px); */
   cursor: pointer;
   /* border: #ffffff 3px solid; */
   /* box-shadow: 2px 2px 5px black; */
   outline: 2px solid rgb(255, 255, 255);
-  outline-offset:-4px;
+  outline-offset: -4px;
 }
 
 .container_of_keys {
@@ -141,88 +144,108 @@ image{
   /* border: 3px solid orange; */
 }
 
-  .elem {
-      display: flex;
-      justify-content: center;
-      align-items: flex-end; /*опускает цифры вниз клавиш*/
-      padding-top: 20px;
-      width: 6.6%;
-      height: 95%;
-      border: 1px #9c9c9c solid;
-      border-radius: 0 0 12px 12px;
-      background-color: white;
-      transition-property: background-color;
-      transition-duration: 300ms;
-      z-index: 1;
-    }
-  
-     .black_key {
-      background-color: rgb(154, 154, 154);
-      width: 4%;;
-      height: 55%;
-      margin-left: -2.1%;
-      margin-right: -2.1%;
-      background-color: black;
-      border: 2px #9c9c9c solid;
-      transition-property: background-color;
-      transition-duration: 300ms;
-      z-index: 2;
-    }
-  
-    @media (orientation: portrait) {
-      .elem {
-        height: 30%;
-        border-radius: 0 0 4px 4px;
-        border: 0.5px #9c9c9c solid;
-      }
-      .black_key {
-        height: 16%;
-      }
-    }
-  
-    @media (min-width: 0px) and (max-width: 740px) {
-      .elem {
-        border-radius: 0 0 4px 4px;
-        border: 0.5px #9c9c9c solid;
-      }
-    }
+.elem {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  /*опускает цифры вниз клавиш*/
+  padding-top: 20px;
+  width: 6.6%;
+  height: 95%;
+  color: #516AA4;
+  font-size: 34px;
+  font-weight: bold;
+  border: 1px #9c9c9c solid;
+  border-radius: 0 0 12px 12px;
+  background-color: white;
+  transition-property: background-color;
+  transition-duration: 300ms;
+  z-index: 1;
+}
 
-    .ledON { 
-      background-color: rgb(0, 234, 255); 
-      transition-property: background-color;
-      transition-duration: 300ms;
-      box-shadow: inset 0px 0px 15px 0px #000000;
-    }
-    
+.black_key {
+  background-color: rgb(154, 154, 154);
+  width: 4%;
+  height: 55%;
+  margin-left: -2.1%;
+  margin-right: -2.1%;
+  background-color: black;
+  border: 2px #9c9c9c solid;
+  transition-property: background-color;
+  transition-duration: 300ms;
+  z-index: 2;
+}
+
+@media (orientation: portrait) {
+  .elem {
+    height: 30%;
+    border-radius: 0 0 4px 4px;
+    border: 0.5px #9c9c9c solid;
+  }
+
+  .black_key {
+    height: 16%;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 740px) {
+  .elem {
+    border-radius: 0 0 4px 4px;
+    border: 0.5px #9c9c9c solid;
+  }
+}
+
+.ledON {
+  background-color: rgb(0, 234, 255);
+  transition-property: background-color;
+  transition-duration: 300ms;
+  box-shadow: inset 0px 0px 15px 0px #000000;
+}
+
 
 
 
 .go_start_menu {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;
-    height: 30px;
-    top: 24px;
-    left: 24px;
-    color: #F4D6B1;
-    font-size: 14px;
-    z-index: 999;
-    border: 3px #F4D6B1 solid;
-    cursor: pointer;
-  }
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 30px;
+  top: 24px;
+  left: 24px;
+  color: #F4D6B1;
+  font-size: 14px;
+  z-index: 999;
+  border: 3px #F4D6B1 solid;
+  cursor: pointer;
+}
 
 
-  .checkbox_for_big_keys {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;
-    height: 30px;
-    top: 24px;
-    left: 104px;
-    border: 2px solid red;
-    cursor: pointer;
-  }
+.checkbox_for_big_keys {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 30px;
+  top: 24px;
+  left: 104px;
+  border: 2px solid red;
+  cursor: pointer;
+}
+
+.long_keys {
+  /* height: 95%; */
+  margin-left: 0;
+  margin-right: 0;
+  width: 50px;
+  height: 50px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 0;
+}
+
+.out_p {
+  margin-top: 100px;
+}
