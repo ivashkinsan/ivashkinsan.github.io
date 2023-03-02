@@ -114,31 +114,61 @@ let symBtnLevelGO;
 // функция смены 1 блока симметрии
 let clicks = 0;
 
-const oneBlockFirstSlide = document.querySelector('.hrom');
-oneBlockFirstSlide.onclick = function () {
-  switch (clicks) {
-    case 0:
-      this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_null.svg';
-      clicks += 1;
-      break;
-    case 1:
-      this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
-      clicks += 1;
-      break;
-    case 2:
-      this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
-      clicks += 1;
-      break;
-    case 3:
-      this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
-      clicks += 1;
-      break;
-    case 4:
-      this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_steps_1_7.svg';
-      clicks = 0;
-      break;
-  }
-}
+
+let allHrom = document.querySelectorAll('.hrom');
+allHrom.forEach(hrom => {
+  hrom.addEventListener('click', function () {
+    switch (clicks) {
+      case 0:
+        this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_null.svg';
+        clicks += 1;
+        break;
+      case 1:
+        this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_steps_1_7.svg';
+        clicks = 0;
+        break;
+      // case 2:
+      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
+      //   clicks += 1;
+      //   break;
+      // case 3:
+      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
+      //   clicks += 1;
+      //   break;
+      // case 4:
+      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
+      //   clicks = 0;
+      //   break;
+    }
+  });
+});
+
+
+// const oneBlockFirstSlide = document.querySelector('.hrom');
+// oneBlockFirstSlide.onclick = function () {
+//   switch (clicks) {
+//     case 0:
+//       this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_null.svg';
+//       clicks += 1;
+//       break;
+//     case 1:
+//       this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
+//       clicks += 1;
+//       break;
+//     case 2:
+//       this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
+//       clicks += 1;
+//       break;
+//     case 3:
+//       this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
+//       clicks += 1;
+//       break;
+//     case 4:
+//       this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_steps_1_7.svg';
+//       clicks = 0;
+//       break;
+//   }
+// }
 
 
 //ВЫБОР РЕЖИМА РАНДОМ
