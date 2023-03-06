@@ -91,9 +91,12 @@ let spisokNamesForInfoMoni = {
 };
 
 let marker = document.querySelectorAll('p');
-for (let item of marker) {
-  item.innerHTML = '';
-}
+let clear_marker = function () {
+  for (let item of marker) {
+    item.innerHTML = '';
+  }
+};
+clear_marker();
 
 let keys = document.querySelectorAll('.key');
 let elements = document.querySelectorAll('.elem');
@@ -242,12 +245,36 @@ Array.prototype.shuffle = function () {
   return this;
 };
 
+let label_stage_arr = ['1', 'b2', '2', 'b3', '3', '4', '#4/b5', '5', 'b6', '6', 'b7', '7', '1']
+let label_checkbox = document.querySelector('.label_checkbox');
+label_checkbox.onclick = function () {
+  if (!label_checkbox.checked) {
+    clear_marker();
+  } else {
+    add_label_checkbox(ti);
+  }
+};
+
+let add_label_checkbox = function (start_ti) {
+  if (label_checkbox.checked) {
+    clear_marker();
+    let jundex = 0;
+    for (let i = start_ti; i < label_stage_arr.length + start_ti; i++) {
+      // console.log(i);
+      keys[i].children[0].innerHTML = label_stage_arr[jundex];
+      jundex++;
+    }
+  }
+}
+
 // console.log('YYYYEEESSS')
 let startNoteArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 startNoteArr.shuffle();
+
 // ФУНКЦИЯ ПОДСВЕТКИ СТАРТОВОЙ ОКТАВЫ, ПРИСВОЕНИЕ ИСХОДНЫХ ЦИФР
 let startWork = function () {
   clear_ledOn();
+
   let startOneNote;
 
   if (startNoteArr.length > 0) {
@@ -264,9 +291,13 @@ let startWork = function () {
 
 
   ti_repeat_one = startOneNote;
+  // console.log(ti_repeat_one);
   let startTwoNote = startOneNote + 12;
   keys[startOneNote].classList.toggle('ledON');
+
   ti = startOneNote;
+
+  add_label_checkbox(ti);
 
   // СИММЕТРИИ
   if (symBtnLevel.dataset.number == 'symmetry2') {
@@ -827,11 +858,14 @@ let addElementsDimToneLabel = function () {
 
   }
 }
+
 document.querySelector('.DIM_button').onclick = addElementsDimToneLabel;
 
-// if (window.matchMedia("(orientation: portrait)").matches) {
-//   alert('Переключитесь в ландшафтный режим!');
-// }
+//добавление лейблов ступеней
+let addStageLabel = function () {
+  console.log()
+}
+
 
 // Listen for orientation changes
 window.addEventListener("orientationchange", function () {

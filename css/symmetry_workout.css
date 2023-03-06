@@ -99,7 +99,7 @@ Img {
   right: 0;
   bottom: 0;
   left: 0;
-   font-size: 1.4vw;
+  font-size: 1.4vw;
   align-items: center;
   gap: 10px;
 }
@@ -130,7 +130,7 @@ Img {
   box-shadow: inset 0px 0px 15px 0px #F4D6B1;
   opacity: 1;
   border: 1px solid white;
- }
+}
 
 .prev,
 .next {
@@ -170,7 +170,7 @@ Img {
   width: auto;
   height: auto;
   flex-direction: column;
- }
+}
 
 .container_monitor {
 
@@ -198,8 +198,8 @@ input[type=range] {
 }
 
 .checkbox_container {
-   display: flex;
-   justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
   top: 0;
 }
@@ -227,11 +227,13 @@ input[type=range] {
 }
 
 .elem {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: flex-end;
   /*опускает цифры вниз клавиш*/
   padding-top: 20px;
+  text-align: center;
   width: 6.8%;
   height: 100%;
   border: 1px #9c9c9c solid;
@@ -241,6 +243,14 @@ input[type=range] {
   transition-duration: 300ms;
   z-index: 1;
   cursor: pointer;
+}
+
+.elem>p {
+  position: absolute;
+  top: 3%;
+  width: 100%;
+  text-align: center;
+  text-shadow: 1px 1px 2px #ffffff9a;
 }
 
 .WT_PLUS {
@@ -352,6 +362,7 @@ input[type=range] {
 .long_button,
 .WT_button,
 .DIM_button,
+.label_button,
 .audio_button {
 
   display: flex;
@@ -367,12 +378,12 @@ input[type=range] {
   z-index: 999;
 }
 
-.audio_button{
+.audio_button {
   background-color: rgb(54, 54, 197);
 }
 
-.noSound{
-  
+.noSound {
+
   background-color: red;
 }
 
@@ -427,7 +438,7 @@ input[type=range] {
   width: 40%;
   grid-template-columns: 1fr 1fr;
   flex-direction: column;
- }
+}
 
 li {
   display: block;
