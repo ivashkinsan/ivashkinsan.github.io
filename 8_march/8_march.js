@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		stampMachine =
 			"https://raw.githubusercontent.com/MrGregor228/Notes-For-Piano/master/paper%20sound/stampmachine.mp3",
 		carelessWhisper =
-			"";
+			"8_march/igor-saruhanov-8-marta.mp3";
 
 	let firstSound = new Audio();
 	firstSound.volume = [0.2];
