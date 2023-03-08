@@ -2,13 +2,13 @@ document.addEventListener("DOMContentLoaded", () => {
 	let flyingPaperSound =
 		"https://raw.githubusercontent.com/MrGregor228/Notes-For-Piano/master/paper%20sound/flyingpaper.mp3",
 		takingPaperSound =
-			"https://raw.githubusercontent.com/MrGregor228/Notes-For-Piano/master/paper%20sound/takepaper.mp3",
+		"https://raw.githubusercontent.com/MrGregor228/Notes-For-Piano/master/paper%20sound/takepaper.mp3",
 		rotatingPaper =
-			"https://raw.githubusercontent.com/MrGregor228/Notes-For-Piano/master/paper%20sound/paperRotating.mp3",
+		"https://raw.githubusercontent.com/MrGregor228/Notes-For-Piano/master/paper%20sound/paperRotating.mp3",
 		stampMachine =
-			"https://raw.githubusercontent.com/MrGregor228/Notes-For-Piano/master/paper%20sound/stampmachine.mp3",
+		"https://raw.githubusercontent.com/MrGregor228/Notes-For-Piano/master/paper%20sound/stampmachine.mp3",
 		carelessWhisper =
-			"8_march/igor-saruhanov-8-marta.mp3";
+		"8_march/igor-saruhanov-8-marta.mp3";
 
 	let firstSound = new Audio();
 	firstSound.volume = [0.2];
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	const text1 =
 		"Преподаватели отделения Музыкального Искусства Эстрады от всего сердца поздравляют Вас с самым обворожительным праздником весны! Без Вас бы не было написано ни строчки - это фраза из песни, очень глубоко определяет наше отношение к Вам и значимость этих милых слов Любимая, Жена, Мама, Бабушка, Дочка, Сестра, в наших мужских сердцах. Может мы этого отношения не всегда проявляем, но вы для нас самое дорогое.",
-		text2 = "Мы желаем нашим милым женщинам счастья, любови, улыбок, добра, здоровья и благополучия. Пусть ваши мечты исполняются всё чаще, а близкие люди окружают вас заботой и поддержкой, добром и уважением. Тепла, солнца, радости, благополучия, уюта и счастья Вам и вашему дому. Пусть новыми красками играют привычные дни, а приятные чувства встречаются там, где их не ждешь. Музыки в сердце, музыки в душе, гармонии во всем! С 8 Марта!";
+		text2 = "Мы желаем нашим милым женщинам счастья, любови, улыбок, добра, здоровья и благополучия. Пусть ваши мечты исполняются всё чаще, а близкие люди окружают вас заботой и поддержкой, добром и уважением. Тепла, солнца, радости, благополучия, уюта и счастья Вам и вашему дому. Пусть новыми красками играют привычные дни, а приятные чувства встречаются там, где их не ждешь. Музыки в сердце, музыки в душе, гармонии во всем! С 8 Марта!❤";
 
 	let options = {
 		strings: [text1, text2],
