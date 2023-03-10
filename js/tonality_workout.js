@@ -3,7 +3,7 @@ const keys = document.querySelectorAll('.key');
 const buttons = document.querySelectorAll('.button');
 const p_elements = document.querySelectorAll('.key p');
 const checkbox = document.querySelector('.checkboxClass');
-
+const elem_of_thermometr_numb = document.querySelectorAll('.thermometr_numb')
 console.log(checkbox);
 // for (let i = 0; i < keys.length; i++) {
 //     keys[i].innerHTML = i;
@@ -24,7 +24,10 @@ let tonalityObj = {
     'Ab-dur': [9, 11, 13, 14, 16, 18, 20, 'ляb мажор'],
     'A-dur': [10, 12, 14, 15, 17, 19, 21, 'ля мажор'],
     'Bb-dur': [11, 13, 15, 16, 18, 20, 22, 'сиb мажор'],
-    'B-dur': [12, 14, 16, 17, 19, 21, 23, 'си мажор']
+    'B-dur': [12, 14, 16, 17, 19, 21, 23, 'си мажор'],
+    'Cb-dur': [12, 14, 16, 17, 19, 21, 23, 'доb мажор'],
+    'C#-dur': [2, 4, 6, 7, 9, 11, 13, 'до# мажор']
+
 };
 
 const small_elements = document.querySelectorAll('.small_elem');
@@ -62,7 +65,7 @@ let addLedOn = function (inputArr) {
 };
 
 
-//озвучка кнопок BUTTON событием клика
+//активация елементов таблицы событием клика
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('mouseenter', function () {
         clearLedOn();
@@ -73,6 +76,20 @@ for (let i = 0; i < buttons.length; i++) {
 
     })
 };
+
+//активация елементов градусника событием клика
+for (let i = 0; i < elem_of_thermometr_numb.length; i++) {
+    elem_of_thermometr_numb[i].addEventListener('mouseenter', function () {
+        clearLedOn();
+        let jjj = elem_of_thermometr_numb[i].dataset.number;
+
+        addLedOn(tonalityObj[elem_of_thermometr_numb[i].dataset.number]);
+        small_el_obj[jjj].classList.add('ledOn');
+
+    })
+};
+
+
 
 
 //ОЧИСТКА БОЛЬШОЙ КЛАВИАТУРЫ
