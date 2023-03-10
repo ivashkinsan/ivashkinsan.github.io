@@ -46,6 +46,7 @@ image {
 .container_of_monitor {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .keys_monitor {
@@ -80,7 +81,6 @@ image {
 .small_black_key {
   background-color: rgb(154, 154, 154);
   width: 8%;
-  ;
   height: 55%;
   margin-left: -4.2%;
   margin-right: -4.2%;
@@ -108,6 +108,12 @@ image {
   font-size: 1em;
   text-shadow: 1px 1px #000000;
   box-sizing: inherit;
+}
+
+.grid_2_3 {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  background-color: rgb(255, 255, 255);
 }
 
 .orange {
