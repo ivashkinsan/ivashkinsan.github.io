@@ -521,7 +521,7 @@ li {
 
 
 .interval_container {
-  display: none;
+  /* display: none; */
   position: absolute;
   padding: 5px;
   top: 0;
@@ -549,6 +549,31 @@ li {
   justify-content: space-around;
   /* width: 100%; */
   /* border: 2px solid black; */
+}
+
+.square_white,
+.square_white_black,
+.square_black_white,
+.square_black {
+  width: 100%;
+  height: 40px;
+  border: 2px solid white;
+}
+
+.square_white {
+  background-color: #eee;
+}
+
+.square_white_black {
+  background: linear-gradient(to right, #eee 50%, #333 50%);
+}
+
+.square_black_white {
+  background: linear-gradient(to left, #eee 50%, #333 50%);
+}
+
+.square_black {
+  background-color: #333;
 }
 
 .line_box {
