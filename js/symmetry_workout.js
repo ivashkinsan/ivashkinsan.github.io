@@ -904,3 +904,50 @@ document.querySelector('.audio_button').onclick = function () {
   this.classList.toggle('noSound');
   soundON = soundON ? false : true;
 }
+
+
+// интервалы сортировка по цвету
+let row_for_copy = document.querySelector('.row_for_copy');
+let interval_container = document.querySelector('.interval_container');
+let arr_int_label = ['м2', 'Б2', 'м3', 'Б3', 'ч4', 'ТТТ', 'ч5', 'м6', 'Б6', 'м7', 'Б7'];
+let matrix_int_table = [
+  [[0, 0, 1, 0, 0, 0, 1], [1, 1, 0, 1, 1, 1, 0], [1, 1, 1, 1, 1], [0, 0, 0, 0, 0]],
+  [[1, 1, 0, 1, 1, 1, 0], [0, 0, 1, 0, 0, 0, 1], [0, 1, 0, 0, 1], [1, 0, 1, 1, 0]],
+  [[0, 1, 1, 0, 0, 1, 1], [1, 0, 0, 1, 1, 0, 0], [1, 0, 1, 1, 0], [0, 1, 0, 0, 1]],
+  [[1, 0, 0, 1, 1, 0, 0], [0, 1, 1, 0, 0, 1, 1], [1, 1, 0, 1, 1], [0, 0, 1, 0, 0]]
+
+];
+// копирование и добавление 11 нод
+for (let i = 0; i < 10; i++) {
+  let new_clone = row_for_copy.cloneNode(true);
+  new_clone.children[0].innerHTML = arr_int_label[i + 1];
+  interval_container.append(new_clone);
+}
+
+let create_line_box = function (boo) {
+  let new_line_box = document.createElement('div');
+  new_line_box.classList.add('line_box');
+  let new_line = document.createElement('div');
+  new_line.classList.add('line');
+  let new_circle = document.createElement('div');
+  new_circle.classList.add('circle');
+  if (boo == 0) {
+    new_circle.classList.add('hide_circle');
+  }
+  new_line.append(new_circle);
+  new_line_box.append(new_line);
+  return new_line_box;
+};
+
+for (let i = 0; i < matrix_int_table.length; i++) {
+  for (let j = 0; j < matrix_int_table[i].length; j++) {
+    create_line_box(matrix_int_table[i][j]);
+    console.log(matrix_int_table[i][j]);
+  }
+}
+
+
+// console.log(new_line_box);
+// console.log(matrix_int_table.m2)
+// console.log(new_line);
+// console.log(new_circle);
