@@ -1,15 +1,14 @@
-
 const keys = document.querySelectorAll('.key');
 const buttons = document.querySelectorAll('.button');
+const pads = document.querySelectorAll('.pad');
+const binary_mask = document.querySelectorAll('.elem_of_mask');
 const p_elements = document.querySelectorAll('.key p');
 const checkbox = document.querySelector('.checkboxClass');
 const elem_of_thermometr_numb = document.querySelectorAll('.thermometr_numb')
-console.log(checkbox);
+// console.log(checkbox);
 // for (let i = 0; i < keys.length; i++) {
 //     keys[i].innerHTML = i;
 // };
-
-
 
 let tonalityObj = {
     'C-dur': [1, 3, 5, 6, 8, 10, 12, 'до мажор'],
@@ -55,7 +54,6 @@ let addLedOn = function (inputArr) {
         }
         if (keys[inputArr[i] - 1].classList.contains('black_key')) {
             console.log('black_key')
-
         }
         // keys[inputArr[i] - 1].innerHTML = i + 1;
         // console.log(keys[inputArr[i] - 1].children[0]);
@@ -64,17 +62,46 @@ let addLedOn = function (inputArr) {
     };
 };
 
-
-//активация елементов таблицы событием клика
+//активация елементов таблицы событием наведения мыши
 for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener('mouseenter', function () {
+    buttons[i].addEventListener('mouseenter', function (event) {
+        one_time_block = event.target;
         clearLedOn();
         let jjj = buttons[i].dataset.number;
 
         addLedOn(tonalityObj[buttons[i].dataset.number]);
         small_el_obj[jjj].classList.add('ledOn');
-
+        clear_borders_buttons();
+        event.target.classList.add('border_active');
+        add_border_active_for_pads_elem(jjj);
+        add_border_active_for_binary_mask(jjj);
     })
+};
+
+//подсветка элемента таблицы
+let add_border_active_for_table_elem = function (elem) {
+    for (let item of buttons) {
+        if (item.dataset.number == elem) {
+            item.classList.add('border_active');
+        }
+    }
+};
+
+//подсветка левого и правого лейбла строк таблицы
+let add_border_active_for_pads_elem = function (elem) {
+    for (let item of pads) {
+        if (item.dataset.number == elem) {
+            item.classList.add('border_active');
+        }
+    }
+};
+
+let add_border_active_for_binary_mask = function (elem) {
+    for (let item of binary_mask) {
+        if (item.dataset.number == elem) {
+            item.classList.add('border_active');
+        }
+    }
 };
 
 //активация елементов градусника событием клика
@@ -84,13 +111,13 @@ for (let i = 0; i < elem_of_thermometr_numb.length; i++) {
         let jjj = elem_of_thermometr_numb[i].dataset.number;
 
         addLedOn(tonalityObj[elem_of_thermometr_numb[i].dataset.number]);
+        clear_borders_buttons();
+        add_border_active_for_table_elem(jjj);
+        add_border_active_for_pads_elem(jjj);
+        add_border_active_for_binary_mask(jjj);
         small_el_obj[jjj].classList.add('ledOn');
-
     })
 };
-
-
-
 
 //ОЧИСТКА БОЛЬШОЙ КЛАВИАТУРЫ
 let clearLedOn = function () {
@@ -104,9 +131,17 @@ let clearLedOn = function () {
     }
 };
 
-// console.log(small_elements[1]);
-// console.log(small_el_obj);
-
+let clear_borders_buttons = function () {
+    for (let item of buttons) {
+        item.classList.remove('border_active');
+    }
+    for (let item of pads) {
+        item.classList.remove('border_active');
+    }
+    for (let item of binary_mask) {
+        item.classList.remove('border_active');
+    }
+}
 
 let all_black_keys = document.querySelectorAll('.black_key');
 checkbox.addEventListener('change', function () {
