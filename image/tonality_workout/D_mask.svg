@@ -1,10 +1,15 @@
-<svg width="547" height="50" viewBox="0 0 547 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="213.5" y="0.5" width="49" height="49" fill="black" stroke="black"/>
-<rect x="497.5" y="0.5" width="49" height="49" fill="black" stroke="black"/>
-<rect x="284.5" y="0.5" width="49" height="49" fill="white" stroke="black"/>
-<rect x="355.5" y="0.5" width="49" height="49" fill="white" stroke="black"/>
-<rect x="426.5" y="0.5" width="49" height="49" fill="white" stroke="black"/>
-<rect x="142.5" y="0.5" width="49" height="49" fill="white" stroke="black"/>
-<rect x="71.5" y="0.5" width="49" height="49" fill="white" stroke="black"/>
-<path d="M23.5 34H18.1136V16.5455H23.7386C25.4318 16.5455 26.8807 16.8949 28.0852 17.5938C29.2898 18.2869 30.2131 19.2841 30.8551 20.5852C31.4972 21.8807 31.8182 23.4318 31.8182 25.2386C31.8182 27.0568 31.4943 28.6222 30.8466 29.9347C30.1989 31.2415 29.2557 32.2472 28.017 32.9517C26.7784 33.6506 25.2727 34 23.5 34ZM20.2273 32.125H23.3636C24.8068 32.125 26.0028 31.8466 26.9517 31.2898C27.9006 30.733 28.608 29.9403 29.0739 28.9119C29.5398 27.8835 29.7727 26.6591 29.7727 25.2386C29.7727 23.8295 29.5426 22.6165 29.0824 21.5994C28.6222 20.5767 27.9347 19.7926 27.0199 19.2472C26.1051 18.696 24.9659 18.4205 23.6023 18.4205H20.2273V32.125Z" fill="black"/>
+<svg width="485" height="396" viewBox="0 0 485 396" fill="none" xmlns="http://www.w3.org/2000/svg">
+<line x1="21" y1="142.5" x2="464" y2="142.5" stroke="black" stroke-width="3"/>
+<line x1="21" y1="193.033" x2="464" y2="193.033" stroke="black" stroke-width="3"/>
+<line x1="21" y1="243.567" x2="464" y2="243.567" stroke="black" stroke-width="3"/>
+<line x1="21" y1="294.1" x2="464" y2="294.1" stroke="black" stroke-width="3"/>
+<line x1="21" y1="344.633" x2="464" y2="344.633" stroke="black" stroke-width="3"/>
+<line x1="51.4999" y1="79.0189" x2="50.4999" y2="211.019" stroke="black" stroke-width="5"/>
+<path d="M38.2894 167.808L88.1914 152L88.1914 170.181L38.2894 186.181L38.2894 167.808Z" fill="black"/>
+<line x1="75.4999" y1="72.0189" x2="74.4999" y2="204.019" stroke="black" stroke-width="5"/>
+<path d="M37.9663 115.127L87.8683 99.3191L87.8683 117.5L37.9663 133.5L37.9663 115.127Z" fill="black"/>
+<line x1="111.823" y1="156.019" x2="110.823" y2="288.019" stroke="black" stroke-width="5"/>
+<path d="M98.6125 244.808L148.514 229L148.514 247.181L98.6125 263.181L98.6125 244.808Z" fill="black"/>
+<line x1="135.823" y1="149.019" x2="134.823" y2="281.019" stroke="black" stroke-width="5"/>
+<path d="M98.2894 192.127L148.191 176.319L148.191 194.5L98.2894 210.5L98.2894 192.127Z" fill="black"/>
 </svg>
