@@ -177,9 +177,9 @@ body {
 
 .black_elem{
   position: relative;
-  width: 40px;
-  margin-left: -20px;
-  margin-right: -20px;
+  width: 38px;
+  margin-left: -19px;
+  margin-right: -19px;
   height: 60%;
   background-color: black;
   z-index: 999;
@@ -189,6 +189,35 @@ body {
 .main__small_keyboard {
   grid-area: 1/3/1/3;
   background-color: blue;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  height: 200px;
+  width: 100%;
+}
+
+.elem_of_small_keyboard{
+  border-radius: 0 0 4px 4px;
+}
+
+.small_white_elem{
+  /* width: 50px; */
+  width: 54px;
+  height: 100%;
+  background-color: white;
+  border: 0.5px solid black;
+}
+
+.small_black_elem{
+  position: relative;
+  width: 38px;
+  margin-left: -19px;
+  margin-right: -19px;
+  height: 60%;
+  background-color: black;
+  z-index: 999;
 }
 
 /* =================================================================================================== */
