@@ -1,3 +1,7 @@
+:root {
+  --ms_transition: 300ms;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -32,9 +36,10 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  
   padding: 0px;
 
-  border: 1px solid #000000;
+  /* border: 1px solid #000000; */
 }
 
 .main__table_grid__left_label,
@@ -62,6 +67,7 @@ body {
   grid-auto-flow: column;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr;
+  gap: 1px;
   width: 100%;
   height: 100%;
   /* background-color: #516AA4; */
@@ -73,7 +79,7 @@ body {
   align-items: center;
   /* border: 1px solid white; */
   color: white;
-  border: 4px solid rgba(0, 0, 0, 0);
+  /* border: 4px solid rgba(0, 0, 0, 0); */
   z-index: 999;
   cursor: pointer;
 }
@@ -84,10 +90,10 @@ body {
   justify-content: center;
   align-items: center;
   /* padding: 0 10px; */
-  font-size: 10px;
+  font-size: 16px;
   line-height: 10px;
   letter-spacing: 2px;
-  width: 50px;
+  width: 70px;
   font-family: 'Opus Text Std';
 }
 
@@ -161,9 +167,10 @@ body {
 }
 
 .active_box_border {
-  /* box-shadow: #F4D6B1; */
-  /* box-shadow: 10px 5px 5px red; */
-  border: 4px solid red;
+  outline: 1px dashed #ffffff; /* Ширина, вид и цвет рамки */
+    outline-offset: 0px; /* Выводим рамку внутри элемента */
+  transition: all var(--ms_transition) ease-out;
+  z-index: 999;
 }
 
 /* =================================================================================================== */
@@ -203,7 +210,13 @@ body {
   margin-right: -19px;
   height: 60%;
   background-color: black;
+  border: 0.5px solid black;
   z-index: 1;
+}
+
+.active_keyb_elem {
+  background-color: rgb(85, 234, 245);
+  transition: all var(--ms_transition) ease-out;
 }
 
 /* =================================================================================================== */
@@ -263,11 +276,13 @@ body {
   margin-right: -19px;
   height: 60%;
   background-color: black;
+  border: 0.5px solid black;
   z-index: 999;
 }
 
 .active_small_keyb_elem {
-  background-color: #87ffb1;
+  background-color: rgb(85, 234, 245);
+  transition: all var(--ms_transition) ease-out;
 }
 
 /* =================================================================================================== */
@@ -280,7 +295,7 @@ body {
 }
 
 .main__staff>img {
-  height: 200px;
+  height: 300px;
 }
 
 /* =================================================================================================== */
@@ -314,4 +329,8 @@ body {
 .therm_elem {
   text-align: center;
   padding: 0 10px;
+}
+
+.font_color{
+  color: #000000;
 }
