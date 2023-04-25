@@ -29,13 +29,13 @@ let tonalityObj = {
     'C_sharp_dur': [2, 4, 6, 7, 9, 11, 13, 'до# мажор']
 };
 
-let go_big_keyboards_active = function(ton){
-    
-    for(let item of keyboard_elements){
+let go_big_keyboards_active = function (ton) {
+
+    for (let item of keyboard_elements) {
         // console.log(item.dataset.numb);
         item.classList.remove('active_keyb_elem');
         // console.log(tonalityObj[ton][0].toString());
-        switch(item.dataset.numb){
+        switch (item.dataset.numb) {
             case tonalityObj[ton][0].toString():
             case tonalityObj[ton][1].toString():
             case tonalityObj[ton][2].toString():
@@ -49,7 +49,7 @@ let go_big_keyboards_active = function(ton){
         // console.log(item);
         // if(item.dataset.numb == (tonalityObj[ton][0] || tonalityObj[ton][1] || tonalityObj[ton][2] || tonalityObj[ton][3] || tonalityObj[ton][4] || tonalityObj[ton][5] || tonalityObj[ton][6])){
         //     console.log(tonalityObj[ton][7])
-            
+
         // }
     }
 }
@@ -136,38 +136,137 @@ big_keyboard_add_color();
 
 
 // сортировка таблицы по возростанию знаков
-//  main__table_grid__table.replaceChildren(
-//         all_table_rows[7],
-//         all_table_rows[4],
-//         all_table_rows[1],
-//         all_table_rows[5],
-//         all_table_rows[2],
-//         all_table_rows[6],
-//         all_table_rows[3],
-//         all_table_rows[0],
-//         all_table_rows[8],
-//         all_table_rows[11],
-//         all_table_rows[14],
-//         all_table_rows[10],
-//         all_table_rows[13],
-//         all_table_rows[9],
-//         all_table_rows[12],
-//         all_table_rows[15]
-//         );  
+let sort_1_to_7_var = 'false';
 
+function sort_1_to_7() {
+    if (sort_1_to_7_var == 'false') {
+        main__table_grid__table.replaceChildren(
+            all_table_rows[7],
+            all_table_rows[4],
+            all_table_rows[1],
+            all_table_rows[5],
+            all_table_rows[2],
+            all_table_rows[6],
+            all_table_rows[3],
+            all_table_rows[0],
+            all_table_rows[8],
+            all_table_rows[11],
+            all_table_rows[14],
+            all_table_rows[10],
+            all_table_rows[13],
+            all_table_rows[9],
+            all_table_rows[12],
+            all_table_rows[15]
+        );
+        sort_1_to_7_var = 'true';
+    } else {
+        main__table_grid__table.replaceChildren(
+            all_table_rows[0],
+            all_table_rows[1],
+            all_table_rows[2],
+            all_table_rows[3],
+            all_table_rows[4],
+            all_table_rows[5],
+            all_table_rows[6],
+            all_table_rows[7],
+            all_table_rows[8],
+            all_table_rows[9],
+            all_table_rows[10],
+            all_table_rows[11],
+            all_table_rows[12],
+            all_table_rows[13],
+            all_table_rows[14],
+            all_table_rows[15])
+        sort_1_to_7_var = 'false';
+    }
+}
+
+// спрятать знаки в таблице
+let all_sharp_and_flat_svg = document.querySelectorAll('.staff_rows > img');
+let hide_all_sharp_and_flat_boolean = 'false';
+
+function hide_all_sharp_and_flat_svg() {
+    if (hide_all_sharp_and_flat_boolean) {
+        all_sharp_and_flat_svg.forEach(element => element.classList.toggle('hide'));
+        hide_all_sharp_and_flat_boolean = 'true';
+    } else {
+        all_sharp_and_flat_svg.forEach(element => element.classList.toggle('hide'));
+        hide_all_sharp_and_flat_boolean = 'false';
+    }
+};
+
+
+// спрятать текст в таблице
+let all_text_row = document.querySelectorAll('.text_row');
+let text_row_press_button = 'false';
+
+function hide_text_row() {
+    if (text_row_press_button) {
+        all_text_row.forEach(element => element.classList.toggle('hide'));
+        text_row_press_button = 'true';
+    } else {
+        all_text_row.forEach(element => element.classList.toggle('hide'));
+        text_row_press_button = 'false';
+    }
+};
+
+// спрятать бинарные линии в таблице
+let all_bi_line = document.querySelectorAll('.name_sharp > img');
+let all_bi_line_press_button = 'false';
+
+function bi_line() {
+    if (all_bi_line_press_button) {
+        all_bi_line.forEach(element => element.classList.toggle('hide'));
+        all_bi_line_press_button = 'true';
+    } else {
+        all_bi_line.forEach(element => element.classList.toggle('hide'));
+        all_bi_line_press_button = 'false';
+    }
+};
+
+
+// интерактивность мыши
+let mouse_hover_or_click = 'false';
 
 let main_table_grid = document.querySelector('.main__table_grid');
 let current_active_box;
 
+let all_function = function (star_hero) {
+    console.log(star_hero);
+    star_hero.classList.add('active_box_border');
+    add_image_source(star_hero);
+    add_color_to_small_keyb_elem(star_hero.dataset.ton);
+    thermometr_go(star_hero.dataset.sort, star_hero.dataset.value);
+    go_big_keyboards_active(star_hero.dataset.ton)
+}
+
+
+// let add_mouse_hover_or_click = function () {
+//     for (let item of all_table_rows) {
+//         function GOGo() {
+//             all_function(item);
+//         }
+//         item.removeEventListener('click', GOGo)
+//         item.removeEventListener('mouseenter', GOGo)
+//         if (mouse_hover_or_click == 'false') {
+
+//             item.addEventListener('click', GOGo)
+
+//             // item.removeEventListener('mouseenter', GO());
+//         } else {
+
+//             item.addEventListener('mouseenter', GOGo)
+//         }
+
+//     }
+//     mouse_hover_or_click = mouse_hover_or_click == 'true' ? 'false' : 'true';
+//     console.log(mouse_hover_or_click);
+// }
+
+// add_mouse_hover_or_click();
 for (let item of all_table_rows) {
-    item.addEventListener('mouseenter', (event) => {
-        // console.log(item.dataset.ton);
-        item.classList.add('active_box_border');
-        // console.log(staff_image.children[0].src)
-        add_image_source(item);
-        add_color_to_small_keyb_elem(item.dataset.ton);
-        thermometr_go(item.dataset.sort,item.dataset.value);
-        go_big_keyboards_active(item.dataset.ton)
+    item.addEventListener('mouseenter', function () {
+        all_function(item);
     })
 }
 
@@ -182,16 +281,16 @@ for (let item of all_table_rows) {
 
 // подсветка элементов термометра
 let all_therm_elem = document.querySelectorAll('.therm_elem');
-let thermometr_go = function(flat_or_sharp,value){
-    for(let item of all_therm_elem){
-        if(item.dataset.sort == flat_or_sharp & item.dataset.numb <= value){
+let thermometr_go = function (flat_or_sharp, value) {
+    for (let item of all_therm_elem) {
+        if (item.dataset.sort == flat_or_sharp & item.dataset.numb <= value) {
             item.classList.add('active_small_keyb_elem');
             // console.log(item.dataset.numb);
         } else {
             item.classList.remove('active_small_keyb_elem');
         }
-        if(!item.dataset.sort == 'undefined'){
+        if (!item.dataset.sort == 'undefined') {
             item.classList.add('active_small_keyb_elem');
         }
-    } 
+    }
 }
