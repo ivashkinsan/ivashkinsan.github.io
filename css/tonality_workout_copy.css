@@ -136,7 +136,7 @@ body {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 5px;
+  /* padding-right: 5px; */
   text-align: center;
   font-size: 16px;
   height: 100%;
@@ -148,9 +148,9 @@ body {
 
 .blue_box {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   justify-content: flex-start;
-  padding-left: 5px;
+  /* padding-left: 5px; */
   align-items: center;
   text-align: center;
   font-size: 16px;
@@ -161,6 +161,36 @@ body {
   z-index: 1;
 }
 
+.tuplet_box_up {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: flex-end;
+  /* padding-right: 5px; */
+  /* text-align: center; */
+  /* font-size: 16px; */
+  /* height: 100%; */
+  /* width: 100%; */
+  background-color: rgba(0, 0, 0, 0);
+  /* font-family: 'Opus Text Std'; */
+  /* z-index: 1; */
+}
+
+.tuplet_box_down {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: flex-start;
+  /* padding-right: 5px; */
+  /* text-align: center; */
+  /* font-size: 16px; */
+  /* height: 100%; */
+  /* width: 100%; */
+  background-color: rgba(0, 0, 0, 0);
+  /* font-family: 'Opus Text Std'; */
+  /* z-index: 1; */
+}
+
 .orange_box>p,
 .blue_box>p {
   width: 50px;
@@ -168,6 +198,9 @@ body {
 }
 
 .staff_rows {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
 }
 
@@ -194,6 +227,7 @@ body {
 .letter_space {
   letter-spacing: 3px;
   font-size: 20px;
+  /* width: 50px; */
 }
 
 .staff_rows>img {

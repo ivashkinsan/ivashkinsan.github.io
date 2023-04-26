@@ -11,6 +11,24 @@ let add_image_source = function (item) {
     staff_image.children[0].src = '/tonality_workout/image/staff_svg_elem/' + item.dataset.ton + '.svg';
 }
 
+let big_keyboard_black_white = {
+    'C_dur': ['w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w'],
+    'D_flat_dur': ['w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w'],
+    'D_dur': [3, 5, 7, 8, 10, 12, 14, 'ре мажор'],
+    'E_flat_dur': [4, 6, 8, 9, 11, 13, 15, 'миb мажор'],
+    'E_dur': [5, 7, 9, 10, 12, 14, 16, 'ми мажор'],
+    'F_dur': [6, 8, 10, 11, 13, 15, 17, 'фа мажор'],
+    'F_sharp_dur': [7, 9, 11, 12, 14, 16, 18, 'фа# мажор'],
+    'G_flat_dur': [7, 9, 11, 12, 14, 16, 18, 'сольb мажор'],
+    'G_dur': [8, 10, 12, 13, 15, 17, 19, 'соль мажор'],
+    'A_flat_dur': [9, 11, 13, 14, 16, 18, 20, 'ляb мажор'],
+    'A_dur': [10, 12, 14, 15, 17, 19, 21, 'ля мажор'],
+    'B_flat_dur': [11, 13, 15, 16, 18, 20, 22, 'сиb мажор'],
+    'B_dur': [12, 14, 16, 17, 19, 21, 23, 'си мажор'],
+    'C_flat_dur': [12, 14, 16, 17, 19, 21, 23, 'доb мажор'],
+    'C_sharp_dur': [2, 4, 6, 7, 9, 11, 13, 'до# мажор']
+};
+
 let tonalityObj = {
     'C_dur': [1, 3, 5, 6, 8, 10, 12, 'до мажор'],
     'D_flat_dur': [2, 4, 6, 7, 9, 11, 13, 'реb мажор'],
@@ -32,9 +50,9 @@ let tonalityObj = {
 let go_big_keyboards_active = function (ton) {
 
     for (let item of keyboard_elements) {
-        // console.log(item.dataset.numb);
+
         item.classList.remove('active_keyb_elem');
-        // console.log(tonalityObj[ton][0].toString());
+
         switch (item.dataset.numb) {
             case tonalityObj[ton][0].toString():
             case tonalityObj[ton][1].toString():
@@ -46,11 +64,6 @@ let go_big_keyboards_active = function (ton) {
                 item.classList.add('active_keyb_elem')
                 break;
         }
-        // console.log(item);
-        // if(item.dataset.numb == (tonalityObj[ton][0] || tonalityObj[ton][1] || tonalityObj[ton][2] || tonalityObj[ton][3] || tonalityObj[ton][4] || tonalityObj[ton][5] || tonalityObj[ton][6])){
-        //     console.log(tonalityObj[ton][7])
-
-        // }
     }
 }
 
@@ -107,8 +120,6 @@ let add_color_to_small_keyb_elem = function (inp_elem) {
     }
     for (let elem of all_elem_of_small_keyboard) {
         if (numbbb == elem.dataset.numb) {
-            // console.log(inp_elem);
-            // console.log(numbbb);
             elem.classList.add('active_small_keyb_elem');
         } else {
             elem.classList.remove('active_small_keyb_elem');
@@ -116,9 +127,6 @@ let add_color_to_small_keyb_elem = function (inp_elem) {
 
     }
 }
-
-
-
 
 
 // стартовое распределение цвета клавиш большой клваиатуры
@@ -182,13 +190,36 @@ function sort_1_to_7() {
 }
 // сортировка таблицы туплетом
 let sort_tuplet_boolean = 'false';
-let all_label_rows = document.querySelectorAll('.label_rows>p');
+let all_label_rows = document.querySelectorAll('.label_rows');
 let hide_all_label_rows = function () {
     for (let item of all_label_rows) {
-        item.classList.add('')
+        item.classList.toggle('hide');
     }
 }
+
+let all_orange_box = document.querySelectorAll('.orange_box');
+let all_blue_box = document.querySelectorAll('.blue_box');
+let add_class_all_orange_and_blue_box = function () {
+    for (let item of all_orange_box) {
+        item.classList.toggle('tuplet_box_up');
+    }
+    for (let item of all_blue_box) {
+        item.classList.toggle('tuplet_box_down');
+    }
+}
+
+let new_text_label = function (new_text_L, new_text_R) {
+    document.querySelector('.main__table_grid__left_label>p').innerHTML = new_text_L;
+    document.querySelector('.main__table_grid__right_label>p').innerHTML = new_text_R;
+}
+
+
 function sort_tuplet() {
+
+    hide_all_label_rows();
+    add_class_all_orange_and_blue_box();
+    hide_all_sharp_and_flat_svg();
+    hide_text_row();
     if (sort_tuplet_boolean == 'false') {
         main__table_grid__table.replaceChildren(
             all_table_rows[0],
@@ -218,6 +249,7 @@ function sort_tuplet() {
 
         );
         sort_tuplet_boolean = 'true';
+        new_text_label('сортировка по парам', 'сортировка по парам');
     } else {
         main__table_grid__table.replaceChildren(
             all_table_rows[0],
@@ -237,6 +269,7 @@ function sort_tuplet() {
             all_table_rows[14],
             all_table_rows[15])
         sort_tuplet_boolean = 'false';
+        new_text_label('диезные тональности', 'бемольные тональности');
     }
 }
 
