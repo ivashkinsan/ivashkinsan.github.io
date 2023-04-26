@@ -180,6 +180,65 @@ function sort_1_to_7() {
         sort_1_to_7_var = 'false';
     }
 }
+// сортировка таблицы туплетом
+let sort_tuplet_boolean = 'false';
+let all_label_rows = document.querySelectorAll('.label_rows>p');
+let hide_all_label_rows = function () {
+    for (let item of all_label_rows) {
+        item.classList.add('')
+    }
+}
+function sort_tuplet() {
+    if (sort_tuplet_boolean == 'false') {
+        main__table_grid__table.replaceChildren(
+            all_table_rows[0],
+            all_table_rows[8],
+
+            all_table_rows[1],
+            all_table_rows[9],
+
+            all_table_rows[2],
+            all_table_rows[10],
+
+            all_table_rows[3],
+            all_table_rows[11],
+
+            all_table_rows[4],
+            all_table_rows[12],
+
+            all_table_rows[5],
+            all_table_rows[13],
+
+            all_table_rows[6],
+            all_table_rows[14],
+
+            all_table_rows[7],
+            all_table_rows[15]
+
+
+        );
+        sort_tuplet_boolean = 'true';
+    } else {
+        main__table_grid__table.replaceChildren(
+            all_table_rows[0],
+            all_table_rows[1],
+            all_table_rows[2],
+            all_table_rows[3],
+            all_table_rows[4],
+            all_table_rows[5],
+            all_table_rows[6],
+            all_table_rows[7],
+            all_table_rows[8],
+            all_table_rows[9],
+            all_table_rows[10],
+            all_table_rows[11],
+            all_table_rows[12],
+            all_table_rows[13],
+            all_table_rows[14],
+            all_table_rows[15])
+        sort_tuplet_boolean = 'false';
+    }
+}
 
 // спрятать знаки в таблице
 let all_sharp_and_flat_svg = document.querySelectorAll('.staff_rows > img');
