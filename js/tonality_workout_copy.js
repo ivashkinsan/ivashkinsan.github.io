@@ -12,21 +12,21 @@ let add_image_source = function (item) {
 }
 
 let big_keyboard_black_white = {
-    'C_dur': ['w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w'],
-    'D_flat_dur': ['w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w'],
-    'D_dur': [3, 5, 7, 8, 10, 12, 14, 'ре мажор'],
-    'E_flat_dur': [4, 6, 8, 9, 11, 13, 15, 'миb мажор'],
-    'E_dur': [5, 7, 9, 10, 12, 14, 16, 'ми мажор'],
-    'F_dur': [6, 8, 10, 11, 13, 15, 17, 'фа мажор'],
-    'F_sharp_dur': [7, 9, 11, 12, 14, 16, 18, 'фа# мажор'],
-    'G_flat_dur': [7, 9, 11, 12, 14, 16, 18, 'сольb мажор'],
-    'G_dur': [8, 10, 12, 13, 15, 17, 19, 'соль мажор'],
-    'A_flat_dur': [9, 11, 13, 14, 16, 18, 20, 'ляb мажор'],
-    'A_dur': [10, 12, 14, 15, 17, 19, 21, 'ля мажор'],
-    'B_flat_dur': [11, 13, 15, 16, 18, 20, 22, 'сиb мажор'],
-    'B_dur': [12, 14, 16, 17, 19, 21, 23, 'си мажор'],
-    'C_flat_dur': [12, 14, 16, 17, 19, 21, 23, 'доb мажор'],
-    'C_sharp_dur': [2, 4, 6, 7, 9, 11, 13, 'до# мажор']
+    'C_dur': ['w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    'D_flat_dur': [0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    'D_dur': [0, 0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    'E_flat_dur': [0, 0, 0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    'E_dur': [0, 0, 0, 0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0, 0, 0, 0, 0, 0, 0, 0],
+    'F_dur': [0, 0, 0, 0, 0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0, 0, 0, 0, 0, 0, 0],
+    'F_sharp_dur': [0, 0, 0, 0, 0, 0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0, 0, 0, 0, 0, 0],
+    'G_flat_dur': [0, 0, 0, 0, 0, 0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0, 0, 0, 0, 0, 0],
+    'G_dur': [0, 0, 0, 0, 0, 0, 0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0, 0, 0, 0, 0],
+    'A_flat_dur': [0, 0, 0, 0, 0, 0, 0, 0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0, 0, 0, 0],
+    'A_dur': [0, 0, 0, 0, 0, 0, 0, 0, 0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0, 0, 0],
+    'B_flat_dur': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0, 0],
+    'B_dur': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0],
+    'C_flat_dur': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0],
+    'C_sharp_dur': [0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 };
 
 let tonalityObj = {
@@ -47,22 +47,47 @@ let tonalityObj = {
     'C_sharp_dur': [2, 4, 6, 7, 9, 11, 13, 'до# мажор']
 };
 
-let go_big_keyboards_active = function (ton) {
+let go_big_keyboards_active = function (ton, check) {
+    // console.log(ton, check);
+    if (check) {
+        let indx = 0;
+        for (let item of keyboard_elements) {
+            item.style.backgroundColor = '';
+            item.classList.remove('hide');
+            // item.classList.remove('white_color');
+            // item.classList.remove('black_color');
 
-    for (let item of keyboard_elements) {
+            if (big_keyboard_black_white[ton][indx] == 0) {
+                item.classList.add('hide');
+            }
+            if (big_keyboard_black_white[ton][indx] == 'w') {
+                // item.classList.add('white_color');
+                item.style.backgroundColor = 'white';
+            }
+            if (big_keyboard_black_white[ton][indx] == 'b') {
+                // item.classList.add('black_color');
+                item.style.backgroundColor = 'black';
+            }
+            indx++;
+        }
 
-        item.classList.remove('active_keyb_elem');
+    } else {
+        for (let item of keyboard_elements) {
+            item.style.backgroundColor = '';
+            item.classList.remove('hide');
+            item.classList.remove('active_keyb_elem');
 
-        switch (item.dataset.numb) {
-            case tonalityObj[ton][0].toString():
-            case tonalityObj[ton][1].toString():
-            case tonalityObj[ton][2].toString():
-            case tonalityObj[ton][3].toString():
-            case tonalityObj[ton][4].toString():
-            case tonalityObj[ton][5].toString():
-            case tonalityObj[ton][6].toString():
-                item.classList.add('active_keyb_elem')
-                break;
+            switch (item.dataset.numb) {
+                case tonalityObj[ton][0].toString():
+                case tonalityObj[ton][1].toString():
+                case tonalityObj[ton][2].toString():
+                case tonalityObj[ton][3].toString():
+                case tonalityObj[ton][4].toString():
+                case tonalityObj[ton][5].toString():
+                case tonalityObj[ton][6].toString():
+                    item.classList.add('active_keyb_elem')
+                    break;
+            }
         }
     }
 }
@@ -149,22 +174,22 @@ let sort_1_to_7_var = 'false';
 function sort_1_to_7() {
     if (sort_1_to_7_var == 'false') {
         main__table_grid__table.replaceChildren(
-            all_table_rows[7],
-            all_table_rows[4],
-            all_table_rows[1],
-            all_table_rows[5],
-            all_table_rows[2],
-            all_table_rows[6],
-            all_table_rows[3],
-            all_table_rows[0],
-            all_table_rows[8],
-            all_table_rows[11],
-            all_table_rows[14],
-            all_table_rows[10],
-            all_table_rows[13],
-            all_table_rows[9],
-            all_table_rows[12],
-            all_table_rows[15]
+            all_table_rows[0],//8
+            all_table_rows[4],//2
+            all_table_rows[1],//3
+            all_table_rows[5],//4
+            all_table_rows[2],//5
+            all_table_rows[6],//6
+            all_table_rows[3],//7
+            all_table_rows[7],//1
+            all_table_rows[15],//16
+            all_table_rows[11],//10
+            all_table_rows[14],//11
+            all_table_rows[10],//12
+            all_table_rows[13],//13
+            all_table_rows[9],//14
+            all_table_rows[12],//15
+            all_table_rows[8]//9
         );
         sort_1_to_7_var = 'true';
     } else {
@@ -316,20 +341,26 @@ function bi_line() {
     }
 };
 
+//изменение режима работы большой клавиатуры
+let active_check_black_white_octave = false;
+function black_white_octave() {
+    console.log(active_check_black_white_octave == false ? active_check_black_white_octave = true : active_check_black_white_octave = false);
+    // active_check_black_white_octave == false ? true : false;
+}
+
 
 // интерактивность мыши
 let mouse_hover_or_click = 'false';
-
 let main_table_grid = document.querySelector('.main__table_grid');
 let current_active_box;
 
 let all_function = function (star_hero) {
-    console.log(star_hero);
+    // console.log(star_hero);
     star_hero.classList.add('active_box_border');
     add_image_source(star_hero);
     add_color_to_small_keyb_elem(star_hero.dataset.ton);
     thermometr_go(star_hero.dataset.sort, star_hero.dataset.value);
-    go_big_keyboards_active(star_hero.dataset.ton)
+    go_big_keyboards_active(star_hero.dataset.ton, active_check_black_white_octave)
 }
 
 

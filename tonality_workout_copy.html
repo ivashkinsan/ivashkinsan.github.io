@@ -13,12 +13,12 @@
     <div class="main__table_grid">
 
         <div class="table_header_line">
-            <input type="button" value="hover / click" onclick="add_mouse_hover_or_click()">
-            <input type="button" value="tuplet" onclick="sort_tuplet()">
-            <input type="button" value="( 1 < 7 ) ( + / - )" onclick="sort_1_to_7()">
+            <input type="button" value="ЧБ октава" onclick="black_white_octave()">
+            <input type="button" value="сравнение" onclick="sort_tuplet()">
+            <input type="button" value="сортировка" onclick="sort_1_to_7()">
             <input type="button" value="знаки" onclick="hide_all_sharp_and_flat_svg()">
             <input type="button" value="текст" onclick="hide_text_row()">
-            <input type="button" value="би-лайн" onclick="bi_line()">
+            <input type="button" value="элементы" onclick="bi_line()">
         </div>
 
         <div class="table_contain_flex">
@@ -29,19 +29,20 @@
             <div class="main__table_grid__table">
 
                 <!-- ============================= ДИЕЗЫ ================================================== -->
-                <div class="table_rows" data-sortnumb="7" data-ton="C_sharp_dur" data-sort="sharp" data-value="7">
+
+                <div class="table_rows" data-sortnumb="0" data-ton="C_dur" data-sort="sharp" data-value="0">
                     <div class="label_rows">
-                        <p>ДО#</p>
+                        <p>ДО</p>
                         <!-- <p>мажор</p> -->
                     </div>
                     <div class="orange_box">
-                        <p class="letter_space">7#</p>
+                        <p class="letter_space">0#</p>
                         <div class="staff_rows">
-                            <img src="/tonality_workout/image/table_row_icons/Property 1=C_sharp_dur.svg" alt="">
+                            <img src="/tonality_workout/image/table_row_icons/Property 1=C_dur.svg" alt="">
                         </div>
                         <div class="name_sharp">
-                            <div class="text_allign_right text_row">ФА ДО СОЛЬ РЕ ЛЯ МИ СИ&nbsp;</div>
-                            <img src="/tonality_workout/image/table_row_icons/line_c_sharp_dur.svg" alt="">
+                            <div class="text_allign_right text_row">- - -&nbsp;</div>
+                            <img src="/tonality_workout/image/table_row_icons/line_C_dur.svg" alt="">
                         </div>
                     </div>
                 </div>
@@ -151,42 +152,41 @@
                     </div>
                 </div>
 
-                <div class="table_rows" data-sortnumb="0" data-ton="C_dur" data-sort="sharp" data-value="0">
+
+
+                <div class="table_rows" data-sortnumb="7" data-ton="C_sharp_dur" data-sort="sharp" data-value="7">
                     <div class="label_rows">
-                        <p>ДО</p>
+                        <p>ДО#</p>
                         <!-- <p>мажор</p> -->
                     </div>
                     <div class="orange_box">
-                        <p class="letter_space">0#</p>
+                        <p class="letter_space">7#</p>
                         <div class="staff_rows">
-                            <img src="/tonality_workout/image/table_row_icons/Property 1=C_dur.svg" alt="">
+                            <img src="/tonality_workout/image/table_row_icons/Property 1=C_sharp_dur.svg" alt="">
                         </div>
                         <div class="name_sharp">
-                            <div class="text_allign_right text_row">- - -&nbsp;</div>
-                            <img src="/tonality_workout/image/table_row_icons/line_C_dur.svg" alt="">
+                            <div class="text_allign_right text_row">ФА ДО СОЛЬ РЕ ЛЯ МИ СИ&nbsp;</div>
+                            <img src="/tonality_workout/image/table_row_icons/line_c_sharp_dur.svg" alt="">
                         </div>
                     </div>
                 </div>
 
                 <!-- ============================= БЕМОЛИ ================================================== -->
 
-                <div class="table_rows" data-sortnumb="8" data-ton="C_dur" data-sort="flat" data-value="0">
-
+                <div class="table_rows" data-sortnumb="15" data-ton="C_flat_dur" data-sort="flat" data-value="7">
                     <div class="blue_box">
-                        <p class="letter_space">0b</p>
+                        <p class="letter_space">7b</p>
                         <div class="staff_rows">
-                            <img src="/tonality_workout/image/table_row_icons/Property 1=C_dur.svg" alt="">
+                            <img src="/tonality_workout/image/table_row_icons/Property 1=Cb-dur.svg" alt="">
                         </div>
                         <div class="name_sharp">
-                            <div class="text_allign_left text_row">&nbsp;- - -</div>
-                            <img src="/tonality_workout/image/table_row_icons/line_C_dur.svg" alt="">
+                            <div class="text_allign_left text_row">&nbsp;ФА ДО СОЛЬ РЕ ЛЯ МИ СИ</div>
+                            <img src="/tonality_workout/image/table_row_icons/line_C_flat_dur.svg" alt="">
                         </div>
-
-
                     </div>
 
                     <div class="label_rows">
-                        <p>ДО</p>
+                        <p>ДОb</p>
                         <!-- <p>мажор</p> -->
                     </div>
                 </div>
@@ -305,21 +305,21 @@
                     </div>
                 </div>
 
-                <div class="table_rows" data-sortnumb="15" data-ton="C_flat_dur" data-sort="flat" data-value="7">
 
+
+                <div class="table_rows" data-sortnumb="8" data-ton="C_dur" data-sort="flat" data-value="0">
                     <div class="blue_box">
-                        <p class="letter_space">7b</p>
+                        <p class="letter_space">0b</p>
                         <div class="staff_rows">
-                            <img src="/tonality_workout/image/table_row_icons/Property 1=Cb-dur.svg" alt="">
+                            <img src="/tonality_workout/image/table_row_icons/Property 1=C_dur.svg" alt="">
                         </div>
                         <div class="name_sharp">
-                            <div class="text_allign_left text_row">&nbsp;ФА ДО СОЛЬ РЕ ЛЯ МИ СИ</div>
-                            <img src="/tonality_workout/image/table_row_icons/line_C_flat_dur.svg" alt="">
+                            <div class="text_allign_left text_row">&nbsp;- - -</div>
+                            <img src="/tonality_workout/image/table_row_icons/line_C_dur.svg" alt="">
                         </div>
                     </div>
-
                     <div class="label_rows">
-                        <p>ДОb</p>
+                        <p>ДО</p>
                         <!-- <p>мажор</p> -->
                     </div>
                 </div>
