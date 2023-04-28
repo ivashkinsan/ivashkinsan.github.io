@@ -286,7 +286,7 @@ body {
   width: 54px;
   height: 100%;
   background-color: white;
-  border: 0.5px solid black;
+  border: 0.5px solid rgb(91, 91, 91);
 }
 
 .black_elem {
