@@ -64,6 +64,7 @@ let tonalityObj = {
     'C_sharp_dur': [2, 4, 6, 7, 9, 11, 13, 'до# мажор']
 };
 
+// активность большой клавиатуры
 let go_big_keyboards_active = function (ton, check) {
     // console.log(ton, check);
     if (check) {
@@ -176,7 +177,6 @@ let add_color_to_small_keyb_elem = function (inp_elem) {
 // стартовое распределение цвета клавиш большой клваиатуры
 let big_keyboard_add_color = function () {
     for (let item of keyboard_elements) {
-        // console.log(item.dataset.numb == ('1' || '3' || '5' || '6' || '8' || '10' || '12'))
         if (white_key_numb.includes(item.dataset.numb)) {
             item.classList.add('white_elem')
         } else {
@@ -259,7 +259,7 @@ let new_text_label = function (new_text_L, new_text_R) {
 
 
 function sort_tuplet() {
-
+    bi_line();
     hide_all_label_rows();
     add_class_all_orange_and_blue_box();
     hide_all_sharp_and_flat_svg();
@@ -359,12 +359,19 @@ function bi_line() {
         all_bi_line_press_button = 'false';
     }
 };
-
+bi_line();
 //изменение режима работы большой клавиатуры
 let active_check_black_white_octave = false;
 
 function black_white_octave() {
-    console.log(active_check_black_white_octave == false ? active_check_black_white_octave = true : active_check_black_white_octave = false);
+    if (!active_check_black_white_octave) {
+        go_big_keyboards_active(all_table_rows[0].dataset.ton, true);
+    } else {
+        go_big_keyboards_active(all_table_rows[0].dataset.ton, false);
+    }
+    active_check_black_white_octave == false ? active_check_black_white_octave = true : active_check_black_white_octave = false;
+    // active_check_black_white_octave == false ? go_big_keyboards_active(all_table_rows[0].dataset.ton, true) : go_big_keyboards_active(all_table_rows[0], false);
+    // console.log(active_check_black_white_octave == false ? active_check_black_white_octave = true : active_check_black_white_octave = false);
     // active_check_black_white_octave == false ? true : false;
 }
 
