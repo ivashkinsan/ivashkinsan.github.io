@@ -121,14 +121,41 @@ bottom: calc(50% / 29);
   .led_on{
     background-color: aqua;
   }
+
+  .led_on_orange{
+    background-color: rgb(255, 188, 73);
+  }
+
+  .dspl_none{
+    display: none;
+  }
     /* ========================================== НОТЫ ===================================== */
     .note{
+      display: flex;
+      justify-content: center;
+      align-items: center;
         position: absolute;
         top: calc(0px - 3vh);
         width: 6vh;
         height: 6vh;
-        border: #F4D6B1 3px solid;
+        background-color: white;
+        border: white 3px solid;
         border-radius: 50%;
         z-index: 999;
         opacity: 1;
+    }
+    /* ============================================ BUTTON ======================================= */
+    .button_container{
+      position: fixed;
+      display: flex;
+      justify-content: space-around;
+      width: 500px;
+      height: 20px;
+      bottom: 10px;
+      left: 10px;
+      background-color: #F4D6B1;
+    }
+
+    .button_container>input{
+      width: 100%;
     }
