@@ -1,0 +1,120 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    /* запрет выбора текста */
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  
+    background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
+    border: 10px solid #F4D6B1;
+  }
+
+  .container_with_line_background{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* gap: 50px; */
+    width: 96%;
+    height: 92%;
+    /* background-color: #b9b9b9; */
+  }
+
+  .column_with_clief{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+      }
+
+  .treble_clief,
+  .bass_clief{
+    width: 31.5vh;
+    height: 31.5vh;
+    margin-left: -24%;
+  }
+  
+  .treble_clief{
+    background-image:  url('/note_workout/image_note_workout/TREBLE_CLIEF.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+
+  .bass_clief{
+    background-image:  url('/note_workout/image_note_workout/BASS_CLIEF.svg');
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center;
+  }
+
+  .line{
+    width: 100%;
+    border: 1px solid white;
+  }
+  .dashed{
+    width: 100%;
+    border: 1px dashed rgba(255, 255, 255, 0.4);
+  }
+
+  /* ========================================== КЛАВИАТУРА ===================================== */
+  .container_with_keyboard{
+    position: absolute;
+    display: flex;
+    flex-direction: column-reverse;
+
+    top: 5vh;
+    bottom: 5vh;
+    left: 200px;
+
+    /* height: 100%; */
+    width: 14vh;
+    
+    background-color: #F4D6B1;
+  }
+
+  .keyb_elem{
+    border: 1px solid rgb(131, 131, 131);
+    border-radius: 3px;
+  }
+
+  .white_key{
+    background-color: white;
+    height: calc(100% / 29);
+  }
+
+  .contain_with_black_key{
+position: absolute;
+display: flex;
+flex-direction: column-reverse;
+justify-content: space-around;
+/* height: 100%; */
+width: 56%;
+top: calc(50% / 29);
+bottom: calc(50% / 29);
+  }
+
+.black_key{
+
+    background-color: rgb(0, 0, 0);
+    height: calc(100% / 36);
+    /* margin-top: calc(-100% / 15);
+    margin-bottom: calc(-100% / 15); */
+    z-index: 999;
+  }
+
+  .hide{
+    width: 0;
+    border: none;
+  }
