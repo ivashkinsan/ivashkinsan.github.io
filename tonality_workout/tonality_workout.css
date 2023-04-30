@@ -243,21 +243,6 @@ body {
   z-index: 999;
 }
 
-.hide {
-  display: none;
-}
-
-.show {
-  display: block;
-}
-
-.white_color {
-  background-color: white;
-}
-
-.black_color {
-  background-color: black;
-}
 
 /* =================================================================================================== */
 .main__big_keyboard {
@@ -276,9 +261,21 @@ body {
   /* height: 100%; */
   /* width: 100%; */
 }
+.new_p_label{
+  font-family: 'Opus Text Std';
+  text-align: center;
+  font-size: 14px;
+  color: #000000b7;
+  text-orientation: upright;
+  /* writing-mode: vertical-lr; */
+}
 
 .elem_of_keyboard {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
   border-radius: 0 0 5px 5px;
+  padding-bottom: 5px;
 }
 
 .white_elem {
@@ -419,4 +416,23 @@ body {
 
 .font_color {
   color: #000000;
+}
+
+
+
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.white_color {
+  background-color: white;
+}
+
+.black_color {
+  background-color: black;
 }

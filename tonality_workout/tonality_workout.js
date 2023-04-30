@@ -28,22 +28,22 @@ let big_keyboard_black_white = {
     'C_flat_dur': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0],
     'C_sharp_dur': [0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 };
-let big_keyboard_black_white_label = {
+let BK_black_white_label = {
     'C_dur': ['до', 'реb', 'ре', 'миb', 'ми', 'фа', 'сольb', 'соль', 'ляb', 'ля', 'сиb', 'си', 'до', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     'D_flat_dur': [0, 'реb', 'ре', 'миb', 'ми', 'фа', 'сольb', 'соль', 'ляb', 'ля', 'сиb', 'си', 'до', 'реb', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    'D_dur': [0, 0, 'ре', 'миb', 'ми', 'фа', 'сольb', 'соль', 'ляb', 'ля', 'сиb', 'си', 'до', 'реb', 'ре', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    'D_dur': [0, 0, 'ре', 'ре#', 'ми', 'фа', 'фа#', 'соль', 'соль#', 'ля', 'ля#', 'си', 'до', 'до#', 'ре', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     'E_flat_dur': [0, 0, 0, 'миb', 'ми', 'фа', 'сольb', 'соль', 'ляb', 'ля', 'сиb', 'си', 'до', 'реb', 'ре', 'миb', 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    'E_dur': [0, 0, 0, 0, 'ми', 'фа', 'сольb', 'соль', 'ляb', 'ля', 'сиb', 'си', 'до', 'реb', 'ре', 'миb', 'ми', 0, 0, 0, 0, 0, 0, 0, 0],
+    'E_dur': [0, 0, 0, 0, 'ми', 'фа', 'фа#', 'соль', 'соль#', 'ля', 'ля#', 'си', 'до', 'до#', 'ре', 'ре#', 'ми', 0, 0, 0, 0, 0, 0, 0, 0],
     'F_dur': [0, 0, 0, 0, 0, 'фа', 'сольb', 'соль', 'ляb', 'ля', 'сиb', 'си', 'до', 'реb', 'ре', 'миb', 'ми', 'фа', 0, 0, 0, 0, 0, 0, 0],
-    'F_sharp_dur': [0, 0, 0, 0, 0, 0, 'фа#', 'соль', 'соль#', 'ля', 'ля#', 'си', 'до', 'до#', 'ре', 'ре#', 'ми', 'фа', 0, 0, 0, 0, 0, 0],
-    'G_flat_dur': [0, 0, 0, 0, 0, 0, 'сольb', 'соль', 'ляb', 'ля', 'сиb', 'си', 'до', 'реb', 'ре', 'миb', 'ми', 'фа', 'сольb', 0, 0, 0, 0, 0, 0],
-    'G_dur': [0, 0, 0, 0, 0, 0, 0, 'соль', 'ля', 'ля#', 'си', 'до', 'до#', 'ре', 'ре#', 'ми', 'фа', 'фа#', 'соль', 0, 0, 0, 0, 0],
+    'F_sharp_dur': [0, 0, 0, 0, 0, 0, 'фа#', 'соль', 'соль#', 'ля', 'ля#', 'си', 'до', 'до#', 'ре', 'ре#', 'ми', 'ми', 'фа#', 0, 0, 0, 0, 0, 0],
+    'G_flat_dur': [0, 0, 0, 0, 0, 0, 'сольb', 'соль', 'ляb', 'ля', 'сиb', 'доb', 'до', 'реb', 'ре', 'миb', 'ми', 'фа', 'сольb', 0, 0, 0, 0, 0, 0],
+    'G_dur': [0, 0, 0, 0, 0, 0, 0, 'соль', 'соль#', 'ля', 'ля#', 'си', 'до', 'до#', 'ре', 'ре#', 'ми', 'фа', 'фа#', 'соль', 0, 0, 0, 0, 0],
     'A_flat_dur': [0, 0, 0, 0, 0, 0, 0, 0, 'ляb', 'ля', 'сиb', 'си', 'до', 'реb', 'ре', 'миb', 'ми', 'фа', 'сольb', 'соль', 'ляb', 0, 0, 0, 0],
     'A_dur': [0, 0, 0, 0, 0, 0, 0, 0, 0, 'ля', 'ля#', 'си', 'до', 'до#', 'ре', 'ре#', 'ми', 'фа', 'фа#', 'соль', 'соль#', 'ля', 0, 0, 0],
     'B_flat_dur': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'сиb', 'си', 'до', 'реb', 'ре', 'миb', 'ми', 'фа', 'сольb', 'соль', 'ляb', 'ля', 'сиb', 0, 0],
-    'B_dur': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'си', 'до', 'реb', 'ре', 'миb', 'ми', 'фа', 'сольb', 'соль', 'ляb', 'ля', 'сиb', 'си', 0],
-    'C_flat_dur': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0],
-    'C_sharp_dur': [0, 'w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'w', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    'B_dur': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'си', 'до', 'до#', 'ре', 'ре#', 'ми', 'фа', 'фа#', 'соль', 'соль#', 'ля', 'ля#', 'си', 0],
+    'C_flat_dur': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'доb', 'реbb', 'реb', 'миbb', 'миb', 'фаb', 'сольbb', 'сольb', 'ляbb', 'ляb', 'сиbb', 'сиb', 'доb', 0],
+    'C_sharp_dur': [0, 'до#', 'ре', 'ре#', 'ми', 'ми#', 'фа#', 'соль', 'соль#', 'ля', 'ля#', 'си', 'си#', 'до#', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 };
 
 let tonalityObj = {
@@ -85,11 +85,13 @@ let go_big_keyboards_active = function (ton, check) {
                 // item.classList.add('black_color');
                 item.style.backgroundColor = 'black';
             }
+            item.children[0].innerHTML = BK_black_white_label[ton][indx];
             indx++;
         }
 
     } else {
         for (let item of keyboard_elements) {
+            item.children[0].innerHTML = '';
             item.style.backgroundColor = '';
             item.classList.remove('hide');
             item.classList.remove('active_keyb_elem');
@@ -191,22 +193,22 @@ let sort_1_to_7_var = 'false';
 function sort_1_to_7() {
     if (sort_1_to_7_var == 'false') {
         main__table_grid__table.replaceChildren(
-            all_table_rows[0],//8
-            all_table_rows[4],//2
-            all_table_rows[1],//3
-            all_table_rows[5],//4
-            all_table_rows[2],//5
-            all_table_rows[6],//6
-            all_table_rows[3],//7
-            all_table_rows[7],//1
-            all_table_rows[15],//16
-            all_table_rows[11],//10
-            all_table_rows[14],//11
-            all_table_rows[10],//12
-            all_table_rows[13],//13
-            all_table_rows[9],//14
-            all_table_rows[12],//15
-            all_table_rows[8]//9
+            all_table_rows[0], //8
+            all_table_rows[4], //2
+            all_table_rows[1], //3
+            all_table_rows[5], //4
+            all_table_rows[2], //5
+            all_table_rows[6], //6
+            all_table_rows[3], //7
+            all_table_rows[7], //1
+            all_table_rows[15], //16
+            all_table_rows[11], //10
+            all_table_rows[14], //11
+            all_table_rows[10], //12
+            all_table_rows[13], //13
+            all_table_rows[9], //14
+            all_table_rows[12], //15
+            all_table_rows[8] //9
         );
         sort_1_to_7_var = 'true';
     } else {
@@ -360,6 +362,7 @@ function bi_line() {
 
 //изменение режима работы большой клавиатуры
 let active_check_black_white_octave = false;
+
 function black_white_octave() {
     console.log(active_check_black_white_octave == false ? active_check_black_white_octave = true : active_check_black_white_octave = false);
     // active_check_black_white_octave == false ? true : false;
