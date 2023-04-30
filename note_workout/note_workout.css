@@ -55,11 +55,12 @@
   .bass_clief{
     background-image:  url('/note_workout/image_note_workout/BASS_CLIEF.svg');
     background-repeat: no-repeat;
-    background-size: 50%;
+    background-size: 44%;
     background-position: center;
   }
 
   .line{
+    position: relative;
     width: 100%;
     border: 1px solid white;
   }
@@ -67,26 +68,27 @@
     width: 100%;
     border: 1px dashed rgba(255, 255, 255, 0.4);
   }
-
+.window{
+    border: 0px solid rgba(255, 255, 255, 0);
+}
   /* ========================================== КЛАВИАТУРА ===================================== */
   .container_with_keyboard{
     position: absolute;
     display: flex;
     flex-direction: column-reverse;
 
-    top: 5vh;
-    bottom: 5vh;
-    left: 200px;
-
-    /* height: 100%; */
+    top: 4vh;
+    bottom: 4vh;
+    left: 23vh;
     width: 14vh;
-    
     background-color: #F4D6B1;
+    z-index: 999;
   }
 
   .keyb_elem{
     border: 1px solid rgb(131, 131, 131);
-    border-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
   }
 
   .white_key{
@@ -99,7 +101,6 @@ position: absolute;
 display: flex;
 flex-direction: column-reverse;
 justify-content: space-around;
-/* height: 100%; */
 width: 56%;
 top: calc(50% / 29);
 bottom: calc(50% / 29);
@@ -109,8 +110,6 @@ bottom: calc(50% / 29);
 
     background-color: rgb(0, 0, 0);
     height: calc(100% / 36);
-    /* margin-top: calc(-100% / 15);
-    margin-bottom: calc(-100% / 15); */
     z-index: 999;
   }
 
@@ -118,3 +117,18 @@ bottom: calc(50% / 29);
     width: 0;
     border: none;
   }
+
+  .led_on{
+    background-color: aqua;
+  }
+    /* ========================================== НОТЫ ===================================== */
+    .note{
+        position: absolute;
+        top: calc(0px - 3vh);
+        width: 6vh;
+        height: 6vh;
+        border: #F4D6B1 3px solid;
+        border-radius: 50%;
+        z-index: 999;
+        opacity: 1;
+    }
