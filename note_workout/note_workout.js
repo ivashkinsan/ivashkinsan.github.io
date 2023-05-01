@@ -31,6 +31,7 @@ let generate_note_frame = function (obj_of_notes) {
                 if (elem.dataset.note == new_arr_of_string[i]) {
                     let new_el = new_note_func();
                     new_el.dataset.note = elem.dataset.note;
+                    new_el.dataset.name = elem.dataset.name;
                     new_el.style.left = left_line_start + 'vh';
                     left_line_start += 12;
                     elem.append(new_el);
@@ -96,9 +97,19 @@ let add_ledon_class = function () {
 }
 add_ledon_class();
 
+// добавить название нот
+let label_of_note_value = false;
 let add_label_of_note = function () {
     let all_note = document.querySelectorAll('.note');
-    for (let item of all_note) {
-        item.innerHTML = item.dataset.note;
+    if (label_of_note_value) {
+        for (let item of all_note) {
+            item.innerHTML = '';
+        }
+        label_of_note_value = false;
+    } else {
+        for (let item of all_note) {
+            item.innerHTML = item.dataset.name;
+        }
+        label_of_note_value = true;
     }
 }
