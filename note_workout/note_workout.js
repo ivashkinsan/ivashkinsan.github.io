@@ -8,16 +8,67 @@ let new_note_func = function () {
 }
 
 
+// let obj_matrix = {
+//     0: 'C1 D1 E1',
+//     1: 'F1 G1 A1 B1',
+//     2: 'C2 D2 E2',
+//     3: 'F2 G2 A2 B2',
+//     4: 'C3 D3 E3',
+//     5: 'F3 G3 A3 B3',
+//     6: 'C4 D4 E4',
+//     7: 'F4 G4 A4 B4'
+// }
+
+// let obj_matrix = {
+//     0: 'C1 D1 E1 F1 G1 A1 B1',
+//     1: 'D1 E1 F1 G1 A1 B1 C2',
+//     2: 'E1 F1 G1 A1 B1 C2 D2',
+//     3: 'F1 G1 A1 B1 C2 D2 E2',
+//     4: 'G1 A1 B1 C2 D2 E2 F2',
+//     5: 'A1 B1 C2 D2 E2 F2 G2',
+//     6: 'B1 C2 D2 E2 F2 G2 A2',
+//     7: 'C2 D2 E2 F2 G2 A2 B2',
+//     8: 'D2 E2 F2 G2 A2 B2 C3',
+//     9: 'E2 F2 G2 A2 B2 C3 D3',
+//     10: 'F2 G2 A2 B2 C3 D3 E3',
+//     11: 'G2 A2 B2 C3 D3 E3 F3',
+//     12: 'A2 B2 C3 D3 E3 F3 G3',
+//     13: 'B2 C3 D3 E3 F3 G3 A3',
+//     14: 'C3 D3 E3 F3 G3 A3 B3'
+// }
+
 let obj_matrix = {
-    0: 'C1 D1 E1',
-    1: 'F1 G1 A1 B1',
-    2: 'C2 D2 E2',
-    3: 'F2 G2 A2 B2',
-    4: 'C3 D3 E3',
-    5: 'F3 G3 A3 B3',
-    6: 'C4 D4 E4',
-    7: 'F4 G4 A4 B4'
+    0: 'C1 C1 C1 C1 C1 C1 C1 C1 C1 C1 C1 C1 C11',
+    1: 'D1 D1 D1 D1 D1 D1 D1 D1 D1 D1 D1 D1 D1',
+    2: 'E1 E1 E1 E1 E1 E1 E1 E1 E1 E1 E1 E1 E1',
+    3: 'F1 F1 F1 F1 F1 F1 F1 F1 F1 F1 F1 F1 F1',
+    4: 'G1 G1 G1 G1 G1 G1 G1 G1 G1 G1 G1 G1 G1',
+    5: 'A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1',
+    6: 'B1 B1 B1 B1 B1 B1 B1 B1 B1 B1 B1 B1 B1',
+    7: 'C2 C2 C2 C2 C2 C2 C2 C2 C2 C2 C2 C2 C2',
+    8: 'D2 D2 D2 D2 D2 D2 D2 D2 D2 D2 D2 D2 D2',
+    9: 'E2 E2 E2 E2 E2 E2 E2 E2 E2 E2 E2 E2 E2',
+    10: 'F2 F2 F2 F2 F2 F2 F2 F2 F2 F2 F2 F2 F2',
+    11: 'G2 G2 G2 G2 G2 G2 G2 G2 G2 G2 G2 G2 G2',
+    12: 'A2 A2 A2 A2 A2 A2 A2 A2 A2 A2 A2 A2 A2',
+    13: 'B2 B2 B2 B2 B2 B2 B2 B2 B2 B2 B2 B2 B2',
+    14: 'C3 C3 C3 C3 C3 C3 C3 C3 C3 C3 C3 C3 C3',
+    15: 'D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3',
+    16: 'E3 E3 E3 E3 E3 E3 E3 E3 E3 E3 E3 E3 E3',
+    17: 'F3 F3 F3 F3 F3 F3 F3 F3 F3 F3 F3 F3 F3',
+    18: 'G3 G3 G3 G3 G3 G3 G3 G3 G3 G3 G3 G3 G3',
+    19: 'A3 A3 A3 A3 A3 A3 A3 A3 A3 A3 A3 A3 A3',
+    20: 'B3 B3 B3 B3 B3 B3 B3 B3 B3 B3 B3 B3 B3',
+    21: 'C4 C4 C4 C4 C4 C4 C4 C4 C4 C4 C4 C4 C4',
+    22: 'D4 D4 D4 D4 D4 D4 D4 D4 D4 D4 D4 D4 D4',
+    23: 'E4 E4 E4 E4 E4 E4 E4 E4 E4 E4 E4 E4 E4',
+    24: 'F4 F4 F4 F4 F4 F4 F4 F4 F4 F4 F4 F4 F4',
+    25: 'G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4',
+    26: 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4',
+    27: 'B4 B4 B4 B4 B4 B4 B4 B4 B4 B4 B4 B4 B4',
+    28: 'C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5'
 }
+
 
 let generate_note_frame = function (obj_of_notes) {
     for (const [key, value] of Object.entries(obj_of_notes)) {
@@ -113,3 +164,10 @@ let add_label_of_note = function () {
         label_of_note_value = true;
     }
 }
+
+document.querySelector('.container_with_line_background').addEventListener('click', () => {
+    if (event.target.classList.contains('note')) {
+        event.target.classList.toggle('active_click');
+        console.log(event.target);
+    }
+})
