@@ -84,12 +84,12 @@ let generate_note_frame = function (obj_of_notes) {
                     new_el.dataset.note = elem.dataset.note;
                     new_el.dataset.name = elem.dataset.name;
                     new_el.style.left = left_line_start + 'vh';
-                    left_line_start += 12;
+                    left_line_start += 8;
                     elem.append(new_el);
                 }
             })
             if (new_arr_of_string[i] === '0') {
-                left_line_start += 12;
+                left_line_start += 8;
             }
         }
     }
@@ -152,7 +152,8 @@ add_ledon_class();
 
 // добавить название нот
 let label_of_note_value = 'one';
-let add_label_of_note = function () {
+
+let add_label_background = function () {
     let all_note = document.querySelectorAll('.note');
     if (label_of_note_value == 'one') {
         for (let item of all_note) {
@@ -167,6 +168,12 @@ let add_label_of_note = function () {
     }
 }
 
+let add_label_of_note = function () {
+    let all_active_click = document.querySelectorAll('.active_click');
+    for (let item of all_active_click) {
+        item.classList.toggle('text_show');
+    }
+}
 
 // узнать длинну строки
 function toArray(obj) {
@@ -187,7 +194,7 @@ function toArray(obj) {
 
 //     }
 // }
-row_length();
+// row_length();
 
 // активировать элемент на нотном стане
 document.querySelector('.container_with_line_background').addEventListener('click', () => {
@@ -200,9 +207,30 @@ document.querySelector('.container_with_line_background').addEventListener('clic
 })
 
 // добавление фона
-let add_note_background = function () {
-    let all_note = document.querySelectorAll('.note');
-    for (let item of all_note) {
-        item.classList.toggle('note_background');
+let long_keyboard_background = function () {
+    let long_keyboard_background = document.querySelector('.container_with_keyboard');
+    let black_keys = document.querySelectorAll('.black_key');
+    let white_keys = document.querySelectorAll('.white_key');
+    let all_keyb_elem = document.querySelectorAll('.keyb_elem');
+
+    for (let item of black_keys) {
+        item.classList.toggle('black_keys_short');
+    }
+    for (let item of white_keys) {
+        if (item.dataset.note == '') {
+
+        }
+    }
+    for (let item of all_keyb_elem) {
+        item.classList.toggle('no_border');
+    }
+
+    long_keyboard_background.classList.toggle('long_keyboard_background');
+    for (let item of all_line) {
+        item.classList.toggle('black_line');
+    }
+    let dashed_lines = document.querySelectorAll('.dashed');
+    for (let item of dashed_lines) {
+        item.classList.toggle('dashed_black');
     }
 }

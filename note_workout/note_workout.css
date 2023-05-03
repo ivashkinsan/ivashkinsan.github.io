@@ -61,13 +61,26 @@ body {
 
 .line {
   position: relative;
+
+  /* display: flex; */
+  /* justify-content: space-around; */
+  flex-direction: row;
+
   width: 100%;
   border: 1px solid white;
+  /* padding-left: 34vh; */
+}
+
+.black_line{
+  border: 1px solid black;
 }
 
 .dashed {
   width: 100%;
   border: 1px dashed rgba(255, 255, 255, 0.4);
+}
+.dashed_black{
+  border: 1px dashed rgba(0, 0, 0,0.4);
 }
 
 .window {
@@ -86,6 +99,13 @@ body {
   width: 14vh;
   background-color: #F4D6B1;
   z-index: 999;
+}
+
+.long_keyboard_background{
+  right: 0;
+  width: auto;
+  z-index: 0;
+  opacity: 1;
 }
 
 .keyb_elem {
@@ -116,6 +136,9 @@ body {
   z-index: 999;
 }
 
+.black_keys_short{
+width: 13%;
+}
 .hide {
   width: 0;
   border: none;
@@ -132,7 +155,9 @@ body {
 .dspl_none {
   display: none;
 }
-
+.no_border{
+  border: none;
+}
 /* ========================================== НОТЫ ===================================== */
 /* .note {
   display: flex;
@@ -159,9 +184,10 @@ body {
   align-items: center;
   position: absolute;
   top: calc(0px - 1.5vh);
+ 
   width: 6vh;
   height: 3vh;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(0, 0, 0, 0.5);
   /* border-top-left-radius: 45px 45px; */
   /* border-top-right-radius: 25px 25px; */
   /* border-bottom-right-radius: 45px 45px; */
@@ -175,8 +201,8 @@ body {
 }
 
 .active_click {
-  align-items: flex-start;
-  padding-top: 5px;
+  /* align-items: flex-start; */
+  /* padding-top: 5px; */
   background-color: rgb(0, 0, 0);
   border: rgb(29, 29, 29) 0.5px solid;
   color: rgba(255, 255, 255, 1);
@@ -191,7 +217,9 @@ body {
   border-bottom-left-radius: 25px 25px;
   z-index: 999;
 }
-
+.text_show{
+  color: white;
+}
 /* ============================================ BUTTON ======================================= */
 .button_container {
   position: fixed;
