@@ -38,7 +38,7 @@ let new_note_func = function () {
 // }
 
 let obj_matrix = {
-    0: 'C1 C1 C1 C1 C1 C1 C1 C1 C1 C1 C1 C1 C11',
+    0: 'C1 C1 C1 C1 C1 C1 C1 C1 C1 C1 C1 C1 C1',
     1: 'D1 D1 D1 D1 D1 D1 D1 D1 D1 D1 D1 D1 D1',
     2: 'E1 E1 E1 E1 E1 E1 E1 E1 E1 E1 E1 E1 E1',
     3: 'F1 F1 F1 F1 F1 F1 F1 F1 F1 F1 F1 F1 F1',
@@ -106,6 +106,8 @@ let clear_matrix = function () {
 let value_of_add_ledon_class = '';
 let box_123 = 'C1 D1 E1 C2 D2 E2 C3 D3 E3 C4 D4 E4'
 let box_1234 = 'F1 G1 A1 B1 F2 G2 A2 B2 F3 G3 A3 B3 F4 G4 A4 B4'
+
+// 3 режима отображения клавиш клавиатуры
 let add_ledon_class = function () {
     document.querySelector('.container_with_keyboard').classList.remove('dspl_none');
     if (value_of_add_ledon_class == '') {
@@ -149,25 +151,58 @@ let add_ledon_class = function () {
 add_ledon_class();
 
 // добавить название нот
-let label_of_note_value = false;
+let label_of_note_value = 'one';
 let add_label_of_note = function () {
     let all_note = document.querySelectorAll('.note');
-    if (label_of_note_value) {
-        for (let item of all_note) {
-            item.innerHTML = '';
-        }
-        label_of_note_value = false;
-    } else {
+    if (label_of_note_value == 'one') {
         for (let item of all_note) {
             item.innerHTML = item.dataset.name;
         }
-        label_of_note_value = true;
+        label_of_note_value = 'two';
+    } else if (label_of_note_value == 'two') {
+        for (let item of all_note) {
+            item.innerHTML = '';
+        }
+        label_of_note_value = 'one';
     }
 }
 
+
+// узнать длинну строки
+function toArray(obj) {
+    var array = [];
+    // iterate backwards ensuring that length is an UInt32
+    for (var i = obj.length >>> 0; i--;) {
+        array[i] = obj[i];
+    }
+    return array;
+}
+
+// let row_length = function () {
+//     let xvx = '';
+//     let length_value = 0;
+//     let all_note = document.querySelectorAll('.note');
+//     let new_arr = toArray(all_note);
+//     for (let i = 0; i < all_note.length; i++) {
+
+//     }
+// }
+row_length();
+
+// активировать элемент на нотном стане
 document.querySelector('.container_with_line_background').addEventListener('click', () => {
+    let all_note = document.querySelectorAll('.note');
     if (event.target.classList.contains('note')) {
         event.target.classList.toggle('active_click');
         console.log(event.target);
     }
+    console.log(all_note);
 })
+
+// добавление фона
+let add_note_background = function () {
+    let all_note = document.querySelectorAll('.note');
+    for (let item of all_note) {
+        item.classList.toggle('note_background');
+    }
+}
