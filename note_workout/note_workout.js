@@ -69,7 +69,7 @@ let obj_matrix = {
     28: 'C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5'
 }
 
-
+// генерация матрицы нот
 let generate_note_frame = function (obj_of_notes) {
     for (const [key, value] of Object.entries(obj_of_notes)) {
         // console.log(`${key}: ${value}`);
@@ -150,29 +150,47 @@ let add_ledon_class = function () {
 }
 add_ledon_class();
 
-// добавить название нот
-let label_of_note_value = 'one';
 
+
+
+// добавить название нот на старте
+let add_label = function () {
+    let all_note = document.querySelectorAll('.note');
+    for (let item of all_note) {
+        item.innerHTML = item.dataset.name;
+    }
+}
+add_label();
+
+// добавить название нот на старте
 let add_label_background = function () {
     let all_note = document.querySelectorAll('.note');
-    if (label_of_note_value == 'one') {
-        for (let item of all_note) {
-            item.innerHTML = item.dataset.name;
-        }
-        label_of_note_value = 'two';
-    } else if (label_of_note_value == 'two') {
-        for (let item of all_note) {
-            item.innerHTML = '';
-        }
-        label_of_note_value = 'one';
+    for (let item of all_note) {
+        item.classList.toggle('note_background_text_color')
     }
 }
 
+
+
+// подписать активные ноты
+let label_on_off = 'off';
 let add_label_of_note = function () {
-    let all_active_click = document.querySelectorAll('.active_click');
-    for (let item of all_active_click) {
-        item.classList.toggle('text_show');
+    let all_active_note = document.querySelectorAll('.active_note');
+    for (let item of all_active_note) {
+        item.classList.remove('text_show');
     }
+    if (label_on_off == 'off') {
+        for (let item of all_active_note) {
+            item.classList.add('text_show');
+        }
+        label_on_off = 'on'
+    } else {
+        for (let item of all_active_note) {
+            item.classList.remove('text_show');
+        }
+        label_on_off = 'off'
+    }
+
 }
 
 // узнать длинну строки
@@ -196,23 +214,36 @@ function toArray(obj) {
 // }
 // row_length();
 
+
+
+
 // активировать элемент на нотном стане
 document.querySelector('.container_with_line_background').addEventListener('click', () => {
     let all_note = document.querySelectorAll('.note');
     if (event.target.classList.contains('note')) {
-        event.target.classList.toggle('active_click');
-        console.log(event.target);
+        event.target.classList.toggle('active_note');
+
+        if (!event.target.classList.contains('text_show') && label_on_off == 'on') {
+            event.target.classList.add('text_show');
+        } else {
+            event.target.classList.remove('text_show');
+        }
+        // if (label_on_off == 'on') {
+        //     event.target.classList.add('text_show');
+        // }
+
     }
-    console.log(all_note);
 })
 
-// добавление фона
+// добавление длинного фона
 let long_keyboard_background = function () {
     let long_keyboard_background = document.querySelector('.container_with_keyboard');
     let black_keys = document.querySelectorAll('.black_key');
     let white_keys = document.querySelectorAll('.white_key');
     let all_keyb_elem = document.querySelectorAll('.keyb_elem');
-
+    if (long_keyboard_background.classList.contains('dspl_none')) {
+        long_keyboard_background.classList.remove('dspl_none');
+    }
     for (let item of black_keys) {
         item.classList.toggle('black_keys_short');
     }
@@ -232,5 +263,16 @@ let long_keyboard_background = function () {
     let dashed_lines = document.querySelectorAll('.dashed');
     for (let item of dashed_lines) {
         item.classList.toggle('dashed_black');
+    }
+}
+
+// сброс активных нот
+let add_reset_active_note = function () {
+    let all_notes = document.querySelectorAll('.note');
+    for (let item of all_notes) {
+        if (item.classList.contains('active_note')) {
+            item.classList.toggle('active_note');
+            item.classList.remove('text_show');
+        }
     }
 }
