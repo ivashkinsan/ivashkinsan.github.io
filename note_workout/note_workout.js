@@ -276,3 +276,8 @@ let add_reset_active_note = function () {
         }
     }
 }
+
+// повернуть клавиатуру
+let add_rotate_style = function () {
+    document.querySelector('.container_with_line_background').classList.toggle('add_rotate_style');
+}

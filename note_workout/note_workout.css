@@ -26,10 +26,17 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* gap: 50px; */
   width: 96%;
-  height: 92%;
-  /* background-color: #b9b9b9; */
+  height: 90vh;
+}
+
+.line {
+  position: relative;
+  flex-direction: row;
+
+  /* width: 100%; */
+  border: 1px solid white;
+  /* padding-left: 34vh; */
 }
 
 .column_with_clief {
@@ -59,24 +66,14 @@ body {
   background-position: center;
 }
 
-.line {
-  position: relative;
 
-  /* display: flex; */
-  /* justify-content: space-around; */
-  flex-direction: row;
-
-  width: 100%;
-  border: 1px solid white;
-  /* padding-left: 34vh; */
-}
 
 .black_line {
   border: 1px solid black;
 }
 
 .dashed {
-  width: 100%;
+  /* width: 100%; */
   border: 1px dashed rgba(255, 255, 255, 0.4);
 }
 
@@ -100,6 +97,50 @@ body {
   width: 14vh;
   background-color: #F4D6B1;
   z-index: 999;
+}
+
+/* .left_octave_label {
+  position: absolute;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  left: -20px;
+  font-size: 12px;
+  color: rgb(255, 255, 255);
+  top: 0;
+  bottom: 0;
+  width: 20px;
+} */
+
+.back_color {
+  position: absolute;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-around;
+  left: -20px;
+  color: white;
+  font-size: 0.7em;
+  letter-spacing: 0.4em;
+  top: 3vh;
+  bottom: 0;
+  width: 20px;
+  /* background-color: #F4D6B1; */
+}
+
+.back_color>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border: 1px white solid;
+  background-color: rgb(49, 49, 49);
+}
+
+
+.rotate_-90deg {
+  white-space: nowrap;
+  transform-origin: center;
+  transform: rotate(-90deg);
 }
 
 .long_keyboard_background {
@@ -218,4 +259,9 @@ body {
 
 .button_container>input {
   width: 100%;
+}
+
+.add_rotate_style {
+  flex-direction: row;
+  width: 90vh;
 }
