@@ -132,3 +132,7 @@ body {
     background-color: rgb(85, 234, 245);
     transition: all var(--ms_transition) ease-out;
 }
+
+.mousemove {
+    background-color: rgba(255, 217, 0, 0.15);
+}

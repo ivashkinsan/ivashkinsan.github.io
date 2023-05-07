@@ -319,9 +319,12 @@ let generate_table = function (inp_obj, append_obj) {
             // console.log(inp_obj[key][kkk]);
             let new_item = document.createElement('div');
             new_item.classList.add('table_item');
+            new_item.classList.add(kkk);
             // console.log(inp_obj[key][kkk])
             // console.log(kkk)
+
             if (typeof (inp_obj[key][kkk]) == 'object') {
+
                 for (let i = 0; i < inp_obj[key][kkk].length; i++) {
                     let new_children_of_card = document.createElement('div');
                     new_children_of_card.classList.add('table_item_child');
@@ -379,3 +382,15 @@ create_label_table('ДИАТОНИКА ГАРМОНИЧЕСКОГО МИНОРА
 generate_table(harm_minor_diatonic, table_container);
 create_label_table('ДИАТОНИКА ГАРМОНИЧЕСКОГО МАЖОРА', table_container);
 generate_table(harm_major_diatonic, table_container);
+
+let body = document.querySelector('body');
+let redo_block = {};
+body.addEventListener('mousemove', function () {
+    redo_block = event.target;
+    if (event.target) {
+        redo_block.classList.remove('mousemove');
+    }
+
+    event.target.classList.toggle('mousemove');
+    redo_block = event.target;
+})
