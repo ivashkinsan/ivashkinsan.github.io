@@ -338,6 +338,7 @@ let generate_table = function (inp_obj, append_obj) {
                     if (inp_obj[key][kkk].length > 6) {
                         new_children_of_card.classList.add('stage_' + [i + 1]);
                     }
+                    new_item.dataset.algorythm = inp_obj[key][kkk];
                     new_children_of_card.textContent = inp_obj[key][kkk][i];
                     new_item.append(new_children_of_card);
                 }
@@ -345,7 +346,7 @@ let generate_table = function (inp_obj, append_obj) {
 
                 append_obj.appendChild(new_item);
             } else {
-                new_item.innerHTML = inp_obj[key][kkk];
+                new_item.textContent = inp_obj[key][kkk];
                 append_obj.appendChild(new_item);
             }
             //добавить блок для разрыва колонок
@@ -384,13 +385,32 @@ create_label_table('ДИАТОНИКА ГАРМОНИЧЕСКОГО МАЖОРА
 generate_table(harm_major_diatonic, table_container);
 
 let body = document.querySelector('body');
-let redo_block = {};
+
 body.addEventListener('mousemove', function () {
-    redo_block = event.target;
-    if (event.target) {
-        redo_block.classList.remove('mousemove');
+    if (event.target.classList.contains('table_item_child')) {
+        event.target.parentNode.classList.add('mousemove');
+        event.target.classList.add('mousemove_yellow');
+        console.log(event.target.parentNode.dataset.algorythm)
+        add_color_keyboard(event.target.parentNode.dataset.algorythm);
     }
 
-    event.target.classList.toggle('mousemove');
-    redo_block = event.target;
 })
+body.addEventListener('mouseout', function () {
+    event.target.parentNode.classList.remove('mousemove');
+    event.target.classList.remove('mousemove_yellow');
+})
+
+
+let all_formula_elem = document.querySelectorAll('.formula');
+let add_color_keyboard = function (dataset_algorythm) {
+    let new_arr = dataset_algorythm.split(',');
+
+    // console.log(keyboard_elements.dataset.stage);
+    for (let item of keyboard_elements) {
+        item.classList.remove('led_on');
+        if (new_arr.includes(item.dataset.stage)) {
+            item.classList.add('led_on');
+            console.log(new_arr);
+        }
+    }
+}

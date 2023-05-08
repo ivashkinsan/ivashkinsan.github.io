@@ -134,5 +134,13 @@ body {
 }
 
 .mousemove {
-    background-color: rgba(255, 217, 0, 0.15);
+    box-shadow: inset 2px 2px 0 white, inset -2px -2px 0 white;
+}
+
+.mousemove_yellow {
+    box-shadow: inset 2px 2px 0 rgb(246, 255, 0), inset -2px -2px 0 rgb(246, 255, 0);
+}
+
+.led_on {
+    background-color: aqua;
 }
