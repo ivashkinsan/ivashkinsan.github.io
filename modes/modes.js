@@ -294,9 +294,9 @@ let harm_major_diatonic = {
     {
         name: 'лидийский #2 #5',
         chord: '',
-        formula: ['1', 'b2', '3', '4', '5', '6', 'b7', '8'],
+        formula: ['1', '#2', '3', '#4', '#5', '6', '7', '8'],
         tetrachord: ['harm', 'min'],
-        alteration: ['b2', 'b7']
+        alteration: ['#2', '#4', '#5']
     },
     dim_harm_major:
     {
@@ -332,8 +332,6 @@ let generate_table = function (inp_obj, append_obj) {
                     if (kkk == 'formula' || kkk == 'alteration') {
                         new_children_of_card.classList.add('font_opus_std');
                     }
-
-
 
                     if (inp_obj[key][kkk].length > 6) {
                         new_children_of_card.classList.add('stage_' + [i + 1]);
@@ -387,11 +385,13 @@ generate_table(harm_major_diatonic, table_container);
 let body = document.querySelector('body');
 
 body.addEventListener('mousemove', function () {
+    console.log('mouseenter')
     if (event.target.classList.contains('table_item_child')) {
         event.target.parentNode.classList.add('mousemove');
         event.target.classList.add('mousemove_yellow');
-        console.log(event.target.parentNode.dataset.algorythm)
-        add_color_keyboard(event.target.parentNode.dataset.algorythm);
+        // console.log(event.target.parentNode.dataset.algorythm)
+        add_color_keyboard(event.target.parentNode.dataset.algorythm, 'blue');
+        add_color_keyboard(event.target.textContent, 'yellow');
     }
 
 })
@@ -402,15 +402,45 @@ body.addEventListener('mouseout', function () {
 
 
 let all_formula_elem = document.querySelectorAll('.formula');
-let add_color_keyboard = function (dataset_algorythm) {
+let add_color_keyboard = function (dataset_algorythm, color) {
     let new_arr = dataset_algorythm.split(',');
-
-    // console.log(keyboard_elements.dataset.stage);
-    for (let item of keyboard_elements) {
-        item.classList.remove('led_on');
-        if (new_arr.includes(item.dataset.stage)) {
-            item.classList.add('led_on');
-            console.log(new_arr);
+    new_arr.forEach(function (currentValue, index) {
+        new_arr[index] = bag_fix(currentValue);
+    });
+    if (color == 'blue') {
+        for (let item of keyboard_elements) {
+            item.classList.remove('led_on_blue');
+            if (new_arr.includes(item.dataset.stage)) {
+                item.classList.add('led_on_blue');
+                // console.log(new_arr);
+            }
         }
+    }
+    if (color == 'yellow') {
+        for (let item of keyboard_elements) {
+            item.classList.remove('led_on_yellow');
+            if (new_arr.includes(item.dataset.stage)) {
+                item.classList.add('led_on_yellow');
+                // console.log(new_arr);
+            }
+        }
+    }
+
+}
+
+let bag_fix = function (input) {
+    switch (input) {
+        case '#4':
+            return 'b5';
+        case '#5':
+            return 'b6';
+        case 'b4':
+            return '3';
+        case '#2':
+            return 'b3';
+        case 'bb7':
+            return '6';
+        default:
+            return input;
     }
 }

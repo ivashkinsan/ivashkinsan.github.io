@@ -141,6 +141,10 @@ body {
     box-shadow: inset 2px 2px 0 rgb(246, 255, 0), inset -2px -2px 0 rgb(246, 255, 0);
 }
 
-.led_on {
+.led_on_blue {
     background-color: aqua;
+}
+
+.led_on_yellow {
+    background-color: rgb(246, 255, 0);
 }
