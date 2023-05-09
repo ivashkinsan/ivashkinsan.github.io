@@ -312,36 +312,27 @@ let harm_major_diatonic = {
 let table_container = document.querySelector('.table_container');
 let generate_table = function (inp_obj, append_obj) {
     for (let [key, value] of Object.entries(inp_obj)) {
-        // let new_row = document.createElement('div');
-        // new_row.classList.add('table_card');
-
         for (let [kkk, vvv] of Object.entries(inp_obj[key])) {
-            // console.log(inp_obj[key][kkk]);
+
             let new_item = document.createElement('div');
             new_item.classList.add('table_item');
             new_item.classList.add(kkk);
-            // console.log(inp_obj[key][kkk])
-            // console.log(kkk)
 
             if (typeof (inp_obj[key][kkk]) == 'object') {
 
                 for (let i = 0; i < inp_obj[key][kkk].length; i++) {
                     let new_children_of_card = document.createElement('div');
                     new_children_of_card.classList.add('table_item_child');
-
                     if (kkk == 'formula' || kkk == 'alteration') {
                         new_children_of_card.classList.add('font_opus_std');
                     }
-
                     if (inp_obj[key][kkk].length > 6) {
                         new_children_of_card.classList.add('stage_' + [i + 1]);
                     }
-                    new_item.dataset.algorythm = inp_obj[key][kkk];
+                    new_item.dataset.algorythm = inp_obj[key].formula;
                     new_children_of_card.textContent = inp_obj[key][kkk][i];
                     new_item.append(new_children_of_card);
                 }
-
-
                 append_obj.appendChild(new_item);
             } else {
                 new_item.textContent = inp_obj[key][kkk];
@@ -354,8 +345,6 @@ let generate_table = function (inp_obj, append_obj) {
                 append_obj.append(new_gap);
             }
         }
-
-
     }
 }
 
@@ -367,7 +356,6 @@ let create_label_table = function (text, append_obj) {
     append_obj.append(new_item);
 
 }
-
 
 // создание таблицы
 create_label_table('ДИАТОНИКА МАЖОРА', table_container)
@@ -382,22 +370,39 @@ generate_table(harm_minor_diatonic, table_container);
 create_label_table('ДИАТОНИКА ГАРМОНИЧЕСКОГО МАЖОРА', table_container);
 generate_table(harm_major_diatonic, table_container);
 
-let body = document.querySelector('body');
 
-body.addEventListener('mousemove', function () {
-    console.log('mouseenter')
-    if (event.target.classList.contains('table_item_child')) {
+// работа с курсором мыши
+let body = document.querySelector('body');
+body.addEventListener('mousemove', function (event) {
+    // console.log('mousemove');
+    if (event.target.classList.contains('table_item_child') && event.target.parentNode.classList.contains('formula')) {
         event.target.parentNode.classList.add('mousemove');
         event.target.classList.add('mousemove_yellow');
         // console.log(event.target.parentNode.dataset.algorythm)
         add_color_keyboard(event.target.parentNode.dataset.algorythm, 'blue');
         add_color_keyboard(event.target.textContent, 'yellow');
     }
+    if (event.target.classList.contains('table_item_child') && event.target.parentNode.classList.contains('tetrachord')) {
+        // console.log('tetrachord');
+        event.target.parentNode.classList.add('mousemove');
+        event.target.classList.add('mousemove_yellow');
+        add_color_keyboard(event.target.parentNode.dataset.algorythm, 'blue');
+        if (event.target == event.target.parentNode.children[0]) {
+            // console.log('child_0');
+            add_color_keyboard(event.target.parentNode.dataset.algorythm, 'mix_1');
+        }
+        if (event.target == event.target.parentNode.children[1]) {
+            // console.log('child_1');
+            add_color_keyboard(event.target.parentNode.dataset.algorythm, 'mix_2');
+        }
+
+    }
 
 })
 body.addEventListener('mouseout', function () {
     event.target.parentNode.classList.remove('mousemove');
     event.target.classList.remove('mousemove_yellow');
+    remove_color_keyboard('led_on_yellow');
 })
 
 
@@ -407,6 +412,8 @@ let add_color_keyboard = function (dataset_algorythm, color) {
     new_arr.forEach(function (currentValue, index) {
         new_arr[index] = bag_fix(currentValue);
     });
+    let arr_mix_1 = [new_arr[0], new_arr[1], new_arr[2], new_arr[3]]
+    let arr_mix_2 = [new_arr[4], new_arr[5], new_arr[6], new_arr[7]]
     if (color == 'blue') {
         for (let item of keyboard_elements) {
             item.classList.remove('led_on_blue');
@@ -425,9 +432,30 @@ let add_color_keyboard = function (dataset_algorythm, color) {
             }
         }
     }
+    if (color == 'mix_1') {
+        for (let item of keyboard_elements) {
+            item.classList.remove('led_on_yellow');
+            if (arr_mix_1.includes(item.dataset.stage)) {
+                item.classList.add('led_on_yellow');
+            }
+        }
+    }
+    if (color == 'mix_2') {
+        for (let item of keyboard_elements) {
+            item.classList.remove('led_on_yellow');
+            if (arr_mix_2.includes(item.dataset.stage)) {
+                item.classList.add('led_on_yellow');
+            }
+        }
+    }
 
 }
-
+let remove_color_keyboard = function (color) {
+    for (let item of keyboard_elements) {
+        item.classList.remove(color);
+    }
+}
+// исправление отсутствующих ступеней в keyboard elem dataset
 let bag_fix = function (input) {
     switch (input) {
         case '#4':
@@ -445,6 +473,7 @@ let bag_fix = function (input) {
     }
 }
 
+// секция работы с кнопками
 let ton_select_btn = document.querySelector('.ton_select');
 ton_select_btn.addEventListener('change', function () {
     console.log(ton_select_btn.value.split(' ')[0]);
@@ -468,7 +497,4 @@ let ton_select_go = function (start_key) {
         console.log(keyboard_elements[i])
         start_i++;
     }
-    // console.log(array_from_numb);
-    // console.log(array_from_stage);
 }
-// ton_select_go(2)
