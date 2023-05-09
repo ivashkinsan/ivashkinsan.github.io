@@ -20,7 +20,7 @@ body {
     height: 100vh;
     color: white;
     font-family: 'Montserrat';
-    font-size: 14px;
+    font-size: 18px;
     letter-spacing: 2px;
     font-weight: 100;
 
@@ -46,14 +46,13 @@ body {
     padding: 10px;
     border-top: 0.5px rgba(39, 215, 255, 0.3) solid;
     border-bottom: 0.5px rgba(39, 215, 255, 0.3) solid;
-
 }
 
 .table_item {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    line-height: 30px;
+    line-height: 40px;
     /* padding: 10px; */
     /* border-top: 0.5px solid white; */
     border: 0.5px solid rgba(39, 215, 255, 0.3);
@@ -73,6 +72,26 @@ body {
 .stage_4,
 .stage_5,
 .stage_8 {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.alteration {
+    justify-content: start;
+}
+
+.alteration>div {
+    width: auto;
+    padding-left: 5px;
+}
+
+.button_container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    gap: 20px;
+    width: 100%;
+    border-top: 0.5px rgba(39, 215, 255, 0.3) solid;
+    border-bottom: 0.5px rgba(39, 215, 255, 0.3) solid;
     background-color: rgba(255, 255, 255, 0.15);
 }
 

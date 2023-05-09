@@ -444,3 +444,31 @@ let bag_fix = function (input) {
             return input;
     }
 }
+
+let ton_select_btn = document.querySelector('.ton_select');
+ton_select_btn.addEventListener('change', function () {
+    console.log(ton_select_btn.value.split(' ')[0]);
+    ton_select_go(ton_select_btn.value.split(' ')[0]);
+})
+
+let array_from_numb = [];
+let array_from_stage = [];
+for (let item of keyboard_elements) {
+    array_from_numb.push(item.dataset.numb)
+    array_from_stage.push(item.dataset.stage)
+}
+
+let ton_select_go = function (start_key) {
+    let start_i = start_key - 1;
+    for (let i = 0; i < keyboard_elements.length; i++) {
+        keyboard_elements[i].dataset.stage = ' ';
+    }
+    for (let i = 0; i <= 12; i++) {
+        keyboard_elements[start_i].dataset.stage = array_from_stage[i];
+        console.log(keyboard_elements[i])
+        start_i++;
+    }
+    // console.log(array_from_numb);
+    // console.log(array_from_stage);
+}
+// ton_select_go(2)
