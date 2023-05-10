@@ -71,58 +71,58 @@ let label = {
 let major_diatonic = {
     ionian:
     {
-        name: 'ионийский',
+        name: ['ИОНИЙСКИЙ / нат МАЖОР', 'IONIAN'],
         chord: '',
         formula: ['1', '2', '3', '4', '5', '6', '7', '8'],
-        tetrachord: ['maj', 'maj'],
+        tetrachord: ['MAJ', 'MAJ'],
         alteration: ['нет']
     },
     dorian:
     {
-        name: 'дорийский',
+        name: ['ДОРИЙСКИЙ', 'DORIAN'],
         chord: '',
         formula: ['1', '2', 'b3', '4', '5', '6', 'b7', '8'],
-        tetrachord: ['min', 'min'],
+        tetrachord: ['MIN', 'MIN'],
         alteration: ['b3', 'b7']
     },
     frigian:
     {
-        name: 'фригийский',
+        name: ['ФРИГИЙСКИЙ', 'PHRYGIAN'],
         chord: '',
         formula: ['1', 'b2', 'b3', '4', '5', 'b6', 'b7', '8'],
-        tetrachord: ['frig', 'frig'],
+        tetrachord: ['FRIG', 'FRIG'],
         alteration: ['b2', 'b3', 'b6', 'b7']
     },
     lydian:
     {
-        name: 'лидийский',
+        name: ['ЛИДИЙСКИЙ', 'LYDIAN'],
         chord: '',
         formula: ['1', '2', '3', '#4', '5', '6', '7', '8'],
-        tetrachord: ['TTT', 'maj'],
+        tetrachord: ['TTT', 'MAJ'],
         alteration: ['#4']
     },
     mixolydian:
     {
-        name: 'миксолидийский',
+        name: ['МИКСОЛИДИЙСКИЙ', 'MIXOLYDIAN'],
         chord: '',
         formula: ['1', '2', '3', '4', '5', '6', 'b7', '8'],
-        tetrachord: ['maj', 'min'],
+        tetrachord: ['MAJ', 'MIN'],
         alteration: ['b7']
     },
     aeolian:
     {
-        name: 'эолийский',
+        name: ['ЭОЛИЙСКИЙ / нат МИНОР', 'AEOLIAN'],
         chord: '',
         formula: ['1', '2', 'b3', '4', '5', 'b6', 'b7', '8'],
-        tetrachord: ['min', 'frig'],
+        tetrachord: ['MIN', 'FRIG'],
         alteration: ['b3', 'b6', 'b7']
     },
     locrian:
     {
-        name: 'локрийский',
+        name: ['ЛОКРИЙСКИЙ', 'LOCRIAN'],
         chord: '',
         formula: ['1', 'b2', 'b3', '4', 'b5', 'b6', 'b7', '8'],
-        tetrachord: ['frig', 'TTT'],
+        tetrachord: ['FRIG', 'TTT'],
         alteration: ['b2', 'b3', 'b5', 'b6', 'b7']
     },
 }
@@ -131,46 +131,46 @@ let other_modes = {
 
     harmonic_minor:
     {
-        name: 'гармонический минор',
+        name: ['ГАРМОНИЧЕСКИЙ МИНОР', 'HARMONIC MINOR'],
         chord: '',
         formula: ['1', '2', 'b3', '4', '5', 'b6', '7', '8'],
-        tetrachord: ['min', 'harm'],
+        tetrachord: ['MIN', 'HARM'],
         alteration: ['b3', 'b6']
     },
 
     melodic_minor:
     {
-        name: 'мелодический минор',
+        name: ['МЕЛОДИЧЕСКИЙ МИНОР', 'MELODIC MINOR'],
         chord: '',
         formula: ['1', '2', 'b3', '4', '5', '6', '7', '8'],
-        tetrachord: ['min', 'maj'],
+        tetrachord: ['MIN', 'MAJ'],
         alteration: ['b3']
     },
 
     harmonic_major:
     {
-        name: 'гармонический мажор',
+        name: ['ГАРМОНИЧЕСКИЙ МАЖОР', 'HARMONIC MAJOR'],
         chord: '',
         formula: ['1', '2', '3', '4', '5', 'b6', '7', '8'],
-        tetrachord: ['maj', 'harm'],
+        tetrachord: ['MAJ', 'HARM'],
         alteration: ['b6']
     },
 
     melodic_major:
     {
-        name: 'мелодический мажор',
+        name: ['МЕЛОДИЧЕСКИЙ МАЖОР', 'MELODIC MAJOR'],
         chord: '',
         formula: ['1', '2', '3', '4', '5', 'b6', 'b7', '8'],
-        tetrachord: ['maj', 'frig'],
+        tetrachord: ['MAJ', 'FRIG'],
         alteration: ['b6', 'b7']
     },
 
     harmonic_2x_major:
     {
-        name: 'дважды гармонический мажор',
+        name: ['ДВАЖДЫ ГАРМОНИЧЕСКИЙ МАЖОР', 'DOUBLE HARMONIC MAJOR'],
         chord: '',
         formula: ['1', 'b2', '3', '4', '5', 'b6', '7', '8'],
-        tetrachord: ['harm', 'harm'],
+        tetrachord: ['HARM', 'HARM'],
         alteration: ['b2', 'b6']
     },
 }
@@ -178,58 +178,58 @@ let other_modes = {
 let mel_minor_diatonic = {
     melodic_minor:
     {
-        name: 'мелодический минор',
+        name: ['МЕЛОДИЧЕСКИЙ МИНОР', 'MELODIC MINOR'],
         chord: '',
         formula: ['1', '2', 'b3', '4', '5', '6', '7', '8'],
-        tetrachord: ['min', 'maj'],
+        tetrachord: ['MIN', 'MAJ'],
         alteration: ['b3']
     },
     javanese:
     {
-        name: 'дорийский b2 / фригийский нат 6',
+        name: ['ДОРИЙСКИЙ b2 / ФРИГИЙСКИЙ #6', 'DORIAN b2 / PHRYGIAN #6'],
         chord: '',
         formula: ['1', 'b2', 'b3', '4', '5', '6', 'b7', '8'],
-        tetrachord: ['frig', 'min'],
+        tetrachord: ['FRIG', 'MIN'],
         alteration: ['b2', 'b3', 'b7']
     },
     lydian_aug:
     {
-        name: 'лидийский ув',
+        name: ['ЛИДИЙСКИЙ #5', 'LYDIAN #5'],
         chord: '',
         formula: ['1', '2', '3', '#4', '#5', '6', '7', '8'],
-        tetrachord: ['ТТТ', 'maj(#5)'],
+        tetrachord: ['ТТТ', 'MAJ(#5)'],
         alteration: ['#4', '#5']
     },
     lydian_dom:
     {
-        name: 'лидийский доминантовый',
+        name: ['МИКСОЛИДИЙСКИЙ #4 / ЛИДИЙСКИЙ b7', 'MIXOLYDIAN #4 / LYDIAN b7'],
         chord: '',
         formula: ['1', '2', '3', '#4', '5', '6', 'b7', '8'],
-        tetrachord: ['ТТТ', 'min'],
+        tetrachord: ['ТТТ', 'MIN'],
         alteration: ['#4', 'b7']
     },
     hindu:
     {
-        name: 'мелодический мажор',
+        name: ['МИКСОЛИДИЙСКИЙ b6', 'MIXOLYDIAN b6'],
         chord: '',
         formula: ['1', '2', '3', '4', '5', 'b6', 'b7', '8'],
-        tetrachord: ['maj', 'frig'],
+        tetrachord: ['MAJ', 'FRIG'],
         alteration: ['b6', 'b7']
     },
     locrian_nat_2:
     {
-        name: 'локрийский нат 2',
+        name: ['ЛОКРИЙСКИЙ нат 2 / ЭОЛИЙСКИЙ b5', 'LOCRIAN nat 2 / AEOLIAN b5'],
         chord: '',
         formula: ['1', '2', 'b3', '4', 'b5', 'b6', 'b7', '8'],
-        tetrachord: ['min', 'TTT'],
+        tetrachord: ['MIN', 'TTT'],
         alteration: ['b3', 'b5', 'b6', 'b7']
     },
     alt:
     {
-        name: 'супер локрийский / alt',
+        name: ['АЛЬТЕРИРОВАННЫЙ / ЛОКРИЙСКИЙ b4', 'ALTERETED / LOCRIAN b4'],
         chord: '',
         formula: ['1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', '8'],
-        tetrachord: ['frig(b4)', 'TTT'],
+        tetrachord: ['FRIG(b4)', 'TTT'],
         alteration: ['b2', 'b3', 'b4', 'b5', 'b6', 'b7']
     },
 }
@@ -237,58 +237,58 @@ let mel_minor_diatonic = {
 let harm_minor_diatonic = {
     harm_minor:
     {
-        name: 'гармонический минор',
+        name: ['ГАРМОНИЧЕСКИЙ МИНОР', 'HARMONIC MINOR'],
         chord: '',
         formula: ['1', '2', 'b3', '4', '5', 'b6', '7', '8'],
-        tetrachord: ['min', 'harm'],
+        tetrachord: ['MIN', 'HARM'],
         alteration: ['b3', 'b6']
     },
     locrian_nat_6:
     {
-        name: 'локрийский нат 6',
+        name: ['ЛОКРИЙСКИЙ нат 6', 'LOCRIAN nat 6'],
         chord: '',
         formula: ['1', 'b2', 'b3', '4', 'b5', '6', 'b7', '8'],
-        tetrachord: ['frig', 'TTT(n6)'],
+        tetrachord: ['FRIG', 'TTT(n6)'],
         alteration: ['b2', 'b3', 'b5', 'b7']
     },
     ionian_aug:
     {
-        name: 'ионийский увеличенный',
+        name: ['ИОНИЙСКИЙ #5', 'IONIAN #5'],
         chord: '',
         formula: ['1', '2', '3', '4', '#5', '6', '7', '8'],
-        tetrachord: ['maj', 'maj(#5)'],
+        tetrachord: ['MAJ', 'MAJ(#5)'],
         alteration: ['#5']
     },
     romanian:
     {
-        name: 'дорийский #4',
+        name: ['ДОРИЙСКИЙ #4', 'DORIAN #4'],
         chord: '',
         formula: ['1', '2', 'b3', '#4', '5', '6', 'b7', '8'],
-        tetrachord: ['min(#4)', 'min'],
+        tetrachord: ['MIN(#4)', 'MIN'],
         alteration: ['b3', '#4', 'b7']
     },
     mixo_b2_b7:
     {
-        name: 'миксолидийский b2 b6',
+        name: ['МИКСОЛИДИЙСКИЙ b2 b6', 'MIXOLYDIAN b2 b6'],
         chord: '',
         formula: ['1', 'b2', '3', '4', '5', 'b6', 'b7', '8'],
-        tetrachord: ['harm', 'frig'],
+        tetrachord: ['HARM', 'FRIG'],
         alteration: ['b2', 'b6', 'b7']
     },
     lydian_up_2:
     {
-        name: 'лидийский #2',
+        name: ['ЛИДИЙСКИЙ #2', 'LYDIAN #2'],
         chord: '',
         formula: ['1', '#2', '3', '#4', '5', '6', '7', '8'],
-        tetrachord: ['TTT(#2)', 'maj'],
+        tetrachord: ['TTT(#2)', 'MAJ'],
         alteration: ['#2', '#4']
     },
     ultra_locrian:
     {
-        name: 'ульта локрийский',
+        name: ['ум ГАРМ МИНОР (+пт) / СУПЕР АЛЬТ', 'DIM HARM MINOR (+H) / SUPER ALT'],
         chord: '',
         formula: ['1', 'b2', 'b3', 'b4', 'b5', 'b6', 'bb7', '8'],
-        tetrachord: ['frig(b4)', 'TTT(bb7)'],
+        tetrachord: ['FRIG(b4)', 'TTT(bb7)'],
         alteration: ['b2', 'b3', 'b4', 'b5', 'b6', 'bb7']
     },
 }
@@ -296,58 +296,58 @@ let harm_minor_diatonic = {
 let harm_major_diatonic = {
     harm_major:
     {
-        name: 'гармонический мажор',
+        name: ['ГАРМОНИЧЕСКИЙ МАЖОР', 'HARMONIC MAJOR'],
         chord: '',
         formula: ['1', '2', '3', '4', '5', 'b6', '7', '8'],
-        tetrachord: ['maj', 'harm'],
+        tetrachord: ['MAJ', 'HARM'],
         alteration: ['b6']
     },
     dorian_b5:
     {
-        name: 'дорийский b5 / локрийский #2 #6',
+        name: ['ЛОКРИЙСКИЙ нат 2,6 / ДОРИЙСКИЙ b5', 'LOCRIAN nat 2,6 / DORIAN b5'],
         chord: '',
         formula: ['1', '2', 'b3', '4', 'b5', '6', 'b7', '8'],
-        tetrachord: ['min', 'min(b5)'],
+        tetrachord: ['MIN', 'MIN(b5)'],
         alteration: ['b3', 'b5', 'b7']
     },
     alt_nat_5:
     {
-        name: 'фригийский b4 / альтерированный нат5',
+        name: ['ФРИГ b4 / МИКС b2 #2 b6 / АЛЬТ нат 5', 'FRIG b4 / MIX b2 #2 b6 / ALT nat 5'],
         chord: '',
         formula: ['1', 'b2', 'b3', 'b4', '5', 'b6', 'b7', '8'],
-        tetrachord: ['frig(b4)', 'frig'],
+        tetrachord: ['FRIG(b4)', 'FRIG'],
         alteration: ['b2', 'b3', 'b4', 'b6', 'b7']
     },
     melodic_min_up_4:
     {
-        name: 'мелодический минор #4',
+        name: ['МЕЛ МИНОР #4 / ЛИДИЙСКИЙ b3', 'MELODIC MINOR #4 / LYDIAN b3'],
         chord: '',
         formula: ['1', '2', 'b3', '#4', '5', '6', '7', '8'],
-        tetrachord: ['min(#4)', 'maj'],
+        tetrachord: ['MIN(#4)', 'MAJ'],
         alteration: ['b3', '#4']
     },
     mixolydian_b2:
     {
-        name: 'миксолидийский b2',
+        name: ['МИКСОЛИДИЙСКИЙ b2', 'MIXOLYDIAN b2'],
         chord: '',
         formula: ['1', 'b2', '3', '4', '5', '6', 'b7', '8'],
-        tetrachord: ['harm', 'min'],
+        tetrachord: ['HARM', 'MIN'],
         alteration: ['b2', 'b7']
     },
     lydian_up2_up5:
     {
-        name: 'лидийский #2 #5',
+        name: ['ЛИДИЙСКИЙ #2 #5', 'LYDIAN #2 #5'],
         chord: '',
         formula: ['1', '#2', '3', '#4', '#5', '6', '7', '8'],
-        tetrachord: ['TTT(#2)', 'maj(#5)'],
+        tetrachord: ['TTT(#2)', 'MAJ(#5)'],
         alteration: ['#2', '#4', '#5']
     },
     dim_harm_major:
     {
-        name: 'локрийский bb7',
+        name: ['ум ГАРМ МАЖОР (+пт) / ЛОКР bb7', 'DIM HARMONIC MAJOR (+H)/ LOCRIAN bb7'],
         chord: '',
         formula: ['1', 'b2', 'b3', '4', 'b5', 'b6', 'bb7', '8'],
-        tetrachord: ['frig', 'TTT(bb7)'],
+        tetrachord: ['FRIG', 'TTT(bb7)'],
         alteration: ['b2', 'b3', '4', 'b5', 'b6', 'bb7']
     },
 }
@@ -473,10 +473,12 @@ let add_color_keyboard = function (dataset_algorythm, color) {
             item.classList.remove('led_on_blue');
             if (new_arr.includes(item.dataset.stage)) {
                 item.classList.add('led_on_blue');
+                // активировать подписи ступенями
                 if (label_select.value == 'stage') {
                     item.children[0].textContent = new_arr_for_label[ind];
                     item.children[0].classList.add('opus_text');
                 }
+                // активировать нотные подписи
                 if (label_select.value == 'note') {
                     let arr_note = item.dataset.note.split(' ');
 
@@ -488,6 +490,9 @@ let add_color_keyboard = function (dataset_algorythm, color) {
                     console.log(new_arr_for_label[ind].indexOf('#') > -1);
                     if (new_arr_for_label[ind].indexOf('#') > -1) {
                         item.children[0].textContent = arr_note[1];
+                    } else {
+                        item.children[0].textContent = arr_note[0];
+
                     }
                 }
 

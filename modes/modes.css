@@ -20,7 +20,7 @@ body {
     height: 100vh;
     color: white;
     font-family: 'Montserrat';
-    font-size: 18px;
+    font-size: 14px;
     letter-spacing: 2px;
     font-weight: 100;
 
@@ -35,7 +35,7 @@ body {
     margin-left: 2vw;
     margin-right: 2vw;
     display: grid;
-    grid-template-columns: 320px 80px 50px 1fr 50px 200px 200px;
+    grid-template-columns: 360px 80px 30px 1fr 30px 200px 200px;
     overflow: scroll;
 }
 
@@ -52,13 +52,16 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    line-height: 40px;
+    /* line-height: 30px; */
     /* padding: 10px; */
     /* border-top: 0.5px solid white; */
     border: 0.5px solid rgba(39, 215, 255, 0.3);
 }
 
 .table_item_child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     width: 100%;
     text-align: center;
@@ -75,6 +78,30 @@ body {
     background-color: rgba(255, 255, 255, 0.15);
 }
 
+.stage_1,
+.stage_2,
+.stage_3,
+.stage_4,
+.stage_5,
+.stage_6,
+.stage_7,
+.stage_8 {
+    font-size: 18px;
+}
+
+.name {
+    text-align: center;
+    flex-direction: column;
+    padding: 10px 0;
+    /* font-size: 12px; */
+    /* word-spacing: 30000px; */
+}
+
+.name>div:nth-child(2) {
+    color: #F4D6B1;
+    font-size: 12px;
+}
+
 .alteration {
     justify-content: start;
 }
@@ -88,7 +115,7 @@ body {
     display: flex;
     justify-content: center;
     padding: 10px 0;
-    gap: 20px;
+    gap: 50px;
     width: 100%;
     border-top: 0.5px rgba(39, 215, 255, 0.3) solid;
     border-bottom: 0.5px rgba(39, 215, 255, 0.3) solid;
