@@ -295,7 +295,7 @@ let harm_major_diatonic = {
         name: 'лидийский #2 #5',
         chord: '',
         formula: ['1', '#2', '3', '#4', '#5', '6', '7', '8'],
-        tetrachord: ['harm', 'min'],
+        tetrachord: ['TTT(#2)', 'maj(#5)'],
         alteration: ['#2', '#4', '#5']
     },
     dim_harm_major:
