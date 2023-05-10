@@ -111,8 +111,11 @@ body {
     height: 30vh;
 }
 
-.new_p_label {
+.opus_text {
     font-family: 'Opus Text Std';
+}
+
+.new_p_label {
     text-align: center;
     font-size: 14px;
     color: #000000b7;

@@ -13,6 +13,50 @@ let big_keyboard_add_color = function () {
 big_keyboard_add_color();
 
 
+// добавление лейблов на клавиатуру
+let add_label_for_keyboards = function () {
+    for (let item of keyboard_elements) {
+        item.children[0].textContent = '1';
+    }
+}
+// add_label_for_keyboards();
+
+// секция работы с кнопками
+let ton_select_btn = document.querySelector('.ton_select');
+ton_select_btn.addEventListener('change', function () {
+    // console.log(ton_select_btn.value.split(' ')[0]);
+    ton_select_go(ton_select_btn.value.split(' ')[0]);
+})
+
+let array_from_numb = [];
+let array_from_stage = [];
+for (let item of keyboard_elements) {
+    array_from_numb.push(item.dataset.numb)
+    array_from_stage.push(item.dataset.stage)
+}
+
+let ton_select_go = function (start_key) {
+    let start_i = start_key - 1;
+    for (let i = 0; i < keyboard_elements.length; i++) {
+        keyboard_elements[i].dataset.stage = ' ';
+    }
+    for (let i = 0; i <= 12; i++) {
+        keyboard_elements[start_i].dataset.stage = array_from_stage[i];
+        // console.log(keyboard_elements[i])
+        start_i++;
+    }
+}
+
+let stage_checkbox = document.querySelector('.stage_checkbox');
+stage_checkbox.addEventListener('click', function () {
+    console.log(stage_checkbox.checked);
+})
+
+let label_select = document.querySelector('.label_select');
+label_select.addEventListener('change', function () {
+    console.log(label_select.value)
+})
+
 let label = {
     label:
     {
@@ -377,10 +421,16 @@ body.addEventListener('mousemove', function (event) {
     // console.log('mousemove');
     if (event.target.classList.contains('table_item_child') && event.target.parentNode.classList.contains('formula')) {
         event.target.parentNode.classList.add('mousemove');
-        event.target.classList.add('mousemove_yellow');
+        if (stage_checkbox.checked) {
+            event.target.classList.add('mousemove_yellow');
+        }
+
         // console.log(event.target.parentNode.dataset.algorythm)
         add_color_keyboard(event.target.parentNode.dataset.algorythm, 'blue');
-        add_color_keyboard(event.target.textContent, 'yellow');
+        if (stage_checkbox.checked) {
+            add_color_keyboard(event.target.textContent, 'yellow');
+        }
+
     }
     if (event.target.classList.contains('table_item_child') && event.target.parentNode.classList.contains('tetrachord')) {
         // console.log('tetrachord');
@@ -406,19 +456,42 @@ body.addEventListener('mouseout', function () {
 })
 
 
+
 let all_formula_elem = document.querySelectorAll('.formula');
 let add_color_keyboard = function (dataset_algorythm, color) {
     let new_arr = dataset_algorythm.split(',');
+    let new_arr_for_label = dataset_algorythm.split(',');
     new_arr.forEach(function (currentValue, index) {
         new_arr[index] = bag_fix(currentValue);
     });
     let arr_mix_1 = [new_arr[0], new_arr[1], new_arr[2], new_arr[3]]
     let arr_mix_2 = [new_arr[4], new_arr[5], new_arr[6], new_arr[7]]
     if (color == 'blue') {
+        let ind = 0;
         for (let item of keyboard_elements) {
+            item.children[0].classList.remove('opus_text');
             item.classList.remove('led_on_blue');
             if (new_arr.includes(item.dataset.stage)) {
                 item.classList.add('led_on_blue');
+                if (label_select.value == 'stage') {
+                    item.children[0].textContent = new_arr_for_label[ind];
+                    item.children[0].classList.add('opus_text');
+                }
+                if (label_select.value == 'note') {
+                    let arr_note = item.dataset.note.split(' ');
+
+                    //проверить строку ступени на знак b
+                    console.log(new_arr_for_label[ind].indexOf('b') > -1);
+                    if (new_arr_for_label[ind].indexOf('b') > -1) {
+                        item.children[0].textContent = arr_note[0];
+                    }
+                    console.log(new_arr_for_label[ind].indexOf('#') > -1);
+                    if (new_arr_for_label[ind].indexOf('#') > -1) {
+                        item.children[0].textContent = arr_note[1];
+                    }
+                }
+
+                ind++;
                 // console.log(new_arr);
             }
         }
@@ -453,8 +526,10 @@ let add_color_keyboard = function (dataset_algorythm, color) {
 let remove_color_keyboard = function (color) {
     for (let item of keyboard_elements) {
         item.classList.remove(color);
+        item.children[0].textContent = '';
     }
 }
+
 // исправление отсутствующих ступеней в keyboard elem dataset
 let bag_fix = function (input) {
     switch (input) {
@@ -473,28 +548,3 @@ let bag_fix = function (input) {
     }
 }
 
-// секция работы с кнопками
-let ton_select_btn = document.querySelector('.ton_select');
-ton_select_btn.addEventListener('change', function () {
-    console.log(ton_select_btn.value.split(' ')[0]);
-    ton_select_go(ton_select_btn.value.split(' ')[0]);
-})
-
-let array_from_numb = [];
-let array_from_stage = [];
-for (let item of keyboard_elements) {
-    array_from_numb.push(item.dataset.numb)
-    array_from_stage.push(item.dataset.stage)
-}
-
-let ton_select_go = function (start_key) {
-    let start_i = start_key - 1;
-    for (let i = 0; i < keyboard_elements.length; i++) {
-        keyboard_elements[i].dataset.stage = ' ';
-    }
-    for (let i = 0; i <= 12; i++) {
-        keyboard_elements[start_i].dataset.stage = array_from_stage[i];
-        console.log(keyboard_elements[i])
-        start_i++;
-    }
-}
