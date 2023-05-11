@@ -1,3 +1,7 @@
+:root {
+  --main-vh-metr: 10vh;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -27,7 +31,7 @@ body {
   flex-direction: column;
   justify-content: space-around;
   width: 96%;
-  height: 90vh;
+  height: calc(var(--main-vh-metr)*9);
 }
 
 .line {
@@ -47,8 +51,8 @@ body {
 
 .treble_clief,
 .bass_clief {
-  width: 31.5vh;
-  height: 31.5vh;
+  width: calc(var(--main-vh-metr)* 3 + 1.5vh);
+  height: calc(var(--main-vh-metr)* 3 + 1.5vh);
   margin-left: -24%;
 }
 
@@ -91,10 +95,10 @@ body {
   display: flex;
   flex-direction: column-reverse;
 
-  top: 4vh;
-  bottom: 4vh;
-  left: 23vh;
-  width: 14vh;
+  top: calc(var(--main-vh-metr) / 10 * 4);
+  bottom: calc(var(--main-vh-metr) / 10 * 4);
+  left: calc(var(--main-vh-metr) / 10 * 23);
+  width: calc(var(--main-vh-metr) / 10 * 14);
   background-color: #F4D6B1;
   z-index: 999;
 }
@@ -212,8 +216,8 @@ body {
   position: absolute;
   top: calc(0px - 1.5vh);
 
-  width: 6vh;
-  height: 3vh;
+  width: calc(var(--main-vh-metr) / 10 * 6);
+  height: calc(var(--main-vh-metr) / 10 * 3);
   color: rgba(255, 255, 255, 0);
   z-index: 988;
   opacity: 1;
