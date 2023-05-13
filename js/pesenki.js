@@ -271,6 +271,19 @@ let antoshka = [
     { text: 'Парам пам пам,', formula: ['WI', 'LE', 0, 'TI', 0, 'YO'] },
     { text: 'Парам пам пам,', formula: ['WI', 'LE', 0, 'ZO_up', 0, 'YO'] }
 ];
+let esli_dobriy_ti = [
+    { all: 63, text: 'Если добрый ты,', formula: ['ZO', 'RU', 'TU', 0, 'ZO', 'RU', 'TU', 0, 'LU_up', 'YO_up', 'RU'] },
+    { text: 'Пойдём копать картошку.', formula: ['WI', 'LE', 'LE', 'TI', 'ZO', 'WI', 0, 'YO'] },
+    { text: 'Антошка, Антошка,', formula: ['WI', 'LE', 'LE', 0, 'WI', 'YO', 'YO'] },
+    { text: 'Пойдём копать картошку.', formula: ['WI', 'LE', 0, 'WI', 'LE', 'YO', 'TI', 0, 'RA', 0, 'ZO'] },
+    { text: 'Тили-тили,', formula: ['WI', 'NA', 'WI', 'LE'] },
+    { text: 'Трали-вали,', formula: ['LE', 'WI', 'LE', 'YO'] },
+    { text: 'Это мы не проъодили,', formula: ['WI', 'NA', 'WI', 'LE', 'YO', 'TI', 'LE', 'YO'] },
+    { text: 'Это нам не задавали.', formula: ['WI', 'NA', 'WI', 'LE', 'YO', 'TI', 'LE', 'YO'] },
+    { text: 'Парам пам пам,', formula: ['WI', 'LE', 0, 'TI', 0, 'YO'] },
+    { text: 'Парам пам пам,', formula: ['WI', 'LE', 0, 'TI', 0, 'YO'] },
+    { text: 'Парам пам пам,', formula: ['WI', 'LE', 0, 'ZO_up', 0, 'YO'] }
+];
 
 let full_menu = [
     { name: 'Паровоз', arr: parowoz },
@@ -300,6 +313,7 @@ let full_menu = [
     { name: 'Ёлочка', arr: elochka },
     { name: 'Котёнок', arr: kotenok },
     { name: 'Антошка', arr: antoshka },
+    { name: 'Если добрый ты', arr: esli_dobriy_ti },
 
 ];
 let winner_image = document.querySelector('.winner_image');
