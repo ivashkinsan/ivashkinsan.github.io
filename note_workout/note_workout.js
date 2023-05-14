@@ -38,42 +38,42 @@ let new_note_func = function () {
 // }
 
 let obj_matrix = {
-    0: 'C1 C1 C1 C1 C1 C1 C1 C1 C1 C1 C1 C1 C1 C1 C1 C1 C1',
-    1: 'D1 D1 D1 D1 D1 D1 D1 D1 D1 D1 D1 D1 D1 D1 D1 D1 D1',
-    2: 'E1 E1 E1 E1 E1 E1 E1 E1 E1 E1 E1 E1 E1 E1 E1 E1 E1',
-    3: 'F1 F1 F1 F1 F1 F1 F1 F1 F1 F1 F1 F1 F1 F1 F1 F1 F1',
-    4: 'G1 G1 G1 G1 G1 G1 G1 G1 G1 G1 G1 G1 G1 G1 G1 G1 G1',
-    5: 'A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1',
-    6: 'B1 B1 B1 B1 B1 B1 B1 B1 B1 B1 B1 B1 B1 B1 B1 B1 B1',
-    7: 'C2 C2 C2 C2 C2 C2 C2 C2 C2 C2 C2 C2 C2 C2 C2 C2 C2',
-    8: 'D2 D2 D2 D2 D2 D2 D2 D2 D2 D2 D2 D2 D2 D2 D2 D2 D2',
-    9: 'E2 E2 E2 E2 E2 E2 E2 E2 E2 E2 E2 E2 E2 E2 E2 E2 E2',
-    10: 'F2 F2 F2 F2 F2 F2 F2 F2 F2 F2 F2 F2 F2 F2 F2 F2 F2',
-    11: 'G2 G2 G2 G2 G2 G2 G2 G2 G2 G2 G2 G2 G2 G2 G2 G2 G2',
-    12: 'A2 A2 A2 A2 A2 A2 A2 A2 A2 A2 A2 A2 A2 A2 A2 A2 A2',
-    13: 'B2 B2 B2 B2 B2 B2 B2 B2 B2 B2 B2 B2 B2 B2 B2 B2 B2',
-    14: 'C3 C3 C3 C3 C3 C3 C3 C3 C3 C3 C3 C3 C3 C3 C3 C3 C3',
-    15: 'D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3',
-    16: 'E3 E3 E3 E3 E3 E3 E3 E3 E3 E3 E3 E3 E3 E3 E3 E3 E3',
-    17: 'F3 F3 F3 F3 F3 F3 F3 F3 F3 F3 F3 F3 F3 F3 F3 F3 F3',
-    18: 'G3 G3 G3 G3 G3 G3 G3 G3 G3 G3 G3 G3 G3 G3 G3 G3 G3',
-    19: 'A3 A3 A3 A3 A3 A3 A3 A3 A3 A3 A3 A3 A3 A3 A3 A3 A3',
-    20: 'B3 B3 B3 B3 B3 B3 B3 B3 B3 B3 B3 B3 B3 B3 B3 B3 B3',
-    21: 'C4 C4 C4 C4 C4 C4 C4 C4 C4 C4 C4 C4 C4 C4 C4 C4 C4',
-    22: 'D4 D4 D4 D4 D4 D4 D4 D4 D4 D4 D4 D4 D4 D4 D4 D4 D4',
-    23: 'E4 E4 E4 E4 E4 E4 E4 E4 E4 E4 E4 E4 E4 E4 E4 E4 E4',
-    24: 'F4 F4 F4 F4 F4 F4 F4 F4 F4 F4 F4 F4 F4 F4 F4 F4 F4',
-    25: 'G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4 G4',
-    26: 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4',
-    27: 'B4 B4 B4 B4 B4 B4 B4 B4 B4 B4 B4 B4 B4 B4 B4 B4 B4',
-    28: 'C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5'
+    0: 'C1 C1 C1 C1 C1 C1 C1 C1 C1 C1',
+    1: 'D1 D1 D1 D1 D1 D1 D1 D1 D1 D1',
+    2: 'E1 E1 E1 E1 E1 E1 E1 E1 E1 E1',
+    3: 'F1 F1 F1 F1 F1 F1 F1 F1 F1 F1',
+    4: 'G1 G1 G1 G1 G1 G1 G1 G1 G1 G1',
+    5: 'A1 A1 A1 A1 A1 A1 A1 A1 A1 A1',
+    6: 'B1 B1 B1 B1 B1 B1 B1 B1 B1 B1',
+    7: 'C2 C2 C2 C2 C2 C2 C2 C2 C2 C2',
+    8: 'D2 D2 D2 D2 D2 D2 D2 D2 D2 D2',
+    9: 'E2 E2 E2 E2 E2 E2 E2 E2 E2 E2',
+    10: 'F2 F2 F2 F2 F2 F2 F2 F2 F2 F2',
+    11: 'G2 G2 G2 G2 G2 G2 G2 G2 G2 G2',
+    12: 'A2 A2 A2 A2 A2 A2 A2 A2 A2 A2',
+    13: 'B2 B2 B2 B2 B2 B2 B2 B2 B2 B2',
+    14: 'C3 C3 C3 C3 C3 C3 C3 C3 C3 C3',
+    15: 'D3 D3 D3 D3 D3 D3 D3 D3 D3 D3',
+    16: 'E3 E3 E3 E3 E3 E3 E3 E3 E3 E3',
+    17: 'F3 F3 F3 F3 F3 F3 F3 F3 F3 F3',
+    18: 'G3 G3 G3 G3 G3 G3 G3 G3 G3 G3',
+    19: 'A3 A3 A3 A3 A3 A3 A3 A3 A3 A3',
+    20: 'B3 B3 B3 B3 B3 B3 B3 B3 B3 B3',
+    21: 'C4 C4 C4 C4 C4 C4 C4 C4 C4 C4',
+    22: 'D4 D4 D4 D4 D4 D4 D4 D4 D4 D4',
+    23: 'E4 E4 E4 E4 E4 E4 E4 E4 E4 E4',
+    24: 'F4 F4 F4 F4 F4 F4 F4 F4 F4 F4',
+    25: 'G4 G4 G4 G4 G4 G4 G4 G4 G4 G4',
+    26: 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4',
+    27: 'B4 B4 B4 B4 B4 B4 B4 B4 B4 B4',
+    28: 'C5 C5 C5 C5 C5 C5 C5 C5 C5 C5'
 }
 
 // генерация матрицы нот
 let generate_note_frame = function (obj_of_notes) {
     for (const [key, value] of Object.entries(obj_of_notes)) {
         // console.log(`${key}: ${value}`);
-        let left_line_start = 38;
+        let left_line_start = 14;
         let new_arr_of_string = value.split(' ');
         // console.log(new_arr_of_string);
         for (let i = 0; i < new_arr_of_string.length; i++) {
@@ -279,5 +279,17 @@ let add_reset_active_note = function () {
 
 // повернуть клавиатуру
 let add_rotate_style = function () {
-    document.querySelector('.container_with_line_background').classList.toggle('add_rotate_style');
+    document.querySelector('.container_with_keyboard').classList.toggle('add_rotate_style');
+    document.querySelector('.container_with_line_background').classList.toggle('add_bottom_margin');
+
+}
+
+
+// перемещать клавиатуру как линейку
+let keyb_container = document.querySelector('.container_with_keyboard');
+let range_input = document.querySelector('.range_width');
+let right_left_keyb = function () {
+    console.log(range_input.value);
+    keyb_container.style.left = range_input.value + 'vw';
+    console.log(keyb_container.style.left);
 }

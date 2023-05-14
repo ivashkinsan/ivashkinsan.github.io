@@ -140,6 +140,8 @@
 
     <div class="button_container">
         <input type="button" value="клавиатура" onclick="add_ledon_class()">
+        <input type="range" value="2" step="1" min="2" max="91" oninput="right_left_keyb()" class="range_width">
+
         <input type="button" value="лонг" onclick="long_keyboard_background()">
         <input type="button" value="фон" onclick="add_label_background()">
         <input type="button" value="подписи" onclick="add_label_of_note()">
@@ -163,6 +165,7 @@
             color: #ffffff;
         }
     </style>
+
 
     <script src="/note_workout/note_workout.js"></script>
 </body>
