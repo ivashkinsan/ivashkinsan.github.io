@@ -321,14 +321,15 @@ let winner_image = document.querySelector('.winner_image');
 let page_number = 0;
 let container_notes = document.querySelector('.container_notes');
 let monitor_for_text = document.querySelector('.monitor_for_text');
-let nameStage = ['RA_up', 'ZO_up', 'NA', 'WI', 'LE', 'YO', 'TI', 'RA', 'ZO'];
+// let nameStage = ['RA_up', 'ZO_up', 'NA', 'WI', 'LE', 'YO', 'TI', 'RA', 'ZO'];
+let nameStage = ['RA_up', 'RU_up', 'ZO_up', 'NI', 'NA', 'WI', 'WU', 'LE', 'LU', 'YO', 'TI', 'TU', 'RA', 'RU', 'ZO'];
 
 let all_page_pigs;
 const audioAll = document.querySelectorAll('audio');
 let stop = 0;
 let reverse_item = 0;
 
-let start_ZO = -1;
+let start_ZO = 5;
 //прячем лишние горизонтальные линии
 let allLine = document.querySelectorAll('.line');
 for (let i = 0; i < allLine.length; i++) {
@@ -407,7 +408,7 @@ let start = function (pageArr) {
             newDiv.style.width = '0px';
             stop = stop - 1;
         } else {
-            newDiv.style.backgroundImage = "url(../image/staff/" + pageArr.formula[i] + ".svg)";
+            newDiv.style.backgroundImage = "url(../image/staff/PIGS/" + pageArr.formula[i] + ".svg)";
         }
         newDiv.style.left = grid_X[i] + 'px';
         for (let j = allLine.length - 1; j >= 0; j--) {
@@ -525,7 +526,7 @@ button_right.addEventListener('click', function () {
 
 
 
-//кнопка на картинке попеды
+//кнопка на картинке победы
 winner_image.addEventListener('click', function () {
     reset();
     if (page_number <= length_song) {
