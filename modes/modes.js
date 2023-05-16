@@ -1,3 +1,51 @@
+//SLIDER ZONE
+const slider = document.querySelector(".slider");
+const slides = slider.querySelectorAll(".slide");
+const prev = document.querySelector(".prev");
+const next = document.querySelector(".next");
+
+/* Set Current Slide */
+let currSlide = 0;
+
+/* define max length */
+const maxSlide = slides.length;
+
+/* Function to go to slide based on index number provided as argument  */
+const goToSlide = function (slide = 1) {
+    slides.forEach((s, i) => {
+        s.style.transform = `translatex(${100 * (i - slide)}%)`;
+    });
+};
+
+const nextSlide = function () {
+    if (currSlide === maxSlide - 1) {
+        currSlide = 0;
+    } else {
+        currSlide++;
+    }
+
+    goToSlide(currSlide);
+};
+
+const prevSlide = function () {
+    if (currSlide === 0) {
+        currSlide = maxSlide - 1;
+    } else {
+        currSlide--;
+    }
+    goToSlide(currSlide);
+};
+
+next.addEventListener("click", nextSlide);
+prev.addEventListener("click", prevSlide);
+// goToSlide(2);
+
+const init = function () {
+    goToSlide(0);
+};
+
+init();
+
 // стартовое распределение цвета клавиш большой клваиатуры
 let keyboard_elements = document.querySelectorAll('.elem_of_keyboard');
 let white_key_numb = ['1', '3', '5', '6', '8', '10', '12', '13', '15', '17', '18', '20', '22', '24', '25'];
@@ -353,7 +401,7 @@ let harm_major_diatonic = {
 }
 
 // функция наполнение-генерация таблицы
-let table_container = document.querySelector('.table_container');
+let table_containers = document.querySelectorAll('.table_container');
 let generate_table = function (inp_obj, append_obj) {
     for (let [key, value] of Object.entries(inp_obj)) {
         for (let [kkk, vvv] of Object.entries(inp_obj[key])) {
@@ -402,17 +450,17 @@ let create_label_table = function (text, append_obj) {
 }
 
 // создание таблицы
-create_label_table('ДИАТОНИКА МАЖОРА', table_container)
-generate_table(label, table_container);
-generate_table(major_diatonic, table_container);
-create_label_table('ИСКУССТВЕННЫЕ ЛАДЫ', table_container)
-generate_table(other_modes, table_container);
-create_label_table('ДИАТОНИКА МЕЛОДИЧЕСКОГО МИНОРА', table_container);
-generate_table(mel_minor_diatonic, table_container);
-create_label_table('ДИАТОНИКА ГАРМОНИЧЕСКОГО МИНОРА', table_container);
-generate_table(harm_minor_diatonic, table_container);
-create_label_table('ДИАТОНИКА ГАРМОНИЧЕСКОГО МАЖОРА', table_container);
-generate_table(harm_major_diatonic, table_container);
+create_label_table('ДИАТОНИКА МАЖОРА', table_containers[0])
+generate_table(label, table_containers[0]);
+generate_table(major_diatonic, table_containers[0]);
+create_label_table('ИСКУССТВЕННЫЕ ЛАДЫ', table_containers[1])
+generate_table(other_modes, table_containers[1]);
+create_label_table('ДИАТОНИКА МЕЛОДИЧЕСКОГО МИНОРА', table_containers[2]);
+generate_table(mel_minor_diatonic, table_containers[2]);
+create_label_table('ДИАТОНИКА ГАРМОНИЧЕСКОГО МИНОРА', table_containers[3]);
+generate_table(harm_minor_diatonic, table_containers[3]);
+create_label_table('ДИАТОНИКА ГАРМОНИЧЕСКОГО МАЖОРА', table_containers[4]);
+generate_table(harm_major_diatonic, table_containers[4]);
 
 
 // работа с курсором мыши
