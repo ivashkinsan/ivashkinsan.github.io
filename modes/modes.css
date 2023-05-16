@@ -112,8 +112,33 @@ body {
     margin-left: 2vw;
     margin-right: 2vw;
     display: grid;
-    grid-template-columns: 360px 80px 30px 1fr 30px 200px 200px;
+    grid-template-columns: repeat(12, auto);
     overflow: scroll;
+}
+
+.name {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.chord {
+    grid-column-start: 3;
+    grid-column-end: 6;
+}
+
+.formula {
+    grid-column-start: 7;
+    grid-column-end: 9;
+}
+
+.tetrachord {
+    grid-column-start: 10;
+    grid-column-end: 11;
+}
+
+.alteration {
+    grid-column-start: 11;
+    grid-column-end: 13;
 }
 
 .label_table {

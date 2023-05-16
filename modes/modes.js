@@ -453,13 +453,21 @@ let create_label_table = function (text, append_obj) {
 create_label_table('ДИАТОНИКА МАЖОРА', table_containers[0])
 generate_table(label, table_containers[0]);
 generate_table(major_diatonic, table_containers[0]);
+
 create_label_table('ИСКУССТВЕННЫЕ ЛАДЫ', table_containers[1])
+generate_table(label, table_containers[1]);
 generate_table(other_modes, table_containers[1]);
+
 create_label_table('ДИАТОНИКА МЕЛОДИЧЕСКОГО МИНОРА', table_containers[2]);
+generate_table(label, table_containers[2]);
 generate_table(mel_minor_diatonic, table_containers[2]);
+
 create_label_table('ДИАТОНИКА ГАРМОНИЧЕСКОГО МИНОРА', table_containers[3]);
+generate_table(label, table_containers[3]);
 generate_table(harm_minor_diatonic, table_containers[3]);
+
 create_label_table('ДИАТОНИКА ГАРМОНИЧЕСКОГО МАЖОРА', table_containers[4]);
+generate_table(label, table_containers[4]);
 generate_table(harm_major_diatonic, table_containers[4]);
 
 
