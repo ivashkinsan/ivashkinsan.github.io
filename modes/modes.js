@@ -48,7 +48,7 @@ init();
 
 // стартовое распределение цвета клавиш большой клваиатуры
 let keyboard_elements = document.querySelectorAll('.elem_of_keyboard');
-let white_key_numb = ['1', '3', '5', '6', '8', '10', '12', '13', '15', '17', '18', '20', '22', '24', '25'];
+let white_key_numb = ['1', '3', '5', '6', '8', '10', '12', '13', '15', '17', '18', '20', '22', '24', '25', '27', '29', '30', '32', '34', '36', '37'];
 let big_keyboard_add_color = function () {
     for (let item of keyboard_elements) {
         if (white_key_numb.includes(item.dataset.numb)) {
@@ -110,6 +110,7 @@ let label = {
     {
         name: 'НАЗВАНИЕ ЛАДА',
         chord: 'АККОРД',
+        chord_formula: 'АКК СТУПЕНИ',
         formula: 'СТУПЕНИ',
         tetrachord: 'ТЕТРАХОРДЫ',
         alteration: ['АЛЬТЕРАЦИИ']
@@ -120,7 +121,8 @@ let major_diatonic = {
     ionian:
     {
         name: ['ИОНИЙСКИЙ / нат МАЖОР', 'IONIAN'],
-        chord: '',
+        chord: 'X^',
+        chord_formula: ['1', '3', '5', '7', '9', '11', '13'],
         formula: ['1', '2', '3', '4', '5', '6', '7', '8'],
         tetrachord: ['MAJ', 'MAJ'],
         alteration: ['нет']
@@ -128,7 +130,7 @@ let major_diatonic = {
     dorian:
     {
         name: ['ДОРИЙСКИЙ', 'DORIAN'],
-        chord: '',
+        chord: 'Xm7 (dor)',
         formula: ['1', '2', 'b3', '4', '5', '6', 'b7', '8'],
         tetrachord: ['MIN', 'MIN'],
         alteration: ['b3', 'b7']
@@ -136,7 +138,7 @@ let major_diatonic = {
     frigian:
     {
         name: ['ФРИГИЙСКИЙ', 'PHRYGIAN'],
-        chord: '',
+        chord: 'Xm7 (frig)',
         formula: ['1', 'b2', 'b3', '4', '5', 'b6', 'b7', '8'],
         tetrachord: ['FRIG', 'FRIG'],
         alteration: ['b2', 'b3', 'b6', 'b7']
@@ -144,7 +146,7 @@ let major_diatonic = {
     lydian:
     {
         name: ['ЛИДИЙСКИЙ', 'LYDIAN'],
-        chord: '',
+        chord: 'X^ (#11)',
         formula: ['1', '2', '3', '#4', '5', '6', '7', '8'],
         tetrachord: ['TTT', 'MAJ'],
         alteration: ['#4']
@@ -152,7 +154,7 @@ let major_diatonic = {
     mixolydian:
     {
         name: ['МИКСОЛИДИЙСКИЙ', 'MIXOLYDIAN'],
-        chord: '',
+        chord: 'X7',
         formula: ['1', '2', '3', '4', '5', '6', 'b7', '8'],
         tetrachord: ['MAJ', 'MIN'],
         alteration: ['b7']
@@ -160,7 +162,7 @@ let major_diatonic = {
     aeolian:
     {
         name: ['ЭОЛИЙСКИЙ / нат МИНОР', 'AEOLIAN'],
-        chord: '',
+        chord: 'Xm7 (aeol)',
         formula: ['1', '2', 'b3', '4', '5', 'b6', 'b7', '8'],
         tetrachord: ['MIN', 'FRIG'],
         alteration: ['b3', 'b6', 'b7']
@@ -168,7 +170,7 @@ let major_diatonic = {
     locrian:
     {
         name: ['ЛОКРИЙСКИЙ', 'LOCRIAN'],
-        chord: '',
+        chord: 'Xm7(b5)',
         formula: ['1', 'b2', 'b3', '4', 'b5', 'b6', 'b7', '8'],
         tetrachord: ['FRIG', 'TTT'],
         alteration: ['b2', 'b3', 'b5', 'b6', 'b7']
@@ -431,11 +433,11 @@ let generate_table = function (inp_obj, append_obj) {
                 append_obj.appendChild(new_item);
             }
             //добавить блок для разрыва колонок
-            if (kkk == 'chord' || kkk == 'formula') {
-                let new_gap = document.createElement('div');
-                new_gap.classList.add('gap_column');
-                append_obj.append(new_gap);
-            }
+            // if (kkk == 'chord-formula' || kkk == 'formula') {
+            //     let new_gap = document.createElement('div');
+            //     new_gap.classList.add('gap_column');
+            //     append_obj.append(new_gap);
+            // }
         }
     }
 }
@@ -475,6 +477,8 @@ generate_table(harm_major_diatonic, table_containers[4]);
 let body = document.querySelector('body');
 body.addEventListener('mousemove', function (event) {
     // console.log('mousemove');
+
+    // поведение активных ступеней
     if (event.target.classList.contains('table_item_child') && event.target.parentNode.classList.contains('formula')) {
         event.target.parentNode.classList.add('mousemove');
         if (stage_checkbox.checked) {
@@ -486,8 +490,9 @@ body.addEventListener('mousemove', function (event) {
         if (stage_checkbox.checked) {
             add_color_keyboard(event.target.textContent, 'yellow');
         }
-
     }
+
+    // поведение активных тетрахордов
     if (event.target.classList.contains('table_item_child') && event.target.parentNode.classList.contains('tetrachord')) {
         // console.log('tetrachord');
         event.target.parentNode.classList.add('mousemove');
