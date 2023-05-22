@@ -231,7 +231,7 @@ body {
 }
 
 .staff_rows>img {
-  height: auto;
+  height: 100%;
 }
 
 .active_box_border {
@@ -240,7 +240,11 @@ body {
   outline-offset: 0px;
   /* Выводим рамку внутри элемента */
   transition: all var(--ms_transition) ease-out;
-  z-index: 999;
+  /* z-index: 999; */
+}
+
+.active_elem {
+  cursor: pointer;
 }
 
 
@@ -261,7 +265,8 @@ body {
   /* height: 100%; */
   /* width: 100%; */
 }
-.new_p_label{
+
+.new_p_label {
   font-family: 'Opus Text Std';
   text-align: center;
   font-size: 14px;
@@ -378,7 +383,7 @@ body {
 }
 
 .main__staff>img {
-  height: auto;
+  height: 100%;
 }
 
 /* =================================================================================================== */
@@ -404,7 +409,7 @@ body {
 .thermometr {
   display: grid;
   grid-auto-flow: row;
-  grid-template-columns: repeat(7, auto);
+  grid-template-columns: repeat(9, auto);
   grid-template-rows: repeat(3, auto);
 
 }

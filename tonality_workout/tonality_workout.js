@@ -35,7 +35,7 @@ let BK_black_white_label = {
     'E_flat_dur': [0, 0, 0, 'миb', 'ми', 'фа', 'сольb', 'соль', 'ляb', 'ля', 'сиb', 'си', 'до', 'реb', 'ре', 'миb', 0, 0, 0, 0, 0, 0, 0, 0, 0],
     'E_dur': [0, 0, 0, 0, 'ми', 'фа', 'фа#', 'соль', 'соль#', 'ля', 'ля#', 'си', 'до', 'до#', 'ре', 'ре#', 'ми', 0, 0, 0, 0, 0, 0, 0, 0],
     'F_dur': [0, 0, 0, 0, 0, 'фа', 'сольb', 'соль', 'ляb', 'ля', 'сиb', 'си', 'до', 'реb', 'ре', 'миb', 'ми', 'фа', 0, 0, 0, 0, 0, 0, 0],
-    'F_sharp_dur': [0, 0, 0, 0, 0, 0, 'фа#', 'соль', 'соль#', 'ля', 'ля#', 'си', 'до', 'до#', 'ре', 'ре#', 'ми', 'ми', 'фа#', 0, 0, 0, 0, 0, 0],
+    'F_sharp_dur': [0, 0, 0, 0, 0, 0, 'фа#', 'соль', 'соль#', 'ля', 'ля#', 'си', 'до', 'до#', 'ре', 'ре#', 'ми', 'ми#', 'фа#', 0, 0, 0, 0, 0, 0],
     'G_flat_dur': [0, 0, 0, 0, 0, 0, 'сольb', 'соль', 'ляb', 'ля', 'сиb', 'доb', 'до', 'реb', 'ре', 'миb', 'ми', 'фа', 'сольb', 0, 0, 0, 0, 0, 0],
     'G_dur': [0, 0, 0, 0, 0, 0, 0, 'соль', 'соль#', 'ля', 'ля#', 'си', 'до', 'до#', 'ре', 'ре#', 'ми', 'фа', 'фа#', 'соль', 0, 0, 0, 0, 0],
     'A_flat_dur': [0, 0, 0, 0, 0, 0, 0, 0, 'ляb', 'ля', 'сиb', 'си', 'до', 'реb', 'ре', 'миb', 'ми', 'фа', 'сольb', 'соль', 'ляb', 0, 0, 0, 0],
@@ -428,6 +428,33 @@ for (let item of all_table_rows) {
         }
     })
 }
+
+let small_all_function = function (star_hero) {
+    // console.log(star_hero);
+    // star_hero.classList.add('active_box_border');
+    add_image_source(star_hero);
+    add_color_to_small_keyb_elem(star_hero.dataset.ton);
+    thermometr_go(star_hero.dataset.sort, star_hero.dataset.value);
+    go_big_keyboards_active(star_hero.dataset.ton, active_check_black_white_octave)
+}
+
+let active_elems = document.querySelectorAll('.active_elem');
+for (let item of active_elems) {
+    item.addEventListener('mouseenter', function () {
+        all_function(item);
+    })
+}
+
+for (let item of active_elems) {
+    item.addEventListener('mouseleave', (event) => {
+        // console.log(item);
+        if (item.classList.contains('active_box_border')) {
+            item.classList.remove('active_box_border');
+        }
+    })
+}
+
+
 
 // подсветка элементов термометра
 let all_therm_elem = document.querySelectorAll('.therm_elem');
