@@ -231,7 +231,7 @@ body {
 }
 
 .staff_rows>img {
-  height: 100%;
+  height: 70%;
 }
 
 .active_box_border {
@@ -383,7 +383,8 @@ body {
 }
 
 .main__staff>img {
-  height: 100%;
+  width: auto;
+  height: 60%;
 }
 
 /* =================================================================================================== */
@@ -416,7 +417,7 @@ body {
 
 .therm_elem {
   text-align: center;
-  padding: 0 10px;
+  padding: 0 1vh;
 }
 
 .font_color {
