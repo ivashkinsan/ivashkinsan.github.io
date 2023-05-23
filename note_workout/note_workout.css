@@ -17,7 +17,7 @@ body {
   position: relative;
   width: 100vw;
   height: 100vh;
-font-size: 1.5vh;
+  font-size: 1.5vh;
   background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
   border: 10px solid #F4D6B1;
 }
@@ -43,7 +43,7 @@ font-size: 1.5vh;
   position: absolute;
   display: flex;
   flex-direction: column;
- /* height: 100%; */
+  /* height: 100%; */
 }
 
 .treble_clief,
@@ -203,7 +203,7 @@ font-size: 1.5vh;
   top: calc(0px - 1.5vh);
 
   width: 7vh;
-  height:2.7vh;
+  height: 2.7vh;
   color: rgba(255, 255, 255, 0);
   z-index: 988;
   opacity: 1;
@@ -242,6 +242,7 @@ font-size: 1.5vh;
   display: flex;
   justify-content: space-around;
   /* width: 50vw; */
+  font-size: 3vh;
   height: 20px;
   bottom: 10px;
   left: 10px;
@@ -254,15 +255,17 @@ font-size: 1.5vh;
 
 .add_rotate_style {
   transform: rotate(90deg);
-  transform-origin: bottom right;
-  bottom: 3vh;
-  left: 50%;
-  right: 50%;
-}
-.add_bottom_margin{
-  margin-bottom: 18vh;
+  transform-origin: top right;
+  /* bottom: 3vh; */
+  margin-top: 40px;
+  /* left: 50%;
+  right: 50%; */
 }
 
-.button_container>.range_width{
+.add_bottom_margin {
+  margin-top: 10vh;
+}
+
+.button_container>.range_width {
   width: 20vw;
 }

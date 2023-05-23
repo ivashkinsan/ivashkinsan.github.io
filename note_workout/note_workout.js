@@ -1,5 +1,8 @@
 let all_line = document.querySelectorAll('.line');
 let all_keyb_elem = document.querySelectorAll('.keyb_elem');
+let black_keys = document.querySelectorAll('.black_key');
+let white_keys = document.querySelectorAll('.white_key');
+// let all_keyb_elem = document.querySelectorAll('.keyb_elem');
 
 let new_note_func = function () {
     let new_elem = document.createElement('div');
@@ -103,52 +106,74 @@ let clear_matrix = function () {
 }
 // clear_matrix();
 
-let value_of_add_ledon_class = '';
+let value_of_add_ledon_class = 'none';
 let box_123 = 'C1 D1 E1 C2 D2 E2 C3 D3 E3 C4 D4 E4'
 let box_1234 = 'F1 G1 A1 B1 F2 G2 A2 B2 F3 G3 A3 B3 F4 G4 A4 B4'
 
 // 3 режима отображения клавиш клавиатуры
-let add_ledon_class = function () {
+let add_ledon_class = function (value) {
     document.querySelector('.container_with_keyboard').classList.remove('dspl_none');
-    if (value_of_add_ledon_class == '') {
-        for (let item of all_keyb_elem) {
-            item.classList.remove('led_on');
-            item.classList.remove('led_on_orange');
-            switch (item.dataset.note) {
-                case 'G1':
-                case 'B1':
-                case 'D2':
-                case 'F2':
-                case 'A2':
-
-                case 'E3':
-                case 'G3':
-                case 'B3':
-                case 'D4':
-                case 'F4':
-                    item.classList.add('led_on');
-                    break;
+    switch (value) {
+        case 'none':
+            for (let item of all_keyb_elem) {
+                item.classList.remove('led_on');
+                item.classList.remove('led_on_orange');
             }
-        }
-        value_of_add_ledon_class = '10_line';
-    } else if (value_of_add_ledon_class == '10_line') {
+            value_of_add_ledon_class = 'white';
+            break;
+        case 'white':
+            for (let item of all_keyb_elem) {
+                item.classList.remove('led_on');
+                item.classList.remove('led_on_orange');
+                switch (item.dataset.note) {
+                    case 'G1':
+                    case 'B1':
+                    case 'D2':
+                    case 'F2':
+                    case 'A2':
+
+                    case 'E3':
+                    case 'G3':
+                    case 'B3':
+                    case 'D4':
+                    case 'F4':
+                        item.classList.add('led_on');
+                        break;
+                }
+            }
+            value_of_add_ledon_class = '10_line';
+            break;
+
+        case '10_line':
+            for (let item of all_keyb_elem) {
+                item.classList.remove('led_on');
+                item.classList.remove('led_on_orange');
+                if ((box_123.indexOf(item.dataset.note)) >= 0) {
+                    console.log('true');
+                    item.classList.add('led_on_orange');
+                } else if ((box_1234.indexOf(item.dataset.note)) >= 0) {
+                    item.classList.add('led_on');
+                }
+            }
+            value_of_add_ledon_class = '3+4';
+            break;
+
+        case '3+4':
+            document.querySelector('.container_with_keyboard').classList.toggle('dspl_none');
+            value_of_add_ledon_class = 'none';
+            break;
+    }
+
+    if (Array.isArray(value)) {
+        console.log('privet')
         for (let item of all_keyb_elem) {
-            item.classList.remove('led_on');
-            item.classList.remove('led_on_orange');
-            if ((box_123.indexOf(item.dataset.note)) >= 0) {
-                console.log('true');
-                item.classList.add('led_on_orange');
-            } else if ((box_1234.indexOf(item.dataset.note)) >= 0) {
+            if (value.includes(item.dataset.note)) {
                 item.classList.add('led_on');
             }
         }
-        value_of_add_ledon_class = '3+4';
-    } else if (value_of_add_ledon_class == '3+4') {
-        document.querySelector('.container_with_keyboard').classList.toggle('dspl_none');
-        value_of_add_ledon_class = '';
     }
 }
-add_ledon_class();
+add_ledon_class(value_of_add_ledon_class);
 
 
 
@@ -228,19 +253,30 @@ document.querySelector('.container_with_line_background').addEventListener('clic
         } else {
             event.target.classList.remove('text_show');
         }
-        // if (label_on_off == 'on') {
-        //     event.target.classList.add('text_show');
-        // }
+    }
 
+    if (start_game_true) {
+        let game_active = document.querySelectorAll('.active_note');
+        for (let item of all_keyb_elem) {
+            if (item.classList.contains('led_on')) {
+                for (let in_cicle of game_active) {
+                    if (item.dataset.note == in_cicle.dataset.note) {
+                        console.log('contains')
+                        item.classList.remove('led_on')
+                    }
+                }
+            }
+
+        }
     }
 })
 
 // добавление длинного фона
 let long_keyboard_background = function () {
     let long_keyboard_background = document.querySelector('.container_with_keyboard');
-    let black_keys = document.querySelectorAll('.black_key');
-    let white_keys = document.querySelectorAll('.white_key');
-    let all_keyb_elem = document.querySelectorAll('.keyb_elem');
+    // black_keys = document.querySelectorAll('.black_key');
+    // white_keys = document.querySelectorAll('.white_key');
+    // all_keyb_elem = document.querySelectorAll('.keyb_elem');
     if (long_keyboard_background.classList.contains('dspl_none')) {
         long_keyboard_background.classList.remove('dspl_none');
     }
@@ -277,14 +313,6 @@ let add_reset_active_note = function () {
     }
 }
 
-// повернуть клавиатуру
-let add_rotate_style = function () {
-    document.querySelector('.container_with_keyboard').classList.toggle('add_rotate_style');
-    document.querySelector('.container_with_line_background').classList.toggle('add_bottom_margin');
-
-}
-
-
 // перемещать клавиатуру как линейку
 let keyb_container = document.querySelector('.container_with_keyboard');
 let range_input = document.querySelector('.range_width');
@@ -292,4 +320,20 @@ let right_left_keyb = function () {
     console.log(range_input.value);
     keyb_container.style.left = range_input.value + 'vw';
     console.log(keyb_container.style.left);
+}
+
+// повернуть клавиатуру
+let add_rotate_style = function () {
+    document.querySelector('.container_with_keyboard').classList.toggle('add_rotate_style');
+    document.querySelector('.container_with_line_background').classList.toggle('add_bottom_margin');
+    range_input.value = 20;
+}
+
+let game_pattern = ['A1', 'B1', 'C2', 'A3', 'B3', 'C3'];
+let start_game_true = false;
+let start_game = function () {
+    value_of_add_ledon_class = 'none';
+    add_ledon_class(value_of_add_ledon_class);
+    add_ledon_class(game_pattern);
+    start_game_true = true;
 }
