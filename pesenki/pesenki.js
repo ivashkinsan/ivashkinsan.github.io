@@ -272,10 +272,10 @@ let antoshka = [
     { text: 'Парам пам пам,', formula: ['WI', 'LE', 0, 'ZO_up', 0, 'YO'] }
 ];
 let esli_dobriy_ti = [
-    { all: 63, text: 'Если добрый ты,', formula: ['ZO', 'RU', 'TU', 0, 'ZO', 'RU', 'TU', 0, 'LU_up', 'YO_up', 'RU'] },
-    { text: 'Пойдём копать картошку.', formula: ['WI', 'LE', 'LE', 'TI', 'ZO', 'WI', 0, 'YO'] },
-    { text: 'Антошка, Антошка,', formula: ['WI', 'LE', 'LE', 0, 'WI', 'YO', 'YO'] },
-    { text: 'Пойдём копать картошку.', formula: ['WI', 'LE', 0, 'WI', 'LE', 'YO', 'TI', 0, 'RA', 0, 'ZO'] },
+    { all: 63, text: 'вступление', formula: ['ZO', 'RU', 'TU', 0, 'ZO', 'RU', 'TU', 0, 'LU', 'YO', 'RU'] },
+    { text: 'вступление', formula: ['NA_down', 'ZO', 'RU', 0, 'NA_down', 'ZO', 'RU', 0, 'YO', 'TU', 'ZO'] },
+    { text: 'вступление', formula: ['WU_down', 'NA_down', 'ZO', 0, 'WU_down', 'NA_down', 'ZO', 0, 'TU', 'RU', 'NA'] },
+    { text: 'вступление', formula: ['RU', 'ZO', 'TI', 'YO'] },
     { text: 'Тили-тили,', formula: ['WI', 'NA', 'WI', 'LE'] },
     { text: 'Трали-вали,', formula: ['LE', 'WI', 'LE', 'YO'] },
     { text: 'Это мы не проъодили,', formula: ['WI', 'NA', 'WI', 'LE', 'YO', 'TI', 'LE', 'YO'] },
@@ -322,7 +322,7 @@ let page_number = 0;
 let container_notes = document.querySelector('.container_notes');
 let monitor_for_text = document.querySelector('.monitor_for_text');
 // let nameStage = ['RA_up', 'ZO_up', 'NA', 'WI', 'LE', 'YO', 'TI', 'RA', 'ZO'];
-let nameStage = ['RA_up', 'RU_up', 'ZO_up', 'NI', 'NA', 'WI', 'WU', 'LE', 'LU', 'YO', 'TI', 'TU', 'RA', 'RU', 'ZO'];
+// let nameStage = ['RA_up', 'RU_up', 'ZO_up', 'NI', 'NA', 'WI', 'WU', 'LE', 'LU', 'YO', 'TI', 'TU', 'RA', 'RU', 'ZO'];
 
 let all_page_pigs;
 const audioAll = document.querySelectorAll('audio');
@@ -333,9 +333,11 @@ let start_ZO = 5;
 //прячем лишние горизонтальные линии
 let allLine = document.querySelectorAll('.line');
 for (let i = 0; i < allLine.length; i++) {
-    allLine[i].dataset.name = nameStage[i + start_ZO];
-    if (i % 2 == 0 || i == 11) {
-        allLine[i].style.backgroundColor = 'transparent';
+    // allLine[i].dataset.name = nameStage[i + start_ZO];
+    if (i % 2 == 0 || i < 3 || i > 11) {
+        allLine[i].classList.add('transparent');
+    } else {
+        allLine[i].classList.add('white');
     }
 }
 
@@ -408,15 +410,15 @@ let start = function (pageArr) {
             newDiv.style.width = '0px';
             stop = stop - 1;
         } else {
-            newDiv.style.backgroundImage = "url(../image/staff/PIGS/" + pageArr.formula[i] + ".svg)";
+            newDiv.style.backgroundImage = "url(PIGS/" + pageArr.formula[i] + ".svg)";
         }
         newDiv.style.left = grid_X[i] + 'px';
         for (let j = allLine.length - 1; j >= 0; j--) {
-            if (pageArr.formula[i] == allLine[j].dataset.name) {
+            if (pageArr.formula[i] == allLine[j].dataset.name || pageArr.formula[i] == allLine[j].dataset.name2) {
                 newDiv.dataset.name = pageArr.formula[i];
                 // console.log(allLine[j].dataset.name);
+                // console.log(pageArr.formula[i]);
                 allLine[j].append(newDiv);
-
             }
         }
     }

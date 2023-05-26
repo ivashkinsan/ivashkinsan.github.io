@@ -15,6 +15,9 @@ body {
     user-select: none;
 }
 
+
+
+
 .start_menu_header {
 
     margin: 1%;
@@ -110,7 +113,6 @@ body {
     width: 94vw;
     height: 2px;
     margin-top: 16.5px;
-    background-color: white;
 }
 
 .line_short {
@@ -233,4 +235,13 @@ body {
     font-size: 14px;
     z-index: 999;
     border: 3px #F4D6B1 solid;
+    cursor: pointer;
+}
+
+.transparent {
+    background-color: transparent;
+}
+
+.white {
+    background-color: white;
 }
