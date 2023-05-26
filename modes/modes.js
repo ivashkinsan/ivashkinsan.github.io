@@ -88,7 +88,7 @@ let ton_select_go = function (start_key) {
     for (let i = 0; i < keyboard_elements.length; i++) {
         keyboard_elements[i].dataset.stage = ' ';
     }
-    for (let i = 0; i <= 12; i++) {
+    for (let i = 0; i <= 24; i++) {
         keyboard_elements[start_i].dataset.stage = array_from_stage[i];
         // console.log(keyboard_elements[i])
         start_i++;
@@ -108,12 +108,12 @@ label_select.addEventListener('change', function () {
 let label = {
     label:
     {
-        name: 'НАЗВАНИЕ ЛАДА',
-        chord: 'АККОРД',
-        chord_formula: 'АКК СТУПЕНИ',
-        formula: 'СТУПЕНИ',
-        tetrachord: 'ТЕТРАХОРДЫ',
-        alteration: ['АЛЬТЕРАЦИИ']
+        name_header: 'НАЗВАНИЕ ЛАДА',
+        chord_header: 'АККОРД',
+        chord_formula_header: 'АКК СТУПЕНИ',
+        formula_header: 'СТУПЕНИ',
+        tetrachord_header: 'ТЕТРАХОРДЫ',
+        alteration_header: ['АЛЬТЕРАЦИИ']
     },
 }
 
@@ -131,6 +131,7 @@ let major_diatonic = {
     {
         name: ['ДОРИЙСКИЙ', 'DORIAN'],
         chord: 'Xm7 (dor)',
+        chord_formula: ['1', 'b3', '5', 'b7', '9', '11', '13'],
         formula: ['1', '2', 'b3', '4', '5', '6', 'b7', '8'],
         tetrachord: ['MIN', 'MIN'],
         alteration: ['b3', 'b7']
@@ -139,6 +140,7 @@ let major_diatonic = {
     {
         name: ['ФРИГИЙСКИЙ', 'PHRYGIAN'],
         chord: 'Xm7 (frig)',
+        chord_formula: ['1', 'b3', '5', 'b7', 'b9', '11', 'b13'],
         formula: ['1', 'b2', 'b3', '4', '5', 'b6', 'b7', '8'],
         tetrachord: ['FRIG', 'FRIG'],
         alteration: ['b2', 'b3', 'b6', 'b7']
@@ -147,6 +149,7 @@ let major_diatonic = {
     {
         name: ['ЛИДИЙСКИЙ', 'LYDIAN'],
         chord: 'X^ (#11)',
+        chord_formula: ['1', '3', '5', '7', '9', '#11', '13'],
         formula: ['1', '2', '3', '#4', '5', '6', '7', '8'],
         tetrachord: ['TTT', 'MAJ'],
         alteration: ['#4']
@@ -155,6 +158,7 @@ let major_diatonic = {
     {
         name: ['МИКСОЛИДИЙСКИЙ', 'MIXOLYDIAN'],
         chord: 'X7',
+        chord_formula: ['1', '3', '5', 'b7', '9', '11', '13'],
         formula: ['1', '2', '3', '4', '5', '6', 'b7', '8'],
         tetrachord: ['MAJ', 'MIN'],
         alteration: ['b7']
@@ -163,6 +167,7 @@ let major_diatonic = {
     {
         name: ['ЭОЛИЙСКИЙ / нат МИНОР', 'AEOLIAN'],
         chord: 'Xm7 (aeol)',
+        chord_formula: ['1', 'b3', '5', 'b7', '9', '11', 'b13'],
         formula: ['1', '2', 'b3', '4', '5', 'b6', 'b7', '8'],
         tetrachord: ['MIN', 'FRIG'],
         alteration: ['b3', 'b6', 'b7']
@@ -171,6 +176,7 @@ let major_diatonic = {
     {
         name: ['ЛОКРИЙСКИЙ', 'LOCRIAN'],
         chord: 'Xm7(b5)',
+        chord_formula: ['1', 'b3', 'b5', 'b7', 'b9', '11', 'b13'],
         formula: ['1', 'b2', 'b3', '4', 'b5', 'b6', 'b7', '8'],
         tetrachord: ['FRIG', 'TTT'],
         alteration: ['b2', 'b3', 'b5', 'b6', 'b7']
@@ -182,7 +188,8 @@ let other_modes = {
     harmonic_minor:
     {
         name: ['ГАРМОНИЧЕСКИЙ МИНОР', 'HARMONIC MINOR'],
-        chord: '',
+        chord: 'Xm^',
+        chord_formula: ['1', 'b3', '5', '7', '9', '11', 'b13'],
         formula: ['1', '2', 'b3', '4', '5', 'b6', '7', '8'],
         tetrachord: ['MIN', 'HARM'],
         alteration: ['b3', 'b6']
@@ -191,7 +198,8 @@ let other_modes = {
     melodic_minor:
     {
         name: ['МЕЛОДИЧЕСКИЙ МИНОР', 'MELODIC MINOR'],
-        chord: '',
+        chord: 'Xm^',
+        chord_formula: ['1', 'b3', '5', '7', '9', '11', '13'],
         formula: ['1', '2', 'b3', '4', '5', '6', '7', '8'],
         tetrachord: ['MIN', 'MAJ'],
         alteration: ['b3']
@@ -200,7 +208,8 @@ let other_modes = {
     harmonic_major:
     {
         name: ['ГАРМОНИЧЕСКИЙ МАЖОР', 'HARMONIC MAJOR'],
-        chord: '',
+        chord: 'X^',
+        chord_formula: ['1', 'b3', '5', '7', '9', '11', '13'],
         formula: ['1', '2', '3', '4', '5', 'b6', '7', '8'],
         tetrachord: ['MAJ', 'HARM'],
         alteration: ['b6']
@@ -209,7 +218,8 @@ let other_modes = {
     melodic_major:
     {
         name: ['МЕЛОДИЧЕСКИЙ МАЖОР', 'MELODIC MAJOR'],
-        chord: '',
+        chord: 'X7(b13)',
+        chord_formula: ['1', '3', '5', 'b7', '9', '11', 'b13'],
         formula: ['1', '2', '3', '4', '5', 'b6', 'b7', '8'],
         tetrachord: ['MAJ', 'FRIG'],
         alteration: ['b6', 'b7']
@@ -218,7 +228,8 @@ let other_modes = {
     harmonic_2x_major:
     {
         name: ['ДВАЖДЫ ГАРМОНИЧЕСКИЙ МАЖОР', 'DOUBLE HARMONIC MAJOR'],
-        chord: '',
+        chord: 'X^',
+        chord_formula: ['1', '3', '5', '7', 'b9', '11', 'b13'],
         formula: ['1', 'b2', '3', '4', '5', 'b6', '7', '8'],
         tetrachord: ['HARM', 'HARM'],
         alteration: ['b2', 'b6']
@@ -229,7 +240,8 @@ let mel_minor_diatonic = {
     melodic_minor:
     {
         name: ['МЕЛОДИЧЕСКИЙ МИНОР', 'MELODIC MINOR'],
-        chord: '',
+        chord: 'Xm^',
+        chord_formula: ['1', 'b3', '5', '7', '9', '11', '13'],
         formula: ['1', '2', 'b3', '4', '5', '6', '7', '8'],
         tetrachord: ['MIN', 'MAJ'],
         alteration: ['b3']
@@ -237,7 +249,8 @@ let mel_minor_diatonic = {
     javanese:
     {
         name: ['ДОРИЙСКИЙ b2 / ФРИГИЙСКИЙ #6', 'DORIAN b2 / PHRYGIAN #6'],
-        chord: '',
+        chord: 'Xm7(b9,13)',
+        chord_formula: ['1', 'b3', '5', 'b7', 'b9', '11', '13'],
         formula: ['1', 'b2', 'b3', '4', '5', '6', 'b7', '8'],
         tetrachord: ['FRIG', 'MIN'],
         alteration: ['b2', 'b3', 'b7']
@@ -245,7 +258,8 @@ let mel_minor_diatonic = {
     lydian_aug:
     {
         name: ['ЛИДИЙСКИЙ #5', 'LYDIAN #5'],
-        chord: '',
+        chord: 'X^(#5)',
+        chord_formula: ['1', '3', '#5', '7', '9', '#11', '13'],
         formula: ['1', '2', '3', '#4', '#5', '6', '7', '8'],
         tetrachord: ['ТТТ', 'MAJ(#5)'],
         alteration: ['#4', '#5']
@@ -253,7 +267,8 @@ let mel_minor_diatonic = {
     lydian_dom:
     {
         name: ['МИКСОЛИДИЙСКИЙ #4 / ЛИДИЙСКИЙ b7', 'MIXOLYDIAN #4 / LYDIAN b7'],
-        chord: '',
+        chord: 'X7(#11)',
+        chord_formula: ['1', '3', '5', 'b7', '9', '#11', '13'],
         formula: ['1', '2', '3', '#4', '5', '6', 'b7', '8'],
         tetrachord: ['ТТТ', 'MIN'],
         alteration: ['#4', 'b7']
@@ -261,7 +276,8 @@ let mel_minor_diatonic = {
     hindu:
     {
         name: ['МИКСОЛИДИЙСКИЙ b6', 'MIXOLYDIAN b6'],
-        chord: '',
+        chord: 'X7(b13)',
+        chord_formula: ['1', '3', '5', 'b7', '9', '11', 'b13'],
         formula: ['1', '2', '3', '4', '5', 'b6', 'b7', '8'],
         tetrachord: ['MAJ', 'FRIG'],
         alteration: ['b6', 'b7']
@@ -269,7 +285,8 @@ let mel_minor_diatonic = {
     locrian_nat_2:
     {
         name: ['ЛОКРИЙСКИЙ нат 2 / ЭОЛИЙСКИЙ b5', 'LOCRIAN nat 2 / AEOLIAN b5'],
-        chord: '',
+        chord: 'Xm7(b5,9)',
+        chord_formula: ['1', 'b3', 'b5', 'b7', '9', '11', 'b13'],
         formula: ['1', '2', 'b3', '4', 'b5', 'b6', 'b7', '8'],
         tetrachord: ['MIN', 'TTT'],
         alteration: ['b3', 'b5', 'b6', 'b7']
@@ -277,7 +294,8 @@ let mel_minor_diatonic = {
     alt:
     {
         name: ['АЛЬТЕРИРОВАННЫЙ / ЛОКРИЙСКИЙ b4', 'ALTERETED / LOCRIAN b4'],
-        chord: '',
+        chord: 'X7alt',
+        chord_formula: ['1', 'b3', 'b5', 'b7', 'b9', 'b11', 'b13'],
         formula: ['1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', '8'],
         tetrachord: ['FRIG(b4)', 'TTT'],
         alteration: ['b2', 'b3', 'b4', 'b5', 'b6', 'b7']
@@ -424,6 +442,7 @@ let generate_table = function (inp_obj, append_obj) {
                         new_children_of_card.classList.add('stage_' + [i + 1]);
                     }
                     new_item.dataset.algorythm = inp_obj[key].formula;
+                    new_item.dataset.chord_formula = inp_obj[key].chord_formula;
                     new_children_of_card.textContent = inp_obj[key][kkk][i];
                     new_item.append(new_children_of_card);
                 }
@@ -477,6 +496,20 @@ generate_table(harm_major_diatonic, table_containers[4]);
 let body = document.querySelector('body');
 body.addEventListener('mousemove', function (event) {
     // console.log('mousemove');
+
+    // поведение активных ступеней
+    if (event.target.classList.contains('table_item_child') && event.target.parentNode.classList.contains('chord_formula')) {
+        event.target.parentNode.classList.add('mousemove');
+        if (stage_checkbox.checked) {
+            event.target.classList.add('mousemove_yellow');
+        }
+
+        // console.log(event.target.parentNode.dataset.algorythm)
+        add_color_keyboard(event.target.parentNode.dataset.chord_formula, 'blue');
+        if (stage_checkbox.checked) {
+            add_color_keyboard(event.target.textContent, 'yellow');
+        }
+    }
 
     // поведение активных ступеней
     if (event.target.classList.contains('table_item_child') && event.target.parentNode.classList.contains('formula')) {
@@ -609,6 +642,8 @@ let bag_fix = function (input) {
             return 'b3';
         case 'bb7':
             return '6';
+        case 'b11':
+            return '10';
         default:
             return input;
     }

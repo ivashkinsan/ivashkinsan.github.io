@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'OpusChordsStd';
+    src: url(/fonts/OpusChordsStd.otf);
+}
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -114,7 +119,8 @@ body {
     /* overflow: scroll; */
 }
 
-.name {
+.name,
+.name_header {
     grid-column-start: 1;
     grid-column-end: 3;
 }
@@ -122,29 +128,47 @@ body {
 .chord {
     grid-column-start: 3;
     grid-column-end: 4;
+    font-family: 'OpusChordsStd';
 }
 
-.chord_formula {
+.chord_header {
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+
+.chord_formula,
+.chord_formula_header {
     grid-column-start: 4;
     grid-column-end: 6;
 }
 
-.formula {
+.chord_formula {
+    font-family: 'Opus Text Std';
+}
+
+
+.formula,
+.formula_header {
     grid-column-start: 7;
     grid-column-end: 9;
 }
 
-.tetrachord {
+.tetrachord,
+.tetrachord_header {
     grid-column-start: 10;
     grid-column-end: 11;
 }
 
-.alteration {
+.alteration,
+.alteration_header {
     grid-column-start: 11;
     grid-column-end: 13;
 }
 
 .label_table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     grid-column-start: 1;
     grid-column-end: 13;
     text-align: center;
