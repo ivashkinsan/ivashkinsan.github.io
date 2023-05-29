@@ -85,12 +85,21 @@ section {
     background-color: yellow;
 }
 
+.dash_border {
+    border: 1px dashed #46f3ff;
+}
+
+.margin_left {
+    margin-left: 50px;
+
+}
+
 /* .translateY {
     transform: translateY(-2vh);
 } */
 
 .line {
-    width: 100%;
+    width: 5vh;
     height: 0.5vh;
     background-color: white;
     transform-origin: center;
