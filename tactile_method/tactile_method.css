@@ -75,6 +75,7 @@ section {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    z-index: 999;
 }
 
 .mousemove {
@@ -86,13 +87,10 @@ section {
 }
 
 .dash_border {
-    border: 1px dashed #46f3ff;
+    border: 2px dashed #46f3ff;
 }
 
-.margin_left {
-    margin-left: 50px;
 
-}
 
 /* .translateY {
     transform: translateY(-2vh);
@@ -119,4 +117,16 @@ section {
 
 .line_BB {
     transform: translateY(-1.5vh);
+}
+
+.margin_left_and_rotate {
+    /* margin-left: 50px; */
+    transform: translateX(-5.5vh) rotate(45deg);
+
+}
+
+.margin_left_and_minus_rotate {
+    /* margin-left: 50px; */
+    transform: translateX(-5.5vh) rotate(-45deg);
+
 }

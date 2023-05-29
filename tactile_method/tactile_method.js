@@ -36,7 +36,7 @@ let dataset_note = [
 
 let data_algorythm = [
     ['C Db D', 'C Db D', 'D Eb E', 'D Eb E', 'E F', 'F Gb G', 'F Gb G', 'G Ab A', 'G Ab A', 'A Bb B', 'A Bb B', 'B C2'],
-    ['C Db D Eb E', 'C Db D Eb E', 'C Db D Eb E', 'Eb E F Gb', 'Eb E F Gb', 'F Gb G Ab A', 'F Gb G Ab A', 'F Gb G Ab A', 'G Ab A Bb B', 'G Ab A Bb B', 'Bb B C2 Db2', 'Bb B C2 Db2'],
+    ['C Db D Eb E', 'C Db D Eb E', 'C Db D Eb E', 'Eb E F Gb', 'Eb E F Gb', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'Bb B C2 Db2', 'Bb B C2 Db2'],
     ['C Db Eb E', 'C Db Eb E', 'D Eb E F Gb G', 'D Eb E F Gb G', 'D Eb E F Gb G', 'F Gb Ab A', 'F Gb Ab A', 'G Ab Bb B', 'G Ab Bb B', 'A Bb B C2 Db2 D2', 'A Bb B C2 Db2 D2', 'A Bb B C2 Db2 D2'],
     ['C E', 'Db D Eb E F Gb G Ab', 'Db D Eb E F Gb G Ab', 'Db D Eb E F Gb G Ab', 'Db D Eb E F Gb G Ab', 'F Gb G A Bb B', 'F Gb G A Bb B', 'F Gb G A Bb B', 'Ab A Bb B C2 Db2 D2 Eb2', 'Ab A Bb B C2 Db2 D2 Eb2', 'Ab A Bb B C2 Db2 D2 Eb2', 'Ab A Bb B C2 Db2 D2 Eb2'],
     ['C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A', 'F Gb Bb B', 'F Gb Bb B', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2'],
@@ -45,7 +45,7 @@ let data_algorythm = [
     ['C Db D Eb Ab A Bb B', 'C Db D Eb Ab A Bb B', 'C Db D Eb Ab A Bb B', 'C Db D Eb Ab A Bb B', 'E C2', 'F Gb G Ab Db2 D2 Eb2 E2', 'F Gb G Ab Db2 D2 Eb2 E2', 'F Gb G Ab Db2 D2 Eb2 E2', 'F Gb G Ab Db2 D2 Eb2 E2', 'A Bb B F2 Gb2 G2', 'A Bb B F2 Gb2 G2', 'A Bb B F2 Gb2 G2'],
     ['C Db D A Bb B', 'C Db D A Bb B', 'C Db D A Bb B', 'Eb E C2 Db2', 'Eb E C2 Db2', 'F Gb G D2 Eb2 E2', 'F Gb G D2 Eb2 E2', 'F Gb G D2 Eb2 E2', 'Ab A Bb B F2 Gb2 G2 Ab2', 'Ab A Bb B F2 Gb2 G2 Ab2', 'Ab A Bb B F2 Gb2 G2 Ab2', 'Ab A Bb B F2 Gb2 G2 Ab2'],
     ['C Db Bb B', 'C Db Bb B', 'D Eb E C2 Db2 D2', 'D Eb E C2 Db2 D2', 'D Eb E C2 Db2 D2', 'F Gb Eb2 E2', 'F Gb Eb2 E2', 'G Ab A Bb B F2 Gb2 G2 Ab2 A2', 'G Ab A Bb B F2 Gb2 G2 Ab2 A2', 'G Ab A Bb B F2 Gb2 G2 Ab2 A2', 'G Ab A Bb B F2 Gb2 G2 Ab2 A2', 'G Ab A Bb B F2 Gb2 G2 Ab2 A2'],
-    ['C B', 'Db D Eb E C2 Db2 D2 Eb2', 'Db D Eb E C2 Db2 D2 Eb2', 'EDb D Eb E C2 Db2 D2 Eb2', 'Db D Eb E C2 Db2 D2 Eb2', 'F E2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2']
+    ['C B', 'Db D Eb E C2 Db2 D2 Eb2', 'Db D Eb E C2 Db2 D2 Eb2', 'Db D Eb E C2 Db2 D2 Eb2', 'Db D Eb E C2 Db2 D2 Eb2', 'F E2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2']
 ]
 
 let create_table = function (inp_arr) {
@@ -112,18 +112,23 @@ for (let i = 0; i < all_table_item.length; i++) {
 container_table.addEventListener('mousemove', function (event) {
     // console.log(event.target);
     let algorythm_split_arr;
+    let active_elem = event.target;
     if (event.target.classList.contains('table_item')) {
-        event.target.classList.add('mousemove');
-
-        algorythm_split_arr = event.target.dataset.algorythm.split(' ');
-
-
+        active_elem = event.target;
+        active_elem.classList.add('mousemove');
+        algorythm_split_arr = active_elem.dataset.algorythm.split(' ');
     }
+    if (event.target.classList.contains('line')) {
+        active_elem = event.target.parentElement;
+        active_elem.classList.add('mousemove');
+        algorythm_split_arr = active_elem.dataset.algorythm.split(' ');
+    }
+    // console.log(active_elem);
     for (let item of all_circle) {
-        if (item.dataset.note == event.target.dataset.start_note) {
+        if (item.dataset.note == active_elem.dataset.start_note) {
             item.classList.add('yellow');
         }
-        if (item.dataset.note == event.target.dataset.end_note) {
+        if (item.dataset.note == active_elem.dataset.end_note) {
             item.classList.add('yellow');
         }
         if (Array.isArray(algorythm_split_arr)) {
@@ -133,10 +138,7 @@ container_table.addEventListener('mousemove', function (event) {
                 }
             }
         }
-
     }
-
-
 });
 
 let clear_all = function () {
@@ -158,9 +160,46 @@ container_table.addEventListener('mouseout', function (event) {
     clear_all();
 });
 
-// for (let i = 0; i < all_table_item.length; i++) {
-//     switch (true) {
-//         case [4, 5, 11, 13].includes(i):
-//             all_table_item[i].classList.add('margin_left');
-//     }
-// }
+let all_line = document.querySelectorAll('.line');
+let active_x_block = function () {
+    for (let i = 0; i < all_line.length; i++) {
+        switch (true) {
+            case [1, 3, 6, 8, 10].includes(i): //м2
+                all_line[i].classList.toggle('margin_left_and_rotate');
+                break;
+            case [16, 23].includes(i): //Б2
+                all_line[i].classList.toggle('margin_left_and_minus_rotate');
+                break;
+            case [25, 30, 32].includes(i): //м3
+                all_line[i].classList.toggle('margin_left_and_rotate');
+                break;
+            case [38, 40, 45, 47].includes(i): //Б3
+                all_line[i].classList.toggle('margin_left_and_minus_rotate');
+                break;
+            case [54].includes(i): //ч4
+                all_line[i].classList.toggle('margin_left_and_rotate');
+                break;
+            case [61, 63].includes(i): //ТТТ
+                all_line[i].classList.toggle('margin_left_and_rotate');
+                break;
+            case [67, 69].includes(i): //ТТТ
+                all_line[i].classList.toggle('margin_left_and_minus_rotate');
+                break;
+            case [83].includes(i): //ч5
+                all_line[i].classList.toggle('margin_left_and_minus_rotate');
+                break;
+            case [85, 87, 90, 92].includes(i): //м6
+                all_line[i].classList.toggle('margin_left_and_rotate');
+                break;
+            case [100, 105, 107].includes(i): //Б6
+                all_line[i].classList.toggle('margin_left_and_minus_rotate');
+                break;
+            case [109, 114].includes(i): //ТТТ
+                all_line[i].classList.toggle('margin_left_and_rotate');
+                break;
+            case [122, 124, 127, 129, 131].includes(i): //ТТТ
+                all_line[i].classList.toggle('margin_left_and_minus_rotate');
+                break;
+        }
+    }
+}
