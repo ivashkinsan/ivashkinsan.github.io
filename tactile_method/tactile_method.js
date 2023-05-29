@@ -109,20 +109,28 @@ for (let i = 0; i < all_table_item.length; i++) {
     console.log(indXXX, in12)
 }
 
-container_table.addEventListener('mousemove', function (event) {
-    // console.log(event.target);
+// функция активации элементов
+let go_active_elem = function(event){
     let algorythm_split_arr;
-    let active_elem = event.target;
-    if (event.target.classList.contains('table_item')) {
+    let active_elem;
+    if(event.target){
         active_elem = event.target;
+    } else {
+        active_elem = event;
+    }
+    console.log(active_elem);
+    if (active_elem.classList.contains('table_item')) {
+        // active_elem = event.target; 
         active_elem.classList.add('mousemove');
         algorythm_split_arr = active_elem.dataset.algorythm.split(' ');
     }
-    if (event.target.classList.contains('line')) {
-        active_elem = event.target.parentElement;
+    if (active_elem.classList.contains('line')) {
+        active_elem = active_elem.parentElement;
         active_elem.classList.add('mousemove');
         algorythm_split_arr = active_elem.dataset.algorythm.split(' ');
     }
+    
+    
     // console.log(active_elem);
     for (let item of all_circle) {
         if (item.dataset.note == active_elem.dataset.start_note) {
@@ -139,6 +147,12 @@ container_table.addEventListener('mousemove', function (event) {
             }
         }
     }
+
+}
+
+
+container_table.addEventListener('mousemove', function (event) {
+    go_active_elem(event);
 });
 
 let clear_all = function () {
@@ -203,3 +217,51 @@ let active_x_block = function () {
         }
     }
 }
+
+// отмена функций скролла стрелками
+window.addEventListener("keydown", function(e) {
+    if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+        e.preventDefault();
+    }
+}, false);
+
+let ind_cursor = 0;
+document.addEventListener('keydown', function(event) {
+    clear_all();
+    if(event.keyCode == 37) { // влево
+        if(ind_cursor > 0){
+            ind_cursor--;
+        }
+        go_active_elem(all_table_item[ind_cursor]);
+    }
+    else if(event.keyCode == 39) { // вправо
+        console.log('Right was pressed');
+        if(ind_cursor >= 0 && ind_cursor < 131){
+            ind_cursor++;
+        }
+        go_active_elem(all_table_item[ind_cursor]);
+    } else if(event.keyCode == 40) { // вверх
+        console.log('Right was pressed');
+        if(ind_cursor >= 0){
+            if(ind_cursor <120){
+                ind_cursor += 12;
+            }
+            
+        }
+        go_active_elem(all_table_item[ind_cursor]);
+    } else if(event.keyCode == 38) { // вниз
+        console.log('Right was pressed');
+        if(ind_cursor >= 0){
+            if(ind_cursor >= 12){
+                ind_cursor -= 12;
+            } 
+        }
+        go_active_elem(all_table_item[ind_cursor]);
+    }
+    
+});
+
+container_table.addEventListener('click', function (event) {
+    console.log(event.target)
+    go_active_elem(event);
+})
