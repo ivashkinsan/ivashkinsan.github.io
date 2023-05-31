@@ -50,6 +50,8 @@ let data_algorythm = [
 
 let create_table = function (inp_arr) {
     for (let item_in_arr of inp_arr) {
+        let new_rows = document.createElement('div');
+        new_rows.classList.add('rows_table');
         let arr_in_stroke = item_in_arr.split(' ');
         for (let item_in_stroke of arr_in_stroke) {
             let new_item = document.createElement('div');
@@ -78,8 +80,9 @@ let create_table = function (inp_arr) {
             }
 
             new_item.append(new_item_children);
-            container_table.append(new_item);
+            new_rows.append(new_item);
         }
+        container_table.append(new_rows);
     }
 }
 create_table(tactile_table);
@@ -102,18 +105,15 @@ for (let i = 0; i < all_table_item.length; i++) {
     console.log(data_algorythm[indXXX][in12]);
     all_table_item[i].dataset.algorythm = data_algorythm[indXXX][in12];
 
-
-
-
     in12++;
     console.log(indXXX, in12)
 }
 
 // функция активации элементов
-let go_active_elem = function(event){
+let go_active_elem = function (event) {
     let algorythm_split_arr;
     let active_elem;
-    if(event.target){
+    if (event.target) {
         active_elem = event.target;
     } else {
         active_elem = event;
@@ -129,8 +129,8 @@ let go_active_elem = function(event){
         active_elem.classList.add('mousemove');
         algorythm_split_arr = active_elem.dataset.algorythm.split(' ');
     }
-    
-    
+
+
     // console.log(active_elem);
     for (let item of all_circle) {
         if (item.dataset.note == active_elem.dataset.start_note) {
@@ -219,49 +219,95 @@ let active_x_block = function () {
 }
 
 // отмена функций скролла стрелками
-window.addEventListener("keydown", function(e) {
-    if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+window.addEventListener("keydown", function (e) {
+    if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
         e.preventDefault();
     }
 }, false);
 
 let ind_cursor = 0;
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     clear_all();
-    if(event.keyCode == 37) { // влево
-        if(ind_cursor > 0){
+    if (event.keyCode == 37) { // влево
+        if (ind_cursor > 0) {
             ind_cursor--;
         }
         go_active_elem(all_table_item[ind_cursor]);
     }
-    else if(event.keyCode == 39) { // вправо
+    else if (event.keyCode == 39) { // вправо
         console.log('Right was pressed');
-        if(ind_cursor >= 0 && ind_cursor < 131){
+        if (ind_cursor >= 0 && ind_cursor < 131) {
             ind_cursor++;
         }
         go_active_elem(all_table_item[ind_cursor]);
-    } else if(event.keyCode == 40) { // вверх
+    } else if (event.keyCode == 40) { // вверх
         console.log('Right was pressed');
-        if(ind_cursor >= 0){
-            if(ind_cursor <120){
+        if (ind_cursor >= 0) {
+            if (ind_cursor < 120) {
                 ind_cursor += 12;
             }
-            
+
         }
         go_active_elem(all_table_item[ind_cursor]);
-    } else if(event.keyCode == 38) { // вниз
+    } else if (event.keyCode == 38) { // вниз
         console.log('Right was pressed');
-        if(ind_cursor >= 0){
-            if(ind_cursor >= 12){
+        if (ind_cursor >= 0) {
+            if (ind_cursor >= 12) {
                 ind_cursor -= 12;
-            } 
+            }
         }
         go_active_elem(all_table_item[ind_cursor]);
+    } else if (event.keyCode == 32) { // пробел
+        active_x_block();
+
     }
-    
-});
+    go_active_elem(all_table_item[ind_cursor]);
+}
+
+);
 
 container_table.addEventListener('click', function (event) {
     console.log(event.target)
     go_active_elem(event);
 })
+
+let active_space = function () {
+    for (let i = 0; i < all_table_item.length; i++) {
+        switch (true) {
+            case [4, 5, 11].includes(i): //м2
+                all_table_item[i].classList.toggle('space_left');
+                break;
+            case [15, 17, 22].includes(i): //Б2
+                all_table_item[i].classList.toggle('space_left');
+                break;
+            case [26, 29, 33].includes(i): //м3
+                all_table_item[i].classList.toggle('space_left');
+                break;
+            case [37, 41, 44].includes(i): //Б3
+                all_table_item[i].classList.toggle('space_left');
+                break;
+            case [48, 53, 55].includes(i): //ч4
+                all_table_item[i].classList.toggle('space_left');
+                break;
+            case [65, 66, 71].includes(i): //ТТТ
+                all_table_item[i].classList.toggle('space_left');
+                break;
+            case [72, 77, 82].includes(i): //ч5
+                all_table_item[i].classList.toggle('space_left');
+                break;
+            case [88, 89, 93].includes(i): //m6
+                all_table_item[i].classList.toggle('space_left');
+                break;
+            case [99, 101, 104].includes(i): //Б6
+                all_table_item[i].classList.toggle('space_left');
+                break;
+            case [110, 113, 115].includes(i): //м7
+                all_table_item[i].classList.toggle('space_left');
+                break;
+            case [121, 125, 126].includes(i): //Б7
+                all_table_item[i].classList.toggle('space_left');
+                break;
+        }
+    }
+}
+active_space();
