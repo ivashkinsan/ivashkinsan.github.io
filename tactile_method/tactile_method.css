@@ -99,7 +99,6 @@ section {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    z-index: 999;
 }
 
 .mousemove {
@@ -125,6 +124,7 @@ section {
     height: 0.5vh;
     background-color: white;
     transform-origin: center;
+
 }
 
 .line_wB {
@@ -146,15 +146,33 @@ section {
 .margin_left_and_rotate {
     /* margin-left: 50px; */
     transform: translateX(-30px) rotate(45deg);
-
 }
 
 .margin_left_and_minus_rotate {
     /* margin-left: 50px; */
     transform: translateX(-30px) rotate(-45deg);
-
 }
 
 .space_left {
-    margin-left: 30px;
+    margin-left: 50px;
+}
+
+.x_button {
+    padding: 5px 10px;
+}
+
+/* ====================================================================== */
+.wb_table_column {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+    gap: 20px;
+    padding: 0 20px;
+    /* width: 100px; */
+    height: 300px;
+    /* border: 1px dashed white; */
+}
+
+.new_vertical_line {
+    border: 0.5px solid white;
 }

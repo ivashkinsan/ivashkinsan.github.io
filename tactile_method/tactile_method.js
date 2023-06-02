@@ -102,11 +102,11 @@ for (let i = 0; i < all_table_item.length; i++) {
     let new_split = dataset_note[indXXX][in12].split(' ');
     all_table_item[i].dataset.start_note = new_split[0];
     all_table_item[i].dataset.end_note = new_split[1];
-    console.log(data_algorythm[indXXX][in12]);
+    // console.log(data_algorythm[indXXX][in12]);
     all_table_item[i].dataset.algorythm = data_algorythm[indXXX][in12];
 
     in12++;
-    console.log(indXXX, in12)
+    // console.log(indXXX, in12);
 }
 
 // функция активации элементов
@@ -118,7 +118,7 @@ let go_active_elem = function (event) {
     } else {
         active_elem = event;
     }
-    console.log(active_elem);
+    // console.log(active_elem);
     if (active_elem.classList.contains('table_item')) {
         // active_elem = event.target; 
         active_elem.classList.add('mousemove');
@@ -311,3 +311,55 @@ let active_space = function () {
     }
 }
 active_space();
+
+// очистка всех созданных элементов в контейнере таблицы
+// container_table.replaceChildren();
+
+let point_arr = [
+    'м2 0 0 1 0 0 0 1  1 1 0 1 1 1 0  0 0 0 0 0  1 1 1 1 1',
+    'Б2 1 1 0 1 1 1 0  0 0 1 0 0 0 1  1 0 1 1 0  0 1 0 0 1',
+    'м3 0 1 1 0 0 1 1  1 0 0 1 1 0 0  0 1 0 0 1  1 0 1 1 0',
+    'Б3 1 0 0 1 1 0 0  0 1 1 0 0 1 1  0 0 1 0 0  1 1 0 1 1',
+    'ч4 1 1 1 0 1 1 1  0 0 0 1 0 0 0  1 1 0 1 1  0 0 1 0 0',
+    '3Т 0 0 0 1 0 0 1  1 1 1 0 1 1 0  0 0 0 0 0  1 1 1 1 1',
+    'ч5 1 1 1 1 1 1 0  0 0 0 0 0 0 1  1 1 1 1 0  0 0 0 0 1',
+    'м6 0 0 1 0 0 1 1  1 1 0 1 1 0 0  0 0 0 0 1  1 1 1 1 0',
+    'Б6 1 1 0 1 1 0 0  0 0 1 0 0 1 1  1 0 1 0 0  0 1 0 1 1',
+    'м7 0 1 1 0 1 1 1  1 0 0 1 0 0 0  0 1 0 1 1  1 0 1 0 0',
+    'Б7 1 0 0 1 0 0 0  0 1 1 0 1 1 1  0 0 0 0 0  1 1 1 1 1'
+]
+
+let create_white_black_table = function () {
+    container_table.style.flexDirection = 'row';
+    //создание 5 колонок
+    let new_column;
+    let new_vertical_line;
+    for (let i = 0; i < 5; i++) {
+        new_column = document.createElement('div');
+        new_column.classList.add('wb_table_column');
+
+        //создание вертикальных линий
+        let arr_all_line = [1, 7, 7, 5, 5]
+        for (let i_of_line = 0; i_of_line < arr_all_line[i]; i_of_line++) {
+            // console.log(i_of_line);
+            new_vertical_line = document.createElement('div');
+            new_vertical_line.classList.add('new_vertical_line');
+            new_column.append(new_vertical_line);
+        }
+
+        container_table.append(new_column);
+    }
+
+    let all_vertical_line = document.querySelectorAll('.new_vertical_line');
+
+    for (let i = 0; i < all_vertical_line.length; i++) {
+
+        let new_arr_of_point_arr = point_arr[i].split(' ').filter(val => !val == '');
+        let new_point;
+
+
+        console.log(new_arr_of_point_arr);
+    }
+
+}
+// create_white_black_table();
