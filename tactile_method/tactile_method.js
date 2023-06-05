@@ -313,7 +313,7 @@ let active_space = function () {
 active_space();
 
 // очистка всех созданных элементов в контейнере таблицы
-// container_table.replaceChildren();
+container_table.replaceChildren();
 
 let point_arr = [
     'м2 0 0 1 0 0 0 1  1 1 0 1 1 1 0  0 0 0 0 0  1 1 1 1 1',
@@ -331,6 +331,12 @@ let point_arr = [
 
 let create_white_black_table = function () {
     container_table.style.flexDirection = 'row';
+
+    //создание 11 строк
+    let new_row;
+    for (let index_of_row = 0; index_of_row < 11; index_of_row++) {
+        new_row = document.createElement('div');
+    }
     //создание 5 колонок
     let new_column;
     let new_vertical_line;
@@ -349,17 +355,37 @@ let create_white_black_table = function () {
 
         container_table.append(new_column);
     }
+    // создание массива с полным порядком поинтов
+    let new_arr_of_point_arr = [];
+    for (let i = 0; i < point_arr.length; i++) {
+        let let_time_arr = point_arr[i].split(' ').filter(val => !val == '');
+        for (let j = 0; j < let_time_arr.length; j++) {
+            new_arr_of_point_arr.push(let_time_arr[j]);
+        }
 
+    }
+    console.log(new_arr_of_point_arr);
+
+    // сбор всех линий и присвоение им значений
     let all_vertical_line = document.querySelectorAll('.new_vertical_line');
 
     for (let i = 0; i < all_vertical_line.length; i++) {
-
-        let new_arr_of_point_arr = point_arr[i].split(' ').filter(val => !val == '');
-        let new_point;
-
-
-        console.log(new_arr_of_point_arr);
+        all_vertical_line[i].dataset.value = new_arr_of_point_arr[i];
+        console.log(all_vertical_line[i].dataset.value)
+        switch (all_vertical_line[i].dataset.value) {
+            case '0':
+                break;
+            case '1':
+                let new_point = document.createElement('div');
+                new_point.classList.add('point_w_and_b');
+                all_vertical_line[i].append(new_point);
+                break;
+            case 'м2':
+                all_vertical_line[i].innerHTML = all_vertical_line[i].dataset.value;
+                break;
+        }
+        // console.log(new_arr_of_point_arr);
     }
 
 }
-// create_white_black_table();
+create_white_black_table();
