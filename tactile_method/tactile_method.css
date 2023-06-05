@@ -166,11 +166,16 @@ section {
     display: flex;
     flex-direction: row;
     /* justify-content: space-around; */
-    gap: 20px;
-    padding: 0 20px;
+    gap: 45px;
+    padding: 0 40px;
     /* width: 100px; */
-    height: 30px;
+    height: 65px;
     /* border: 1px dashed white; */
+}
+
+.table_row {
+    display: flex;
+    flex-direction: row;
 }
 
 .new_vertical_line {
@@ -180,10 +185,16 @@ section {
 
 .point_w_and_b {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 4px;
-    left: -10px;
+    width: 40px;
+    height: 40px;
+    top: 8px;
+    left: -20px;
     border: 1px solid white;
     border-radius: 50%;
+}
+
+.fix_width {
+    width: 6vh;
+    text-align: center;
+    line-height: 150%;
 }

@@ -330,31 +330,35 @@ let point_arr = [
 ]
 
 let create_white_black_table = function () {
-    container_table.style.flexDirection = 'row';
+    // container_table.style.flexDirection = 'row';
 
     //создание 11 строк
     let new_row;
-    for (let index_of_row = 0; index_of_row < 11; index_of_row++) {
-        new_row = document.createElement('div');
-    }
-    //создание 5 колонок
     let new_column;
     let new_vertical_line;
-    for (let i = 0; i < 5; i++) {
-        new_column = document.createElement('div');
-        new_column.classList.add('wb_table_column');
+    for (let index_of_row = 0; index_of_row < 11; index_of_row++) {
+        new_row = document.createElement('div');
+        new_row.classList.add('table_row');
 
-        //создание вертикальных линий
-        let arr_all_line = [1, 7, 7, 5, 5]
-        for (let i_of_line = 0; i_of_line < arr_all_line[i]; i_of_line++) {
-            // console.log(i_of_line);
-            new_vertical_line = document.createElement('div');
-            new_vertical_line.classList.add('new_vertical_line');
-            new_column.append(new_vertical_line);
+        //создание 5 колонок
+        for (let i = 0; i < 5; i++) {
+            new_column = document.createElement('div');
+            new_column.classList.add('wb_table_column');
+
+            //создание вертикальных линий
+            let arr_all_line = [1, 7, 7, 5, 5]
+            for (let i_of_line = 0; i_of_line < arr_all_line[i]; i_of_line++) {
+                // console.log(i_of_line);
+                new_vertical_line = document.createElement('div');
+                new_vertical_line.classList.add('new_vertical_line');
+                new_column.append(new_vertical_line);
+            }
+
+            new_row.append(new_column);
         }
-
-        container_table.append(new_column);
+        container_table.append(new_row);
     }
+
     // создание массива с полным порядком поинтов
     let new_arr_of_point_arr = [];
     for (let i = 0; i < point_arr.length; i++) {
@@ -380,8 +384,9 @@ let create_white_black_table = function () {
                 new_point.classList.add('point_w_and_b');
                 all_vertical_line[i].append(new_point);
                 break;
-            case 'м2':
+            default:
                 all_vertical_line[i].innerHTML = all_vertical_line[i].dataset.value;
+                all_vertical_line[i].classList.add('fix_width');
                 break;
         }
         // console.log(new_arr_of_point_arr);
