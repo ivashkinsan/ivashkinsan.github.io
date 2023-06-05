@@ -2,10 +2,15 @@ let container_table = document.querySelector('.container_table');
 let all_circle = document.querySelectorAll('.key_elem');
 let dataset_for_circle = 'C Db D Eb E F Gb G Ab A Bb B C2 Db2 D2 Eb2 E2 F2 Gb2 G2 Ab2 A2 Bb2 B2 C3';
 let create_arr_of_circle = dataset_for_circle.split(' ');
+let all_table_item;
+let all_line;
+
 for (let item of all_circle) {
     item.dataset.note = create_arr_of_circle.shift();
 }
 
+
+// матрица геометрических линий
 let tactile_table = [
     'м2 wB Bw wB Bw ww wB Bw wB Bw wB Bw ww',
     'Б2 ww BB ww Bw wB ww BB ww BB ww Bw wB',
@@ -20,6 +25,7 @@ let tactile_table = [
     'Б7 ww Bw wB Bw wB ww Bw wB Bw wB Bw wB'
 ]
 
+// массив массивов с дата атрибутами первой и последней активируемой ноты
 let dataset_note = [
     ['C Db', 'Db D', 'D Eb', 'Eb E', 'E F', 'F Gb', 'Gb G', 'G Ab', 'Ab A', 'A Bb', 'Bb B', 'B C2'],
     ['C D', 'Db Eb', 'D E', 'Eb F', 'E Gb', 'F G', 'Gb Ab', 'G A', 'Ab Bb', 'A B', 'Bb C2', 'B Db2'],
@@ -34,6 +40,7 @@ let dataset_note = [
     ['C B', 'Db C2', 'D Db2', 'Eb D2', 'E Eb2', 'F E2', 'Gb F2', 'G Gb2', 'Ab G2', 'A Ab2', 'Bb A2', 'B Bb2'],
 ]
 
+// массив массивов с дополнительно подсвечиваемыми элементами
 let data_algorythm = [
     ['C Db D', 'C Db D', 'D Eb E', 'D Eb E', 'E F', 'F Gb G', 'F Gb G', 'G Ab A', 'G Ab A', 'A Bb B', 'A Bb B', 'B C2'],
     ['C Db D Eb E', 'C Db D Eb E', 'C Db D Eb E', 'Eb E F Gb', 'Eb E F Gb', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'Bb B C2 Db2', 'Bb B C2 Db2'],
@@ -84,30 +91,43 @@ let create_table = function (inp_arr) {
         }
         container_table.append(new_rows);
     }
+    all_table_item = document.querySelectorAll('.table_item');
+    all_line = document.querySelectorAll('.line');
 }
-create_table(tactile_table);
 
 
-let all_table_item = document.querySelectorAll('.table_item');
-let indXXX = 0;
-let in12 = 0;
-for (let i = 0; i < all_table_item.length; i++) {
-    if (in12 > 11) {
-        in12 = 0;
+// присвоение data атрибутов ячейкам таблицы
+
+let add_dataatr_all_tab_item = function () {
+
+    let indXXX = 0;
+    let in12 = 0;
+    for (let i = 0; i < all_table_item.length; i++) {
+        if (in12 > 11) {
+            in12 = 0;
+        }
+        if (in12 % 12 == 0 && i > 0) {
+            indXXX++;
+        }
+
+        let new_split = dataset_note[indXXX][in12].split(' ');
+        all_table_item[i].dataset.start_note = new_split[0];
+        all_table_item[i].dataset.end_note = new_split[1];
+        // console.log(data_algorythm[indXXX][in12]);
+        all_table_item[i].dataset.algorythm = data_algorythm[indXXX][in12];
+
+        in12++;
+        // console.log(indXXX, in12);
     }
-    if (in12 % 12 == 0 && i > 0) {
-        indXXX++;
-    }
-
-    let new_split = dataset_note[indXXX][in12].split(' ');
-    all_table_item[i].dataset.start_note = new_split[0];
-    all_table_item[i].dataset.end_note = new_split[1];
-    // console.log(data_algorythm[indXXX][in12]);
-    all_table_item[i].dataset.algorythm = data_algorythm[indXXX][in12];
-
-    in12++;
-    // console.log(indXXX, in12);
 }
+
+
+
+
+
+
+
+
 
 // функция активации элементов
 let go_active_elem = function (event) {
@@ -174,7 +194,7 @@ container_table.addEventListener('mouseout', function (event) {
     clear_all();
 });
 
-let all_line = document.querySelectorAll('.line');
+
 let active_x_block = function () {
     for (let i = 0; i < all_line.length; i++) {
         switch (true) {
@@ -225,44 +245,44 @@ window.addEventListener("keydown", function (e) {
     }
 }, false);
 
+// переключние стрелками вверх вниз влево вправо
 let ind_cursor = 0;
 document.addEventListener('keydown', function (event) {
-    clear_all();
-    if (event.keyCode == 37) { // влево
-        if (ind_cursor > 0) {
-            ind_cursor--;
-        }
-        go_active_elem(all_table_item[ind_cursor]);
-    }
-    else if (event.keyCode == 39) { // вправо
-        console.log('Right was pressed');
-        if (ind_cursor >= 0 && ind_cursor < 131) {
-            ind_cursor++;
-        }
-        go_active_elem(all_table_item[ind_cursor]);
-    } else if (event.keyCode == 40) { // вверх
-        console.log('Right was pressed');
-        if (ind_cursor >= 0) {
-            if (ind_cursor < 120) {
-                ind_cursor += 12;
+        clear_all();
+        if (event.keyCode == 37) { // влево
+            if (ind_cursor > 0) {
+                ind_cursor--;
             }
+            go_active_elem(all_table_item[ind_cursor]);
+        } else if (event.keyCode == 39) { // вправо
+            console.log('Right was pressed');
+            if (ind_cursor >= 0 && ind_cursor < 131) {
+                ind_cursor++;
+            }
+            go_active_elem(all_table_item[ind_cursor]);
+        } else if (event.keyCode == 40) { // вверх
+            console.log('Right was pressed');
+            if (ind_cursor >= 0) {
+                if (ind_cursor < 120) {
+                    ind_cursor += 12;
+                }
+
+            }
+            go_active_elem(all_table_item[ind_cursor]);
+        } else if (event.keyCode == 38) { // вниз
+            console.log('Right was pressed');
+            if (ind_cursor >= 0) {
+                if (ind_cursor >= 12) {
+                    ind_cursor -= 12;
+                }
+            }
+            go_active_elem(all_table_item[ind_cursor]);
+        } else if (event.keyCode == 32) { // пробел
+            active_x_block();
 
         }
         go_active_elem(all_table_item[ind_cursor]);
-    } else if (event.keyCode == 38) { // вниз
-        console.log('Right was pressed');
-        if (ind_cursor >= 0) {
-            if (ind_cursor >= 12) {
-                ind_cursor -= 12;
-            }
-        }
-        go_active_elem(all_table_item[ind_cursor]);
-    } else if (event.keyCode == 32) { // пробел
-        active_x_block();
-
     }
-    go_active_elem(all_table_item[ind_cursor]);
-}
 
 );
 
@@ -310,12 +330,13 @@ let active_space = function () {
         }
     }
 }
-active_space();
+
 
 // очистка всех созданных элементов в контейнере таблицы
-container_table.replaceChildren();
+// container_table.replaceChildren();
 
 let point_arr = [
+    '- C D E F G A B  C D E F G A B  Db Eb Gb Ab Bb  Db Eb Gb Ab Bb',
     'м2 0 0 1 0 0 0 1  1 1 0 1 1 1 0  0 0 0 0 0  1 1 1 1 1',
     'Б2 1 1 0 1 1 1 0  0 0 1 0 0 0 1  1 0 1 1 0  0 1 0 0 1',
     'м3 0 1 1 0 0 1 1  1 0 0 1 1 0 0  0 1 0 0 1  1 0 1 1 0',
@@ -329,6 +350,20 @@ let point_arr = [
     'Б7 1 0 0 1 0 0 0  0 1 1 0 1 1 1  0 0 0 0 0  1 1 1 1 1'
 ]
 
+let data_attr_point = [
+    ['E F', 'B C2', 'C Db', 'D Eb', 'F Gb', 'G Ab', 'A Bb', 'Db D', 'Eb E', 'Gb G', 'Ab A', 'Bb B'],
+    ['C D', 'D E', 'F G', 'G A', 'A B', 'E Gb', 'B Db2', 'Db Eb', 'Gb Ab', 'Ab Bb', 'Eb F', 'Bb C'],
+    ['D F', 'E G', 'A B', 'B D2', 'C Eb', 'F Ab', 'G Bb', 'Eb Gb', 'Bb Db2', 'Db E', 'Gb A', 'Ab B'],
+    ['C E', 'F A', 'G B', 'D Gb', 'E Ab', 'A Db2', 'B Eb2', 'Gb Bb', 'Db F', 'Eb G', 'Ab C2', 'Bb D2'],
+    ['C F', 'D G', 'E A', 'G C2', 'A D2', 'B E2', 'F Bb', 'Db Gb', 'Eb Ab', 'Ab Db2', 'Bb Eb2', 'Gb B'],
+    ['F B', 'B F2', 'C Gb', 'D Ab', 'E Bb', 'G Db2', 'A Eb2', 'Db A', 'Eb B', 'Gb C2', 'Ab D2', 'Bb E2'],
+    ['C G', 'D A', 'E B', 'F C2', 'G D2', 'A E2', 'B Gb2', 'Db Ab', 'Eb Bb', 'Gb Db2', 'Ab Eb2', 'Bb F2'],
+    ['E C2', 'A F2', 'B G2', 'C Ab', 'D Bb', 'F Db2', 'G Eb2', 'Bb Gb2', 'Db A', 'Eb B', 'Gb D2', 'Ab E2'],
+    ['C A', 'D B', 'F D2', 'G E2', 'E Db', 'A Gb', 'B Ab', 'Db Bb', 'Gb Eb2', 'Eb C2', 'Ab F2', 'Bb G2'],
+    ['D C2', 'E D2', 'G A2', 'A G2', 'B A2', 'C Bb', 'F Eb2', 'Eb Db2', 'Ab Gb2', 'Bb Ab2', 'Db B', 'Gb E2'],
+    ['C B', 'F E2', 'D Db2', 'E Eb2', 'G Gb2', 'A Ab2', 'B Bb2', 'Db C2', 'Eb D2', 'Gb F2', 'Ab G2', 'Bb A2']
+]
+
 let create_white_black_table = function () {
     // container_table.style.flexDirection = 'row';
 
@@ -336,7 +371,7 @@ let create_white_black_table = function () {
     let new_row;
     let new_column;
     let new_vertical_line;
-    for (let index_of_row = 0; index_of_row < 11; index_of_row++) {
+    for (let index_of_row = 0; index_of_row < 12; index_of_row++) {
         new_row = document.createElement('div');
         new_row.classList.add('table_row');
 
@@ -385,12 +420,42 @@ let create_white_black_table = function () {
                 all_vertical_line[i].append(new_point);
                 break;
             default:
-                all_vertical_line[i].innerHTML = all_vertical_line[i].dataset.value;
                 all_vertical_line[i].classList.add('fix_width');
+                let new_label = document.createElement('div');
+                new_label.classList.add('point_label');
+
+                // all_vertical_line[i].innerHTML = all_vertical_line[i].dataset.value;
+                new_label.innerHTML = all_vertical_line[i].dataset.value;
+                all_vertical_line[i].append(new_label);
+
                 break;
         }
         // console.log(new_arr_of_point_arr);
     }
 
 }
+
+// create_table(tactile_table);
+// add_dataatr_all_tab_item();
+// active_space();
+
 create_white_black_table();
+
+document.querySelector('.geometry_btn').onclick = function () {
+    container_table.replaceChildren();
+    create_table(tactile_table);
+    add_dataatr_all_tab_item();
+    active_space();
+    document.querySelector('.hide_show_block').classList.remove('hide_btn');
+}
+document.querySelector('.color_btn').onclick = function () {
+    container_table.replaceChildren();
+    create_white_black_table();
+    document.querySelector('.hide_show_block').classList.add('hide_btn');
+}
+document.querySelector('.x_button').onclick = function () {
+    active_x_block();
+}
+document.querySelector('.margin_button').onclick = function () {
+    active_space();
+}

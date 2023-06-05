@@ -23,6 +23,18 @@ body {
     border: 10px solid #F4D6B1;
 }
 
+.container_start_btn{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+.container_start_btn>input{
+    padding: 3px 10px;
+}
+
+.hide_show_block>input{
+    padding: 2px 3px;
+}
 section {
     display: flex;
     flex-direction: column;
@@ -157,9 +169,7 @@ section {
     margin-left: 50px;
 }
 
-.x_button {
-    padding: 5px 10px;
-}
+
 
 /* ====================================================================== */
 .wb_table_column {
@@ -169,13 +179,14 @@ section {
     gap: 45px;
     padding: 0 40px;
     /* width: 100px; */
-    height: 65px;
+    height: 63px;
     /* border: 1px dashed white; */
 }
 
 .table_row {
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
 }
 
 .new_vertical_line {
@@ -185,16 +196,30 @@ section {
 
 .point_w_and_b {
     position: absolute;
-    width: 40px;
-    height: 40px;
-    top: 8px;
-    left: -20px;
-    border: 1px solid white;
+    width: 30px;
+    height: 30px;
+    top: 16px;
+    left: -15px;
+    border: 2px solid white;
     border-radius: 50%;
+    background-color: white;
 }
 
 .fix_width {
-    width: 6vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
     text-align: center;
-    line-height: 150%;
+
+    border-color: rgba(0,0,0,0);
+}
+.point_label{
+    position: absolute;
+    left: -9px;
+}
+
+.hide_btn{
+    display: none;
 }
