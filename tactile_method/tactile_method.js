@@ -5,6 +5,7 @@ let create_arr_of_circle = dataset_for_circle.split(' ');
 let all_table_item;
 let all_line;
 let all_point_w_and_b;
+let value_table;
 
 for (let item of all_circle) {
     item.dataset.note = create_arr_of_circle.shift();
@@ -249,41 +250,32 @@ window.addEventListener("keydown", function (e) {
 // переключние стрелками вверх вниз влево вправо
 let ind_cursor = 0;
 document.addEventListener('keydown', function (event) {
-        clear_all();
-        if (event.keyCode == 37) { // влево
-            if (ind_cursor > 0) {
-                ind_cursor--;
-            }
-            go_active_elem(all_table_item[ind_cursor]);
-        } else if (event.keyCode == 39) { // вправо
-            console.log('Right was pressed');
-            if (ind_cursor >= 0 && ind_cursor < 131) {
-                ind_cursor++;
-            }
-            go_active_elem(all_table_item[ind_cursor]);
-        } else if (event.keyCode == 40) { // вверх
-            console.log('Right was pressed');
-            if (ind_cursor >= 0) {
-                if (ind_cursor < 120) {
-                    ind_cursor += 12;
-                }
-
-            }
-            go_active_elem(all_table_item[ind_cursor]);
-        } else if (event.keyCode == 38) { // вниз
-            console.log('Right was pressed');
-            if (ind_cursor >= 0) {
-                if (ind_cursor >= 12) {
-                    ind_cursor -= 12;
-                }
-            }
-            go_active_elem(all_table_item[ind_cursor]);
-        } else if (event.keyCode == 32) { // пробел
+    let go_go_elem = (value_table == 'geometry_table') ? all_table_item : all_point_w_and_b;
+    // console.log(go_go_elem);
+    clear_all();
+    switch (event.keyCode) {
+        case 37:
+            (ind_cursor > 0) ? ind_cursor-- : false;
+            go_active_elem(go_go_elem[ind_cursor]);
+            break;
+        case 39:
+            (ind_cursor >= 0 && ind_cursor < 131) ? ind_cursor++ : false;
+            go_active_elem(go_go_elem[ind_cursor]);
+            break;
+        case 40:
+            (ind_cursor >= 0 && ind_cursor < 120) ? ind_cursor += 12 : false;
+            go_active_elem(go_go_elem[ind_cursor]);
+            break;
+        case 38:
+            (ind_cursor >= 0 && ind_cursor >= 12) ? ind_cursor -= 12 : false;
+            go_active_elem(go_go_elem[ind_cursor]);
+            break;
+        case 32:
             active_x_block();
-
-        }
-        go_active_elem(all_table_item[ind_cursor]);
     }
+
+    go_active_elem(go_go_elem[ind_cursor]);
+}
 
 );
 
@@ -461,19 +453,24 @@ let create_white_black_table = function () {
 
 // create_white_black_table();
 
+
+
 document.querySelector('.geometry_btn').onclick = function () {
     container_table.replaceChildren();
     create_table(tactile_table);
     add_dataatr(all_table_item, dataset_note, data_algorythm);
     active_space();
     document.querySelector('.hide_show_block').classList.remove('hide_btn');
+    value_table = 'geometry_table';
+    ind_cursor = 0;
 }
 document.querySelector('.color_btn').onclick = function () {
     container_table.replaceChildren();
     create_white_black_table();
     document.querySelector('.hide_show_block').classList.add('hide_btn');
     add_dataatr(all_point_w_and_b, data_attr_point, point_algorythm);
-    console.log(all_point_w_and_b, data_attr_point, point_algorythm);
+    value_table = 'color_table';
+    ind_cursor = 0;
 }
 document.querySelector('.x_button').onclick = function () {
     active_x_block();
@@ -481,3 +478,7 @@ document.querySelector('.x_button').onclick = function () {
 document.querySelector('.margin_button').onclick = function () {
     active_space();
 }
+
+create_white_black_table();
+add_dataatr(all_point_w_and_b, data_attr_point, point_algorythm);
+value_table = 'color_table';

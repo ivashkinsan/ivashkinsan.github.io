@@ -23,18 +23,20 @@ body {
     border: 10px solid #F4D6B1;
 }
 
-.container_start_btn{
+.container_start_btn {
     position: absolute;
     top: 5px;
     right: 5px;
 }
-.container_start_btn>input{
+
+.container_start_btn>input {
     padding: 3px 10px;
 }
 
-.hide_show_block>input{
+.hide_show_block>input {
     padding: 2px 3px;
 }
+
 section {
     display: flex;
     flex-direction: column;
@@ -114,7 +116,8 @@ section {
 }
 
 .mousemove {
-    box-shadow: inset 2px 2px 0 yellow, inset -2px -2px 0 yellow;
+    box-shadow: 0px 0px 15px yellow;
+    outline: 1px yellow solid;
 }
 
 .yellow {
@@ -200,9 +203,9 @@ section {
     height: 30px;
     top: 16px;
     left: -15px;
-    border: 2px solid white;
+    border: 2px solid rgb(36, 219, 255);
     border-radius: 50%;
-    background-color: white;
+    background-color: rgb(36, 219, 255);
     cursor: pointer;
 }
 
@@ -214,13 +217,14 @@ section {
     font-size: 28px;
     text-align: center;
 
-    border-color: rgba(0,0,0,0);
+    border-color: rgba(0, 0, 0, 0);
 }
-.point_label{
+
+.point_label {
     position: absolute;
     left: -9px;
 }
 
-.hide_btn{
+.hide_btn {
     display: none;
 }
