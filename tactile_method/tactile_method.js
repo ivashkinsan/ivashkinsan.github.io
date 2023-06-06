@@ -479,6 +479,12 @@ document.querySelector('.margin_button').onclick = function () {
     active_space();
 }
 
-create_white_black_table();
-add_dataatr(all_point_w_and_b, data_attr_point, point_algorythm);
-value_table = 'color_table';
+// create_white_black_table();
+// add_dataatr(all_point_w_and_b, data_attr_point, point_algorythm);
+// value_table = 'color_table';
+create_table(tactile_table);
+add_dataatr(all_table_item, dataset_note, data_algorythm);
+active_space();
+document.querySelector('.hide_show_block').classList.remove('hide_btn');
+value_table = 'geometry_table';
+ind_cursor = 0;
