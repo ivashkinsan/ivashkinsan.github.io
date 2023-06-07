@@ -109,7 +109,7 @@ section {
     display: flex;
     width: 30px;
     height: 30px;
-    /* margin: 1px; */
+    margin: 3px;
     justify-content: center;
     align-items: center;
     cursor: pointer;
@@ -160,12 +160,12 @@ section {
 
 .margin_left_and_rotate {
     /* margin-left: 50px; */
-    transform: translateX(-30px) rotate(45deg);
+    transform: translateX(-36px) rotate(45deg);
 }
 
 .margin_left_and_minus_rotate {
     /* margin-left: 50px; */
-    transform: translateX(-30px) rotate(-45deg);
+    transform: translateX(-36px) rotate(-45deg);
 }
 
 .space_left {
@@ -179,10 +179,10 @@ section {
     display: flex;
     flex-direction: row;
     /* justify-content: space-around; */
-    gap: 45px;
+    gap: 35px;
     padding: 0 40px;
     /* width: 100px; */
-    height: 63px;
+    height: 43px;
     /* border: 1px dashed white; */
 }
 
@@ -199,10 +199,10 @@ section {
 
 .point_w_and_b {
     position: absolute;
-    width: 30px;
-    height: 30px;
-    top: 16px;
-    left: -15px;
+    width: 28px;
+    height: 28px;
+    top: 6px;
+    left: -14px;
     border: 2px solid rgb(36, 219, 255);
     border-radius: 50%;
     background-color: rgb(36, 219, 255);
@@ -214,7 +214,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 28px;
+    font-size: 22px;
     text-align: center;
 
     border-color: rgba(0, 0, 0, 0);
