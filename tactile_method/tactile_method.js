@@ -250,32 +250,32 @@ window.addEventListener("keydown", function (e) {
 // переключние стрелками вверх вниз влево вправо
 let ind_cursor = 0;
 document.addEventListener('keydown', function (event) {
-    let go_go_elem = (value_table == 'geometry_table') ? all_table_item : all_point_w_and_b;
-    // console.log(go_go_elem);
-    clear_all();
-    switch (event.keyCode) {
-        case 37:
-            (ind_cursor > 0) ? ind_cursor-- : false;
-            go_active_elem(go_go_elem[ind_cursor]);
-            break;
-        case 39:
-            (ind_cursor >= 0 && ind_cursor < 131) ? ind_cursor++ : false;
-            go_active_elem(go_go_elem[ind_cursor]);
-            break;
-        case 40:
-            (ind_cursor >= 0 && ind_cursor < 120) ? ind_cursor += 12 : false;
-            go_active_elem(go_go_elem[ind_cursor]);
-            break;
-        case 38:
-            (ind_cursor >= 0 && ind_cursor >= 12) ? ind_cursor -= 12 : false;
-            go_active_elem(go_go_elem[ind_cursor]);
-            break;
-        case 32:
-            active_x_block();
-    }
+        let go_go_elem = (value_table == 'geometry_table') ? all_table_item : all_point_w_and_b;
+        // console.log(go_go_elem);
+        clear_all();
+        switch (event.keyCode) {
+            case 37:
+                (ind_cursor > 0) ? ind_cursor-- : false;
+                go_active_elem(go_go_elem[ind_cursor]);
+                break;
+            case 39:
+                (ind_cursor >= 0 && ind_cursor < 131) ? ind_cursor++ : false;
+                go_active_elem(go_go_elem[ind_cursor]);
+                break;
+            case 40:
+                (ind_cursor >= 0 && ind_cursor < 120) ? ind_cursor += 12: false;
+                go_active_elem(go_go_elem[ind_cursor]);
+                break;
+            case 38:
+                (ind_cursor >= 0 && ind_cursor >= 12) ? ind_cursor -= 12: false;
+                go_active_elem(go_go_elem[ind_cursor]);
+                break;
+            case 32:
+                active_x_block();
+        }
 
-    go_active_elem(go_go_elem[ind_cursor]);
-}
+        go_active_elem(go_go_elem[ind_cursor]);
+    }
 
 );
 
@@ -482,9 +482,138 @@ document.querySelector('.margin_button').onclick = function () {
 // create_white_black_table();
 // add_dataatr(all_point_w_and_b, data_attr_point, point_algorythm);
 // value_table = 'color_table';
-create_table(tactile_table);
-add_dataatr(all_table_item, dataset_note, data_algorythm);
-active_space();
-document.querySelector('.hide_show_block').classList.remove('hide_btn');
-value_table = 'geometry_table';
-ind_cursor = 0;
+
+
+// create_table(tactile_table);
+// add_dataatr(all_table_item, dataset_note, data_algorythm);
+// active_space();
+// document.querySelector('.hide_show_block').classList.remove('hide_btn');
+// value_table = 'geometry_table';
+// ind_cursor = 0;
+
+
+let arr_for_position_table = [
+    [
+        '4XX    @b @w @b @w @b @w       1w 1b 1w 1b 1w      @w @b @w @b @w @b',
+        '3_-_   @b @w @b @w @b @w       1w 1b 1w 1b 1w      @w @b @w @b @w @b',
+        '2X     @b @w @b @w @b @w       1w 1b 0w 1b 1w      @w @b @w @b @w @b',
+        '1_     @b @w @b @w @b @w       1w 0b 0w 0b 1w      @w @b @w @b @w @b',
+        '',
+        '1_     @b @w @b @w @b 1w       0w 0b 0w 0b 0w      1w @b @w @b @w @b',
+        '2X     @b @w @b @w 1b 1w       0w 0b 0w 0b 0w      1w 1b @w @b @w @b',
+        '3_-_   @b @w @b 1w 1b 1w       0w 0b 0w 0b 0w      1w 1b 1w @b @w @b',
+        '4XX    @b @w 1b 1w 1b 1w       0w 0b 0w 0b 0w      1w 1b 1w 1b @w @b',
+        '5_-_-_ @b 1w 1b 1w 1b 1w       0w 0b 0w 0b 0w      1w 1b 1w 1b 1w @b',
+        '6XXX   1b 1w 1b 1w 1b 1w       0w 0b 0w 0b 0w      1w 1b 1w 1b 1w 1b'
+    ],
+    [
+        '1_     @w @b @w @b 1w      1w @b @w @b @w @b @w',
+        '2x     @w @b @w 1b 1w      1w 1b @w @b @w @b @w',
+        '3_-_   @w @b 1w 1b 1w      1w 1b 1w @b @w @b @w',
+        '4XX    @w 1b 1w 1b 1w      1w 1b 1w 1b @w @b @w',
+        '5_-_-_ 1w 1b 1w 1b 1w      1w 1b 1w 1b 1w @b @w',
+        '5XX/   1w 1b 1w 1b 1w      0w 1b 1w 1b 1w 1b @w',
+        '5_-_-_ 1w 1b 1w 1b 1w      0w 0b 1w 1b 1w 1b 1w',
+        '4XX    1w 1b 1w 1b 0w      0w 0b 0w 1b 1w 1b 1w',
+        '3_-_   1w 1b 1w 0b 0w      0w 0b 0w 0b 1w 1b 1w',
+        '2X     1w 1b 0w 0b 0w      0w 0b 0w 0b 0w 1b 1w',
+        '1_     1w 0b 0w 0b 0w      0w 0b 0w 0b 0w 0b 1w'
+    ],
+    [
+        '6XXX   @b @w @b @w     1w 1b 1w 1b 1w 1b 1w    @w @b @w @b',
+        '5_-_-_ @b @w @b @w     1w 1b 1w 1b 1w 1b 1w    @w @b @w @b',
+        '4XX    @b @w @b @w     1w 1b 1w 1b 1w 1b 1w    @w @b @w @b',
+        '3_-_   @b @w @b @w     1w 1b 1w 0b 1w 1b 1w    @w @b @w @b',
+        '2X     @b @w @b @w     1w 1b 0w 0b 0w 1b 1w    @w @b @w @b',
+        '1_     @b @w @b @w     1w 0b 0w 0b 0w 0b 1w    @w @b @w @b',
+        '',
+        '1_     @b @w @b 1w     0w 0b 0w 0b 0w 0b 0w    1w @b @w @b',
+        '2X     @b @w 1b 1w     0w 0b 0w 0b 0w 0b 0w    1w 1b @w @b',
+        '3_-_   @b 1w 1b 1w     0w 0b 0w 0b 0w 0b 0w    1w 1b 1w @b',
+        '4XX    1b 1w 1b 1w     0w 0b 0w 0b 0w 0b 0w    1w 1b 1w 1b'
+    ],
+    [
+        '1_     @w @b @w @b @w @b 1w    1w @b @w @b @w',
+        '2x     @w @b @w @b @w 1b 1w    1w 1b @w @b @w',
+        '3_-_   @w @b @w @b 1w 1b 1w    1w 1b 1w @b @w',
+        '4XX    @w @b @w 1b 1w 1b 1w    1w 1b 1w 1b @w',
+        '5_-_-_ @w @b 1w 1b 1w 1b 1w    1w 1b 1w 1b 1w',
+        '5XX/   @w 1b 1w 1b 1w 1b 0w    1w 1b 1w 1b 1w',
+        '5_-_-_ 1w 1b 1w 1b 1w 0b 0w    1w 1b 1w 1b 1w',
+        '4XX    1w 1b 1w 1b 0w 0b 0w    0w 1b 1w 1b 1w',
+        '3_-_   1w 1b 1w 0b 0w 0b 0w    0w 0b 1w 1b 1w',
+        '2X     1w 1b 0w 0b 0w 0b 0w    0w 0b 0w 1b 1w',
+        '1_     1w 0b 0w 0b 0w 0b 0w    0w 0b 0w 0b 1w'
+    ]
+]
+let row_label_for_position_arr = ['м2', 'Б2', 'м3', 'Б3', 'ч4', '3Т', 'ч5', 'м6', 'Б6', 'м7', 'Б7'];
+let active_position = function () {
+    container_table.style.flexDirection = 'row';
+
+    //создание колонок и строк
+    let new_column;
+    let new_row;
+    let new_circle;
+    let new_top_label_row;
+    let start_note_label;
+    for (let i = 0; i < 5; i++) {
+        let new_column = document.createElement('div');
+        new_column.classList.add('column_for_position');
+        switch (i) {
+            case 1:
+                start_note_label = 'Gb';
+                break;
+            case 2:
+                start_note_label = 'С';
+                break;
+            case 3:
+                start_note_label = 'Ab';
+                break;
+            case 4:
+                start_note_label = 'F';
+                break;
+        }
+        for (let ii = 0; ii < 11; ii++) {
+            if (i == 0) {
+                new_row = document.createElement('div');
+                new_row.classList.add('row_label_for_position');
+                new_row.textContent = row_label_for_position_arr[ii];
+                new_column.append(new_row);
+            } else {
+                new_row = document.createElement('div');
+                new_row.classList.add('row_for_position');
+                new_top_label_row = document.createElement('div');
+                new_top_label_row.classList.add('new_top_label_row');
+
+
+                let arr_in_strings = arr_for_position_table[i - 1][ii].split(' ').filter(element => element != '');
+                new_top_label_row.textContent = arr_in_strings[0];
+
+                for (let iii = 1; iii < arr_in_strings.length; iii++) {
+
+                    new_circle = document.createElement('div');
+                    new_circle.classList.add('circle_table_elem');
+                    if (arr_in_strings[iii] == '1b' || arr_in_strings[iii] == '@b' || arr_in_strings[iii] == '0b') {
+                        new_circle.classList.add('up_key_circle');
+                    }
+                    if (arr_in_strings[iii] == '1w' || arr_in_strings[iii] == '1b') {
+                        new_circle.classList.add('white_key_circkle');
+                    }
+
+                    if (iii == 1) {
+                        new_circle.textContent = start_note_label;
+                    }
+
+                    new_row.append(new_top_label_row);
+                    new_row.append(new_circle);
+
+                }
+
+
+                new_column.append(new_row);
+            }
+        }
+        container_table.append(new_column);
+    }
+}
+active_position();
