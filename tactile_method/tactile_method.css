@@ -25,16 +25,19 @@ body {
 
 .container_start_btn {
     position: absolute;
+    display: flex;
     top: 5px;
     right: 5px;
 }
 
-.container_start_btn>input {
+.btn {
     padding: 3px 10px;
 }
 
-.hide_show_block>input {
-    padding: 2px 3px;
+.hide_show_block_position,
+.hide_show_block_geometry{
+    display: flex;
+    flex-direction: column;
 }
 
 section {
@@ -268,17 +271,23 @@ section {
     height: 26px;
     border: 1px solid white;
     border-radius: 50%;
-    font-size: 15px;
+    font-size: 10px;
+    font-weight: bold;
     text-align: center;
-    line-height: 26px;
-    color: #ffc57a;
+    line-height: 24px;
+    color: #ff6f00;
+    /* text-shadow: -0.5px 0.5px 0px rgb(0, 0, 0); */
 }
-.white_key_circkle{
-    background-color: white;
+.white_key_circle{
+    background-color: rgb(136, 227, 255);
 }
 .up_key_circle{
     margin-top: -49px;
     margin-left: -14.5px;
     margin-right: -14.5px;
     /* background-color: black; */
+}
+
+.hide_overflow_circle{
+    display: none;
 }

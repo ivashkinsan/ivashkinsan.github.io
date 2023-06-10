@@ -6,6 +6,8 @@ let all_table_item;
 let all_line;
 let all_point_w_and_b;
 let value_table;
+let all_slice_overflow;
+let all_circle_positions;
 
 for (let item of all_circle) {
     item.dataset.note = create_arr_of_circle.shift();
@@ -58,6 +60,7 @@ let data_algorythm = [
 ]
 
 let create_table = function (inp_arr) {
+    container_table.style.flexDirection = 'column';
     for (let item_in_arr of inp_arr) {
         let new_rows = document.createElement('div');
         new_rows.classList.add('rows_table');
@@ -376,7 +379,7 @@ let point_algorythm = [
 ]
 
 let create_white_black_table = function () {
-    // container_table.style.flexDirection = 'row';
+    container_table.style.flexDirection = 'column';
 
     //создание 11 строк
     let new_row;
@@ -460,16 +463,9 @@ document.querySelector('.geometry_btn').onclick = function () {
     create_table(tactile_table);
     add_dataatr(all_table_item, dataset_note, data_algorythm);
     active_space();
-    document.querySelector('.hide_show_block').classList.remove('hide_btn');
+    document.querySelector('.hide_show_block_geometry').classList.remove('hide_btn');
+    document.querySelector('.hide_show_block_position').classList.add('hide_btn');
     value_table = 'geometry_table';
-    ind_cursor = 0;
-}
-document.querySelector('.color_btn').onclick = function () {
-    container_table.replaceChildren();
-    create_white_black_table();
-    document.querySelector('.hide_show_block').classList.add('hide_btn');
-    add_dataatr(all_point_w_and_b, data_attr_point, point_algorythm);
-    value_table = 'color_table';
     ind_cursor = 0;
 }
 document.querySelector('.x_button').onclick = function () {
@@ -477,6 +473,22 @@ document.querySelector('.x_button').onclick = function () {
 }
 document.querySelector('.margin_button').onclick = function () {
     active_space();
+}
+document.querySelector('.color_btn').onclick = function () {
+    container_table.replaceChildren();
+    create_white_black_table();
+    document.querySelector('.hide_show_block_geometry').classList.add('hide_btn');
+    document.querySelector('.hide_show_block_position').classList.add('hide_btn');
+    add_dataatr(all_point_w_and_b, data_attr_point, point_algorythm);
+    value_table = 'color_table';
+    ind_cursor = 0;
+}
+
+document.querySelector('.position_btn').onclick = function () {
+    document.querySelector('.hide_show_block_position').classList.remove('hide_btn');
+    document.querySelector('.hide_show_block_geometry').classList.add('hide_btn');
+    container_table.replaceChildren();
+    active_position();
 }
 
 // create_white_black_table();
@@ -547,33 +559,22 @@ let arr_for_position_table = [
     ]
 ]
 let row_label_for_position_arr = ['м2', 'Б2', 'м3', 'Б3', 'ч4', '3Т', 'ч5', 'м6', 'Б6', 'м7', 'Б7'];
+let label_for_column = [
+    ['Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb'],
+    ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'],
+    ['Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb'],
+    ['F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E']
+]
 let active_position = function () {
     container_table.style.flexDirection = 'row';
 
     //создание колонок и строк
-    let new_column;
-    let new_row;
-    let new_circle;
-    let new_top_label_row;
-    let start_note_label;
     for (let i = 0; i < 5; i++) {
         let new_column = document.createElement('div');
         new_column.classList.add('column_for_position');
-        switch (i) {
-            case 1:
-                start_note_label = 'Gb';
-                break;
-            case 2:
-                start_note_label = 'С';
-                break;
-            case 3:
-                start_note_label = 'Ab';
-                break;
-            case 4:
-                start_note_label = 'F';
-                break;
-        }
         for (let ii = 0; ii < 11; ii++) {
+            let new_row;
+            let new_top_label_row;
             if (i == 0) {
                 new_row = document.createElement('div');
                 new_row.classList.add('row_label_for_position');
@@ -590,30 +591,62 @@ let active_position = function () {
                 new_top_label_row.textContent = arr_in_strings[0];
 
                 for (let iii = 1; iii < arr_in_strings.length; iii++) {
-
+                    let new_circle;
                     new_circle = document.createElement('div');
                     new_circle.classList.add('circle_table_elem');
+                    new_circle.dataset.note = label_for_column[i - 1][iii - 1];
+                    console.log(i);
+                    console.log(new_circle);
                     if (arr_in_strings[iii] == '1b' || arr_in_strings[iii] == '@b' || arr_in_strings[iii] == '0b') {
                         new_circle.classList.add('up_key_circle');
                     }
                     if (arr_in_strings[iii] == '1w' || arr_in_strings[iii] == '1b') {
-                        new_circle.classList.add('white_key_circkle');
+                        new_circle.classList.add('white_key_circle');
                     }
 
-                    if (iii == 1) {
-                        new_circle.textContent = start_note_label;
+                    if (arr_in_strings[iii] == '@b' || arr_in_strings[iii] == '@w') {
+                        new_circle.classList.add('slice_overflow');
                     }
 
-                    new_row.append(new_top_label_row);
                     new_row.append(new_circle);
 
                 }
 
-
-                new_column.append(new_row);
+                new_row.append(new_top_label_row);
             }
+
+            new_column.append(new_row);
         }
         container_table.append(new_column);
     }
+    all_slice_overflow = document.querySelectorAll('.slice_overflow');
+    all_circle_positions = document.querySelectorAll('.circle_table_elem');
 }
-active_position();
+
+
+
+let slice_overflow_circle = function () {
+
+    for (let item of all_slice_overflow) {
+        item.classList.toggle('hide_overflow_circle');
+    }
+}
+document.querySelector('.overflow_button').onclick = function () {
+    slice_overflow_circle();
+}
+
+let add_label_for_circle = function () {
+
+    for (let item of all_circle_positions) {
+        if (item.textContent == '') {
+            item.textContent = item.dataset.note;
+        } else {
+            item.textContent = '';
+        }
+
+    }
+}
+
+document.querySelector('.label_cicle_button').onclick = function () {
+    add_label_for_circle();
+}
