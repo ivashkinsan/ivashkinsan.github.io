@@ -144,10 +144,12 @@ let go_active_elem = function (event) {
         active_elem = event;
     }
     // console.log(active_elem);
-    if (active_elem.classList.contains('table_item') || active_elem.classList.contains('point_w_and_b')) {
+    if (active_elem.classList.contains('table_item') || active_elem.classList.contains('point_w_and_b') || active_elem.classList.contains('circle_table_elem')) {
         // active_elem = event.target; 
         active_elem.classList.add('mousemove');
-        algorythm_split_arr = active_elem.dataset.algorythm.split(' ');
+        if (active_elem.dataset.algorythm) {
+            algorythm_split_arr = active_elem.dataset.algorythm.split(' ');
+        }
     }
     if (active_elem.classList.contains('line')) {
         active_elem = active_elem.parentElement;
@@ -559,12 +561,127 @@ let arr_for_position_table = [
     ]
 ]
 let row_label_for_position_arr = ['м2', 'Б2', 'м3', 'Б3', 'ч4', '3Т', 'ч5', 'м6', 'Б6', 'м7', 'Б7'];
-let label_for_column = [
+let label_for_row_in_column = [
     ['Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb'],
     ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'],
     ['Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb'],
     ['F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E']
 ]
+
+// массив массивов с дата атрибутами первой и последней активируемой ноты
+let dataset_note_for_position_table = [
+    [
+        ['C Db', 'Db D', 'D Eb', 'Eb E'],
+        ['C D', 'Db Eb', 'D E'],
+        ['C Eb', 'Db E'],
+        ['C E'],
+        [''],
+        ['B F2'],
+        ['Bb F2', 'B Gb2'],
+        ['A F2', 'Bb Gb2', 'B G2'],
+        ['Ab F2', 'A Gb2', 'Bb G2', 'B Ab2'],
+        ['G F2', 'Ab Gb2', 'A G2', 'Bb Ab2', 'B A2'],
+        ['Gb F2', 'G Gb2', 'Ab G2', 'A Ab2', 'Bb A2', 'B Bb2']
+    ],
+
+    [
+        ['E F'],
+        ['Eb F', 'E Gb'],
+        ['D F', 'Eb Gb', 'E G'],
+        ['Db F', 'D Gb', 'Eb G', 'E Ab'],
+        ['C F', 'Db Gb', 'D G', 'Eb Ab', 'E A'],
+        ['C Gb', 'Db G', 'D Ab', 'Eb A', 'E Bb'],
+        ['C G', 'Db Ab', 'D A', 'Eb Bb', 'E B'],
+        ['C Ab', 'Db A', 'D Bb', 'Eb B'],
+        ['C A', 'Db Bb', 'D B'],
+        ['C Bb', 'Db B'],
+        ['C B'],
+    ],
+    [
+        ['F Gb', 'Gb G', 'G Ab', 'Ab A', 'A Bb', 'Bb B'],
+        ['F G', 'Gb Ab', 'G A', 'Ab Bb', 'A B'],
+        ['F Ab', 'Gb A', 'G Bb', 'Ab B'],
+        ['F A', 'Gb Bb', 'G B'],
+        ['F Bb', 'Gb B'],
+        ['F B'],
+        [''],
+        ['E C2'],
+        ['Eb C2', 'E Db2'],
+        ['D C2', 'Eb Db2', 'E D2'],
+        ['Db C2', 'D Db2', 'Eb D2', 'E Eb2'],
+    ],
+    [
+        ['B C2'],
+        ['Bb C2', 'B Db2'],
+        ['A C2', 'Bb Db2', 'B D2'],
+        ['Ab C2', 'A Db2', 'Bb D2', 'B Eb2'],
+        ['G C2', 'Ab Db2', 'A D2', 'Bb Eb2', 'B E2'],
+        ['Gb C2', 'G Db2', 'Ab D2', 'A Eb2', 'Bb E2'],
+        ['F C2', 'Gb Db2', 'G D2', 'Ab Eb2', 'A E2'],
+        ['F Db2', 'Gb D2', 'G Eb2', 'Ab E2'],
+        ['F D2', 'Gb Eb2', 'G E2'],
+        ['F Eb2', 'Gb E2'],
+        ['F E2']
+    ]
+]
+
+// массив массивов с дополнительно подсвечиваемыми элементами
+let data_algorythm_for_position_table = [
+    [
+        ['C Db D Eb E', 'C Db D Eb E', 'C Db D Eb E', 'C Db D Eb E'],
+        ['C Db D Eb E', 'C Db D Eb E', 'C Db D Eb E'],
+        ['C Db Eb E', 'C Db Eb E'],
+        ['C E'],
+        [''],
+        ['B F2'],
+        ['Bb B F2 Gb2', 'Bb B F2 Gb2'],
+        ['A Bb B F2 Gb2 G2', 'A Bb B F2 Gb2 G2', 'A Bb B F2 Gb2 G2'],
+        ['Ab A Bb B F2 Gb2 G2 Ab2', 'Ab A Bb B F2 Gb2 G2 Ab2', 'Ab A Bb B F2 Gb2 G2 Ab2', 'Ab A Bb B F2 Gb2 G2 Ab2'],
+        ['G Ab A Bb B F2 Gb2 G2 Ab2 A2', 'G Ab A Bb B F2 Gb2 G2 Ab2 A2', 'G Ab A Bb B F2 Gb2 G2 Ab2 A2', 'G Ab A Bb B F2 Gb2 G2 Ab2 A2', 'G Ab A Bb B F2 Gb2 G2 Ab2 A2'],
+        ['Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2']
+    ],
+
+    [
+        ['E F'],
+        ['Eb E F Gb', 'Eb E F Gb'],
+        ['D Eb E F Gb G', 'D Eb E F Gb G', 'D Eb E F Gb G'],
+        ['Db D Eb E F Gb G Ab', 'Db D Eb E F Gb G Ab', 'Db D Eb E F Gb G Ab', 'Db D Eb E F Gb G Ab'],
+        ['C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A'],
+        ['C Db D Eb E Gb G Ab A Bb', 'C Db D Eb E Gb G Ab A Bb', 'C Db D Eb E Gb G Ab A Bb', 'C Db D Eb E Gb G Ab A Bb', 'C Db D Eb E Gb G Ab A Bb'],
+        ['C Db D Eb E G Ab A Bb B', 'C Db D Eb E G Ab A Bb B', 'C Db D Eb E G Ab A Bb B', 'C Db D Eb E G Ab A Bb B', 'C Db D Eb E G Ab A Bb B'],
+        ['C Db D Eb Ab A Bb B', 'C Db D Eb Ab A Bb B', 'C Db D Eb Ab A Bb B', 'C Db D Eb Ab A Bb B'],
+        ['C Db D A Bb B', 'C Db D A Bb B', 'C Db D A Bb B'],
+        ['C Db Bb B', 'C Db Bb B'],
+        ['C B'],
+    ],
+    [
+        ['F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B'],
+        ['F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B'],
+        ['F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B'],
+        ['F Gb G A Bb B', 'F Gb G A Bb B', 'F Gb G A Bb B'],
+        ['F Gb Bb B', 'F Gb Bb B'],
+        ['F B'],
+        [''],
+        ['E C2'],
+        ['Eb E C2 Db2', 'Eb E C2 Db2'],
+        ['D Eb E C2 Db2 D2', 'D Eb E C2 Db2 D2', 'D Eb E C2 Db2 D2'],
+        ['Db D Eb E C2 Db2 D2 Eb2', 'Db D Eb E C2 Db2 D2 Eb2', 'Db D Eb E C2 Db2 D2 Eb2', 'Db D Eb E C2 Db2 D2 Eb2'],
+    ],
+    [
+        ['B C2'],
+        ['Bb B C2 Db2', 'Bb B C2 Db2'],
+        ['A Bb B C2 Db2 D2', 'A Bb B C2 Db2 D2', 'A Bb B C2 Db2 D2'],
+        ['Ab A Bb B C2 Db2 D2 Eb2', 'Ab A Bb B C2 Db2 D2 Eb2', 'Ab A Bb B C2 Db2 D2 Eb2', 'Ab A Bb B C2 Db2 D2 Eb2'],
+        ['G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2'],
+        ['Gb G Ab A Bb C2 Db2 D2 Eb2 E2', 'Gb G Ab A Bb C2 Db2 D2 Eb2 E2', 'Gb G Ab A Bb C2 Db2 D2 Eb2 E2', 'Gb G Ab A Bb C2 Db2 D2 Eb2 E2', 'Gb G Ab A Bb C2 Db2 D2 Eb2 E2'],
+        ['F Gb G Ab A C2 Db2 D2 Eb2 E2', 'F Gb G Ab A C2 Db2 D2 Eb2 E2', 'F Gb G Ab A C2 Db2 D2 Eb2 E2', 'F Gb G Ab A C2 Db2 D2 Eb2 E2', 'F Gb G Ab A C2 Db2 D2 Eb2 E2'],
+        ['F Gb G Ab Db2 D2 Eb2 E2', 'F Gb G Ab Db2 D2 Eb2 E2', 'F Gb G Ab Db2 D2 Eb2 E2', 'F Gb G Ab Db2 D2 Eb2 E2'],
+        ['F Gb G D2 Eb2 E2', 'F Gb G D2 Eb2 E2', 'F Gb G D2 Eb2 E2'],
+        ['F Gb Eb2 E2', 'F Gb Eb2 E2'],
+        ['F E2']
+    ]
+]
+
 let active_position = function () {
     container_table.style.flexDirection = 'row';
 
@@ -594,14 +711,25 @@ let active_position = function () {
                     let new_circle;
                     new_circle = document.createElement('div');
                     new_circle.classList.add('circle_table_elem');
-                    new_circle.dataset.note = label_for_column[i - 1][iii - 1];
-                    console.log(i);
-                    console.log(new_circle);
+                    new_circle.dataset.note = label_for_row_in_column[i - 1][iii - 1];
+
+                    // new_circle.dataset.note = innnnddd;
+                    // innnnddd++;
+                    // console.log(i);
+                    // console.log(new_circle);
                     if (arr_in_strings[iii] == '1b' || arr_in_strings[iii] == '@b' || arr_in_strings[iii] == '0b') {
                         new_circle.classList.add('up_key_circle');
                     }
                     if (arr_in_strings[iii] == '1w' || arr_in_strings[iii] == '1b') {
                         new_circle.classList.add('white_key_circle');
+                        if (dataset_note_for_position_table[i - 1][ii].length > 0) {
+                            let new_arr_for_slice = dataset_note_for_position_table[i - 1][ii].shift().split(' ');
+                            let new_arr_for_algorythm = data_algorythm_for_position_table[i - 1][ii].shift();
+                            new_circle.dataset.algorythm = new_arr_for_algorythm;
+                            new_circle.dataset.start_note = new_arr_for_slice[0];
+                            new_circle.dataset.end_note = new_arr_for_slice[1];
+                        }
+                        // new_circle.dataset.start_note = 
                     }
 
                     if (arr_in_strings[iii] == '@b' || arr_in_strings[iii] == '@w') {
