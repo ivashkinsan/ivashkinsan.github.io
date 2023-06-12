@@ -5,9 +5,11 @@ let create_arr_of_circle = dataset_for_circle.split(' ');
 let all_table_item;
 let all_line;
 let all_point_w_and_b;
+
 let value_table;
 let all_slice_overflow;
 let all_circle_positions;
+let all_active_position_point;
 
 for (let item of all_circle) {
     item.dataset.note = create_arr_of_circle.shift();
@@ -157,6 +159,19 @@ let go_active_elem = function (event) {
         algorythm_split_arr = active_elem.dataset.algorythm.split(' ');
     }
 
+    if (active_elem.classList.contains('circle_table_elem')) {
+        let parent_all_children = active_elem.parentElement.querySelectorAll('.circle_table_elem');
+
+        for (let item of parent_all_children) {
+
+            if (item.dataset.note == active_elem.dataset.start_note) {
+                item.classList.add('yellow');
+            }
+            if (item.dataset.note == active_elem.dataset.end_note) {
+                item.classList.add('yellow');
+            }
+        }
+    }
 
     // console.log(active_elem);
     for (let item of all_circle) {
@@ -255,32 +270,77 @@ window.addEventListener("keydown", function (e) {
 // переключние стрелками вверх вниз влево вправо
 let ind_cursor = 0;
 document.addEventListener('keydown', function (event) {
-        let go_go_elem = (value_table == 'geometry_table') ? all_table_item : all_point_w_and_b;
-        // console.log(go_go_elem);
-        clear_all();
-        switch (event.keyCode) {
-            case 37:
-                (ind_cursor > 0) ? ind_cursor-- : false;
-                go_active_elem(go_go_elem[ind_cursor]);
-                break;
-            case 39:
-                (ind_cursor >= 0 && ind_cursor < 131) ? ind_cursor++ : false;
-                go_active_elem(go_go_elem[ind_cursor]);
-                break;
-            case 40:
-                (ind_cursor >= 0 && ind_cursor < 120) ? ind_cursor += 12: false;
-                go_active_elem(go_go_elem[ind_cursor]);
-                break;
-            case 38:
-                (ind_cursor >= 0 && ind_cursor >= 12) ? ind_cursor -= 12: false;
-                go_active_elem(go_go_elem[ind_cursor]);
-                break;
-            case 32:
-                active_x_block();
-        }
-
-        go_active_elem(go_go_elem[ind_cursor]);
+    let go_go_elem;
+    // let go_go_elem = (value_table == 'geometry_table') ? all_table_item : all_point_w_and_b;
+    switch (value_table) {
+        case 'geometry_table':
+            go_go_elem = all_table_item;
+            break;
+        case 'color_table':
+            go_go_elem = all_point_w_and_b;
+            break;
+        case 'position_table':
+            go_go_elem = all_active_position_point;
+            break;
     }
+    // console.log(go_go_elem);
+    clear_all();
+    let value_algorythm = go_go_elem[ind_cursor].parentNode.children;
+    let step_indx = 0;
+    // console.log(value_algorythm);
+    // console.log(step_indx);
+    for (let new_item of value_algorythm) {
+        if (new_item.classList.contains('active_point')) {
+            step_indx++;
+        }
+    }
+
+    switch (event.keyCode) {
+
+        case 37:
+            (ind_cursor > 0) ? ind_cursor-- : false;
+            go_active_elem(go_go_elem[ind_cursor]);
+            break;
+        case 39:
+            (ind_cursor >= 0 && ind_cursor < 131) ? ind_cursor++ : false;
+            go_active_elem(go_go_elem[ind_cursor]);
+            break;
+        case 40:
+            if (value_table == 'geometry_table' || value_table == 'color_table') {
+                (ind_cursor >= 0 && ind_cursor < 120) ? ind_cursor += 12 : false;
+                go_active_elem(go_go_elem[ind_cursor]);
+            }
+
+            if (value_table == 'position_table') {
+                (ind_cursor >= 0 && ind_cursor < 131) ? ind_cursor += step_indx : false;
+                go_active_elem(go_go_elem[ind_cursor]);
+                // console.log(step_indx);
+            }
+
+            break;
+        case 38:
+            if (value_table == 'geometry_table' || value_table == 'color_table') {
+                (ind_cursor >= 0 && ind_cursor >= 12) ? ind_cursor -= 12 : false;
+                go_active_elem(go_go_elem[ind_cursor]);
+            }
+            if (value_table == 'position_table') {
+                (ind_cursor >= 0 && ind_cursor > step_indx) ? ind_cursor -= step_indx : false;
+                go_active_elem(go_go_elem[ind_cursor]);
+            }
+            break;
+        case 32:
+            if (value_table == 'geometry_table') {
+                active_x_block();
+            }
+            if (value_table == 'position_table') {
+                slice_overflow_circle();
+            }
+
+            break;
+    }
+
+    go_active_elem(go_go_elem[ind_cursor]);
+}
 
 );
 
@@ -452,21 +512,16 @@ let create_white_black_table = function () {
 
 }
 
-// create_table(tactile_table);
-// add_dataatr(all_table_item,dataset_note,data_algorythm);
-// active_space();
-
-// create_white_black_table();
-
 
 
 document.querySelector('.geometry_btn').onclick = function () {
     container_table.replaceChildren();
-    create_table(tactile_table);
-    add_dataatr(all_table_item, dataset_note, data_algorythm);
-    active_space();
     document.querySelector('.hide_show_block_geometry').classList.remove('hide_btn');
     document.querySelector('.hide_show_block_position').classList.add('hide_btn');
+
+    create_table(tactile_table); // создание таблицы
+    add_dataatr(all_table_item, dataset_note, data_algorythm); // добавление атрибутов
+    active_space(); // добавление отступов
     value_table = 'geometry_table';
     ind_cursor = 0;
 }
@@ -478,34 +533,28 @@ document.querySelector('.margin_button').onclick = function () {
 }
 document.querySelector('.color_btn').onclick = function () {
     container_table.replaceChildren();
-    create_white_black_table();
     document.querySelector('.hide_show_block_geometry').classList.add('hide_btn');
     document.querySelector('.hide_show_block_position').classList.add('hide_btn');
-    add_dataatr(all_point_w_and_b, data_attr_point, point_algorythm);
+
+    create_white_black_table();// создание таблицы
+    add_dataatr(all_point_w_and_b, data_attr_point, point_algorythm);// добавление атрибутов
     value_table = 'color_table';
     ind_cursor = 0;
 }
 
 document.querySelector('.position_btn').onclick = function () {
+    container_table.replaceChildren();
     document.querySelector('.hide_show_block_position').classList.remove('hide_btn');
     document.querySelector('.hide_show_block_geometry').classList.add('hide_btn');
-    container_table.replaceChildren();
-    active_position();
+
+    active_position(); // добавление атрибутов внутри функции
+    value_table = 'position_table';
+    ind_cursor = 0;
 }
 
-// create_white_black_table();
-// add_dataatr(all_point_w_and_b, data_attr_point, point_algorythm);
-// value_table = 'color_table';
 
 
-// create_table(tactile_table);
-// add_dataatr(all_table_item, dataset_note, data_algorythm);
-// active_space();
-// document.querySelector('.hide_show_block').classList.remove('hide_btn');
-// value_table = 'geometry_table';
-// ind_cursor = 0;
-
-
+// ================================= таблица позиционная ===================================
 let arr_for_position_table = [
     [
         '4XX    @b @w @b @w @b @w       1w 1b 1w 1b 1w      @w @b @w @b @w @b',
@@ -562,125 +611,136 @@ let arr_for_position_table = [
 ]
 let row_label_for_position_arr = ['м2', 'Б2', 'м3', 'Б3', 'ч4', '3Т', 'ч5', 'м6', 'Б6', 'м7', 'Б7'];
 let label_for_row_in_column = [
-    ['Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb'],
+    ['Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F2', 'Gb2', 'G2', 'Ab2', 'A2', 'Bb2'],//вторая октава условна
     ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'],
-    ['Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb'],
-    ['F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E']
+    ['Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C2', 'Db2', 'D2', 'Eb2'],//вторая октава условна
+    ['F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C2', 'Db2', 'D2', 'Eb2', 'E2']//вторая октава условна
 ]
 
-// массив массивов с дата атрибутами первой и последней активируемой ноты
-let dataset_note_for_position_table = [
-    [
-        ['C Db', 'Db D', 'D Eb', 'Eb E'],
-        ['C D', 'Db Eb', 'D E'],
-        ['C Eb', 'Db E'],
-        ['C E'],
-        [''],
-        ['B F2'],
-        ['Bb F2', 'B Gb2'],
-        ['A F2', 'Bb Gb2', 'B G2'],
-        ['Ab F2', 'A Gb2', 'Bb G2', 'B Ab2'],
-        ['G F2', 'Ab Gb2', 'A G2', 'Bb Ab2', 'B A2'],
-        ['Gb F2', 'G Gb2', 'Ab G2', 'A Ab2', 'Bb A2', 'B Bb2']
-    ],
 
-    [
-        ['E F'],
-        ['Eb F', 'E Gb'],
-        ['D F', 'Eb Gb', 'E G'],
-        ['Db F', 'D Gb', 'Eb G', 'E Ab'],
-        ['C F', 'Db Gb', 'D G', 'Eb Ab', 'E A'],
-        ['C Gb', 'Db G', 'D Ab', 'Eb A', 'E Bb'],
-        ['C G', 'Db Ab', 'D A', 'Eb Bb', 'E B'],
-        ['C Ab', 'Db A', 'D Bb', 'Eb B'],
-        ['C A', 'Db Bb', 'D B'],
-        ['C Bb', 'Db B'],
-        ['C B'],
-    ],
-    [
-        ['F Gb', 'Gb G', 'G Ab', 'Ab A', 'A Bb', 'Bb B'],
-        ['F G', 'Gb Ab', 'G A', 'Ab Bb', 'A B'],
-        ['F Ab', 'Gb A', 'G Bb', 'Ab B'],
-        ['F A', 'Gb Bb', 'G B'],
-        ['F Bb', 'Gb B'],
-        ['F B'],
-        [''],
-        ['E C2'],
-        ['Eb C2', 'E Db2'],
-        ['D C2', 'Eb Db2', 'E D2'],
-        ['Db C2', 'D Db2', 'Eb D2', 'E Eb2'],
-    ],
-    [
-        ['B C2'],
-        ['Bb C2', 'B Db2'],
-        ['A C2', 'Bb Db2', 'B D2'],
-        ['Ab C2', 'A Db2', 'Bb D2', 'B Eb2'],
-        ['G C2', 'Ab Db2', 'A D2', 'Bb Eb2', 'B E2'],
-        ['Gb C2', 'G Db2', 'Ab D2', 'A Eb2', 'Bb E2'],
-        ['F C2', 'Gb Db2', 'G D2', 'Ab Eb2', 'A E2'],
-        ['F Db2', 'Gb D2', 'G Eb2', 'Ab E2'],
-        ['F D2', 'Gb Eb2', 'G E2'],
-        ['F Eb2', 'Gb E2'],
-        ['F E2']
+
+
+// функция создания и восстановления массивов с дата атрибутами первой и последней активируемой ноты, а так же алгоритмов
+let dataset_note_for_position_table;
+let data_algorythm_for_position_table;
+let return_value_array = function () {
+    dataset_note_for_position_table = [
+        [
+            ['C Db', 'Db D', 'D Eb', 'Eb E'],
+            ['C D', 'Db Eb', 'D E'],
+            ['C Eb', 'Db E'],
+            ['C E'],
+            [''],
+            ['B F2'],
+            ['Bb F2', 'B Gb2'],
+            ['A F2', 'Bb Gb2', 'B G2'],
+            ['Ab F2', 'A Gb2', 'Bb G2', 'B Ab2'],
+            ['G F2', 'Ab Gb2', 'A G2', 'Bb Ab2', 'B A2'],
+            ['Gb F2', 'G Gb2', 'Ab G2', 'A Ab2', 'Bb A2', 'B Bb2']
+        ],
+
+        [
+            ['E F'],
+            ['Eb F', 'E Gb'],
+            ['D F', 'Eb Gb', 'E G'],
+            ['Db F', 'D Gb', 'Eb G', 'E Ab'],
+            ['C F', 'Db Gb', 'D G', 'Eb Ab', 'E A'],
+            ['C Gb', 'Db G', 'D Ab', 'Eb A', 'E Bb'],
+            ['C G', 'Db Ab', 'D A', 'Eb Bb', 'E B'],
+            ['C Ab', 'Db A', 'D Bb', 'Eb B'],
+            ['C A', 'Db Bb', 'D B'],
+            ['C Bb', 'Db B'],
+            ['C B'],
+        ],
+        [
+            ['F Gb', 'Gb G', 'G Ab', 'Ab A', 'A Bb', 'Bb B'],
+            ['F G', 'Gb Ab', 'G A', 'Ab Bb', 'A B'],
+            ['F Ab', 'Gb A', 'G Bb', 'Ab B'],
+            ['F A', 'Gb Bb', 'G B'],
+            ['F Bb', 'Gb B'],
+            ['F B'],
+            [''],
+            ['E C2'],
+            ['Eb C2', 'E Db2'],
+            ['D C2', 'Eb Db2', 'E D2'],
+            ['Db C2', 'D Db2', 'Eb D2', 'E Eb2'],
+        ],
+        [
+            ['B C2'],
+            ['Bb C2', 'B Db2'],
+            ['A C2', 'Bb Db2', 'B D2'],
+            ['Ab C2', 'A Db2', 'Bb D2', 'B Eb2'],
+            ['G C2', 'Ab Db2', 'A D2', 'Bb Eb2', 'B E2'],
+            ['Gb C2', 'G Db2', 'Ab D2', 'A Eb2', 'Bb E2'],
+            ['F C2', 'Gb Db2', 'G D2', 'Ab Eb2', 'A E2'],
+            ['F Db2', 'Gb D2', 'G Eb2', 'Ab E2'],
+            ['F D2', 'Gb Eb2', 'G E2'],
+            ['F Eb2', 'Gb E2'],
+            ['F E2']
+        ]
     ]
-]
 
-// массив массивов с дополнительно подсвечиваемыми элементами
-let data_algorythm_for_position_table = [
-    [
-        ['C Db D Eb E', 'C Db D Eb E', 'C Db D Eb E', 'C Db D Eb E'],
-        ['C Db D Eb E', 'C Db D Eb E', 'C Db D Eb E'],
-        ['C Db Eb E', 'C Db Eb E'],
-        ['C E'],
-        [''],
-        ['B F2'],
-        ['Bb B F2 Gb2', 'Bb B F2 Gb2'],
-        ['A Bb B F2 Gb2 G2', 'A Bb B F2 Gb2 G2', 'A Bb B F2 Gb2 G2'],
-        ['Ab A Bb B F2 Gb2 G2 Ab2', 'Ab A Bb B F2 Gb2 G2 Ab2', 'Ab A Bb B F2 Gb2 G2 Ab2', 'Ab A Bb B F2 Gb2 G2 Ab2'],
-        ['G Ab A Bb B F2 Gb2 G2 Ab2 A2', 'G Ab A Bb B F2 Gb2 G2 Ab2 A2', 'G Ab A Bb B F2 Gb2 G2 Ab2 A2', 'G Ab A Bb B F2 Gb2 G2 Ab2 A2', 'G Ab A Bb B F2 Gb2 G2 Ab2 A2'],
-        ['Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2']
-    ],
+    // массив массивов с дополнительно подсвечиваемыми элементами
 
-    [
-        ['E F'],
-        ['Eb E F Gb', 'Eb E F Gb'],
-        ['D Eb E F Gb G', 'D Eb E F Gb G', 'D Eb E F Gb G'],
-        ['Db D Eb E F Gb G Ab', 'Db D Eb E F Gb G Ab', 'Db D Eb E F Gb G Ab', 'Db D Eb E F Gb G Ab'],
-        ['C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A'],
-        ['C Db D Eb E Gb G Ab A Bb', 'C Db D Eb E Gb G Ab A Bb', 'C Db D Eb E Gb G Ab A Bb', 'C Db D Eb E Gb G Ab A Bb', 'C Db D Eb E Gb G Ab A Bb'],
-        ['C Db D Eb E G Ab A Bb B', 'C Db D Eb E G Ab A Bb B', 'C Db D Eb E G Ab A Bb B', 'C Db D Eb E G Ab A Bb B', 'C Db D Eb E G Ab A Bb B'],
-        ['C Db D Eb Ab A Bb B', 'C Db D Eb Ab A Bb B', 'C Db D Eb Ab A Bb B', 'C Db D Eb Ab A Bb B'],
-        ['C Db D A Bb B', 'C Db D A Bb B', 'C Db D A Bb B'],
-        ['C Db Bb B', 'C Db Bb B'],
-        ['C B'],
-    ],
-    [
-        ['F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B'],
-        ['F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B'],
-        ['F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B'],
-        ['F Gb G A Bb B', 'F Gb G A Bb B', 'F Gb G A Bb B'],
-        ['F Gb Bb B', 'F Gb Bb B'],
-        ['F B'],
-        [''],
-        ['E C2'],
-        ['Eb E C2 Db2', 'Eb E C2 Db2'],
-        ['D Eb E C2 Db2 D2', 'D Eb E C2 Db2 D2', 'D Eb E C2 Db2 D2'],
-        ['Db D Eb E C2 Db2 D2 Eb2', 'Db D Eb E C2 Db2 D2 Eb2', 'Db D Eb E C2 Db2 D2 Eb2', 'Db D Eb E C2 Db2 D2 Eb2'],
-    ],
-    [
-        ['B C2'],
-        ['Bb B C2 Db2', 'Bb B C2 Db2'],
-        ['A Bb B C2 Db2 D2', 'A Bb B C2 Db2 D2', 'A Bb B C2 Db2 D2'],
-        ['Ab A Bb B C2 Db2 D2 Eb2', 'Ab A Bb B C2 Db2 D2 Eb2', 'Ab A Bb B C2 Db2 D2 Eb2', 'Ab A Bb B C2 Db2 D2 Eb2'],
-        ['G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2'],
-        ['Gb G Ab A Bb C2 Db2 D2 Eb2 E2', 'Gb G Ab A Bb C2 Db2 D2 Eb2 E2', 'Gb G Ab A Bb C2 Db2 D2 Eb2 E2', 'Gb G Ab A Bb C2 Db2 D2 Eb2 E2', 'Gb G Ab A Bb C2 Db2 D2 Eb2 E2'],
-        ['F Gb G Ab A C2 Db2 D2 Eb2 E2', 'F Gb G Ab A C2 Db2 D2 Eb2 E2', 'F Gb G Ab A C2 Db2 D2 Eb2 E2', 'F Gb G Ab A C2 Db2 D2 Eb2 E2', 'F Gb G Ab A C2 Db2 D2 Eb2 E2'],
-        ['F Gb G Ab Db2 D2 Eb2 E2', 'F Gb G Ab Db2 D2 Eb2 E2', 'F Gb G Ab Db2 D2 Eb2 E2', 'F Gb G Ab Db2 D2 Eb2 E2'],
-        ['F Gb G D2 Eb2 E2', 'F Gb G D2 Eb2 E2', 'F Gb G D2 Eb2 E2'],
-        ['F Gb Eb2 E2', 'F Gb Eb2 E2'],
-        ['F E2']
+    data_algorythm_for_position_table = [
+        [
+            ['C Db D Eb E', 'C Db D Eb E', 'C Db D Eb E', 'C Db D Eb E'],
+            ['C Db D Eb E', 'C Db D Eb E', 'C Db D Eb E'],
+            ['C Db Eb E', 'C Db Eb E'],
+            ['C E'],
+            [''],
+            ['B F2'],
+            ['Bb B F2 Gb2', 'Bb B F2 Gb2'],
+            ['A Bb B F2 Gb2 G2', 'A Bb B F2 Gb2 G2', 'A Bb B F2 Gb2 G2'],
+            ['Ab A Bb B F2 Gb2 G2 Ab2', 'Ab A Bb B F2 Gb2 G2 Ab2', 'Ab A Bb B F2 Gb2 G2 Ab2', 'Ab A Bb B F2 Gb2 G2 Ab2'],
+            ['G Ab A Bb B F2 Gb2 G2 Ab2 A2', 'G Ab A Bb B F2 Gb2 G2 Ab2 A2', 'G Ab A Bb B F2 Gb2 G2 Ab2 A2', 'G Ab A Bb B F2 Gb2 G2 Ab2 A2', 'G Ab A Bb B F2 Gb2 G2 Ab2 A2'],
+            ['Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2', 'Gb G Ab A Bb B F2 Gb2 G2 Ab2 A2 Bb2']
+        ],
+
+        [
+            ['E F'],
+            ['Eb E F Gb', 'Eb E F Gb'],
+            ['D Eb E F Gb G', 'D Eb E F Gb G', 'D Eb E F Gb G'],
+            ['Db D Eb E F Gb G Ab', 'Db D Eb E F Gb G Ab', 'Db D Eb E F Gb G Ab', 'Db D Eb E F Gb G Ab'],
+            ['C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A'],
+            ['C Db D Eb E Gb G Ab A Bb', 'C Db D Eb E Gb G Ab A Bb', 'C Db D Eb E Gb G Ab A Bb', 'C Db D Eb E Gb G Ab A Bb', 'C Db D Eb E Gb G Ab A Bb'],
+            ['C Db D Eb E G Ab A Bb B', 'C Db D Eb E G Ab A Bb B', 'C Db D Eb E G Ab A Bb B', 'C Db D Eb E G Ab A Bb B', 'C Db D Eb E G Ab A Bb B'],
+            ['C Db D Eb Ab A Bb B', 'C Db D Eb Ab A Bb B', 'C Db D Eb Ab A Bb B', 'C Db D Eb Ab A Bb B'],
+            ['C Db D A Bb B', 'C Db D A Bb B', 'C Db D A Bb B'],
+            ['C Db Bb B', 'C Db Bb B'],
+            ['C B'],
+        ],
+        [
+            ['F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B'],
+            ['F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B'],
+            ['F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B', 'F Gb G Ab A Bb B'],
+            ['F Gb G A Bb B', 'F Gb G A Bb B', 'F Gb G A Bb B'],
+            ['F Gb Bb B', 'F Gb Bb B'],
+            ['F B'],
+            [''],
+            ['E C2'],
+            ['Eb E C2 Db2', 'Eb E C2 Db2'],
+            ['D Eb E C2 Db2 D2', 'D Eb E C2 Db2 D2', 'D Eb E C2 Db2 D2'],
+            ['Db D Eb E C2 Db2 D2 Eb2', 'Db D Eb E C2 Db2 D2 Eb2', 'Db D Eb E C2 Db2 D2 Eb2', 'Db D Eb E C2 Db2 D2 Eb2'],
+        ],
+        [
+            ['B C2'],
+            ['Bb B C2 Db2', 'Bb B C2 Db2'],
+            ['A Bb B C2 Db2 D2', 'A Bb B C2 Db2 D2', 'A Bb B C2 Db2 D2'],
+            ['Ab A Bb B C2 Db2 D2 Eb2', 'Ab A Bb B C2 Db2 D2 Eb2', 'Ab A Bb B C2 Db2 D2 Eb2', 'Ab A Bb B C2 Db2 D2 Eb2'],
+            ['G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2'],
+            ['Gb G Ab A Bb C2 Db2 D2 Eb2 E2', 'Gb G Ab A Bb C2 Db2 D2 Eb2 E2', 'Gb G Ab A Bb C2 Db2 D2 Eb2 E2', 'Gb G Ab A Bb C2 Db2 D2 Eb2 E2', 'Gb G Ab A Bb C2 Db2 D2 Eb2 E2'],
+            ['F Gb G Ab A C2 Db2 D2 Eb2 E2', 'F Gb G Ab A C2 Db2 D2 Eb2 E2', 'F Gb G Ab A C2 Db2 D2 Eb2 E2', 'F Gb G Ab A C2 Db2 D2 Eb2 E2', 'F Gb G Ab A C2 Db2 D2 Eb2 E2'],
+            ['F Gb G Ab Db2 D2 Eb2 E2', 'F Gb G Ab Db2 D2 Eb2 E2', 'F Gb G Ab Db2 D2 Eb2 E2', 'F Gb G Ab Db2 D2 Eb2 E2'],
+            ['F Gb G D2 Eb2 E2', 'F Gb G D2 Eb2 E2', 'F Gb G D2 Eb2 E2'],
+            ['F Gb Eb2 E2', 'F Gb Eb2 E2'],
+            ['F E2']
+        ]
     ]
-]
+}
+return_value_array();
+
+
 
 let active_position = function () {
     container_table.style.flexDirection = 'row';
@@ -713,10 +773,6 @@ let active_position = function () {
                     new_circle.classList.add('circle_table_elem');
                     new_circle.dataset.note = label_for_row_in_column[i - 1][iii - 1];
 
-                    // new_circle.dataset.note = innnnddd;
-                    // innnnddd++;
-                    // console.log(i);
-                    // console.log(new_circle);
                     if (arr_in_strings[iii] == '1b' || arr_in_strings[iii] == '@b' || arr_in_strings[iii] == '0b') {
                         new_circle.classList.add('up_key_circle');
                     }
@@ -728,6 +784,7 @@ let active_position = function () {
                             new_circle.dataset.algorythm = new_arr_for_algorythm;
                             new_circle.dataset.start_note = new_arr_for_slice[0];
                             new_circle.dataset.end_note = new_arr_for_slice[1];
+                            new_circle.classList.add('active_point');
                         }
                         // new_circle.dataset.start_note = 
                     }
@@ -749,6 +806,8 @@ let active_position = function () {
     }
     all_slice_overflow = document.querySelectorAll('.slice_overflow');
     all_circle_positions = document.querySelectorAll('.circle_table_elem');
+    return_value_array();
+    all_active_position_point = document.querySelectorAll('.active_point');
 }
 
 
