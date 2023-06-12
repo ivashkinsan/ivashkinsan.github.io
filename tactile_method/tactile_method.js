@@ -269,7 +269,9 @@ window.addEventListener("keydown", function (e) {
 
 // переключние стрелками вверх вниз влево вправо
 let ind_cursor = 0;
+
 document.addEventListener('keydown', function (event) {
+    let step_indx = 0;
     let go_go_elem;
     // let go_go_elem = (value_table == 'geometry_table') ? all_table_item : all_point_w_and_b;
     switch (value_table) {
@@ -283,60 +285,72 @@ document.addEventListener('keydown', function (event) {
             go_go_elem = all_active_position_point;
             break;
     }
-    // console.log(go_go_elem);
     clear_all();
+
     let value_algorythm = go_go_elem[ind_cursor].parentNode.children;
-    let step_indx = 0;
     // console.log(value_algorythm);
-    // console.log(step_indx);
     for (let new_item of value_algorythm) {
         if (new_item.classList.contains('active_point')) {
             step_indx++;
         }
     }
-
-    switch (event.keyCode) {
-
-        case 37:
-            (ind_cursor > 0) ? ind_cursor-- : false;
-            go_active_elem(go_go_elem[ind_cursor]);
-            break;
-        case 39:
-            (ind_cursor >= 0 && ind_cursor < 131) ? ind_cursor++ : false;
-            go_active_elem(go_go_elem[ind_cursor]);
-            break;
-        case 40:
-            if (value_table == 'geometry_table' || value_table == 'color_table') {
+    if (value_table == 'geometry_table' || value_table == 'color_table') {
+        switch (event.keyCode) {
+            case 37:
+                (ind_cursor > 0) ? ind_cursor-- : false;
+                go_active_elem(go_go_elem[ind_cursor]);
+                break;
+            case 39:
+                (ind_cursor >= 0 && ind_cursor < 131) ? ind_cursor++ : false;
+                go_active_elem(go_go_elem[ind_cursor]);
+                break;
+            case 40:
                 (ind_cursor >= 0 && ind_cursor < 120) ? ind_cursor += 12 : false;
                 go_active_elem(go_go_elem[ind_cursor]);
-            }
-
-            if (value_table == 'position_table') {
-                (ind_cursor >= 0 && ind_cursor < 131) ? ind_cursor += step_indx : false;
-                go_active_elem(go_go_elem[ind_cursor]);
-                // console.log(step_indx);
-            }
-
-            break;
-        case 38:
-            if (value_table == 'geometry_table' || value_table == 'color_table') {
+                break;
+            case 38:
                 (ind_cursor >= 0 && ind_cursor >= 12) ? ind_cursor -= 12 : false;
                 go_active_elem(go_go_elem[ind_cursor]);
-            }
-            if (value_table == 'position_table') {
-                (ind_cursor >= 0 && ind_cursor > step_indx) ? ind_cursor -= step_indx : false;
+                break;
+            case 32:
+                if (value_table == 'geometry_table') {
+                    active_x_block();
+                }
+                break;
+        }
+    }
+    if (value_table == 'position_table') {
+        switch (event.keyCode) {
+            case 37: // влево
+                if (ind_cursor == 0) { ind_cursor = 131; } else {
+                    (ind_cursor > 0) ? ind_cursor-- : false;
+                }
                 go_active_elem(go_go_elem[ind_cursor]);
-            }
-            break;
-        case 32:
-            if (value_table == 'geometry_table') {
-                active_x_block();
-            }
-            if (value_table == 'position_table') {
+                break;
+            case 39: //вправо
+                if (ind_cursor == 131) { ind_cursor = 0; } else {
+                    (ind_cursor >= 0 && ind_cursor < 131) ? ind_cursor++ : false;
+                }
+                go_active_elem(go_go_elem[ind_cursor]);
+                break;
+            case 40://вниз
+                if (ind_cursor == 131) { ind_cursor = 0; } else {
+                    (ind_cursor >= 0 && ind_cursor < 131) ? ind_cursor += step_indx : false;
+                }
+                go_active_elem(go_go_elem[ind_cursor]);
+                break;
+            case 38://вверх
+                if (ind_cursor == 0) {
+                    ind_cursor = 131;
+                } else {
+                    (ind_cursor >= 0 && ind_cursor > step_indx) ? ind_cursor -= step_indx : false;
+                }
+                go_active_elem(go_go_elem[ind_cursor]);
+                break;
+            case 32://пробел
                 slice_overflow_circle();
-            }
-
-            break;
+                break;
+        }
     }
 
     go_active_elem(go_go_elem[ind_cursor]);
