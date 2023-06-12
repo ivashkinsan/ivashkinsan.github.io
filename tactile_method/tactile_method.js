@@ -694,6 +694,10 @@ let return_value_array = function () {
         ]
     ]
 
+
+
+
+
     // массив массивов с дополнительно подсвечиваемыми элементами
 
     data_algorythm_for_position_table = [
@@ -753,6 +757,7 @@ let return_value_array = function () {
     ]
 }
 return_value_array();
+
 
 
 
@@ -826,6 +831,7 @@ let active_position = function () {
 
 
 
+
 let slice_overflow_circle = function () {
 
     for (let item of all_slice_overflow) {
@@ -840,7 +846,8 @@ let add_label_for_circle = function () {
 
     for (let item of all_circle_positions) {
         if (item.textContent == '') {
-            item.textContent = item.dataset.note;
+            let label_dataset_note = item.dataset.note.replace('2', '');
+            item.textContent = label_dataset_note;
         } else {
             item.textContent = '';
         }
