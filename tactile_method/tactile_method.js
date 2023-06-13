@@ -443,11 +443,11 @@ let point_algorythm = [
     ['D Eb E F Gb G', 'D Eb E F Gb G', 'A Bb B C2 Db2 D2', 'A Bb B C2 Db2 D2', 'C Db D Eb E', 'F Gb G Ab A', 'G Ab A Bb B', 'D Eb E F Gb G', 'A Bb B C2 Db2 D2', 'C Db D Eb E', 'F Gb G Ab A', 'G Ab A Bb B'],
     ['C Db D Eb E', 'F Gb G Ab A', 'G Ab A Bb B', 'D Gb E Ab A Db2 B Eb2', 'D Gb E Ab A Db2 B Eb2', 'D Gb E Ab A Db2 B Eb2', 'D Gb E Ab A Db2 B Eb2', 'Gb G Ab A Bb', 'Db Eb F G Ab Bb C2 D2', 'Db Eb F G Ab Bb C2 D2', 'Db Eb F G Ab Bb C2 D2', 'Db Eb F G Ab Bb C2 D2'],
 
-    ['C Db Eb F', 'D Eb Gb G', 'E Gb Ab A', 'G Ab Bb C2', 'A Bb Db2 D2', 'B Db2 Eb2 E2', 'F Gb Bb B', 'Db Eb Gb', 'Eb Gb Ab', 'Ab Bb Db2', 'Bb Db2 Eb2', 'F Gb Bb B'],
-    ['F B F2', 'F B F2', 'C D E G A Gb Ab Bb Db2 Eb2', 'C D E G A Gb Ab Bb Db2 Eb2', 'C D E G A Gb Ab Bb Db2 Eb2', 'C D E G A Gb Ab Bb Db2 Eb2', 'C D E G A Gb Ab Bb Db2 Eb2', 'Db Eb Gb Ab Bb G A C2 D2 E2', 'Db Eb Gb Ab Bb G A C2 D2 E2', 'Db Eb Gb Ab Bb G A C2 D2 E2', 'Db Eb Gb Ab Bb G A C2 D2 E2', 'Db Eb Gb Ab Bb G A C2 D2 E2'],
-    ['C E G', 'D F A', 'E G B', 'F A C2', 'G B D2', 'A C2 E2', 'Bb B F2 Gb2', 'Db Eb Gb Ab', 'Eb Gb Ab Bb', 'Gb Ab Bb Db2', 'Ab Bb Db2 Eb2', 'Bb B F2 Gb2'],
+    ['C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'F Gb Bb B', 'C Db D Eb E F Gb G Ab A', 'C Db D Eb E F Gb G Ab A', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'G Ab A Bb B C2 Db2 D2 Eb2 E2', 'F Gb Bb B'],
+    ['F Gb G Ab A Bb B F2', 'F B C2 Db2 D2 Eb2 E2 F2', 'C D E G A Gb Ab Bb Db2 Eb2', 'C D E G A Gb Ab Bb Db2 Eb2', 'C D E G A Gb Ab Bb Db2 Eb2', 'C D E G A Gb Ab Bb Db2 Eb2', 'C D E G A Gb Ab Bb Db2 Eb2', 'Db Eb Gb Ab Bb G A C2 D2 E2', 'Db Eb Gb Ab Bb G A C2 D2 E2', 'Db Eb Gb Ab Bb G A C2 D2 E2', 'Db Eb Gb Ab Bb G A C2 D2 E2', 'Db Eb Gb Ab Bb G A C2 D2 E2'],
+    ['C Db D Eb E G Ab A Bb B', 'C Db D Eb E G Ab A Bb B', 'C Db D Eb E G Ab A Bb B', 'F Gb G Ab A C2 Db2 D2 Eb2 E2', 'F Gb G Ab A C2 Db2 D2 Eb2 E2', 'F Gb G Ab A C2 Db2 D2 Eb2 E2', 'Bb B F2 Gb2', 'C Db D Eb E G Ab A Bb B', 'C Db D Eb E G Ab A Bb B', 'F Gb G Ab A C2 Db2 D2 Eb2 E2', 'F Gb G Ab A C2 Db2 D2 Eb2 E2', 'Bb B F2 Gb2'],
 
-    ['E Ab C2', 'A Db2 F2', 'B Eb2 G2', 'C D F G Ab Bb Db2 Eb2', 'C D F G Ab Bb Db2 Eb2', 'C D F G Ab Bb Db2 Eb2', 'C D F G Ab Bb Db2 Eb2', 'Bb D2 Gb2', 'Db Eb Gb Ab A B D2 E2', 'Db Eb Gb Ab A B D2 E2', 'Db Eb Gb Ab A B D2 E2', 'Db Eb Gb Ab A B D2 E2'],
+    ['E Gb Ab Bb C2', 'A B Db2 Eb2 F2', 'B Db2 Eb2 F2 G2', 'C D F G Ab Bb Db2 Eb2', 'C D F G Ab Bb Db2 Eb2', 'C D F G Ab Bb Db2 Eb2', 'C D F G Ab Bb Db2 Eb2', 'Bb D2 Gb2', 'Db Eb Gb Ab A B D2 E2', 'Db Eb Gb Ab A B D2 E2', 'Db Eb Gb Ab A B D2 E2', 'Db Eb Gb Ab A B D2 E2'],
     ['C Eb Gb A', 'D F Ab B', 'F Ab B D2', 'G Bb Db2 E2', 'E G Bb Db2', 'A C2 Eb2 Gb2', 'B D2 F2 Ab2', 'Db E G Bb', 'Gb A C2 Eb2', 'Eb Gb A C2', 'Ab B D2 F2', 'Bb Db2 E2 G2'],
 
     ['D C2', 'E D2', 'G F2', 'A G2', 'B A2', 'C Bb', 'F Eb2', 'Eb Db2', 'Ab Gb2', 'Bb Ab2', 'Db B', 'Gb E2'],
