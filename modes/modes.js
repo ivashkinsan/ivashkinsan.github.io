@@ -306,7 +306,8 @@ let harm_minor_diatonic = {
     harm_minor:
     {
         name: ['ГАРМОНИЧЕСКИЙ МИНОР', 'HARMONIC MINOR'],
-        chord: '',
+        chord: 'X^(b13)',
+        chord_formula: ['1', 'b3', '5', '7', '9', '11', 'b13'],
         formula: ['1', '2', 'b3', '4', '5', 'b6', '7', '8'],
         tetrachord: ['MIN', 'HARM'],
         alteration: ['b3', 'b6']
@@ -314,7 +315,8 @@ let harm_minor_diatonic = {
     locrian_nat_6:
     {
         name: ['ЛОКРИЙСКИЙ нат 6', 'LOCRIAN nat 6'],
-        chord: '',
+        chord: 'Xm7(b5/b9/13)',
+        chord_formula: ['1', 'b3', 'b5', 'b7', 'b9', '11', '13'],
         formula: ['1', 'b2', 'b3', '4', 'b5', '6', 'b7', '8'],
         tetrachord: ['FRIG', 'TTT(n6)'],
         alteration: ['b2', 'b3', 'b5', 'b7']
@@ -322,7 +324,8 @@ let harm_minor_diatonic = {
     ionian_aug:
     {
         name: ['ИОНИЙСКИЙ #5', 'IONIAN #5'],
-        chord: '',
+        chord: 'X^(#5)',
+        chord_formula: ['1', '3', '#5', '7', '9', '11', '13'],
         formula: ['1', '2', '3', '4', '#5', '6', '7', '8'],
         tetrachord: ['MAJ', 'MAJ(#5)'],
         alteration: ['#5']
@@ -330,7 +333,8 @@ let harm_minor_diatonic = {
     romanian:
     {
         name: ['ДОРИЙСКИЙ #4', 'DORIAN #4'],
-        chord: '',
+        chord: 'Xm7(#11)',
+        chord_formula: ['1', 'b3', '5', 'b7', '9', '#11', '13'],
         formula: ['1', '2', 'b3', '#4', '5', '6', 'b7', '8'],
         tetrachord: ['MIN(#4)', 'MIN'],
         alteration: ['b3', '#4', 'b7']
@@ -338,7 +342,8 @@ let harm_minor_diatonic = {
     mixo_b2_b7:
     {
         name: ['МИКСОЛИДИЙСКИЙ b2 b6', 'MIXOLYDIAN b2 b6'],
-        chord: '',
+        chord: 'X7(b9|b13)',
+        chord_formula: ['1', '3', '5', 'b7', 'b9', '11', 'b13'],
         formula: ['1', 'b2', '3', '4', '5', 'b6', 'b7', '8'],
         tetrachord: ['HARM', 'FRIG'],
         alteration: ['b2', 'b6', 'b7']
@@ -346,7 +351,8 @@ let harm_minor_diatonic = {
     lydian_up_2:
     {
         name: ['ЛИДИЙСКИЙ #2', 'LYDIAN #2'],
-        chord: '',
+        chord: 'X^(#9|#11)',
+        chord_formula: ['1', '3', '5', '7', '#9', '#11', '13'],
         formula: ['1', '#2', '3', '#4', '5', '6', '7', '8'],
         tetrachord: ['TTT(#2)', 'MAJ'],
         alteration: ['#2', '#4']
@@ -354,7 +360,8 @@ let harm_minor_diatonic = {
     ultra_locrian:
     {
         name: ['ум ГАРМ МИНОР (+пт) / СУПЕР АЛЬТ', 'DIM HARM MINOR (+H) / SUPER ALT'],
-        chord: '',
+        chord: 'Xo(b5|b9|b11)',
+        chord_formula: ['1', 'b3', 'b5', 'bb7', 'b9', 'b11', 'b13'],
         formula: ['1', 'b2', 'b3', 'b4', 'b5', 'b6', 'bb7', '8'],
         tetrachord: ['FRIG(b4)', 'TTT(bb7)'],
         alteration: ['b2', 'b3', 'b4', 'b5', 'b6', 'bb7']
@@ -365,7 +372,8 @@ let harm_major_diatonic = {
     harm_major:
     {
         name: ['ГАРМОНИЧЕСКИЙ МАЖОР', 'HARMONIC MAJOR'],
-        chord: '',
+        chord: 'X^(b13)',
+        chord_formula: ['1', '3', '5', '7', '9', '11', 'b13'],
         formula: ['1', '2', '3', '4', '5', 'b6', '7', '8'],
         tetrachord: ['MAJ', 'HARM'],
         alteration: ['b6']
@@ -373,7 +381,8 @@ let harm_major_diatonic = {
     dorian_b5:
     {
         name: ['ЛОКРИЙСКИЙ нат 2,6 / ДОРИЙСКИЙ b5', 'LOCRIAN nat 2,6 / DORIAN b5'],
-        chord: '',
+        chord: 'Xm7(b5|9|11|13)',
+        chord_formula: ['1', 'b3', 'b5', 'b7', '9', '11', '13'],
         formula: ['1', '2', 'b3', '4', 'b5', '6', 'b7', '8'],
         tetrachord: ['MIN', 'MIN(b5)'],
         alteration: ['b3', 'b5', 'b7']
@@ -381,7 +390,8 @@ let harm_major_diatonic = {
     alt_nat_5:
     {
         name: ['ФРИГ b4 / МИКС b2 #2 b6 / АЛЬТ нат 5', 'FRIG b4 / MIX b2 #2 b6 / ALT nat 5'],
-        chord: '',
+        chord: 'Xm7(b9|b11|b13)',
+        chord_formula: ['1', 'b3', '5', 'b7', 'b9', 'b11', 'b13'],
         formula: ['1', 'b2', 'b3', 'b4', '5', 'b6', 'b7', '8'],
         tetrachord: ['FRIG(b4)', 'FRIG'],
         alteration: ['b2', 'b3', 'b4', 'b6', 'b7']
@@ -389,7 +399,8 @@ let harm_major_diatonic = {
     melodic_min_up_4:
     {
         name: ['МЕЛ МИНОР #4 / ЛИДИЙСКИЙ b3', 'MELODIC MINOR #4 / LYDIAN b3'],
-        chord: '',
+        chord: 'Xm^(9|#11|13)',
+        chord_formula: ['1', 'b3', '5', '7', '9', '#11', '13'],
         formula: ['1', '2', 'b3', '#4', '5', '6', '7', '8'],
         tetrachord: ['MIN(#4)', 'MAJ'],
         alteration: ['b3', '#4']
@@ -397,7 +408,8 @@ let harm_major_diatonic = {
     mixolydian_b2:
     {
         name: ['МИКСОЛИДИЙСКИЙ b2', 'MIXOLYDIAN b2'],
-        chord: '',
+        chord: 'X7(b9|11|13)',
+        chord_formula: ['1', '3', '5', 'b7', 'b9', '11', '13'],
         formula: ['1', 'b2', '3', '4', '5', '6', 'b7', '8'],
         tetrachord: ['HARM', 'MIN'],
         alteration: ['b2', 'b7']
@@ -405,7 +417,8 @@ let harm_major_diatonic = {
     lydian_up2_up5:
     {
         name: ['ЛИДИЙСКИЙ #2 #5', 'LYDIAN #2 #5'],
-        chord: '',
+        chord: 'X^(#9|#11|13)',
+        chord_formula: ['1', '3', '#5', '7', '#9', '#11', '13'],
         formula: ['1', '#2', '3', '#4', '#5', '6', '7', '8'],
         tetrachord: ['TTT(#2)', 'MAJ(#5)'],
         alteration: ['#2', '#4', '#5']
@@ -413,7 +426,8 @@ let harm_major_diatonic = {
     dim_harm_major:
     {
         name: ['ум ГАРМ МАЖОР (+пт) / ЛОКР bb7', 'DIM HARMONIC MAJOR (+H)/ LOCRIAN bb7'],
-        chord: '',
+        chord: 'Xo(b9|11|b13)',
+        chord_formula: ['1', 'b3', 'b5', 'bb7', 'b9', '11', 'b13'],
         formula: ['1', 'b2', 'b3', '4', 'b5', 'b6', 'bb7', '8'],
         tetrachord: ['FRIG', 'TTT(bb7)'],
         alteration: ['b2', 'b3', '4', 'b5', 'b6', 'bb7']
@@ -640,6 +654,8 @@ let bag_fix = function (input) {
             return '3';
         case '#2':
             return 'b3';
+        case '#9':
+            return 'b10';
         case 'bb7':
             return '6';
         case 'b11':
