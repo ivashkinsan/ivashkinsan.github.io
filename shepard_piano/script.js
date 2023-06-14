@@ -105,6 +105,9 @@ function resize() {
 }
 resize()
 window.addEventListener("resize", resize)
+
+
+
 group.addEventListener('pointerdown', e => {
   ac.resume()
   pointerdown = true
@@ -119,7 +122,7 @@ window.addEventListener('pointerup', () => {
 
 group.addEventListener('pointerover', e => pointerdown && play(keyNumber.get(e.target)))
 group.addEventListener('pointerleave', stop)
-
+console.log(keyNumber);
 const ac = new AudioContext()
 const volume = ac.createGain()
 let wave
@@ -147,9 +150,12 @@ osc.connect(volume)
 osc.start()
 
 function play(note) {
+  console.log(note);
+  console.log(value);
   volume.gain.value = .3
   if (oldNote === null || value.slide === 0) {
     const freq = 440 * (Math.pow(2, (note - 9) / 12)) / 32
+    console.log(freq);
     osc.frequency.setValueAtTime(freq, ac.currentTime)
     oldNote = note
     return

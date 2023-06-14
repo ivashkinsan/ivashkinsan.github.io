@@ -454,6 +454,7 @@ let generate_table = function (inp_obj, append_obj) {
                     }
                     if (inp_obj[key][kkk].length > 6) {
                         new_children_of_card.classList.add('stage_' + [i + 1]);
+                        new_children_of_card.classList.add('play_elem');
                     }
                     new_item.dataset.algorythm = inp_obj[key].formula;
                     new_item.dataset.chord_formula = inp_obj[key].chord_formula;
@@ -665,60 +666,5 @@ let bag_fix = function (input) {
     }
 }
 
-// модуль органа
-group.addEventListener('pointerover', e => pointerdown && play(keyNumber.get(e.target)))
-group.addEventListener('pointerleave', stop)
+// модуль синтезатора
 
-const ac = new AudioContext()
-const volume = ac.createGain()
-let wave
-let oldNote = null
-volume.gain.value = 0
-volume.connect(ac.destination)
-const osc = ac.createOscillator()
-
-function createWave() {
-    const max = 13
-    const real = new Float32Array(Math.pow(2, max))
-    for (let i = 0; i < max; i += octaveLoop) {
-        real[Math.pow(2, i)] = 1
-        real[Math.pow(2, i) * 3] = value.fifth
-        real[Math.pow(2, i) * 5] = value.third
-    }
-    wave = ac.createPeriodicWave(real, real)
-    osc.setPeriodicWave(wave)
-}
-input.loop.addEventListener("input", createWave)
-input.fifth.addEventListener("input", createWave)
-input.third.addEventListener("input", createWave)
-createWave()
-osc.connect(volume)
-osc.start()
-
-function play(note) {
-    volume.gain.value = .3
-    if (oldNote === null || value.slide === 0) {
-        const freq = 440 * (Math.pow(2, (note - 9) / 12)) / 32
-        osc.frequency.setValueAtTime(freq, ac.currentTime)
-        oldNote = note
-        return
-    }
-    const note2 = note
-    if (oldNote !== null) {
-        while (note - oldNote > 6)
-            note -= 12
-        while (note - oldNote < -6)
-            note += 12
-    }
-    const oldFreq = 440 * (Math.pow(2, (oldNote - 9) / 12)) / 32
-    const freq = 440 * (Math.pow(2, (note - 9) / 12)) / 32
-    osc.frequency.cancelScheduledValues(ac.currentTime)
-    osc.frequency.setValueAtTime(oldFreq, ac.currentTime)
-    osc.frequency.linearRampToValueAtTime(freq, ac.currentTime + value.slide)
-    oldNote = note2
-}
-
-function stop() {
-    volume.gain.value = 0
-    oldNote = null
-}

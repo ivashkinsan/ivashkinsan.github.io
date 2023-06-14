@@ -31,6 +31,7 @@ body {
 
     background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
     border: 10px solid #F4D6B1;
+    cursor: pointer;
 }
 
 
@@ -223,6 +224,7 @@ body {
 .stage_7,
 .stage_8 {
     font-size: 18px;
+
 }
 
 .name {
