@@ -82,8 +82,9 @@ let ton_select_value_numb = 0;
 let ton_select_btn = document.querySelector('.ton_select');
 ton_select_btn.addEventListener('change', function () {
     // console.log(ton_select_btn.value.split(' ')[0]);
-    ton_select_go(ton_select_btn.value.split(' ')[0]);
     stop_all_note();
+    ton_select_go(ton_select_btn.value.split(' ')[0]);
+    
 })
 
 let array_from_numb = [];
@@ -582,6 +583,7 @@ body.addEventListener('mouseout', function () {
 })
 
 // воспроизведение звука по клику
+let song_notes = [];
 let obj_in_out = {
     '1': '1',
     'b2': '2', '2': '3', '#2': '4',
@@ -616,6 +618,8 @@ body.addEventListener('click', function (event) {
             play(obj_in_out[event.target.textContent]);
             event.target.classList.add('click_play_elem');
             add_color_keyboard(event.target.textContent, 'yellow');
+            song_notes.push(obj_in_out[event.target.textContent]);
+            console.log(song_notes);
         }
 
     }
@@ -833,15 +837,13 @@ let frequency_note = {
     '30': '1396.90', '31': '1480.00', '32': '1568.00', '33': '1661.20', '34': '1720.00',
     '35': '1864.60', '36': '1975.50', '37': '2093.00'
 }
-let song_note = [];
+
 // play note
+
 let play = (i) => (Number(i) + ton_select_value_numb) < 0 || A[(Number(i) + ton_select_value_numb)] || (
     i = (Number(i) + ton_select_value_numb),
-    song_note.push(i),
-    console.log(song_note),
     (A[i] = [[...`1248`], [...`3579`], [...`123`], [...`4`]][I].map((j) => (
         (o = C.createOscillator()),
-        // console.log(o),
 
         o.connect((o.g = C.createGain((o.frequency.value = frequency_note[i])))
         ).connect(C.destination),
@@ -851,9 +853,7 @@ let play = (i) => (Number(i) + ton_select_value_numb) < 0 || A[(Number(i) + ton_
 
 // cancel note
 let stop_play = (i) => A[(Number(i) + ton_select_value_numb)] && (
-    // song_note.filter(element => element != song_note),
-    console.log('delete' + song_note),
-    i = (Number(i) + ton_select_value_numb),
+     i = (Number(i) + ton_select_value_numb),
     A[i].map((o) => setTimeout((e) => o.stop(), 350, // stop sound after delay
         o.g.gain.linearRampToValueAtTime(o.g.gain.value, C.currentTime),
         o.g.gain.linearRampToValueAtTime((A[i] = 0), C.currentTime + 0.3))
@@ -868,6 +868,9 @@ let stop_all_note = function () {
     for (let item of all_clicks) {
         stop_play(obj_in_out[item.textContent]);
         item.classList.remove('click_play_elem');
+    }
+    for(let item of song_notes){
+        stop_play(obj_in_out[item]);
     }
 }
 
