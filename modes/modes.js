@@ -1,3 +1,11 @@
+document.oncontextmenu = cmenu;
+
+function cmenu() {
+    return false;
+};
+
+
+
 //SLIDER ZONE
 const slider = document.querySelector(".slider");
 const slides = slider.querySelectorAll(".slide");
@@ -98,6 +106,10 @@ let ton_select_go = function (start_key) {
 let stage_checkbox = document.querySelector('.stage_checkbox');
 stage_checkbox.addEventListener('click', function () {
     console.log(stage_checkbox.checked);
+})
+let play_checkbox = document.querySelector('.play_checkbox');
+stage_checkbox.addEventListener('click', function () {
+    console.log(play_checkbox.checked);
 })
 
 let label_select = document.querySelector('.label_select');
@@ -455,6 +467,7 @@ let generate_table = function (inp_obj, append_obj) {
                     if (inp_obj[key][kkk].length > 6) {
                         new_children_of_card.classList.add('stage_' + [i + 1]);
                         new_children_of_card.classList.add('play_elem');
+                        // new_children_of_card.dataset.sound = i;
                     }
                     new_item.dataset.algorythm = inp_obj[key].formula;
                     new_item.dataset.chord_formula = inp_obj[key].chord_formula;
@@ -564,6 +577,90 @@ body.addEventListener('mouseout', function () {
     remove_color_keyboard('led_on_yellow');
 })
 
+// воспроизведение звука по клику
+let obj_in_out = {
+    '1': '1',
+    'b2': '2', '2': '3', '#2': '4',
+    'b3': '4', '3': '5',
+    'b4': '5', '4': '6', '#4': '7',
+    'b5': '7', '5': '8', '#5': '9',
+    'b6': '9', '6': '10',
+    'bb7': '10', 'b7': '11', '7': '12',
+    '8': '13',
+    'b9': '14', '9': '15', '#9': '16',
+    'b10': '16', '10': '17',
+    'b11': '17', '11': '18', '#11': '19',
+    '12': '20',
+    'b13': '21', '13': '22',
+    'b14': '23', '14': '24'
+}
+
+
+body.addEventListener('click', function (event) {
+
+    console.log(event.target)
+    // поведение активных ступеней
+
+    if (event.target.classList.contains('play_elem') && play_checkbox.checked) {
+        // event.target.parentNode.classList.add('mousemove');
+        if (event.target.classList.contains('click_play_elem')) {
+            stop_play(obj_in_out[event.target.textContent]);
+            event.target.classList.remove('click_play_elem');
+        } else {
+            console.log(obj_in_out[event.target.textContent]);
+            play(obj_in_out[event.target.textContent]);
+            event.target.classList.add('click_play_elem');
+        }
+
+    }
+}
+);
+
+
+
+// воспроизведение ступеней по очереди
+body.addEventListener('contextmenu', function (event) {
+    console.log('contextmenu');
+    if (event.target.classList.contains('play_elem')) {
+        let int = 0;
+        let play_elem_parent;
+        let play_keyb_algorythm;
+        let play_array;
+        if (event.target.parentElement.classList.contains('chord_formula')) {
+            play_elem_parent = event.target.parentNode;
+            play_keyb_algorythm = play_elem_parent.dataset.chord_formula.split(',');
+            play_array = play_elem_parent.dataset.chord_formula.split(',');
+        }
+        if (event.target.parentElement.classList.contains('formula')) {
+            play_elem_parent = event.target.parentNode;
+            play_keyb_algorythm = play_elem_parent.dataset.algorythm.split(',');
+            play_array = play_elem_parent.dataset.algorythm.split(',');
+        }
+
+
+        console.log(play_elem_parent.dataset.chord_formula);
+
+        console.log(play_array)
+        for (let i = 0; i < play_array.length; i++) {
+            setTimeout(function () {
+                add_color_keyboard((play_keyb_algorythm.shift()), 'yellow');
+                play(obj_in_out[play_array[i]]);
+                play_elem_parent.children[i].classList.add('mousemove_yellow');
+            }, int * 300);
+            int += 1;
+            setTimeout(function () {
+                stop_play(obj_in_out[play_array[i]]);
+                play_elem_parent.children[i].classList.remove('mousemove_yellow');
+                remove_color_keyboard('led_on_yellow');
+            }, int * 300);
+
+
+        }
+
+    }
+});
+
+
 
 
 let all_formula_elem = document.querySelectorAll('.formula');
@@ -615,7 +712,7 @@ let add_color_keyboard = function (dataset_algorythm, color) {
             item.classList.remove('led_on_yellow');
             if (new_arr.includes(item.dataset.stage)) {
                 item.classList.add('led_on_yellow');
-                // console.log(new_arr);
+                console.log(new_arr);
             }
         }
     }
@@ -666,5 +763,100 @@ let bag_fix = function (input) {
     }
 }
 
-// модуль синтезатора
+// модуль синтезатора ===============================================================
+
+let C = new AudioContext(); // audio context
+let A = []; // active sounds
+let I = 1; // instrument type
+
+// instrument select
+// [...`∿🎻🎷🎹`].map(
+//     (
+//         i,
+//         j // instrument icons
+//     ) =>
+//     (K.innerHTML +=
+//         i + // icon
+//         `<input type=radio name=I checked onclick=I=${
+//         // radio input
+//         3 - j
+//         }> &nbsp;`)
+// ); 
+
+// instrument select
+
+// piano keys
+// for (
+//     i = 0;
+//     i < 36;
+//     i++ // 3 x 12 keys
+// )
+//     document.body.innerHTML +=
+//         `${i % 12 ? `` : `<br>` // new row
+//         }<div id=K${
+//         // create key
+//         (k = 24 + (i % 12) - ((i / 12) | 0) * 12) // reorder keys
+//         } style='display:inline-block;outline:3px solid #000;background:${
+//         // style
+//         (w = `02579`.indexOf((i % 12) - 1) < 0) // b or w?
+//             ? `#fff;color:#000;width:60px;height:140px` // white
+//             : `#000;position:absolute;margin-left:-15px;width:29px;height:79px` // black
+//         }'onmouseover=event.buttons&&P(${k // mouse over
+//         }) onmousedown=P(${k // mouse down
+//         }) onmouseup=X(${k // mouse up
+//         }) onmouseout=X(${k // mouse out
+//         })>` +
+//         (w ? `<br>` : ``) + // lower white keys
+//         `ZSXDCVGBHNJMQ2W3ER5T6Y7UI9O0P[=]    `[k]; // show key
+
+///////////////////////////////////////////////////////////////////////////////
+// sound
+let frequency_note = {
+    '1': '261.63', '2': '277.18', '3': '293.66', '4': '311.13', '5': '329.63',
+    '6': '349.23', '7': '369.99', '8': '392.00', '9': '415.30', '10': '440.00',
+    '11': '466.16', '12': '493.88',
+    '13': '523.25', '14': '554.36', '15': '587.32', '16': '622.26', '17': '659.26',
+    '18': '698.46', '19': '739.98', '20': '784.00', '21': '830.60', '22': '880.00',
+    '23': '932.32', '24': '987.75', '25': '1046.50'
+}
+// play note
+let play = (i) => i < 0 || A[i] || (
+    (A[i] = [[...`1248`], [...`3579`], [...`123`], [...`4`]][I].map((j) => (
+
+        (o = C.createOscillator()),
+        // console.log(o),
+
+        o.connect((o.g = C.createGain((o.frequency.value = frequency_note[i])))
+        ).connect(C.destination),
+        // console.log(o.frequency.value),
+        (o.g.gain.value = 0.2 / (1 + Math.log2(j))), o.start(), o) // return sound
+    )));
+
+// cancel note
+let stop_play = (i) => A[i] && (
+    A[i].map((o) => setTimeout((e) => o.stop(), 350, // stop sound after delay
+        o.g.gain.linearRampToValueAtTime(o.g.gain.value, C.currentTime),
+        o.g.gain.linearRampToValueAtTime((A[i] = 0), C.currentTime + 0.3))
+    ));
+
+// stop all sounds if focus lost
+let stop_all_note = (e) => A.map((e, i) => stop_play(i));
+
+
+// keyboard key to piano key
+T = (i) => (
+    (k = `ZSXDCVGBHNJM,L.;/Q2W3ER5T6Y7UI9O0P[=]` // map key to note
+        .indexOf(i.key.toUpperCase())), // find key in string
+    k - 5 * (k > 16)
+);
+
+// play note on key down
+onkeydown = (i) => P(T(i));
+
+// release note on key up
+onkeyup = (i) => X(T(i));
+
+
+
+// P(10);
 
