@@ -450,6 +450,71 @@ let harm_major_diatonic = {
         alteration: ['b2', 'b3', '4', 'b5', 'b6', 'bb7']
     },
 }
+let symmetric_modes = {
+    hromatic:
+    {
+        name: ['ХРОМАТИЧЕСКАЯ]', 'HROMATIC'],
+        chord: '-',
+        chord_formula: ['-'],
+        formula: ['1', 'b2', '2', 'b3', '3', '4', 'b5', '5', 'b6', '6', 'b7', '7', '8']
+    },
+    wholetone:
+    {
+        name: ['ЦЕЛОТОНОВАЯ', 'WHOLETONE'],
+        chord: '-',
+        chord_formula: ['-'],
+        formula: ['1', '2', '3', '#4', '#5', 'b7', '8']
+    },
+    diminished_1_05:
+    {
+        name: ['ТОН ПОЛУТОН', 'DIMINISHED WH'],
+        chord: '-',
+        chord_formula: ['-'],
+        formula: ['1', '2', 'b3', '4', 'b5', 'b6', '6', '7', '8']
+    },
+    diminished_05_1:
+    {
+        name: ['ПОЛУТОН ТОН', 'DIMINISHED HW'],
+        chord: '-',
+        chord_formula: ['-'],
+        formula: ['1', 'b2', 'b3', '3', '#4', '5', '6', 'b7', '8']
+    },
+    augmented_05_15:
+    {
+        name: ['УВЕЛИЧЕННАЯ 0.5-1.5', 'AUGMENTED 0.5-1.5'],
+        chord: '-',
+        chord_formula: ['-'],
+        formula: ['1', 'b2', '3', '4', '#5', '6', '8'],
+    },
+    augmented_15_05:
+    {
+        name: ['УВЕЛИЧЕННАЯ 1.5-0.5', 'AUGMENTED 1.5-0.5'],
+        chord: '-',
+        chord_formula: ['-'],
+        formula: ['1', '#2', '3', '5', 'b6', '7', '8'],
+    },
+    messian_HHW:
+    {
+        name: ['МЕССИАНСКАЯ ПТ-ПТ-Т', 'MESSIAN HHW'],
+        chord: '-',
+        chord_formula: ['-'],
+        formula: ['1', 'b2', '2', '3', '4', '#4', '#5', '6', 'b7', '8'],
+    },
+    messian_HWH:
+    {
+        name: ['МЕССИАНСКАЯ ПТ-Т-ПТ', 'MESSIAN HWH'],
+        chord: '-',
+        chord_formula: ['-'],
+        formula: ['1', 'b2', 'b3', '3', '4', '5', 'b6', '6', '7', '8'],
+    },
+    messian_WHH:
+    {
+        name: ['МЕССИАНСКАЯ Т-ПТ-ПТ', 'MESSIAN WHH'],
+        chord: '-',
+        chord_formula: ['-'],
+        formula: ['1', '2', 'b3', '3', '#4', '5', 'b6', 'b7', '7', '8'],
+    },
+}
 
 // функция наполнение-генерация таблицы
 let table_containers = document.querySelectorAll('.table_container');
@@ -523,6 +588,10 @@ generate_table(harm_minor_diatonic, table_containers[3]);
 create_label_table('ДИАТОНИКА ГАРМОНИЧЕСКОГО МАЖОРА', table_containers[4]);
 generate_table(label, table_containers[4]);
 generate_table(harm_major_diatonic, table_containers[4]);
+
+create_label_table('СИММЕТРИЧНЫЕ ГАММЫ', table_containers[5]);
+// generate_table(label, table_containers[5]);
+generate_table(symmetric_modes, table_containers[5]);
 
 
 // работа с курсором мыши
