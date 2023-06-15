@@ -84,7 +84,7 @@ ton_select_btn.addEventListener('change', function () {
     // console.log(ton_select_btn.value.split(' ')[0]);
     stop_all_note();
     ton_select_go(ton_select_btn.value.split(' ')[0]);
-    
+
 })
 
 let array_from_numb = [];
@@ -831,19 +831,26 @@ let frequency_note = {
     // вторая октава
     '13': '523.25', '14': '554.36', '15': '587.32', '16': '622.26', '17': '659.26',
     '18': '698.46', '19': '739.98', '20': '784.00', '21': '830.60', '22': '880.00',
-    '23': '932.32', '24': '987.75', 
+    '23': '932.32', '24': '987.75',
     // третья октава
-    '25': '1046.50', '26': '1108.70', '27': '1174.60', '28': '1244.50', '29': '1318.50', 
+    '25': '1046.50', '26': '1108.70', '27': '1174.60', '28': '1244.50', '29': '1318.50',
     '30': '1396.90', '31': '1480.00', '32': '1568.00', '33': '1661.20', '34': '1720.00',
     '35': '1864.60', '36': '1975.50', '37': '2093.00'
 }
 
-// play note
+let synth_type = 'sine';
+let sound_select = document.querySelector('.sound_select');
+sound_select.addEventListener('change', function () {
+    synth_type = sound_select.value;
+    console.log(synth_type);
+})
 
+
+// play note
 let play = (i) => (Number(i) + ton_select_value_numb) < 0 || A[(Number(i) + ton_select_value_numb)] || (
     i = (Number(i) + ton_select_value_numb),
     (A[i] = [[...`1248`], [...`3579`], [...`123`], [...`4`]][I].map((j) => (
-        (o = C.createOscillator()),
+        (o = C.createOscillator(), o.type = synth_type),
 
         o.connect((o.g = C.createGain((o.frequency.value = frequency_note[i])))
         ).connect(C.destination),
@@ -853,7 +860,7 @@ let play = (i) => (Number(i) + ton_select_value_numb) < 0 || A[(Number(i) + ton_
 
 // cancel note
 let stop_play = (i) => A[(Number(i) + ton_select_value_numb)] && (
-     i = (Number(i) + ton_select_value_numb),
+    i = (Number(i) + ton_select_value_numb),
     A[i].map((o) => setTimeout((e) => o.stop(), 350, // stop sound after delay
         o.g.gain.linearRampToValueAtTime(o.g.gain.value, C.currentTime),
         o.g.gain.linearRampToValueAtTime((A[i] = 0), C.currentTime + 0.3))
@@ -869,7 +876,7 @@ let stop_all_note = function () {
         stop_play(obj_in_out[item.textContent]);
         item.classList.remove('click_play_elem');
     }
-    for(let item of song_notes){
+    for (let item of song_notes) {
         stop_play(obj_in_out[item]);
     }
 }
