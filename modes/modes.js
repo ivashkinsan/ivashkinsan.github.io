@@ -78,10 +78,12 @@ let add_label_for_keyboards = function () {
 // add_label_for_keyboards();
 
 // секция работы с кнопками
+let ton_select_value_numb = 0;
 let ton_select_btn = document.querySelector('.ton_select');
 ton_select_btn.addEventListener('change', function () {
     // console.log(ton_select_btn.value.split(' ')[0]);
     ton_select_go(ton_select_btn.value.split(' ')[0]);
+    stop_all_note();
 })
 
 let array_from_numb = [];
@@ -101,6 +103,7 @@ let ton_select_go = function (start_key) {
         // console.log(keyboard_elements[i])
         start_i++;
     }
+    ton_select_value_numb = start_key - 1;
 }
 
 let stage_checkbox = document.querySelector('.stage_checkbox');
@@ -641,12 +644,14 @@ body.addEventListener('contextmenu', function (event) {
         }
 
 
-        console.log(play_elem_parent.dataset.chord_formula);
+        // console.log(play_elem_parent.dataset.chord_formula);
 
-        console.log(play_array)
+        // console.log(play_array)
         for (let i = 0; i < play_array.length; i++) {
             setTimeout(function () {
                 add_color_keyboard((play_keyb_algorythm.shift()), 'yellow');
+                // console.log(obj_in_out[play_array[i]]);
+                // console.log(obj_in_out[play_array[i]] + ton_select_value_numb);
                 play(obj_in_out[play_array[i]]);
                 play_elem_parent.children[i].classList.add('mousemove_yellow');
             }, int * 300);
@@ -815,17 +820,26 @@ let I = 1; // instrument type
 ///////////////////////////////////////////////////////////////////////////////
 // sound
 let frequency_note = {
+    // первая октава
     '1': '261.63', '2': '277.18', '3': '293.66', '4': '311.13', '5': '329.63',
     '6': '349.23', '7': '369.99', '8': '392.00', '9': '415.30', '10': '440.00',
     '11': '466.16', '12': '493.88',
+    // вторая октава
     '13': '523.25', '14': '554.36', '15': '587.32', '16': '622.26', '17': '659.26',
     '18': '698.46', '19': '739.98', '20': '784.00', '21': '830.60', '22': '880.00',
-    '23': '932.32', '24': '987.75', '25': '1046.50'
+    '23': '932.32', '24': '987.75', 
+    // третья октава
+    '25': '1046.50', '26': '1108.70', '27': '1174.60', '28': '1244.50', '29': '1318.50', 
+    '30': '1396.90', '31': '1480.00', '32': '1568.00', '33': '1661.20', '34': '1720.00',
+    '35': '1864.60', '36': '1975.50', '37': '2093.00'
 }
+let song_note = [];
 // play note
-let play = (i) => i < 0 || A[i] || (
+let play = (i) => (Number(i) + ton_select_value_numb) < 0 || A[(Number(i) + ton_select_value_numb)] || (
+    i = (Number(i) + ton_select_value_numb),
+    song_note.push(i),
+    console.log(song_note),
     (A[i] = [[...`1248`], [...`3579`], [...`123`], [...`4`]][I].map((j) => (
-
         (o = C.createOscillator()),
         // console.log(o),
 
@@ -836,7 +850,10 @@ let play = (i) => i < 0 || A[i] || (
     )));
 
 // cancel note
-let stop_play = (i) => A[i] && (
+let stop_play = (i) => A[(Number(i) + ton_select_value_numb)] && (
+    // song_note.filter(element => element != song_note),
+    console.log('delete' + song_note),
+    i = (Number(i) + ton_select_value_numb),
     A[i].map((o) => setTimeout((e) => o.stop(), 350, // stop sound after delay
         o.g.gain.linearRampToValueAtTime(o.g.gain.value, C.currentTime),
         o.g.gain.linearRampToValueAtTime((A[i] = 0), C.currentTime + 0.3))
