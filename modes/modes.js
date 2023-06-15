@@ -108,8 +108,9 @@ stage_checkbox.addEventListener('click', function () {
     console.log(stage_checkbox.checked);
 })
 let play_checkbox = document.querySelector('.play_checkbox');
-stage_checkbox.addEventListener('click', function () {
+play_checkbox.addEventListener('click', function () {
     console.log(play_checkbox.checked);
+    stop_all_note();
 })
 
 let label_select = document.querySelector('.label_select');
@@ -606,10 +607,12 @@ body.addEventListener('click', function (event) {
         if (event.target.classList.contains('click_play_elem')) {
             stop_play(obj_in_out[event.target.textContent]);
             event.target.classList.remove('click_play_elem');
+
         } else {
             console.log(obj_in_out[event.target.textContent]);
             play(obj_in_out[event.target.textContent]);
             event.target.classList.add('click_play_elem');
+            add_color_keyboard(event.target.textContent, 'yellow');
         }
 
     }
@@ -840,7 +843,16 @@ let stop_play = (i) => A[i] && (
     ));
 
 // stop all sounds if focus lost
-let stop_all_note = (e) => A.map((e, i) => stop_play(i));
+// let stop_all_note = (e) => A.map((e, i) => stop_play(i));
+
+let stop_all_note = function () {
+    console.log('stop_all_note');
+    let all_clicks = document.querySelectorAll('.click_play_elem');
+    for (let item of all_clicks) {
+        stop_play(obj_in_out[item.textContent]);
+        item.classList.remove('click_play_elem');
+    }
+}
 
 
 // keyboard key to piano key
