@@ -766,9 +766,9 @@ body.addEventListener('contextmenu', function (event) {
                 add_color_keyboard((play_keyb_algorythm.shift()), 'yellow');
                 play(obj_in_out[play_array[i]]);
                 if (up_down_play == 'down') {
-                    play_elem_parent.children[i].classList.add('mousemove_yellow');
+                    play_elem_parent.children[i].classList.add('sound_on');
                 } else {
-                    play_elem_parent.children[play_array.length - 1 - i].classList.add('mousemove_yellow');
+                    play_elem_parent.children[play_array.length - 1 - i].classList.add('sound_on');
                 }
 
             }, int * 300);
@@ -776,14 +776,14 @@ body.addEventListener('contextmenu', function (event) {
             setTimeout(function () {
                 stop_play(obj_in_out[play_array[i]]);
                 if (up_down_play == 'down') {
-                    play_elem_parent.children[i].classList.remove('mousemove_yellow');
+                    play_elem_parent.children[i].classList.remove('sound_on');
                 } else {
-                    play_elem_parent.children[play_array.length - 1 - i].classList.remove('mousemove_yellow');
+                    play_elem_parent.children[play_array.length - 1 - i].classList.remove('sound_on');
                 }
                 remove_color_keyboard('led_on_yellow');
             }, int * 300);
         }
-        (up_down_play == 'up') ? up_down_play = 'down': up_down_play = 'up';
+        (up_down_play == 'up') ? up_down_play = 'down' : up_down_play = 'up';
         console.log(up_down_play);
     }
 });
@@ -999,11 +999,11 @@ let play = (i) => (Number(i) + ton_select_value_numb) < 0 || A[(Number(i) + ton_
         [...`123`],
         [...`4`]
     ][I].map((j) => (
-            (o = C.createOscillator(), o.type = synth_type),
+        (o = C.createOscillator(), o.type = synth_type),
 
-            o.connect((o.g = C.createGain((o.frequency.value = frequency_note[i])))).connect(C.destination),
-            // console.log(o.frequency.value),
-            (o.g.gain.value = 0.1 / (1 + Math.log2(j))), o.start(), o) // return sound
+        o.connect((o.g = C.createGain((o.frequency.value = frequency_note[i])))).connect(C.destination),
+        // console.log(o.frequency.value),
+        (o.g.gain.value = 0.1 / (1 + Math.log2(j))), o.start(), o) // return sound
     )));
 
 // cancel note

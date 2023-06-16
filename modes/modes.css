@@ -331,3 +331,7 @@ body {
 .click_play_elem {
     box-shadow: inset 2px 2px 0 rgb(105, 195, 1), inset -2px -2px 0 rgb(105, 195, 1);
 }
+
+.sound_on {
+    background-color: rgb(187, 0, 255);
+}
