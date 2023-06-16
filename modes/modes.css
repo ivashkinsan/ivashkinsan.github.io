@@ -201,12 +201,12 @@ body {
     font-family: 'Opus Text Std';
 }
 
-.formula>div:nth-child(1),
+/* .formula>div:nth-child(1),
 .formula>div:nth-child(4),
 .formula>div:nth-child(5),
 .formula>div:nth-child(8) {
     background-color: rgba(255, 255, 255, 0.15);
-}
+} */
 
 /* .stage_1,
 .stage_4,
@@ -214,17 +214,9 @@ body {
 .stage_8 {
     background-color: rgba(255, 255, 255, 0.15);
 } */
-
-.stage_1,
-.stage_2,
-.stage_3,
-.stage_4,
-.stage_5,
-.stage_6,
-.stage_7,
-.stage_8 {
+.chord_formula,
+.formula {
     font-size: 18px;
-
 }
 
 .name {
