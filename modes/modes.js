@@ -1,8 +1,8 @@
-document.oncontextmenu = cmenu;
+// document.oncontextmenu = cmenu;
 
-function cmenu() {
-    return false;
-};
+// function cmenu() {
+//     return false;
+// };
 
 
 
@@ -124,7 +124,7 @@ label_select.addEventListener('change', function () {
 
 let label = {
     label: {
-        name_header: 'НАЗВАНИЕ ЛАДА',
+        name_header: 'НАЗВАНИЕ ЛАДА &#9660;',
         chord_header: 'АККОРД',
         chord_formula_header: 'АКК СТУПЕНИ',
         formula_header: 'СТУПЕНИ',
@@ -191,6 +191,7 @@ let major_diatonic = {
         alteration: ['b2', 'b3', 'b5', 'b6', 'b7']
     },
 }
+
 let major_diatonic_sort = {
     lydian: {
         name: ['ЛИДИЙСКИЙ', 'LYDIAN'],
@@ -251,7 +252,6 @@ let major_diatonic_sort = {
 }
 
 let other_modes = {
-
     harmonic_minor: {
         name: ['ГАРМОНИЧЕСКИЙ МИНОР', 'HARMONIC MINOR'],
         chord: 'Xm^',
@@ -556,12 +556,12 @@ let generate_table = function (inp_obj, append_obj) {
                     }
                     new_item.dataset.algorythm = inp_obj[key].formula;
                     new_item.dataset.chord_formula = inp_obj[key].chord_formula;
-                    new_children_of_card.textContent = inp_obj[key][kkk][i];
+                    new_children_of_card.innerHTML = inp_obj[key][kkk][i];
                     new_item.append(new_children_of_card);
                 }
                 append_obj.appendChild(new_item);
             } else {
-                new_item.textContent = inp_obj[key][kkk];
+                new_item.innerHTML = inp_obj[key][kkk];
                 append_obj.appendChild(new_item);
             }
             //добавить блок для разрыва колонок
@@ -582,6 +582,8 @@ let create_label_table = function (text, append_obj) {
     append_obj.append(new_item);
 
 }
+
+
 
 // создание таблицы
 create_label_table('ДИАТОНИКА МАЖОРА', table_containers[0])
@@ -608,9 +610,6 @@ create_label_table('СИММЕТРИЧНЫЕ ГАММЫ', table_containers[5]);
 // generate_table(label, table_containers[5]);
 generate_table(symmetric_modes, table_containers[5]);
 
-create_label_table('ДИАТОНИКА МАЖОРА', table_containers[6])
-generate_table(label, table_containers[6]);
-generate_table(major_diatonic_sort, table_containers[6]);
 
 // работа с курсором мыши
 let body = document.querySelector('body');
@@ -706,9 +705,10 @@ let obj_in_out = {
 }
 
 
+let sort_btn = 'no_sort';
 body.addEventListener('click', function (event) {
 
-    console.log(event.target)
+    // console.log(event.target);
     // поведение активных ступеней
 
     if (event.target.classList.contains('play_elem') && play_checkbox.checked) {
@@ -727,6 +727,24 @@ body.addEventListener('click', function (event) {
         }
 
     }
+
+    //сортировка диатоник
+    if (event.target.classList.contains('name_header')) {
+        if (sort_btn == 'no_sort') {
+            table_containers[0].replaceChildren();
+            create_label_table('ДИАТОНИКА МАЖОРА (по светлости)', table_containers[0]);
+            generate_table(label, table_containers[0]);
+            generate_table(major_diatonic_sort, table_containers[0]);
+            sort_btn = 'sort';
+        } else {
+            table_containers[0].replaceChildren();
+            create_label_table('ДИАТОНИКА МАЖОРА', table_containers[0])
+            generate_table(label, table_containers[0]);
+            generate_table(major_diatonic, table_containers[0]);
+            sort_btn = 'no_sort';
+        }
+    }
+
 });
 
 

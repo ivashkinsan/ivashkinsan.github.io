@@ -31,7 +31,7 @@ body {
 
     background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
     border: 10px solid #F4D6B1;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 
@@ -176,6 +176,10 @@ body {
     padding: 10px;
     border-top: 0.5px rgba(39, 215, 255, 0.3) solid;
     border-bottom: 0.5px rgba(39, 215, 255, 0.3) solid;
+}
+
+.name_header {
+    cursor: pointer;
 }
 
 .table_item {
