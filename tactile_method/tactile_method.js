@@ -858,3 +858,96 @@ let add_label_for_circle = function () {
 document.querySelector('.label_cicle_button').onclick = function () {
     add_label_for_circle();
 }
+
+
+// ================================= таблица хроматическая ===================================
+let arr_for_chromatic_rythm_table = [
+    [
+        'дуоли_1     11w 11b 22w 22b 11w 11w 22b 22w 11b 11w 22b 22w 0w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'дуоли_2     +1w 22b 22w 11b 11w 22w 22b 11w 11b 22w 22b 11w 11w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+
+        'триоли_1    11w 11b 11w 22b 22w 22w 11b 11w 11b 22w 22b 22w 0w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'триоли_2    0w 11b 11w 11b 22w 22w 22b 11w 11b 11w 22b 22w 22w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'триоли_3    0w 0b 11w 11b 11w 22w 22b 22w 11b 11w 11b 22w 22w 22b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+
+        'квартоли_1    11w 11b 11w 11b 22w 22w 22b 22w 11b 11w 11b 11w 0w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'квартоли_2    0w 11b 11w 11b 11w 22w 22b 22w 22b 11w 11b 11w 11w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'квартоли_3    0w 0b 11w 11b 11w 11w 22b 22w 22b 22w 11b 11w 11w 11b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'квартоли_4    0w 0b 0w 0b 11w 11w 11b 11w 22b 22w 22b 22w 11w 11b 11w 11b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+    ],
+]
+let arr_label_for_chromatic_rythm_table = [
+    ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C']
+]
+let gamma_generate = function () {
+    container_table.style.flexDirection = 'row';
+
+    for (let i = 0; i < 2; i++) {
+        let new_column = document.createElement('div');
+        new_column.classList.add('column_for_position');
+        for (let ii = 0; ii < 9; ii++) {
+            let new_row;
+
+            let array_in_strings = arr_for_chromatic_rythm_table[0][ii].split(' ').filter(element => element != '');
+            if (i == 0) {
+                new_row = document.createElement('div');
+                new_row.classList.add('row_label_for_chrom');
+                new_row.textContent = array_in_strings[0];
+                new_column.append(new_row);
+            } else {
+
+                new_row = document.createElement('div');
+                new_row.classList.add('row_for_position');
+                let label_one_color_number_circle = 1;
+                let label_two_color_number_circle = 1;
+                for (let iii = 1; iii < array_in_strings.length; iii++) {
+                    let new_circle;
+                    new_circle = document.createElement('div');
+                    new_circle.classList.add('circle_table_elem');
+                    new_circle.dataset.note = arr_label_for_chromatic_rythm_table[i - 1][iii - 1];
+
+                    if (array_in_strings[iii] == '11b' || array_in_strings[iii] == '22b' || array_in_strings[iii] == '0b') {
+                        new_circle.classList.add('up_key_circle');
+                    }
+
+                    if (array_in_strings[iii] == '11b' || array_in_strings[iii] == '11w') {
+                        new_circle.classList.add('one_color_key_circle');
+                        new_circle.textContent = label_one_color_number_circle;
+                        label_one_color_number_circle++;
+                        label_two_color_number_circle = 1;
+                    }
+                    if (array_in_strings[iii] == '22b' || array_in_strings[iii] == '22w') {
+                        new_circle.classList.add('two_color_key_circle');
+                        label_one_color_number_circle = 1;
+                        new_circle.textContent = label_two_color_number_circle;
+                        label_two_color_number_circle++;
+                    }
+
+
+                    if (array_in_strings[iii] == '11w' || array_in_strings[iii] == '22w') {
+                        // new_circle.classList.add('white_key_circle');
+                        if (dataset_note_for_position_table[i - 1][ii].length > 0) {
+                            let new_arr_for_slice = dataset_note_for_position_table[i - 1][ii].shift().split(' ');
+                            let new_arr_for_algorythm = data_algorythm_for_position_table[i - 1][ii].shift();
+                            // new_circle.dataset.algorythm = new_arr_for_algorythm;
+                            // new_circle.dataset.start_note = new_arr_for_slice[0];
+                            // new_circle.dataset.end_note = new_arr_for_slice[1];
+                            new_circle.classList.add('active_point');
+                        }
+                    }
+
+                    if (array_in_strings[iii] == '@b' || array_in_strings[iii] == '@w') {
+                        new_circle.classList.add('slice_overflow');
+                    }
+
+                    new_row.append(new_circle);
+
+                }
+            }
+            new_column.append(new_row);
+        }
+        container_table.append(new_column);
+    }
+}
+
+gamma_generate();

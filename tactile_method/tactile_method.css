@@ -295,3 +295,19 @@ section {
 .dash_border {
     border: 2px dashed #46f3ff;
 }
+
+/* =============================== chromatic ================================ */
+.row_label_for_chrom {
+    width: 100px;
+    height: 100%;
+    text-align: center;
+    font-size: 18px;
+}
+
+.one_color_key_circle {
+    background-color: rgba(136, 227, 255, 0.37);
+}
+
+.two_color_key_circle {
+    background-color: rgba(255, 136, 251, 0.37);
+}
