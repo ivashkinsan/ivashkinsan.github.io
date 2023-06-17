@@ -950,4 +950,4 @@ let gamma_generate = function () {
     }
 }
 
-gamma_generate();
+// gamma_generate();
