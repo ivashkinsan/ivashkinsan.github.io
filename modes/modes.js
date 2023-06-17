@@ -1,8 +1,8 @@
-// document.oncontextmenu = cmenu;
+document.oncontextmenu = cmenu;
 
-// function cmenu() {
-//     return false;
-// };
+function cmenu() {
+    return false;
+};
 
 
 
