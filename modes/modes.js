@@ -808,7 +808,6 @@ body.addEventListener('contextmenu', function (event) {
 
 
 
-
 let all_formula_elem = document.querySelectorAll('.formula');
 let add_color_keyboard = function (dataset_algorythm, color) {
     let new_arr = dataset_algorythm.split(',');
@@ -832,24 +831,35 @@ let add_color_keyboard = function (dataset_algorythm, color) {
                 }
                 // активировать нотные подписи
                 if (label_select.value == 'note') {
-                    let arr_note = item.dataset.note.split(' ');
+                    // console.log(ton_select_btn.value.split(' ')[1]);
+                    let symbol = label_for_key[ton_select_btn.value.split(' ')[1]][new_arr_for_label[ind]];
+                    switch(symbol[1] + symbol[2]){
+                        case 'bb':
+                            symbol = symbol.replace('bb','&#9837&#9837');
+                            break;
+                        case '##':
+                            symbol = symbol.replace('##','&#9839&#9839');
+                            break;
+                        }
 
-                    //проверить строку ступени на знак b
-                    console.log(new_arr_for_label[ind].indexOf('b') > -1);
-                    if (new_arr_for_label[ind].indexOf('b') > -1) {
-                        item.children[0].textContent = arr_note[0];
+                    switch(symbol[1]){
+                        case '0':
+                            symbol = symbol.replace('0','&#9838');
+                            // symbol = symbol + '&#9838';
+                            break;
+                        case 'b':
+                            symbol = symbol.replace('b','&#9837');
+                            // symbol = symbol + '&#9837';
+                            break;
+                        case '#':
+                            symbol = symbol.replace('#','&#9839');
+                            // symbol = symbol + '&#9839';
+                            break;
+                            
                     }
-                    console.log(new_arr_for_label[ind].indexOf('#') > -1);
-                    if (new_arr_for_label[ind].indexOf('#') > -1) {
-                        item.children[0].textContent = arr_note[1];
-                    } else {
-                        item.children[0].textContent = arr_note[0];
-
-                    }
+                    item.children[0].innerHTML = symbol;
                 }
-
                 ind++;
-                // console.log(new_arr);
             }
         }
     }
@@ -858,7 +868,7 @@ let add_color_keyboard = function (dataset_algorythm, color) {
             item.classList.remove('led_on_yellow');
             if (new_arr.includes(item.dataset.stage)) {
                 item.classList.add('led_on_yellow');
-                console.log(new_arr);
+                // console.log(new_arr);
             }
         }
     }
