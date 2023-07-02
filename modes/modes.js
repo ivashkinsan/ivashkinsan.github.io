@@ -801,7 +801,7 @@ body.addEventListener('contextmenu', function (event) {
                 remove_color_keyboard('led_on_yellow');
             }, int * 300);
         }
-        (up_down_play == 'up') ? up_down_play = 'down' : up_down_play = 'up';
+        (up_down_play == 'up') ? up_down_play = 'down': up_down_play = 'up';
         console.log(up_down_play);
     }
 });
@@ -830,32 +830,39 @@ let add_color_keyboard = function (dataset_algorythm, color) {
                     item.children[0].classList.add('opus_text');
                 }
                 // активировать нотные подписи
-                if (label_select.value == 'note') {
+                if (label_select.value == 'note' && label_for_key[ton_select_btn.value.split(' ')[1]]) {
                     // console.log(ton_select_btn.value.split(' ')[1]);
+                    console.log(ton_select_btn.value);
+                    console.log(ton_select_btn.value.split(' ')[1]);
+                    console.log(label_for_key[ton_select_btn.value.split(' ')[1]]);
+                    console.log(new_arr_for_label[ind]);
+                    console.log(label_for_key[ton_select_btn.value.split(' ')[1]][new_arr_for_label[ind]]);
+
+
                     let symbol = label_for_key[ton_select_btn.value.split(' ')[1]][new_arr_for_label[ind]];
-                    switch(symbol[1] + symbol[2]){
+                    switch (symbol[1] + symbol[2]) {
                         case 'bb':
-                            symbol = symbol.replace('bb','&#9837&#9837');
+                            symbol = symbol.replace('bb', '&#9837&#9837');
                             break;
                         case '##':
-                            symbol = symbol.replace('##','&#9839&#9839');
+                            symbol = symbol.replace('##', '&#9839&#9839');
                             break;
-                        }
+                    }
 
-                    switch(symbol[1]){
+                    switch (symbol[1]) {
                         case '0':
-                            symbol = symbol.replace('0','&#9838');
+                            symbol = symbol.replace('0', '&#9838');
                             // symbol = symbol + '&#9838';
                             break;
                         case 'b':
-                            symbol = symbol.replace('b','&#9837');
+                            symbol = symbol.replace('b', '&#9837');
                             // symbol = symbol + '&#9837';
                             break;
                         case '#':
-                            symbol = symbol.replace('#','&#9839');
+                            symbol = symbol.replace('#', '&#9839');
                             // symbol = symbol + '&#9839';
                             break;
-                            
+
                     }
                     item.children[0].innerHTML = symbol;
                 }
@@ -1027,11 +1034,11 @@ let play = (i) => (Number(i) + ton_select_value_numb) < 0 || A[(Number(i) + ton_
         [...`123`],
         [...`4`]
     ][I].map((j) => (
-        (o = C.createOscillator(), o.type = synth_type),
+            (o = C.createOscillator(), o.type = synth_type),
 
-        o.connect((o.g = C.createGain((o.frequency.value = frequency_note[i])))).connect(C.destination),
-        // console.log(o.frequency.value),
-        (o.g.gain.value = 0.1 / (1 + Math.log2(j))), o.start(), o) // return sound
+            o.connect((o.g = C.createGain((o.frequency.value = frequency_note[i])))).connect(C.destination),
+            // console.log(o.frequency.value),
+            (o.g.gain.value = 0.1 / (1 + Math.log2(j))), o.start(), o) // return sound
     )));
 
 // cancel note
