@@ -617,7 +617,8 @@ body.addEventListener('mousemove', function (event) {
     // console.log('mousemove');
 
     // поведение активных ступеней
-    if (event.target.classList.contains('table_item_child') && event.target.parentNode.classList.contains('chord_formula')) {
+    if (event.target.classList.contains('table_item_child') && event.target.parentNode.classList.contains('chord_formula') && !event.target.parentNode.classList.contains('mousemove')) {
+        console.log('поведение chord_formula');
         event.target.parentNode.classList.add('mousemove');
         if (stage_checkbox.checked) {
             event.target.classList.add('mousemove_yellow');
@@ -631,7 +632,8 @@ body.addEventListener('mousemove', function (event) {
     }
 
     // поведение активных ступеней
-    if (event.target.classList.contains('table_item_child') && event.target.parentNode.classList.contains('formula')) {
+    if (event.target.classList.contains('table_item_child') && event.target.parentNode.classList.contains('formula') && !event.target.parentNode.classList.contains('mousemove')) {
+        console.log('поведение formula');
         event.target.parentNode.classList.add('mousemove');
         if (stage_checkbox.checked) {
             event.target.classList.add('mousemove_yellow');
@@ -645,7 +647,7 @@ body.addEventListener('mousemove', function (event) {
     }
 
     // поведение активных тетрахордов
-    if (event.target.classList.contains('table_item_child') && event.target.parentNode.classList.contains('tetrachord')) {
+    if (event.target.classList.contains('table_item_child') && event.target.parentNode.classList.contains('tetrachord') && !event.target.parentNode.classList.contains('mousemove')) {
         // console.log('tetrachord');
         event.target.parentNode.classList.add('mousemove');
         event.target.classList.add('mousemove_yellow');
@@ -662,10 +664,13 @@ body.addEventListener('mousemove', function (event) {
     }
 
 })
+
+
 body.addEventListener('mouseout', function () {
     event.target.parentNode.classList.remove('mousemove');
     event.target.classList.remove('mousemove_yellow');
     remove_color_keyboard('led_on_yellow');
+    remove_color_keyboard('led_on_blue');
 })
 
 // воспроизведение звука по клику
@@ -732,7 +737,7 @@ body.addEventListener('click', function (event) {
     if (event.target.classList.contains('name_header')) {
         if (sort_btn == 'no_sort') {
             table_containers[0].replaceChildren();
-            create_label_table('ДИАТОНИКА МАЖОРА (по светлости)', table_containers[0]);
+            create_label_table('ДИАТОНИКА МАЖОРА (по яркости)', table_containers[0]);
             generate_table(label, table_containers[0]);
             generate_table(major_diatonic_sort, table_containers[0]);
             sort_btn = 'sort';
@@ -820,28 +825,26 @@ let add_color_keyboard = function (dataset_algorythm, color) {
     if (color == 'blue') {
         let ind = 0;
         for (let item of keyboard_elements) {
-            item.children[0].classList.remove('opus_text');
+            // item.children[0].classList.remove('opus_text');
             item.classList.remove('led_on_blue');
             if (new_arr.includes(item.dataset.stage)) {
                 item.classList.add('led_on_blue');
-                // активировать подписи ступенями
-                if (label_select.value == 'stage') {
-                    item.children[0].textContent = new_arr_for_label[ind];
-                    item.children[0].classList.add('opus_text');
+
+                let new_p_label_stage = document.createElement('p');
+                let new_p_label_note = document.createElement('p');
+
+                let add_stage_label_function = function () {
+                    // item.children[0].textContent = new_arr_for_label[ind];
+                    // item.children[0].classList.add('opus_text');
+
+                    new_p_label_stage.innerHTML = new_arr_for_label[ind];
+                    new_p_label_stage.classList.add('opus_text');
+                    new_p_label_stage.classList.add('new_p_label');
+                    item.append(new_p_label_stage);
                 }
-                // активировать нотные подписи
-                if (label_select.value == 'note' && label_for_key[ton_select_btn.value.split(' ')[1]]) {
-                    // console.log(ton_select_btn.value.split(' ')[1]);
-                    // console.log('ton_select_btn.value = ' + ton_select_btn.value);
-                    // console.log('ton_select_btn.value.split()[1] = ' + ton_select_btn.value.split(' ')[1]);
-                    // console.log('label_for_key[ton_select_btn.value.split()[1]] = ' + label_for_key[ton_select_btn.value.split(' ')[1]]);
-                    // console.log(label_for_key[ton_select_btn.value.split(' ')[1]]);
-                    // console.log('new_arr_for_label[ind] = ' + new_arr_for_label[ind]);
-                    // console.log(label_for_key[ton_select_btn.value.split(' ')[1]][new_arr_for_label[ind]]);
 
-
+                let add_note_label_function = function () {
                     let symbol = label_for_key[ton_select_btn.value.split(' ')[1]][new_arr_for_label[ind]];
-                    console.log('symbol = ' + symbol);
                     switch (symbol[1] + symbol[2]) {
                         case 'bb':
                             symbol = symbol.replace('bb', '&#9837&#9837');
@@ -866,12 +869,31 @@ let add_color_keyboard = function (dataset_algorythm, color) {
                             break;
 
                     }
-                    item.children[0].innerHTML = symbol;
+                    // item.children[0].innerHTML = symbol;
+                    new_p_label_note.innerHTML = symbol;
+                    // new_p_label.classList.add('opus_text');
+                    new_p_label_note.classList.add('new_p_label');
+                    item.append(new_p_label_note);
+                }
+
+                // активировать подписи ступенями
+                if (label_select.value == 'stage') {
+                    add_stage_label_function();
+                }
+                // активировать нотные подписи
+                if (label_select.value == 'note' && label_for_key[ton_select_btn.value.split(' ')[1]]) {
+                    add_note_label_function();
+                }
+                if (label_select.value == 'stage_and_note') {
+                    add_stage_label_function();
+                    add_note_label_function();
                 }
                 ind++;
             }
         }
     }
+
+
     if (color == 'yellow') {
         for (let item of keyboard_elements) {
             item.classList.remove('led_on_yellow');
@@ -899,10 +921,18 @@ let add_color_keyboard = function (dataset_algorythm, color) {
     }
 
 }
+
+
+
+
+
 let remove_color_keyboard = function (color) {
+
     for (let item of keyboard_elements) {
+
         item.classList.remove(color);
-        item.children[0].textContent = '';
+        // item.children[0].textContent = '';
+        item.replaceChildren();
     }
 }
 

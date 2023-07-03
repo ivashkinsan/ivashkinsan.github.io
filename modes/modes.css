@@ -286,8 +286,9 @@ body {
 
 .elem_of_keyboard {
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
     border-radius: 0 0 5px 5px;
     padding-bottom: 5px;
 }
