@@ -718,12 +718,12 @@ body.addEventListener('click', function (event) {
             event.target.classList.remove('click_play_elem');
 
         } else {
-            console.log(obj_in_out[event.target.textContent]);
+            // console.log(obj_in_out[event.target.textContent]);
             play(obj_in_out[event.target.textContent]);
             event.target.classList.add('click_play_elem');
             add_color_keyboard(event.target.textContent, 'yellow');
             song_notes.push(obj_in_out[event.target.textContent]);
-            console.log(song_notes);
+            // console.log(song_notes);
         }
 
     }
@@ -832,14 +832,16 @@ let add_color_keyboard = function (dataset_algorythm, color) {
                 // активировать нотные подписи
                 if (label_select.value == 'note' && label_for_key[ton_select_btn.value.split(' ')[1]]) {
                     // console.log(ton_select_btn.value.split(' ')[1]);
-                    console.log(ton_select_btn.value);
-                    console.log(ton_select_btn.value.split(' ')[1]);
-                    console.log(label_for_key[ton_select_btn.value.split(' ')[1]]);
-                    console.log(new_arr_for_label[ind]);
-                    console.log(label_for_key[ton_select_btn.value.split(' ')[1]][new_arr_for_label[ind]]);
+                    // console.log('ton_select_btn.value = ' + ton_select_btn.value);
+                    // console.log('ton_select_btn.value.split()[1] = ' + ton_select_btn.value.split(' ')[1]);
+                    // console.log('label_for_key[ton_select_btn.value.split()[1]] = ' + label_for_key[ton_select_btn.value.split(' ')[1]]);
+                    // console.log(label_for_key[ton_select_btn.value.split(' ')[1]]);
+                    // console.log('new_arr_for_label[ind] = ' + new_arr_for_label[ind]);
+                    // console.log(label_for_key[ton_select_btn.value.split(' ')[1]][new_arr_for_label[ind]]);
 
 
                     let symbol = label_for_key[ton_select_btn.value.split(' ')[1]][new_arr_for_label[ind]];
+                    console.log('symbol = ' + symbol);
                     switch (symbol[1] + symbol[2]) {
                         case 'bb':
                             symbol = symbol.replace('bb', '&#9837&#9837');
