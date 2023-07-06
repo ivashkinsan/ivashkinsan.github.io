@@ -19,7 +19,8 @@ body {
     user-select: none;
 }
 
-label{
+/* лэйблы селектов */
+label{ 
     display: flex;
     flex-direction: column;
 
@@ -81,19 +82,36 @@ label{
 
 /* подписи на элементах */
 .label {
-    position: absolute;
-    color: #232323;
+    /* position: absolute; */
+    width: 3vh;
+    height: 3vh;
+    line-height: 3vh;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2vh;
+    color: #5b798b;
     cursor: pointer;
-    z-index: 2;
+    z-index: 999;
     transition: ease-in 500ms;
+    border-radius: 50%;
+    
+}
+/* цвет для лэйблов */
+.color_for_label{
+    /* background-color: #0E132A; */
+    /* border: 0.5px solid #5EBDF9; */
 }
 
-.levels_elem>.p_up {
+.p_up {
     margin-top: 2vh;
 }
 
-.levels_elem>.p_down {
+.p_down {
     margin-bottom: 2vh;
+}
+
+.margin_none{
+    margin: 0;
 }
 
 .display_none {
@@ -234,118 +252,25 @@ label{
     width: 140px;
 }
 
-.piano_elem {
+/* .piano_elem {
     width: 380px;
-    /* height: 60px; */
-    border: 2px solid #DDB078;
-}
+    border: 1px solid #a3a3a3;
+} */
 
 
 /* ========================================== КЛАВИАТУРА ===================================== */
-.container_with_keyboard {
-    position: absolute;
-    display: none;
-    flex-direction: column-reverse;
-  
-    top: 3%;
-    bottom: 3%;
-    left: 42.7%;
-    width: 20vh;
-    background-color: #F4D6B1;
-    z-index: 999;
-  }
-  
-  .back_color {
-    position: absolute;
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: space-around;
-    left: -20px;
-    color: white;
-    font-size: 0.9vh;
-    letter-spacing: 0.4em;
-    top: 3vh;
-    bottom: 0;
-    width: 20px;
-    /* background-color: #F4D6B1; */
-  }
-  
-  .back_color>div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    border: 1px white solid;
-    background-color: rgb(49, 49, 49);
-  }
+.piano_elem{
+    width: 33vh;
+    border: 1px solid #a3a3a3;
+}
 
-  .rotate_-90deg {
-    white-space: nowrap;
-    transform-origin: center;
-    transform: rotate(-90deg);
-  }
-
-  /* .long_keyboard_background {
-    right: 0;
-    width: auto;
-    z-index: 0;
-    opacity: 0.3;
-  } */
-  
-  .keyb_elem {
-    border: 1px solid rgb(131, 131, 131);
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-  }
-  
-  .white_key {
+.white_key{
     background-color: white;
-    height: calc(100% / 22);
-  }
-  
-  .contain_with_black_key {
-    position: absolute;
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: space-around;
-    width: 56%;
-    top: calc(50% / 22);
-    bottom: calc(50% / 22);
-  }
-  
-  .black_key {
-  
-    background-color: rgb(0, 0, 0);
-    height: calc(100% / 36);
-    z-index: 999;
-  }
-
-
-/* ========================================== STAGE контейнер ===================================== */
-
-
-.stage_container{
-    display: none;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    top: 3vh;
-    left: 48vw;
-    font-size: 5vh;
-    flex-direction: column;
-    color: white;
-    z-index: 999;
 }
 
-.elem_of_stage{
-    width: 100%;
-    padding: 0px 15px;
-    text-align: center;
-    border: 1px solid #DDB078;
+.black_key{
+    background-color: black;
 }
-
-
-
 
 
   .hide {
@@ -356,3 +281,4 @@ label{
   .hide_container{
     display: none;
 }
+

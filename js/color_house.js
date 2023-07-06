@@ -499,8 +499,8 @@ document.querySelector('.select_variation').addEventListener('change', function 
 
 // функция генерации подписей элементов
 let slogi = ['Ё', 'ТИ', 'ТУ', 'РА', 'РУ', 'ЗО', 'НИ', 'НА', 'ВИ', 'ВУ', 'ЛЕ', 'ЛУ'];
-let numbers = ['1', '7', 'b7', '6', 'b6', '5', '#4_b5', '4', '3', 'b3', '2', 'b2'];
-let numbers_rim = ['I', 'VII', 'bVII', 'VI', 'bVI', 'V', '#IV_bV', 'IV', 'III', 'bIII', 'II', 'bII'];
+let numbers = ['1', '7', 'b7', '6', 'b6', '5', '#4', '4', '3', 'b3', '2', 'b2'];
+let numbers_rim = ['I', 'VII', 'bVII', 'VI', 'bVI', 'V', '#IV', 'IV', 'III', 'bIII', 'II', 'bII'];
 let display_none = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
 let go_new_label = function (e) {
     let i = 0;
@@ -520,19 +520,37 @@ document.querySelector('.select_variation_label').addEventListener('change', fun
     switch (this.value) {
         case 'display_none':
             go_new_label(display_none);
+            add_color_back_for_label(false);
             break;
         case 'slogi':
             go_new_label(slogi);
+            add_color_back_for_label(true);
             break;
         case 'numbers':
             go_new_label(numbers);
+            add_color_back_for_label(true);
             break;
         case 'numbers_rim':
             go_new_label(numbers_rim);
+            add_color_back_for_label(true);
             break;
     }
 }
 );
+
+let add_color_back_for_label = function(yes){
+
+        for (let item of label_All) {
+            if(yes){
+                item.classList.add('color_for_label');
+            } else {
+                item.classList.remove('color_for_label'); 
+            }
+            
+
+        }
+   
+}
 
 // поведение при использовании кнопки rotate
 document.querySelector('.rotate_button').onclick = () => {
@@ -575,24 +593,19 @@ document.querySelector('.label_button').onclick = () => {
     }
 };
 
-let hide_all_contains = function(){
-    document.querySelector('.house_container').classList.add('hide_container');
-    document.querySelector('.container_with_keyboard').classList.add('hide_container');
-}
 
 document.querySelector('.select_variation_skin').addEventListener('change', function (elem) {
-    hide_all_contains();
     switch (this.value) {
         case 'home':
-            
-            document.querySelector('.house_container').classList.remove('hide_container');
+            hide_of_house('false');
             break;
         case 'pigs':
             break;
         case 'stage':
             break;
         case 'piano':
-            document.querySelector('.container_with_keyboard').classList.remove('hide_container');
+            hide_of_house('true');
+            create_piano(tonality.value);
             break;
     }
     console.log(this.value);
@@ -600,43 +613,56 @@ document.querySelector('.select_variation_skin').addEventListener('change', func
 
 
 // выбор тональности
-document.querySelector('.select_variation_tonality').addEventListener('change', function (elem) {
+let tonality = document.querySelector('.select_variation_tonality');
+tonality.addEventListener('change', function (elem) {
     switch (this.value) {
         case 'ton_C':
             add_tonality(12);
+            create_piano(this.value);
             break;
         case 'ton_Db':
             add_tonality(13);
+            create_piano(this.value);
             break;
         case 'ton_D':
             add_tonality(14);
+            create_piano(this.value);
             break;
         case 'ton_Eb':
             add_tonality(15);
+            create_piano(this.value);
             break;
         case 'ton_E':
             add_tonality(16);
+            create_piano(this.value);
             break;
         case 'ton_F':
             add_tonality(17);
+            create_piano(this.value);
             break;
         case 'ton_Gb':
             add_tonality(18);
+            create_piano(this.value);
             break;
         case 'ton_G':
             add_tonality(19);
+            create_piano(this.value);
             break;
         case 'ton_Ab':
             add_tonality(20);
+            create_piano(this.value);
             break;
         case 'ton_A':
             add_tonality(21);
+            create_piano(this.value);
             break;
         case 'ton_Bb':
             add_tonality(22);
+            create_piano(this.value);
             break;
         case 'ton_B':
             add_tonality(23);
+            create_piano(this.value);
             break;
     }
 }
@@ -646,26 +672,70 @@ let tonika = {
     c_dur: [1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1],
 }
 
-//создание клавиатуры фортепиано
-let create_piano = function () {
-    let all_levels_elem = document.querySelectorAll('.levels_elem');
-    // скрытие img элементов
-    for (let item of all_levels_elem) {
+
+let arr_for_black_white_pattern = {
+    'ton_C': 'C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C',
+    'ton_Db': 'Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db',
+    'ton_D': 'D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D',
+    'ton_Eb': 'Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb',
+    'ton_E': 'E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E',
+    'ton_F': 'F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F',
+    'ton_Gb': 'Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb',
+    'ton_G': 'G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G',
+    'ton_Ab': 'Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab',
+    'ton_A': 'A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A',
+    'ton_Bb': 'Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb',
+    'ton_B': 'B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B C Db D Eb E F Gb G Ab A Bb B'
+}
+
+
+let hide_of_house = function(yes){
+ // скрытие img элементов
+
+ for (let item of all_levels_elem) {
+    if(yes == 'true'){
         item.children[0].classList.add('display_none');
-        console.log(item.children[0]);
-    }
+        item.children[1].classList.add('margin_none');    
+    } else {
+        item.children[0].classList.remove('display_none');
+        item.children[1].classList.remove('margin_none'); 
+    } 
+}
+}
+
+//создание клавиатуры фортепиано
+let create_piano = function (ton) {
+    let all_levels_elem = document.querySelectorAll('.levels_elem');
+    let all_piano_elem = document.querySelectorAll('.piano_elem');
+    for(let item of all_piano_elem)[
+        item.remove()
+    ]
+   
 
     //создание новых элементов для клавиатуры
     let index_for_all_levels_elem = 0;
     for (let item of all_levels_elem) {
         let new_div = document.createElement('div');
         new_div.classList.add('click_elem', 'piano_elem');
-        // if () {
-        console.log(index_for_all_levels_elem);
-        // }
         item.appendChild(new_div);
         index_for_all_levels_elem++;
     }
 
+let all_piano_elems = document.querySelectorAll('.piano_elem');
+let arr_of_w_b = arr_for_black_white_pattern[ton].split(' ');
+arr_of_w_b.reverse();
+
+
+    for(let i = 0; i < all_piano_elems.length; i++ ){
+        if(arr_of_w_b[i] == 'Db' || arr_of_w_b[i] == 'Eb'|| arr_of_w_b[i] == 'Gb'|| arr_of_w_b[i] == 'Ab'|| arr_of_w_b[i] == 'Bb'){
+            all_piano_elems[i].classList.add('black_key');
+        } else {
+            all_piano_elems[i].classList.add('white_key');
+        }
+        all_piano_elems[i].dataset.name = arr_of_w_b[i];
+
+    }
+    console.log(arr_for_black_white_pattern[ton]);
+    console.log(arr_of_w_b);
 }
-create_piano();
+// create_piano(tonality.value);
