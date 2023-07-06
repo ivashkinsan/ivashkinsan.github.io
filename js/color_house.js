@@ -537,6 +537,8 @@ document.querySelector('.select_variation_label').addEventListener('change', fun
 // поведение при использовании кнопки rotate
 document.querySelector('.rotate_button').onclick = () => {
     document.querySelector('.house_container').classList.toggle('transform_horizont');
+    
+
     label_All = document.querySelectorAll('.label');
     // поворот внутренних label елементов
     for (let item of label_All) {
@@ -545,17 +547,21 @@ document.querySelector('.rotate_button').onclick = () => {
 
     let flex_direction_go = function () {
         document.querySelector('.button_container').classList.toggle('flex_direction');
+        document.querySelector('.container_with_keyboard').classList.toggle('transform_horizont');
         let rotate_box = document.querySelector('.rotate_box');
         // переворот кнопок для правильного восприятия сторон Л ПР и + -
         rotate_box.classList.toggle('rotate_180_deg');
         rotate_box.children[0].classList.toggle('transform_90_deg');
         rotate_box.children[1].classList.toggle('transform_90_deg');
     }
+
     // добавление анимации
     let remove_opacity_animation_class = function () {
         document.querySelector('.button_container').classList.remove('opacity_animation');
+        document.querySelector('.container_with_keyboard').classList.toggle('opacity_animation');
     }
     document.querySelector('.button_container').classList.toggle('opacity_animation');
+    document.querySelector('.container_with_keyboard').classList.toggle('opacity_animation');
 
     // добавление временного интервала для анимации
     setTimeout(flex_direction_go, 1000);
@@ -568,6 +574,29 @@ document.querySelector('.label_button').onclick = () => {
         item.classList.toggle('display_none');
     }
 };
+
+let hide_all_contains = function(){
+    document.querySelector('.house_container').classList.add('hide_container');
+    document.querySelector('.container_with_keyboard').classList.add('hide_container');
+}
+
+document.querySelector('.select_variation_skin').addEventListener('change', function (elem) {
+    hide_all_contains();
+    switch (this.value) {
+        case 'home':
+            
+            document.querySelector('.house_container').classList.remove('hide_container');
+            break;
+        case 'pigs':
+            break;
+        case 'stage':
+            break;
+        case 'piano':
+            document.querySelector('.container_with_keyboard').classList.remove('hide_container');
+            break;
+    }
+    console.log(this.value);
+});
 
 
 // выбор тональности
@@ -617,26 +646,26 @@ let tonika = {
     c_dur: [1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1],
 }
 
-// //создание клавиатуры фортепиано
-// let create_piano = function () {
-//     let all_levels_elem = document.querySelectorAll('.levels_elem');
-//     // скрытие img элементов
-//     for (let item of all_levels_elem) {
-//         item.children[0].classList.add('display_none');
-//         console.log(item.children[0]);
-//     }
+//создание клавиатуры фортепиано
+let create_piano = function () {
+    let all_levels_elem = document.querySelectorAll('.levels_elem');
+    // скрытие img элементов
+    for (let item of all_levels_elem) {
+        item.children[0].classList.add('display_none');
+        console.log(item.children[0]);
+    }
 
-//     //создание новых элементов для клавиатуры
-//     let index_for_all_levels_elem = 0;
-//     for (let item of all_levels_elem) {
-//         let new_div = document.createElement('div');
-//         new_div.classList.add('click_elem', 'piano_elem');
-//         // if () {
-//         console.log(index_for_all_levels_elem);
-//         // }
-//         item.appendChild(new_div);
-//         index_for_all_levels_elem++;
-//     }
+    //создание новых элементов для клавиатуры
+    let index_for_all_levels_elem = 0;
+    for (let item of all_levels_elem) {
+        let new_div = document.createElement('div');
+        new_div.classList.add('click_elem', 'piano_elem');
+        // if () {
+        console.log(index_for_all_levels_elem);
+        // }
+        item.appendChild(new_div);
+        index_for_all_levels_elem++;
+    }
 
-// }
-// create_piano();
+}
+create_piano();

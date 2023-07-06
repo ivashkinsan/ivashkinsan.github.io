@@ -11,6 +11,8 @@
 <body>
 
     <div class="body_container">
+
+
         <div class="house_container">
             <div class="levels_elem display_none">
                 <img class="click_elem" src=""></img>
@@ -113,6 +115,8 @@
                 <p class="label p_line"></p>
             </div>
         </div>
+
+
     </div>
     <audio data-key="1C" src="/PianoSound/01.mp3" preload="auto"></audio>
     <audio data-key="1Db" src="/PianoSound/02.mp3" preload="auto"></audio>
@@ -182,6 +186,17 @@
 
         <div class="select_variation_container">
             <!-- <label for="select_variation">-------</label> -->
+            <label>
+                Оболочка
+                <select class="select_variation_skin" id="select_variation_skin">
+                    <option value="home" >домик</option>
+                    <option value="pigs">пуговицы</option>
+                    <option value="stage" selected>ступени</option>
+                    <option value="piano">пианино</option>
+                </select>
+            </label>
+            <label class="variation_for_home">
+                Лад
             <select class="select_variation" id="select_variation">
                 <option value="lydian">лидийский</option>
                 <option value="ionian" selected>ионийский</option>
@@ -195,18 +210,19 @@
                 <option value="melodyan">мелодический</option>
                 <option value="PIGS">пуговицы</option>
             </select>
+        </label>
+        <label>
+            Подписи
             <select class="select_variation_label" id="select_variation_label">
                 <option value="display_none" selected>-------</option>
                 <option value="slogi">слоги</option>
                 <option value="numbers">цифры</option>
                 <option value="numbers_rim">римские</option>
             </select>
-            <select class="select_variation_skin" id="select_variation_skin">
-                <option value="home" selected>-------</option>
-                <option value="pigs">пуговицы</option>
-                <option value="numbers">ступени</option>
-                <option value="numbers_rim">пианино</option>
-            </select>
+        </label>
+        
+            <label>
+                Тональность
             <select class="select_variation_tonality" id="select_variation_tonality">
                 <option value="ton_C">ДО</option>
                 <option value="ton_Db">РЕ b</option>
@@ -221,9 +237,113 @@
                 <option value="ton_Bb">СИ b</option>
                 <option value="ton_B">СИ</option>
             </select>
+            </label>
         </div>
 
     </div>
+
+    <div class="container_with_keyboard">
+        <div class="back_color">
+            <!-- <div>
+                <div class="rotate_-90deg">БОЛЬШАЯ ОКТАВА</div>
+            </div> -->
+            <div>
+                <div class="rotate_-90deg">МАЛАЯ ОКТАВА</div>
+            </div>
+            <div>
+                <div class="rotate_-90deg">ПЕРВАЯ ОКТАВА</div>
+            </div>
+            <div>
+                <div class="rotate_-90deg">ВТОРАЯ ОКТАВА</div>
+            </div>
+        </div>
+
+        <!-- <div class="keyb_elem white_key" data-note="C1" data-name="ДО"></div>
+        <div class="keyb_elem white_key" data-note="D1" data-name="РЕ"></div>
+        <div class="keyb_elem white_key" data-note="E1" data-name="МИ"></div>
+        <div class="keyb_elem white_key" data-note="F1" data-name="ФА"></div>
+        <div class="keyb_elem white_key" data-note="G1" data-name="СОЛЬ"></div>
+        <div class="keyb_elem white_key" data-note="A1" data-name="ЛЯ"></div>
+        <div class="keyb_elem white_key" data-note="B1" data-name="СИ"></div> -->
+
+        <div class="keyb_elem white_key" data-note="C2" data-name="ДО"></div>
+        <div class="keyb_elem white_key" data-note="D2" data-name="РЕ"></div>
+        <div class="keyb_elem white_key" data-note="E2" data-name="МИ"></div>
+        <div class="keyb_elem white_key" data-note="F2" data-name="ФА"></div>
+        <div class="keyb_elem white_key" data-note="G2" data-name="СОЛЬ"></div>
+        <div class="keyb_elem white_key" data-note="A2" data-name="ЛЯ"></div>
+        <div class="keyb_elem white_key" data-note="B2" data-name="СИ"></div>
+
+        <div class="keyb_elem white_key" data-note="C3" data-name="ДО"></div>
+        <div class="keyb_elem white_key" data-note="D3" data-name="РЕ"></div>
+        <div class="keyb_elem white_key" data-note="E3" data-name="МИ"></div>
+        <div class="keyb_elem white_key" data-note="F3" data-name="ФА"></div>
+        <div class="keyb_elem white_key" data-note="G3" data-name="СОЛЬ"></div>
+        <div class="keyb_elem white_key" data-note="A3" data-name="ЛЯ"></div>
+        <div class="keyb_elem white_key" data-note="B3" data-name="СИ"></div>
+
+        <div class="keyb_elem white_key" data-note="C4" data-name="ДО"></div>
+        <div class="keyb_elem white_key" data-note="D4" data-name="РЕ"></div>
+        <div class="keyb_elem white_key" data-note="E4" data-name="МИ"></div>
+        <div class="keyb_elem white_key" data-note="F4" data-name="ФА"></div>
+        <div class="keyb_elem white_key" data-note="G4" data-name="СОЛЬ"></div>
+        <div class="keyb_elem white_key" data-note="A4" data-name="ЛЯ"></div>
+        <div class="keyb_elem white_key" data-note="B4" data-name="СИ"></div>
+
+        <div class="keyb_elem white_key" data-note="C5" data-name="ДО"></div>
+
+        <div class="contain_with_black_key">
+            <!-- <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key hide"></div>
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key hide"></div> -->
+
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key hide"></div>
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key hide"></div>
+
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key hide"></div>
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key hide"></div>
+
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key hide"></div>
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key"></div>
+            <div class="keyb_elem black_key hide"></div>
+        </div>
+
+    </div>
+
+<div class="stage_container">
+    <div class="elem_of_stage">8</div>
+    <div class="elem_of_stage">7</div>
+    <div class="elem_of_stage">&#9837 7</div>
+    <div class="elem_of_stage">6</div>
+    <div class="elem_of_stage">&#9837 6</div>
+    <div class="elem_of_stage">5</div>
+    <div class="elem_of_stage">&#9839 4 / &#9837 5</div>
+    <div class="elem_of_stage">4</div>
+    <div class="elem_of_stage">3</div>
+    <div class="elem_of_stage">&#9837 3</div>
+    <div class="elem_of_stage">2</div>
+    <div class="elem_of_stage">&#9837 2</div>
+    <div class="elem_of_stage">1</div>
+</div>
+
     <script src="js/color_house.js"></script>
 </body>
 
