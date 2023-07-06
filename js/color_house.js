@@ -9,7 +9,7 @@ const container_dom = document.querySelector('.house_container');
 const dom_item = document.querySelectorAll('.levels_elem');
 const audioAll = document.querySelectorAll('audio');
 let label_All = document.querySelectorAll('.label');
-
+let forma;
 // let scaleButton = document.querySelector('.scale');
 
 // container_dom.insertBefore(dom_item[0],dom_item[1]);
@@ -499,8 +499,8 @@ document.querySelector('.select_variation').addEventListener('change', function 
 
 // функция генерации подписей элементов
 let slogi = ['Ё', 'ТИ', 'ТУ', 'РА', 'РУ', 'ЗО', 'НИ', 'НА', 'ВИ', 'ВУ', 'ЛЕ', 'ЛУ'];
-let numbers = ['1', '7', 'b7', '6', 'b6', '5', '#4', '4', '3', 'b3', '2', 'b2'];
-let numbers_rim = ['I', 'VII', 'bVII', 'VI', 'bVI', 'V', '#IV', 'IV', 'III', 'bIII', 'II', 'bII'];
+let numbers = ['1', '7', '&#9837;7', '6', '&#9837;6', '5', '&#9839;4', '4', '3', '&#9837;3', '2', '&#9837;2'];
+let numbers_rim = ['I', 'VII', '&#9837;VII', 'VI', '&#9837;VI', 'V', '&#9839;IV', 'IV', 'III', '&#9837;III', 'II', '&#9837;II'];
 let display_none = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
 let go_new_label = function (e) {
     let i = 0;
@@ -596,19 +596,24 @@ document.querySelector('.label_button').onclick = () => {
 
 document.querySelector('.select_variation_skin').addEventListener('change', function (elem) {
     switch (this.value) {
-        case 'home':
+        case 'house':
+            remove_piano()
             hide_of_house('false');
-            break;
-        case 'pigs':
-            break;
-        case 'stage':
             break;
         case 'piano':
             hide_of_house('true');
             create_piano(tonality.value);
             break;
+        case 'piano_circle':
+            hide_of_house('true');
+            create_piano(tonality.value,'circle');
+            break;
+        case 'piano_circle_opacity':
+            hide_of_house('true');
+            create_piano(tonality.value,'piano_circle_opacity');
+            break;
     }
-    console.log(this.value);
+    
 });
 
 
@@ -618,51 +623,51 @@ tonality.addEventListener('change', function (elem) {
     switch (this.value) {
         case 'ton_C':
             add_tonality(12);
-            create_piano(this.value);
+            create_piano(this.value,forma);
             break;
         case 'ton_Db':
             add_tonality(13);
-            create_piano(this.value);
+            create_piano(this.value,forma);
             break;
         case 'ton_D':
             add_tonality(14);
-            create_piano(this.value);
+            create_piano(this.value,forma);
             break;
         case 'ton_Eb':
             add_tonality(15);
-            create_piano(this.value);
+            create_piano(this.value,forma);
             break;
         case 'ton_E':
             add_tonality(16);
-            create_piano(this.value);
+            create_piano(this.value,forma);
             break;
         case 'ton_F':
             add_tonality(17);
-            create_piano(this.value);
+            create_piano(this.value,forma);
             break;
         case 'ton_Gb':
             add_tonality(18);
-            create_piano(this.value);
+            create_piano(this.value,forma);
             break;
         case 'ton_G':
             add_tonality(19);
-            create_piano(this.value);
+            create_piano(this.value,forma);
             break;
         case 'ton_Ab':
             add_tonality(20);
-            create_piano(this.value);
+            create_piano(this.value,forma);
             break;
         case 'ton_A':
             add_tonality(21);
-            create_piano(this.value);
+            create_piano(this.value,forma);
             break;
         case 'ton_Bb':
             add_tonality(22);
-            create_piano(this.value);
+            create_piano(this.value,forma);
             break;
         case 'ton_B':
             add_tonality(23);
-            create_piano(this.value);
+            create_piano(this.value,forma);
             break;
     }
 }
@@ -703,13 +708,20 @@ let hide_of_house = function(yes){
 }
 }
 
-//создание клавиатуры фортепиано
-let create_piano = function (ton) {
-    let all_levels_elem = document.querySelectorAll('.levels_elem');
-    let all_piano_elem = document.querySelectorAll('.piano_elem');
+let all_piano_elem;
+let remove_piano = function(){
+    all_piano_elem = document.querySelectorAll('.piano_elem');
     for(let item of all_piano_elem)[
         item.remove()
     ]
+}
+
+
+
+//создание клавиатуры фортепиано
+let create_piano = function (ton,input) {
+    let all_levels_elem = document.querySelectorAll('.levels_elem');
+    remove_piano();
    
 
     //создание новых элементов для клавиатуры
@@ -719,6 +731,12 @@ let create_piano = function (ton) {
         new_div.classList.add('click_elem', 'piano_elem');
         item.appendChild(new_div);
         index_for_all_levels_elem++;
+        if(input == 'circle' || input == 'piano_circle_opacity'){
+            new_div.classList.add('circle_elem');
+            forma = 'circle';
+        } else {
+            forma = '';
+        }
     }
 
 let all_piano_elems = document.querySelectorAll('.piano_elem');
@@ -731,6 +749,10 @@ arr_of_w_b.reverse();
             all_piano_elems[i].classList.add('black_key');
         } else {
             all_piano_elems[i].classList.add('white_key');
+        }
+
+        if(input == 'piano_circle_opacity'){
+            all_piano_elems[i].classList.add('piano_circle_opacity');
         }
         all_piano_elems[i].dataset.name = arr_of_w_b[i];
 

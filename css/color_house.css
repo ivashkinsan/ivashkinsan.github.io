@@ -272,6 +272,15 @@ label{
     background-color: black;
 }
 
+.circle_elem{
+    border-radius: 50%;
+    width: 7vh;
+    /* height: 7vh; */
+}
+
+.piano_circle_opacity{
+background-color: rgba(0,0,0,0);
+}
 
   .hide {
     width: 0;
