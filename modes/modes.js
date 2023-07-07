@@ -722,13 +722,18 @@ body.addEventListener('click', function (event) {
             stop_play(obj_in_out[event.target.textContent]);
             event.target.classList.remove('click_play_elem');
 
+            add_color_keyboard(event.target.textContent, 'click_play_elem');
+
         } else {
             // console.log(obj_in_out[event.target.textContent]);
             play(obj_in_out[event.target.textContent]);
             event.target.classList.add('click_play_elem');
-            add_color_keyboard(event.target.textContent, 'yellow');
+            // add_color_keyboard(event.target.textContent, 'yellow');
             song_notes.push(obj_in_out[event.target.textContent]);
-            // console.log(song_notes);
+
+
+            add_color_keyboard(event.target.textContent, 'click_play_elem');
+            console.log(event.target.textContent);
         }
 
     }
@@ -786,7 +791,7 @@ body.addEventListener('contextmenu', function (event) {
 
         for (let i = 0; i < play_array.length; i++) {
             setTimeout(function () {
-                add_color_keyboard((play_keyb_algorythm.shift()), 'yellow');
+                add_color_keyboard((play_keyb_algorythm.shift()), 'click_play_elem');
                 play(obj_in_out[play_array[i]]);
                 if (up_down_play == 'down') {
                     play_elem_parent.children[i].classList.add('sound_on');
@@ -803,7 +808,7 @@ body.addEventListener('contextmenu', function (event) {
                 } else {
                     play_elem_parent.children[play_array.length - 1 - i].classList.remove('sound_on');
                 }
-                remove_color_keyboard('led_on_yellow');
+                remove_color_keyboard('click_play_elem');
             }, int * 300);
         }
         (up_down_play == 'up') ? up_down_play = 'down': up_down_play = 'up';
@@ -916,6 +921,17 @@ let add_color_keyboard = function (dataset_algorythm, color) {
             item.classList.remove('led_on_yellow');
             if (arr_mix_2.includes(item.dataset.stage)) {
                 item.classList.add('led_on_yellow');
+            }
+        }
+    }
+    if (color == 'click_play_elem') {
+        console.log('color == click_play_elem');
+        for (let item of keyboard_elements) {
+            // item.classList.remove('click_play_elem');
+            if (new_arr.includes(item.dataset.stage)) {
+
+                item.classList.toggle('click_play_elem');
+
             }
         }
     }
@@ -1104,10 +1120,10 @@ T = (i) => (
 );
 
 // play note on key down
-onkeydown = (i) => P(T(i));
+// onkeydown = (i) => P(T(i));
 
 // release note on key up
-onkeyup = (i) => X(T(i));
+// onkeyup = (i) => X(T(i));
 
 
 

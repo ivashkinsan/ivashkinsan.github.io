@@ -271,90 +271,96 @@ window.addEventListener("keydown", function (e) {
 let ind_cursor = 0;
 
 document.addEventListener('keydown', function (event) {
-    let step_indx = 0;
-    let go_go_elem;
-    // let go_go_elem = (value_table == 'geometry_table') ? all_table_item : all_point_w_and_b;
-    switch (value_table) {
-        case 'geometry_table':
-            go_go_elem = all_table_item;
-            break;
-        case 'color_table':
-            go_go_elem = all_point_w_and_b;
-            break;
-        case 'position_table':
-            go_go_elem = all_active_position_point;
-            break;
-    }
-    clear_all();
+        let step_indx = 0;
+        let go_go_elem;
+        // let go_go_elem = (value_table == 'geometry_table') ? all_table_item : all_point_w_and_b;
+        switch (value_table) {
+            case 'geometry_table':
+                go_go_elem = all_table_item;
+                break;
+            case 'color_table':
+                go_go_elem = all_point_w_and_b;
+                break;
+            case 'position_table':
+                go_go_elem = all_active_position_point;
+                break;
+        }
+        clear_all();
 
-    let value_algorythm = go_go_elem[ind_cursor].parentNode.children;
-    // console.log(value_algorythm);
-    for (let new_item of value_algorythm) {
-        if (new_item.classList.contains('active_point')) {
-            step_indx++;
+        let value_algorythm = go_go_elem[ind_cursor].parentNode.children;
+        // console.log(value_algorythm);
+        for (let new_item of value_algorythm) {
+            if (new_item.classList.contains('active_point')) {
+                step_indx++;
+            }
         }
-    }
-    if (value_table == 'geometry_table' || value_table == 'color_table') {
-        switch (event.keyCode) {
-            case 37:
-                (ind_cursor > 0) ? ind_cursor-- : false;
-                go_active_elem(go_go_elem[ind_cursor]);
-                break;
-            case 39:
-                (ind_cursor >= 0 && ind_cursor < 131) ? ind_cursor++ : false;
-                go_active_elem(go_go_elem[ind_cursor]);
-                break;
-            case 40:
-                (ind_cursor >= 0 && ind_cursor < 120) ? ind_cursor += 12 : false;
-                go_active_elem(go_go_elem[ind_cursor]);
-                break;
-            case 38:
-                (ind_cursor >= 0 && ind_cursor >= 12) ? ind_cursor -= 12 : false;
-                go_active_elem(go_go_elem[ind_cursor]);
-                break;
-            case 32:
-                if (value_table == 'geometry_table') {
-                    active_x_block();
-                }
-                break;
-        }
-    }
-    if (value_table == 'position_table') {
-        switch (event.keyCode) {
-            case 37: // влево
-                if (ind_cursor == 0) { ind_cursor = 131; } else {
+        if (value_table == 'geometry_table' || value_table == 'color_table') {
+            switch (event.keyCode) {
+                case 37:
                     (ind_cursor > 0) ? ind_cursor-- : false;
-                }
-                go_active_elem(go_go_elem[ind_cursor]);
-                break;
-            case 39: //вправо
-                if (ind_cursor == 131) { ind_cursor = 0; } else {
+                    go_active_elem(go_go_elem[ind_cursor]);
+                    break;
+                case 39:
                     (ind_cursor >= 0 && ind_cursor < 131) ? ind_cursor++ : false;
-                }
-                go_active_elem(go_go_elem[ind_cursor]);
-                break;
-            case 40://вниз
-                if (ind_cursor == 131) { ind_cursor = 0; } else {
-                    (ind_cursor >= 0 && ind_cursor < 131) ? ind_cursor += step_indx : false;
-                }
-                go_active_elem(go_go_elem[ind_cursor]);
-                break;
-            case 38://вверх
-                if (ind_cursor == 0) {
-                    ind_cursor = 131;
-                } else {
-                    (ind_cursor >= 0 && ind_cursor > step_indx) ? ind_cursor -= step_indx : false;
-                }
-                go_active_elem(go_go_elem[ind_cursor]);
-                break;
-            case 32://пробел
-                slice_overflow_circle();
-                break;
+                    go_active_elem(go_go_elem[ind_cursor]);
+                    break;
+                case 40:
+                    (ind_cursor >= 0 && ind_cursor < 120) ? ind_cursor += 12: false;
+                    go_active_elem(go_go_elem[ind_cursor]);
+                    break;
+                case 38:
+                    (ind_cursor >= 0 && ind_cursor >= 12) ? ind_cursor -= 12: false;
+                    go_active_elem(go_go_elem[ind_cursor]);
+                    break;
+                case 32:
+                    if (value_table == 'geometry_table') {
+                        active_x_block();
+                    }
+                    break;
+            }
         }
-    }
+        if (value_table == 'position_table') {
+            switch (event.keyCode) {
+                case 37: // влево
+                    if (ind_cursor == 0) {
+                        ind_cursor = 131;
+                    } else {
+                        (ind_cursor > 0) ? ind_cursor-- : false;
+                    }
+                    go_active_elem(go_go_elem[ind_cursor]);
+                    break;
+                case 39: //вправо
+                    if (ind_cursor == 131) {
+                        ind_cursor = 0;
+                    } else {
+                        (ind_cursor >= 0 && ind_cursor < 131) ? ind_cursor++ : false;
+                    }
+                    go_active_elem(go_go_elem[ind_cursor]);
+                    break;
+                case 40: //вниз
+                    if (ind_cursor == 131) {
+                        ind_cursor = 0;
+                    } else {
+                        (ind_cursor >= 0 && ind_cursor < 131) ? ind_cursor += step_indx: false;
+                    }
+                    go_active_elem(go_go_elem[ind_cursor]);
+                    break;
+                case 38: //вверх
+                    if (ind_cursor == 0) {
+                        ind_cursor = 131;
+                    } else {
+                        (ind_cursor >= 0 && ind_cursor > step_indx) ? ind_cursor -= step_indx: false;
+                    }
+                    go_active_elem(go_go_elem[ind_cursor]);
+                    break;
+                case 32: //пробел
+                    slice_overflow_circle();
+                    break;
+            }
+        }
 
-    go_active_elem(go_go_elem[ind_cursor]);
-}
+        go_active_elem(go_go_elem[ind_cursor]);
+    }
 
 );
 
@@ -550,8 +556,8 @@ document.querySelector('.color_btn').onclick = function () {
     document.querySelector('.hide_show_block_geometry').classList.add('hide_btn');
     document.querySelector('.hide_show_block_position').classList.add('hide_btn');
 
-    create_white_black_table();// создание таблицы
-    add_dataatr(all_point_w_and_b, data_attr_point, point_algorythm);// добавление атрибутов
+    create_white_black_table(); // создание таблицы
+    add_dataatr(all_point_w_and_b, data_attr_point, point_algorythm); // добавление атрибутов
     value_table = 'color_table';
     ind_cursor = 0;
 }
@@ -625,10 +631,10 @@ let arr_for_position_table = [
 ]
 let row_label_for_position_arr = ['м2', 'Б2', 'м3', 'Б3', 'ч4', '3Т', 'ч5', 'м6', 'Б6', 'м7', 'Б7'];
 let label_for_row_in_column = [
-    ['Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F2', 'Gb2', 'G2', 'Ab2', 'A2', 'Bb2'],//вторая октава условна
+    ['Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F2', 'Gb2', 'G2', 'Ab2', 'A2', 'Bb2'], //вторая октава условна
     ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'],
-    ['Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C2', 'Db2', 'D2', 'Eb2'],//вторая октава условна
-    ['F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C2', 'Db2', 'D2', 'Eb2', 'E2']//вторая октава условна
+    ['Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C2', 'Db2', 'D2', 'Eb2'], //вторая октава условна
+    ['F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C2', 'Db2', 'D2', 'Eb2', 'E2'] //вторая октава условна
 ]
 
 
@@ -861,10 +867,11 @@ document.querySelector('.label_cicle_button').onclick = function () {
 
 
 // ================================= таблица хроматическая ===================================
+// массив с цветами шаров
 let arr_for_chromatic_rythm_table = [
     [
         'дуоли_1     11w 11b 22w 22b 11w 11w 22b 22w 11b 11w 22b 22w 0w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
-        'дуоли_2     +1w 22b 22w 11b 11w 22w 22b 11w 11b 22w 22b 11w 11w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'дуоли_2     0w 22b 22w 11b 11w 22w 22b 11w 11b 22w 22b 11w 11w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
 
         'триоли_1    11w 11b 11w 22b 22w 22w 11b 11w 11b 22w 22b 22w 0w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
         'триоли_2    0w 11b 11w 11b 22w 22w 22b 11w 11b 11w 22b 22w 22w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
@@ -873,7 +880,24 @@ let arr_for_chromatic_rythm_table = [
         'квартоли_1    11w 11b 11w 11b 22w 22w 22b 22w 11b 11w 11b 11w 0w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
         'квартоли_2    0w 11b 11w 11b 11w 22w 22b 22w 22b 11w 11b 11w 11w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
         'квартоли_3    0w 0b 11w 11b 11w 11w 22b 22w 22b 22w 11b 11w 11w 11b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
-        'квартоли_4    0w 0b 0w 0b 11w 11w 11b 11w 22b 22w 22b 22w 11w 11b 11w 11b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'квартоли_4    0w 0b 0w 11b 11w 11w 11b 22w 22b 22w 22b 11w 11w 11b 11w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+    ],
+]
+
+// массив с подписями
+let arr_label_var_1 = [
+    [
+        '1 1 2 2 3 3 4 4 5 5 6 6',
+        '0 1 1 2 2 3 3 4 4 5 5 6 6',
+
+        '1 1 1 2 2 2 3 3 3 4 4 4',
+        '0 1 1 1 2 2 2 3 3 3 4 4 4',
+        '0 0 1 1 1 2 2 2 3 3 3 4 4 4',
+
+        '1 1 1 1 2 2 2 2 3 3 3 3',
+        '0 1 1 1 1 2 2 2 2 3 3 3 3',
+        '0 0 1 1 1 1 2 2 2 2 3 3 3 3',
+        '0 0 0 1 1 1 1 2 2 2 2 3 3 3 3',
     ],
 ]
 let arr_label_for_chromatic_rythm_table = [
@@ -889,6 +913,8 @@ let gamma_generate = function () {
             let new_row;
 
             let array_in_strings = arr_for_chromatic_rythm_table[0][ii].split(' ').filter(element => element != '');
+            let array_lebel = arr_label_var_1[0][ii].split(' ').filter(element => element != '')
+            console.log(array_lebel);
             if (i == 0) {
                 new_row = document.createElement('div');
                 new_row.classList.add('row_label_for_chrom');
@@ -898,8 +924,8 @@ let gamma_generate = function () {
 
                 new_row = document.createElement('div');
                 new_row.classList.add('row_for_position');
-                let label_one_color_number_circle = 1;
-                let label_two_color_number_circle = 1;
+                // let label_one_color_number_circle = 1;
+                // let label_two_color_number_circle = 1;
                 for (let iii = 1; iii < array_in_strings.length; iii++) {
                     let new_circle;
                     new_circle = document.createElement('div');
@@ -912,15 +938,12 @@ let gamma_generate = function () {
 
                     if (array_in_strings[iii] == '11b' || array_in_strings[iii] == '11w') {
                         new_circle.classList.add('one_color_key_circle');
-                        new_circle.textContent = label_one_color_number_circle;
-                        label_one_color_number_circle++;
-                        label_two_color_number_circle = 1;
+                        new_circle.textContent = array_lebel[iii - 1];
+
                     }
                     if (array_in_strings[iii] == '22b' || array_in_strings[iii] == '22w') {
                         new_circle.classList.add('two_color_key_circle');
-                        label_one_color_number_circle = 1;
-                        new_circle.textContent = label_two_color_number_circle;
-                        label_two_color_number_circle++;
+                        new_circle.textContent = array_lebel[iii - 1];
                     }
 
 

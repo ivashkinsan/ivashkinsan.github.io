@@ -335,8 +335,27 @@ body {
 
 .click_play_elem {
     box-shadow: inset 2px 2px 0 rgb(105, 195, 1), inset -2px -2px 0 rgb(105, 195, 1);
+    background-color: rgb(200, 0, 255);
+    animation-duration: 300ms;
+  animation-name: slidein;
+  animation-iteration-count:infinite;
 }
 
 .sound_on {
     background-color: rgb(187, 0, 255);
+
+    
 }
+
+@keyframes slidein {
+    0% {
+        -webkit-transform: rotateY(0deg);
+      }
+      50% {
+        -webkit-transform: rotateY(25deg);
+      }
+
+      100% {
+        -webkit-transform: rotateY(0deg);
+      }
+  }
