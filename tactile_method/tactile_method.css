@@ -35,8 +35,7 @@ body {
     padding: 3px 10px;
 }
 
-.hide_show_block_position,
-.hide_show_block_geometry {
+.hide_show_block {
     display: flex;
     flex-direction: column;
 }
@@ -310,4 +309,8 @@ section {
 
 .two_color_key_circle {
     background-color: rgba(255, 136, 251, 0.37);
+}
+
+.gap_space{
+    margin-left: 20px;
 }

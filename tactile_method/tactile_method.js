@@ -533,44 +533,85 @@ let create_white_black_table = function () {
 }
 
 
+let hide = function(){
+    let all_hide_btn = document.querySelectorAll('.hide_show_block');
+for(let item of all_hide_btn){
+    item.classList.add('hide_btn')
+}    
+}
 
-document.querySelector('.geometry_btn').onclick = function () {
+let container_start_btn = document.querySelector('.container_start_btn');
+container_start_btn.addEventListener('click',function (event) {
+
+
+
+    console.log(event.target.parentElement.children[1]);
+if(event.target.value == 'геометрические'){
     container_table.replaceChildren();
-    document.querySelector('.hide_show_block_geometry').classList.remove('hide_btn');
-    document.querySelector('.hide_show_block_position').classList.add('hide_btn');
-
+    hide();
+    
     create_table(tactile_table); // создание таблицы
     add_dataatr(all_table_item, dataset_note, data_algorythm); // добавление атрибутов
     active_space(); // добавление отступов
+
     value_table = 'geometry_table';
     ind_cursor = 0;
+    
+    event.target.parentElement.children[1].classList.remove('hide_btn')
+    
 }
-document.querySelector('.x_button').onclick = function () {
+if(event.target.value == 'X_блоки'){
     active_x_block();
 }
-document.querySelector('.margin_button').onclick = function () {
+if(event.target.value == 'отступы'){
     active_space();
 }
-document.querySelector('.color_btn').onclick = function () {
-    container_table.replaceChildren();
-    document.querySelector('.hide_show_block_geometry').classList.add('hide_btn');
-    document.querySelector('.hide_show_block_position').classList.add('hide_btn');
+   
 
-    create_white_black_table(); // создание таблицы
-    add_dataatr(all_point_w_and_b, data_attr_point, point_algorythm); // добавление атрибутов
-    value_table = 'color_table';
-    ind_cursor = 0;
+   
+   
+if(event.target.value == 'цветовые'){
+        container_table.replaceChildren();
+        hide();
+
+        value_table = 'color_table';
+        create_white_black_table(); // создание таблицы
+        add_dataatr(all_point_w_and_b, data_attr_point, point_algorythm); // добавление атрибутов
+        ind_cursor = 0;
+}
+    
+if(event.target.value == 'позиционные'){
+        container_table.replaceChildren();
+        hide();
+    
+        value_table = 'position_table';
+        active_position(); // добавление атрибутов внутри функции
+        ind_cursor = 0;
+
+        event.target.parentElement.children[1].classList.remove('hide_btn');
 }
 
-document.querySelector('.position_btn').onclick = function () {
-    container_table.replaceChildren();
-    document.querySelector('.hide_show_block_position').classList.remove('hide_btn');
-    document.querySelector('.hide_show_block_geometry').classList.add('hide_btn');
-
-    active_position(); // добавление атрибутов внутри функции
-    value_table = 'position_table';
-    ind_cursor = 0;
+if(event.target.value == 'овер'){
+    slice_overflow_circle();
 }
+if(event.target.value == 'подписи'){
+    add_label_for_circle();
+}   
+
+if(event.target.value == 'хроматика-ритм'){
+    container_table.replaceChildren();
+    hide();
+    value_table = 'chromatic_rythm_table';
+
+    gamma_generate();
+    event.target.parentElement.children[1].classList.remove('hide_btn');
+}   
+
+if(event.target.value == 'пробелы'){
+    add_gap_space();
+}   
+
+})
 
 
 
@@ -844,9 +885,6 @@ let slice_overflow_circle = function () {
         item.classList.toggle('hide_overflow_circle');
     }
 }
-document.querySelector('.overflow_button').onclick = function () {
-    slice_overflow_circle();
-}
 
 let add_label_for_circle = function () {
 
@@ -861,9 +899,6 @@ let add_label_for_circle = function () {
     }
 }
 
-document.querySelector('.label_cicle_button').onclick = function () {
-    add_label_for_circle();
-}
 
 
 // ================================= таблица хроматическая ===================================
@@ -973,4 +1008,46 @@ let gamma_generate = function () {
     }
 }
 
-// gamma_generate();
+
+
+
+let all_circle_for_rythm_block;
+// console.log(all_circle_for_rythm_block);
+let add_gap_space = function () {
+    all_circle_for_rythm_block = document.querySelectorAll('.column_for_position>.row_for_position>.circle_table_elem');
+
+    for (let i = 0; i < all_circle_for_rythm_block.length; i++) {
+        switch (true) {
+            case [2, 4, 6, 8, 10, 12].includes(i): //дуоли_1
+            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [26, 28, 30, 32, 34, 36, 38].includes(i): //дуоли_2
+            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [53, 56, 59, 62].includes(i): //триоли_1
+            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [76, 79, 82, 85, 88].includes(i): //триоли_2
+            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [102, 105, 108, 111, 114].includes(i): //триоли_4
+            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [129, 133, 137].includes(i): //квартоли_1
+            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [151, 155, 159, 163].includes(i): //квартоли_2
+            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [177, 181, 185, 189].includes(i): //квартоли_3
+            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [203, 207, 211, 215].includes(i): //квартоли_4
+            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+        }
+    }
+}
+
+gamma_generate();
+add_gap_space();
