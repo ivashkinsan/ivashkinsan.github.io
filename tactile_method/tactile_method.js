@@ -287,8 +287,12 @@ document.addEventListener('keydown', function (event) {
         }
         clear_all();
 
+        // console.log(go_go_elem[ind_cursor]);
+        // console.log(ind_cursor);
+        // console.log(go_go_elem);
+
         let value_algorythm = go_go_elem[ind_cursor].parentNode.children;
-        // console.log(value_algorythm);
+
         for (let new_item of value_algorythm) {
             if (new_item.classList.contains('active_point')) {
                 step_indx++;
@@ -533,44 +537,44 @@ let create_white_black_table = function () {
 }
 
 
-let hide = function(){
+let hide = function () {
     let all_hide_btn = document.querySelectorAll('.hide_show_block');
-for(let item of all_hide_btn){
-    item.classList.add('hide_btn')
-}    
+    for (let item of all_hide_btn) {
+        item.classList.add('hide_btn')
+    }
 }
 
 let container_start_btn = document.querySelector('.container_start_btn');
-container_start_btn.addEventListener('click',function (event) {
+container_start_btn.addEventListener('click', function (event) {
 
 
 
     console.log(event.target.parentElement.children[1]);
-if(event.target.value == 'геометрические'){
-    container_table.replaceChildren();
-    hide();
-    
-    create_table(tactile_table); // создание таблицы
-    add_dataatr(all_table_item, dataset_note, data_algorythm); // добавление атрибутов
-    active_space(); // добавление отступов
+    if (event.target.value == 'геометрические') {
+        container_table.replaceChildren();
+        hide();
 
-    value_table = 'geometry_table';
-    ind_cursor = 0;
-    
-    event.target.parentElement.children[1].classList.remove('hide_btn')
-    
-}
-if(event.target.value == 'X_блоки'){
-    active_x_block();
-}
-if(event.target.value == 'отступы'){
-    active_space();
-}
-   
+        create_table(tactile_table); // создание таблицы
+        add_dataatr(all_table_item, dataset_note, data_algorythm); // добавление атрибутов
+        active_space(); // добавление отступов
 
-   
-   
-if(event.target.value == 'цветовые'){
+        value_table = 'geometry_table';
+        ind_cursor = 0;
+
+        event.target.parentElement.children[1].classList.remove('hide_btn')
+
+    }
+    if (event.target.value == 'X_блоки') {
+        active_x_block();
+    }
+    if (event.target.value == 'отступы') {
+        active_space();
+    }
+
+
+
+
+    if (event.target.value == 'цветовые') {
         container_table.replaceChildren();
         hide();
 
@@ -578,38 +582,38 @@ if(event.target.value == 'цветовые'){
         create_white_black_table(); // создание таблицы
         add_dataatr(all_point_w_and_b, data_attr_point, point_algorythm); // добавление атрибутов
         ind_cursor = 0;
-}
-    
-if(event.target.value == 'позиционные'){
+    }
+
+    if (event.target.value == 'позиционные') {
         container_table.replaceChildren();
         hide();
-    
+
         value_table = 'position_table';
         active_position(); // добавление атрибутов внутри функции
         ind_cursor = 0;
 
         event.target.parentElement.children[1].classList.remove('hide_btn');
-}
+    }
 
-if(event.target.value == 'овер'){
-    slice_overflow_circle();
-}
-if(event.target.value == 'подписи'){
-    add_label_for_circle();
-}   
+    if (event.target.value == 'овер') {
+        slice_overflow_circle();
+    }
+    if (event.target.value == 'подписи') {
+        add_label_for_circle();
+    }
 
-if(event.target.value == 'хроматика-ритм'){
-    container_table.replaceChildren();
-    hide();
-    value_table = 'chromatic_rythm_table';
+    if (event.target.value == 'хроматика-ритм') {
+        container_table.replaceChildren();
+        hide();
+        value_table = 'chromatic_rythm_table';
 
-    gamma_generate();
-    event.target.parentElement.children[1].classList.remove('hide_btn');
-}   
+        gamma_generate();
+        event.target.parentElement.children[1].classList.remove('hide_btn');
+    }
 
-if(event.target.value == 'пробелы'){
-    add_gap_space();
-}   
+    if (event.target.value == 'пробелы') {
+        add_gap_space();
+    }
 
 })
 
@@ -916,6 +920,19 @@ let arr_for_chromatic_rythm_table = [
         'квартоли_2    0w 11b 11w 11b 11w 22w 22b 22w 22b 11w 11b 11w 11w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
         'квартоли_3    0w 0b 11w 11b 11w 11w 22b 22w 22b 22w 11b 11w 11w 11b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
         'квартоли_4    0w 0b 0w 11b 11w 11w 11b 22w 22b 22w 22b 11w 11w 11b 11w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+
+        'квинтоли_1    11w 11b 11w 11b 11w 22w 22b 22w 22b 22w 11b 11w 11w 11b 11w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'квинтоли_2    0w 11b 11w 11b 11w 11w 22b 22w 22b 22w 22b 11w 11w 11b 11w 11b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'квинтоли_3    0w 0b 11w 11b 11w 11w 11b 22w 22b 22w 22b 22w 11w 11b 11w 11b 11w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'квинтоли_4    0w 0b 0w 11b 11w 11w 11b 11w 22b 22w 22b 22w 22w 11b 11w 11b 11w 11w 0b 0w 0b 0w 0b 0w 0w',
+        'квинтоли_5    0w 0b 0w 0b 11w 11w 11b 11w 11b 22w 22b 22w 22w 22b 11w 11b 11w 11w 11b 0w 0b 0w 0b 0w 0w',
+
+        'секстоли_1    11w 11b 11w 11b 11w 11w 22b 22w 22b 22w 22b 22w 0w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'секстоли_2    0w 11b 11w 11b 11w 11w 11b 22w 22b 22w 22b 22w 22w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'секстоли_3    0w 0b 11w 11b 11w 11w 11b 11w 22b 22w 22b 22w 22w 22b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'секстоли_4    0w 0b 0w 11b 11w 11w 11b 11w 11b 22w 22b 22w 22w 22b 22w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'секстоли_5    0w 0b 0w 0b 11w 11w 11b 11w 11b 11w 22b 22w 22w 22b 22w 22b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'секстоли_6    0w 0b 0w 0b 0w 11w 11b 11w 11b 11w 11b 22w 22w 22b 22w 22b 22w 0w 0b 0w 0b 0w 0b 0w 0w',
     ],
 ]
 
@@ -933,23 +950,38 @@ let arr_label_var_1 = [
         '0 1 1 1 1 2 2 2 2 3 3 3 3',
         '0 0 1 1 1 1 2 2 2 2 3 3 3 3',
         '0 0 0 1 1 1 1 2 2 2 2 3 3 3 3',
+
+        '1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 3',
+        '0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3',
+        '0 0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3',
+        '0 0 0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3',
+        '0 0 0 0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3',
+
+        '1 1 1 1 1 1 2 2 2 2 2 2',
+        '0 1 1 1 1 1 1 2 2 2 2 2 2',
+        '0 0 1 1 1 1 1 1 2 2 2 2 2 2',
+        '0 0 0 1 1 1 1 1 1 2 2 2 2 2 2',
+        '0 0 0 0 1 1 1 1 1 1 2 2 2 2 2 2',
+        '0 0 0 0 0 1 1 1 1 1 1 2 2 2 2 2 2',
     ],
 ]
 let arr_label_for_chromatic_rythm_table = [
     ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C']
 ]
+
 let gamma_generate = function () {
     container_table.style.flexDirection = 'row';
+    container_table.classList.add('overflow_scroll');
 
     for (let i = 0; i < 2; i++) {
         let new_column = document.createElement('div');
         new_column.classList.add('column_for_position');
-        for (let ii = 0; ii < 9; ii++) {
+        for (let ii = 0; ii < 20; ii++) {
             let new_row;
 
             let array_in_strings = arr_for_chromatic_rythm_table[0][ii].split(' ').filter(element => element != '');
             let array_lebel = arr_label_var_1[0][ii].split(' ').filter(element => element != '')
-            console.log(array_lebel);
+            // console.log(array_lebel);
             if (i == 0) {
                 new_row = document.createElement('div');
                 new_row.classList.add('row_label_for_chrom');
@@ -966,7 +998,7 @@ let gamma_generate = function () {
                     new_circle = document.createElement('div');
                     new_circle.classList.add('circle_table_elem');
                     new_circle.dataset.note = arr_label_for_chromatic_rythm_table[i - 1][iii - 1];
-
+                    // console.log(new_circle);
                     if (array_in_strings[iii] == '11b' || array_in_strings[iii] == '22b' || array_in_strings[iii] == '0b') {
                         new_circle.classList.add('up_key_circle');
                     }
@@ -984,14 +1016,14 @@ let gamma_generate = function () {
 
                     if (array_in_strings[iii] == '11w' || array_in_strings[iii] == '22w') {
                         // new_circle.classList.add('white_key_circle');
-                        if (dataset_note_for_position_table[i - 1][ii].length > 0) {
-                            let new_arr_for_slice = dataset_note_for_position_table[i - 1][ii].shift().split(' ');
-                            let new_arr_for_algorythm = data_algorythm_for_position_table[i - 1][ii].shift();
-                            // new_circle.dataset.algorythm = new_arr_for_algorythm;
-                            // new_circle.dataset.start_note = new_arr_for_slice[0];
-                            // new_circle.dataset.end_note = new_arr_for_slice[1];
-                            new_circle.classList.add('active_point');
-                        }
+                        // if (dataset_note_for_position_table[i - 1][ii].length > 0) {
+                        // let new_arr_for_slice = dataset_note_for_position_table[i - 1][ii].shift().split(' ');
+                        // let new_arr_for_algorythm = data_algorythm_for_position_table[i - 1][ii].shift();
+                        // new_circle.dataset.algorythm = new_arr_for_algorythm;
+                        // new_circle.dataset.start_note = new_arr_for_slice[0];
+                        // new_circle.dataset.end_note = new_arr_for_slice[1];
+                        // new_circle.classList.add('active_point');
+                        // }
                     }
 
                     if (array_in_strings[iii] == '@b' || array_in_strings[iii] == '@w') {
@@ -1019,31 +1051,64 @@ let add_gap_space = function () {
     for (let i = 0; i < all_circle_for_rythm_block.length; i++) {
         switch (true) {
             case [2, 4, 6, 8, 10, 12].includes(i): //дуоли_1
-            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
                 break;
             case [26, 28, 30, 32, 34, 36, 38].includes(i): //дуоли_2
-            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
                 break;
             case [53, 56, 59, 62].includes(i): //триоли_1
-            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
                 break;
             case [76, 79, 82, 85, 88].includes(i): //триоли_2
-            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
                 break;
             case [102, 105, 108, 111, 114].includes(i): //триоли_4
-            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
                 break;
             case [129, 133, 137].includes(i): //квартоли_1
-            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
                 break;
             case [151, 155, 159, 163].includes(i): //квартоли_2
-            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
                 break;
             case [177, 181, 185, 189].includes(i): //квартоли_3
-            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
                 break;
             case [203, 207, 211, 215].includes(i): //квартоли_4
-            all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [230, 235, 240].includes(i): //квинтоли_1
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [251, 256, 261, 266].includes(i): //квинтоли_2
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [277, 282, 287, 292].includes(i): //квинтоли_3
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [303, 308, 313, 318].includes(i): //квинтоли_4
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [329, 334, 339, 344].includes(i): //квинтоли_5
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [356, 362, 368].includes(i): //секстоли_1
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [376, 382, 388, 394].includes(i): //секстоли_2
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [402, 408, 414, 420].includes(i): //секстоли_3
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [428, 434, 440, 446].includes(i): //секстоли_4
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [454, 460, 466, 472].includes(i): //секстоли_5
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
+                break;
+            case [480, 486, 492, 498].includes(i): //секстоли_5
+                all_circle_for_rythm_block[i].classList.toggle('gap_space');
                 break;
         }
     }
