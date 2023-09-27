@@ -306,14 +306,43 @@ section {
     font-size: 18px;
 }
 
+.one_color_key_circle,
+.two_color_key_circle {
+    /* color: #ff04f2; */
+    font-weight: 800;
+    /* border-color: #103d8b; */
+    /* border-width: 1px; */
+}
+
+.one_color_key_circle{
+    border-color: #b9b9b9;
+}
+
 .one_color_key_circle {
-    background-color: rgba(136, 227, 255, 0.37);
+    background-color: #F46B23;
 }
 
 .two_color_key_circle {
-    background-color: rgba(255, 136, 251, 0.37);
+    background-color: #FFE700;
+}
+
+.three_color_key_circle {
+    background-color: #A8CF38;
+}
+.four_color_key_circle {
+    background-color: #2CB34A;
+}
+.five_color_key_circle {
+    background-color: #01ACA4;
+}
+.six_color_key_circle {
+    background-color: #0EAFE5;
 }
 
 .gap_space{
     margin-left: 20px;
+}
+
+.margin_top{
+    margin-top: 100px;
 }
