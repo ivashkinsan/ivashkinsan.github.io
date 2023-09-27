@@ -231,7 +231,7 @@ section {
 
 .row_label_for_position {
     width: 100px;
-    height: 100%;
+    height: 50px;
     text-align: center;
 }
 
@@ -254,6 +254,7 @@ section {
     position: absolute;
     top: -16px;
     font-size: 11px;
+    
 }
 
 .circle_table_elem {
@@ -301,9 +302,11 @@ section {
 /* =============================== chromatic ================================ */
 .row_label_for_chrom {
     width: 100px;
-    height: 100%;
+    height: 50px;
     text-align: center;
     font-size: 18px;
+    margin: 2px 0 2px 0;
+    line-height: 50px;
 }
 
 .one_color_key_circle,
@@ -337,6 +340,24 @@ section {
 }
 .six_color_key_circle {
     background-color: #0EAFE5;
+}
+.seven_color_key_circle {
+    background-color: #0072BB;
+}
+.eight_color_key_circle {
+    background-color: #53439B;
+}
+.nine_color_key_circle {
+    background-color: #7D4199;
+}
+.teen_color_key_circle {
+    background-color: #A82068;
+}
+.eleven_color_key_circle {
+    background-color: #EE2979;
+}
+.twelve_color_key_circle {
+    background-color: #DF2027;
 }
 
 .gap_space{

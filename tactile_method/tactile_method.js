@@ -916,40 +916,40 @@ let arr_for_chromatic_rythm_table = [
         'триоли_2    0w 33b 33w 33b 44w 44w 44b 11w 11b 11w 22b 22w 22w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
         'триоли_3    0w 0b 11w 11b 11w 11w 11b 11w 33b 33w 33b 44w 44w 44b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
 
-        'квартоли_1    11w 11b 11w 11b    22w 22w 22b 22w    33b 33w 33b 33w    0w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'квартоли_1        11w 11b 11w 11b    22w 22w 22b 22w    33b 33w 33b 33w    0w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
         'квартоли_2    0w    33b 33w 33b 33w    11w 11b 11w 11b    44w 44b 44w 44w    0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
         'квартоли_3    0w 0b    44w 44b 44w 44w    33b 33w 33b 33w    55b 55w 55w 55b    0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
         'квартоли_4    0w 0b 0w    55b 55w 55w 55b    11w 11b 11w 11b    22w 22w 22b 22w    0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
 
-        'квинтоли_1    11w 11b 11w 11b 11w   11w 11b 11w 11b 11w    22b 22w 22w 22b 22w    22b 22w 22w 22b 22w    33b 33w 33b 33w 33w',
-        'квинтоли_2    0w   33b 33w 33b 33w 33w    44b 44w 44b 44w 44b    55w 55w 55b 55w 55b    55w 55w 55b 55w 55b    66w 66b 66w 66w 66b',
-        'квинтоли_3    0w 0b 66w 66b 66w 66w 66b 11w 11b 11w 11b 11w 11w 11b 11w 11b 11w 0w 0b 0w 0b 0w 0b 0w 0w',
-        'квинтоли_4    0w 0b 0w 22b 22w 22w 22b 22w 33b 33w 33b 33w 33w 33b 33w 33b 33w 33w 0b 0w 0b 0w 0b 0w 0w',
-        'квинтоли_5    0w 0b 0w 0b 55w 55w 55b 55w 55b 66w 66b 66w 66w 66b 66w 66b 66w 66w 66b 0w 0b 0w 0b 0w 0w',
+        'квинтоли_1_        11w 11b 11w 11b 11w   11w 11b 11w 11b 11w    22b 22w 22w 22b 22w    22b 22w 22w 22b 22w    33b 33w 33b 33w 33w',
+        'квинтоли_2_    0w   33b 33w 33b 33w 33w    44b 44w 44b 44w 44b    55w 55w 55b 55w 55b    55w 55w 55b 55w 55b    66w 66b 66w 66w 66b',
+        'квинтоли_3_    0w 0b    66w 66b 66w 66w 66b    11w 11b 11w 11b 11w    11w 11b 11w 11b 11w    11w 11b 11w 11b 11w    22b 22w 22w 22b 22w',
+        'квинтоли_4_    0w 0b 0w    22b 22w 22w 22b 22w    33b 33w 33b 33w 33w    33b 33w 33b 33w 33w    44b 44w 44b 44w 44b    55w 55w 55b 55w 55b',
+        'квинтоли_5_    0w 0b 0w 0b    55w 55w 55b 55w 55b    66w 66b 66w 66w 66b    66w 66b 66w 66w 66b    11w 11b 11w 11b 11w    11w 11b 11w 11b 11w',
 
-        'секстоли_1    11w 11b 11w 11b 11w 11w 22b 22w 22b 22w 22b 22w 0w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
-        'секстоли_2    0w 11b 11w 11b 11w 11w 11b 22w 22b 22w 22b 22w 22w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
-        'секстоли_3    0w 0b 11w 11b 11w 11w 11b 11w 22b 22w 22b 22w 22w 22b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
-        'секстоли_4    0w 0b 0w 11b 11w 11w 11b 11w 11b 22w 22b 22w 22w 22b 22w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
-        'секстоли_5    0w 0b 0w 0b 11w 11w 11b 11w 11b 11w 22b 22w 22w 22b 22w 22b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
-        'секстоли_6    0w 0b 0w 0b 0w 11w 11b 11w 11b 11w 11b 22w 22w 22b 22w 22b 22w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'секстоли_1        11w 11b 11w 11b 11w 11w    22b 22w 22b 22w 22b 22w    0w 0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'секстоли_2    0w    33b 33w 33b 33w 33w 33b    11w 11b 11w 11b 11w 11w    0b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'секстоли_3    0w 0b    44w 44b 44w 44w 44b 44w    33b 33w 33b 33w 33w 33b    0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'секстоли_4    0w 0b 0w    55b 55w 55w 55b 55w 55b    44w 44b 44w 44w 44b 44w    0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'секстоли_5    0w 0b 0w 0b    66w 66w 66b 66w 66b 66w    55b 55w 55w 55b 55w 55b    0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'секстоли_6    0w 0b 0w 0b 0w    77w 77b 77w 77b 77w 77b    66w 66w 66b 66w 66b 66w    0w 0b 0w 0b 0w 0b 0w 0w',
 
-        'септоли_1    11w 11b 11w 11b 11w 11w 11b 22w 22b 22w 22b 22w 22w 22b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
-        'септоли_2    0w 11b 11w 11b 11w 11w 11b 11w 22b 22w 22b 22w 22w 22b 22w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
-        'септоли_3    0w 0b 11w 11b 11w 11w 11b 11w 11b 22w 22b 22w 22w 22b 22w 22b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
-        'септоли_4    0w 0b 0w 11b 11w 11w 11b 11w 11b 11w 22b 22w 22w 22b 22w 22b 22w 0w 0b 0w 0b 0w 0b 0w 0w',
-        'септоли_5    0w 0b 0w 0b 11w 11w 11b 11w 11b 11w 11b 22w 22w 22b 22w 22b 22w 22w 0b 0w 0b 0w 0b 0w 0w',
-        'септоли_6    0w 0b 0w 0b 0w 11w 11b 11w 11b 11w 11b 11w 22w 22b 22w 22b 22w 22w 22b 0w 0b 0w 0b 0w 0w',
-        'септоли_7    0w 0b 0w 0b 0w 0w 11b 11w 11b 11w 11b 11w 11w 22b 22w 22b 22w 22w 22b 22w 0b 0w 0b 0w 0w',
+        'септоли_1        11w 11b 11w 11b 11w 11w 11b    11w 11b 11w 11b 11w 11w 11b    0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'септоли_2    0w     22b 22w 22b 22w 22w 22b 22w     22b 22w 22b 22w 22w 22b 22w     0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'септоли_3    0w 0b     33w 33b 33w 33w 33b 33w 33b     33w 33b 33w 33w 33b 33w 33b     0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'септоли_4    0w 0b 0w     44b 44w 44w 44b 44w 44b 44w     44b 44w 44w 44b 44w 44b 44w     0w 0b 0w 0b 0w 0b 0w 0w',
+        'септоли_5    0w 0b 0w 0b     55w 55w 55b 55w 55b 55w 55b     66w 66w 66b 66w 66b 66w 66w     0b 0w 0b 0w 0b 0w 0w',
+        'септоли_6    0w 0b 0w 0b 0w     77w 77b 77w 77b 77w 77b 77w     11w 11b 11w 11b 11w 11w 11b     0w 0b 0w 0b 0w 0w',
+        'септоли_7    0w 0b 0w 0b 0w 0w     88b 88w 88b 88w 88b 88w 88w     22b 22w 22b 22w 22w 22b 22w     0b 0w 0b 0w 0w',
         
-        'октоли_1    11w 11b 11w 11b 11w 11w 11b 11w 22b 22w 22b 22w 22w 22b 22w 22b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
-        'октоли_2    0w 11b 11w 11b 11w 11w 11b 11w 11b 22w 22b 22w 22w 22b 22w 22b 22w 0w 0b 0w 0b 0w 0b 0w 0w',
-        'октоли_3    0w 0b 11w 11b 11w 11w 11b 11w 11b 11w 22b 22w 22w 22b 22w 22b 22w 22w 0b 0w 0b 0w 0b 0w 0w',
-        'октоли_4    0w 0b 0w 11b 11w 11w 11b 11w 11b 11w 11b 22w 22w 22b 22w 22b 22w 22w 22b 0w 0b 0w 0b 0w 0w',
-        'октоли_5    0w 0b 0w 0b 11w 11w 11b 11w 11b 11w 11b 11w 22w 22b 22w 22b 22w 22w 22b 22w 0b 0w 0b 0w 0w',
-        'октоли_6    0w 0b 0w 0b 0w 11w 11b 11w 11b 11w 11b 11w 11w 22b 22w 22b 22w 22w 22b 22w 22b 0w 0b 0w 0w',
-        'октоли_7    0w 0b 0w 0b 0w 0w 11b 11w 11b 11w 11b 11w 11w 11b 22w 22b 22w 22w 22b 22w 22b 22w 0b 0w 0w',
-        'октоли_8    0w 0b 0w 0b 0w 0w 0b 11w 11b 11w 11b 11w 11w 11b 11w 22b 22w 22w 22b 22w 22b 22w 22b 0w 0w',
+        'октоли_1        11w 11b 11w 11b 11w 11w 11b 11w    22b 22w 22b 22w 22w 22b 22w 22b    0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'октоли_2    0w     22b 22w 22b 22w 22w 22b 22w 22b     33w 33b 33w 33w 33b 33w 33b 33w     0w 0b 0w 0b 0w 0b 0w 0w',
+        'октоли_3    0w 0b     33w 33b 33w 33w 33b 33w 33b 33w     44b 44w 44w 44b 44w 44b 44w 44w     0b 0w 0b 0w 0b 0w 0w',
+        'октоли_4    0w 0b 0w     55b 55w 55w 55b 55w 55b 55w 55b     66w 66w 66b 66w 66b 66w 66w 66b     0w 0b 0w 0b 0w 0w',
+        'октоли_5    0w 0b 0w 0b     77w 77w 77b 77w 77b 77w 77b 77w     11w 11b 11w 11b 11w 11w 11b 11w     0b 0w 0b 0w 0w',
+        'октоли_6    0w 0b 0w 0b 0w     88w 88b 88w 88b 88w 88b 88w 88w     22b 22w 22b 22w 22w 22b 22w 22b     0w 0b 0w 0w',
+        'октоли_7    0w 0b 0w 0b 0w 0w     99b 99w 99b 99w 99b 99w 99w 99b     33w 33b 33w 33w 33b 33w 33b 33w     0b 0w 0w',
+        'октоли_8    0w 0b 0w 0b 0w 0w 0b     11w 11b 11w 11b 11w 11w 11b 11w     55b 55w 55w 55b 55w 55b 55w 55b     0w 0w',
     ],
 ]
 
@@ -1016,11 +1016,11 @@ let arr_label_var_1 = [
         '0 0 1 1 1 1 2 2 2 2 3 3 3 3',
         '0 0 0 1 1 1 1 2 2 2 2 3 3 3 3',
 
-        '1 1 1 1 1    2 2 2 2 2    3 3 3 3 3    4 4 4 4 4    5 5 5 5 5 5',
-        '0    1 1 1 1 1    2 2 2 2 2    3 3 3 3 3   4 4 4 4 4   5 5 5 5 5',
-        '0 0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3',
-        '0 0 0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3',
-        '0 0 0 0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3',
+        '        1 1 1 1 1    2 2 2 2 2    3 3 3 3 3   4 4 4 4 4   5 5 5 5 5',
+        '0       1 1 1 1 1    2 2 2 2 2    3 3 3 3 3   4 4 4 4 4   5 5 5 5 5',
+        '0 0     1 1 1 1 1    2 2 2 2 2    3 3 3 3 3   4 4 4 4 4   5 5 5 5 5',
+        '0 0 0   1 1 1 1 1    2 2 2 2 2    3 3 3 3 3   4 4 4 4 4   5 5 5 5 5',
+        '0 0 0 0 1 1 1 1 1    2 2 2 2 2    3 3 3 3 3   4 4 4 4 4   5 5 5 5 5',
 
         '1 1 1 1 1 1 2 2 2 2 2 2',
         '0 1 1 1 1 1 1 2 2 2 2 2 2',
@@ -1088,29 +1088,54 @@ let gamma_generate = function () {
                     if (array_in_strings[iii][2] == 'b' || array_in_strings[iii][1] == 'b') {
                         new_circle.classList.add('up_key_circle');
                     }
-                    switch(array_in_strings[iii][0]){
-                        case '1': 
+                    console.log(array_in_strings[iii][0]+array_in_strings[iii][1]);
+                    switch(array_in_strings[iii][0]+array_in_strings[iii][1]){
+                        case '11': 
                         new_circle.classList.add('one_color_key_circle');
                         new_circle.textContent = array_lebel[iii - 1];
                         break;
-                        case '2': 
+                        case '22': 
                         new_circle.classList.add('two_color_key_circle');
                         new_circle.textContent = array_lebel[iii - 1];
                         break;
-                        case '3': 
+                        case '33': 
                         new_circle.classList.add('three_color_key_circle');
                         new_circle.textContent = array_lebel[iii - 1];
                         break;
-                        case '4': 
+                        case '44': 
                         new_circle.classList.add('four_color_key_circle');
                         new_circle.textContent = array_lebel[iii - 1];
                         break;
-                        case '5': 
+                        case '55': 
                         new_circle.classList.add('five_color_key_circle');
                         new_circle.textContent = array_lebel[iii - 1];
                         break;
-                        case '6': 
+                        case '66': 
                         new_circle.classList.add('six_color_key_circle');
+                        new_circle.textContent = array_lebel[iii - 1];
+                        break;
+                        case '77': 
+                        new_circle.classList.add('seven_color_key_circle');
+                        new_circle.textContent = array_lebel[iii - 1];
+                        break;
+                        case '88': 
+                        new_circle.classList.add('eight_color_key_circle');
+                        new_circle.textContent = array_lebel[iii - 1];
+                        break;
+                        case '99': 
+                        new_circle.classList.add('nine_color_key_circle');
+                        new_circle.textContent = array_lebel[iii - 1];
+                        break;
+                        case '01': 
+                        new_circle.classList.add('ten_color_key_circle');
+                        new_circle.textContent = array_lebel[iii - 1];
+                        break;
+                        case '02': 
+                        new_circle.classList.add('eleven_color_key_circle');
+                        new_circle.textContent = array_lebel[iii - 1];
+                        break;
+                        case '03': 
+                        new_circle.classList.add('twelve_color_key_circle');
                         new_circle.textContent = array_lebel[iii - 1];
                         break;
                     }
@@ -1158,6 +1183,7 @@ let add_gap_space = function () {
             case 'дуоли_2':
                 if(i%2 == 0){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
                 break;
+
             case 'триоли_1':
                 if(i%3 == 2){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
                 break;
@@ -1167,6 +1193,7 @@ let add_gap_space = function () {
             case 'триоли_3':
                 if(i%3 == 0){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
                 break;
+
             case 'квартоли_1':
                 if(i%4 == 1){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
                 break;
@@ -1179,126 +1206,105 @@ let add_gap_space = function () {
             case 'квартоли_4':
                 if(i%4 == 3){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
                 break;
+
+            case 'квинтоли_1_':
+                if(i%5 == 0){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'квинтоли_2_':
+                if(i%5 == 1){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'квинтоли_3_':
+                if(i%5 == 3){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'квинтоли_4_':
+                if(i%5 == 1){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'квинтоли_5_':
+                if(i%5 == 0){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+
+            case 'секстоли_1':
+                if(i%6 == 0){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'секстоли_2':
+                if(i%6 == 2){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'секстоли_3':
+                if(i%6 == 4){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'секстоли_4':
+                if(i%6 == 0){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'секстоли_5':
+                if(i%6 == 2){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'секстоли_6':
+                if(i%6 == 4){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+
+            case 'септоли_1':
+                if(i%7 == 6){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'септоли_2':
+                if(i%7 == 4){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'септоли_3':
+                if(i%7 == 2){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'септоли_4':
+                if(i%7 == 0){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'септоли_5':
+                if(i%7 == 5){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'септоли_6':
+                if(i%7 == 3){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'септоли_7':
+                if(i%7 == 1){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+
+            case 'октоли_1':
+                if(i%8 == 5){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'октоли_2':
+                if(i%8 == 7){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'октоли_3':
+                if(i%8 == 1){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'октоли_4':
+                if(i%8 == 3){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'октоли_5':
+                if(i%8 == 5){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'октоли_6':
+                if(i%8 == 7){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'октоли_7':
+                if(i%8 == 1){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
+            case 'октоли_8':
+                if(i%8 == 3){all_circle_for_rythm_block[i].classList.toggle('gap_space');}
+                break;
         }
         if(i > 1 && all_circle_for_rythm_block[i-1].dataset.rythm.length != all_circle_for_rythm_block[i].dataset.rythm.length){           
-        all_circle_for_rythm_block[i].parentElement.classList.toggle('margin_top');
+        all_circle_for_rythm_block[i].parentElement.classList.add('margin_top');
         
-    //    document.querySelector('.column_for_position').children[2].classList.add('margin_top');
+       document.querySelector('.column_for_position').children[2].classList.add('margin_top');
+       document.querySelector('.column_for_position').children[5].classList.add('margin_top');
+       document.querySelector('.column_for_position').children[9].classList.add('margin_top');
+       document.querySelector('.column_for_position').children[14].classList.add('margin_top');
+       document.querySelector('.column_for_position').children[20].classList.add('margin_top');
+       document.querySelector('.column_for_position').children[27].classList.add('margin_top');
     //    document.querySelector('.column_for_position').children[5].classList.add('margin_top');
     
     }
     }
 
 
-    // for (let i = 0; i < all_circle_for_rythm_block.length; i++) {
-    //     switch (true) {
-    //         case [2, 4, 6, 8, 10, 12].includes(i): //дуоли_1
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [26, 28, 30, 32, 34, 36, 38].includes(i): //дуоли_2
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [53, 56, 59, 62].includes(i): //триоли_1
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [76, 79, 82, 85, 88].includes(i): //триоли_2
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [102, 105, 108, 111, 114].includes(i): //триоли_4
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [129, 133, 137].includes(i): //квартоли_1
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [151, 155, 159, 163].includes(i): //квартоли_2
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [177, 181, 185, 189].includes(i): //квартоли_3
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [203, 207, 211, 215].includes(i): //квартоли_4
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [230, 235, 240, 245].includes(i): //квинтоли_1
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [251, 256, 261, 266, 271].includes(i): //квинтоли_2
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [277, 282, 287, 292].includes(i): //квинтоли_3
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [303, 308, 313, 318].includes(i): //квинтоли_4
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [329, 334, 339, 344].includes(i): //квинтоли_5
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [356, 362, 368].includes(i): //секстоли_1
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [376, 382, 388, 394].includes(i): //секстоли_2
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [402, 408, 414, 420].includes(i): //секстоли_3
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [428, 434, 440, 446].includes(i): //секстоли_4
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [454, 460, 466, 472].includes(i): //секстоли_5
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [480, 486, 492, 498].includes(i): //секстоли_5
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [507, 514].includes(i): //септоли_1
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [526, 533, 540].includes(i): //септоли_2
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [552, 559, 566].includes(i): //септоли_3
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [578, 585, 592].includes(i): //септоли_4
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [604, 611, 618].includes(i): //септоли_5
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [630, 637, 644].includes(i): //септоли_6
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [656, 663, 670].includes(i): //септоли_7
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [683, 691].includes(i): //октоли_1
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [701, 709, 717].includes(i): //октоли_2
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [727, 735, 743].includes(i): //октоли_3
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [753, 761, 769].includes(i): //октоли_4
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [779, 787, 795].includes(i): //октоли_5
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [805, 813, 821].includes(i): //октоли_6
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [831, 839, 847].includes(i): //октоли_7
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //         case [857, 865, 873].includes(i): //октоли_8
-    //             all_circle_for_rythm_block[i].classList.toggle('gap_space');
-    //             break;
-    //     }
-    // }
+   
 }
 
 gamma_generate();
