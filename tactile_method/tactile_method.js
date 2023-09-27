@@ -933,6 +933,16 @@ let arr_for_chromatic_rythm_table = [
         'секстоли_4    0w 0b 0w 11b 11w 11w 11b 11w 11b 22w 22b 22w 22w 22b 22w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
         'секстоли_5    0w 0b 0w 0b 11w 11w 11b 11w 11b 11w 22b 22w 22w 22b 22w 22b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
         'секстоли_6    0w 0b 0w 0b 0w 11w 11b 11w 11b 11w 11b 22w 22w 22b 22w 22b 22w 0w 0b 0w 0b 0w 0b 0w 0w',
+
+        'септоли_1    11w 11b 11w 11b 11w 11w 11b 22w 22b 22w 22b 22w 22w 22b 0w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'септоли_2    0w 11b 11w 11b 11w 11w 11b 11w 22b 22w 22b 22w 22w 22b 22w 0b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'септоли_3    0w 0b 11w 11b 11w 11w 11b 11w 11b 22w 22b 22w 22w 22b 22w 22b 0w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'септоли_4    0w 0b 0w 11b 11w 11w 11b 11w 11b 11w 22b 22w 22w 22b 22w 22b 22w 0w 0b 0w 0b 0w 0b 0w 0w',
+        'септоли_5    0w 0b 0w 0b 11w 11w 11b 11w 11b 11w 11b 22w 22w 22b 22w 22b 22w 22w 0b 0w 0b 0w 0b 0w 0w',
+        'септоли_6    0w 0b 0w 0b 0w 11w 11b 11w 11b 11w 11b 11w 22w 22b 22w 22b 22w 22w 22b 0w 0b 0w 0b 0w 0w',
+        'септоли_7    0w 0b 0w 0b 0w 0w 11b 11w 11b 11w 11b 11w 11w 22b 22w 22b 22w 22w 22b 22w 0b 0w 0b 0w 0w',
+        
+        'септоли_7    0w 0b 0w 0b 0w 0w 11b 11w 11b 11w 11b 11w 11w 22b 22w 22b 22w 22w 22b 22w 0b 0w 0b 0w 0w',
     ],
 ]
 
@@ -963,6 +973,14 @@ let arr_label_var_1 = [
         '0 0 0 1 1 1 1 1 1 2 2 2 2 2 2',
         '0 0 0 0 1 1 1 1 1 1 2 2 2 2 2 2',
         '0 0 0 0 0 1 1 1 1 1 1 2 2 2 2 2 2',
+
+        '1 1 1 1 1 1 1 2 2 2 2 2 2 2',
+        '0 1 1 1 1 1 1 1 2 2 2 2 2 2 2',
+        '0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2',
+        '0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2',
+        '0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2',
+        '0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2',
+        '0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2',
     ],
 ]
 let arr_label_for_chromatic_rythm_table = [
@@ -976,7 +994,7 @@ let gamma_generate = function () {
     for (let i = 0; i < 2; i++) {
         let new_column = document.createElement('div');
         new_column.classList.add('column_for_position');
-        for (let ii = 0; ii < 20; ii++) {
+        for (let ii = 0; ii < 27; ii++) {
             let new_row;
 
             let array_in_strings = arr_for_chromatic_rythm_table[0][ii].split(' ').filter(element => element != '');
