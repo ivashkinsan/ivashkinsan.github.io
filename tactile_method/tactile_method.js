@@ -599,6 +599,7 @@ container_start_btn.addEventListener('click', function (event) {
         slice_overflow_circle();
     }
     if (event.target.value == 'подписи') {
+        console.log('click');
         add_label_for_circle();
     }
 
@@ -613,6 +614,18 @@ container_start_btn.addEventListener('click', function (event) {
 
     if (event.target.value == 'пробелы') {
         add_gap_space();
+    }
+
+    if (event.target.value == 'подписи_хр') {
+        // console.log('click');
+        add_label_for_circle_xp();
+        event.target.classList.toggle('click');
+    }
+
+    if (event.target.value == 'чб_цвет') {
+        console.log('чб_цвет');
+        add_white_black_color();
+        event.target.classList.toggle('wb_color_active');
     }
 
 })
@@ -890,6 +903,28 @@ let slice_overflow_circle = function () {
     }
 }
 
+console.log(document.querySelector('input[value=подписи_хр]'));
+let add_label_for_circle_xp = function () {
+    let all_circle_table_elem_xp = document.querySelectorAll('.circle_table_elem '); 
+   
+        if (document.querySelector('input[value=подписи_хр]').classList.contains('click')) {
+            for (let item of all_circle_table_elem_xp) {
+            let label_dataset_note = item.dataset.note.replace('2', '');
+            item.textContent = label_dataset_note;
+           
+        }
+        // console.log('false')
+        } else {
+            for (let item of all_circle_table_elem_xp) {
+            item.textContent = item.dataset.number;
+            
+            }
+            // console.log('true')
+        }
+
+    
+}
+
 let add_label_for_circle = function () {
 
     for (let item of all_circle_positions) {
@@ -903,6 +938,18 @@ let add_label_for_circle = function () {
     }
 }
 
+let add_white_black_color = function(){
+    let all_xp_circkle = document.querySelectorAll('.circle_table_elem');
+    for(let item of all_xp_circkle){
+        if(item.classList.contains('color') && item.classList.contains('up_key_circle')){
+            item.classList.toggle('black_keys');
+        } 
+        if(item.classList.contains('color') && item.classList.contains('down_key_circle')){
+            item.classList.toggle('white_keys');
+        } 
+
+    }
+}
 
 
 // ================================= таблица хроматическая ===================================
@@ -1048,7 +1095,7 @@ let arr_label_var_1 = [
     ],
 ]
 let arr_label_for_chromatic_rythm_table = [
-    ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C']
+    ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C']
 ]
 
 let gamma_generate = function () {
@@ -1081,14 +1128,17 @@ let gamma_generate = function () {
                     new_circle.classList.add('circle_table_elem');
                     new_circle.dataset.note = arr_label_for_chromatic_rythm_table[i - 1][iii - 1];
                     new_circle.dataset.rythm = array_in_strings[0];
-                    // console.log(new_circle);
+                    
+                    // console.log(new_circle.dataset.note);
                     // if (array_in_strings[iii] == '11b' || array_in_strings[iii] == '22b' || array_in_strings[iii] == '33b' || array_in_strings[iii] == '44b' || array_in_strings[iii] == '0b') {
                     //     new_circle.classList.add('up_key_circle');
                     // }
                     if (array_in_strings[iii][2] == 'b' || array_in_strings[iii][1] == 'b') {
                         new_circle.classList.add('up_key_circle');
+                    } else {
+                        new_circle.classList.add('down_key_circle');
                     }
-                    console.log(array_in_strings[iii][0]+array_in_strings[iii][1]);
+                    // console.log(array_in_strings[iii][0]+array_in_strings[iii][1]);
                     switch(array_in_strings[iii][0]+array_in_strings[iii][1]){
                         case '11': 
                         new_circle.classList.add('one_color_key_circle');
@@ -1139,8 +1189,10 @@ let gamma_generate = function () {
                         new_circle.textContent = array_lebel[iii - 1];
                         break;
                     }
-
-
+                    new_circle.dataset.number = new_circle.textContent;
+                    if(new_circle.dataset.number){
+                        new_circle.classList.add('color');
+                    }
                     if (array_in_strings[iii] == '11w' || array_in_strings[iii] == '22w') {
                         // new_circle.classList.add('white_key_circle');
                         // if (dataset_note_for_position_table[i - 1][ii].length > 0) {
@@ -1307,5 +1359,5 @@ let add_gap_space = function () {
    
 }
 
-gamma_generate();
-add_gap_space();
+// gamma_generate();
+// add_gap_space();
