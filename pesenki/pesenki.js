@@ -919,7 +919,7 @@ let vasilek = [{
 }];
 
 let belka = [{
-    all: 24,
+    all: 28,
     text: 'Скачет белка скок да скок,',
     formula: ['YO', 'YO', 'TI', 'TI', 'RA', 'RA', 'ZO']
 },
