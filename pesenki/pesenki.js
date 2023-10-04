@@ -1,5 +1,3 @@
-
-
 let winner_image = document.querySelector('.winner_image');
 
 let page_number = 0;
@@ -44,7 +42,7 @@ let start_table = document.querySelector('.start_table');
 let row_for_start_table = ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA', 'ZO_up'];
 let header_for_table = ['ЗО', 'РА', 'ТИ', 'Ё', 'ЛЕ', 'ВИ', 'НА', 'ЗО'];
 let matrix_for_table = [
-    0,
+    [0],
     ['ZO', 'YO'],
     ['ZO', 'RA', 'YO'],
     ['ZO', 'TI', 'YO'],
@@ -53,13 +51,14 @@ let matrix_for_table = [
     ['ZO', 'RA', 'YO', 'LE'],
     ['ZO', 'RA', 'TI', 'YO', 'LE'],
     ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI'],
+    ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA'],
     ['YO', 'LE', 'WI'],
     ['YO', 'LE', 'WI', 'NA'],
-    ['YO', 'LE', 'WI', 'NA', 'ZO', 'RA'],
-    ['YO', 'LE', 'WI', 'NA', 'ZO', 'RA_up'],
-    ['ZO', 'RA', 'YO', 'LE', 'WI', 'NA', 'ZO'],
+    ['YO', 'LE', 'WI', 'NA', 'ZO_up', 'RA'],
+    ['YO', 'LE', 'WI', 'NA', 'ZO_up', 'RA_up'],
+    ['ZO', 'RA', 'YO', 'LE', 'WI', 'NA', 'ZO_up'],
     ['ZO', 'TI', 'YO', 'LE', 'WI'],
-    ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA', 'ZO']
+    ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA', 'ZO_up']
 
 ]
 
@@ -68,15 +67,34 @@ function start_create_table() {
         let new_row_for_start_table = document.createElement('div');
         new_row_for_start_table.classList.add('new_row_for_start_table');
 
-        for (j = 0; j < 8; j++) {
+        for (j = 0; j < 9; j++) {
             let new_item_for_row_start_table = document.createElement('div');
             new_item_for_row_start_table.classList.add('new_item_for_row_start_table');
             new_item_for_row_start_table.dataset.name = row_for_start_table[j];
+            // console.log(matrix_for_table[i].indexOf(new_item_for_row_start_table.dataset.name))
+            if (i > 0 && matrix_for_table[i].indexOf(new_item_for_row_start_table.dataset.name) >= 0) {
+                new_item_for_row_start_table.style.backgroundImage = "url(PIGS/" + row_for_start_table[j] + ".svg)"
+            }
+
             if (i == 0) {
                 new_item_for_row_start_table.textContent = header_for_table.shift();
             }
-            if (matrix_for_table[i]) {
+            if (j == 8) {
 
+                new_item_for_row_start_table.dataset.matrix = matrix_for_table[i];
+                for (let item of full_menu) {
+                    if (item.matrix && new_item_for_row_start_table.dataset.matrix == item.matrix.toString()) {
+                        console.log(item.matrix.toString());
+                        let new_song = document.createElement('div');
+                        // new_song.classList.add('new_song');
+                        new_song.textContent = item.name;
+                        new_song.classList.add('start_buttons');
+                        new_song.dataSrc = item.arr;
+                        new_item_for_row_start_table.append(new_song);
+
+
+                    }
+                }
             }
             new_row_for_start_table.append(new_item_for_row_start_table);
         }
@@ -85,6 +103,8 @@ function start_create_table() {
 }
 
 start_create_table();
+
+
 //контейнер для стартовой игры
 let startVariable;
 //функция создания элементов
@@ -93,8 +113,8 @@ let NewGridStartMenuGO = function (allNames) {
         NewGridStartMenuElements = document.createElement('div');
         NewGridStartMenuElements.textContent = allNames[i].name;
         NewGridStartMenuElements.dataSrc = allNames[i].arr;
-        NewGridStartMenuElements.className = "start_buttons";
-        buttonsBlock.append(NewGridStartMenuElements);
+        // NewGridStartMenuElements.className = "start_buttons";
+        // buttonsBlock.append(NewGridStartMenuElements);
     };
 }
 
@@ -111,6 +131,8 @@ start_buttons.forEach(function (btn) {
         }
         btn.classList.toggle('active_btn');
         startVariable = btn.dataSrc;
+        console.log(startVariable);
+        console.log(start_buttons.length);
     });
 });
 

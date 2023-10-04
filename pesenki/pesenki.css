@@ -15,17 +15,39 @@ body {
     user-select: none;
 }
 
+
+.start_table{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
 .new_row_for_start_table {
     display: flex;
     flex-direction: row;
 }
 
 .new_item_for_row_start_table {
-    width: 30px;
-    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
     text-align: center;
     line-height: 30px;
     border: 1px solid white;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.new_item_for_row_start_table:last-child{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 0 20px;
+    width: 800px;
 }
 
 .start_menu_header {
@@ -54,44 +76,35 @@ body {
 }
 
 .buttons_block {
-    margin: 1%;
-    display: grid;
-    grid-row-gap: 1%;
-    grid-column-gap: 1%;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
 }
-
-.start_buttons,
-.startBtn {
+.startBtn{
+    border: 2px solid;
     text-align: center;
-    line-height: 40px;
-    margin-top: 10px;
-    color: #F4D6B1;
-    font-size: 3vw;
-    border: 3px #F4D6B1 solid;
-    border-radius: 10px;
+    height: 50px;
+    width: 800px;
+    line-height: 50px;
+    font-size: 30px;
     cursor: pointer;
-    transition: all 0.5s ease-out;
-    border-radius: 5px;
+    border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
+}
+.start_buttons {
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
 }
 
-.startBtn {
+/* .startBtn {
     grid-column: 1/6;
-}
-
-@media screen and (min-width: 1000px) {
-
-    .startBtn,
-    .start_buttons {
-        font-size: 24px;
-    }
-}
+} */
 
 .active_btn {
-    box-sizing: content-box;
-    border: 6px solid white;
-    box-shadow: 3px 3px 10px rgb(8, 218, 255), -3px -3px 10px rgb(232, 250, 255);
+   color: aqua;
+   text-decoration: underline;
 }
 
 
