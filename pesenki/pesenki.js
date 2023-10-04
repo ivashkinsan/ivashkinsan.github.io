@@ -41,15 +41,43 @@ let buttonsBlock = document.querySelector('.buttons_block');
 
 // создание стартовой таблицы
 let start_table = document.querySelector('.start_table');
-let row_for_start_table = ['WI_down NA_down ZO RA TI YO LE WI NA ZO RA_up TI_up YO_up LE_up_up'];
-let header_for_table = []
+let row_for_start_table = ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA', 'ZO_up'];
+let header_for_table = ['ЗО', 'РА', 'ТИ', 'Ё', 'ЛЕ', 'ВИ', 'НА', 'ЗО'];
+let matrix_for_table = [
+    0,
+    ['ZO', 'YO'],
+    ['ZO', 'RA', 'YO'],
+    ['ZO', 'TI', 'YO'],
+    ['ZO', 'RA', 'TI', 'YO'],
+    ['ZO', 'YO', 'LE'],
+    ['ZO', 'RA', 'YO', 'LE'],
+    ['ZO', 'RA', 'TI', 'YO', 'LE'],
+    ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI'],
+    ['YO', 'LE', 'WI'],
+    ['YO', 'LE', 'WI', 'NA'],
+    ['YO', 'LE', 'WI', 'NA', 'ZO', 'RA'],
+    ['YO', 'LE', 'WI', 'NA', 'ZO', 'RA_up'],
+    ['ZO', 'RA', 'YO', 'LE', 'WI', 'NA', 'ZO'],
+    ['ZO', 'TI', 'YO', 'LE', 'WI'],
+    ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA', 'ZO']
+
+]
+
 function start_create_table() {
-    for (let i = 0; i < 10; i++) {
+    for (i = 0; i < matrix_for_table.length; i++) {
         let new_row_for_start_table = document.createElement('div');
         new_row_for_start_table.classList.add('new_row_for_start_table');
-        for (let j = 0; j < 10; j++) {
+
+        for (j = 0; j < 8; j++) {
             let new_item_for_row_start_table = document.createElement('div');
             new_item_for_row_start_table.classList.add('new_item_for_row_start_table');
+            new_item_for_row_start_table.dataset.name = row_for_start_table[j];
+            if (i == 0) {
+                new_item_for_row_start_table.textContent = header_for_table.shift();
+            }
+            if (matrix_for_table[i]) {
+
+            }
             new_row_for_start_table.append(new_item_for_row_start_table);
         }
         start_table.append(new_row_for_start_table);

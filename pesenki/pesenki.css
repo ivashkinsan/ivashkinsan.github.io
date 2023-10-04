@@ -21,8 +21,10 @@ body {
 }
 
 .new_item_for_row_start_table {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
     border: 1px solid white;
 }
 
