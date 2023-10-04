@@ -38,6 +38,25 @@ for (let i = 0; i < 20; i++) {
 //генерируем стартовое меню
 let NewGridStartMenuElements;
 let buttonsBlock = document.querySelector('.buttons_block');
+
+// создание стартовой таблицы
+let start_table = document.querySelector('.start_table');
+let row_for_start_table = ['WI_down NA_down ZO RA TI YO LE WI NA ZO RA_up TI_up YO_up LE_up_up'];
+let header_for_table = []
+function start_create_table() {
+    for (let i = 0; i < 10; i++) {
+        let new_row_for_start_table = document.createElement('div');
+        new_row_for_start_table.classList.add('new_row_for_start_table');
+        for (let j = 0; j < 10; j++) {
+            let new_item_for_row_start_table = document.createElement('div');
+            new_item_for_row_start_table.classList.add('new_item_for_row_start_table');
+            new_row_for_start_table.append(new_item_for_row_start_table);
+        }
+        start_table.append(new_row_for_start_table);
+    }
+}
+
+start_create_table();
 //контейнер для стартовой игры
 let startVariable;
 //функция создания элементов

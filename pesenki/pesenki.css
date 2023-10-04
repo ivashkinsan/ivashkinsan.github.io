@@ -15,8 +15,16 @@ body {
     user-select: none;
 }
 
+.new_row_for_start_table {
+    display: flex;
+    flex-direction: row;
+}
 
-
+.new_item_for_row_start_table {
+    width: 20px;
+    height: 20px;
+    border: 1px solid white;
+}
 
 .start_menu_header {
 
