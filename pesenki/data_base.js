@@ -937,6 +937,70 @@ let belka = [{
         formula: ['ZO', 'ZO', 'RA', 'RA', 'TI', 'TI', 'YO']
     }
 ];
+let svetit_solnishko = [{
+        all: 10,
+        text: 'Светит солнышко',
+        formula: ['ZO_up', 'NA', 'WI', 0, 'LE', 0, 'YO']
+    },
+    {
+        text: 'К нам в окошечко.',
+        formula: ['ZO_up', 'NA', 'WI', 0, 'LE', 0, 'YO']
+    }
+];
+let kak_u_nashego_kota = [{
+        all: 28,
+        text: 'Как у нашего кота,',
+        formula: ['YO', 'YO', 'YO', 'WI', 'LE', 'LE', 'LE']
+    },
+    {
+        text: 'шубка очень хороша.',
+        formula: ['LE', 'LE', 'LE', 'NA', 'WI', 'LE', 'YO']
+    },
+    {
+        text: 'Как у котика усы',
+        formula: ['YO', 'LE', 'WI', 'YO', 'NA', 'ZO_up', 'RA_up']
+    },
+    {
+        text: 'замечательной красы.',
+        formula: ['ZO_up', 'NA', 'WI', 'LE', 'YO', 'WI', 'YO']
+    }
+];
+let edet_parowoz = [{
+        all: 27,
+        text: 'Едет, едет паровоз,',
+        formula: ['YO', 'LE', 'WI', 'NA', 'ZO_up', 'ZO_up', 'ZO_up']
+    },
+    {
+        text: 'две трубы и сто колёс,',
+        formula: ['YO', 'LE', 'WI', 'NA', 'ZO_up', 'ZO_up', 'ZO_up']
+    },
+    {
+        text: 'две трубы, сто колёс,',
+        formula: ['NA', 'NA', 'NA', 0, 'WI', 'WI', 'WI']
+    },
+    {
+        text: 'машинистом рыжий пёс.',
+        formula: ['LE', 'LE', 'LE', 'LE', 'YO', 'YO', 'YO']
+    }
+];
+let kapitan = [{
+        all: 41,
+        text: 'Капитан, капитан, улыбнитесь',
+        formula: ['ZO_up', 'WI', 'YO',0, 'ZO_up', 'WI', 'YO', 0,'TI', 'RA', 'TI', 'TI']
+    },
+    {
+        text: 'ведь улыбка это флаг корабля.',
+        formula: ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA', 0, 'WI', 'LE', 'ZO_up']
+    },
+    {
+        text: 'Капитан, капитан, подтянитесь,',
+        formula: ['ZO_up', 'WI', 'YO',0, 'ZO_up', 'WI', 'YO', 0,'WI', 'ZO_up', 'YO_up', 0, 'YO_up']
+    },
+    {
+        text: 'только смелым попоряются моря.',
+        formula: ['TI_up', 'RA_up', 'ZO_up', 'WI', 'RA_up', 'ZO_up', 'NA', 'RA_up', 'RA', 'TI', 'YO']
+    }
+];
 
 
 
@@ -1075,7 +1139,7 @@ let full_menu = [{
     {
         name: 'Гуси',
         arr: gusi,
-        matrix: ['YO', 'LE', 'WI', 'NA', 'ZO_up'],
+        matrix: ['YO', 'LE', 'WI', 'NA', 'ZO_up', 'RA_up'],
     },
     {
         name: 'Ёлочка',
@@ -1105,11 +1169,12 @@ let full_menu = [{
     {
         name: 'Квинта',
         arr: kvinta,
-        matrix: ['ZO', 'YO'],
+        matrix: ['YO','ZO_up'],
     },
     {
         name: 'Паровозик',
-        arr: parowozik
+        arr: parowozik,
+        matrix: ['ZO', 'RA','YO'],
     },
     {
         name: 'Василёк',
@@ -1121,6 +1186,28 @@ let full_menu = [{
         arr: belka,
         matrix: ['ZO', 'RA', 'TI', 'YO'],
     },
+    {
+        name: 'Светит солнышко',
+        arr: svetit_solnishko,
+        matrix: ['YO', 'LE', 'WI', 'NA', 'ZO_up'],
+    },
+    {
+        name: 'Как у нашего кота',
+        arr: kak_u_nashego_kota,
+        matrix: ['YO', 'LE', 'WI', 'NA', 'ZO_up', 'RA_up'],
+    },
+    {
+        name: 'Едет паровоз',
+        arr: edet_parowoz,
+        matrix: ['YO', 'LE', 'WI', 'NA', 'ZO_up'],
+    },
+    {
+        name: 'Капитан',
+        arr: kapitan,
+        matrix: ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA', 'ZO_up', 'RA_up', 'TI_up', 'YO_up'],
+    },
+
+
     // {
     //     name: 'Если добрый ты',
     //     arr: esli_dobriy_ti
