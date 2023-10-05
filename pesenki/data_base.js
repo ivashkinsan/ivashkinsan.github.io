@@ -1001,7 +1001,27 @@ let kapitan = [{
         formula: ['TI_up', 'RA_up', 'ZO_up', 'WI', 'RA_up', 'ZO_up', 'NA', 'RA_up', 'RA', 'TI', 'YO']
     }
 ];
+let jingle_bells = [{
+        all: 47,
+        text: 'Бубенцы! Бубенцы! Радостно галдят',
+        formula: ['WI', 'WI', 'WI',0, 'WI', 'WI', 'WI', 0,'WI', 'ZO_up', 'YO', 'LE', 'WI']
+    },
+    {
+        text: 'Звон идет во все концы, саночки летят!',
+        formula: ['NA', 'NA', 'NA', 'NA', 'NA', 'WI', 'WI', 0, 'WI', 'LE', 'LE', 'WI','LE',0,'ZO_up']
+    },
+    {
+        text: 'Новый год! Новый год! В гости к нам идёт.',
+        formula: ['WI', 'WI', 'WI',0, 'WI', 'WI', 'WI', 0,'WI', 'ZO_up', 'YO', 'LE', 'WI']
+    },
+    {
+        text: 'Весело все вместе мы, встретим Новый год!',
+        formula: ['NA', 'NA', 'NA', 'NA','NA', 'WI', 'WI', 0, 'ZO_up', 'ZO_up', 'NA', 'LE','YO']
+    }
+];
 
+// с днем рождения, ла кукарача, спят усталые игрушки
+// миноры - калинка
 
 
 // let esli_dobriy_ti = [
@@ -1205,6 +1225,11 @@ let full_menu = [{
         name: 'Капитан',
         arr: kapitan,
         matrix: ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA', 'ZO_up', 'RA_up', 'TI_up', 'YO_up'],
+    },
+    {
+        name: 'Бубенцы',
+        arr: jingle_bells,
+        matrix: ['YO', 'LE', 'WI', 'NA', 'ZO_up'],
     },
 
 
