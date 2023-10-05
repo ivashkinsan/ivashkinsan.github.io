@@ -130,18 +130,18 @@ allHrom.forEach(hrom => {
         this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_steps_1_7.svg';
         clicks = 0;
         break;
-      // case 2:
-      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
-      //   clicks += 1;
-      //   break;
-      // case 3:
-      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
-      //   clicks += 1;
-      //   break;
-      // case 4:
-      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
-      //   clicks = 0;
-      //   break;
+        // case 2:
+        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
+        //   clicks += 1;
+        //   break;
+        // case 3:
+        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
+        //   clicks += 1;
+        //   break;
+        // case 4:
+        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
+        //   clicks = 0;
+        //   break;
     }
   });
 });
@@ -173,6 +173,61 @@ allHrom.forEach(hrom => {
 //   }
 // }
 
+// создание 12 элементов внутри грид блока
+let arr_element_position_for_column = {
+  symmetry2: ['C D E G A', 'F B', 'Db Eb Gb Ab Bb'],
+  symmetry3: ['C F G', 'E A B', 'Db Eb Ab', 'D Gb Bb'],
+  symmetry4: ['C G', 'E A', 'D F Ab B', 'Db Gb', 'Eb Bb'],
+  symmetry6: ['C D E Gb Ab Bb', 'Db Eb F G A B']
+};
+
+
+let matrix_keyb_string = 'w b w b w w b w b w b w w b w b w w b w b w b w w';
+let matrix_keyb_arr = matrix_keyb_string.split(' ');
+let matrix_container = document.querySelector('.matrix_container');
+let create_12_elem = function () {
+  matrix_container.innerHTML = '';
+  let new_column_for_12_elem;
+
+  if (symBtnLevel) {
+
+    console.log(ti);
+    console.log(symBtnLevelGO);
+
+    arr_element_position_for_column[symBtnLevel.dataset.number];
+    for (item of arr_element_position_for_column[symBtnLevel.dataset.number]) {
+      new_column_for_12_elem = document.createElement('div');
+      new_column_for_12_elem.classList.add('new_column_for_12_elem')
+      new_column_for_12_elem.dataset.matrix = item;
+      let shablon_for_square_item = new_column_for_12_elem.dataset.matrix.split(' ');
+      // console.log(shablon_for_square_item);
+
+      for (let i = 0; i < shablon_for_square_item.length; i++) {
+        let item_in_column = document.createElement('div');
+        item_in_column.classList.add(shablon_for_square_item[i]);
+        item_in_column.textContent = shablon_for_square_item[i];
+        item_in_column.classList.add('item_in_column');
+
+        // создание кругов внутри элемента
+        for (let j = 0; j < matrix_keyb_arr.length; j++) {
+          let piano_circle_elem = document.createElement('div');
+          piano_circle_elem.classList.add('item_circle');
+          switch (matrix_keyb_arr[j]) {
+            case 'w':
+              piano_circle_elem.classList.add('white_circle');
+              break;
+            case 'b':
+              piano_circle_elem.classList.add('black_circle');
+              break;
+          }
+          item_in_column.append(piano_circle_elem);
+        }
+        new_column_for_12_elem.append(item_in_column);
+      }
+      matrix_container.append(new_column_for_12_elem);
+    }
+  }
+}
 
 //ВЫБОР РЕЖИМА РАНДОМ
 let symmetryNameArr = [symmetry2, symmetry3, symmetry4, symmetry6];
@@ -180,18 +235,22 @@ let symmetryNameArr = [symmetry2, symmetry3, symmetry4, symmetry6];
 
 //запуск при нажатии на кнопку режима
 for (let item of buttons) {
+
   item.onclick = function () {
-    // monitoring(item.dataset.number);
     symBtnLevel = item;
-    // console.log(symBtnLevel.dataset.number);
     clear_ledOn();
     startWork();
-    remove_border_color();
-    item.classList.toggle('button_gold');
+
+
     let circle = item.children;
     for (let itemCircle of circle) {
       itemCircle.classList.toggle('border_color');
     }
+    if (!item.classList.contains('button_gold')) {
+      create_12_elem();
+    }
+    remove_border_color();
+    item.classList.add('button_gold');
   }
 };
 
@@ -520,6 +579,9 @@ let startWork = function () {
 //ПОИСК ВЫБРАННЫХ ЭЛЕМЕНТОВ
 let finderLed = function () {
   let ledElement = document.querySelectorAll('.ledON');
+  let item_in_matrix = document.querySelectorAll('.item_in_column');
+  console.log(item_in_matrix);
+
   let answer = [];
   for (let i = 0; i < ledElement.length; i++) {
     answer.push(ledElement[i].dataset.number)
@@ -528,7 +590,20 @@ let finderLed = function () {
   // console.log(symBtnLevelGO);
   sravniElem(answer, symBtnLevelGO);
   // console.log(ledElement); //------------------------------------------
-  // console.log(answerArr);
+  // console.log(answerArr[0].dataset.note[1]);
+  let start_answer_note = answerArr[0].dataset.note;
+  start_answer_note = start_answer_note.slice(1);
+  console.log(start_answer_note)
+  for (item of item_in_matrix) {
+    // console.log(item)
+
+    if (item.classList.contains(start_answer_note)) {
+      console.log(item);
+      item.classList.add('correct_answer');
+    }
+  }
+
+
   return ledElement;
 };
 
@@ -585,30 +660,16 @@ checkBoxElem.onclick = function () {
 
 }
 
-// создание 12 элементов внутри грид блока
-let grid_container = document.querySelector('.grid_container');
-let create_12_grid_elem = function () {
-  for (let i = 0; i < 12; i++) {
-    let item_in_grid_container = document.createElement('div');
-    item_in_grid_container.classList.add('item_in_grid_container');
-    // создание матрицы внутри элемента
-
-
-    grid_container.append(item_in_grid_container);
-  }
-}
-create_12_grid_elem();
-
 // функция демонстрации советов
 // рандомная функция
 Object.defineProperty(
   Object.prototype,
   'randElement', {
-  value: function () {
-    var rand = Math.floor(Math.random() * this.length);
-    return this[rand];
+    value: function () {
+      var rand = Math.floor(Math.random() * this.length);
+      return this[rand];
+    }
   }
-}
 );
 
 let add_windows_facty = function () {
@@ -625,7 +686,6 @@ let win_ledOn = function (winArr) {
   for (let item of winArr) {
     item.classList.add('ledWin');
   };
-
 };
 
 
@@ -924,10 +984,30 @@ let row_for_copy = document.querySelector('.row_for_copy');
 let interval_container = document.querySelector('.interval_container');
 let arr_int_label = ['м2', 'Б2', 'м3', 'Б3', 'ч4', 'ТТТ', 'ч5', 'м6', 'Б6', 'м7', 'Б7'];
 let matrix_int_table = [
-  [[0, 0, 1, 0, 0, 0, 1], [1, 1, 0, 1, 1, 1, 0], [1, 1, 1, 1, 1], [0, 0, 0, 0, 0]],
-  [[1, 1, 0, 1, 1, 1, 0], [0, 0, 1, 0, 0, 0, 1], [0, 1, 0, 0, 1], [1, 0, 1, 1, 0]],
-  [[0, 1, 1, 0, 0, 1, 1], [1, 0, 0, 1, 1, 0, 0], [1, 0, 1, 1, 0], [0, 1, 0, 0, 1]],
-  [[1, 0, 0, 1, 1, 0, 0], [0, 1, 1, 0, 0, 1, 1], [1, 1, 0, 1, 1], [0, 0, 1, 0, 0]]
+  [
+    [0, 0, 1, 0, 0, 0, 1],
+    [1, 1, 0, 1, 1, 1, 0],
+    [1, 1, 1, 1, 1],
+    [0, 0, 0, 0, 0]
+  ],
+  [
+    [1, 1, 0, 1, 1, 1, 0],
+    [0, 0, 1, 0, 0, 0, 1],
+    [0, 1, 0, 0, 1],
+    [1, 0, 1, 1, 0]
+  ],
+  [
+    [0, 1, 1, 0, 0, 1, 1],
+    [1, 0, 0, 1, 1, 0, 0],
+    [1, 0, 1, 1, 0],
+    [0, 1, 0, 0, 1]
+  ],
+  [
+    [1, 0, 0, 1, 1, 0, 0],
+    [0, 1, 1, 0, 0, 1, 1],
+    [1, 1, 0, 1, 1],
+    [0, 0, 1, 0, 0]
+  ]
 
 ];
 // копирование и добавление 11 нод
