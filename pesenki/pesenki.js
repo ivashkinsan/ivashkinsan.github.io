@@ -141,7 +141,7 @@ let startBtn = document.querySelector('.startBtn');
 let welcome = document.querySelector('.welcome');
 startBtn.addEventListener('click', function () {
     welcome.style.display = 'none';
-
+    show();
     reverse_item = startVariable[0].all;
     console.log(reverse_item);
 
@@ -249,6 +249,7 @@ button_menu.addEventListener('click', function () {
         }
         welcome.style.display = 'block';
     }
+    show();
 });
 
 //кнопка Left
@@ -292,4 +293,17 @@ winner_image.addEventListener('click', function () {
         winner_image.style.display = 'none';
         welcome.style.display = 'block';
     }
+    show();
 });
+
+// скрытие показ нотного стана, кнопок, текста
+let moni_for_text = document.querySelector('.monitor_for_text');
+// let contain_clief = document.querySelector('.contain_clief');
+let contain_staff = document.querySelector('.container_staff');
+let contain_button = document.querySelector('.container_button');
+let show = function () {
+    moni_for_text.classList.toggle('hide');
+    contain_staff.classList.toggle('hide');
+    contain_button.classList.toggle('hide');
+}
+// show();

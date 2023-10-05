@@ -2,13 +2,15 @@ body {
     position: relative;
     margin: 0;
     box-sizing: border-box;
-    width: 100vw;
-    height: 100vh;
+    /* width: 100vw; */
+    /* height: 100vh; */
+    min-height: 100vh;
     margin: 0;
     color: #F4D6B1;
     background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
-    border: 20px solid;
+    border: 10px solid;
     border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
+    overflow: auto;
 }
 
 * {
@@ -19,13 +21,15 @@ body {
 .start_table{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: stretch;
+    align-items: stretch; */
     margin-bottom: 20px;
+    width: 100%;
 }
 .new_row_for_start_table {
     display: flex;
     flex-direction: row;
+    
 }
 
 .new_item_for_row_start_table {
@@ -33,13 +37,16 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    min-width: 30px;
+    min-height: 30px;
+    font-size: 2vh;
     text-align: center;
-    line-height: 30px;
+    line-height: 20px;
     border: 1px solid white;
     background-repeat: no-repeat;
     background-position: center;
+    background-size: contain;
+    text-wrap: nowrap;
 }
 
 .new_item_for_row_start_table:last-child{
@@ -47,7 +54,8 @@ body {
     flex-direction: row;
     gap: 20px;
     padding: 0 20px;
-    width: 800px;
+    width: max-content;
+    flex: 1;
 }
 
 .start_menu_header {
@@ -59,18 +67,18 @@ body {
 
 .welcome {
     /* display: none; */
-    position: fixed;
+    /* position: fixed; */
     margin: 0;
     box-sizing: border-box;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
+    /* width: 100vw; */
+    /* height: 150vh; */
+    /* top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 0; */
     color: #F4D6B1;
     background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
-    border: 20px solid;
+    border: 10px solid;
     border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
     z-index: 999;
 }
@@ -80,6 +88,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: auto;
+    margin: 0 30px;
+    min-height: 100vh;
+    overflow: auto;
   
 }
 .startBtn{
@@ -87,10 +99,12 @@ body {
     text-align: center;
     height: 50px;
     width: 800px;
+    margin: 20px 60px;
     line-height: 50px;
     font-size: 30px;
     cursor: pointer;
     border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
+
 }
 .start_buttons {
     text-align: center;
@@ -267,4 +281,8 @@ body {
 
 .white {
     background-color: white;
+}
+
+.hide{
+    display: none;
 }
