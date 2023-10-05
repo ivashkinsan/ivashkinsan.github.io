@@ -216,6 +216,25 @@ input[type=range] {
   padding: 0;
 }
 
+.container_for_keyboards_and_grid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 23vw;
+}
+
+.grid_container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  height: 30px;
+  background-color: #00d7a1;
+}
+
+.item_in_grid_container {
+  /* width: 20px; */
+  height: 20px;
+  border: 1px solid red;
+}
 
 .container {
   display: flex;
@@ -223,8 +242,9 @@ input[type=range] {
   justify-content: flex-start;
   width: 100%;
   min-height: 18vw;
-
 }
+
+
 
 .elem {
   position: relative;

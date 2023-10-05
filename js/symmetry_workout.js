@@ -585,6 +585,19 @@ checkBoxElem.onclick = function () {
 
 }
 
+// создание 12 элементов внутри грид блока
+let grid_container = document.querySelector('.grid_container');
+let create_12_grid_elem = function () {
+  for (let i = 0; i < 12; i++) {
+    let item_in_grid_container = document.createElement('div');
+    item_in_grid_container.classList.add('item_in_grid_container');
+    // создание матрицы внутри элемента
+
+
+    grid_container.append(item_in_grid_container);
+  }
+}
+create_12_grid_elem();
 
 // функция демонстрации советов
 // рандомная функция
