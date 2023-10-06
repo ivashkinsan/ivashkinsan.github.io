@@ -130,18 +130,18 @@ allHrom.forEach(hrom => {
         this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_steps_1_7.svg';
         clicks = 0;
         break;
-        // case 2:
-        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
-        //   clicks += 1;
-        //   break;
-        // case 3:
-        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
-        //   clicks += 1;
-        //   break;
-        // case 4:
-        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
-        //   clicks = 0;
-        //   break;
+      // case 2:
+      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
+      //   clicks += 1;
+      //   break;
+      // case 3:
+      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
+      //   clicks += 1;
+      //   break;
+      // case 4:
+      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
+      //   clicks = 0;
+      //   break;
     }
   });
 });
@@ -184,6 +184,10 @@ let arr_element_position_for_column = {
 
 let matrix_keyb_string = 'w b w b w w b w b w b w w b w b w w b w b w b w w';
 let matrix_keyb_arr = matrix_keyb_string.split(' ');
+
+let name_keyb_string = '3C 3Db 3D 3Eb 3E 3F 3Gb 3G 3Ab 3A 3Bb 3B 4C 4Db 4D 4Eb 4E 4F 4Gb 4G 4Ab 4A 4Bb 4B 5C';
+let name_keyb_arr = name_keyb_string.split(' ');
+
 let matrix_container = document.querySelector('.matrix_container');
 let create_12_elem = function () {
   matrix_container.innerHTML = '';
@@ -220,6 +224,7 @@ let create_12_elem = function () {
               piano_circle_elem.classList.add('black_circle');
               break;
           }
+          piano_circle_elem.dataset.note = name_keyb_arr[j];
           item_in_column.append(piano_circle_elem);
         }
         new_column_for_12_elem.append(item_in_column);
@@ -590,7 +595,7 @@ let finderLed = function () {
   // console.log(symBtnLevelGO);
   sravniElem(answer, symBtnLevelGO);
   // console.log(ledElement); //------------------------------------------
-  // console.log(answerArr[0].dataset.note[1]);
+  console.log(answerArr);
   let start_answer_note = answerArr[0].dataset.note;
   start_answer_note = start_answer_note.slice(1);
   console.log(start_answer_note)
@@ -598,8 +603,19 @@ let finderLed = function () {
     // console.log(item)
 
     if (item.classList.contains(start_answer_note)) {
-      console.log(item);
+
       item.classList.add('correct_answer');
+      for (asw_item of answerArr) {
+        console.log(asw_item);
+        console.log(item.dataset.note);
+        console.log(asw_item.dataset.note);
+
+        if (item.dataset.name == asw_item.dataset.note) {
+          item.classList.add('red');
+        }
+
+
+      }
     }
   }
 
@@ -665,11 +681,11 @@ checkBoxElem.onclick = function () {
 Object.defineProperty(
   Object.prototype,
   'randElement', {
-    value: function () {
-      var rand = Math.floor(Math.random() * this.length);
-      return this[rand];
-    }
+  value: function () {
+    var rand = Math.floor(Math.random() * this.length);
+    return this[rand];
   }
+}
 );
 
 let add_windows_facty = function () {

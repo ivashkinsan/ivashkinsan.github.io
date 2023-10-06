@@ -104,6 +104,7 @@ Img {
   gap: 10px;
 }
 
+
 .button {
   display: flex;
   justify-content: center;
@@ -225,19 +226,19 @@ input[type=range] {
 
 .matrix_container {
   display: flex;
- flex-direction: row;
- justify-content: center;
- align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   height: auto;
   gap: 5vh;
   margin: 3vh 0;
   /* background-color: #00d7a1; */
 }
 
-.new_column_for_12_elem{
-display: flex;
-flex-direction: column;
-gap: 1vh;
+.new_column_for_12_elem {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
 }
 
 .item_in_column {
@@ -246,30 +247,35 @@ gap: 1vh;
   justify-content: center;
   /* border: 1px solid red; */
 }
+
 /* блок надстройка над клавиатурой */
+.red {
+  background-color: red;
+}
+
 :root {
   --main-size: 14px;
 }
 
-.item_circle{
+.item_circle {
   width: var(--main-size);
   height: var(--main-size);
   border: 1px solid white;
   border-radius: 50%;
 }
 
-.white_circle{
+.white_circle {
   margin-left: calc(var(--main-size) / 10);
   margin-right: calc(var(--main-size) / 10);
   margin-top: calc(var(--main-size) / 10 * 9);
 }
 
-.black_circle{
+.black_circle {
   margin-left: calc(var(--main-size) / 2 - var(--main-size));
   margin-right: calc(var(--main-size) / 2 - var(--main-size));
 }
 
-.correct_answer{
+.correct_answer {
   background-color: #9c9c9c;
 }
 
