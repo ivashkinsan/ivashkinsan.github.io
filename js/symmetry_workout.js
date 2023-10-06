@@ -195,8 +195,8 @@ let create_12_elem = function () {
 
   if (symBtnLevel) {
 
-    console.log(ti);
-    console.log(symBtnLevelGO);
+    // console.log(ti);
+    // console.log(symBtnLevelGO);
 
     arr_element_position_for_column[symBtnLevel.dataset.number];
     for (item of arr_element_position_for_column[symBtnLevel.dataset.number]) {
@@ -585,7 +585,7 @@ let startWork = function () {
 let finderLed = function () {
   let ledElement = document.querySelectorAll('.ledON');
   let item_in_matrix = document.querySelectorAll('.item_in_column');
-  console.log(item_in_matrix);
+  // console.log(item_in_matrix);
 
   let answer = [];
   for (let i = 0; i < ledElement.length; i++) {
@@ -595,10 +595,10 @@ let finderLed = function () {
   // console.log(symBtnLevelGO);
   sravniElem(answer, symBtnLevelGO);
   // console.log(ledElement); //------------------------------------------
-  console.log(answerArr);
+  // console.log(answerArr);
   let start_answer_note = answerArr[0].dataset.note;
   start_answer_note = start_answer_note.slice(1);
-  console.log(start_answer_note)
+  // console.log(start_answer_note)
   for (item of item_in_matrix) {
     // console.log(item)
 
@@ -607,7 +607,7 @@ let finderLed = function () {
       item.classList.add('correct_answer');
       for (asw_item of answerArr) {
         console.log(asw_item);
-        console.log(item.dataset.note);
+        console.log(item);
         console.log(asw_item.dataset.note);
 
         if (item.dataset.name == asw_item.dataset.note) {
@@ -1051,7 +1051,7 @@ let create_line_box = function (boo) {
 for (let i = 0; i < matrix_int_table.length; i++) {
   for (let j = 0; j < matrix_int_table[i].length; j++) {
     create_line_box(matrix_int_table[i][j]);
-    console.log(matrix_int_table[i][j]);
+    // console.log(matrix_int_table[i][j]);
   }
 }
 
