@@ -245,12 +245,13 @@ input[type=range] {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding: 3px;
   /* border: 1px solid red; */
 }
 
 /* блок надстройка над клавиатурой */
 .red {
-  background-color: red;
+  background-color: #F4D6B1;
 }
 
 :root {
@@ -276,7 +277,9 @@ input[type=range] {
 }
 
 .correct_answer {
-  background-color: #9c9c9c;
+  /* border: 1px solid white; */
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 15px 0px #f2efead1;
 }
 
 
