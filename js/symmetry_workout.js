@@ -118,7 +118,7 @@ let symBtnLevelGO;
 let clicks = 0;
 
 let correct_answer_add = 0;
-let startNoteArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+let startNoteArr;
 
 
 let allHrom = document.querySelectorAll('.hrom');
@@ -184,7 +184,15 @@ let arr_element_position_for_column = {
   symmetry6: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
   m2: ['C D F G A', 'E B', 'Db Eb Gb Ab Bb'],
   B2: ['C D F G A', 'E B', 'Db Gb Ab', 'Eb Bb'],
-  m3: ['D E A B', 'Eb Bb', 'C F G', 'Db Gb Ab']
+  m3: ['D E A B', 'Eb Bb', 'C F G', 'Db Gb Ab'],
+  B3: ['C F G', 'D E A B', 'Gb', 'Db Eb Ab Bb'],
+  ch4: ['C D E G A B', 'F Gb', 'Db Eb Ab Bb'],
+  TTT: ['C D E G A', 'F B', 'Db Eb Gb Ab Bb'],
+  ch5: ['C D E F G A', 'Db Eb Gb Ab', 'Bb 0 B'],
+  m6: ['E A B', 'C D F G', 'Db Eb Gb Ab', 'Bb'],
+  B6: ['C D F G', 'E A B', 'Db Eb Gb Ab', 'Bb'],
+  m7: ['D E G A B', 'C F', 'Db Gb Ab', 'Eb Bb'],
+  B7: ['C F', 'D E G A B', 'Db Eb Gb Ab Bb'],
 };
 
 
@@ -219,6 +227,9 @@ let create_12_elem = function () {
         item_in_column.classList.add(shablon_for_square_item[i]);
         item_in_column.textContent = shablon_for_square_item[i];
         item_in_column.classList.add('item_in_column');
+        if (shablon_for_square_item[i] == 0) {
+          item_in_column.classList.add('opacity_null');
+        }
 
         // создание кругов внутри элемента
         for (let j = 0; j < matrix_keyb_arr.length; j++) {
@@ -243,28 +254,33 @@ let create_12_elem = function () {
 }
 
 //ВЫБОР РЕЖИМА РАНДОМ
-let symmetryNameArr = [symmetry2, symmetry3, symmetry4, symmetry6];
+// let symmetryNameArr = [symmetry2, symmetry3, symmetry4, symmetry6];
 // let startSymmetry = getRandomIntInclusive(0,3);
 
-//запуск при нажатии на кнопку режима
+//запуск при нажатии на кнопку выбранного режима
 for (let item of buttons) {
 
   item.onclick = function () {
+
     symBtnLevel = item;
-    clear_ledOn();
-    startWork();
-
-
     let circle = item.children;
     for (let itemCircle of circle) {
       itemCircle.classList.toggle('border_color');
     }
     if (!item.classList.contains('button_gold')) {
       create_12_elem();
+      create_shuffle_arr();
     }
+
     remove_border_color();
     item.classList.add('button_gold');
-    create_12_elem();
+    // create_12_elem();
+    create_shuffle_arr();
+
+
+    clear_ledOn();
+    startWork();
+
   }
 };
 
@@ -322,7 +338,7 @@ let create_shuffle_arr = function () {
   startNoteArr.shuffle();
   console.log('пересборка');
 }
-
+create_shuffle_arr();
 
 
 let label_stage_arr = ['1', 'b2', '2', 'b3', '3', '4', '#4/b5', '5', 'b6', '6', 'b7', '7', '1']
@@ -351,22 +367,21 @@ let add_label_checkbox = function (start_ti) {
 
 
 // ФУНКЦИЯ ПОДСВЕТКИ СТАРТОВОЙ ОКТАВЫ, ПРИСВОЕНИЕ ИСХОДНЫХ ЦИФР ==============================================================================
+let startOneNote;
+let x;
+let timer_for_all_12_correct_answer;
 let startWork = function () {
   clear_ledOn();
-
-  let startOneNote;
-  let x;
 
   if (startNoteArr.length > 0) {
     x = startNoteArr.shift();
     startOneNote = Number(x);
-    // console.log(startOneNote);
   } else {
     create_shuffle_arr();
     x = startNoteArr.shift();
     startOneNote = Number(x);
-    console.log('пересборка');
-    setTimeout(create_12_elem, 3000);
+    // setTimeout(create_12_elem, 3000);
+    timer_for_all_12_correct_answer = true;
   }
 
 
@@ -595,15 +610,19 @@ let startWork = function () {
     symBtnLevelGO = [(ti + 1), (ti + 4), (ti + 7), (ti + 10)];
   }
   console.log(startNoteArr);
+  console.log(startOneNote);
 };
 
 //ПОИСК ВЫБРАННЫХ ЭЛЕМЕНТОВ ============================================================================================================
+let ledElement;
+let answer;
 let finderLed = function () {
-  let ledElement = document.querySelectorAll('.ledON');
-
-  // console.log(item_in_matrix);
-
-  let answer = [];
+  if (timer_for_all_12_correct_answer) {
+    create_12_elem();
+    timer_for_all_12_correct_answer = false;
+  }
+  ledElement = document.querySelectorAll('.ledON');
+  answer = [];
   for (let i = 0; i < ledElement.length; i++) {
     answer.push(ledElement[i].dataset.number)
   };
@@ -642,6 +661,12 @@ let add_correct_answer_for_matrix = function () {
   }
 }
 
+let matrix_button_go = function () {
+  matrix_container.classList.toggle('hide');
+}
+let matrix_button = document.querySelector('.matrix_button');
+matrix_button.addEventListener("click", matrix_button_go);
+
 
 // ПРОВЕРКА ОТВЕТА - СРАВНЕНИЕ ============================================================================================================
 let sravniElem = function (a, b) {
@@ -654,14 +679,11 @@ let sravniElem = function (a, b) {
   }
 
   if (a.length == b.length && a.length == sovpadeniya) {
-    // console.log('rabotaet' + sovpadeniya);
-    // console.log(answerArr);
     spisokNamesForInfoMoni[symBtnLevel.dataset.number][1] += 1;
     win_ledOn(answerArr);
     setTimeout(startWork, 1000);
     big_number += 1;
     setTimeout(add_windows_facty, 1000);
-    // console.log(answerArr);
     playArray(answerArr);
     add_correct_answer_for_matrix();
   }
@@ -838,6 +860,7 @@ clock();
 
 let long_button = document.querySelector('.long_button');
 
+
 let long_black_keys = function () {
   let arr_black_keys = document.querySelectorAll('.black_key');
   for (item of arr_black_keys) {
@@ -845,6 +868,9 @@ let long_black_keys = function () {
   }
 }
 long_button.addEventListener("click", long_black_keys);
+
+
+
 
 
 

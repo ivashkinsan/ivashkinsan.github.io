@@ -226,6 +226,10 @@ input[type=range] {
 
 .matrix_container {
   display: flex;
+  /* position: absolute;
+  top: 300px;
+  left: 50%;
+  right: 50%; */
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -261,7 +265,7 @@ input[type=range] {
 .item_circle {
   width: var(--main-size);
   height: var(--main-size);
-  border: 1px solid white;
+  border: 1px solid rgba(255, 255, 255, 0.534);
   border-radius: 50%;
 }
 
@@ -279,7 +283,7 @@ input[type=range] {
 .correct_answer {
   /* border: 1px solid white; */
   border-radius: 10px;
-  box-shadow: inset 0px 0px 15px 0px #f2efead1;
+  box-shadow: inset 0px 0px 15px 0px #ffe8c09f;
 }
 
 
@@ -430,7 +434,8 @@ input[type=range] {
 .WT_button,
 .DIM_button,
 .label_button,
-.audio_button {
+.audio_button,
+.matrix_button {
 
   display: flex;
   justify-content: center;
@@ -684,4 +689,11 @@ li {
 
 .hide_circle {
   display: none;
+}
+.hide{
+  display: none;
+}
+
+.opacity_null{
+  opacity: 0;
 }
