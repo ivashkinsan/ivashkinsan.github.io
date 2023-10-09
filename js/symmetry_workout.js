@@ -182,6 +182,7 @@ let arr_element_position_for_column = {
   symmetry3: ['C F G', 'E A B', 'Db Eb Ab', 'D Gb Bb'],
   symmetry4: ['C G', 'E A', 'D F Ab B', 'Db Gb', 'Eb Bb'],
   symmetry6: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
+
   m2: ['C D F G A', 'E B', 'Db Eb Gb Ab Bb'],
   B2: ['C D F G A', 'E B', 'Db Gb Ab', 'Eb Bb'],
   m3: ['D E A B', 'Eb Bb', 'C F G', 'Db Gb Ab'],
@@ -193,6 +194,12 @@ let arr_element_position_for_column = {
   B6: ['C D F G', 'E A B', 'Db Gb', 'Eb Ab Bb'],
   m7: ['D E G A B', 'C F', 'Db Gb', 'Eb Ab Bb'],
   B7: ['C F', 'D E G A B', 'Db Eb Gb Ab Bb'],
+
+  maj_tetrachord: ['C G 0 Db Ab', 'D A 0 Eb Bb', 'E B 0 F Gb'],
+  min_tetrachord: ['C G 0 Db Ab', 'D A 0 Eb Bb', 'E B 0 F Gb'],
+  frig_tetrachord: ['C G 0 Db Ab', 'D A 0 Eb Bb', 'E B 0 F Gb'],
+  harm_tetrachord: ['C G 0 Db Ab', 'D A 0 Eb Bb', 'E B 0 F Gb'],
+  whole_tetrachord: ['C G 0 Db Ab', 'D A 0 Eb Bb', 'E B 0 F Gb'],
 };
 
 
