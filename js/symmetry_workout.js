@@ -133,18 +133,18 @@ allHrom.forEach(hrom => {
         this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_steps_1_7.svg';
         clicks = 0;
         break;
-        // case 2:
-        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
-        //   clicks += 1;
-        //   break;
-        // case 3:
-        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
-        //   clicks += 1;
-        //   break;
-        // case 4:
-        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
-        //   clicks = 0;
-        //   break;
+      // case 2:
+      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
+      //   clicks += 1;
+      //   break;
+      // case 3:
+      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
+      //   clicks += 1;
+      //   break;
+      // case 4:
+      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
+      //   clicks = 0;
+      //   break;
     }
   });
 });
@@ -190,8 +190,8 @@ let arr_element_position_for_column = {
   TTT: ['C D E G A', 'F B', 'Db Eb Gb Ab Bb'],
   ch5: ['C D E F G A', 'Db Eb Gb Ab', 'Bb 0 B'],
   m6: ['E A B', 'C D F G', 'Db Eb Gb Ab', 'Bb'],
-  B6: ['C D F G', 'E A B', 'Db Eb Gb Ab', 'Bb'],
-  m7: ['D E G A B', 'C F', 'Db Gb Ab', 'Eb Bb'],
+  B6: ['C D F G', 'E A B', 'Db Gb', 'Eb Ab Bb'],
+  m7: ['D E G A B', 'C F', 'Db Gb', 'Eb Ab Bb'],
   B7: ['C F', 'D E G A B', 'Db Eb Gb Ab Bb'],
 };
 
@@ -708,11 +708,11 @@ checkBoxElem.onclick = function () {
 Object.defineProperty(
   Object.prototype,
   'randElement', {
-    value: function () {
-      var rand = Math.floor(Math.random() * this.length);
-      return this[rand];
-    }
+  value: function () {
+    var rand = Math.floor(Math.random() * this.length);
+    return this[rand];
   }
+}
 );
 
 let add_windows_facty = function () {
