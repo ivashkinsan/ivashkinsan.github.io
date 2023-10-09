@@ -40,7 +40,7 @@ let buttonsBlock = document.querySelector('.buttons_block');
 // создание стартовой таблицы
 let start_table = document.querySelector('.start_table');
 let row_for_start_table = ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA', 'ZO_up', 'RA_up', 'TI_up', 'YO_up'];
-let header_for_table = ['ЗО', 'РА', 'ТИ', 'Ё', 'ЛЕ', 'ВИ', 'НА', 'ЗО', 'РА','ТИ', 'Ё'];
+let header_for_table = ['ЗО', 'РА', 'ТИ', 'Ё', 'ЛЕ', 'ВИ', 'НА', 'ЗО', 'РА', 'ТИ', 'Ё'];
 let matrix_for_table = [
     [0],
     ['ZO', 'YO'],
@@ -52,6 +52,7 @@ let matrix_for_table = [
     ['ZO', 'RA', 'TI', 'YO', 'LE'],
     ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI'],
     ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA'],
+    ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'ZO_up'],
     ['YO', 'LE', 'WI'],
     ['YO', 'LE', 'WI', 'NA'],
     ['YO', 'ZO_up'],
@@ -60,7 +61,7 @@ let matrix_for_table = [
     ['ZO', 'RA', 'YO', 'LE', 'WI', 'NA', 'ZO_up'],
     ['ZO', 'TI', 'YO', 'LE', 'WI'],
     ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA', 'ZO_up'],
-    ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA', 'ZO_up', 'RA_up', 'TI_up','YO_up']
+    ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA', 'ZO_up', 'RA_up', 'TI_up', 'YO_up']
 
 ]
 
@@ -88,14 +89,14 @@ function start_create_table() {
                     let new_song = document.createElement('div');
                     if (item.matrix && new_item_for_row_start_table.dataset.matrix == item.matrix.toString()) {
                         console.log(item.matrix.toString());
-                        
+
                         // new_song.classList.add('new_song');
                         new_song.textContent = item.name;
                         new_song.classList.add('start_buttons');
                         new_song.dataSrc = item.arr;
                         new_item_for_row_start_table.append(new_song);
-                    }  
-    
+                    }
+
                 }
             }
             new_row_for_start_table.append(new_item_for_row_start_table);

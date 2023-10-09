@@ -1110,6 +1110,60 @@ let k_nam_gosti = [{
         formula: ['YO', 'YO', 'LE', 'LE', 'WI', 'WI', 'NA', 'NA', 'WI', 'WI', 'LE', 0, 'YO', 0, 'YO']
     }
 ];
+let kon = [{
+        all: 48,
+        text: 'Гоп, гоп! Конь живой, с настоящей головой,',
+        formula: ['YO', 0, 'ZO_up', 0, 'WI', 'WI', 'YO', 0, 'YO', 'YO', 'ZO_up', 'ZO_up', 'WI', 'WI', 'YO']
+    },
+    {
+        text: 'С настоящей гривой. Ах, какой красивый!',
+        formula: ['LE', 'YO', 'TI', 'ZO', 'YO', 0, 'YO', 0, 'LE', 'YO', 'TI', 'ZO', 'YO', 0, 'YO', 0]
+    },
+    {
+        text: 'Гоп, гоп! Конь живой, Поскачи по мостовой.',
+        formula: ['YO', 0, 'ZO_up', 0, 'WI', 'WI', 'YO', 0, 'YO', 'YO', 'ZO_up', 'ZO_up', 'WI', 'WI', 'YO']
+    },
+    {
+        text: 'На ногах обновки - Звонкие подковки.',
+        formula: ['LE', 'YO', 'TI', 'ZO', 'YO', 0, 'YO', 0, 'LE', 'YO', 'TI', 'ZO', 'YO', 0, 'YO', 0]
+    }
+];
+let parowoz_blestachiy = [{
+        all: 48,
+        text: 'Паровоз, паровоз, новенький, блестящий!',
+        formula: ['YO', 'ZO', 'YO', 0, 'YO', 'ZO', 'YO', 0, 'TI', 'RA', 'ZO', 'TI', 'YO', 0, 'YO']
+    },
+    {
+        text: 'Он вагоны повёз, буд-то настоящий.',
+        formula: ['YO', 'ZO', 'YO', 0, 'YO', 'ZO', 'YO', 0, 'TI', 'RA', 'ZO', 'TI', 'YO', 0, 'YO']
+    },
+    {
+        text: 'Кто едет в поезде? Плюшевые мишки,',
+        formula: ['RA', 0, 'YO', 'YO', 'ZO', 0, 'YO', 'YO', 'TI', 'YO', 'LE', 'TI', 'YO', 0, 'YO']
+    },
+    {
+        text: 'Кошки пушистые, зайцы да мартышки.',
+        formula: ['RA', 0, 'YO', 'YO', 'ZO', 0, 'YO', 'YO', 'TI', 'YO', 'LE', 'TI', 'YO', 0, 'YO']
+    }
+];
+let sneginki = [{
+        all: 38,
+        text: 'На полянку, на лужок',
+        formula: ['YO', 'ZO_up', 'ZO_up', 'WI', 'NA', 'RA', 'ZO']
+    },
+    {
+        text: 'Тихо падает снежок',
+        formula: ['YO', 'ZO_up', 'ZO_up', 'WI', 'NA', 'RA', 'ZO']
+    },
+    {
+        text: 'Улеглись снежинки - белые пушинки',
+        formula: ['YO', 'ZO', 'YO', 0, 'YO', 'ZO', 'YO', 0, 'TI', 'RA', 'ZO', 'TI', 'YO', 0, 'YO']
+    },
+    {
+        text: 'Улеглись снежинки - белые пушинки',
+        formula: ['YO', 'ZO', 'YO', 0, 'YO', 'ZO', 'YO', 0, 'TI', 'RA', 'ZO', 'TI', 'YO', 0, 'YO']
+    }
+];
 // с днем рождения, ла кукарача, спят усталые игрушки
 // миноры - калинка
 
@@ -1350,6 +1404,16 @@ let full_menu = [{
         name: 'К нам гости пришли',
         arr: k_nam_gosti,
         matrix: ['YO', 'LE', 'WI', 'NA', 'ZO_up'],
+    },
+    {
+        name: 'Конь',
+        arr: kon,
+        matrix: ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'ZO_up'],
+    },
+    {
+        name: 'Снежинки',
+        arr: sneginki,
+        matrix: ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA', 'ZO_up', 'RA_up'],
     },
 
 
