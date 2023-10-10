@@ -42,13 +42,13 @@ let spisokNamesForInfoMoni = {
   'WH': ['Тон-полутон', 0, 0, 'rowBlock'],
 
   'header_5': ['ДИАТОНИКА МАЖОРА', '-', 0, 'headerOfResult'],
-  'TTT_&_maj': ['лидийский', 0, 0], //left
-  'min_&_min': ['дорийский', 0, 0], //right
-  'maj_&_maj': ['ионийский', 0, 0], //left
-  'min_&_frig': ['эолийский', 0, 0], //right
-  'maj_&_min': ['миксолидийский', 0, 0], //left
-  'frig_&_frig': ['фригийский', 0, 0], //right
-  'frig_&_TTT': ['локрийский', 0, 0, 'rowBlock'],
+  'TTT__maj': ['лидийский', 0, 0], //left
+  'min__min': ['дорийский', 0, 0], //right
+  'maj__maj': ['ионийский', 0, 0], //left
+  'min__frig': ['эолийский', 0, 0], //right
+  'maj__min': ['миксолидийский', 0, 0], //left
+  'frig__frig': ['фригийский', 0, 0], //right
+  'frig__TTT': ['локрийский', 0, 0, 'rowBlock'],
 
   'header_6': ['ТРЕЗВУЧИЯ', '-', 0, 'headerOfResult'],
   'aug_triads': ['увеличенное', 0, 0],
@@ -81,13 +81,13 @@ let spisokNamesForInfoMoni = {
   'diminished_chord': ['Xo', 0, 0, 'rowBlock'],
 
   'header_9': ['ДИАТОНИКА МЕЛ МИНОРА', '-', 0, 'headerOfResult'],
-  'min_&_maj': ['мелодический минор', 0, 0],
-  'frig_&_min': ['дорийский b9', 0, 0],
-  'TTTT_&_maj': ['лидийский #5', 0, 0],
-  'TTT_&_min': ['миксолидийский #4', 0, 0],
-  'maj_&_frig': ['миксолидийский b6', 0, 0],
-  'min_&_TTT': ['локрийский #2', 0, 0],
-  'frig_&_TTTT': ['альтерированный', 0, 0, 'rowBlock']
+  'min__maj': ['мелодический минор', 0, 0],
+  'frig__min': ['дорийский b9', 0, 0],
+  'TTTT__maj': ['лидийский #5', 0, 0],
+  'TTT__min': ['миксолидийский #4', 0, 0],
+  'maj__frig': ['миксолидийский b6', 0, 0],
+  'min__TTT': ['локрийский #2', 0, 0],
+  'frig__TTTT': ['альтерированный', 0, 0, 'rowBlock']
 };
 
 let marker = document.querySelectorAll('p');
@@ -200,6 +200,20 @@ let arr_element_position_for_column = {
   frig_tetrachord: ['C G 0 Db Ab', 'D A 0 Eb Bb', 'E B 0 F Gb'],
   harm_tetrachord: ['C G 0 Db Ab', 'D A 0 Eb Bb', 'E B 0 F Gb'],
   whole_tetrachord: ['C G 0 Db Ab', 'D A 0 Eb Bb', 'E B 0 F Gb'],
+
+  TTT__maj: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  min__min: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  maj__maj: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  min__frig: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  maj__min: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  frig__frig: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  frig__TTT: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+
+  melodic_minor: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  ionian: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  lydian: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  lydian_aug: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  WH: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
 };
 
 
@@ -251,6 +265,7 @@ let create_12_elem = function () {
               break;
           }
           piano_circle_elem.dataset.note = name_keyb_arr[j];
+          piano_circle_elem.dataset.note_orig = name_keyb_arr[j].slice(1, 3);
           item_in_column.append(piano_circle_elem);
         }
         new_column_for_12_elem.append(item_in_column);
@@ -528,48 +543,48 @@ let startWork = function () {
   }
 
   // диатоника мажора
-  if (symBtnLevel.dataset.number == 'TTT_&_maj') {
+  if (symBtnLevel.dataset.number == 'TTT__maj') {
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 7), (ti + 8), (ti + 10), (ti + 12), (ti + 13)];
   }
-  if (symBtnLevel.dataset.number == 'maj_&_maj') {
+  if (symBtnLevel.dataset.number == 'maj__maj') {
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 6), (ti + 8), (ti + 10), (ti + 12), (ti + 13)];
   }
-  if (symBtnLevel.dataset.number == 'maj_&_min') {
+  if (symBtnLevel.dataset.number == 'maj__min') {
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 6), (ti + 8), (ti + 10), (ti + 11), (ti + 13)];
   }
-  if (symBtnLevel.dataset.number == 'min_&_min') {
+  if (symBtnLevel.dataset.number == 'min__min') {
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 6), (ti + 8), (ti + 10), (ti + 11), (ti + 13)];
   }
-  if (symBtnLevel.dataset.number == 'min_&_frig') {
+  if (symBtnLevel.dataset.number == 'min__frig') {
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 6), (ti + 8), (ti + 9), (ti + 11), (ti + 13)];
   }
-  if (symBtnLevel.dataset.number == 'frig_&_frig') {
+  if (symBtnLevel.dataset.number == 'frig__frig') {
     symBtnLevelGO = [(ti + 1), (ti + 2), (ti + 4), (ti + 6), (ti + 8), (ti + 9), (ti + 11), (ti + 13)];
   }
-  if (symBtnLevel.dataset.number == 'frig_&_TTT') {
+  if (symBtnLevel.dataset.number == 'frig__TTT') {
     symBtnLevelGO = [(ti + 1), (ti + 2), (ti + 4), (ti + 6), (ti + 7), (ti + 9), (ti + 11), (ti + 13)];
   }
 
   // диатоника мелодического минора
-  if (symBtnLevel.dataset.number == 'min_&_maj') {
+  if (symBtnLevel.dataset.number == 'min__maj') {
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 6), (ti + 8), (ti + 10), (ti + 12), (ti + 13)];
   }
-  if (symBtnLevel.dataset.number == 'frig_&_min') {
+  if (symBtnLevel.dataset.number == 'frig__min') {
     symBtnLevelGO = [(ti + 1), (ti + 2), (ti + 4), (ti + 6), (ti + 8), (ti + 10), (ti + 11), (ti + 13)];
   }
-  if (symBtnLevel.dataset.number == 'TTTT_&_maj') {
+  if (symBtnLevel.dataset.number == 'TTTT__maj') {
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 7), (ti + 9), (ti + 10), (ti + 12), (ti + 13)];
   }
-  if (symBtnLevel.dataset.number == 'TTT_&_min') {
+  if (symBtnLevel.dataset.number == 'TTT__min') {
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 7), (ti + 8), (ti + 10), (ti + 11), (ti + 13)];
   }
-  if (symBtnLevel.dataset.number == 'maj_&_frig') {
+  if (symBtnLevel.dataset.number == 'maj__frig') {
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 6), (ti + 8), (ti + 9), (ti + 11), (ti + 13)];
   }
-  if (symBtnLevel.dataset.number == 'min_&_TTT') {
+  if (symBtnLevel.dataset.number == 'min__TTT') {
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 6), (ti + 7), (ti + 9), (ti + 11), (ti + 13)];
   }
-  if (symBtnLevel.dataset.number == 'frig_&_TTTT') {
+  if (symBtnLevel.dataset.number == 'frig__TTTT') {
     symBtnLevelGO = [(ti + 1), (ti + 2), (ti + 4), (ti + 5), (ti + 7), (ti + 9), (ti + 11), (ti + 13)];
   }
 
@@ -652,6 +667,7 @@ faktyArr.shuffle()
 let add_correct_answer_for_matrix = function () {
   let start_answer_note = answerArr[0].dataset.note;
   let item_in_matrix = document.querySelectorAll('.item_in_column');
+  let plus = ['C', 'D', 'E', 'Gb', 'Ab', 'Bb'];
   start_answer_note = start_answer_note.slice(1);
   for (item of item_in_matrix) {
     if (item.classList.contains(start_answer_note)) {
@@ -660,7 +676,17 @@ let add_correct_answer_for_matrix = function () {
       for (answ_item of answerArr) {
         for (let mini_circle of item.children) {
           if (mini_circle.dataset.note == answ_item.dataset.note) {
-            mini_circle.classList.add('red');
+            switch (symBtnLevel.dataset.number) {
+              case 'ionian':
+                if (plus.includes(mini_circle.dataset.note_orig)) {
+                  mini_circle.classList.add('active_mini_circle_plus');
+                }
+
+                break;
+              default:
+                mini_circle.classList.add('active_mini_circle');
+            }
+
           }
         }
       }

@@ -254,8 +254,12 @@ input[type=range] {
 }
 
 /* блок надстройка над клавиатурой */
-.red {
+.active_mini_circle {
   background-color: #F4D6B1;
+}
+
+.active_mini_circle_plus {
+  background-color: #ff0000;
 }
 
 :root {
@@ -690,10 +694,11 @@ li {
 .hide_circle {
   display: none;
 }
-.hide{
+
+.hide {
   display: none;
 }
 
-.opacity_null{
+.opacity_null {
   opacity: 0;
 }
