@@ -222,7 +222,7 @@ let matrix_keyb_arr = matrix_keyb_string.split(' ');
 
 let name_keyb_string = '3C 3Db 3D 3Eb 3E 3F 3Gb 3G 3Ab 3A 3Bb 3B 4C 4Db 4D 4Eb 4E 4F 4Gb 4G 4Ab 4A 4Bb 4B 5C';
 let name_keyb_arr = name_keyb_string.split(' ');
-
+let close_container;
 let matrix_container = document.querySelector('.matrix_container');
 let create_12_elem = function () {
   create_shuffle_arr();
@@ -273,6 +273,11 @@ let create_12_elem = function () {
       matrix_container.append(new_column_for_12_elem);
     }
   }
+  close_container = document.createElement('div');
+  close_container.classList.add('close_container');
+  close_container.innerHTML = '+';
+  close_container.addEventListener("click", matrix_button_go);
+  matrix_container.append(close_container);
 }
 
 //ВЫБОР РЕЖИМА РАНДОМ
@@ -667,7 +672,8 @@ faktyArr.shuffle()
 let add_correct_answer_for_matrix = function () {
   let start_answer_note = answerArr[0].dataset.note;
   let item_in_matrix = document.querySelectorAll('.item_in_column');
-  let plus = ['C', 'D', 'E', 'Gb', 'Ab', 'Bb'];
+  let plus_elem_arr = ['3C', '3D', '3E', '3Gb', '3Ab', '3Bb', '4C', '4D', '4E', '4Gb', '4Ab', '4Bb'];
+  let ball_elem_arr = ['3Db', '3Eb', '3F', '3G', '3A', '3B', '4Db', '4Eb', '4F', '4G', '4A', '4B'];
   start_answer_note = start_answer_note.slice(1);
   for (item of item_in_matrix) {
     if (item.classList.contains(start_answer_note)) {
@@ -677,11 +683,21 @@ let add_correct_answer_for_matrix = function () {
         for (let mini_circle of item.children) {
           if (mini_circle.dataset.note == answ_item.dataset.note) {
             switch (symBtnLevel.dataset.number) {
+              case 'melodic_minor':
               case 'ionian':
-                if (plus.includes(mini_circle.dataset.note_orig)) {
+              case 'lydian':
+              case 'lydian_aug':
+              case 'WH':
+                console.log(mini_circle);
+                if (plus_elem_arr.includes(mini_circle.dataset.note)) {
                   mini_circle.classList.add('active_mini_circle_plus');
                 }
-
+                if (ball_elem_arr.includes(mini_circle.dataset.note)) {
+                  mini_circle.classList.add('active_mini_circle_ball');
+                }
+                break;
+              case 'TTT__maj':
+                console.log(mini_circle);
                 break;
               default:
                 mini_circle.classList.add('active_mini_circle');
@@ -699,6 +715,8 @@ let matrix_button_go = function () {
 }
 let matrix_button = document.querySelector('.matrix_button');
 matrix_button.addEventListener("click", matrix_button_go);
+// close_container = document.querySelector('.close_container');
+
 
 
 // ПРОВЕРКА ОТВЕТА - СРАВНЕНИЕ ============================================================================================================
