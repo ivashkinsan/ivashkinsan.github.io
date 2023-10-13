@@ -1,0 +1,116 @@
+body {
+    position: relative;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    color: #F4D6B1;
+    background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
+    border: 20px solid;
+    border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
+}
+
+*{
+    box-sizing: border-box;
+}
+.big_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* gap: 30px; */
+    width: 100%;
+    height: 100%;
+    gap: var(--base-size);
+}
+
+.new_div_column{
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+}
+
+.new_stage_vertiical_line{
+    /* position: absolute; */
+    border: 1px dashed #F4D6B1;
+    height: calc(var(--base-size) *16);
+    margin: 0 -2px;
+    opacity: 0.33;
+}
+
+:root {
+    --base-size: 50px;
+  }
+
+.m2, .B2, .m3, .B3, .h4, .T3, .h5, .m6, .B6, .m7, .B7, .h8{
+    position: absolute;
+    border: 1px dashed #F4D6B1;
+    border-radius: 50%;
+    margin: 0 -1px;
+}
+.m2{
+    width: var(--base-size);
+    height: var(--base-size);
+    z-index: 12;
+}
+.B2{
+    width: calc(var(--base-size) *2);
+    height:calc(var(--base-size) *2);
+    z-index: 11;
+}
+.m3{
+    width: calc(var(--base-size) *3);
+    height:calc(var(--base-size) *3);
+    z-index: 10;
+}
+.B3{
+    width: calc(var(--base-size) *4);
+    height:calc(var(--base-size) *4);
+    z-index: 9;
+}
+.h4{
+    width: calc(var(--base-size) *5);
+    height:calc(var(--base-size) *5);
+    z-index: 8;
+}
+.T3{
+    width: calc(var(--base-size) *6);
+    height:calc(var(--base-size) *6);
+    z-index: 7;
+}
+.h5{
+    width: calc(var(--base-size) *7);
+    height:calc(var(--base-size) *7);
+    z-index: 6;
+}
+.m6{
+    width: calc(var(--base-size) *8);
+    height:calc(var(--base-size) *8);
+    z-index: 5;
+}
+.B6{
+    width: calc(var(--base-size) *9);
+    height:calc(var(--base-size) *9);
+    z-index: 4;
+}
+.m7{
+    width: calc(var(--base-size) *10);
+    height:calc(var(--base-size) *10);
+    z-index: 3;
+}
+.B7{
+    width: calc(var(--base-size) *11);
+    height:calc(var(--base-size) *11);
+    z-index: 2;
+}
+.h8{
+    width: calc(var(--base-size) *12);
+    height:calc(var(--base-size) *12);
+    z-index: 1;
+}
+
+.active_box{
+    box-shadow: 0px 0px 15px inset #DDB078;
+}
