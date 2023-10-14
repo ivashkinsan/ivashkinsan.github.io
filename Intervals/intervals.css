@@ -7,13 +7,33 @@ body {
     margin: 0;
     color: #F4D6B1;
     background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
-    border: 20px solid;
+    border: 10px solid;
     border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
 }
 
 *{
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;      
 }
+
+.unselectable {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently
+                                    not supported by any browser */
+  }
+
 .big_container{
     display: flex;
     justify-content: center;
@@ -35,17 +55,48 @@ body {
 .new_stage_vertiical_line{
     /* position: absolute; */
     border: 1px dashed #F4D6B1;
-    height: calc(var(--base-size) *16);
+    height: calc(var(--base-size) *6);
     margin: 0 -2px;
-    opacity: 0.33;
+    margin-top: calc(var(--base-size-minus) *6);
+    opacity: 0.43;
+}
+.vertiical_line_label{
+    position: absolute;
+    margin-top: -20px;
+    margin-left: -5px;
+
+}
+
+.piano_keys{
+    position: absolute;
+    width: calc(var(--base-size)*1);
+    height: calc(var(--base-size)*7);
+    border: 1px solid black;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-top: 355px;
+    z-index: 0;
+    opacity: 1;
+}
+
+.white_key{
+    margin-left: calc(var(--base-size-minus)/2);
+    background: rgb(255, 255, 255);
+}
+.black_key{
+    margin-left: calc(var(--base-size-minus)/2);
+    background: rgb(0, 0, 0);
 }
 
 :root {
     --base-size: 50px;
+    --base-size-minus: -50px;
   }
 
 .m2, .B2, .m3, .B3, .h4, .T3, .h5, .m6, .B6, .m7, .B7, .h8{
     position: absolute;
+    display: flex;
+    justify-content: center;
     border: 1px dashed #F4D6B1;
     border-radius: 50%;
     margin: 0 -1px;
@@ -111,6 +162,16 @@ body {
     z-index: 1;
 }
 
+.label_p{
+   width: min-content;
+   height: min-content;
+   margin-top: 3px;
+   z-index: 1;
+}
+
 .active_box{
     box-shadow: 0px 0px 15px inset #DDB078;
+}
+.active_box_key{
+    box-shadow: 0px 0px 45px inset #2eee31;
 }
