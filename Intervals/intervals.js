@@ -149,13 +149,34 @@ big_container.addEventListener('click', (event) => {
     }
     two_keys_for_int = Number(click_elem.dataset.number) + Number(click_elem.dataset.summ);
     all_keyb = document.querySelectorAll('.piano_keys');
-    for (let item of all_keyb) {
-        if (item.dataset.number == click_elem.dataset.number || item.dataset.number == two_keys_for_int) {
-            if (!item.classList.contains('active_box_key') && event.target.classList.contains('active_box')) {
-                let new_clone = item;
-                console.log(new_clone);
+    for (let i = 0; i < all_keyb.length; i++) {
+        if (all_keyb[i].dataset.number == click_elem.dataset.number || all_keyb[i].dataset.number == two_keys_for_int) {
+            if (!all_keyb[i].classList.contains('active_box_key') && event.target.classList.contains('active_box')) {
+                let new_clone = all_keyb[i].cloneNode();
+                new_clone.classList.add('marker_bg_color');
+                all_keyb[i].parentNode.append(new_clone);
+            } else {
+                console.log(all_keyb[i]);
+                all_keyb[i].parentNode.lastChild.remove();
+                i++
             }
 
         }
+    }
+})
+
+let all_keyb_elem_for_opacity = document.querySelectorAll('.piano_keys')
+let opacity_input = document.querySelector('.input_opacity_piano_keys');
+opacity_input.addEventListener('input', (e) => {
+    for (item of all_keyb_elem_for_opacity) {
+        item.style.opacity = e.target.value / 100;
+    }
+})
+
+let new_stage_vertiical_line = document.querySelectorAll('.new_stage_vertiical_line')
+let input_opacity_vertical_line = document.querySelector('.input_opacity_vertical_line');
+input_opacity_vertical_line.addEventListener('input', (e) => {
+    for (item of new_stage_vertiical_line) {
+        item.style.opacity = e.target.value / 100;
     }
 })
