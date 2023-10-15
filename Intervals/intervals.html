@@ -8,16 +8,36 @@
 </head>
 <body>
     <div class="big_container"></div>
+    
 <div class="container_for_inputs">
+
+    <label for="sphere_select">Паттерн</label>
+
+    <select class="sphere_select" name="sphere" id="sphere_select">
+      <option value="">----------------</option>
+      <option value="symmetry_2">symmetry_2</option>
+      <option value="symmetry_3">symmetry_3</option>
+      <option value="symmetry_4">symmetry_4</option>
+      <option value="full">full</option>
+      <option value="overtones">overtones</option>
+      <option value="m2">м2</option>
+      <option value="B2">Б2</option>
+      <option value="m3">м3</option>
+      <option value="B3">Б3</option>
+    </select>
+
     <div class="input_opacity_piano_keys">
     <input type="range" name="opacity" id="opacity" min="0" max="100" value="0">
     <label for="opacity">клавиши</label>
 </div>
+
     <div class="input_opacity_vertical_line">
     <input type="range" name="opacity" id="opacity" min="0" max="100" value="0">
     <label for="opacity">ступени</label>
 </div>
+
 </div>
+    <script src="intervals_data_base.js"></script>
     <script src="intervals.js"></script>
 </body>
 </html>

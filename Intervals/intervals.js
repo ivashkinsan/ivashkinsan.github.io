@@ -2,6 +2,9 @@ let big_container = document.querySelector('.big_container');
 let all_keyb;
 let two_keys_for_int;
 
+let all_keyb_elem_for_opacity;
+let new_stage_vertiical_line;
+
 let stage_arr = '1 b2 2 b3 3 4 b5 5 b6 6 b7 7 1 b2 2 b3 3 4 b5 5 b6 6 b7 7 1 b2 2 b3 3 4 b5 5 b6 6 b7 7 1';
 let numb_string = '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37';
 
@@ -10,15 +13,9 @@ let new_numb_arr = function () {
 }
 new_numb_arr();
 
-let pattern_for_sphere = [
-    'm2 m2 m2 m2 m2 m2 m2 m2 m2 m2 m2 m2',
-    'm3 0 0 m3 0 0 m3 0 0 m3 0 0',
-    'TTT 0 0 TTT 0 0 TTT 0 0 0 0 0',
-    'B6 0 0 B6 0 0 0 0 0 0 0 0',
-    'ch8 0 0 0 0 0 0 0 0 0 0 0'
-]
 
 let dataset_name = {
+    'end': ['', 0],
     'm2': ['м2', 1],
     'B2': ['Б2', 2],
     'm3': ['м3', 3],
@@ -33,36 +30,7 @@ let dataset_name = {
     'h8': ['ч8', 12]
 }
 
-let symmetry_2 = [
-    'm2 m2 m2 m2 m2 m2 m2 m2 m2 m2 m2 m2', // 12
-    'B2 0 B2 0 B2 0 B2 0 B2 0 B2', // 11
-    '0 0 0 0 0 0 0 0 0 0', // 10
-    'B3 0 0 0 B3 0 0 0 B3', // 9
-    '0 0 0 0 0 0 0 0', // 8
-    '0 0 0 0 0 0 0', // 7
-    '0 0 0 0 0 0', // 6
-    'm6 0 0 0 m6', // 5
-    '0 0 0 0', // 4
-    '0 0 0', // 3
-    '0 0', // 2
-    'h8', // 1
-    ''
-]
-let big_pattern = [
-    'm2 m2 m2 m2 m2 m2 m2 m2 m2 m2 m2 m2',
-    'B2 B2 B2 B2 B2 B2 B2 B2 B2 B2 B2',
-    'm3 m3 m3 m3 m3 m3 m3 m3 m3 m3',
-    'B3 B3 B3 B3 B3 B3 B3 B3 B3',
-    'h4 h4 h4 h4 h4 h4 h4 h4',
-    'T3 T3 T3 T3 T3 T3 T3',
-    'h5 h5 h5 h5 h5 h5',
-    'm6 m6 m6 m6 m6',
-    'B6 B6 B6 B6',
-    'm7 m7 m7',
-    'B7 B7',
-    'h8',
-    ''
-]
+
 let string_to_arr = function (input) {
     let new_arr = [];
     for (let item of input) {
@@ -70,16 +38,19 @@ let string_to_arr = function (input) {
     }
     return new_arr;
 }
-// console.log(string_to_arr(big_pattern));
 
-let big_pattern_arr = string_to_arr(big_pattern);
-let big_pattern_symmetry_2 = string_to_arr(symmetry_2);
+
+// let big_pattern_arr = string_to_arr(big_pattern);
+// console.log(big_pattern_arr.length);
+// let big_pattern_symmetry_2 = string_to_arr(symmetry_2);
+
+
 stage_arr = stage_arr.split(' ');
-console.log(stage_arr);
+
 
 let create_sphere = function (pattern) {
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < pattern.length; i++) {
         let marker = numb_arr.shift();
 
         // блок колонка
@@ -109,34 +80,36 @@ let create_sphere = function (pattern) {
         new_div_column.append(keyb_elem);
 
         // блоки окружности
-
-
         for (let j = 0; j < pattern[i].length; j++) {
             let new_circle = document.createElement('div');
-            if (pattern[j][i] != 0) {
-                new_circle.dataset.name = dataset_name[pattern[j][i]][0];
-                new_circle.dataset.summ = dataset_name[pattern[j][i]][1];
+            if (!pattern[i][j] == '0') {
+                // console.log('должен остановиться');
+                new_circle.dataset.name = dataset_name[pattern[i][j]][0];
+                new_circle.dataset.summ = dataset_name[pattern[i][j]][1];
                 let label_p = document.createElement('p');
                 label_p.classList.add('label_p');
-                label_p.textContent = dataset_name[pattern[j][i]][0];
+                label_p.textContent = dataset_name[pattern[i][j]][0];
                 new_circle.append(label_p);
-                new_circle.classList.add(pattern[j][i]);
+                new_circle.classList.add(pattern[i][j]);
                 new_circle.classList.add('circle');
                 new_circle.dataset.number = marker;
                 new_div_column.append(new_circle);
             }
-
         }
+        // arr_for_debugging.push(arr_row_for_debugging)
         big_container.append(new_div_column);
+
     }
+
+
 }
 
-create_sphere(big_pattern_symmetry_2);
-create_sphere(big_pattern_symmetry_2);
-create_sphere(big_pattern_symmetry_2);
+
+
+
 // create_sphere(big_pattern_arr);
 
-
+let all_marker_bg_color;
 big_container.addEventListener('click', (event) => {
     let click_elem;
     // console.log(event.target);
@@ -144,35 +117,116 @@ big_container.addEventListener('click', (event) => {
         event.target.classList.toggle('active_box');
         event.target.parentNode.classList.toggle('active_box');
         click_elem = event.target;
-    } else if (event.target.classList.contains('label_p')) {
+    } else if (event.target.classList.contains('label_p') || event.target.classList.contains('piano_keys')) {
         event.target.parentNode.classList.toggle('active_box');
-        event.target.parentNode.parentNode.classList.toggle('active_box');
+        // event.target.parentNode.parentNode.classList.toggle('active_box');
         click_elem = event.target.parentNode;
     }
-
-    two_keys_for_int = Number(click_elem.dataset.number) + Number(click_elem.dataset.summ);
-    all_keyb = document.querySelectorAll('.piano_keys');
-    for (let i = 0; i < all_keyb.length; i++) {
-        if (all_keyb[i].dataset.number == click_elem.dataset.number || all_keyb[i].dataset.number == two_keys_for_int) {
-            let new_clone = all_keyb[i].cloneNode();
-            new_clone.classList.add('marker_bg_color');
-            all_keyb[i].parentNode.append(new_clone);
-        }
+    if (click_elem.dataset.number && click_elem.dataset.summ) {
+        two_keys_for_int = Number(click_elem.dataset.number) + Number(click_elem.dataset.summ);
     }
+    if (event.target.classList.contains('piano_keys')) {
+        console.log('piano_keys')
+        two_keys_for_int = '';
+    }
+
+    all_keyb = document.querySelectorAll('.piano_keys');
+
+
+    let dump = [];
+    let clickElemDatasetDump = [];
+    if (click_elem.classList.contains('active_box')) {
+        for (let i = 0; i < all_keyb.length; i++) {
+            if (all_keyb[i].dataset.number == click_elem.dataset.number || all_keyb[i].dataset.number == two_keys_for_int) {
+                let new_clone = all_keyb[i].cloneNode();
+                dump = Math.random();
+                if (!click_elem.dataset.dump) {
+                    click_elem.dataset.dump = dump;
+                } else {
+                    click_elem.dataset.dump = click_elem.dataset.dump + ',' + dump;
+                };
+                new_clone.dataset.dump = dump;
+                new_clone.classList.add('marker_bg_color');
+                all_keyb[i].parentNode.append(new_clone);
+            }
+        }
+
+    } else {
+        clickElemDatasetDump = click_elem.dataset.dump.split(',');
+        // console.log(clickElemDatasetDump);
+        for (let i = 0; i < all_marker_bg_color.length; i++) {
+            if (clickElemDatasetDump.includes(all_marker_bg_color[i].dataset.dump)) {
+                all_marker_bg_color[i].remove();
+            }
+        }
+        clickElemDatasetDump = [];
+    }
+    all_marker_bg_color = document.querySelectorAll('.marker_bg_color');
 })
 
-let all_keyb_elem_for_opacity = document.querySelectorAll('.piano_keys')
+
+
+
+
+let sphere_select = document.querySelector('.sphere_select');
+sphere_select.addEventListener('change', (e) => {
+    console.log(e.target.value);
+
+    big_container.innerHTML = '';
+    switch (e.target.value) {
+        case 'symmetry_2':
+            create_sphere(string_to_arr(symmetry_2));
+            break;
+        case 'symmetry_3':
+            create_sphere(string_to_arr(symmetry_3));
+            break;
+        case 'symmetry_4':
+            create_sphere(string_to_arr(symmetry_4));
+            break;
+        case 'full':
+            create_sphere(string_to_arr(full));
+            break;
+        case 'overtones':
+            create_sphere(string_to_arr(overtones));
+            break;
+        case 'm2':
+            create_sphere(string_to_arr(m2));
+            break;
+        case 'B2':
+            create_sphere(string_to_arr(B2));
+            break;
+        case 'm3':
+            create_sphere(string_to_arr(m3));
+            break;
+        case 'B3':
+            create_sphere(string_to_arr(B3));
+            break;
+    }
+
+    all_keyb_elem_for_opacity = document.querySelectorAll('.piano_keys');
+    new_stage_vertiical_line = document.querySelectorAll('.new_stage_vertiical_line');
+})
+
+// create_sphere(string_to_arr(symmetry_3));
+
+
+// прозрачность клавиатуры
 let opacity_input = document.querySelector('.input_opacity_piano_keys');
 opacity_input.addEventListener('input', (e) => {
     for (item of all_keyb_elem_for_opacity) {
         item.style.opacity = e.target.value / 100;
+        item.style.zIndex = 0;
+        if (e.target.value == '100') {
+            item.style.zIndex = 1000;
+        }
     }
 })
 
-let new_stage_vertiical_line = document.querySelectorAll('.new_stage_vertiical_line')
+// прозрачность маркеров ступеней
 let input_opacity_vertical_line = document.querySelector('.input_opacity_vertical_line');
 input_opacity_vertical_line.addEventListener('input', (e) => {
     for (item of new_stage_vertiical_line) {
         item.style.opacity = e.target.value / 100;
+
     }
 })

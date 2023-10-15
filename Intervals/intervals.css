@@ -54,27 +54,28 @@ body {
 
 .new_stage_vertiical_line{
     /* position: absolute; */
-    border: 1px dashed #F4D6B1;
+    border: 1px dashed var(--color_for_vertical_label);
     height: calc(var(--base-size) *6);
     margin: 0 -2px;
     margin-top: calc(var(--base-size-minus) *6);
-    opacity: 0.43;
+    opacity: 0;
+    z-index: 0;
 }
 .vertiical_line_label{
     position: absolute;
     margin-top: -20px;
     margin-left: -5px;
-
+    color: var(--color_for_vertical_label);
 }
 
 .piano_keys{
     position: absolute;
     width: calc(var(--base-size)*1);
-    height: calc(var(--base-size)*7);
+    height: calc(var(--base-size)*6);
     border: 1px solid black;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    margin-top: 355px;
+    margin-top: calc(var(--base-size)*6);
     z-index: 0;
     opacity: 0;
 }
@@ -91,6 +92,8 @@ body {
 :root {
     --base-size: 50px;
     --base-size-minus: -50px;
+    --marker-color: rgb(1, 221, 255);
+    --color_for_vertical_label: rgb(179, 179, 179);
   }
 
 .m2, .B2, .m3, .B3, .h4, .T3, .h5, .m6, .B6, .m7, .B7, .h8{
@@ -167,14 +170,15 @@ body {
    width: min-content;
    height: min-content;
    margin-top: 3px;
+   /* color: white; */
    z-index: 1;
 }
 
 .active_box{
-    box-shadow: 0px 0px 15px inset #DDB078;
+    box-shadow: 0px 0px 25px inset var(--marker-color);
 }
 .active_box_key{
-    box-shadow: 0px 0px 45px inset #2eee31;
+    box-shadow: 0px 0px 45px inset var(--marker-color);
 }
 
 .container_for_inputs{
@@ -186,5 +190,10 @@ left: 20px;
 }
 
 .marker_bg_color{
-    background: #2eee31;
+    height: calc(var(--base-size)*1);
+    border-radius: 0;
+    /* border-bottom-left-radius: 10px; */
+    /* border-bottom-right-radius: 10px; */
+    background: var(--marker-color);
+
 }
