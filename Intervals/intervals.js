@@ -1,6 +1,7 @@
 let big_container = document.querySelector('.big_container');
 let all_keyb;
 let two_keys_for_int;
+let all_marker_bg_color;
 
 let all_keyb_elem_for_opacity;
 let new_stage_vertiical_line;
@@ -109,7 +110,7 @@ let create_sphere = function (pattern) {
 
 // create_sphere(big_pattern_arr);
 
-let all_marker_bg_color;
+
 big_container.addEventListener('click', (event) => {
     let click_elem;
     // console.log(event.target);
@@ -130,7 +131,7 @@ big_container.addEventListener('click', (event) => {
         two_keys_for_int = '';
     }
 
-    all_keyb = document.querySelectorAll('.piano_keys');
+
 
 
     let dump = [];
@@ -201,10 +202,32 @@ sphere_select.addEventListener('change', (e) => {
         case 'B3':
             create_sphere(string_to_arr(B3));
             break;
+        case 'h4':
+            create_sphere(string_to_arr(h4));
+            break;
+        case 'T3':
+            create_sphere(string_to_arr(T3));
+            break;
+        case 'h5':
+            create_sphere(string_to_arr(h5));
+            break;
+        case 'm6':
+            create_sphere(string_to_arr(m6));
+            break;
+        case 'B6':
+            create_sphere(string_to_arr(B6));
+            break;
+        case 'm7':
+            create_sphere(string_to_arr(m7));
+            break;
+        case 'B7':
+            create_sphere(string_to_arr(B7));
+            break;
     }
-
+    new_numb_arr();
     all_keyb_elem_for_opacity = document.querySelectorAll('.piano_keys');
     new_stage_vertiical_line = document.querySelectorAll('.new_stage_vertiical_line');
+    all_keyb = document.querySelectorAll('.piano_keys');
 })
 
 // create_sphere(string_to_arr(symmetry_3));
