@@ -142,25 +142,21 @@ big_container.addEventListener('click', (event) => {
     // console.log(event.target);
     if (event.target.classList.contains('circle')) {
         event.target.classList.toggle('active_box');
+        event.target.parentNode.classList.toggle('active_box');
         click_elem = event.target;
     } else if (event.target.classList.contains('label_p')) {
         event.target.parentNode.classList.toggle('active_box');
+        event.target.parentNode.parentNode.classList.toggle('active_box');
         click_elem = event.target.parentNode;
     }
+
     two_keys_for_int = Number(click_elem.dataset.number) + Number(click_elem.dataset.summ);
     all_keyb = document.querySelectorAll('.piano_keys');
     for (let i = 0; i < all_keyb.length; i++) {
         if (all_keyb[i].dataset.number == click_elem.dataset.number || all_keyb[i].dataset.number == two_keys_for_int) {
-            if (!all_keyb[i].classList.contains('active_box_key') && event.target.classList.contains('active_box')) {
-                let new_clone = all_keyb[i].cloneNode();
-                new_clone.classList.add('marker_bg_color');
-                all_keyb[i].parentNode.append(new_clone);
-            } else {
-                console.log(all_keyb[i]);
-                all_keyb[i].parentNode.lastChild.remove();
-                i++
-            }
-
+            let new_clone = all_keyb[i].cloneNode();
+            new_clone.classList.add('marker_bg_color');
+            all_keyb[i].parentNode.append(new_clone);
         }
     }
 })
