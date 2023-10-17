@@ -54,18 +54,26 @@ body {
 
 .new_stage_vertiical_line{
     /* position: absolute; */
-    border: 1px dashed var(--color_for_vertical_label);
+    /* border: 1px dashed var(--color_for_vertical_label); */
+    width: 1px;
     height: calc(var(--base-size) *6);
     margin: 0 -2px;
     margin-top: calc(var(--base-size-minus) *6);
     opacity: 0;
     z-index: 0;
+
+    background-image: linear-gradient(var(--color_for_vertical_label) 23%, rgba(255,255,255,0) 0%);
+background-position: right;
+background-size: 3px 10px;
+background-repeat: repeat-y;
 }
 .vertiical_line_label{
     position: absolute;
     margin-top: -20px;
     margin-left: -5px;
-    color: var(--color_for_vertical_label);
+    /* color: var(--color_for_vertical_label); */
+    /*Vertical*/
+
 }
 
 .piano_keys{
@@ -190,10 +198,16 @@ left: 20px;
 }
 
 .marker_bg_color{
+    position: absolute;
     height: calc(var(--base-size)*1);
     border-radius: 0;
     /* border-bottom-left-radius: 10px; */
     /* border-bottom-right-radius: 10px; */
     background: var(--marker-color);
+    z-index: 1000;
 
+
+    --x: 0px;
+  --y: 0px;
+  transform: translate(var(--x), var(--y));
 }
