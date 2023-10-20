@@ -11,30 +11,48 @@ body {
     border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
 }
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Chrome/Safari/Opera */
-    -khtml-user-select: none;    /* Konqueror */
-    -moz-user-select: none;      /* Firefox */
-    -ms-user-select: none;       /* Internet Explorer/Edge */
-    user-select: none;      
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
 }
 
 .unselectable {
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Chrome/Safari/Opera */
-    -khtml-user-select: none;    /* Konqueror */
-    -moz-user-select: none;      /* Firefox */
-    -ms-user-select: none;       /* Internet Explorer/Edge */
-    user-select: none;           /* Non-prefixed version, currently
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
                                     not supported by any browser */
-  }
+}
 
-.big_container{
+.moni_for_text {
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    font-size: 3em;
+}
+
+.big_container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,15 +62,15 @@ body {
     gap: var(--base-size);
 }
 
-.new_div_column{
+.new_div_column {
     position: relative;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    
+
 }
 
-.new_stage_vertiical_line{
+.new_stage_vertiical_line {
     /* position: absolute; */
     /* border: 1px dashed var(--color_for_vertical_label); */
     width: 1px;
@@ -62,12 +80,13 @@ body {
     opacity: 0;
     z-index: 0;
 
-    background-image: linear-gradient(var(--color_for_vertical_label) 23%, rgba(255,255,255,0) 0%);
-background-position: right;
-background-size: 3px 10px;
-background-repeat: repeat-y;
+    background-image: linear-gradient(var(--color_for_vertical_label) 23%, rgba(255, 255, 255, 0) 0%);
+    background-position: right;
+    background-size: 3px 10px;
+    background-repeat: repeat-y;
 }
-.vertiical_line_label{
+
+.vertiical_line_label {
     position: absolute;
     margin-top: -20px;
     margin-left: -5px;
@@ -76,7 +95,7 @@ background-repeat: repeat-y;
 
 }
 
-.piano_keys{
+.piano_keys {
     position: absolute;
     width: calc(var(--base-size)*1);
     height: calc(var(--base-size)*6);
@@ -88,11 +107,12 @@ background-repeat: repeat-y;
     opacity: 0;
 }
 
-.white_key{
+.white_key {
     margin-left: calc(var(--base-size-minus)/2);
     background: rgb(230, 230, 230);
 }
-.black_key{
+
+.black_key {
     margin-left: calc(var(--base-size-minus)/2);
     background: rgb(33, 33, 33);
 }
@@ -102,9 +122,20 @@ background-repeat: repeat-y;
     --base-size-minus: -50px;
     --marker-color: rgb(1, 221, 255);
     --color_for_vertical_label: rgb(179, 179, 179);
-  }
+}
 
-.m2, .B2, .m3, .B3, .h4, .T3, .h5, .m6, .B6, .m7, .B7, .h8{
+.m2,
+.B2,
+.m3,
+.B3,
+.h4,
+.T3,
+.h5,
+.m6,
+.B6,
+.m7,
+.B7,
+.h8 {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -113,91 +144,104 @@ background-repeat: repeat-y;
     margin: 0 -1px;
     cursor: pointer;
 }
-.m2{
+
+.m2 {
     width: var(--base-size);
     height: var(--base-size);
     z-index: 12;
 }
-.B2{
+
+.B2 {
     width: calc(var(--base-size) *2);
-    height:calc(var(--base-size) *2);
+    height: calc(var(--base-size) *2);
     z-index: 11;
 }
-.m3{
+
+.m3 {
     width: calc(var(--base-size) *3);
-    height:calc(var(--base-size) *3);
+    height: calc(var(--base-size) *3);
     z-index: 10;
 }
-.B3{
+
+.B3 {
     width: calc(var(--base-size) *4);
-    height:calc(var(--base-size) *4);
+    height: calc(var(--base-size) *4);
     z-index: 9;
 }
-.h4{
+
+.h4 {
     width: calc(var(--base-size) *5);
-    height:calc(var(--base-size) *5);
+    height: calc(var(--base-size) *5);
     z-index: 8;
 }
-.T3{
+
+.T3 {
     width: calc(var(--base-size) *6);
-    height:calc(var(--base-size) *6);
+    height: calc(var(--base-size) *6);
     z-index: 7;
 }
-.h5{
+
+.h5 {
     width: calc(var(--base-size) *7);
-    height:calc(var(--base-size) *7);
+    height: calc(var(--base-size) *7);
     z-index: 6;
 }
-.m6{
+
+.m6 {
     width: calc(var(--base-size) *8);
-    height:calc(var(--base-size) *8);
+    height: calc(var(--base-size) *8);
     z-index: 5;
 }
-.B6{
+
+.B6 {
     width: calc(var(--base-size) *9);
-    height:calc(var(--base-size) *9);
+    height: calc(var(--base-size) *9);
     z-index: 4;
 }
-.m7{
+
+.m7 {
     width: calc(var(--base-size) *10);
-    height:calc(var(--base-size) *10);
+    height: calc(var(--base-size) *10);
     z-index: 3;
 }
-.B7{
+
+.B7 {
     width: calc(var(--base-size) *11);
-    height:calc(var(--base-size) *11);
+    height: calc(var(--base-size) *11);
     z-index: 2;
 }
-.h8{
+
+.h8 {
     width: calc(var(--base-size) *12);
-    height:calc(var(--base-size) *12);
+    height: calc(var(--base-size) *12);
     z-index: 1;
 }
 
-.label_p{
-   width: min-content;
-   height: min-content;
-   margin-top: 3px;
-   /* color: white; */
-   z-index: 1;
+.label_p {
+    width: min-content;
+    height: min-content;
+    margin-top: 3px;
+    /* color: white; */
+    z-index: 1;
 }
 
-.active_box{
+.active_box {
     box-shadow: 0px 0px 25px inset var(--marker-color);
 }
-.active_box_key{
+
+.active_box_key {
     box-shadow: 0px 0px 45px inset var(--marker-color);
 }
 
-.container_for_inputs{
+.container_for_inputs {
     display: flex;
     flex-direction: column;
-position: fixed;
-bottom: 20px;
-left: 20px;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
 }
 
-.marker_bg_color{
+.marker_bg_color {
     position: absolute;
     height: calc(var(--base-size)*1);
     border-radius: 0;
@@ -208,6 +252,6 @@ left: 20px;
 
 
     --x: 0px;
-  --y: 0px;
-  transform: translate(var(--x), var(--y));
+    --y: 0px;
+    transform: translate(var(--x), var(--y));
 }

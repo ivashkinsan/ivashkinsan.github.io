@@ -1,3 +1,4 @@
+let moni_for_text = document.querySelector('.moni_for_text');
 let big_container = document.querySelector('.big_container');
 let all_keyb;
 let all_circle;
@@ -17,7 +18,6 @@ let new_numb_arr = function () {
     numb_arr = numb_string.split(' ');
 }
 new_numb_arr();
-
 
 let dataset_name = {
     'end': ['', 0],
@@ -209,51 +209,67 @@ sphere_select.addEventListener('change', (e) => {
     big_container.innerHTML = '';
     switch (e.target.value) {
         case 'symmetry_2':
+            moni_for_text.textContent = 'Симметрии на 2ч';
             create_sphere(string_to_arr(symmetry_2));
             break;
         case 'symmetry_3':
+            moni_for_text.textContent = 'Симметрии на 3ч';
             create_sphere(string_to_arr(symmetry_3));
             break;
         case 'symmetry_4':
+            moni_for_text.textContent = 'Симметрии на 4ч';
             create_sphere(string_to_arr(symmetry_4));
             break;
         case 'full':
+            moni_for_text.textContent = 'Все интервалы';
             create_sphere(string_to_arr(full));
             break;
         case 'overtones':
+            moni_for_text.textContent = 'Обертоны';
             create_sphere(string_to_arr(overtones));
             break;
         case 'm2':
+            moni_for_text.textContent = 'Обертоны м2';
             create_sphere(string_to_arr(m2));
             break;
         case 'B2':
+            moni_for_text.textContent = 'Обертоны Б2';
             create_sphere(string_to_arr(B2));
             break;
         case 'm3':
+            moni_for_text.textContent = 'Обертоны м3';
             create_sphere(string_to_arr(m3));
             break;
         case 'B3':
+            moni_for_text.textContent = 'Обертоны Б3';
             create_sphere(string_to_arr(B3));
             break;
         case 'h4':
+            moni_for_text.textContent = 'Обертоны ч4';
             create_sphere(string_to_arr(h4));
             break;
         case 'T3':
+            moni_for_text.textContent = 'Обертоны ТТТ';
             create_sphere(string_to_arr(T3));
             break;
         case 'h5':
+            moni_for_text.textContent = 'Обертоны ч5';
             create_sphere(string_to_arr(h5));
             break;
         case 'm6':
+            moni_for_text.textContent = 'Обертоны м6';
             create_sphere(string_to_arr(m6));
             break;
         case 'B6':
+            moni_for_text.textContent = 'Обертоны Б6';
             create_sphere(string_to_arr(B6));
             break;
         case 'm7':
+            moni_for_text.textContent = 'Обертоны м7';
             create_sphere(string_to_arr(m7));
             break;
         case 'B7':
+            moni_for_text.textContent = 'Обертоны Б7';
             create_sphere(string_to_arr(B7));
             break;
     }
