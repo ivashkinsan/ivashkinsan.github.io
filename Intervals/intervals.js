@@ -209,67 +209,67 @@ sphere_select.addEventListener('change', (e) => {
     big_container.innerHTML = '';
     switch (e.target.value) {
         case 'symmetry_2':
-            moni_for_text.textContent = 'Симметрии на 2ч';
+            moni_for_text.textContent = 'cимметрии на 2ч';
             create_sphere(string_to_arr(symmetry_2));
             break;
         case 'symmetry_3':
-            moni_for_text.textContent = 'Симметрии на 3ч';
+            moni_for_text.textContent = 'cимметрии на 3ч';
             create_sphere(string_to_arr(symmetry_3));
             break;
         case 'symmetry_4':
-            moni_for_text.textContent = 'Симметрии на 4ч';
+            moni_for_text.textContent = 'cимметрии на 4ч';
             create_sphere(string_to_arr(symmetry_4));
             break;
         case 'full':
-            moni_for_text.textContent = 'Все интервалы';
+            moni_for_text.textContent = 'все интервалы';
             create_sphere(string_to_arr(full));
             break;
         case 'overtones':
-            moni_for_text.textContent = 'Обертоны';
+            moni_for_text.textContent = 'обертоны';
             create_sphere(string_to_arr(overtones));
             break;
         case 'm2':
-            moni_for_text.textContent = 'Обертоны м2';
+            moni_for_text.textContent = 'обертоны м2';
             create_sphere(string_to_arr(m2));
             break;
         case 'B2':
-            moni_for_text.textContent = 'Обертоны Б2';
+            moni_for_text.textContent = 'обертоны Б2';
             create_sphere(string_to_arr(B2));
             break;
         case 'm3':
-            moni_for_text.textContent = 'Обертоны м3';
+            moni_for_text.textContent = 'обертоны м3';
             create_sphere(string_to_arr(m3));
             break;
         case 'B3':
-            moni_for_text.textContent = 'Обертоны Б3';
+            moni_for_text.textContent = 'обертоны Б3';
             create_sphere(string_to_arr(B3));
             break;
         case 'h4':
-            moni_for_text.textContent = 'Обертоны ч4';
+            moni_for_text.textContent = 'обертоны ч4';
             create_sphere(string_to_arr(h4));
             break;
         case 'T3':
-            moni_for_text.textContent = 'Обертоны ТТТ';
+            moni_for_text.textContent = 'обертоны ТТТ';
             create_sphere(string_to_arr(T3));
             break;
         case 'h5':
-            moni_for_text.textContent = 'Обертоны ч5';
+            moni_for_text.textContent = 'обертоны ч5';
             create_sphere(string_to_arr(h5));
             break;
         case 'm6':
-            moni_for_text.textContent = 'Обертоны м6';
+            moni_for_text.textContent = 'обертоны м6';
             create_sphere(string_to_arr(m6));
             break;
         case 'B6':
-            moni_for_text.textContent = 'Обертоны Б6';
+            moni_for_text.textContent = 'обертоны Б6';
             create_sphere(string_to_arr(B6));
             break;
         case 'm7':
-            moni_for_text.textContent = 'Обертоны м7';
+            moni_for_text.textContent = 'обертоны м7';
             create_sphere(string_to_arr(m7));
             break;
         case 'B7':
-            moni_for_text.textContent = 'Обертоны Б7';
+            moni_for_text.textContent = 'обертоны Б7';
             create_sphere(string_to_arr(B7));
             break;
     }
@@ -301,8 +301,20 @@ opacity_input.addEventListener('input', (e) => {
     value_opacity_all_keyb = e.target.value / 100;
     add_opacity(all_keyb, value_opacity_all_keyb);
     add_opacity(all_marker_bg_color, value_opacity_all_keyb);
-
 })
+// настройка размера клавиатуры
+// let value_size;
+// let size_input = document.querySelector('.input_size_piano_keys');
+// size_input.addEventListener('input', (e) => {
+//     value_size = e.target.value / 10;
+//     console.log(e.target.value);
+//     for (let item of all_keyb) {
+//         item.style.height = 'calc(var(--base-size)*' + value_size + ')';
+//     }
+//     for (let item of all_marker_bg_color) {
+//         item.style.height = 'calc(var(--base-size)*' + value_size / 6 + ')';
+//     }
+// })
 
 // настройка прозрачности маркеров ступеней
 let input_opacity_vertical_line = document.querySelector('.input_opacity_vertical_line');

@@ -251,7 +251,11 @@ body {
     z-index: 1000;
 
 
-    --x: 0px;
+    /* --x: 0px;
     --y: 0px;
-    transform: translate(var(--x), var(--y));
+    transform: translate(var(--x), var(--y)); */
 }
+
+/* .input_opacity_piano_keys {
+    transform: rotate(90deg);
+} */
