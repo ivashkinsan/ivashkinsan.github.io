@@ -98,7 +98,7 @@ body {
 .piano_keys {
     position: absolute;
     width: calc(var(--base-size)*1);
-    height: calc(var(--base-size)*6);
+    height: calc(var(--base-size)*3);
     border: 1px solid black;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
