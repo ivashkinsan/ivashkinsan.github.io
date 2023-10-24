@@ -214,7 +214,18 @@ let arr_element_position_for_column = {
   lydian: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   lydian_aug: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   WH: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+
+  iscustv_melodic_minor: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  iscustv_minor_harmony: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  iscustv_major_harmony: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  iscustv_major_melodic: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  iscustv_2_major_harmony: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+
 };
+
+let rus_name_obj = {
+  'C': 'ДО', 'Db': 'РЕb', 'D': 'РЕ', 'Eb': 'МИb', 'E': 'МИ', 'F': 'ФА', 'Gb': 'СОЛЬb', 'G': 'СОЛЬ', 'Ab': 'ЛЯb', 'A': 'ЛЯ', 'Bb': 'СИb', 'B': 'СИ',
+}
 
 
 let matrix_keyb_string = 'w b w b w w b w b w b w w b w b w w b w b w b w w';
@@ -246,7 +257,13 @@ let create_12_elem = function () {
       for (let i = 0; i < shablon_for_square_item.length; i++) {
         let item_in_column = document.createElement('div');
         item_in_column.classList.add(shablon_for_square_item[i]);
-        item_in_column.textContent = shablon_for_square_item[i];
+
+        //лэйбл для строки
+        let new_label = document.createElement('p');
+        new_label.textContent = rus_name_obj[shablon_for_square_item[i]];
+        new_label.classList.add('font_opus_std');
+        item_in_column.append(new_label);
+
         item_in_column.classList.add('item_in_column');
         if (shablon_for_square_item[i] == 0) {
           item_in_column.classList.add('opacity_null');
@@ -670,6 +687,7 @@ faktyArr.shuffle()
 // добавление подсветки пройденным элементам ===========================================================
 
 let add_correct_answer_for_matrix = function () {
+  let length_block_circle = 0;
   let start_answer_note = answerArr[0].dataset.note;
   let item_in_matrix = document.querySelectorAll('.item_in_column');
   let plus_elem_arr = ['3C', '3D', '3E', '3Gb', '3Ab', '3Bb', '4C', '4D', '4E', '4Gb', '4Ab', '4Bb'];
@@ -696,13 +714,123 @@ let add_correct_answer_for_matrix = function () {
                   mini_circle.classList.add('active_mini_circle_ball');
                 }
                 break;
-              case 'TTT__maj':
-                console.log(mini_circle);
+
+              case 'whole_tetrachord':
+                mini_circle.classList.add('active_mini_circle_TTT');
                 break;
+              case 'maj_tetrachord':
+                mini_circle.classList.add('active_mini_circle_maj');
+                break;
+              case 'min_tetrachord':
+                mini_circle.classList.add('active_mini_circle_min');
+                break;
+              case 'frig_tetrachord':
+                mini_circle.classList.add('active_mini_circle_frig');
+                break;
+              case 'harm_tetrachord':
+                mini_circle.classList.add('active_mini_circle_harm');
+                break;
+
+              case 'TTT__maj':
+                if (length_block_circle < 4) {
+                  mini_circle.classList.add('active_mini_circle_TTT');
+                } else {
+                  mini_circle.classList.add('active_mini_circle_maj');
+                }
+                break;
+
+              case 'maj__maj':
+                if (length_block_circle < 4) {
+                  mini_circle.classList.add('active_mini_circle_maj');
+                } else {
+                  mini_circle.classList.add('active_mini_circle_maj');
+                }
+                break;
+
+              case 'maj__min':
+                if (length_block_circle < 4) {
+                  mini_circle.classList.add('active_mini_circle_maj');
+                } else {
+                  mini_circle.classList.add('active_mini_circle_min');
+                }
+                break;
+
+              case 'min__min':
+                if (length_block_circle < 4) {
+                  mini_circle.classList.add('active_mini_circle_min');
+                } else {
+                  mini_circle.classList.add('active_mini_circle_min');
+                }
+                break;
+
+              case 'min__frig':
+                if (length_block_circle < 4) {
+                  mini_circle.classList.add('active_mini_circle_min');
+                } else {
+                  mini_circle.classList.add('active_mini_circle_frig');
+                }
+                break;
+
+              case 'frig__frig':
+                if (length_block_circle < 4) {
+                  mini_circle.classList.add('active_mini_circle_frig');
+                } else {
+                  mini_circle.classList.add('active_mini_circle_frig');
+                }
+                break;
+
+              case 'frig__TTT':
+                if (length_block_circle < 4) {
+                  mini_circle.classList.add('active_mini_circle_frig');
+                } else {
+                  mini_circle.classList.add('active_mini_circle_TTT');
+                }
+                break;
+
+              case 'iscustv_melodic_minor':
+                if (length_block_circle < 4) {
+                  mini_circle.classList.add('active_mini_circle_min');
+                } else {
+                  mini_circle.classList.add('active_mini_circle_maj');
+                }
+                break;
+
+              case 'iscustv_minor_harmony':
+                if (length_block_circle < 4) {
+                  mini_circle.classList.add('active_mini_circle_min');
+                } else {
+                  mini_circle.classList.add('active_mini_circle_harm');
+                }
+                break;
+
+              case 'iscustv_major_harmony':
+                if (length_block_circle < 4) {
+                  mini_circle.classList.add('active_mini_circle_maj');
+                } else {
+                  mini_circle.classList.add('active_mini_circle_harm');
+                }
+                break;
+
+              case 'iscustv_major_melodic':
+                if (length_block_circle < 4) {
+                  mini_circle.classList.add('active_mini_circle_maj');
+                } else {
+                  mini_circle.classList.add('active_mini_circle_frig');
+                }
+                break;
+
+              case 'iscustv_2_major_harmony':
+                if (length_block_circle < 4) {
+                  mini_circle.classList.add('active_mini_circle_harm');
+                } else {
+                  mini_circle.classList.add('active_mini_circle_harm');
+                }
+                break;
+
               default:
                 mini_circle.classList.add('active_mini_circle');
             }
-
+            length_block_circle++;
           }
         }
       }
