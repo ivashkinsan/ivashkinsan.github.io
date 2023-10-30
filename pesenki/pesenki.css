@@ -2,8 +2,6 @@ body {
     position: relative;
     margin: 0;
     box-sizing: border-box;
-    /* width: 100vw; */
-    /* height: 100vh; */
     min-height: 100vh;
     margin: 0;
     color: #F4D6B1;
@@ -17,13 +15,9 @@ body {
     user-select: none;
 }
 
-
 .start_table {
     display: flex;
     flex-direction: column;
-    /* justify-content: stretch;
-    align-items: stretch; */
-    margin-bottom: 20px;
     width: 100%;
 }
 
@@ -40,7 +34,7 @@ body {
     align-items: center;
     min-width: 30px;
     min-height: 30px;
-    font-size: 2vh;
+    font-size: 10px;
     text-align: center;
     line-height: 20px;
     border: 0.5px solid white;
@@ -53,79 +47,57 @@ body {
 .new_item_for_row_start_table:last-child {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    /* gap: 10px; */
     padding: 0 20px;
     width: max-content;
     flex: 1;
 }
 
-.start_menu_header {
-
-    margin: 1%;
-    text-align: center;
-    /* border: 3px white solid; */
-}
-
 .welcome {
-    /* display: none; */
-    /* position: fixed; */
-    margin: 0;
-    box-sizing: border-box;
-    /* width: 100vw; */
-    /* height: 150vh; */
-    /* top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0; */
-    color: #F4D6B1;
-    background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
-    border: 10px solid;
-    border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
-    z-index: 999;
-}
-
-.buttons_block {
-
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: auto;
-    margin: 0 30px;
-    min-height: 100vh;
-    overflow: auto;
+    margin: 0;
+    box-sizing: border-box;
+    z-index: 999;
+}
 
+.start_menu_header {
+    margin: 1%;
+    text-align: center;
+    text-wrap: nowrap;
+}
+
+.buttons_block {
+    display: grid;
+    grid-template-columns: 90% 10%;
+    overflow: auto;
 }
 
 .startBtn {
-    border: 2px solid;
+    border: 1px solid;
     text-align: center;
-    height: 50px;
-    width: 800px;
-    margin: 20px 60px;
-    line-height: 50px;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    letter-spacing: 1em;
     font-size: 30px;
+    line-height: 2em;
+    width: min-content;
     cursor: pointer;
-    border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
-
+    border-color: white;
 }
 
 .start_buttons {
     text-align: center;
     cursor: pointer;
     text-transform: uppercase;
+    margin: 0 5px;
 }
-
-/* .startBtn {
-    grid-column: 1/6;
-} */
 
 .active_btn {
     color: aqua;
     text-decoration: underline;
 }
-
-
-
 
 .monitor_for_text {
     position: fixed;
@@ -135,11 +107,9 @@ body {
     width: auto;
     height: 40px;
     display: flex;
-    /* border: 3px white solid; */
 }
 
 .container_staff {
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -162,12 +132,6 @@ body {
     background-color: white;
 }
 
-/* .container_clief{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-} */
 .treble_clief {
     position: absolute;
     top: 50%;
@@ -180,46 +144,24 @@ body {
     transform: scale(1.3);
 }
 
-/* .container_notes{
-    position: absolute;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    top: 50%;
-    left: 12vw;
-    width: 81vw;
-    height: 100px;
-    flex-direction: row;
-    background-color: #F4D6B1;
-    border: 2px white solid;
-} */
-
 .note {
     position: fixed;
-    /* top: 50%; */
-    /* margin-top: -72px; */
-    /* bottom: 50%; */
     opacity: 1;
     margin: -16px 0 0 0;
     width: 33px;
     height: 33px;
     background: url(../image/staff/YO.svg) no-repeat center;
-    /* border: 3px white solid; */
 }
 
 .container_button {
     display: flex;
     position: absolute;
-    /* position: fixed; */
     bottom: 4%;
     left: 50%;
     right: 50%;
     margin-left: -50px;
-    /* bottom: 50%; */
-
     width: 100px;
     height: 50px;
-    /* border: 3px white solid; */
 }
 
 .button_left {
@@ -227,7 +169,6 @@ body {
     height: 50px;
     margin: 2px;
     background: url(../image/buttons/Left.svg) no-repeat center;
-    /* border: 3px white solid; */
     cursor: pointer;
 }
 
@@ -236,7 +177,6 @@ body {
     height: 50px;
     margin: 2px;
     background: url(../image/buttons/Right.svg) no-repeat center;
-    /* border: 3px white solid; */
     cursor: pointer;
 }
 
@@ -246,8 +186,6 @@ body {
     margin: 2px;
     background: url(../image/buttons/list_menu.svg) no-repeat center;
     background-size: 160%;
-    /* background-color: white; */
-    /* border-radius: 10%; */
     cursor: pointer;
 }
 
@@ -269,8 +207,8 @@ body {
     align-items: center;
     width: 80px;
     height: 30px;
-    top: 24px;
-    left: 24px;
+    bottom: 13px;
+    left: 13px;
     color: #F4D6B1;
     font-size: 14px;
     z-index: 999;
