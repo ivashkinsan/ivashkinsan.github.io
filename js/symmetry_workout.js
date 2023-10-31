@@ -232,7 +232,7 @@ let arr_element_position_for_column = {
   B3_in_2: ['C F G 0 Db Ab 0 Gb', 'D A 0 Eb Bb 0 E B'],
   TTT_in_2: ['C G 0 D E A 0 F', 'Db Gb 0 Eb Bb 0 B'],
   m6_in_2: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
-  m7_in_2: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  m7_in_2: ['D E G A B', 'Eb Ab Bb', 'C Db F Gb'],
 
 };
 
@@ -753,6 +753,8 @@ let add_correct_answer_for_matrix = function () {
         for (let mini_circle of item.children) {
           if (mini_circle.dataset.note == answ_item.dataset.note) {
             switch (symBtnLevel.dataset.number) {
+              case 'symmetry2':
+              case 'symmetry3':
               case 'melodic_minor':
               case 'ionian':
               case 'lydian':

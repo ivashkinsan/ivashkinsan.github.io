@@ -11,6 +11,10 @@
 </head>
 
 <body>
+    <div id="mydiv" class="matrix_container hide">
+        <!-- <div id="mydivheader">Click here to move</div> -->
+        <!-- <div class="close_container">+</div> -->
+    </div>
 
     <div class="header_menu">
         <!-- <div class="go_start_menu" onclick="location.href='index.html';">МЕНЮ</div> -->
@@ -325,7 +329,6 @@
                     <div class="button" data-number="m7_in_2">
                         <image src="/image/Symmetry/m7_in_2.svg"></image>
                     </div>
-
                 </div>
             </div>
 
@@ -339,12 +342,6 @@
             <div class="container_monitor">
                 <div class="stroke_fakty_monitor"></div>
             </div>
-        </div>
-
-
-        <div id="drag_elem" class="matrix_container hide">
-            <div id="mydivheader">Click here to move</div>
-            <!-- <div class="close_container">+</div> -->
         </div>
 
 
@@ -719,8 +716,8 @@
     <audio data-key="5C" src="/PianoSound/49.mp3" preload="auto"></audio>
 
     <script src="js/symmetry_workout_fakty.js?<?=filemtime( 'js/symmetry_workout_fakty.js' )?>"></script>
-    <script src="js/symmetry_workout.js?<?=filemtime( 'symmetry_workout.js' )?>"></script>
-    <script src="js/symmetry_workout.js?<?=filemtime( 'drag_elem.js' )?>"></script>
+    <script src="js/symmetry_workout.js?<?=filemtime( 'js/symmetry_workout.js' )?>"></script>
+    <script src="js/drag_elem.js?<?=filemtime( 'js/drag_elem.js' )?>"></script>
 </body>
 
 </html>
