@@ -340,10 +340,16 @@
                 <div class="stroke_fakty_monitor"></div>
             </div>
         </div>
+
+
+        <div id="drag_elem" class="matrix_container hide">
+            <div id="mydivheader">Click here to move</div>
+            <!-- <div class="close_container">+</div> -->
+        </div>
+
+
         <div class="container_for_keyboards_and_grid">
-            <div class="matrix_container hide">
-                <!-- <div class="close_container">+</div> -->
-            </div>
+            
             <div class="container">
                 <div class="elem key" data-number="1" data-note="3C" data-src="/PianoSound/25.mp3">
                     <p>1</p>
@@ -714,6 +720,7 @@
 
     <script src="js/symmetry_workout_fakty.js?<?=filemtime( 'js/symmetry_workout_fakty.js' )?>"></script>
     <script src="js/symmetry_workout.js?<?=filemtime( 'symmetry_workout.js' )?>"></script>
+    <script src="js/symmetry_workout.js?<?=filemtime( 'drag_elem.js' )?>"></script>
 </body>
 
 </html>

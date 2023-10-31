@@ -140,18 +140,18 @@ allHrom.forEach(hrom => {
         this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_steps_1_7.svg';
         clicks = 0;
         break;
-      // case 2:
-      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
-      //   clicks += 1;
-      //   break;
-      // case 3:
-      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
-      //   clicks += 1;
-      //   break;
-      // case 4:
-      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
-      //   clicks = 0;
-      //   break;
+        // case 2:
+        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
+        //   clicks += 1;
+        //   break;
+        // case 3:
+        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
+        //   clicks += 1;
+        //   break;
+        // case 4:
+        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
+        //   clicks = 0;
+        //   break;
     }
   });
 });
@@ -231,13 +231,24 @@ let arr_element_position_for_column = {
   B2_in_2: ['C D F G A 0 E B', 'Db Gb Ab 0 Eb Bb'],
   B3_in_2: ['C F G 0 Db Ab 0 Gb', 'D A 0 Eb Bb 0 E B'],
   TTT_in_2: ['C G 0 D E A 0 F', 'Db Gb 0 Eb Bb 0 B'],
-  m6_in_2: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  m6_in_2: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
   m7_in_2: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
 
 };
 
 let rus_name_obj = {
-  'C': 'ДО', 'Db': 'РЕb', 'D': 'РЕ', 'Eb': 'МИb', 'E': 'МИ', 'F': 'ФА', 'Gb': 'СОЛЬb', 'G': 'СОЛЬ', 'Ab': 'ЛЯb', 'A': 'ЛЯ', 'Bb': 'СИb', 'B': 'СИ',
+  'C': 'ДО',
+  'Db': 'РЕb',
+  'D': 'РЕ',
+  'Eb': 'МИb',
+  'E': 'МИ',
+  'F': 'ФА',
+  'Gb': 'СОЛЬb',
+  'G': 'СОЛЬ',
+  'Ab': 'ЛЯb',
+  'A': 'ЛЯ',
+  'Bb': 'СИb',
+  'B': 'СИ',
 }
 
 
@@ -748,9 +759,7 @@ let add_correct_answer_for_matrix = function () {
               case 'lydian_aug':
               case 'WH':
               case 'B3_in_2':
-              case 'TTT_in_2':
               case 'm6_in_2':
-              case 'm7_in_2':
                 console.log(mini_circle);
                 if (plus_elem_arr.includes(mini_circle.dataset.note)) {
                   mini_circle.classList.add('active_mini_circle_plus');
@@ -932,11 +941,11 @@ checkBoxElem.onclick = function () {
 Object.defineProperty(
   Object.prototype,
   'randElement', {
-  value: function () {
-    var rand = Math.floor(Math.random() * this.length);
-    return this[rand];
+    value: function () {
+      var rand = Math.floor(Math.random() * this.length);
+      return this[rand];
+    }
   }
-}
 );
 
 let add_windows_facty = function () {

@@ -83,7 +83,7 @@ Img {
   right: -1px;
   transition: all 1s ease-in-out;
   /* border: 2px solid red; */
-
+height: 100%;
   overflow: auto;
   scrollbar-width: thin;
   scrollbar-color: #F4D6B1;
@@ -110,6 +110,7 @@ Img {
   justify-content: center;
   align-items: center;
   width: auto;
+  height: min-content;
   border-radius: 4px;
   cursor: pointer;
   opacity: 0.5;
@@ -227,14 +228,17 @@ input[type=range] {
 
 .matrix_container {
   display: flex;
-  position: sticky;
-  top: 10px;
+  position: absolute;
+  cursor: move;
+  top: 50%;
+  bottom: 50%;
   /* left: 5%; */
   /* right: 5%; */
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: auto;
+  width: min-content;
+  height: min-content;
   gap: 5vh;
   margin: 3vh 1vw;
   padding: 2%;
