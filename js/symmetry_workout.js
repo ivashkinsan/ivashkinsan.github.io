@@ -87,7 +87,14 @@ let spisokNamesForInfoMoni = {
   'TTT__min': ['миксолидийский #4', 0, 0],
   'maj__frig': ['миксолидийский b6', 0, 0],
   'min__TTT': ['локрийский #2', 0, 0],
-  'frig__TTTT': ['альтерированный', 0, 0, 'rowBlock']
+  'frig__TTTT': ['альтерированный', 0, 0, 'rowBlock'],
+
+  'header_10': ['ДЕЛЕНИЕ на 2', '-', 0, 'headerOfResult'],
+  'B2_in_2': ['Б2 на 2', 0, 0],
+  'B3_in_2': ['Б3 на 2', 0, 0],
+  'TTT_in_2': ['ТТТ на 2', 0, 0],
+  'm6_in_2': ['m6 на 2', 0, 0],
+  'm7_in_2': ['m7 на 2', 0, 0]
 };
 
 let marker = document.querySelectorAll('p');
@@ -220,6 +227,12 @@ let arr_element_position_for_column = {
   iscustv_major_harmony: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   iscustv_major_melodic: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   iscustv_2_major_harmony: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+
+  B2_in_2: ['C D F G A 0 E B', 'Db Gb Ab 0 Eb Bb'],
+  B3_in_2: ['C F G 0 Db Ab 0 Gb', 'D A 0 Eb Bb 0 E B'],
+  TTT_in_2: ['C G 0 D E A 0 F', 'Db Gb 0 Eb Bb 0 B'],
+  m6_in_2: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  m7_in_2: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
 
 };
 
@@ -653,6 +666,34 @@ let startWork = function () {
   if (symBtnLevel.dataset.number == 'diminished_chord') {
     symBtnLevelGO = [(ti + 1), (ti + 4), (ti + 7), (ti + 10)];
   }
+
+
+  if (symBtnLevel.dataset.number == 'B2_in_2') {
+    startTwoNote = startOneNote + 2;
+    keys[startTwoNote].classList.toggle('ledON');
+    symBtnLevelGO = [(ti + 1), (ti + 2), (ti + 3)];
+  }
+  if (symBtnLevel.dataset.number == 'B3_in_2') {
+    startTwoNote = startOneNote + 4;
+    keys[startTwoNote].classList.toggle('ledON');
+    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5)];
+  }
+  if (symBtnLevel.dataset.number == 'TTT_in_2') {
+    startTwoNote = startOneNote + 6;
+    keys[startTwoNote].classList.toggle('ledON');
+    symBtnLevelGO = [(ti + 1), (ti + 4), (ti + 7)];
+  }
+  if (symBtnLevel.dataset.number == 'm6_in_2') {
+    startTwoNote = startOneNote + 8;
+    keys[startTwoNote].classList.toggle('ledON');
+    symBtnLevelGO = [(ti + 1), (ti + 5), (ti + 9)];
+  }
+  if (symBtnLevel.dataset.number == 'm7_in_2') {
+    startTwoNote = startOneNote + 10;
+    keys[startTwoNote].classList.toggle('ledON');
+    symBtnLevelGO = [(ti + 1), (ti + 6), (ti + 11)];
+  }
+
   console.log(startNoteArr);
   console.log(startOneNote);
 };
@@ -706,6 +747,10 @@ let add_correct_answer_for_matrix = function () {
               case 'lydian':
               case 'lydian_aug':
               case 'WH':
+              case 'B3_in_2':
+              case 'TTT_in_2':
+              case 'm6_in_2':
+              case 'm7_in_2':
                 console.log(mini_circle);
                 if (plus_elem_arr.includes(mini_circle.dataset.note)) {
                   mini_circle.classList.add('active_mini_circle_plus');
