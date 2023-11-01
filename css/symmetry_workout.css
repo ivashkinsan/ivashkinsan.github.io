@@ -240,8 +240,8 @@ left:100px;
   width: min-content;
   /* margin: 3vh 1vw; */
   padding: 2%;
-  background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
-  border: 2px solid #F4D6B1;
+  background: linear-gradient(120deg, #293753be 0%, #263655a6 100%);
+  border: 1px solid #F4D6B1;
   border-radius: 20px;
   z-index: 999;
 }
@@ -276,16 +276,23 @@ left:100px;
 }
 
 /* блок надстройка над клавиатурой */
-.active_mini_circle {
-  background-color: #F4D6B1;
+.active_mini_circle{
+  background-color: #FD9800;
+}
+
+.active_mini_circle_black {
+  background-color: #272727;
+}
+.active_mini_circle_white {
+  background-color: #ffffff;
 }
 
 .active_mini_circle_plus {
-  background-color: #fff200;
+  background-color: #FD9800;
 }
 
 .active_mini_circle_ball {
-  background-color: #008cff;
+  background-color: #0D45C8;
 }
 
 .active_mini_circle_TTT {
@@ -427,15 +434,15 @@ left:100px;
 
 
 .black_key {
-  background-color: rgb(154, 154, 154);
+  /* background: white; */
   width: 4%;
   height: 60%;
   margin-left: -2.1%;
   margin-right: -2.1%;
-  background-color: black;
+  background-color: #1f1f1f;
   border: 2px #9c9c9c solid;
   transition-property: background-color;
-  transition-duration: 300ms;
+  transition-duration: 100ms;
   z-index: 2;
 }
 
@@ -457,7 +464,7 @@ left:100px;
 .ledON {
   background-color: rgb(0, 234, 255);
   transition-property: background-color;
-  transition-duration: 300ms;
+  transition-duration: 400ms;
   box-shadow: inset 0px 0px 15px 0px #000000;
 }
 

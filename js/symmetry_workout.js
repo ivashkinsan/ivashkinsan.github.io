@@ -187,7 +187,7 @@ allHrom.forEach(hrom => {
 let arr_element_position_for_column = {
   symmetry2: ['C D E G A', 'F B', 'Db Eb Gb Ab Bb'],
   symmetry3: ['C F G', 'E A B', 'Db Eb Ab', 'D Gb Bb'],
-  symmetry4: ['C G', 'E A', 'D F Ab B', 'Db Gb', 'Eb Bb'],
+  symmetry4: ['C Eb Gb A', 'Db E G Bb', 'D F Ab B'],
   symmetry6: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
 
   m2: ['C D F G A', 'E B', 'Db Eb Gb Ab Bb'],
@@ -744,6 +744,8 @@ let add_correct_answer_for_matrix = function () {
   let item_in_matrix = document.querySelectorAll('.item_in_column');
   let plus_elem_arr = ['3C', '3D', '3E', '3Gb', '3Ab', '3Bb', '4C', '4D', '4E', '4Gb', '4Ab', '4Bb'];
   let ball_elem_arr = ['3Db', '3Eb', '3F', '3G', '3A', '3B', '4Db', '4Eb', '4F', '4G', '4A', '4B'];
+  let black_key_circle = ['3Db', '3Eb', '3Gb', '3Ab', '3Bb', '4Db', '4Eb', '4Gb', '4Ab', '4Bb'];
+  let white_key_circle = ['3C', '3D', '3E', '3F', '3G', '3A', '3B', '4C', '4D', '4E', '4F', '4G', '4A', '4B'];
   start_answer_note = start_answer_note.slice(1);
   for (item of item_in_matrix) {
     if (item.classList.contains(start_answer_note)) {
@@ -884,7 +886,16 @@ let add_correct_answer_for_matrix = function () {
                 break;
 
               default:
-                mini_circle.classList.add('active_mini_circle');
+               
+
+                if (black_key_circle.includes(mini_circle.dataset.note)) {
+                  mini_circle.classList.add('active_mini_circle_black');
+                }
+                if (white_key_circle.includes(mini_circle.dataset.note)) {
+                  mini_circle.classList.add('active_mini_circle_white');
+                }
+                break;
+                
             }
             length_block_circle++;
           }
