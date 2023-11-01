@@ -84,7 +84,7 @@ Img {
   right: -1px;
   transition: all 1s ease-in-out;
   /* border: 2px solid red; */
-height: 100%;
+  height: 100%;
   overflow: auto;
   scrollbar-width: thin;
   scrollbar-color: #F4D6B1;
@@ -231,8 +231,8 @@ input[type=range] {
   display: flex;
   position: absolute;
   cursor: move;
-top: 300px;
-left:100px;
+  top: 300px;
+  left: 100px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -240,7 +240,7 @@ left:100px;
   width: min-content;
   /* margin: 3vh 1vw; */
   padding: 2%;
-  background: linear-gradient(120deg, #293753be 0%, #263655a6 100%);
+  background: linear-gradient(120deg, #293753e6 0%, #263655de 100%);
   border: 1px solid #F4D6B1;
   border-radius: 20px;
   z-index: 999;
@@ -276,13 +276,14 @@ left:100px;
 }
 
 /* блок надстройка над клавиатурой */
-.active_mini_circle{
-  background-color: #FD9800;
+.active_mini_circle {
+  background-color: #F4D6B1;
 }
 
 .active_mini_circle_black {
-  background-color: #272727;
+  background-color: #5f5f5f;
 }
+
 .active_mini_circle_white {
   background-color: #ffffff;
 }
