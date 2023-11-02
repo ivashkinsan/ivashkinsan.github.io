@@ -16,16 +16,25 @@ function dragElement(elmnt) {
     // }
     elmnt.onmousedown = dragMouseDown;
 
+    console.log(elmnt.onmousedown);
+
+
     function dragMouseDown(e) {
-        console.log(e.clientX);
-        console.log(e.clientY);
+        // console.log(e.clientX);
+        // console.log(e.clientY);
         e = e || window.event;
         // получить позицию курсора мыши при запуске:
         pos3 = e.clientX;
         pos4 = e.clientY;
         document.onmouseup = closeDragElement;
+        document.ontouchend = closeDragElement;
         // вызывать функцию всякий раз, когда курсор перемещается:
         document.onmousemove = elementDrag;
+        document.ontouchmove = elementDrag;
+        // console.log(document.onmouseup);
+        // console.log(document.ontouchend);
+        // console.log(document.onmousemove);
+        // console.log(document.ontouchmove);
     }
 
     function elementDrag(e) {
@@ -44,5 +53,8 @@ function dragElement(elmnt) {
         /* прекратить движение, когда кнопка мыши отпущена:*/
         document.onmouseup = null;
         document.onmousemove = null;
+        document.ontouchend = null;
+        document.ontouchmove = null;
     }
 }
+console.log(document);
