@@ -61,6 +61,7 @@ let matrix_for_table = [
     ['ZO', 'RA', 'YO', 'LE', 'WI', 'NA', 'ZO_up'],
     ['ZO', 'TI', 'YO', 'LE', 'WI'],
     ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA', 'ZO_up'],
+    ['RA', 'TI', 'YO', 'LE', 'WI', 'NA', 'ZO_up', 'RA_up'],
     ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA', 'ZO_up', 'RA_up', 'TI_up', 'YO_up']
 
 ]
