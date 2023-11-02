@@ -1181,6 +1181,32 @@ let ya_na_solnishke = [{
     formula: ['LE', 'WI', 'NA', 0, 'LE', 0, 'TI', 0, 'LE', 0, 'YO']
 }
 ];
+let kukushka = [{
+    all: 46,
+    text: 'Зовёт зверей кукушка:',
+    formula: ['ZO', 0, 'YO', 'YO', 'YO', 0, 'WI', 0, 'YO', 0, 'YO']
+},
+{
+    text: '"Довольно, сони, спать!"',
+    formula: ['WI', 0, 'LE', 'LE', 'LE', 0, 'WI', 0, 'YO']
+},
+{
+    text: 'Весна пришла к нам в гости,',
+    formula: ['ZO', 0, 'YO', 'YO', 'YO', 0, 'WI', 0, 'YO', 0, 'YO']
+},
+{
+    text: 'давно пора вставать.',
+    formula: ['WI', 0, 'LE', 'LE', 'LE', 0, 'WI', 0, 'YO']
+},
+{
+    text: 'Ку ку, ку ку, старается она,',
+    formula: ['ZO_up', 0, 'WI', 0, 0, 'ZO_up', 0, 'WI', 0, 0, 'WI', 0, 'LE', 'LE', 'LE', 0, 'WI', 0, 'YO']
+},
+{
+    text: 'Ку ку, ку ку, пришла уже весна.',
+    formula: ['ZO_up', 0, 'WI', 0, 0, 'ZO_up', 0, 'WI', 0, 0, 'WI', 0, 'LE', 'LE', 'LE', 0, 'WI', 0, 'YO']
+}
+];
 // с днем рождения, ла кукарача, спят усталые игрушки
 // миноры - калинка
 
@@ -1436,6 +1462,11 @@ let full_menu = [{
     name: 'Я на солнышке лежу',
     arr: ya_na_solnishke,
     matrix: ['RA', 'TI', 'YO', 'LE', 'WI', 'NA', 'ZO_up', 'RA_up'],
+},
+{
+    name: 'Кукушка',
+    arr: kukushka,
+    matrix: ['ZO', 'YO', 'LE', 'WI', 'ZO_up'],
 },
 
 
