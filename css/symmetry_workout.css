@@ -176,18 +176,31 @@ Img {
 }
 
 .container_monitor {
-
   display: flex;
-  height: 100%;
+  opacity: 0;
+  position: absolute;
+  cursor: move;
+  top: 50px;
+  left: 75vw;
+  width: min-content;
+  padding: 10px 20px;
+  text-wrap: nowrap;
+  font-size: 1.6vw;
+  text-align: right;
+  font-family: "RMusisync-KVLZ";
+  /* letter-spacing: 0.3vw; */
+
+
+  background: linear-gradient(120deg, #293753e6 0%, #263655de 100%);
+  border: 1px solid #F4D6B1;
+  border-radius: 10px;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.532);
+  z-index: 999;
 }
 
 .stroke_fakty_monitor {
-  text-align: right;
-  font-family: "RMusisync-KVLZ";
-  font-size: 1.8vw;
-  margin-top: 15%;
-  opacity: 1;
-  transition: 1000ms;
+  width: min-content;
+  text-wrap: nowrap;
 }
 
 input[type=range] {
@@ -243,6 +256,7 @@ input[type=range] {
   background: linear-gradient(120deg, #293753e6 0%, #263655de 100%);
   border: 1px solid #F4D6B1;
   border-radius: 20px;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.532);
   z-index: 999;
 }
 
@@ -660,93 +674,11 @@ li {
   color: #516AA4;
 }
 
-
-.interval_container {
-  display: none;
-  position: absolute;
-  padding: 5px;
-  top: 0;
-  width: 1200px;
-  height: 600px;
-  background-color: #0d45c8;
-  z-index: 999;
-}
-
-.one_row {
-  display: grid;
-  grid-template-columns: 30px 1fr 1fr 1fr 1fr;
-  position: relative;
-  width: 100%;
-  /* height: 100%; */
-  /* align-items: center; */
-}
-
-.one_row_label {
-  /* width: 100%; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* background-color: #9c9c9c; */
-  text-align: center;
-}
-
-.white_column,
-.white_black_column,
-.black_white_column,
-.black_column {
-  padding: 0 20px 0 20px;
-  display: flex;
-  justify-content: space-around;
-}
-
-.square_white,
-.square_white_black,
-.square_black_white,
-.square_black {
-  width: 100%;
-  height: 40px;
-}
-
-.square_white {
-  background-color: #eee;
-}
-
-.square_white_black {
-  background: linear-gradient(to right, #eee 50%, #333 50%);
-}
-
-.square_black_white {
-  background: linear-gradient(to left, #eee 50%, #333 50%);
-}
-
-.square_black {
-  background-color: #333;
-}
-
-.line_box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 30px;
-}
-
-.line {
-  position: relative;
-  width: 3px;
-  height: 100%;
-  background-color: wheat;
-}
-
-.line_label {
-  padding: 5px 0 5px 0;
-  text-align: center;
-}
-
 .line_gap {
   opacity: 0;
 }
 
-.circle {
+/* .circle {
   position: absolute;
   left: -8.5px;
   top: 5px;
@@ -754,7 +686,7 @@ li {
   height: 20px;
   border-radius: 50%;
   background-color: white;
-}
+} */
 
 .hide_circle {
   display: none;

@@ -705,8 +705,8 @@ let startWork = function () {
     symBtnLevelGO = [(ti + 1), (ti + 6), (ti + 11)];
   }
 
-  console.log(startNoteArr);
-  console.log(startOneNote);
+  // console.log(startNoteArr);
+  // console.log(startOneNote);
 };
 
 //ПОИСК ВЫБРАННЫХ ЭЛЕМЕНТОВ ============================================================================================================
@@ -937,15 +937,16 @@ let sravniElem = function (a, b) {
   // else {spisokNamesForInfoMoni[symBtnLevel.dataset.number][2] += 0.5;}
 };
 
-let strokeFaktyDiv = document.querySelector('.stroke_fakty_monitor');
+// let strokeFaktyDiv = document.querySelector('.stroke_fakty_monitor');
+let container_monitor = document.querySelector('.container_monitor');
 let checkBoxElem = document.querySelector('.checkbox_fakty');
 
 checkBoxElem.onclick = function () {
   // console.log(checkBoxElem.checked);
   if (checkBoxElem.checked) {
-    strokeFaktyDiv.style.opacity = 1;
+    container_monitor.style.opacity = 1;
   } else {
-    strokeFaktyDiv.style.opacity = 0;
+    container_monitor.style.opacity = 0;
   }
 
 }
@@ -966,7 +967,7 @@ let add_windows_facty = function () {
   if (faktyAllObj[symBtnLevel.dataset.number]) {
     for (let i = 0; i < faktyAllObj[symBtnLevel.dataset.number].length; i++) {
       let item = faktyAllObj[symBtnLevel.dataset.number].randElement();
-      strokeFaktyDiv.innerHTML = item.join('</br>');
+      container_monitor.innerHTML = item.join('</br>');
     }
   }
 }
