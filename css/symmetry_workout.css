@@ -195,7 +195,7 @@ Img {
   border: 1px solid #F4D6B1;
   border-radius: 10px;
   box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.532);
-  z-index: 999;
+  z-index: 11;
 }
 
 .stroke_fakty_monitor {
@@ -257,7 +257,7 @@ input[type=range] {
   border: 1px solid #F4D6B1;
   border-radius: 20px;
   box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.532);
-  z-index: 999;
+  z-index: 11;
 }
 
 .close_container {
@@ -572,7 +572,7 @@ input[type=range] {
   width: 98%;
   height: 98%;
   position: absolute;
-  z-index: 11;
+  z-index: 999;
   top: 0;
   bottom: 0;
   left: 0;
@@ -668,7 +668,7 @@ li {
   width: 300px;
   left: 50%;
   right: 50%;
-  font-size: 0.7vw;
+  font-size: 14px;
   text-align: center;
   margin-left: -150px;
   color: #516AA4;

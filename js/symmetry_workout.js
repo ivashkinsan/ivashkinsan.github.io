@@ -185,8 +185,8 @@ allHrom.forEach(hrom => {
 
 // создание 12 элементов внутри грид блока
 let arr_element_position_for_column = {
-  symmetry2: ['C D E G A', 'F B', 'Db Eb Gb Ab Bb'],
-  symmetry3: ['C F G', 'E A B', 'Db Eb Ab', 'D Gb Bb'],
+  symmetry2: ['C D E G A 0 F B', 'Db Eb Gb Ab Bb'],
+  symmetry3: ['C F G 0 E A B', 'Db Eb Ab 0 D Gb Bb'],
   symmetry4: ['C Eb Gb A', 'Db E G Bb', 'D F Ab B'],
   symmetry6: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
 
