@@ -94,7 +94,9 @@ let spisokNamesForInfoMoni = {
   'B3_in_2': ['Б3 на 2', 0, 0],
   'TTT_in_2': ['ТТТ на 2', 0, 0],
   'm6_in_2': ['m6 на 2', 0, 0],
-  'm7_in_2': ['m7 на 2', 0, 0]
+  'm7_in_2': ['m7 на 2', 0, 0],
+  'ch8_in_2': ['ч8 на 2', 0, 0],
+  'B9_in_2': ['Б9 на 2', 0, 0]
 };
 
 let marker = document.querySelectorAll('p');
@@ -233,6 +235,8 @@ let arr_element_position_for_column = {
   TTT_in_2: ['C G 0 D E A 0 F', 'Db Gb 0 Eb Bb 0 B'],
   m6_in_2: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
   m7_in_2: ['D E G A B', 'Eb Ab Bb', 'C Db F Gb'],
+  ch8_in_2: ['D E G A B', 'Eb Ab Bb', 'C Db F Gb'],
+  B9_in_2: ['D E G A B', 'Eb Ab Bb', 'C Db F Gb'],
 
   aug_triads: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
   maj_triads: ['C F G 0 D E A', 'Gb Bb B 0 Db Eb Ab'],
@@ -717,6 +721,16 @@ let startWork = function () {
     keys[startTwoNote].classList.toggle('ledON');
     symBtnLevelGO = [(ti + 1), (ti + 6), (ti + 11)];
   }
+  if (symBtnLevel.dataset.number == 'ch8_in_2') {
+    startTwoNote = startOneNote + 12;
+    keys[startTwoNote].classList.toggle('ledON');
+    symBtnLevelGO = [(ti + 1), (ti + 7), (ti + 13)];
+  }
+  if (symBtnLevel.dataset.number == 'B9_in_2') {
+    startTwoNote = startOneNote + 14;
+    keys[startTwoNote].classList.toggle('ledON');
+    symBtnLevelGO = [(ti + 1), (ti + 8), (ti + 15)];
+  }
 
   // console.log(startNoteArr);
   // console.log(startOneNote);
@@ -778,7 +792,7 @@ let add_correct_answer_for_matrix = function () {
               case 'WH':
               case 'B3_in_2':
               case 'm6_in_2':
-                case 'aug_triads':
+              case 'aug_triads':
                 console.log(mini_circle);
                 if (plus_elem_arr.includes(mini_circle.dataset.note)) {
                   mini_circle.classList.add('active_mini_circle_plus');
