@@ -242,16 +242,14 @@ input[type=range] {
 
 .matrix_container {
   display: flex;
+  align-items: flex-end;
   position: absolute;
   cursor: move;
   top: 300px;
   left: 100px;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
   gap: 5vh;
   width: min-content;
-  /* margin: 3vh 1vw; */
   padding: 2%;
   background: linear-gradient(120deg, #293753e6 0%, #263655de 100%);
   border: 1px solid #F4D6B1;

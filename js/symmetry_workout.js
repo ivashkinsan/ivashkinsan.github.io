@@ -185,28 +185,28 @@ allHrom.forEach(hrom => {
 
 // создание 12 элементов внутри грид блока
 let arr_element_position_for_column = {
-  symmetry2: ['C D E G A 0 F B', 'Db Eb Gb Ab Bb'],
+  symmetry2: ['C D E G A', 'F B', 'Db Eb Gb Ab Bb'],
   symmetry3: ['C F G 0 E A B', 'Db Eb Ab 0 D Gb Bb'],
   symmetry4: ['C Eb Gb A', 'Db E G Bb', 'D F Ab B'],
   symmetry6: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
 
-  m2: ['C D F G A', 'E B', 'Db Eb Gb Ab Bb'],
-  B2: ['C D F G A', 'E B', 'Db Gb Ab', 'Eb Bb'],
-  m3: ['D E A B', 'Eb Bb', 'C F G', 'Db Gb Ab'],
-  B3: ['C F G', 'D E A B', 'Gb', 'Db Eb Ab Bb'],
-  ch4: ['C D E G A B', 'F Gb', 'Db Eb Ab Bb'],
-  TTT: ['C D E G A', 'F B', 'Db Eb Gb Ab Bb'],
-  ch5: ['C D E F G A', 'Db Eb Gb Ab', 'Bb 0 B'],
-  m6: ['E A B', 'C D F G', 'Db Eb Gb Ab', 'Bb'],
-  B6: ['C D F G', 'E A B', 'Db Gb', 'Eb Ab Bb'],
-  m7: ['D E G A B', 'C F', 'Db Gb', 'Eb Ab Bb'],
-  B7: ['C F', 'D E G A B', 'Db Eb Gb Ab Bb'],
+  m2: ['C D F G A', 'E B 0 Db Eb Gb Ab Bb'],
+  B2: ['C D F G A 0 E B', 'Db Gb Ab 0 Eb Bb'],
+  m3: ['D E A B 0 Eb Bb', 'C F G 0 Db Gb Ab'],
+  B3: ['C F G 0 D E A B', 'Gb 0 Db Eb Ab Bb'],
+  ch4: ['C D E G A B', 'F Gb 0 Db Eb Ab Bb'],
+  TTT: ['C D E G A', 'F B 0 Db Eb Gb Ab Bb'],
+  ch5: ['C D E F G A 0 Bb', 'Db Eb Gb Ab 0 B'],
+  m6: ['E A B 0 C D F G', 'Db Eb Gb Ab 0 Bb'],
+  B6: ['C D F G 0 E A B', 'Db Gb 0 Eb Ab Bb'],
+  m7: ['D E G A B 0 C F', 'Db Gb 0 Eb Ab Bb'],
+  B7: ['D E G A B', 'C F 0 Db Eb Gb Ab Bb'],
 
-  maj_tetrachord: ['C G 0 Db Ab', 'D A 0 Eb Bb', 'E B 0 F Gb'],
-  min_tetrachord: ['C G 0 Db Ab', 'D A 0 Eb Bb', 'E B 0 F Gb'],
-  frig_tetrachord: ['C G 0 Db Ab', 'D A 0 Eb Bb', 'E B 0 F Gb'],
-  harm_tetrachord: ['C G 0 Db Ab', 'D A 0 Eb Bb', 'E B 0 F Gb'],
-  whole_tetrachord: ['C G 0 Db Ab', 'D A 0 Eb Bb', 'E B 0 F Gb'],
+  maj_tetrachord: ['C G 0 D A 0 E B', 'Db Ab 0 Eb Bb 0 F Gb'],
+  min_tetrachord: ['C G 0 D A 0 E B', 'Db Ab 0 Eb Bb 0 F Gb'],
+  frig_tetrachord: ['C G 0 D A 0 E B', 'Db Ab 0 Eb Bb 0 F Gb'],
+  harm_tetrachord: ['C G 0 D A 0 E B', 'Db Ab 0 Eb Bb 0 F Gb'],
+  whole_tetrachord: ['C G 0 D A 0 E B', 'Db Ab 0 Eb Bb 0 F Gb'],
 
   TTT__maj: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   min__min: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
@@ -233,6 +233,19 @@ let arr_element_position_for_column = {
   TTT_in_2: ['C G 0 D E A 0 F', 'Db Gb 0 Eb Bb 0 B'],
   m6_in_2: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
   m7_in_2: ['D E G A B', 'Eb Ab Bb', 'C Db F Gb'],
+
+  aug_triads: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
+  maj_triads: ['C F G 0 D E A', 'Gb Bb B 0 Db Eb Ab'],
+  min_triads: ['C F G 0 D E A', 'Eb Bb B 0 Db Gb Ab'],
+  dim_triads: ['C Eb Gb A', 'Db E G Bb', 'D F Ab B'],
+  maj_add6_triads: ['C F G 0 D 0 E A', 'Gb Bb B 0 Db 0 Eb Ab'],
+  min_add6_triads: ['C F G 0 D 0 E A', 'Eb Bb B 0 Db Gb 0 Ab'],
+  sus2_triads: ['C D F G A 0 E', 'Db Gb Ab 0 Bb B 0 Eb'],
+  sus4_triads: ['C F G 0 D E A', 'Gb Bb B 0 Db Eb Ab'],
+  maj_add2_triads: ['C F G 0 D E A', 'Gb Bb B 0 Db Eb Ab'],
+  min_add2_triads: ['C F G 0 D E A', 'Eb Bb B 0 Db Gb Ab'],
+  maj_add4_triads: ['C F G 0 D E A', 'Gb Bb B 0 Db Eb Ab'],
+  min_add4_triads: ['C F G 0 D E A', 'Eb Bb B 0 Db Gb Ab'],
 
 };
 
@@ -765,6 +778,7 @@ let add_correct_answer_for_matrix = function () {
               case 'WH':
               case 'B3_in_2':
               case 'm6_in_2':
+                case 'aug_triads':
                 console.log(mini_circle);
                 if (plus_elem_arr.includes(mini_circle.dataset.note)) {
                   mini_circle.classList.add('active_mini_circle_plus');
