@@ -283,7 +283,7 @@ input[type=range] {
   position: relative;
   flex-direction: row;
   justify-content: flex-end;
-  padding: 5px;
+  padding: 5px 15px 5px 10px;
   /* border: 1px solid red; */
 }
 

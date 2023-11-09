@@ -142,18 +142,18 @@ allHrom.forEach(hrom => {
         this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_steps_1_7.svg';
         clicks = 0;
         break;
-      // case 2:
-      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
-      //   clicks += 1;
-      //   break;
-      // case 3:
-      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
-      //   clicks += 1;
-      //   break;
-      // case 4:
-      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
-      //   clicks = 0;
-      //   break;
+        // case 2:
+        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
+        //   clicks += 1;
+        //   break;
+        // case 3:
+        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
+        //   clicks += 1;
+        //   break;
+        // case 4:
+        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
+        //   clicks = 0;
+        //   break;
     }
   });
 });
@@ -235,8 +235,8 @@ let arr_element_position_for_column = {
   TTT_in_2: ['C G 0 D E A 0 F', 'Db Gb 0 Eb Bb 0 B'],
   m6_in_2: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
   m7_in_2: ['D E G A B', 'Eb Ab Bb', 'C Db F Gb'],
-  ch8_in_2: ['D E G A B', 'Eb Ab Bb', 'C Db F Gb'],
-  B9_in_2: ['D E G A B', 'Eb Ab Bb', 'C Db F Gb'],
+  ch8_in_2: ['C D E G A', 'F B', 'Db Eb Gb Ab Bb'],
+  B9_in_2: ['C D F G A', 'Db Gb Ab', 'Eb E 0 Bb B'],
 
   aug_triads: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
   maj_triads: ['C F G 0 D E A', 'Gb Bb B 0 Db Eb Ab'],
@@ -326,6 +326,19 @@ let create_12_elem = function () {
           piano_circle_elem.dataset.note_orig = name_keyb_arr[j].slice(1, 3);
           item_in_column.append(piano_circle_elem);
         }
+
+        // создание дополнительного элемента
+        if (shablon_for_square_item[i] == 'B' && symBtnLevel.dataset.number == 'B9_in_2') {
+          let piano_circle_elem = document.createElement('div');
+          piano_circle_elem.classList.add('item_circle');
+          piano_circle_elem.classList.add('black_circle');
+          piano_circle_elem.dataset.note = '5Db';
+          piano_circle_elem.dataset.note_orig = 'Db';
+          item_in_column.append(piano_circle_elem);
+          console.log('dop_element_B');
+          console.log(symBtnLevel);
+        }
+
         new_column_for_12_elem.append(item_in_column);
       }
       matrix_container.append(new_column_for_12_elem);
@@ -770,7 +783,7 @@ let add_correct_answer_for_matrix = function () {
   let start_answer_note = answerArr[0].dataset.note;
   let item_in_matrix = document.querySelectorAll('.item_in_column');
   let plus_elem_arr = ['3C', '3D', '3E', '3Gb', '3Ab', '3Bb', '4C', '4D', '4E', '4Gb', '4Ab', '4Bb'];
-  let ball_elem_arr = ['3Db', '3Eb', '3F', '3G', '3A', '3B', '4Db', '4Eb', '4F', '4G', '4A', '4B'];
+  let ball_elem_arr = ['3Db', '3Eb', '3F', '3G', '3A', '3B', '4Db', '4Eb', '4F', '4G', '4A', '4B', '5Db'];
   let black_key_circle = ['3Db', '3Eb', '3Gb', '3Ab', '3Bb', '4Db', '4Eb', '4Gb', '4Ab', '4Bb'];
   let white_key_circle = ['3C', '3D', '3E', '3F', '3G', '3A', '3B', '4C', '4D', '4E', '4F', '4G', '4A', '4B'];
   start_answer_note = start_answer_note.slice(1);
@@ -984,11 +997,11 @@ checkBoxElem.onclick = function () {
 Object.defineProperty(
   Object.prototype,
   'randElement', {
-  value: function () {
-    var rand = Math.floor(Math.random() * this.length);
-    return this[rand];
+    value: function () {
+      var rand = Math.floor(Math.random() * this.length);
+      return this[rand];
+    }
   }
-}
 );
 
 let add_windows_facty = function () {
