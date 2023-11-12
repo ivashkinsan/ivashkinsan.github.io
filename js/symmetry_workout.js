@@ -8,10 +8,10 @@
 
 let spisokNamesForInfoMoni = {
   'header_1': ['СИММЕТРИИ', ' ', 0, 'headerOfResult'],
-  'symmetry2': ['на 2ч', 0, 0],
-  'symmetry3': ['на 3ч', 0, 0],
-  'symmetry4': ['на 4ч', 0, 0],
-  'symmetry6': ['на 6ч', 0, 0],
+  'symmetry_2': ['на 2ч', 0, 0],
+  'symmetry_3': ['на 3ч', 0, 0],
+  'symmetry_4': ['на 4ч', 0, 0],
+  'symmetry_6': ['на 6ч', 0, 0],
 
   'header_2': ['ТЕТРАХОРДЫ', '-', 0, 'headerOfResult'],
   'maj_tetrachord': ['мажорный', 0, 0],
@@ -99,7 +99,7 @@ let spisokNamesForInfoMoni = {
   'B9_in_2': ['Б9 на 2', 0, 0]
 };
 
-let marker = document.querySelectorAll('p');
+let marker = document.querySelectorAll('.elem>p');
 let clear_marker = function () {
   for (let item of marker) {
     item.innerHTML = '';
@@ -115,10 +115,10 @@ let circles = document.querySelectorAll('.circle');
 let answerArr;
 
 let ti;
-let symmetry2;
-let symmetry3;
-let symmetry4;
-let symmetry6;
+// let symmetry_2;
+// let symmetry_3;
+// let symmetry_4;
+// let symmetry_6;
 
 let symBtnLevel;
 let symBtnLevelGO;
@@ -187,10 +187,10 @@ allHrom.forEach(hrom => {
 
 // создание 12 элементов внутри грид блока
 let arr_element_position_for_column = {
-  symmetry2: ['C D E G A', 'F B', 'Db Eb Gb Ab Bb'],
-  symmetry3: ['C F G 0 E A B', 'Db Eb Ab 0 D Gb Bb'],
-  symmetry4: ['C Eb Gb A', 'Db E G Bb', 'D F Ab B'],
-  symmetry6: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
+  symmetry_2: ['C D E G A', 'F B', 'Db Eb Gb Ab Bb'],
+  symmetry_3: ['C F G 0 E A B', 'Db Eb Ab 0 D Gb Bb'],
+  symmetry_4: ['C Eb Gb A', 'Db E G Bb', 'D F Ab B'],
+  symmetry_6: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
 
   m2: ['C D F G A', 'E B 0 Db Eb Gb Ab Bb'],
   B2: ['C D F G A 0 E B', 'Db Gb Ab 0 Eb Bb'],
@@ -277,7 +277,7 @@ let name_keyb_arr = name_keyb_string.split(' ');
 let close_container;
 let matrix_container = document.querySelector('.matrix_container');
 let create_12_elem = function () {
-  create_shuffle_arr();
+  // create_shuffle_arr();
   correct_answer_add = 0;
   matrix_container.innerHTML = '';
   let new_column_for_12_elem;
@@ -335,15 +335,23 @@ let create_12_elem = function () {
           piano_circle_elem.dataset.note = '5Db';
           piano_circle_elem.dataset.note_orig = 'Db';
           item_in_column.append(piano_circle_elem);
-          console.log('dop_element_B');
-          console.log(symBtnLevel);
+          keys.forEach((e) => {
+            if (e.dataset.note == '5Db') {
+              e.classList.remove('hide')
+              console.log(e);
+            }
+          })
+          // console.log('dop_element_B');
+          // console.log(symBtnLevel);
         }
+
 
         new_column_for_12_elem.append(item_in_column);
       }
       matrix_container.append(new_column_for_12_elem);
     }
   }
+
   close_container = document.createElement('div');
   close_container.classList.add('close_container');
   close_container.innerHTML = '+';
@@ -352,7 +360,7 @@ let create_12_elem = function () {
 }
 
 //ВЫБОР РЕЖИМА РАНДОМ
-// let symmetryNameArr = [symmetry2, symmetry3, symmetry4, symmetry6];
+// let symmetryNameArr = [symmetry_2, symmetry_3, symmetry_4, symmetry_6];
 // let startSymmetry = getRandomIntInclusive(0,3);
 
 //запуск при нажатии на кнопку выбранного режима
@@ -361,6 +369,14 @@ for (let item of buttons) {
   item.onclick = function () {
 
     symBtnLevel = item;
+
+    // скрыть дополнительную клавишу
+    // console.log(symBtnLevel);
+    if (keys[25].dataset.note == '5Db' && !keys[25].classList.contains('hide')) {
+      keys[25].classList.add('hide')
+      // console.log(keys[25]);
+    }
+
     let circle = item.children;
     for (let itemCircle of circle) {
       itemCircle.classList.toggle('border_color');
@@ -373,7 +389,7 @@ for (let item of buttons) {
     remove_border_color();
     item.classList.add('button_gold');
     // create_12_elem();
-    create_shuffle_arr();
+    // create_shuffle_arr();
 
 
     clear_ledOn();
@@ -493,20 +509,20 @@ let startWork = function () {
   add_label_checkbox(ti);
 
   // СИММЕТРИИ
-  if (symBtnLevel.dataset.number == 'symmetry2') {
+  if (symBtnLevel.dataset.number == 'symmetry_2') {
     keys[startTwoNote].classList.toggle('ledON');
     // playNotesAnsver(keys[startTwoNote]);
     symBtnLevelGO = [(ti + 1), (ti + 7), (ti + 13)];
   }
-  if (symBtnLevel.dataset.number == 'symmetry3') {
+  if (symBtnLevel.dataset.number == 'symmetry_3') {
     keys[startTwoNote].classList.toggle('ledON');
     symBtnLevelGO = [(ti + 1), (ti + 5), (ti + 9), (ti + 13)];
   }
-  if (symBtnLevel.dataset.number == 'symmetry4') {
+  if (symBtnLevel.dataset.number == 'symmetry_4') {
     keys[startTwoNote].classList.toggle('ledON');
     symBtnLevelGO = [(ti + 1), (ti + 4), (ti + 7), (ti + 10), (ti + 13)];
   }
-  if (symBtnLevel.dataset.number == 'symmetry6') {
+  if (symBtnLevel.dataset.number == 'symmetry_6') {
     keys[startTwoNote].classList.toggle('ledON');
     symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 7), (ti + 9), (ti + 11), (ti + 13)];
   };
@@ -795,9 +811,9 @@ let add_correct_answer_for_matrix = function () {
         for (let mini_circle of item.children) {
           if (mini_circle.dataset.note == answ_item.dataset.note) {
             switch (symBtnLevel.dataset.number) {
-              case 'symmetry2':
-              case 'symmetry3':
-              case 'symmetry6':
+              case 'symmetry_2':
+              case 'symmetry_3':
+              case 'symmetry_6':
               case 'melodic_minor':
               case 'ionian':
               case 'lydian':
@@ -806,7 +822,7 @@ let add_correct_answer_for_matrix = function () {
               case 'B3_in_2':
               case 'm6_in_2':
               case 'aug_triads':
-                console.log(mini_circle);
+                // console.log(mini_circle);
                 if (plus_elem_arr.includes(mini_circle.dataset.note)) {
                   mini_circle.classList.add('active_mini_circle_plus');
                 }
@@ -1316,64 +1332,64 @@ document.querySelector('.audio_button').onclick = function () {
 
 
 // интервалы сортировка по цвету
-let row_for_copy = document.querySelector('.row_for_copy');
-let interval_container = document.querySelector('.interval_container');
-let arr_int_label = ['м2', 'Б2', 'м3', 'Б3', 'ч4', 'ТТТ', 'ч5', 'м6', 'Б6', 'м7', 'Б7'];
-let matrix_int_table = [
-  [
-    [0, 0, 1, 0, 0, 0, 1],
-    [1, 1, 0, 1, 1, 1, 0],
-    [1, 1, 1, 1, 1],
-    [0, 0, 0, 0, 0]
-  ],
-  [
-    [1, 1, 0, 1, 1, 1, 0],
-    [0, 0, 1, 0, 0, 0, 1],
-    [0, 1, 0, 0, 1],
-    [1, 0, 1, 1, 0]
-  ],
-  [
-    [0, 1, 1, 0, 0, 1, 1],
-    [1, 0, 0, 1, 1, 0, 0],
-    [1, 0, 1, 1, 0],
-    [0, 1, 0, 0, 1]
-  ],
-  [
-    [1, 0, 0, 1, 1, 0, 0],
-    [0, 1, 1, 0, 0, 1, 1],
-    [1, 1, 0, 1, 1],
-    [0, 0, 1, 0, 0]
-  ]
+// let row_for_copy = document.querySelector('.row_for_copy');
+// let interval_container = document.querySelector('.interval_container');
+// let arr_int_label = ['м2', 'Б2', 'м3', 'Б3', 'ч4', 'ТТТ', 'ч5', 'м6', 'Б6', 'м7', 'Б7'];
+// let matrix_int_table = [
+//   [
+//     [0, 0, 1, 0, 0, 0, 1],
+//     [1, 1, 0, 1, 1, 1, 0],
+//     [1, 1, 1, 1, 1],
+//     [0, 0, 0, 0, 0]
+//   ],
+//   [
+//     [1, 1, 0, 1, 1, 1, 0],
+//     [0, 0, 1, 0, 0, 0, 1],
+//     [0, 1, 0, 0, 1],
+//     [1, 0, 1, 1, 0]
+//   ],
+//   [
+//     [0, 1, 1, 0, 0, 1, 1],
+//     [1, 0, 0, 1, 1, 0, 0],
+//     [1, 0, 1, 1, 0],
+//     [0, 1, 0, 0, 1]
+//   ],
+//   [
+//     [1, 0, 0, 1, 1, 0, 0],
+//     [0, 1, 1, 0, 0, 1, 1],
+//     [1, 1, 0, 1, 1],
+//     [0, 0, 1, 0, 0]
+//   ]
 
-];
+// ];
 // копирование и добавление 11 нод
-for (let i = 0; i < 10; i++) {
-  let new_clone = row_for_copy.cloneNode(true);
-  new_clone.children[0].innerHTML = arr_int_label[i + 1];
-  interval_container.append(new_clone);
-}
+// for (let i = 0; i < 10; i++) {
+//   let new_clone = row_for_copy.cloneNode(true);
+//   new_clone.children[0].innerHTML = arr_int_label[i + 1];
+//   interval_container.append(new_clone);
+// }
 
-let create_line_box = function (boo) {
-  let new_line_box = document.createElement('div');
-  new_line_box.classList.add('line_box');
-  let new_line = document.createElement('div');
-  new_line.classList.add('line');
-  let new_circle = document.createElement('div');
-  new_circle.classList.add('circle');
-  if (boo == 0) {
-    new_circle.classList.add('hide_circle');
-  }
-  new_line.append(new_circle);
-  new_line_box.append(new_line);
-  return new_line_box;
-};
+// let create_line_box = function (boo) {
+//   let new_line_box = document.createElement('div');
+//   new_line_box.classList.add('line_box');
+//   let new_line = document.createElement('div');
+//   new_line.classList.add('line');
+//   let new_circle = document.createElement('div');
+//   new_circle.classList.add('circle');
+//   if (boo == 0) {
+//     new_circle.classList.add('hide_circle');
+//   }
+//   new_line.append(new_circle);
+//   new_line_box.append(new_line);
+//   return new_line_box;
+// };
 
-for (let i = 0; i < matrix_int_table.length; i++) {
-  for (let j = 0; j < matrix_int_table[i].length; j++) {
-    create_line_box(matrix_int_table[i][j]);
-    // console.log(matrix_int_table[i][j]);
-  }
-}
+// for (let i = 0; i < matrix_int_table.length; i++) {
+//   for (let j = 0; j < matrix_int_table[i].length; j++) {
+//     create_line_box(matrix_int_table[i][j]);
+//     // console.log(matrix_int_table[i][j]);
+//   }
+// }
 
 
 // console.log(new_line_box);

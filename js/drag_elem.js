@@ -32,10 +32,6 @@ function dragElement(elmnt) {
         // вызывать функцию всякий раз, когда курсор перемещается:
         document.onmousemove = elementDrag;
         document.ontouchmove = elementDrag;
-        // console.log(document.onmouseup);
-        // console.log(document.ontouchend);
-        // console.log(document.onmousemove);
-        // console.log(document.ontouchmove);
     }
 
     function elementDrag(e) {
