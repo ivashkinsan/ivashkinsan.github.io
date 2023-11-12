@@ -507,7 +507,7 @@ let startWork = function () {
   ti = startOneNote;
 
   add_label_checkbox(ti);
-
+  add_windows_facty();
   // СИММЕТРИИ
   if (symBtnLevel.dataset.number == 'symmetry_2') {
     keys[startTwoNote].classList.toggle('ledON');
