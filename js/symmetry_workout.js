@@ -96,7 +96,12 @@ let spisokNamesForInfoMoni = {
   'm6_in_2': ['m6 на 2', 0, 0],
   'm7_in_2': ['m7 на 2', 0, 0],
   'ch8_in_2': ['ч8 на 2', 0, 0],
-  'B9_in_2': ['Б9 на 2', 0, 0]
+  'B9_in_2': ['Б9 на 2', 0, 0],
+
+  'м3_in_3': ['м3 на 3', 0, 0],
+  'ТТТ_in_3': ['ТТТ на 3', 0, 0],
+  'B6_in_3': ['Б6 на 3', 0, 0],
+  'ch8_in_3': ['ч8 на 3', 0, 0],
 };
 
 let marker = document.querySelectorAll('.elem>p');
@@ -759,6 +764,27 @@ let startWork = function () {
     startTwoNote = startOneNote + 14;
     keys[startTwoNote].classList.toggle('ledON');
     symBtnLevelGO = [(ti + 1), (ti + 8), (ti + 15)];
+  }
+
+  if (symBtnLevel.dataset.number == 'м3_in_3') {
+    startTwoNote = startOneNote + 3;
+    keys[startTwoNote].classList.toggle('ledON');
+    symBtnLevelGO = [(ti + 1), (ti + 2), (ti + 3), (ti + 4)];
+  }
+  if (symBtnLevel.dataset.number == 'ТТТ_in_3') {
+    startTwoNote = startOneNote + 6;
+    keys[startTwoNote].classList.toggle('ledON');
+    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 7)];
+  }
+  if (symBtnLevel.dataset.number == 'B6_in_3') {
+    startTwoNote = startOneNote + 9;
+    keys[startTwoNote].classList.toggle('ledON');
+    symBtnLevelGO = [(ti + 1), (ti + 4), (ti + 7), (ti + 10)];
+  }
+  if (symBtnLevel.dataset.number == 'ch8_in_3') {
+    startTwoNote = startOneNote + 12;
+    keys[startTwoNote].classList.toggle('ledON');
+    symBtnLevelGO = [(ti + 1), (ti + 5), (ti + 9), (ti + 13)];
   }
 
   // console.log(startNoteArr);

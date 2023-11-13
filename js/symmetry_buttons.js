@@ -219,57 +219,6 @@ let B7 = {
 }
 
 
-// деление на 2
-let B2_in_2 = {
-    name: 'B2_in_2',
-    pre_line_elem: 'Б2 / 2',
-    containerBtn: 'g g g',
-    post_line_elem: null,
-    circle_token: ''
-}
-let B3_in_2 = {
-    name: 'B3_in_2',
-    pre_line_elem: 'Б3 / 2',
-    containerBtn: 'g w g w g',
-    post_line_elem: null,
-    circle_token: ''
-}
-let TTT_in_2 = {
-    name: 'TTT_in_2',
-    pre_line_elem: 'ТТТ / 2',
-    containerBtn: 'g w w g w w g',
-    post_line_elem: null,
-    circle_token: ''
-}
-let m6_in_2 = {
-    name: 'm6_in_2',
-    pre_line_elem: 'м6 / 2',
-    containerBtn: 'g w w w g w w w g',
-    post_line_elem: null,
-    circle_token: ''
-}
-let m7_in_2 = {
-    name: 'm7_in_2',
-    pre_line_elem: 'м7 / 2',
-    containerBtn: 'g w w w w g w w w w g',
-    post_line_elem: null,
-    circle_token: ''
-}
-let ch8_in_2 = {
-    name: 'ch8_in_2',
-    pre_line_elem: 'ч8 / 2',
-    containerBtn: 'g w w w w w g w w w w w g',
-    post_line_elem: null,
-    circle_token: ''
-}
-let B9_in_2 = {
-    name: 'B9_in_2',
-    pre_line_elem: 'Б9 / 2',
-    containerBtn: 'g w w w w w w g w w w w w w g',
-    post_line_elem: null,
-    circle_token: ''
-}
-
 
 // комбинации целотонов
 let melodic_minor = {
@@ -574,7 +523,7 @@ let diminished_chord = {
     circle_token: ''
 }
 
-// диатоника мажора
+// диатоника минора
 let min__maj = {
     name: 'min__maj',
     pre_line_elem: 'мел. мин.',
@@ -593,7 +542,7 @@ let TTTT__maj = {
     name: 'TTTT__maj',
     pre_line_elem: 'лид. ув.',
     containerBtn: 'or w or w or w or w or yw w yw yw',
-    post_line_elem: 'ТТпт _ Т _ ТптТ',
+    post_line_elem: 'ТТТТ _ пт _ Тпт',
     circle_token: ''
 }
 let TTT__min = {
@@ -625,6 +574,85 @@ let frig__TTTT = {
     circle_token: ''
 }
 
+
+// деление на 2
+let B2_in_2 = {
+    name: 'B2_in_2',
+    pre_line_elem: 'Б2 / 2',
+    containerBtn: 'g g g',
+    post_line_elem: null,
+    circle_token: ''
+}
+let B3_in_2 = {
+    name: 'B3_in_2',
+    pre_line_elem: 'Б3 / 2',
+    containerBtn: 'g w g w g',
+    post_line_elem: null,
+    circle_token: ''
+}
+let TTT_in_2 = {
+    name: 'TTT_in_2',
+    pre_line_elem: 'ТТТ / 2',
+    containerBtn: 'g w w g w w g',
+    post_line_elem: null,
+    circle_token: ''
+}
+let m6_in_2 = {
+    name: 'm6_in_2',
+    pre_line_elem: 'м6 / 2',
+    containerBtn: 'g w w w g w w w g',
+    post_line_elem: null,
+    circle_token: ''
+}
+let m7_in_2 = {
+    name: 'm7_in_2',
+    pre_line_elem: 'м7 / 2',
+    containerBtn: 'g w w w w g w w w w g',
+    post_line_elem: null,
+    circle_token: ''
+}
+let ch8_in_2 = {
+    name: 'ch8_in_2',
+    pre_line_elem: 'ч8 / 2',
+    containerBtn: 'g w w w w w g w w w w w g',
+    post_line_elem: null,
+    circle_token: ''
+}
+let B9_in_2 = {
+    name: 'B9_in_2',
+    pre_line_elem: 'Б9 / 2',
+    containerBtn: 'g w w w w w w g w w w w w w g',
+    post_line_elem: null,
+    circle_token: ''
+}
+let м3_in_3 = {
+    name: 'м3_in_3',
+    pre_line_elem: 'м3 / 3',
+    containerBtn: 'g g g g',
+    post_line_elem: null,
+    circle_token: ''
+}
+let ТТТ_in_3 = {
+    name: 'ТТТ_in_3',
+    pre_line_elem: 'ТТТ / 3',
+    containerBtn: 'g w g w g w g',
+    post_line_elem: null,
+    circle_token: ''
+}
+let B6_in_3 = {
+    name: 'B6_in_3',
+    pre_line_elem: 'B6 / 3',
+    containerBtn: 'g w w g w w g w w g',
+    post_line_elem: null,
+    circle_token: ''
+}
+let ch8_in_3 = {
+    name: 'ch8_in_3',
+    pre_line_elem: 'ч8 / 3',
+    containerBtn: 'g w w w g w w w g w w w g',
+    post_line_elem: null,
+    circle_token: ''
+}
 
 
 // симметрии
@@ -726,3 +754,8 @@ all_slider_button[separation].append(create_buttons_background(m6_in_2));
 all_slider_button[separation].append(create_buttons_background(m7_in_2));
 all_slider_button[separation].append(create_buttons_background(ch8_in_2));
 all_slider_button[separation].append(create_buttons_background(B9_in_2));
+
+all_slider_button[separation].append(create_buttons_background(м3_in_3));
+all_slider_button[separation].append(create_buttons_background(ТТТ_in_3));
+all_slider_button[separation].append(create_buttons_background(B6_in_3));
+all_slider_button[separation].append(create_buttons_background(ch8_in_3));
