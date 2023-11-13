@@ -654,108 +654,76 @@ let ch8_in_3 = {
     circle_token: ''
 }
 
+let all_slide = [{
+        name: 'СИММЕТРИИ',
+        row_pattern: [symmetry_2, symmetry_3, symmetry_4, symmetry_6]
+    },
+    {
+        name: 'ИНТЕРВАЛЫ',
+        row_pattern: [m2, B2, m3, B3, ch4, TTT, ch5, m6, B6, m7, B7]
+    },
+    {
+        name: 'КОМБИНАЦИИ ЦЕЛОТОНОВ',
+        row_pattern: [melodic_minor, ionian, lydian, lydian_aug, WH]
+    },
+    {
+        name: 'ТЕТРАХОРДЫ',
+        row_pattern: [maj_tetrachord, min_tetrachord, frig_tetrachord, harm_tetrachord, whole_tetrachord]
+    },
+    {
+        name: 'ДИАТОНИКА МАЖОРА',
+        row_pattern: [TTT__maj, maj__maj, maj__min, min__min, min__frig, frig__frig, frig__TTT]
+    },
+    {
+        name: 'ТРЕЗВУЧИЯ',
+        row_pattern: [aug_triads, maj_triads, min_triads, dim_triads,
+            maj_add6_triads, min_add6_triads, sus2_triads, sus4_triads,
+            maj_add2_triads, min_add2_triads, maj_add4_triads, min_add4_triads
+        ]
+    },
+    {
+        name: 'ИСКУССТВЕННЫЕ ЛАДЫ',
+        row_pattern: [iscustv_melodic_minor, iscustv_minor_harmony, iscustv_major_harmony, iscustv_major_melodic, iscustv_2_major_harmony]
+    },
+    {
+        name: 'СЕПТ АККОРДЫ',
+        row_pattern: [maj_aug_chord, maj_original_chord, seventh_chord, minor_maj_chord, minor_seventh_chord, half_diminished_chord, diminished_chord]
+    },
+    {
+        name: 'ДИАТОНИКА МЕЛ.МИНОРА',
+        row_pattern: [min__maj, frig__min, TTTT__maj, TTT__min, maj__frig, min__TTT, frig__TTTT]
+    },
+    {
+        name: 'РАЗДЕЛЕНИЕ НА 2',
+        row_pattern: [B2_in_2, B3_in_2, TTT_in_2, m6_in_2, m7_in_2, ch8_in_2, B9_in_2]
+    },
+    {
+        name: 'РАЗДЕЛЕНИЕ НА 3',
+        row_pattern: [м3_in_3, ТТТ_in_3, B6_in_3, ch8_in_3]
+    }
+]
 
-// симметрии
-let symmetry = 0;
-all_slider_button[symmetry].append(create_buttons_background(symmetry_2));
-all_slider_button[symmetry].append(create_buttons_background(symmetry_3));
-all_slider_button[symmetry].append(create_buttons_background(symmetry_4));
-all_slider_button[symmetry].append(create_buttons_background(symmetry_6));
+let slider_cont = document.querySelector('.slider');
+let create_slider = function (data_arr) {
+    for (let i = 0; i < data_arr.length; i++) {
+        console.log(data_arr[i]);
+        let label = document.createElement('div');
+        label.classList.add('label_slider');
+        label.textContent = data_arr[i].name;
 
-// интервалы
-let intervals = 1;
-all_slider_button[intervals].append(create_buttons_background(m2));
-all_slider_button[intervals].append(create_buttons_background(B2));
-all_slider_button[intervals].append(create_buttons_background(m3));
-all_slider_button[intervals].append(create_buttons_background(B3));
-all_slider_button[intervals].append(create_buttons_background(ch4));
-all_slider_button[intervals].append(create_buttons_background(TTT));
-all_slider_button[intervals].append(create_buttons_background(ch5));
-all_slider_button[intervals].append(create_buttons_background(m6));
-all_slider_button[intervals].append(create_buttons_background(B6));
-all_slider_button[intervals].append(create_buttons_background(m7));
-all_slider_button[intervals].append(create_buttons_background(B7));
+        let new_slide = document.createElement('div');
+        new_slide.classList.add('slide');
+        let section_button = document.createElement('div');
+        section_button.classList.add('section_button');
 
-// комбинации целотонов
-let comb_WH = 2;
-all_slider_button[comb_WH].append(create_buttons_background(melodic_minor));
-all_slider_button[comb_WH].append(create_buttons_background(ionian));
-all_slider_button[comb_WH].append(create_buttons_background(lydian));
-all_slider_button[comb_WH].append(create_buttons_background(lydian_aug));
-all_slider_button[comb_WH].append(create_buttons_background(WH));
+        section_button.append(label);
 
-// тетрахорды
-let tetrachords = 3;
-all_slider_button[tetrachords].append(create_buttons_background(maj_tetrachord));
-all_slider_button[tetrachords].append(create_buttons_background(min_tetrachord));
-all_slider_button[tetrachords].append(create_buttons_background(frig_tetrachord));
-all_slider_button[tetrachords].append(create_buttons_background(harm_tetrachord));
-all_slider_button[tetrachords].append(create_buttons_background(whole_tetrachord));
+        for (j = 0; j < data_arr[i].row_pattern.length; j++) {
+            section_button.append(create_buttons_background(data_arr[i].row_pattern[j]))
+        }
+        new_slide.append(section_button);
+        slider_cont.append(new_slide);
+    };
 
-// диатоника мажора
-let diatonics_maj = 4;
-all_slider_button[diatonics_maj].append(create_buttons_background(TTT__maj));
-all_slider_button[diatonics_maj].append(create_buttons_background(maj__maj));
-all_slider_button[diatonics_maj].append(create_buttons_background(maj__min));
-all_slider_button[diatonics_maj].append(create_buttons_background(min__min));
-all_slider_button[diatonics_maj].append(create_buttons_background(min__frig));
-all_slider_button[diatonics_maj].append(create_buttons_background(frig__frig));
-all_slider_button[diatonics_maj].append(create_buttons_background(frig__TTT));
-
-// трезвучия
-let chords = 5;
-all_slider_button[chords].append(create_buttons_background(aug_triads));
-all_slider_button[chords].append(create_buttons_background(maj_triads));
-all_slider_button[chords].append(create_buttons_background(min_triads));
-all_slider_button[chords].append(create_buttons_background(dim_triads));
-all_slider_button[chords].append(create_buttons_background(maj_add6_triads));
-all_slider_button[chords].append(create_buttons_background(min_add6_triads));
-all_slider_button[chords].append(create_buttons_background(sus2_triads));
-all_slider_button[chords].append(create_buttons_background(sus4_triads));
-all_slider_button[chords].append(create_buttons_background(maj_add2_triads));
-all_slider_button[chords].append(create_buttons_background(min_add2_triads));
-all_slider_button[chords].append(create_buttons_background(maj_add4_triads));
-all_slider_button[chords].append(create_buttons_background(min_add4_triads));
-
-// искусственные
-let artificial = 6;
-all_slider_button[artificial].append(create_buttons_background(iscustv_melodic_minor));
-all_slider_button[artificial].append(create_buttons_background(iscustv_minor_harmony));
-all_slider_button[artificial].append(create_buttons_background(iscustv_major_harmony));
-all_slider_button[artificial].append(create_buttons_background(iscustv_major_melodic));
-all_slider_button[artificial].append(create_buttons_background(iscustv_2_major_harmony));
-
-// септ-аккорды
-let seven_chords = 7;
-all_slider_button[seven_chords].append(create_buttons_background(maj_aug_chord));
-all_slider_button[seven_chords].append(create_buttons_background(maj_original_chord));
-all_slider_button[seven_chords].append(create_buttons_background(seventh_chord));
-all_slider_button[seven_chords].append(create_buttons_background(minor_maj_chord));
-all_slider_button[seven_chords].append(create_buttons_background(minor_seventh_chord));
-all_slider_button[seven_chords].append(create_buttons_background(half_diminished_chord));
-all_slider_button[seven_chords].append(create_buttons_background(diminished_chord));
-
-// симметрии
-let mel_diatonic = 8;
-all_slider_button[mel_diatonic].append(create_buttons_background(min__maj));
-all_slider_button[mel_diatonic].append(create_buttons_background(frig__min));
-all_slider_button[mel_diatonic].append(create_buttons_background(TTTT__maj));
-all_slider_button[mel_diatonic].append(create_buttons_background(TTT__min));
-all_slider_button[mel_diatonic].append(create_buttons_background(maj__frig));
-all_slider_button[mel_diatonic].append(create_buttons_background(min__TTT));
-all_slider_button[mel_diatonic].append(create_buttons_background(frig__TTTT));
-
-//деление на 2
-let separation = 9;
-all_slider_button[separation].append(create_buttons_background(B2_in_2));
-all_slider_button[separation].append(create_buttons_background(B3_in_2));
-all_slider_button[separation].append(create_buttons_background(TTT_in_2));
-all_slider_button[separation].append(create_buttons_background(m6_in_2));
-all_slider_button[separation].append(create_buttons_background(m7_in_2));
-all_slider_button[separation].append(create_buttons_background(ch8_in_2));
-all_slider_button[separation].append(create_buttons_background(B9_in_2));
-
-all_slider_button[separation].append(create_buttons_background(м3_in_3));
-all_slider_button[separation].append(create_buttons_background(ТТТ_in_3));
-all_slider_button[separation].append(create_buttons_background(B6_in_3));
-all_slider_button[separation].append(create_buttons_background(ch8_in_3));
+};
+create_slider(all_slide);
