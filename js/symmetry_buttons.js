@@ -217,6 +217,7 @@ let B7 = {
     circle_token: ''
 }
 
+
 // деление на 2
 let B2_in_2 = {
     name: 'B2_in_2',
@@ -268,6 +269,7 @@ let B9_in_2 = {
     circle_token: ''
 }
 
+
 // комбинации целотонов
 let melodic_minor = {
     name: 'melodic_minor',
@@ -304,6 +306,7 @@ let WH = {
     post_line_elem: null,
     circle_token: ''
 }
+
 
 // тетрахорды
 let maj_tetrachord = {
@@ -342,15 +345,173 @@ let whole_tetrachord = {
     circle_token: ''
 }
 
+// диатоника мажора
+let TTT__maj = {
+    name: 'TTT__maj',
+    pre_line_elem: 'лидийский',
+    containerBtn: 'or w or w or w or yw w yw w yw yw',
+    post_line_elem: null,
+    circle_token: ''
+}
+let maj__maj = {
+    name: 'maj__maj',
+    pre_line_elem: 'ионийский',
+    containerBtn: 'yw w yw w yw yw w yw w yw w yw yw',
+    post_line_elem: null,
+    circle_token: ''
+}
+let maj__min = {
+    name: 'maj__min',
+    pre_line_elem: 'миксолидийский',
+    containerBtn: 'yw w yw w yw yw w bl w bl bl w bl',
+    post_line_elem: null,
+    circle_token: ''
+}
+let min__min = {
+    name: 'min__min',
+    pre_line_elem: 'дорийский',
+    containerBtn: 'bl w bl bl w bl w bl w bl bl w bl',
+    post_line_elem: null,
+    circle_token: ''
+}
+let min__frig = {
+    name: 'min__frig',
+    pre_line_elem: 'эолийский',
+    containerBtn: 'bl w bl bl w bl w vi vi w vi w vi',
+    post_line_elem: null,
+    circle_token: ''
+}
+let frig__frig = {
+    name: 'frig__frig',
+    pre_line_elem: 'фригийский',
+    containerBtn: 'vi vi w vi w vi w vi vi w vi w vi',
+    post_line_elem: null,
+    circle_token: ''
+}
+let frig__TTT = {
+    name: 'frig__TTT',
+    pre_line_elem: 'локрийский',
+    containerBtn: 'vi vi w vi w vi or w or w or w or',
+    post_line_elem: null,
+    circle_token: ''
+}
+
+
+// трезвучия
+let aug_triads = {
+    name: 'aug_triads',
+    pre_line_elem: 'Xaug',
+    containerBtn: 'g w w w g w w w g w w w w',
+    post_line_elem: null,
+    circle_token: ''
+}
+let maj_triads = {
+    name: 'maj_triads',
+    pre_line_elem: 'X',
+    containerBtn: 'g w w w g w w g w w w w w',
+    post_line_elem: null,
+    circle_token: ''
+}
+let min_triads = {
+    name: 'min_triads',
+    pre_line_elem: 'Xm',
+    containerBtn: 'g w w g w w w g w w w w w',
+    post_line_elem: null,
+    circle_token: ''
+}
+let dim_triads = {
+    name: 'dim_triads',
+    pre_line_elem: 'Xdim',
+    containerBtn: 'g w w g w w g w w w w w w',
+    post_line_elem: null,
+    circle_token: ''
+}
+
+
+let maj_add6_triads = {
+    name: 'maj_add6_triads',
+    pre_line_elem: 'X6',
+    containerBtn: 'g w w w g w w g w g w w w',
+    post_line_elem: null,
+    circle_token: ''
+}
+let min_add6_triads = {
+    name: 'min_add6_triads',
+    pre_line_elem: 'Xm6',
+    containerBtn: 'g w w g w w w g w g w w w',
+    post_line_elem: null,
+    circle_token: ''
+}
+let sus2_triads = {
+    name: 'sus2_triads',
+    pre_line_elem: 'Xsus2',
+    containerBtn: 'g w g w w w w g w w w w w',
+    post_line_elem: null,
+    circle_token: ''
+}
+let sus4_triads = {
+    name: 'sus4_triads',
+    pre_line_elem: 'Xsus4',
+    containerBtn: 'g w w w w g w g w w w w w',
+    post_line_elem: null,
+    circle_token: ''
+}
+
+let maj_add2_triads = {
+    name: 'maj_add2_triads',
+    pre_line_elem: 'X add2',
+    containerBtn: 'g w g w g w w g w w w w w',
+    post_line_elem: null,
+    circle_token: ''
+}
+let min_add2_triads = {
+    name: 'min_add2_triads',
+    pre_line_elem: 'Xm add2',
+    containerBtn: 'g w g g w w w g w w w w w',
+    post_line_elem: null,
+    circle_token: ''
+}
+let maj_add4_triads = {
+    name: 'maj_add4_triads',
+    pre_line_elem: 'X add4',
+    containerBtn: 'g w w w g g w g w w w w w',
+    post_line_elem: null,
+    circle_token: ''
+}
+let min_add4_triads = {
+    name: 'min_add4_triads',
+    pre_line_elem: 'Xm add4',
+    containerBtn: 'g w w g w g w g w w w w w',
+    post_line_elem: null,
+    circle_token: ''
+}
+
+
+// трезвучия
+let chords = 0;
+all_slider_button[chords].append(create_buttons_background(aug_triads));
+all_slider_button[chords].append(create_buttons_background(maj_triads));
+all_slider_button[chords].append(create_buttons_background(min_triads));
+all_slider_button[chords].append(create_buttons_background(dim_triads));
+
+all_slider_button[chords].append(create_buttons_background(maj_add6_triads));
+all_slider_button[chords].append(create_buttons_background(min_add6_triads));
+all_slider_button[chords].append(create_buttons_background(sus2_triads));
+all_slider_button[chords].append(create_buttons_background(sus4_triads));
+
+all_slider_button[chords].append(create_buttons_background(maj_add2_triads));
+all_slider_button[chords].append(create_buttons_background(min_add2_triads));
+all_slider_button[chords].append(create_buttons_background(maj_add4_triads));
+all_slider_button[chords].append(create_buttons_background(min_add4_triads));
 
 // симметрии
-let symmetry = 0;
-all_slider_button[symmetry].append(create_buttons_background(symmetry_2));
-all_slider_button[symmetry].append(create_buttons_background(symmetry_3));
-all_slider_button[symmetry].append(create_buttons_background(symmetry_4));
-all_slider_button[symmetry].append(create_buttons_background(symmetry_6));
+// let symmetry = 0;
+// all_slider_button[symmetry].append(create_buttons_background(symmetry_2));
+// all_slider_button[symmetry].append(create_buttons_background(symmetry_3));
+// all_slider_button[symmetry].append(create_buttons_background(symmetry_4));
+// all_slider_button[symmetry].append(create_buttons_background(symmetry_6));
 
-//интервалы
+// интервалы
 let intervals = 1;
 all_slider_button[intervals].append(create_buttons_background(m2));
 all_slider_button[intervals].append(create_buttons_background(B2));
@@ -379,6 +540,16 @@ all_slider_button[tetrachords].append(create_buttons_background(min_tetrachord))
 all_slider_button[tetrachords].append(create_buttons_background(frig_tetrachord));
 all_slider_button[tetrachords].append(create_buttons_background(harm_tetrachord));
 all_slider_button[tetrachords].append(create_buttons_background(whole_tetrachord));
+
+// диатоника мажора
+let diatonics_maj = 4;
+all_slider_button[diatonics_maj].append(create_buttons_background(TTT__maj));
+all_slider_button[diatonics_maj].append(create_buttons_background(maj__maj));
+all_slider_button[diatonics_maj].append(create_buttons_background(maj__min));
+all_slider_button[diatonics_maj].append(create_buttons_background(min__min));
+all_slider_button[diatonics_maj].append(create_buttons_background(min__frig));
+all_slider_button[diatonics_maj].append(create_buttons_background(frig__frig));
+all_slider_button[diatonics_maj].append(create_buttons_background(frig__TTT));
 
 //деление на 2
 let separation = 9;
