@@ -1,6 +1,7 @@
 //Make the DIV element draggagle:
 dragElement(document.getElementById(("mydiv")));
 dragElement(document.getElementById(("drag_elem_2")));
+dragElement(document.getElementById(("drag_elem_3")));
 
 function dragElement(elmnt) {
     console.log(elmnt);

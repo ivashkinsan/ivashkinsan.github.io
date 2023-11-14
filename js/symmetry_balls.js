@@ -17,6 +17,17 @@ let symmetry_2_balls = [
 let container_balls = document.querySelector('.container_balls');
 // let big_container = document.querySelector('.big_container');
 // let moni_for_text = document.querySelector('.moni_for_text');
+// close_container = document.createElement('div');
+// close_container.classList.add('close_container');
+// close_container.innerHTML = '+';
+// close_container.addEventListener("click", matrix_button_go);
+// container_balls.append(close_container);
+// let matrix_button_go = function () {
+//     container_balls.classList.toggle('hide');
+// }
+// let matrix_button = document.querySelector('.matrix_button');
+// matrix_button.addEventListener("click", matrix_button_go);
+
 let all_keyb;
 let all_circle;
 let all_marker_bg_color;
@@ -71,15 +82,15 @@ let create_sphere = function (pattern) {
         new_div_column.dataset.number = marker;
         new_div_column.append(new_stage_vertiical_line);
         // блоки клавиатуры
-        let keyb_elem = document.createElement('div');
-        keyb_elem.classList.add('piano_keys');
-        keyb_elem.dataset.number = marker;
-        if (['b2', 'b3', 'b5', 'b6', 'b7'].includes(stage_arr[i])) {
-            keyb_elem.classList.add('black_key');
-        } else {
-            keyb_elem.classList.add('white_key');
-        }
-        new_div_column.append(keyb_elem);
+        // let keyb_elem = document.createElement('div');
+        // keyb_elem.classList.add('piano_keys');
+        // keyb_elem.dataset.number = marker;
+        // if (['b2', 'b3', 'b5', 'b6', 'b7'].includes(stage_arr[i])) {
+        //     keyb_elem.classList.add('black_key');
+        // } else {
+        //     keyb_elem.classList.add('white_key');
+        // }
+        // new_div_column.append(keyb_elem);
         // блоки окружности
         for (let j = 0; j < pattern[i].length; j++) {
             let new_circle = document.createElement('div');

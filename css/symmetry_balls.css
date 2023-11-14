@@ -45,8 +45,8 @@
     justify-content: center;
     align-items: center;
     /* gap: 30px; */
-    width: 800px;
-    height: 800px;
+    width: calc(var(--base-size) *14);
+    height: calc(var(--base-size) *14);
     top: 0;
     left: 0;
     gap: var(--base-size);
@@ -55,6 +55,7 @@
     border-radius: 20px;
     box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.532);
     z-index: 999;
+    cursor: move;
 }
 
 .new_div_column {
@@ -62,7 +63,6 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-
 }
 
 .new_stage_vertiical_line {
@@ -70,8 +70,8 @@
     /* border: 1px dashed var(--color_for_vertical_label); */
     width: 1px;
     height: calc(var(--base-size) *6);
-    margin: 0 -2px;
-    margin-top: calc(var(--base-size-minus) *6);
+    /* margin: 0 -1px; */
+    margin-top: calc(var(--base-size-minus) *-6.5);
     /* opacity: 0; */
     z-index: 0;
 
@@ -83,15 +83,15 @@
 
 .vertiical_line_label {
     position: absolute;
-    margin-top: -20px;
-    margin-left: -5px;
+    margin-top: calc(var(--base-size-minus) *-6);
+    margin-left: -2.5px;
     /* color: var(--color_for_vertical_label); */
     /*Vertical*/
 
 }
 
 
-.piano_keys {
+/* .piano_keys {
     position: absolute;
     width: calc(var(--base-size)*1);
     height: calc(var(--base-size)*3);
@@ -111,11 +111,11 @@
 .black_key {
     margin-left: calc(var(--base-size-minus)/2);
     background: rgb(33, 33, 33);
-}
+} */
 
 :root {
-    --base-size: 50px;
-    --base-size-minus: -50px;
+    --base-size: 30px;
+    --base-size-minus: -30px;
     --marker-color: rgb(1, 221, 255);
     --color_for_vertical_label: rgb(179, 179, 179);
 }
@@ -135,10 +135,12 @@
     position: absolute;
     display: flex;
     justify-content: center;
-    border: 1px dashed #F4D6B1;
+    /* border: 1px dashed #F4D6B1; */
     border-radius: 50%;
-    margin: 0 -2px;
-    cursor: pointer;
+
+    /* outline: #F4D6B1 0.5px solid; */
+    /* cursor: pointer; */
+    box-shadow: 0px 0px 0px 0.5px rgba(255, 255, 255, 0.4) inset;
 }
 
 .m2 {
@@ -256,4 +258,18 @@
     /* --x: 0px;
     --y: 0px;
     transform: translate(var(--x), var(--y)); */
+}
+
+.close_container {
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    font-size: 50px;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+
+.close_container:hover {
+    font-weight: bold;
+    transform: rotate(45deg) scale(1.3);
 }
