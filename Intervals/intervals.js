@@ -35,7 +35,7 @@ let dataset_name = {
     'h8': ['ч8', 12]
 }
 
-
+// функция перевода строки в массив
 let string_to_arr = function (input) {
     let new_arr = [];
     for (let item of input) {
@@ -201,7 +201,7 @@ let remove_marker_bg_color = function (elem) {
     clickElemDatasetDump = [];
 };
 
-// колонка селект
+// колонка список селект
 let sphere_select = document.querySelector('.sphere_select');
 sphere_select.addEventListener('change', (e) => {
     console.log(e.target.value);

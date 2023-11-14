@@ -625,6 +625,8 @@ let B9_in_2 = {
     post_line_elem: null,
     circle_token: ''
 }
+
+// деление на 3ч
 let м3_in_3 = {
     name: 'м3_in_3',
     pre_line_elem: 'м3 / 3',
@@ -655,52 +657,52 @@ let ch8_in_3 = {
 }
 
 let all_slide = [{
-        name: 'СИММЕТРИИ',
-        row_pattern: [symmetry_2, symmetry_3, symmetry_4, symmetry_6]
-    },
-    {
-        name: 'ИНТЕРВАЛЫ',
-        row_pattern: [m2, B2, m3, B3, ch4, TTT, ch5, m6, B6, m7, B7]
-    },
-    {
-        name: 'КОМБИНАЦИИ ЦЕЛОТОНОВ',
-        row_pattern: [melodic_minor, ionian, lydian, lydian_aug, WH]
-    },
-    {
-        name: 'ТЕТРАХОРДЫ',
-        row_pattern: [maj_tetrachord, min_tetrachord, frig_tetrachord, harm_tetrachord, whole_tetrachord]
-    },
-    {
-        name: 'ДИАТОНИКА МАЖОРА',
-        row_pattern: [TTT__maj, maj__maj, maj__min, min__min, min__frig, frig__frig, frig__TTT]
-    },
-    {
-        name: 'ТРЕЗВУЧИЯ',
-        row_pattern: [aug_triads, maj_triads, min_triads, dim_triads,
-            maj_add6_triads, min_add6_triads, sus2_triads, sus4_triads,
-            maj_add2_triads, min_add2_triads, maj_add4_triads, min_add4_triads
-        ]
-    },
-    {
-        name: 'ИСКУССТВЕННЫЕ ЛАДЫ',
-        row_pattern: [iscustv_melodic_minor, iscustv_minor_harmony, iscustv_major_harmony, iscustv_major_melodic, iscustv_2_major_harmony]
-    },
-    {
-        name: 'СЕПТ АККОРДЫ',
-        row_pattern: [maj_aug_chord, maj_original_chord, seventh_chord, minor_maj_chord, minor_seventh_chord, half_diminished_chord, diminished_chord]
-    },
-    {
-        name: 'ДИАТОНИКА МЕЛ.МИНОРА',
-        row_pattern: [min__maj, frig__min, TTTT__maj, TTT__min, maj__frig, min__TTT, frig__TTTT]
-    },
-    {
-        name: 'РАЗДЕЛЕНИЕ НА 2',
-        row_pattern: [B2_in_2, B3_in_2, TTT_in_2, m6_in_2, m7_in_2, ch8_in_2, B9_in_2]
-    },
-    {
-        name: 'РАЗДЕЛЕНИЕ НА 3',
-        row_pattern: [м3_in_3, ТТТ_in_3, B6_in_3, ch8_in_3]
-    }
+    name: 'СИММЕТРИИ',
+    row_pattern: [symmetry_2, symmetry_3, symmetry_4, symmetry_6]
+},
+{
+    name: 'ИНТЕРВАЛЫ',
+    row_pattern: [m2, B2, m3, B3, ch4, TTT, ch5, m6, B6, m7, B7]
+},
+{
+    name: 'КОМБИНАЦИИ ЦЕЛОТОНОВ',
+    row_pattern: [melodic_minor, ionian, lydian, lydian_aug, WH]
+},
+{
+    name: 'ТЕТРАХОРДЫ',
+    row_pattern: [maj_tetrachord, min_tetrachord, frig_tetrachord, harm_tetrachord, whole_tetrachord]
+},
+{
+    name: 'ДИАТОНИКА МАЖОРА',
+    row_pattern: [TTT__maj, maj__maj, maj__min, min__min, min__frig, frig__frig, frig__TTT]
+},
+{
+    name: 'ТРЕЗВУЧИЯ',
+    row_pattern: [aug_triads, maj_triads, min_triads, dim_triads,
+        maj_add6_triads, min_add6_triads, sus2_triads, sus4_triads,
+        maj_add2_triads, min_add2_triads, maj_add4_triads, min_add4_triads
+    ]
+},
+{
+    name: 'ИСКУССТВЕННЫЕ ЛАДЫ',
+    row_pattern: [iscustv_melodic_minor, iscustv_minor_harmony, iscustv_major_harmony, iscustv_major_melodic, iscustv_2_major_harmony]
+},
+{
+    name: 'СЕПТ АККОРДЫ',
+    row_pattern: [maj_aug_chord, maj_original_chord, seventh_chord, minor_maj_chord, minor_seventh_chord, half_diminished_chord, diminished_chord]
+},
+{
+    name: 'ДИАТОНИКА МЕЛ.МИНОРА',
+    row_pattern: [min__maj, frig__min, TTTT__maj, TTT__min, maj__frig, min__TTT, frig__TTTT]
+},
+{
+    name: 'РАЗДЕЛЕНИЕ НА 2',
+    row_pattern: [B2_in_2, B3_in_2, TTT_in_2, m6_in_2, m7_in_2, ch8_in_2, B9_in_2]
+},
+{
+    name: 'РАЗДЕЛЕНИЕ НА 3',
+    row_pattern: [м3_in_3, ТТТ_in_3, B6_in_3, ch8_in_3]
+}
 ]
 
 let slider_cont = document.querySelector('.slider');

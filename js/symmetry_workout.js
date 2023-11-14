@@ -147,18 +147,18 @@ allHrom.forEach(hrom => {
         this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_steps_1_7.svg';
         clicks = 0;
         break;
-        // case 2:
-        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
-        //   clicks += 1;
-        //   break;
-        // case 3:
-        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
-        //   clicks += 1;
-        //   break;
-        // case 4:
-        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
-        //   clicks = 0;
-        //   break;
+      // case 2:
+      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
+      //   clicks += 1;
+      //   break;
+      // case 3:
+      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
+      //   clicks += 1;
+      //   break;
+      // case 4:
+      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
+      //   clicks = 0;
+      //   break;
     }
   });
 });
@@ -192,11 +192,12 @@ allHrom.forEach(hrom => {
 
 // создание 12 элементов внутри грид блока
 let arr_element_position_for_column = {
+  // симметрии
   symmetry_2: ['C D E G A', 'F B', 'Db Eb Gb Ab Bb'],
   symmetry_3: ['C F G 0 E A B', 'Db Eb Ab 0 D Gb Bb'],
   symmetry_4: ['C Eb Gb A', 'Db E G Bb', 'D F Ab B'],
   symmetry_6: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
-
+  // интервалы
   m2: ['C D F G A', 'E B 0 Db Eb Gb Ab Bb'],
   B2: ['C D F G A 0 E B', 'Db Gb Ab 0 Eb Bb'],
   m3: ['D E A B 0 Eb Bb', 'C F G 0 Db Gb Ab'],
@@ -208,13 +209,13 @@ let arr_element_position_for_column = {
   B6: ['C D F G 0 E A B', 'Db Gb 0 Eb Ab Bb'],
   m7: ['D E G A B 0 C F', 'Db Gb 0 Eb Ab Bb'],
   B7: ['D E G A B', 'C F 0 Db Eb Gb Ab Bb'],
-
+  // тетрахорды
   maj_tetrachord: ['C G 0 D A 0 E B', 'Db Ab 0 Eb Bb 0 F Gb'],
   min_tetrachord: ['C G 0 D A 0 E B', 'Db Ab 0 Eb Bb 0 F Gb'],
   frig_tetrachord: ['C G 0 D A 0 E B', 'Db Ab 0 Eb Bb 0 F Gb'],
   harm_tetrachord: ['C G 0 D A 0 E B', 'Db Ab 0 Eb Bb 0 F Gb'],
   whole_tetrachord: ['C G 0 D A 0 E B', 'Db Ab 0 Eb Bb 0 F Gb'],
-
+  // диатоника мажора
   TTT__maj: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   min__min: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   maj__maj: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
@@ -222,27 +223,19 @@ let arr_element_position_for_column = {
   maj__min: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   frig__frig: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   frig__TTT: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
-
+  // комб целотонов
   melodic_minor: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   ionian: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   lydian: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   lydian_aug: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   WH: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
-
+  // искусственные гаммы
   iscustv_melodic_minor: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   iscustv_minor_harmony: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   iscustv_major_harmony: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   iscustv_major_melodic: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   iscustv_2_major_harmony: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
-
-  B2_in_2: ['C D F G A 0 E B', 'Db Gb Ab 0 Eb Bb'],
-  B3_in_2: ['C F G 0 Db Ab 0 Gb', 'D A 0 Eb Bb 0 E B'],
-  TTT_in_2: ['C G 0 D E A 0 F', 'Db Gb 0 Eb Bb 0 B'],
-  m6_in_2: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
-  m7_in_2: ['D E G A B', 'Eb Ab Bb', 'C Db F Gb'],
-  ch8_in_2: ['C D E G A', 'F B', 'Db Eb Gb Ab Bb'],
-  B9_in_2: ['C D F G A', 'Db Gb Ab', 'Eb E 0 Bb B'],
-
+  // трезвучия
   aug_triads: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
   maj_triads: ['C F G 0 D E A', 'Gb Bb B 0 Db Eb Ab'],
   min_triads: ['C F G 0 D E A', 'Eb Bb B 0 Db Gb Ab'],
@@ -255,7 +248,19 @@ let arr_element_position_for_column = {
   min_add2_triads: ['C F G 0 D E A', 'Eb Bb B 0 Db Gb Ab'],
   maj_add4_triads: ['C F G 0 D E A', 'Gb Bb B 0 Db Eb Ab'],
   min_add4_triads: ['C F G 0 D E A', 'Eb Bb B 0 Db Gb Ab'],
-
+  // деление на 2ч
+  B2_in_2: ['C D F G A 0 E B', 'Db Gb Ab 0 Eb Bb'],
+  B3_in_2: ['C F G 0 Db Ab 0 Gb', 'D A 0 Eb Bb 0 E B'],
+  TTT_in_2: ['C G 0 D E A 0 F', 'Db Gb 0 Eb Bb 0 B'],
+  m6_in_2: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
+  m7_in_2: ['D E G A B', 'Eb Ab Bb', 'C Db F Gb'],
+  ch8_in_2: ['C D E G A', 'F B', 'Db Eb Gb Ab Bb'],
+  B9_in_2: ['C D F G A', 'Db Gb Ab', 'Eb E 0 Bb B'],
+  // деление на 3ч
+  м3_in_3: ['Eb Bb 0 C F G 0 D A', 'Db Gb Ab 0 E B'],
+  ТТТ_in_3: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
+  B6_in_3: ['C Eb Gb A', 'Db E G Bb', 'D F Ab B'],
+  ch8_in_3: ['C D E Gb Ab Bb', 'Db Eb F G A B'],
 };
 
 let rus_name_obj = {
@@ -848,6 +853,10 @@ let add_correct_answer_for_matrix = function () {
               case 'B3_in_2':
               case 'm6_in_2':
               case 'aug_triads':
+              case 'ch8_in_2':
+              case 'ТТТ_in_3':
+              case 'ch8_in_3':
+
                 // console.log(mini_circle);
                 if (plus_elem_arr.includes(mini_circle.dataset.note)) {
                   mini_circle.classList.add('active_mini_circle_plus');
@@ -1039,11 +1048,11 @@ checkBoxElem.onclick = function () {
 Object.defineProperty(
   Object.prototype,
   'randElement', {
-    value: function () {
-      var rand = Math.floor(Math.random() * this.length);
-      return this[rand];
-    }
+  value: function () {
+    var rand = Math.floor(Math.random() * this.length);
+    return this[rand];
   }
+}
 );
 
 let add_windows_facty = function () {
