@@ -724,6 +724,7 @@ li {
 }
 
 .square_elem {
+  position: relative;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -768,11 +769,38 @@ li {
 }
 
 .square_p {
+
   width: 100%;
   text-align: center;
   line-height: 200%;
   color: #000000;
   font-family: 'Opus Text Std';
+}
+
+.square_p_small_right,
+.square_p_small_left {
+  position: absolute;
+  line-height: 12px;
+  width: 100%;
+  font-size: 12px;
+  font-family: 'Opus Text Std';
+  color: #000000;
+}
+
+.square_p_small_left {
+  top: 1px;
+  left: 1px;
+  text-align: start;
+}
+
+.square_p_small_right {
+  right: 2px;
+  bottom: 1px;
+  text-align: end;
+}
+
+.opacity_50 {
+  opacity: 0.5;
 }
 
 .pre_line_elem,

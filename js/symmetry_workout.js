@@ -518,6 +518,9 @@ let startWork = function () {
 
   add_label_checkbox(ti);
   add_windows_facty();
+
+  create_sphere(string_to_arr(all_balls_obj[symBtnLevel.dataset.number]));
+
   // СИММЕТРИИ
   if (symBtnLevel.dataset.number == 'symmetry_2') {
     keys[startTwoNote].classList.toggle('ledON');

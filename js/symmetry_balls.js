@@ -1,18 +1,4 @@
-let symmetry_2_balls = [
-    'm2 B2 T3 h8',
-    'm2',
-    'm2 B2',
-    'm2',
-    'm2 B2',
-    'm2',
-    'm2 B2 T3',
-    'm2',
-    'm2 B2',
-    'm2',
-    'm2 B2',
-    'm2',
-    'end'
-]
+
 
 let container_balls = document.querySelector('.container_balls');
 // let big_container = document.querySelector('.big_container');
@@ -67,6 +53,7 @@ let string_to_arr = function (input) {
 stage_arr = stage_arr.split(' ');
 
 let create_sphere = function (pattern) {
+    container_balls.replaceChildren();
     for (let i = 0; i < pattern.length; i++) {
         let marker = numb_arr.shift();
         // блок колонка
@@ -113,4 +100,3 @@ let create_sphere = function (pattern) {
     }
 }
 
-create_sphere(string_to_arr(symmetry_2_balls));

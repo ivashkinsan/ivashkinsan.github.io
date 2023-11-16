@@ -24,16 +24,39 @@ let create_buttons_background = function (input) {
         square_elem.classList.add('square_elem');
         square_elem.dataset.text = label_fow_btn_line[i];
         let square_p = document.createElement('p');
-        square_p.classList.add('square_p');
+        let square_p_additional = document.createElement('p');
         square_p.textContent = square_elem.dataset.text;
+
+        if (square_elem.dataset.text == 'b5') {
+
+            square_p.classList.add('square_p_small_right');
+            square_p_additional.classList.add('square_p_small_left');
+            square_p_additional.textContent = '#4';
+        } else {
+            square_p.classList.add('square_p');
+        }
+
+        if (containerBtn.dataset.number == 'aug_triads' && square_elem.dataset.text == 'b6') {
+            square_p.textContent = '#5';
+        }
+        if (containerBtn.dataset.number == 'maj_aug_chord' && square_elem.dataset.text == 'b6') {
+            square_p.textContent = '#5';
+        }
+
+
 
         switch (length_row[i]) {
             case 'g':
                 square_elem.classList.add('gold_square');
                 square_elem.append(square_p);
+                square_elem.append(square_p_additional);
                 break;
             case 't':
                 square_elem.classList.add('transparent');
+                if (square_elem.dataset.text == '8') {
+                    square_elem.classList.add('opacity_50');
+                    square_elem.append(square_p);
+                }
                 break;
             case '+o':
                 let square_plus_1 = document.createElement('div');
@@ -58,27 +81,33 @@ let create_buttons_background = function (input) {
             case 'yw':
                 square_elem.classList.add('active_mini_circle_maj');
                 square_elem.append(square_p);
+                square_elem.append(square_p_additional);
                 break;
             case 'bl':
                 square_elem.classList.add('active_mini_circle_min');
                 square_elem.append(square_p);
+                square_elem.append(square_p_additional);
                 break;
             case 'vi':
                 square_elem.classList.add('active_mini_circle_frig');
                 square_elem.append(square_p);
+                square_elem.append(square_p_additional);
                 break;
             case 'pi':
                 square_elem.classList.add('active_mini_circle_harm');
                 square_elem.append(square_p);
+                square_elem.append(square_p_additional);
                 break;
             case 'or':
                 square_elem.classList.add('active_mini_circle_TTT');
                 square_elem.append(square_p);
+                square_elem.append(square_p_additional);
                 break;
             default:
                 square_elem.classList.add('white_black_square');
                 break;
         }
+
 
         // if (length_row[i] == 'g') {
         //     square_elem.classList.add('gold_square');
@@ -351,28 +380,28 @@ let frig__TTT = {
 let aug_triads = {
     name: 'aug_triads',
     pre_line_elem: 'Xaug',
-    containerBtn: 'g w w w g w w w g w w w w',
-    post_line_elem: 'Б3 + м3 = м6',
+    containerBtn: 'g w w w g w w w g w w w t',
+    post_line_elem: 'Б3 + Б3 = м6',
     balls_token: ''
 }
 let maj_triads = {
     name: 'maj_triads',
     pre_line_elem: 'X',
-    containerBtn: 'g w w w g w w g w w w w w',
+    containerBtn: 'g w w w g w w g w w w w t',
     post_line_elem: 'Б3 + м3 = ч5',
     balls_token: ''
 }
 let min_triads = {
     name: 'min_triads',
     pre_line_elem: 'Xm',
-    containerBtn: 'g w w g w w w g w w w w w',
+    containerBtn: 'g w w g w w w g w w w w t',
     post_line_elem: 'м3 + Б3 = ч5',
     balls_token: ''
 }
 let dim_triads = {
     name: 'dim_triads',
     pre_line_elem: 'Xdim',
-    containerBtn: 'g w w g w w g w w w w w w',
+    containerBtn: 'g w w g w w g w w w w w t',
     post_line_elem: 'м3 + м3 = 3Т',
     balls_token: ''
 }
@@ -380,28 +409,28 @@ let dim_triads = {
 let maj_add6_triads = {
     name: 'maj_add6_triads',
     pre_line_elem: 'X6',
-    containerBtn: 'g w w w g w w g w g w w w',
+    containerBtn: 'g w w w g w w g w g w w t',
     post_line_elem: 'Б3 + м3 + Б2 = Б6',
     balls_token: ''
 }
 let min_add6_triads = {
     name: 'min_add6_triads',
     pre_line_elem: 'Xm6',
-    containerBtn: 'g w w g w w w g w g w w w',
+    containerBtn: 'g w w g w w w g w g w w t',
     post_line_elem: 'м3 + Б3 + Б2 = Б6',
     balls_token: ''
 }
 let sus2_triads = {
     name: 'sus2_triads',
     pre_line_elem: 'Xsus2',
-    containerBtn: 'g w g w w w w g w w w w w',
+    containerBtn: 'g w g w w w w g w w w w t',
     post_line_elem: 'Б2 + ч4 = ч5',
     balls_token: ''
 }
 let sus4_triads = {
     name: 'sus4_triads',
     pre_line_elem: 'Xsus4',
-    containerBtn: 'g w w w w g w g w w w w w',
+    containerBtn: 'g w w w w g w g w w w w t',
     post_line_elem: 'ч4 + Б2 = ч5',
     balls_token: ''
 }
@@ -409,28 +438,28 @@ let sus4_triads = {
 let maj_add2_triads = {
     name: 'maj_add2_triads',
     pre_line_elem: 'X add2',
-    containerBtn: 'g w g w g w w g w w w w w',
+    containerBtn: 'g w g w g w w g w w w w t',
     post_line_elem: 'Б2 + Б2 + м3 = ч5',
     balls_token: ''
 }
 let min_add2_triads = {
     name: 'min_add2_triads',
     pre_line_elem: 'Xm add2',
-    containerBtn: 'g w g g w w w g w w w w w',
+    containerBtn: 'g w g g w w w g w w w w t',
     post_line_elem: 'Б2 + м2 + Б3 = ч5',
     balls_token: ''
 }
 let maj_add4_triads = {
     name: 'maj_add4_triads',
     pre_line_elem: 'X add4',
-    containerBtn: 'g w w w g g w g w w w w w',
+    containerBtn: 'g w w w g g w g w w w w t',
     post_line_elem: 'Б3 + м2 + Б2 = ч5',
     balls_token: ''
 }
 let min_add4_triads = {
     name: 'min_add4_triads',
     pre_line_elem: 'Xm add4',
-    containerBtn: 'g w w g w g w g w w w w w',
+    containerBtn: 'g w w g w g w g w w w w t',
     post_line_elem: 'м3 + Б2 + Б2 = ч5',
     balls_token: ''
 }
@@ -476,49 +505,49 @@ let iscustv_2_major_harmony = {
 let maj_aug_chord = {
     name: 'maj_aug_chord',
     pre_line_elem: 'X^aug',
-    containerBtn: 'g w w w g w w w g w w g w',
+    containerBtn: 'g w w w g w w w g w w g t',
     post_line_elem: 'Б3 + Б3 + м3 = Б7',
     balls_token: ''
 }
 let maj_original_chord = {
     name: 'maj_original_chord',
     pre_line_elem: 'X^',
-    containerBtn: 'g w w w g w w g w w w g w',
+    containerBtn: 'g w w w g w w g w w w g t',
     post_line_elem: 'Б3 + м3 + Б3 = Б7',
     balls_token: ''
 }
 let seventh_chord = {
     name: 'seventh_chord',
     pre_line_elem: 'X7',
-    containerBtn: 'g w w w g w w g w w g w w',
+    containerBtn: 'g w w w g w w g w w g w t',
     post_line_elem: 'Б3 + Б3 + м3 = м7',
     balls_token: ''
 }
 let minor_maj_chord = {
     name: 'minor_maj_chord',
     pre_line_elem: 'Xm^',
-    containerBtn: 'g w w g w w w g w w w g w',
+    containerBtn: 'g w w g w w w g w w w g t',
     post_line_elem: 'м3 + Б3 + Б3 = Б7',
     balls_token: ''
 }
 let minor_seventh_chord = {
     name: 'minor_seventh_chord',
     pre_line_elem: 'Xm7',
-    containerBtn: 'g w w g w w w g w w g w w',
+    containerBtn: 'g w w g w w w g w w g w t',
     post_line_elem: 'м3 + Б3 + м3 = м7',
     balls_token: ''
 }
 let half_diminished_chord = {
     name: 'half_diminished_chord',
     pre_line_elem: 'Xm7b5',
-    containerBtn: 'g w w g w w g w w w g w w',
+    containerBtn: 'g w w g w w g w w w g w t',
     post_line_elem: 'м3 + м3 + Б3 = м7',
     balls_token: ''
 }
 let diminished_chord = {
     name: 'diminished_chord',
     pre_line_elem: 'Xo',
-    containerBtn: 'g w w g w w g w w g w w w',
+    containerBtn: 'g w w g w w g w w g w w t',
     post_line_elem: 'м3 + м3 + м3 = Б6',
     balls_token: ''
 }
