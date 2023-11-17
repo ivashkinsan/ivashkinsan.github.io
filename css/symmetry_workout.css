@@ -178,8 +178,8 @@ Img {
 }
 
 .container_monitor {
-  display: flex;
-  opacity: 0;
+  display: none;
+  /* opacity: 0; */
   position: absolute;
   cursor: move;
   top: 50px;
@@ -521,7 +521,8 @@ input[type=range] {
 .DIM_button,
 .label_button,
 .audio_button,
-.matrix_button {
+.matrix_button,
+.balls_button {
 
   display: flex;
   justify-content: center;
@@ -701,6 +702,8 @@ li {
 .show {
   display: block;
 }
+
+
 
 .opacity_null {
   opacity: 0;

@@ -58,6 +58,10 @@
     cursor: move;
 }
 
+.show_flex {
+    display: flex;
+}
+
 .new_div_column {
     position: relative;
     display: flex;
@@ -271,6 +275,20 @@
 }
 
 .close_container:hover {
+    font-weight: bold;
+    transform: rotate(45deg) scale(1.3);
+}
+
+.close_container_balls {
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    font-size: 50px;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+
+.close_container_balls:hover {
     font-weight: bold;
     transform: rotate(45deg) scale(1.3);
 }

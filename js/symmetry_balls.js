@@ -100,3 +100,5 @@ let create_sphere = function (pattern) {
     }
 }
 
+let close_container_balls = document.querySelector('.close_container_balls');
+close_container_balls.addEventListener('click', () => container_balls.classList.toggle('show_flex'));

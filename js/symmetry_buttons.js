@@ -150,21 +150,21 @@ let symmetry_3 = {
     pre_line_elem: 'sym 3',
     containerBtn: 'g w w w g w w w g w w w g',
     post_line_elem: 'Б3 Б3 Б3',
-    balls_token: ''
+    balls_token: symmetry_3_balls
 }
 let symmetry_4 = {
     name: 'symmetry_4',
     pre_line_elem: 'sym 4',
     containerBtn: 'g w w g w w g w w g w w g',
     post_line_elem: 'м3 м3 м3 м3',
-    balls_token: ''
+    balls_token: symmetry_3_balls
 }
 let symmetry_6 = {
     name: 'symmetry_6',
     pre_line_elem: 'sym 6',
     containerBtn: 'g w g w g w g w g w g w g',
     post_line_elem: 'Б2 Б2 Б2 Б2 Б2 Б2',
-    balls_token: ''
+    balls_token: symmetry_3_balls
 }
 
 

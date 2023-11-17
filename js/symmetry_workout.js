@@ -1038,11 +1038,12 @@ let checkBoxElem = document.querySelector('.checkbox_fakty');
 
 checkBoxElem.onclick = function () {
   // console.log(checkBoxElem.checked);
-  if (checkBoxElem.checked) {
-    container_monitor.style.opacity = 1;
-  } else {
-    container_monitor.style.opacity = 0;
-  }
+  container_monitor.classList.toggle('show');
+  // if (checkBoxElem.checked) {
+
+  // } else {
+  //   container_monitor.style.opacity = 0;
+  // }
 
 }
 
@@ -1366,6 +1367,10 @@ function playArray(newArray) {
 document.querySelector('.audio_button').onclick = function () {
   this.classList.toggle('noSound');
   soundON = soundON ? false : true;
+}
+let balls_container = document.querySelector('.container_balls');
+document.querySelector('.balls_button').onclick = function () {
+  balls_container.classList.toggle('show_flex');
 }
 
 
