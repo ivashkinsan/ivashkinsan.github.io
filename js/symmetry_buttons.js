@@ -49,7 +49,9 @@ let create_buttons_background = function (input) {
             case 'g':
                 square_elem.classList.add('gold_square');
                 square_elem.append(square_p);
-                square_elem.append(square_p_additional);
+                if (square_elem.dataset.text == 'b5') {
+                    square_elem.append(square_p_additional);
+                }
                 break;
             case 't':
                 square_elem.classList.add('transparent');

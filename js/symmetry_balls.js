@@ -21,6 +21,7 @@ let checkbox_checked;
 let value_opacity_all_keyb = 0;
 let new_stage_vertiical_line;
 let value_opacity_vertical_line = 0;
+let close_container_balls = document.querySelector('.close_container_balls');
 let stage_arr = '1 b2 2 b3 3 4 b5 5 b6 6 b7 7 1 b2 2 b3 3 4 b5 5 b6 6 b7 7 1 b2 2 b3 3 4 b5 5 b6 6 b7 7 1';
 let numb_string = '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37';
 let new_numb_arr = function () {
@@ -98,7 +99,13 @@ let create_sphere = function (pattern) {
         // arr_for_debugging.push(arr_row_for_debugging)
         container_balls.append(new_div_column);
     }
+
+    close_container_balls = document.createElement('div');
+    close_container_balls.classList.add('close_container_balls');
+    close_container_balls.innerHTML = '+';
+    close_container_balls.addEventListener('click', () => container_balls.classList.toggle('show_flex'));
+
+    container_balls.append(close_container_balls);
 }
 
-let close_container_balls = document.querySelector('.close_container_balls');
 close_container_balls.addEventListener('click', () => container_balls.classList.toggle('show_flex'));

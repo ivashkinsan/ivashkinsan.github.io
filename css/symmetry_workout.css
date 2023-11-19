@@ -731,7 +731,7 @@ li {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  gap: 3px;
+  /* gap: 3px; */
   width: var(--btn-elem-size);
   height: var(--btn-elem-size);
   outline: 0.5px black solid;
@@ -775,7 +775,7 @@ li {
 
   width: 100%;
   text-align: center;
-  line-height: 200%;
+  line-height: 24px;
   color: #000000;
   font-family: 'Opus Text Std';
 }
