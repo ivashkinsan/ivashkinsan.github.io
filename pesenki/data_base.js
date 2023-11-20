@@ -1207,6 +1207,69 @@ let kukushka = [{
     formula: ['ZO_up', 0, 'WI', 0, 0, 'ZO_up', 0, 'WI', 0, 0, 'WI', 0, 'LE', 'LE', 'LE', 0, 'WI', 0, 'YO']
 }
 ];
+let tri_sinichki = [{
+    all: 30,
+    text: 'Три синички танцевали,',
+    formula: ['YO', 'WI', 'ZO_up', 'ZO_up', 'YO', 'WI', 'ZO_up', 'ZO_up']
+},
+{
+    text: 'на лугу траву помяли,',
+    formula: ['NA', 'WI', 'LE', 'LE', 'WI', 'LE', 'YO', 'YO']
+},
+{
+    text: 'а корова: "Му, му, му!"',
+    formula: ['ZO', 'ZO', 'RA', 'TI', 'YO', 'YO', 'YO']
+},
+{
+    text: '"Эту травку не возьму!"',
+    formula: ['ZO_up', 'NA', 'WI', 'LE', 'YO', 'YO', 'YO']
+}
+    // Вы синички, чем хотите мне за травку заплатите,
+    // А не то я зареву: му, му, му да му, му, му!
+    // Вот несут синички плату, угадайте, что, ребята?
+    // Хвостик заячий нашли и  корове ...
+];
+
+let juchka = [{
+    all: 18,
+    text: 'В будку лезет Жучка, с нею кот.',
+    formula: ['YO', 'LE', 'WI', 'NA', 'ZO_up', 0, 'ZO_up', 0, 'RA_up', 0, 'RA_up', 0, 'ZO_up']
+},
+{
+    text: 'Если в небе тучка - дождь пойдёт.',
+    formula: ['NA', 'NA', 'NA', 'NA', 'WI', 0, 'WI', 0, 'LE', 0, 'LE', 0, 'YO']
+}
+];
+let petrushka = [{
+    all: 28,
+    text: 'Я Петрушка молодец, на макушке бубенец.',
+    formula: ['YO', 'YO', 'ZO', 'ZO', 'RA', 'RA', 'ZO', 0, 'YO', 'YO', 'ZO', 'ZO', 'RA', 'RA', 'ZO', 0]
+},
+{
+    text: 'Выйду, выйду попляшу, позабавлю, насмешу.',
+    formula: ['YO', 'YO', 'RA', 'RA', 'ZO', 'ZO', 'YO', 0, 'YO', 'YO', 'RA', 'RA', 'ZO', 'ZO', 'YO', 0]
+}
+];
+let zaychik_i_kapusta = [{
+    all: 29,
+    text: '"Зайчик, зайчик, что ты грустный?"',
+    formula: ['ZO_up', 'ZO_up', 'WI', 'WI', 'ZO_up', 'ZO_up', 'WI', 'WI']
+},
+{
+    text: '"Не найду кочан капустный"',
+    formula: ['ZO_up', 'ZO_up', 'WI', 'WI', 'YO', 'YO', 'YO', 'YO']
+},
+{
+    text: '"А какой?"-"Вот такой."',
+    formula: ['ZO_up', 'ZO_up', 'WI', 0, 'ZO', 'ZO', 'YO']
+},
+{
+    text: '"Круглый, белый да крутой"',
+    formula: ['ZO_up', 'ZO_up', 'WI', 'WI', 'YO', 'YO', 'YO']
+}
+];
+
+
 // с днем рождения, ла кукарача, спят усталые игрушки
 // миноры - калинка
 
@@ -1467,6 +1530,26 @@ let full_menu = [{
     name: 'Кукушка',
     arr: kukushka,
     matrix: ['ZO', 'YO', 'LE', 'WI', 'ZO_up'],
+},
+{
+    name: 'Три синички',
+    arr: tri_sinichki,
+    matrix: ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA', 'ZO_up'],
+},
+{
+    name: 'Жучка',
+    arr: juchka,
+    matrix: ['YO', 'LE', 'WI', 'NA', 'ZO_up', 'RA_up'],
+},
+{
+    name: 'Петрушка',
+    arr: petrushka,
+    matrix: ['ZO', 'RA', 'YO'],
+},
+{
+    name: 'Зайчик и капуста',
+    arr: zaychik_i_kapusta,
+    matrix: ['ZO', 'YO', 'WI', 'ZO_up',],
 },
 
 
