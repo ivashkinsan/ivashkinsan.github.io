@@ -856,6 +856,284 @@ let diminished_chord_balls = [
     'end'
 ]
 
+// диатоника мел минора
+let min__maj_balls = [
+    'B2 h8',
+    '',
+    'm2',
+    'B2',
+    '',
+    'B2',
+    '',
+    'B2',
+    '',
+    'B2',
+    '',
+    'm2',
+    'end'
+]
+let frig__min_balls = [
+    'm2 h8',
+    'B2',
+    '',
+    'B2',
+    '',
+    'B2',
+    '',
+    'B2',
+    '',
+    'm2',
+    'B2',
+    '',
+    'end'
+]
+let TTTT__maj_balls = [
+    'B2 h8',
+    '',
+    'B2',
+    '',
+    'B2',
+    '',
+    'B2',
+    '',
+    'm2',
+    'B2',
+    '',
+    'm2',
+    'end'
+]
+let TTT__min_balls = [
+    'B2 h8',
+    '',
+    'B2',
+    '',
+    'B2',
+    '',
+    'm2',
+    'B2',
+    '',
+    'm2',
+    'B2',
+    '',
+    'end'
+]
+let maj__frig_balls = [
+    'B2 h8',
+    '',
+    'B2',
+    '',
+    'm2',
+    'B2',
+    '',
+    'm2',
+    'B2',
+    '',
+    'B2',
+    '',
+    'end'
+]
+let min__TTT_balls = [
+    'B2 h8',
+    '',
+    'm2',
+    'B2',
+    '',
+    'm2',
+    'B2',
+    '',
+    'B2',
+    '',
+    'B2',
+    '',
+    'end'
+]
+let frig__TTTT_balls = [
+    'm2 h8',
+    'B2',
+    '',
+    'm2',
+    'B2',
+    '',
+    'B2',
+    '',
+    'B2',
+    '',
+    'B2',
+    '',
+    'end'
+]
+
+
+// деление на 2
+let B2_in_2_balls = [
+    'B2 m2',
+    'm2',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    'end'
+]
+let B3_in_2_balls = [
+    'B3 B2',
+    '',
+    'B2',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    'end'
+]
+let TTT_in_2_balls = [
+    'T3 m3',
+    '',
+    '',
+    'm3',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    'end'
+]
+let m6_in_2_balls = [
+    'm6 B3',
+    '',
+    '',
+    '',
+    'B3',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    'end'
+]
+let m7_in_2_balls = [
+    'm7 h4',
+    '',
+    '',
+    '',
+    '',
+    'h4',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    'end'
+]
+let ch8_in_2_balls = [
+    'h8 T3',
+    '',
+    '',
+    '',
+    '',
+    '',
+    'T3',
+    '',
+    '',
+    '',
+    '',
+    '',
+    'end'
+]
+
+let B9_in_2_balls = [
+    'h8 h5',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    'h5',
+    '',
+    '',
+    '',
+    '',
+    'end'
+]
+
+// деление на 3
+let м3_in_3_balls = [
+    'm3 m2',
+    'm2',
+    'm2',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    'end'
+]
+let ТТТ_in_3_balls = [
+    'T3 B2',
+    '',
+    'B2',
+    '',
+    'B2',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    'end'
+]
+let B6_in_3_balls = [
+    'B6 m3',
+    '',
+    '',
+    'm3',
+    '',
+    '',
+    'm3',
+    '',
+    '',
+    '',
+    '',
+    '',
+    'end'
+]
+let ch8_in_3_balls = [
+    'h8 B3',
+    '',
+    '',
+    '',
+    'B3',
+    '',
+    '',
+    '',
+    'B3',
+    '',
+    '',
+    '',
+    'end'
+]
+
 
 let all_balls_obj = {
     'symmetry_2': symmetry_2_balls,
@@ -921,4 +1199,25 @@ let all_balls_obj = {
     'minor_seventh_chord': minor_seventh_chord_balls,
     'half_diminished_chord': half_diminished_chord_balls,
     'diminished_chord': diminished_chord_balls,
+
+    'min__maj': min__maj_balls,
+    'frig__min': frig__min_balls,
+    'TTTT__maj': TTTT__maj_balls,
+    'TTT__min': TTT__min_balls,
+    'maj__frig': maj__frig_balls,
+    'min__TTT': min__TTT_balls,
+    'frig__TTTT': frig__TTTT_balls,
+
+    'B2_in_2': B2_in_2_balls,
+    'B3_in_2': B3_in_2_balls,
+    'TTT_in_2': TTT_in_2_balls,
+    'm6_in_2': m6_in_2_balls,
+    'm7_in_2': m7_in_2_balls,
+    'ch8_in_2': ch8_in_2_balls,
+    'B9_in_2': B9_in_2_balls,
+
+    'м3_in_3': м3_in_3_balls,
+    'ТТТ_in_3': ТТТ_in_3_balls,
+    'B6_in_3': B6_in_3_balls,
+    'ch8_in_3': ch8_in_3_balls,
 }
