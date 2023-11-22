@@ -859,7 +859,11 @@ let add_correct_answer_for_matrix = function () {
               case 'ch8_in_2':
               case 'ТТТ_in_3':
               case 'ch8_in_3':
-
+              case 'B2':
+              case 'B3':
+              case 'TTT':
+              case 'm6':
+              case 'm7':
                 // console.log(mini_circle);
                 if (plus_elem_arr.includes(mini_circle.dataset.note)) {
                   mini_circle.classList.add('active_mini_circle_plus');
