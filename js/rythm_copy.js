@@ -330,6 +330,14 @@ document.querySelector('.button_square').onclick = function () {
 }
 // добавление тени
 document.querySelector('.button_box_shadows').onclick = function () {
+    let all_eighth = document.querySelectorAll('.eighth');
+    for (let item of all_eighth) {
+        item.classList.toggle('top_margin_64px');
+    }
+    let all_sixteenth = document.querySelectorAll('.sixteenth');
+    for (let item of all_sixteenth) {
+        item.classList.toggle('top_margin_44px');
+    }
     for (let item of click_items) {
         item.classList.toggle('box_shadows');
     }
@@ -1119,7 +1127,7 @@ class Metronome {
         if (this.isRunning) return;
 
         if (this.audioContext == null) {
-            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            this.audioContext = new(window.AudioContext || window.webkitAudioContext)();
         }
 
         this.isRunning = true;
@@ -1235,10 +1243,10 @@ document.querySelector('.select_group').addEventListener('change', function () {
         case 'value_5':
             metronome.beatsPerBar = 5;
             break;
-        // case 'value_3+2':
-        //     let arr_3_2 = [1, 1, 1, 2, 3];
-        //     metronome.beatsPerBar = arr_3_2.forEach();
-        //     console.log(arr_3_2);
-        //     break;
+            // case 'value_3+2':
+            //     let arr_3_2 = [1, 1, 1, 2, 3];
+            //     metronome.beatsPerBar = arr_3_2.forEach();
+            //     console.log(arr_3_2);
+            //     break;
     }
 })
