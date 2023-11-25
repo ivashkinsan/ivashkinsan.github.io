@@ -1269,6 +1269,41 @@ let zaychik_i_kapusta = [{
 }
 ];
 
+let last_christmas = [{
+    all: 73,
+    text: 'Как в сказке придет новый год',
+    formula: ['LE', 0, 'LE', 'YO', 0, 'ZO', 'LE', 'LE', 'WI', 'YO']
+},
+{
+    text: 'Миллионы огней на елках зажжет,',
+    formula: ['ZO', 'ZO', 'LE', 'LE', 'WI', 0, 'YO', 0, 'YO', 'TI', 'YO', 'TI', 'RA']
+},
+{
+    text: 'Я вижу всех старых друзей',
+    formula: ['WI', 0, 'WI', 0, 'LE', 0, 'RA', 'WI', 'WI', 'NA', 'LE']
+},
+{
+    text: 'Сегодня мы вместе, мы вместе',
+    formula: ['YO', 'TI', 'YO', 'TI', 'TI', 0, 'YO', 'TI', 'TI', 0, 'ZO']
+},
+{
+    text: 'Мы желаем любви в новый год,',
+    formula: ['LE', 0, 'LE', 'LE', 0, 'YO', 0, 'ZO', 'LE', 'LE', 'WI', 'YO']
+},
+{
+    text: 'Знаем счастье придет и нам повезет.',
+    formula: ['ZO', 'ZO', 'LE', 'LE', 'WI', 0, 'YO', 0, 'YO', 'TI', 'YO', 'TI', 'RA']
+},
+{
+    text: 'Мы рядом за шумным столом,',
+    formula: ['WI', 0, 'WI', 0, 'LE', 0, 'RA', 'WI', 'WI', 'NA', 'LE']
+},
+{
+    text: 'Сегодня мы вместе, мы вместе',
+    formula: ['YO', 'TI', 'YO', 'TI', 'TI', 0, 'YO', 'TI', 'TI', 0, 'ZO']
+}
+];
+
 
 // с днем рождения, ла кукарача, спят усталые игрушки
 // миноры - калинка
@@ -1550,6 +1585,11 @@ let full_menu = [{
     name: 'Зайчик и капуста',
     arr: zaychik_i_kapusta,
     matrix: ['ZO', 'YO', 'WI', 'ZO_up',],
+},
+{
+    name: 'Рождество',
+    arr: last_christmas,
+    matrix: ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA',],
 },
 
 
