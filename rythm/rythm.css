@@ -359,3 +359,35 @@ body {
     background: var(--background);
     z-index: 999;
 }
+
+
+
+/* resize============================================================== */
+.resizable {
+    position: absolute;
+    background-color: aqua;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+}
+.resizer {
+    /* All resizers are positioned absolutely inside the element */
+    position: absolute;
+}
+
+/* Placed at the right side */
+.resizer-r {
+    cursor: col-resize;
+    height: 100%;
+    right: 0;
+    top: 0;
+    width: 5px;
+}
+
+/* Placed at the bottom side */
+.resizer-b {
+    bottom: 0;
+    cursor: row-resize;
+    height: 5px;
+    left: 0;
+    width: 100%;
+}

@@ -40,7 +40,8 @@ let add_width_and_height_attr = function () {
     for (let item of click_items) {
         // item.style.width = item.clientWidth + 'px';
         // item.style.height = item.clientWidth + 'px';
-        // item.setAttribute('draggable', true);
+        item.setAttribute('draggable', true);
+        item.setAttribute('resize', true);
         // console.log(item.attributes);
     }
 }
@@ -275,34 +276,6 @@ function clear_p() {
 
 let font_size = 6;
 
-// function addFontSize() {
-//     for (let item of p_numb) {
-
-//         switch (item.dataset.note) {
-//             case '1':
-//                 item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 1)`;
-//                 item.style.lineHeight = '70%';
-//                 break;
-//             case '2':
-//                 item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 2)`;
-//                 item.style.lineHeight = '70%';
-//                 break;
-//             case '4':
-//                 item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 3)`;
-//                 item.style.lineHeight = '70%';
-//                 break;
-//             case '8':
-//                 item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 5)`;
-//                 item.style.lineHeight = '100%';
-//                 break;
-//             case '16':
-//                 item.style.fontSize = `calc((${font_size}vw + ${font_size}vh)/ 5)`;
-//                 item.style.lineHeight = '70%';
-//                 break;
-
-//         }
-//     }
-// }
 
 function customFontSize(e) {
     for (let item of p_numb) {
@@ -310,8 +283,6 @@ function customFontSize(e) {
     }
 }
 
-// addFontNote();
-// addFontSize();
 
 function monitoringStart(all) {
 
@@ -349,31 +320,6 @@ document.querySelector('.button_space').onclick = function () {
         item.classList.toggle('space');
     }
 }
-
-
-
-// двойного клика на кнопке
-// function speedCalculationProporzion(e) {
-//     for (let item of p_numb) {
-//         switch (item.dataset.note) {
-//             case '1':
-//                 item.innerHTML = e * 1 + '/' + e;
-//                 break;
-//             case '2':
-//                 item.innerHTML = e / 2 + '/' + e;
-//                 break;
-//             case '4':
-//                 item.innerHTML = e / 4 + '/' + e;
-//                 break;
-//             case '8':
-//                 item.innerHTML = e / 8 + '/' + e;
-//                 break;
-//             case '16':
-//                 item.innerHTML = e / 16 + '/' + e;
-//                 break;
-//         }
-//     }
-// }
 
 
 
@@ -656,29 +602,6 @@ document.querySelector('.button_clear_p').onclick = function () {
     }
 }
 
-// let number_i = 0;
-// for (let item of click_items) {
-//     // console.log(item);
-//     let newElement = document.createElement('p');
-//     newElement.classList.add('p_center');
-//     newElement.innerHTML = number_i;
-//     number_i++;
-//     item.append(newElement);
-
-
-//     item.addEventListener('mousedown', function (elem) {
-//         console.log('mousedown');
-//         // console.log(item);
-//         elem.stopPropagation();
-//     });
-
-//     item.addEventListener('mouseup', function (elem) {
-//         console.log('mouseup');
-//         // console.log(item);
-//         elem.stopPropagation();
-//     });
-
-// }
 
 // активность правой кнопки мыши ---------------------------------------------------------------------
 for (let item of click_items) {
@@ -854,66 +777,8 @@ function del_context_menu(elem) {
     elem.dataset.contextmenu = 'false';
     elem.classList.remove('background');
 }
-// запись во все дивы нового элемента-кнопки [-3-]
-// for (let item of click_items) {
-//     // console.log(item);
-//     let newElement = document.createElement('p');
-//     newElement.classList.add('plus_one');
-//     newElement.innerHTML = '[-3-]';
-//     item.append(newElement);
-// }
-
-// запись во все дивы нового элемента-кнопки [+]
-// for (let item of click_items) {
-//     // console.log(item);
-//     let newElement = document.createElement('p');
-//     newElement.classList.add('plus');
-//     newElement.innerHTML = '[+]';
-//     item.append(newElement);
-// }
 
 
-
-
-// let plus_one_all_elements = document.querySelectorAll('.plus_one');
-// for (let item of plus_one_all_elements) {
-//     item.addEventListener('click', function (elem) {
-//         console.log(item);
-//         elem.stopPropagation();
-//     })
-// }
-
-// ------------------------------------------------------------------------------------------------
-
-
-//-----------------experiment
-// document.querySelector('body').onclick = function () {
-//     let clone = document.querySelector('.border_active').cloneNode(true);
-//     let parent = document.querySelector('.border_active').parentNode;
-//     // console.log(clone);
-//     // console.log(parent);
-//     // console.log(clone.children[1]);
-//     // console.log(clone.children[2]);
-//     // console.log(clone.children.length);
-//     // document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2]);
-
-//     switch (clone.children.length) {
-//         case 3:
-//             document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2]);
-//             break;
-//         case 4:
-//             document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2], clone.children[3]);
-//             break;
-//         case 5:
-//             document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2], clone.children[3], clone.children[4]);
-//             break;
-//         case 6:
-//             document.querySelector('.border_active').replaceWith(clone.children[1], clone.children[2], clone.children[3], clone.children[4], clone.children[5]);
-//             break;
-//     }
-
-//     // document.querySelector('.border_active').remove();
-// }
 
 //функция подсветки скоростей
 
@@ -990,8 +855,6 @@ document.querySelector('.plus_ball').onclick = function () {
     searsh_all_elem();
 
 }
-
-
 
 
 
