@@ -247,11 +247,11 @@ let kurochka = [{
 },
 {
     text: 'А за ней ребятки',
-    formula: ['ZO', 'ZO', 'RA', 'TI', 'YO', 'YO']
+    formula: ['ZO', 'ZO', 'RA', 'TI', 'YO', 0, 'YO']
 },
 {
     text: 'жёлтые цыплятки.',
-    formula: ['ZO', 'ZO', 'RA', 'TI', 'YO', 'YO']
+    formula: ['ZO', 'ZO', 'RA', 'TI', 'YO', 0, 'YO']
 },
 {
     text: 'Ко-ко-ко, ко-ко-ко,',
