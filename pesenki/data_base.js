@@ -263,11 +263,11 @@ let kurochka = [{
 },
 {
     text: 'Лапками гребите,',
-    formula: ['ZO', 'ZO', 'RA', 'TI', 'YO', 'YO']
+    formula: ['ZO', 'ZO', 'RA', 'TI', 'YO', 0, 'YO']
 },
 {
     text: 'зёрнышки ищите.',
-    formula: ['ZO', 'ZO', 'RA', 'TI', 'YO', 'YO']
+    formula: ['ZO', 'ZO', 'RA', 'TI', 'YO', 0, 'YO']
 },
 {
     text: 'Съели толстого жука,',
@@ -279,11 +279,11 @@ let kurochka = [{
 },
 {
     text: 'Выпили водицы',
-    formula: ['ZO', 'ZO', 'RA', 'TI', 'YO', 'YO']
+    formula: ['ZO', 'ZO', 'RA', 'TI', 'YO', 0, 'YO']
 },
 {
     text: 'полное корытце.',
-    formula: ['ZO', 'ZO', 'RA', 'TI', 'YO', 'YO']
+    formula: ['ZO', 'ZO', 'RA', 'TI', 'YO', 0, 'YO']
 }
 ];
 
