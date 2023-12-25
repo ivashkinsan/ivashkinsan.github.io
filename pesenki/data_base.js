@@ -1304,7 +1304,20 @@ let last_christmas = [{
 }
 ];
 
-
+let ogorodnaya_horovodnaya = [{
+    all: 37,
+    text: 'Есть у нас огород, там своя морковь растет.',
+    formula: ['ZO_up', 'ZO_up', 'ZO_up', 0, 'NA', 'WI', 'LE', 0, 'ZO_up', 'ZO_up', 'ZO_up', 'ZO_up', 'NA', 'WI', 'LE']
+},
+{
+    text: 'Вот такой ширины, вот такой вышины!',
+    formula: ['YO', 'YO', 'LE', 0, 'WI', 'WI', 'NA', 0, 'WI', 'WI', 'LE', 0, 'YO', 'YO', 'YO']
+},
+{
+    text: 'Вот такой ширины, вот такой вышины!',
+    formula: ['YO', 'YO', 'LE', 0, 'WI', 'WI', 'NA', 0, 'WI', 'WI', 'LE', 0, 'YO', 'YO', 'YO']
+},
+];
 // с днем рождения, ла кукарача, спят усталые игрушки
 // миноры - калинка
 
@@ -1590,6 +1603,11 @@ let full_menu = [{
     name: 'Рождество',
     arr: last_christmas,
     matrix: ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI', 'NA',],
+},
+{
+    name: 'Огородная хороводная',
+    arr: ogorodnaya_horovodnaya,
+    matrix: ['YO', 'LE', 'WI', 'NA', 'ZO_up'],
 },
 
 
