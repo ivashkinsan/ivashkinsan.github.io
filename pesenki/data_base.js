@@ -1316,11 +1316,124 @@ let ogorodnaya_horovodnaya = [{
 {
     text: 'Вот такой ширины, вот такой вышины!',
     formula: ['YO', 'YO', 'LE', 0, 'WI', 'WI', 'NA', 0, 'WI', 'WI', 'LE', 0, 'YO', 'YO', 'YO']
-},
+}
 ];
-// с днем рождения, ла кукарача, спят усталые игрушки
-// миноры - калинка
+let ten = [{
+    all: 28,
+    text: 'Даже в очень ясный день',
+    formula: ['ZO', 'ZO', 'YO', 'YO', 'LE', 'LE', 'ZO']
+},
+{
+    text: 'Под крыльцом густая тень,',
+    formula: ['ZO', 'ZO', 'YO', 'YO', 'LE', 'LE', 'ZO']
+},
+{
+    text: 'Солнце топит снег и лёд,',
+    formula: ['WI', 'WI', 'TI', 'TI', 'YO', 'YO', 'RA']
+},
+{
+    text: 'А туда не достаёт',
+    formula: ['ZO', 'ZO', 'RA', 'TI', 'YO', 'YO', 'YO']
+}
+];
 
+let wishenki = [{
+    all: 26,
+    text: 'На участок вышли мы',
+    formula: ['ZO_up', 'ZO_up', 'NA', 'WI', 'ZO_up', 0, 'LE', 'LE']
+},
+{
+    text: 'С саженцами-вишнями.',
+    formula: ['NA', 'NA', 'WI', 'LE', 'WI', 0, 'YO', 'YO']
+},
+{
+    text: 'Там мы их сажали,',
+    formula: ['WI', 'ZO_up', 'NA', 'WI', 'LE', 0, 'LE']
+},
+{
+    text: 'Землю поливали.',
+    formula: ['LE', 'NA', 'WI', 'LE', 'YO', 0, 'YO']
+}
+];
+
+let korova = [{
+    all: 26,
+    text: 'Вот пасётся на лужку',
+    formula: ['WI', 'WI', 'LE', 'WI', 'YO', 'YO', 'YO']
+},
+{
+    text: 'Рыжая корова.',
+    formula: ['WI', 'WI', 'LE', 'WI', 'YO', 0, 'YO']
+},
+{
+    text: 'Даст она нам к вечерку',
+    formula: ['WI', 'WI', 'LE', 'WI', 'YO', 'YO', 'YO']
+},
+{
+    text: 'Молока парного.',
+    formula: ['WI', 'WI', 'LE', 'WI', 'YO', 0, 'YO']
+}
+];
+
+let stuji = [{
+    all: 30,
+    text: 'Наконец настали стужи,',
+    formula: ['YO_up', 'YO_up', 'TI_up', 'TI_up', 'RA_up', 'RA_up', 'ZO_up', 'ZO_up']
+},
+{
+    text: 'На дворе замёрзли лужи.',
+    formula: ['NA', 'NA', 'WI', 'WI', 'LE', 'LE', 'YO', 'YO']
+},
+{
+    text: 'И, чирикая, детей',
+    formula: ['YO', 'YO', 'LE', 'LE', 'WI', 'WI', 'NA']
+},
+{
+    text: 'Поджидает воробей.',
+    formula: ['ZO_up', 'ZO_up', 'RA_up', 'RA_up', 'TI_up', 'TI_up', 'YO_up']
+}
+];
+
+let edet_voz = [{
+    all: 24,
+    text: 'Едет воз без колёс,',
+    formula: ['YO', 'LE', 'WI', 0, 'YO', 'LE', 'WI']
+},
+{
+    text: 'Едут, едут сани.',
+    formula: ['ZO_up', 'NA', 'WI', 'LE', 'YO', 0, 'YO']
+},
+{
+    text: 'Что привёз Дед Мороз,',
+    formula: ['YO', 'LE', 'WI', 0, 'YO', 'LE', 'WI']
+},
+{
+    text: 'Догадайтесь сами.',
+    formula: ['ZO_up', 'NA', 'WI', 'LE', 'YO', 0, 'YO']
+}
+];
+
+let oy_dudu = [{
+    all: 28,
+    text: 'Ой ду-ду, ду-ду, ду-ду,',
+    formula: ['ZO_up', 'ZO_up', 'WI', 'WI', 'YO', 'YO', 'ZO']
+},
+{
+    text: 'Потерял пастух дуду.',
+    formula: ['RA', 'YO', 'TI', 'LE', 'YO', 'YO', 'YO']
+},
+{
+    text: 'А я дудочку нашла,',
+    formula: ['ZO_up', 'ZO_up', 'WI', 'WI', 'YO', 'YO', 'ZO']
+},
+{
+    text: 'Пастушку её дала.',
+    formula: ['RA', 'YO', 'TI', 'LE', 'YO', 'YO', 'YO']
+}
+];
+// с днем рождения, ла кукарача, спят усталые игрушки, ладушки
+// миноры - калинка 
+//
 
 // let esli_dobriy_ti = [
 //     { all: 63, text: 'вступление', formula: ['ZO', 'RU', 'TU', 0, 'ZO', 'RU', 'TU', 0, 'LU', 'YO', 'RU'] },
@@ -1608,6 +1721,36 @@ let full_menu = [{
     name: 'Огородная хороводная',
     arr: ogorodnaya_horovodnaya,
     matrix: ['YO', 'LE', 'WI', 'NA', 'ZO_up'],
+},
+{
+    name: 'Тень',
+    arr: ten,
+    matrix: ['ZO', 'RA', 'TI', 'YO', 'LE', 'WI'],
+},
+{
+    name: 'Вишенки',
+    arr: wishenki,
+    matrix: ['YO', 'LE', 'WI', 'NA', 'ZO_up'],
+},
+{
+    name: 'Корова',
+    arr: korova,
+    matrix: ['YO', 'LE', 'WI'],
+},
+{
+    name: 'Наконец настали стужи',
+    arr: stuji,
+    matrix: ['YO', 'LE', 'WI', 'NA', 'ZO_up', 'RA_up', 'TI_up', 'YO_up'],
+},
+{
+    name: 'Едет воз',
+    arr: edet_voz,
+    matrix: ['YO', 'LE', 'WI', 'NA', 'ZO_up'],
+},
+{
+    name: 'Ой ду-ду',
+    arr: oy_dudu,
+    matrix: ['ZO', 'RA', 'TI', 'YO', 'WI', 'ZO_up'],
 },
 
 
