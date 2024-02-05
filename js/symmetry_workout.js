@@ -119,7 +119,7 @@ let buttons = document.querySelectorAll('.button');
 let circles = document.querySelectorAll('.circle');
 let answerArr;
 
-let ti;
+
 // let symmetry_2;
 // let symmetry_3;
 // let symmetry_4;
@@ -502,9 +502,9 @@ let add_label_checkbox = function (start_ti) {
 let startOneNote;
 let x;
 let timer_for_all_12_correct_answer;
-let startWork = function () {
+// let ti;
+let startWork = function (ti) {
   clear_ledOn();
-
   if (startNoteArr.length > 0) {
     x = startNoteArr.shift();
     startOneNote = Number(x);
@@ -515,297 +515,25 @@ let startWork = function () {
     // setTimeout(create_12_elem, 3000);
     timer_for_all_12_correct_answer = true;
   }
-
-
   ti_repeat_one = startOneNote;
-  // console.log(ti_repeat_one);
   let startTwoNote = startOneNote + 12;
   keys[startOneNote].classList.toggle('ledON');
-
   ti = startOneNote;
-
   add_label_checkbox(ti);
   add_windows_facty();
-
   create_sphere(string_to_arr(all_balls_obj[symBtnLevel.dataset.number]));
-
-  // СИММЕТРИИ
-  if (symBtnLevel.dataset.number == 'symmetry_2') {
+  full_answer(ti, keys[startTwoNote]);
+  symBtnLevelGO = full_answer_obj[symBtnLevel.dataset.number];
+  if (two_note_obj[symBtnLevel.dataset.number] === true) {
     keys[startTwoNote].classList.toggle('ledON');
-    // playNotesAnsver(keys[startTwoNote]);
-    symBtnLevelGO = [(ti + 1), (ti + 7), (ti + 13)];
   }
-  if (symBtnLevel.dataset.number == 'symmetry_3') {
+  if (typeof two_note_obj[symBtnLevel.dataset.number] == 'number') {
+    startTwoNote = startOneNote + two_note_obj[symBtnLevel.dataset.number];
     keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 5), (ti + 9), (ti + 13)];
   }
-  if (symBtnLevel.dataset.number == 'symmetry_4') {
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 4), (ti + 7), (ti + 10), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'symmetry_6') {
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 7), (ti + 9), (ti + 11), (ti + 13)];
-  };
-
-  // КОМБИНАЦИИ ЦЕЛОТОНОВЫХ ГАММ
-  if (symBtnLevel.dataset.number == 'melodic_minor') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 6), (ti + 8), (ti + 10), (ti + 12)];
-  }
-  if (symBtnLevel.dataset.number == 'ionian') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 6), (ti + 8), (ti + 10), (ti + 12)];
-  }
-  if (symBtnLevel.dataset.number == 'lydian') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 7), (ti + 8), (ti + 10), (ti + 12)];
-  }
-  if (symBtnLevel.dataset.number == 'lydian_aug') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 7), (ti + 9), (ti + 10), (ti + 12)];
-  }
-  if (symBtnLevel.dataset.number == 'WH') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 6), (ti + 7), (ti + 9), (ti + 10), (ti + 12)];
-  }
-
-  // ТЕТРАХОРДЫ
-  if (symBtnLevel.dataset.number == 'maj_tetrachord') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 6)];
-  }
-  if (symBtnLevel.dataset.number == 'min_tetrachord') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 6)];
-  }
-  if (symBtnLevel.dataset.number == 'frig_tetrachord') {
-    symBtnLevelGO = [(ti + 1), (ti + 2), (ti + 4), (ti + 6)];
-  }
-  if (symBtnLevel.dataset.number == 'harm_tetrachord') {
-    symBtnLevelGO = [(ti + 1), (ti + 2), (ti + 5), (ti + 6)];
-  }
-  if (symBtnLevel.dataset.number == 'whole_tetrachord') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 7)];
-  }
-
-  // ТРЕЗВУЧИЯ
-  if (symBtnLevel.dataset.number == 'aug_triads') {
-    symBtnLevelGO = [(ti + 1), (ti + 5), (ti + 9)];
-  }
-  if (symBtnLevel.dataset.number == 'maj_triads') {
-    symBtnLevelGO = [(ti + 1), (ti + 5), (ti + 8)];
-  }
-  if (symBtnLevel.dataset.number == 'min_triads') {
-    symBtnLevelGO = [(ti + 1), (ti + 4), (ti + 8)];
-  }
-  if (symBtnLevel.dataset.number == 'dim_triads') {
-    symBtnLevelGO = [(ti + 1), (ti + 4), (ti + 7)];
-  }
-  if (symBtnLevel.dataset.number == 'maj_add6_triads') {
-    symBtnLevelGO = [(ti + 1), (ti + 5), (ti + 8), (ti + 10)];
-  }
-  if (symBtnLevel.dataset.number == 'min_add6_triads') {
-    symBtnLevelGO = [(ti + 1), (ti + 4), (ti + 8), (ti + 10)];
-  }
-  if (symBtnLevel.dataset.number == 'sus2_triads') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 8)];
-  }
-  if (symBtnLevel.dataset.number == 'sus4_triads') {
-    symBtnLevelGO = [(ti + 1), (ti + 6), (ti + 8)];
-  }
-  if (symBtnLevel.dataset.number == 'maj_add2_triads') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 8)];
-  }
-  if (symBtnLevel.dataset.number == 'min_add2_triads') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 8)];
-  }
-  if (symBtnLevel.dataset.number == 'maj_add4_triads') {
-    symBtnLevelGO = [(ti + 1), (ti + 5), (ti + 6), (ti + 8)];
-  }
-  if (symBtnLevel.dataset.number == 'min_add4_triads') {
-    symBtnLevelGO = [(ti + 1), (ti + 4), (ti + 6), (ti + 8)];
-  }
-
-  //ИНТЕРВАЛЫ
-  if (symBtnLevel.dataset.number == 'm2') {
-    symBtnLevelGO = [(ti + 1), (ti + 2)];
-  }
-  if (symBtnLevel.dataset.number == 'B2') {
-    symBtnLevelGO = [(ti + 1), (ti + 3)];
-  }
-  if (symBtnLevel.dataset.number == 'm3') {
-    symBtnLevelGO = [(ti + 1), (ti + 4)];
-  }
-  if (symBtnLevel.dataset.number == 'B3') {
-    symBtnLevelGO = [(ti + 1), (ti + 5)];
-  }
-  if (symBtnLevel.dataset.number == 'ch4') {
-    symBtnLevelGO = [(ti + 1), (ti + 6)];
-  }
-  if (symBtnLevel.dataset.number == 'TTT') {
-    symBtnLevelGO = [(ti + 1), (ti + 7)];
-  }
-  if (symBtnLevel.dataset.number == 'ch5') {
-    symBtnLevelGO = [(ti + 1), (ti + 8)];
-  }
-  if (symBtnLevel.dataset.number == 'm6') {
-    symBtnLevelGO = [(ti + 1), (ti + 9)];
-  }
-  if (symBtnLevel.dataset.number == 'B6') {
-    symBtnLevelGO = [(ti + 1), (ti + 10)];
-  }
-  if (symBtnLevel.dataset.number == 'm7') {
-    symBtnLevelGO = [(ti + 1), (ti + 11)];
-  }
-  if (symBtnLevel.dataset.number == 'B7') {
-    symBtnLevelGO = [(ti + 1), (ti + 12)];
-  }
-
-  // диатоника мажора
-  if (symBtnLevel.dataset.number == 'TTT__maj') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 7), (ti + 8), (ti + 10), (ti + 12), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'maj__maj') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 6), (ti + 8), (ti + 10), (ti + 12), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'maj__min') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 6), (ti + 8), (ti + 10), (ti + 11), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'min__min') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 6), (ti + 8), (ti + 10), (ti + 11), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'min__frig') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 6), (ti + 8), (ti + 9), (ti + 11), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'frig__frig') {
-    symBtnLevelGO = [(ti + 1), (ti + 2), (ti + 4), (ti + 6), (ti + 8), (ti + 9), (ti + 11), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'frig__TTT') {
-    symBtnLevelGO = [(ti + 1), (ti + 2), (ti + 4), (ti + 6), (ti + 7), (ti + 9), (ti + 11), (ti + 13)];
-  }
-
-  // диатоника мелодического минора
-  if (symBtnLevel.dataset.number == 'min__maj') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 6), (ti + 8), (ti + 10), (ti + 12), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'frig__min') {
-    symBtnLevelGO = [(ti + 1), (ti + 2), (ti + 4), (ti + 6), (ti + 8), (ti + 10), (ti + 11), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'TTTT__maj') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 7), (ti + 9), (ti + 10), (ti + 12), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'TTT__min') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 7), (ti + 8), (ti + 10), (ti + 11), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'maj__frig') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 6), (ti + 8), (ti + 9), (ti + 11), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'min__TTT') {
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 6), (ti + 7), (ti + 9), (ti + 11), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'frig__TTTT') {
-    symBtnLevelGO = [(ti + 1), (ti + 2), (ti + 4), (ti + 5), (ti + 7), (ti + 9), (ti + 11), (ti + 13)];
-  }
-
-  // искусственные лады
-  if (symBtnLevel.dataset.number == 'iscustv_melodic_minor') {
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 6), (ti + 8), (ti + 10), (ti + 12), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'iscustv_minor_harmony') {
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 4), (ti + 6), (ti + 8), (ti + 9), (ti + 12), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'iscustv_major_harmony') {
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 6), (ti + 8), (ti + 9), (ti + 12), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'iscustv_major_melodic') {
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 6), (ti + 8), (ti + 9), (ti + 11), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'iscustv_2_major_harmony') {
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 2), (ti + 5), (ti + 6), (ti + 8), (ti + 9), (ti + 12), (ti + 13)];
-  }
-
-  if (symBtnLevel.dataset.number == 'maj_aug_chord') {
-    symBtnLevelGO = [(ti + 1), (ti + 5), (ti + 9), (ti + 12)];
-  }
-  if (symBtnLevel.dataset.number == 'maj_original_chord') {
-    symBtnLevelGO = [(ti + 1), (ti + 5), (ti + 8), (ti + 12)];
-  }
-  if (symBtnLevel.dataset.number == 'seventh_chord') {
-    symBtnLevelGO = [(ti + 1), (ti + 5), (ti + 8), (ti + 11)];
-  }
-  if (symBtnLevel.dataset.number == 'minor_maj_chord') {
-    symBtnLevelGO = [(ti + 1), (ti + 4), (ti + 8), (ti + 12)];
-  }
-  if (symBtnLevel.dataset.number == 'minor_seventh_chord') {
-    symBtnLevelGO = [(ti + 1), (ti + 4), (ti + 8), (ti + 11)];
-  }
-  if (symBtnLevel.dataset.number == 'half_diminished_chord') {
-    symBtnLevelGO = [(ti + 1), (ti + 4), (ti + 7), (ti + 11)];
-  }
-  if (symBtnLevel.dataset.number == 'diminished_chord') {
-    symBtnLevelGO = [(ti + 1), (ti + 4), (ti + 7), (ti + 10)];
-  }
-
-
-  if (symBtnLevel.dataset.number == 'B2_in_2') {
-    startTwoNote = startOneNote + 2;
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 2), (ti + 3)];
-  }
-  if (symBtnLevel.dataset.number == 'B3_in_2') {
-    startTwoNote = startOneNote + 4;
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5)];
-  }
-  if (symBtnLevel.dataset.number == 'TTT_in_2') {
-    startTwoNote = startOneNote + 6;
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 4), (ti + 7)];
-  }
-  if (symBtnLevel.dataset.number == 'm6_in_2') {
-    startTwoNote = startOneNote + 8;
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 5), (ti + 9)];
-  }
-  if (symBtnLevel.dataset.number == 'm7_in_2') {
-    startTwoNote = startOneNote + 10;
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 6), (ti + 11)];
-  }
-  if (symBtnLevel.dataset.number == 'ch8_in_2') {
-    startTwoNote = startOneNote + 12;
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 7), (ti + 13)];
-  }
-  if (symBtnLevel.dataset.number == 'B9_in_2') {
-    startTwoNote = startOneNote + 14;
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 8), (ti + 15)];
-  }
-
-  if (symBtnLevel.dataset.number == 'м3_in_3') {
-    startTwoNote = startOneNote + 3;
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 2), (ti + 3), (ti + 4)];
-  }
-  if (symBtnLevel.dataset.number == 'ТТТ_in_3') {
-    startTwoNote = startOneNote + 6;
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 3), (ti + 5), (ti + 7)];
-  }
-  if (symBtnLevel.dataset.number == 'B6_in_3') {
-    startTwoNote = startOneNote + 9;
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 4), (ti + 7), (ti + 10)];
-  }
-  if (symBtnLevel.dataset.number == 'ch8_in_3') {
-    startTwoNote = startOneNote + 12;
-    keys[startTwoNote].classList.toggle('ledON');
-    symBtnLevelGO = [(ti + 1), (ti + 5), (ti + 9), (ti + 13)];
-  }
-
-  // console.log(startNoteArr);
-  // console.log(startOneNote);
 };
+
+
 
 //ПОИСК ВЫБРАННЫХ ЭЛЕМЕНТОВ ============================================================================================================
 let ledElement;
@@ -1385,69 +1113,3 @@ document.querySelector('.balls_button').onclick = function () {
   balls_container.classList.toggle('show_flex');
 }
 
-
-// интервалы сортировка по цвету
-// let row_for_copy = document.querySelector('.row_for_copy');
-// let interval_container = document.querySelector('.interval_container');
-// let arr_int_label = ['м2', 'Б2', 'м3', 'Б3', 'ч4', 'ТТТ', 'ч5', 'м6', 'Б6', 'м7', 'Б7'];
-// let matrix_int_table = [
-//   [
-//     [0, 0, 1, 0, 0, 0, 1],
-//     [1, 1, 0, 1, 1, 1, 0],
-//     [1, 1, 1, 1, 1],
-//     [0, 0, 0, 0, 0]
-//   ],
-//   [
-//     [1, 1, 0, 1, 1, 1, 0],
-//     [0, 0, 1, 0, 0, 0, 1],
-//     [0, 1, 0, 0, 1],
-//     [1, 0, 1, 1, 0]
-//   ],
-//   [
-//     [0, 1, 1, 0, 0, 1, 1],
-//     [1, 0, 0, 1, 1, 0, 0],
-//     [1, 0, 1, 1, 0],
-//     [0, 1, 0, 0, 1]
-//   ],
-//   [
-//     [1, 0, 0, 1, 1, 0, 0],
-//     [0, 1, 1, 0, 0, 1, 1],
-//     [1, 1, 0, 1, 1],
-//     [0, 0, 1, 0, 0]
-//   ]
-
-// ];
-// копирование и добавление 11 нод
-// for (let i = 0; i < 10; i++) {
-//   let new_clone = row_for_copy.cloneNode(true);
-//   new_clone.children[0].innerHTML = arr_int_label[i + 1];
-//   interval_container.append(new_clone);
-// }
-
-// let create_line_box = function (boo) {
-//   let new_line_box = document.createElement('div');
-//   new_line_box.classList.add('line_box');
-//   let new_line = document.createElement('div');
-//   new_line.classList.add('line');
-//   let new_circle = document.createElement('div');
-//   new_circle.classList.add('circle');
-//   if (boo == 0) {
-//     new_circle.classList.add('hide_circle');
-//   }
-//   new_line.append(new_circle);
-//   new_line_box.append(new_line);
-//   return new_line_box;
-// };
-
-// for (let i = 0; i < matrix_int_table.length; i++) {
-//   for (let j = 0; j < matrix_int_table[i].length; j++) {
-//     create_line_box(matrix_int_table[i][j]);
-//     // console.log(matrix_int_table[i][j]);
-//   }
-// }
-
-
-// console.log(new_line_box);
-// console.log(matrix_int_table.m2)
-// console.log(new_line);
-// console.log(new_circle);

@@ -4,7 +4,7 @@ dragElement(document.getElementById(("drag_elem_2")));
 dragElement(document.getElementById(("drag_elem_3")));
 
 function dragElement(elmnt) {
-    console.log(elmnt);
+    // console.log(elmnt);
     var pos1 = 0,
         pos2 = 0,
         pos3 = 0,
@@ -18,7 +18,7 @@ function dragElement(elmnt) {
     // }
     elmnt.onmousedown = dragMouseDown;
 
-    console.log(elmnt.onmousedown);
+    // console.log(elmnt.onmousedown);
 
 
     function dragMouseDown(e) {
@@ -55,4 +55,4 @@ function dragElement(elmnt) {
         document.ontouchmove = null;
     }
 }
-console.log(document);
+// console.log(document);

@@ -10,7 +10,7 @@ let create_buttons_background = function (input) {
     row.classList.add('row');
 
     let length_row = input.containerBtn.split(' ');
-    console.log(length_row);
+    // console.log(length_row);
 
     if (input.pre_line_elem) {
         let pre_line_elem = document.createElement('div');
@@ -739,7 +739,7 @@ let all_slide = [{
 let slider_cont = document.querySelector('.slider');
 let create_slider = function (data_arr) {
     for (let i = 0; i < data_arr.length; i++) {
-        console.log(data_arr[i]);
+        // console.log(data_arr[i]);
         let label = document.createElement('div');
         label.classList.add('label_slider');
         label.textContent = data_arr[i].name;
