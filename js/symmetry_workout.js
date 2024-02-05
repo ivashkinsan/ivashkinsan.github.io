@@ -248,6 +248,14 @@ let arr_element_position_for_column = {
   min_add2_triads: ['C F G 0 D E A', 'Eb Bb B 0 Db Gb Ab'],
   maj_add4_triads: ['C F G 0 D E A', 'Gb Bb B 0 Db Eb Ab'],
   min_add4_triads: ['C F G 0 D E A', 'Eb Bb B 0 Db Gb Ab'],
+  // септ-аккорды
+  maj_aug_chord: ['C F 0 D Gb G Bb', 'E A B 0 Db Eb Ab'],
+  maj_original_chord: ['C F 0 Gb G Bb B', 'D E A 0 Db Eb Ab'],
+  seventh_chord: ['C F 0 D E A', 'Eb Ab 0 Db Gb G Bb B'],
+  minor_maj_chord: ['C F 0 D E A', 'Db Gb Ab 0 Eb G Bb B'],
+  minor_seventh_chord: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  half_diminished_chord: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
+  diminished_chord: ['C G D A E B', 'Gb Db Ab Eb Bb F'],
   // деление на 2ч
   B2_in_2: ['C D F G A 0 E B', 'Db Gb Ab 0 Eb Bb'],
   B3_in_2: ['C F G 0 Db Ab 0 Gb', 'D A 0 Eb Bb 0 E B'],

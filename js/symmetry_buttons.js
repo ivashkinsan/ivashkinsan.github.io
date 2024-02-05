@@ -522,7 +522,7 @@ let seventh_chord = {
     name: 'seventh_chord',
     pre_line_elem: 'X7',
     containerBtn: 'g w w w g w w g w w g w t',
-    post_line_elem: 'Б3 + Б3 + м3 = м7',
+    post_line_elem: 'Б3 + м3 + м3 = м7',
     balls_token: ''
 }
 let minor_maj_chord = {
