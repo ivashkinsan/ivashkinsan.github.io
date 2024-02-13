@@ -189,7 +189,7 @@ let all_answer = {
         '8': 'B',
     },
 }
-console.log(all_answer['C dur'])
+// console.log(all_answer['C dur']);
 
 
 
@@ -273,7 +273,7 @@ let create_column_in_select = function (matrix, chord_position, label_text, posi
 
         // column.dataset.answer = chord_position[i];
         data_answer.push(matrix[chord_position[i]]);
-        console.log('data_answer' + data_answer);
+        // console.log('data_answer' + data_answer);
         column.dataset.name = data_answer.join(' ');
     }
 
@@ -307,3 +307,37 @@ contains.append(create_big_tonality_contain('Ab dur', all_answer['Ab dur']));
 contains.append(create_big_tonality_contain('A dur', all_answer['A dur']));
 contains.append(create_big_tonality_contain('Bb dur', all_answer['Bb dur']));
 contains.append(create_big_tonality_contain('B dur', all_answer['B dur']));
+
+
+window.addEventListener('storage', (e) => {
+    console.log('change');
+    document.querySelector('.out').textContent = localStorage.getItem('My obj');
+})
+
+
+
+localStorage.setItem('Data', 5);
+console.log(localStorage.getItem('Data'));
+
+const a = ['a', 'b', 'c', 'd', 'e'];
+localStorage.setItem('My let', JSON.stringify(a));
+let b = localStorage.getItem('My let');
+b = JSON.parse(b);
+console.log(b);
+console.log(typeof b);
+console.log(b[0]);
+
+
+
+const c = {
+    hello: 5,
+    k: 2,
+    4: 'HI'
+};
+localStorage.setItem('My obj', JSON.stringify(c));
+let d = localStorage.getItem('My obj');
+d = JSON.parse(d);
+console.log(d);
+console.log(typeof d);
+
+
