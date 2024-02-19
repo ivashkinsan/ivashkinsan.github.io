@@ -1,12 +1,67 @@
-let training_var_obj = {
-    1: ['G1', 'B1', 'A2'],
-    2: ['E3', 'B3', 'F4']
-};
+let proba = [];
 
-
-function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+let create_full_arr_training = function () {
+    for (let i = 1; i <= 42; i++) {
+        proba.push(i);
     }
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+    shuffle(proba);
 }
+
+
+let training_var_obj = {
+    1: ['G1', 'D2', 'A2'],
+    2: ['E3', 'B3', 'F4'],
+    3: ['G1', 'D2', 'A2', 'E3', 'B3', 'F4'],
+    4: ['C1', 'D1', 'E1'],
+    5: ['F1', 'G1', 'A1', 'B1'],
+    6: ['C2', 'D2', 'E2'],
+    7: ['F2', 'G2', 'A2', 'B2'],
+    8: ['C3', 'D3', 'E3'],
+    9: ['F3', 'G3', 'A3', 'B3'],
+    10: ['C4', 'D4', 'E4'],
+    11: ['F4', 'G4', 'A4', 'B4'],
+    12: ['E3', 'G3', 'B3', 'D4', 'F4'],
+    13: ['G1', 'B1', 'D2', 'F2', 'A2'],
+
+    //одиночные ноты
+    14: ['C1'],
+    15: ['D1'],
+    16: ['E1'],
+    17: ['F1'],
+    18: ['G1'],
+    19: ['A1'],
+    20: ['B1'],
+
+    21: ['C2'],
+    22: ['D2'],
+    23: ['E2'],
+    24: ['F2'],
+    25: ['G2'],
+    26: ['A2'],
+    27: ['B2'],
+
+    28: ['C3'],
+    29: ['D3'],
+    30: ['E3'],
+    31: ['F3'],
+    32: ['G3'],
+    33: ['A3'],
+    34: ['B3'],
+
+    35: ['C4'],
+    36: ['D4'],
+    37: ['E4'],
+    38: ['F4'],
+    39: ['G4'],
+    40: ['A4'],
+    41: ['B4'],
+
+    42: ['C5']
+};

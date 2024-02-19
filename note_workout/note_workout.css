@@ -22,6 +22,24 @@ body {
   border: 10px solid #F4D6B1;
 }
 
+/* ===============================  СЧЕТЧИК  ========================== */
+.counter_winner{
+  position: absolute;
+  top: 1vh;
+  left: 1vh;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+color: #ffffff;
+font-size: 44px;
+width: 80px;
+height: 80px;
+border: 1px solid #ffffff;
+}
+
+
+
 .container_with_line_background {
   display: flex;
   flex-direction: column;
@@ -89,6 +107,21 @@ body {
   border: 0px solid rgba(255, 255, 255, 0);
 }
 
+/* ========================================== ПОДПИСИ ОКТАВ ===================================== */
+.container_with_keyboard_2 {
+  position: absolute;
+  display: flex;
+  flex-direction: column-reverse;
+
+  top: 10%;
+  bottom: 10%;
+  left: 1vw;
+  width: 0;
+  /* background-color: #F4D6B1; */
+  z-index: 999;
+}
+
+
 /* ========================================== КЛАВИАТУРА ===================================== */
 .container_with_keyboard {
   position: absolute;
@@ -142,9 +175,20 @@ body {
 }
 
 .keyb_elem {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
   border: 1px solid rgb(131, 131, 131);
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
+}
+
+.keyb_label{
+  font-family: Arial, Helvetica, sans-serif;
+  margin-right: 4px;
+}
+.rotate_180{
+  transform: rotate(180deg);
 }
 
 .white_key {
@@ -196,6 +240,10 @@ body {
 
 .led_right_answer{
   background-color: orange;
+}
+
+.led_false_answer{
+  background-color: rgb(221, 98, 107);
 }
 /* ========================================== НОТЫ ===================================== */
 
@@ -268,6 +316,10 @@ body {
 
 .add_bottom_margin {
   margin-top: 10vh;
+}
+.add_keyb2_margin {
+ top: 15%;
+ bottom: 5%;
 }
 
 .button_container>.range_width {

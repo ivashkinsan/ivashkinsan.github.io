@@ -3,7 +3,8 @@ let all_keyb_elem = document.querySelectorAll('.keyb_elem');
 let black_keys = document.querySelectorAll('.black_key');
 let white_keys = document.querySelectorAll('.white_key');
 // let all_keyb_elem = document.querySelectorAll('.keyb_elem');
-
+let counter_winner_box = document.querySelector('.counter_winner label');
+let counter_winner_numb = 0;
 let new_note_func = function () {
     let new_elem = document.createElement('div');
     new_elem.classList.add('note');
@@ -14,13 +15,10 @@ let new_note_func = function () {
 // генерация матрицы нот
 let generate_note_frame = function (obj_of_notes) {
     for (const [key, value] of Object.entries(obj_of_notes)) {
-        // console.log(`${key}: ${value}`);
         let left_line_start = 14;
         let new_arr_of_string = value.split(' ');
-        // console.log(new_arr_of_string);
         for (let i = 0; i < new_arr_of_string.length; i++) {
             all_line.forEach(function (elem) {
-                // console.log(elem.dataset.note == new_arr_of_string[i]);
                 if (elem.dataset.note == new_arr_of_string[i]) {
                     let new_el = new_note_func();
                     new_el.dataset.note = elem.dataset.note;
@@ -88,7 +86,6 @@ let add_ledon_class = function (value) {
                 item.classList.remove('led_on');
                 item.classList.remove('led_on_orange');
                 if ((box_123.indexOf(item.dataset.note)) >= 0) {
-                    console.log('true');
                     item.classList.add('led_on_orange');
                 } else if ((box_1234.indexOf(item.dataset.note)) >= 0) {
                     item.classList.add('led_on');
@@ -183,14 +180,28 @@ document.querySelector('.container_with_line_background').addEventListener('clic
             if (item.classList.contains('led_on')) {
                 for (let in_cicle of game_active) {
                     if (item.dataset.note == in_cicle.dataset.note) {
-                        // console.log('contains');
                         item.classList.remove('led_on');
                         item.classList.add('led_right_answer');
                         arr_game_answer.push(event.target.dataset.note);
-                        console.log('arr_game = ' + arr_game);
-                        console.log('arr_game_answer = ' + arr_game_answer);
                         if (arr_game.length == arr_game_answer.length) {
+                            counter_winner_numb++;
+                            counter_winner_box.textContent = counter_winner_numb;
                             compare(arr_game, arr_game_answer);
+                            setTimeout(game_end, 1000);
+                            setTimeout(() => {
+                                start_game(training_var_obj[proba.shift()]);
+                            }, 1000);
+                        }
+                    } else {
+                        for (let false_key of all_keyb_elem) {
+                            if (false_key.dataset.note == in_cicle.dataset.note) {
+                                console.log('Не верно');
+                                false_key.classList.add('led_false_answer');
+                                setTimeout(() => {
+                                    false_key.classList.remove('led_false_answer');
+                                    in_cicle.classList.remove('active_note');
+                                }, 1000);
+                            }
                         }
                     }
                 }
@@ -246,20 +257,24 @@ let add_reset_active_note = function () {
 let keyb_container = document.querySelector('.container_with_keyboard');
 let range_input = document.querySelector('.range_width');
 let right_left_keyb = function () {
-    console.log(range_input.value);
     keyb_container.style.left = range_input.value + 'vw';
-    console.log(keyb_container.style.left);
 }
 
 // повернуть клавиатуру
 let add_rotate_style = function () {
     document.querySelector('.container_with_keyboard').classList.toggle('add_rotate_style');
     document.querySelector('.container_with_line_background').classList.toggle('add_bottom_margin');
+    document.querySelector('.container_with_keyboard_2').classList.toggle('add_keyb2_margin');
     range_input.value = 20;
+
+    let all_keyb_label = document.querySelectorAll('.keyb_label');
+    for (let item of all_keyb_label) {
+        item.classList.toggle('rotate_180');
+    }
 }
 
 // тренировка
-let game_pattern = ['A1', 'B1', 'C2', 'A3', 'B3', 'C3'];
+// let game_pattern = ['A1', 'B1', 'C2', 'A3', 'B3', 'C3'];
 let start_game_true = false;
 let arr_game = [];
 let arr_game_answer = [];
@@ -269,13 +284,16 @@ let start_game = function (pattern) {
     add_ledon_class(pattern);
     arr_game = pattern;
     start_game_true = true;
-
-    // console.log(arr_game);
 }
+
+
 let training_button = document.querySelector('.training');
 training_button.addEventListener('click', () => {
+    counter_winner_numb = 0;
+    counter_winner_box.textContent = counter_winner_numb;
+    create_full_arr_training();
     game_end();
-    start_game(training_var_obj[Math.random()]);
+    start_game(training_var_obj[proba.shift()]);
 });
 
 let clear_led_right_answer = function () {
@@ -289,9 +307,6 @@ let clear_led_right_answer = function () {
 let compare = function (one_arr, two_arr) {
     let arr1 = one_arr;
     let arr2 = two_arr;
-    console.log('СРАВНИЛ');
-    console.log(arr1);
-    console.log(arr2);
     for (let item of arr1) {
         for (let i = 0; i < two_arr.length; i++) {
             if (item == two_arr[i]) {
@@ -300,7 +315,6 @@ let compare = function (one_arr, two_arr) {
         }
     }
     if (two_arr.length == 0 && one_arr.length == two_arr.length) {
-        console.log('trueeeeee');
         return true;
     }
 };
@@ -315,3 +329,13 @@ let game_end = function () {
 // let arr1 = [1, 7, 3, 4];
 // let arr2 = [2, 3, 1, 5];
 // compare(arr1, arr2);
+
+let add_note_name_for_keyb = function () {
+    for (let item of all_keyb_elem) {
+        let keyb_label = document.createElement('div');
+        keyb_label.classList.add('keyb_label');
+        keyb_label.textContent = item.dataset.name;
+        item.append(keyb_label);
+    }
+}
+add_note_name_for_keyb();
