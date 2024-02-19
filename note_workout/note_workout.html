@@ -140,7 +140,7 @@
 
     <div class="button_container">
         <input type="button" value="клавиатура" onclick="add_ledon_class(value_of_add_ledon_class)">
-        <input type="range" value="2" step="1" min="2" max="91" oninput="right_left_keyb()" class="range_width">
+        <input type="range" value="91" step="1" min="2" max="91" oninput="right_left_keyb()" class="range_width">
 
         <input type="button" value="лонг" onclick="long_keyboard_background()">
         <input type="button" value="фон" onclick="add_label_background()">
@@ -148,7 +148,7 @@
 
         <input type="button" value="сброс" onclick="add_reset_active_note()">
         <input type="button" value="поворот" onclick="add_rotate_style()">
-        <input type="button" value="тренировка" onclick="start_game()">
+        <input class="training" type="button" value="тренировка">
 
     </div>
 
@@ -169,6 +169,8 @@
     </style>
 
 
+    <script src="/note_workout/training_var.js"></script>
+    <script src="/note_workout/start_matrix.js"></script>
     <script src="/note_workout/note_workout.js"></script>
 </body>
 

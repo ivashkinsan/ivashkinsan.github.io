@@ -11,67 +11,6 @@ let new_note_func = function () {
 }
 
 
-// let obj_matrix = {
-//     0: 'C1 D1 E1',
-//     1: 'F1 G1 A1 B1',
-//     2: 'C2 D2 E2',
-//     3: 'F2 G2 A2 B2',
-//     4: 'C3 D3 E3',
-//     5: 'F3 G3 A3 B3',
-//     6: 'C4 D4 E4',
-//     7: 'F4 G4 A4 B4'
-// }
-
-// let obj_matrix = {
-//     0: 'C1 D1 E1 F1 G1 A1 B1',
-//     1: 'D1 E1 F1 G1 A1 B1 C2',
-//     2: 'E1 F1 G1 A1 B1 C2 D2',
-//     3: 'F1 G1 A1 B1 C2 D2 E2',
-//     4: 'G1 A1 B1 C2 D2 E2 F2',
-//     5: 'A1 B1 C2 D2 E2 F2 G2',
-//     6: 'B1 C2 D2 E2 F2 G2 A2',
-//     7: 'C2 D2 E2 F2 G2 A2 B2',
-//     8: 'D2 E2 F2 G2 A2 B2 C3',
-//     9: 'E2 F2 G2 A2 B2 C3 D3',
-//     10: 'F2 G2 A2 B2 C3 D3 E3',
-//     11: 'G2 A2 B2 C3 D3 E3 F3',
-//     12: 'A2 B2 C3 D3 E3 F3 G3',
-//     13: 'B2 C3 D3 E3 F3 G3 A3',
-//     14: 'C3 D3 E3 F3 G3 A3 B3'
-// }
-
-let obj_matrix = {
-    0: 'C1 C1 C1 C1 C1 C1 C1 C1 C1 C1',
-    1: 'D1 D1 D1 D1 D1 D1 D1 D1 D1 D1',
-    2: 'E1 E1 E1 E1 E1 E1 E1 E1 E1 E1',
-    3: 'F1 F1 F1 F1 F1 F1 F1 F1 F1 F1',
-    4: 'G1 G1 G1 G1 G1 G1 G1 G1 G1 G1',
-    5: 'A1 A1 A1 A1 A1 A1 A1 A1 A1 A1',
-    6: 'B1 B1 B1 B1 B1 B1 B1 B1 B1 B1',
-    7: 'C2 C2 C2 C2 C2 C2 C2 C2 C2 C2',
-    8: 'D2 D2 D2 D2 D2 D2 D2 D2 D2 D2',
-    9: 'E2 E2 E2 E2 E2 E2 E2 E2 E2 E2',
-    10: 'F2 F2 F2 F2 F2 F2 F2 F2 F2 F2',
-    11: 'G2 G2 G2 G2 G2 G2 G2 G2 G2 G2',
-    12: 'A2 A2 A2 A2 A2 A2 A2 A2 A2 A2',
-    13: 'B2 B2 B2 B2 B2 B2 B2 B2 B2 B2',
-    14: 'C3 C3 C3 C3 C3 C3 C3 C3 C3 C3',
-    15: 'D3 D3 D3 D3 D3 D3 D3 D3 D3 D3',
-    16: 'E3 E3 E3 E3 E3 E3 E3 E3 E3 E3',
-    17: 'F3 F3 F3 F3 F3 F3 F3 F3 F3 F3',
-    18: 'G3 G3 G3 G3 G3 G3 G3 G3 G3 G3',
-    19: 'A3 A3 A3 A3 A3 A3 A3 A3 A3 A3',
-    20: 'B3 B3 B3 B3 B3 B3 B3 B3 B3 B3',
-    21: 'C4 C4 C4 C4 C4 C4 C4 C4 C4 C4',
-    22: 'D4 D4 D4 D4 D4 D4 D4 D4 D4 D4',
-    23: 'E4 E4 E4 E4 E4 E4 E4 E4 E4 E4',
-    24: 'F4 F4 F4 F4 F4 F4 F4 F4 F4 F4',
-    25: 'G4 G4 G4 G4 G4 G4 G4 G4 G4 G4',
-    26: 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4',
-    27: 'B4 B4 B4 B4 B4 B4 B4 B4 B4 B4',
-    28: 'C5 C5 C5 C5 C5 C5 C5 C5 C5 C5'
-}
-
 // генерация матрицы нот
 let generate_note_frame = function (obj_of_notes) {
     for (const [key, value] of Object.entries(obj_of_notes)) {
@@ -175,9 +114,6 @@ let add_ledon_class = function (value) {
 }
 add_ledon_class(value_of_add_ledon_class);
 
-
-
-
 // добавить название нот на старте
 let add_label = function () {
     let all_note = document.querySelectorAll('.note');
@@ -194,8 +130,6 @@ let add_label_background = function () {
         item.classList.toggle('note_background_text_color')
     }
 }
-
-
 
 // подписать активные ноты
 let label_on_off = 'off';
@@ -228,20 +162,6 @@ function toArray(obj) {
     return array;
 }
 
-// let row_length = function () {
-//     let xvx = '';
-//     let length_value = 0;
-//     let all_note = document.querySelectorAll('.note');
-//     let new_arr = toArray(all_note);
-//     for (let i = 0; i < all_note.length; i++) {
-
-//     }
-// }
-// row_length();
-
-
-
-
 // активировать элемент на нотном стане
 document.querySelector('.container_with_line_background').addEventListener('click', () => {
     let all_note = document.querySelectorAll('.note');
@@ -262,7 +182,8 @@ document.querySelector('.container_with_line_background').addEventListener('clic
                 for (let in_cicle of game_active) {
                     if (item.dataset.note == in_cicle.dataset.note) {
                         console.log('contains')
-                        item.classList.remove('led_on')
+                        item.classList.remove('led_on');
+                        item.classList.add('led_right_answer');
                     }
                 }
             }
@@ -329,11 +250,50 @@ let add_rotate_style = function () {
     range_input.value = 20;
 }
 
+// тренировка
 let game_pattern = ['A1', 'B1', 'C2', 'A3', 'B3', 'C3'];
 let start_game_true = false;
-let start_game = function () {
+let arr_game = [];
+let start_game = function (pattern) {
     value_of_add_ledon_class = 'none';
     add_ledon_class(value_of_add_ledon_class);
-    add_ledon_class(game_pattern);
+    add_ledon_class(pattern);
+    arr_game = pattern;
     start_game_true = true;
+
+    // console.log(arr_game);
 }
+let training_button = document.querySelector('.training');
+training_button.addEventListener('click', () => {
+    start_game(training_var_obj[2]);
+});
+
+let clear_led_right_answer = function () {
+    let all_active_led_right_answer = document.querySelectorAll('.led_right_answer');
+    for (let item of all_active_led_right_answer) {
+        item.classList.remove('led_right_answer');
+    };
+};
+
+
+let compare = function (one_arr, two_arr) {
+    let arr1 = one_arr;
+    let arr2 = two_arr;
+    console.log(arr1);
+    console.log(arr2);
+    for (let item of arr1) {
+        for (let i = 0; i < two_arr.length; i++) {
+            if (item == two_arr[i]) {
+                two_arr.splice(i, 1);
+            }
+        }
+    }
+    if (two_arr.length == 0 && one_arr.length == two_arr.length) {
+        console.log('trueeeeee');
+        return true;
+    }
+};
+
+let arr1 = [1, 7, 3, 4];
+let arr2 = [2, 3, 1, 5];
+compare(arr1, arr2);
