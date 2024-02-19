@@ -11,6 +11,8 @@ let new_note_func = function () {
     return new_elem;
 }
 
+let arr_game = [];
+let arr_game_answer = [];
 
 // генерация матрицы нот
 let generate_note_frame = function (obj_of_notes) {
@@ -159,8 +161,33 @@ function toArray(obj) {
     return array;
 }
 
+let return_active_notes = () => {
+    arr_game_answer = [];
+    let game_active = document.querySelectorAll('.active_note');
+    for (let item of game_active) {
+        arr_game_answer.push(item.dataset.note);
+    }
+    return game_active;
+}
+
+let return_keys_led_on = () => {
+    let keys_led_on = document.querySelectorAll('.led_on');
+    return keys_led_on;
+}
+
+let count_add = () => {
+    counter_winner_numb++;
+    counter_winner_box.textContent = counter_winner_numb;
+}
+
+let led_on_in_right_answer = (item) => {
+    item.classList.toggle('led_on');
+    item.classList.toggle('led_right_answer');
+}
 // активировать элемент на нотном стане
 document.querySelector('.container_with_line_background').addEventListener('click', () => {
+
+
     let all_note = document.querySelectorAll('.note');
     if (event.target.classList.contains('note')) {
         event.target.classList.toggle('active_note');
@@ -173,43 +200,26 @@ document.querySelector('.container_with_line_background').addEventListener('clic
     }
 
     if (start_game_true) {
-        // проверка клика - добавление ответа в массив
-
-        let game_active = document.querySelectorAll('.active_note');
-        for (let item of all_keyb_elem) {
-            if (item.classList.contains('led_on')) {
-                for (let in_cicle of game_active) {
-                    if (item.dataset.note == in_cicle.dataset.note) {
-                        item.classList.remove('led_on');
-                        item.classList.add('led_right_answer');
-                        arr_game_answer.push(event.target.dataset.note);
-                        if (arr_game.length == arr_game_answer.length) {
-                            counter_winner_numb++;
-                            counter_winner_box.textContent = counter_winner_numb;
-                            compare(arr_game, arr_game_answer);
-                            setTimeout(game_end, 1000);
-                            setTimeout(() => {
-                                start_game(training_var_obj[proba.shift()]);
-                            }, 1000);
-                        }
-                    } else {
-                        for (let false_key of all_keyb_elem) {
-                            if (false_key.dataset.note == in_cicle.dataset.note) {
-                                console.log('Не верно');
-                                false_key.classList.add('led_false_answer');
-                                setTimeout(() => {
-                                    false_key.classList.remove('led_false_answer');
-                                    in_cicle.classList.remove('active_note');
-                                }, 1000);
-                            }
-                        }
+        for (let item of return_keys_led_on()) {
+            for (let active_note of return_active_notes()) {
+                if (item.dataset.note == active_note.dataset.note) {
+                    led_on_in_right_answer(item);
+                    if (arr_game.length == arr_game_answer.length) {
+                        compare(arr_game, arr_game_answer)
+                        setTimeout(game_end, 1000);
+                        setTimeout(() => {
+                            start_game(training_var_obj[proba.shift()])
+                        }, 1000);
                     }
                 }
             }
-
         }
     }
+    // console.log(return_active_notes().length);
+    // console.log(return_keys_led_on().length);
 })
+
+
 
 // добавление длинного фона
 let long_keyboard_background = function () {
@@ -276,8 +286,7 @@ let add_rotate_style = function () {
 // тренировка
 // let game_pattern = ['A1', 'B1', 'C2', 'A3', 'B3', 'C3'];
 let start_game_true = false;
-let arr_game = [];
-let arr_game_answer = [];
+
 let start_game = function (pattern) {
     value_of_add_ledon_class = 'none';
     add_ledon_class(value_of_add_ledon_class);
@@ -317,6 +326,12 @@ let compare = function (one_arr, two_arr) {
     if (two_arr.length == 0 && one_arr.length == two_arr.length) {
         return true;
     }
+    console.log("one_arr");
+    console.log(one_arr);
+    console.log("two_arr");
+    console.log(two_arr);
+    console.log("arr2");
+    console.log(arr2);
 };
 
 // сброс активных элементов в конце тренировки
