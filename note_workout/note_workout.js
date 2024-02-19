@@ -176,14 +176,22 @@ document.querySelector('.container_with_line_background').addEventListener('clic
     }
 
     if (start_game_true) {
+        // проверка клика - добавление ответа в массив
+
         let game_active = document.querySelectorAll('.active_note');
         for (let item of all_keyb_elem) {
             if (item.classList.contains('led_on')) {
                 for (let in_cicle of game_active) {
                     if (item.dataset.note == in_cicle.dataset.note) {
-                        console.log('contains')
+                        // console.log('contains');
                         item.classList.remove('led_on');
                         item.classList.add('led_right_answer');
+                        arr_game_answer.push(event.target.dataset.note);
+                        console.log('arr_game = ' + arr_game);
+                        console.log('arr_game_answer = ' + arr_game_answer);
+                        if (arr_game.length == arr_game_answer.length) {
+                            compare(arr_game, arr_game_answer);
+                        }
                     }
                 }
             }
@@ -254,6 +262,7 @@ let add_rotate_style = function () {
 let game_pattern = ['A1', 'B1', 'C2', 'A3', 'B3', 'C3'];
 let start_game_true = false;
 let arr_game = [];
+let arr_game_answer = [];
 let start_game = function (pattern) {
     value_of_add_ledon_class = 'none';
     add_ledon_class(value_of_add_ledon_class);
@@ -265,7 +274,8 @@ let start_game = function (pattern) {
 }
 let training_button = document.querySelector('.training');
 training_button.addEventListener('click', () => {
-    start_game(training_var_obj[2]);
+    game_end();
+    start_game(training_var_obj[Math.random()]);
 });
 
 let clear_led_right_answer = function () {
@@ -279,6 +289,7 @@ let clear_led_right_answer = function () {
 let compare = function (one_arr, two_arr) {
     let arr1 = one_arr;
     let arr2 = two_arr;
+    console.log('СРАВНИЛ');
     console.log(arr1);
     console.log(arr2);
     for (let item of arr1) {
@@ -294,6 +305,13 @@ let compare = function (one_arr, two_arr) {
     }
 };
 
-let arr1 = [1, 7, 3, 4];
-let arr2 = [2, 3, 1, 5];
-compare(arr1, arr2);
+// сброс активных элементов в конце тренировки
+let game_end = function () {
+    add_reset_active_note();
+    clear_led_right_answer();
+    arr_game_answer = [];
+}
+
+// let arr1 = [1, 7, 3, 4];
+// let arr2 = [2, 3, 1, 5];
+// compare(arr1, arr2);
