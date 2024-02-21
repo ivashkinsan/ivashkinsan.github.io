@@ -69,9 +69,9 @@ const printer = new NewsPrinter(
     new News('Путин', 'Новая конституция')
 )
 
-console.log(printer.html());
-console.log(printer.xml());
-console.log(printer.json());
+// console.log(printer.html());
+// console.log(printer.xml());
+// console.log(printer.json());
 
 // console.log(news);
 // console.log(news.toHTML());
@@ -104,9 +104,21 @@ class Keyb {
 }
 
 const key = new Keyb('keyb_el', 'white', '-15px', 'C0', 'C', 'До', 'Б2');
-console.log(key.label);
-key.newLabel('Х---------Х');
-console.log(key.label);
+// console.log(key.label);
+
+// console.log(key.label);
 
 let root = document.querySelector('.root');
 root.insertAdjacentHTML("afterbegin", key.createKey());
+
+let btn = document.createElement('button');
+btn.type = 'button';
+btn.textContent = 'Кнопка';
+root.append(btn);
+btn.addEventListener('click', (e) => {
+    console.log('click');
+    key.newLabel('Х---------Х');
+    console.log(key);
+    root.insertAdjacentHTML("afterbegin", key.createKey());
+}, { once: false })
+
