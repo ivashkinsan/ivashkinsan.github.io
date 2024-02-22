@@ -185,22 +185,34 @@ let led_on_in_right_answer = (item) => {
     item.classList.toggle('led_right_answer');
 }
 
+let hover_function = function (item) {
 
+    item.addEventListener('mouseenter', function () {
+        console.log(item);
+        item.insertAdjacentHTML('beforeend', '<div class="sharp_button font_opus_std">#</div>');
+        // item.classList.toggle('led_on');
+    });
+    item.addEventListener('mouseleave', function () {
+        // item.classList.toggle('led_on');
+    });
+}
 
 // активировать элемент на нотном стане
-document.querySelector('.container_with_line_background').addEventListener('click', () => {
-
-
+document.querySelector('.container_with_line_background').addEventListener('click', (event) => {
     let all_note = document.querySelectorAll('.note');
     if (event.target.classList.contains('note')) {
         event.target.classList.toggle('active_note');
-
+        // вывод текста на ноте
         if (!event.target.classList.contains('text_show') && label_on_off == 'on') {
             event.target.classList.add('text_show');
         } else {
             event.target.classList.remove('text_show');
         }
+        let copy = event.target;
+        hover_function(copy);
     }
+
+
 
     if (start_game_true) {
         for (let item of return_keys_led_on()) {
@@ -220,8 +232,10 @@ document.querySelector('.container_with_line_background').addEventListener('clic
     }
     // console.log(return_active_notes().length);
     // console.log(return_keys_led_on().length);
-    who_is_construct();
+    who_is_construct(); // функция подсказки, что за активированный элемент на нотном стане
 })
+
+
 
 
 

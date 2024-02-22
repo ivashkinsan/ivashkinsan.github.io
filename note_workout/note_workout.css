@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "Musisync-KVLZ";
+  /* Браузер сначала попробует найти шрифт локально */
+  src: url("./fonts/OpusChordsStd") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+.font_opus_std {
+  /* position: absolute; */
+  font-family: 'Opus Text Std';
+  font-size: 0.6em;
+  letter-spacing: 1.5px;
+  color: #ffe8c09f;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -345,4 +361,14 @@ border: 1px solid #ffffff;
   background-color: #182a48ec;
   border-radius: 18px;
 
+}
+
+/* =============================   sharp & flat ==================================== */
+
+.sharp_button{
+  position: absolute;
+  top: -33px;
+  left: -35px;
+  color: rgb(255, 255, 255);
+  font-size: 90px;
 }
