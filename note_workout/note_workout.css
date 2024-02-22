@@ -186,6 +186,7 @@ border: 1px solid #ffffff;
 .keyb_label{
   font-family: Arial, Helvetica, sans-serif;
   margin-right: 4px;
+  color: rgb(255, 20, 118);
 }
 .rotate_180{
   transform: rotate(180deg);

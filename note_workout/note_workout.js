@@ -341,16 +341,18 @@ let game_end = function () {
     arr_game_answer = [];
 }
 
-// let arr1 = [1, 7, 3, 4];
-// let arr2 = [2, 3, 1, 5];
-// compare(arr1, arr2);
 
+
+let addLabel = function (item) {
+    return `
+        <div class="keyb_label">${item.dataset.name}</div>
+        `
+}
 let add_note_name_for_keyb = function () {
     for (let item of all_keyb_elem) {
-        let keyb_label = document.createElement('div');
-        keyb_label.classList.add('keyb_label');
-        keyb_label.textContent = item.dataset.name;
-        item.append(keyb_label);
+        if (item.dataset.name && !item.classList.contains('hide')) {
+            item.insertAdjacentHTML('afterbegin', addLabel(item));
+        }
     }
 }
 add_note_name_for_keyb();
