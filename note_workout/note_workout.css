@@ -325,3 +325,23 @@ border: 1px solid #ffffff;
 .button_container>.range_width {
   width: 20vw;
 }
+
+
+/* ================================  who_is   ===================================== */
+.who_is{
+  position: absolute;
+  padding: 15px;
+  top: 24px;
+  left: 50px;
+  display: flex;
+  color: #F4D6B1;
+  letter-spacing: 3px;
+  font-size: 30px;
+  line-height: 38px;
+  text-align: center;
+  text-shadow: 3px 3px 2px #182A48;
+  box-shadow: 3px 3px 3px #000000;
+  background-color: #182a48ec;
+  border-radius: 18px;
+
+}

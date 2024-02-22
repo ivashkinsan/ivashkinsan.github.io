@@ -184,6 +184,9 @@ let led_on_in_right_answer = (item) => {
     item.classList.toggle('led_on');
     item.classList.toggle('led_right_answer');
 }
+
+
+
 // активировать элемент на нотном стане
 document.querySelector('.container_with_line_background').addEventListener('click', () => {
 
@@ -217,6 +220,7 @@ document.querySelector('.container_with_line_background').addEventListener('clic
     }
     // console.log(return_active_notes().length);
     // console.log(return_keys_led_on().length);
+    who_is_construct();
 })
 
 
@@ -354,3 +358,50 @@ let add_note_name_for_keyb = function () {
     }
 }
 add_note_name_for_keyb();
+
+let who_is_construct = function () {
+    let delete_elem = document.querySelector('.who_is');
+    if (delete_elem) {
+        delete_elem.remove();
+    }
+
+    let all_note_elem = document.querySelectorAll('.active_note');
+    let arr_of_note = [...all_note_elem];
+    let dataset_of_note = arr_of_note.map(function (elem) {
+        return elem.dataset.note;
+    });
+    dataset_of_note.reverse()
+    console.log(dataset_of_note.toString());
+    // console.log(arr_of_note[arr_of_note.length - 1]);
+    // console.log(arr_of_note.length);
+
+    if (arr_of_note.length > 0 && label_for_who_is_construct[dataset_of_note.toString()]) {
+        arr_of_note[arr_of_note.length - 1].insertAdjacentHTML('beforeend', label_for_who_is_construct[dataset_of_note.toString()]);
+    }
+}
+who_is_construct();
+
+let label_for_who_is_construct = {
+    'C3,D3,E3,F3': `<div class="who_is">мажорный тетрахорд Т+Т+пТ=ч4</div>`,
+    'C3,D3,E3,F3,G3,A3,B3': `<div class="who_is">мажорная гамма ионийский лад</div>`,
+
+    'C3,C3': `<div class="who_is">чистая прима Ч1</div>`,
+    'C3,D3': `<div class="who_is">большая секунда Б2</div>`,
+    'C3,E3': `<div class="who_is">большая терция Б3</div>`,
+    'C3,F3': `<div class="who_is">чистая кварта Ч4</div>`,
+    'C3,G3': `<div class="who_is">чистая квинта Ч5</div>`,
+    'C3,A3': `<div class="who_is">большая секста Б6</div>`,
+    'C3,B3': `<div class="who_is">большая септима Б7</div>`,
+    'C3,C4': `<div class="who_is">чистая октава Ч8</div>`,
+    'C3,E3,G3': `<div class="who_is">мажорное трезвучие T53</div>`,
+    'C3,E3,G3,B3': `<div class="who_is">большой мажорный септ аккорд С^</div>`,
+
+    'D3,D3': `<div class="who_is">чистая прима Ч1</div>`,
+    'D3,E3': `<div class="who_is">большая секунда Б2</div>`,
+    'D3,F3': `<div class="who_is">малая терция м3</div>`,
+    'D3,G3': `<div class="who_is">чистая кварта ч4</div>`,
+    'D3,A3': `<div class="who_is">чистая квинта ч5</div>`,
+    'D3,B3': `<div class="who_is">большая секста Б6</div>`,
+    'D3,C4': `<div class="who_is">большая септима Б7</div>`,
+    'D3,D4': `<div class="who_is">чистая октава Ч8</div>`
+}

@@ -120,5 +120,16 @@ btn.addEventListener('click', (e) => {
     key.newLabel('Х---------Х');
     console.log(key);
     root.insertAdjacentHTML("afterbegin", key.createKey());
-}, { once: false })
+}, {
+    once: false
+})
 
+for (let index = 0; index < array.length; index++) {
+    const element = array[index];
+
+}
+
+
+const buble = document.querySelector('abbr');
+
+let plus_ball_index = 0;
