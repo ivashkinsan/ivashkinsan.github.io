@@ -189,11 +189,21 @@ let hover_function = function (item) {
 
     item.addEventListener('mouseenter', function () {
         console.log(item);
-        item.insertAdjacentHTML('beforeend', '<div class="sharp_button font_opus_std">#</div>');
+        console.log(item.children[0]);
+
+        if (!item.children[0]) {
+            item.insertAdjacentHTML('beforeend', '<div class="sharp_button font_opus_std">#</div>');
+            item.insertAdjacentHTML('beforeend', '<div class="flat_button font_opus_std">b</div>');
+        }
+
         // item.classList.toggle('led_on');
     });
     item.addEventListener('mouseleave', function () {
-        // item.classList.toggle('led_on');
+        if (item.children[0]) {
+            item.children[0].remove();
+            item.children[0].remove();
+            // item.children[1].remove();
+        }
     });
 }
 
