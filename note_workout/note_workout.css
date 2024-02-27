@@ -200,9 +200,14 @@ body {
 }
 
 .keyb_label {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Opus Text Std';
   margin-right: 4px;
-  color: rgb(255, 20, 118);
+  color: rgb(20, 165, 255);
+}
+
+.black_key > .keyb_label {
+  font-size: 12px;
+  /* color: green; */
 }
 
 .rotate_180 {
@@ -379,15 +384,36 @@ body {
 .flat_button {
   position: absolute;
   color: rgb(255, 255, 255);
-  font-size: 40px;
+  font-size: 70px;
+  top: -23px;
+  left: -27px;
 }
 
 .sharp_button {
-  top: -30px;
-  left: -25px;
+  top: -23px;
+  left: -27px;
 }
 
 .flat_button {
-  top: -0px;
+  top: -30px;
+  left: -27px;
+}
+
+.new_line_for_C3::before{
+  position: absolute;
+  content: "";
   left: -25px;
+  width: 50%;
+  height: 3px;
+  background-color: #ffffff;
+  z-index: 1;
+}
+.new_line_for_C3::after{
+  position: absolute;
+  content: "";
+  left: 46px;
+  width: 50%;
+  height: 3px;
+  background-color: #ffffff;
+  z-index: 1;
 }

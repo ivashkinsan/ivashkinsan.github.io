@@ -188,30 +188,83 @@ let led_on_in_right_answer = (item) => {
 let hover_function = function (item) {
 
     item.addEventListener('mouseenter', function () {
-        console.log(item);
-        console.log(item.children[0]);
+        // console.log(item);
+        // console.log(item.children[0]);
 
-        if (!item.children[0]) {
-            item.insertAdjacentHTML('beforeend', '<div class="sharp_button font_opus_std">#</div>');
-            item.insertAdjacentHTML('beforeend', '<div class="flat_button font_opus_std">b</div>');
-        }
+        // if (!item.children[0]) {
+        //     item.insertAdjacentHTML('beforeend', '<div class="sharp_button font_opus_std">#</div>');
+        //     item.insertAdjacentHTML('beforeend', '<div class="flat_button font_opus_std">b</div>');
+        // }
 
         // item.classList.toggle('led_on');
     });
-    item.addEventListener('mouseleave', function () {
-        if (item.children[0]) {
-            item.children[0].remove();
-            item.children[0].remove();
-            // item.children[1].remove();
-        }
-    });
+    // item.addEventListener('mouseleave', function () {
+    //     if (item.children[0]) {
+    //         item.children[0].remove();
+    //         item.children[0].remove();
+    //         // item.children[1].remove();
+    //     }
+    // });
+}
+
+function clear_el(e, e_par) {
+    e.remove();
+    e_par.removeAttribute('data-sign');
+    console.log(e_par);
 }
 
 // активировать элемент на нотном стане
 document.querySelector('.container_with_line_background').addEventListener('click', (event) => {
     let all_note = document.querySelectorAll('.note');
-    if (event.target.classList.contains('note')) {
-        event.target.classList.toggle('active_note');
+    if (event.target.classList.contains('note') && !event.target.classList.contains('active_note')) {
+        event.target.classList.add('active_note');
+
+        if (['C1', 'E1', 'C3', 'A4', 'C5'].includes(event.target.dataset.note) > 0) {
+            console.log("==C3");
+            // let new_line_for_C3 = document.createElement('div');
+            event.target.classList.add('new_line_for_C3');
+        }
+
+
+        event.target.draggable = true;
+        let clnt_strtY = 0;
+        let clnt_endY = 0;
+        let clnt_strtX = 0;
+        let clnt_endX = 0;
+        event.target.addEventListener('dragstart', function (event) {
+            // console.log('dragstart');
+            clnt_strtY = event.clientY;
+            clnt_strtX = event.clientX;
+            console.log(event.clientY);
+        });
+        event.target.addEventListener('dragend', function (event) {
+            clnt_endY = event.clientY;
+            clnt_endX = event.clientX;
+            console.log(clnt_strtX, clnt_endX);
+            if (clnt_strtY < clnt_endY && clnt_endY - clnt_strtY > 50) {
+                console.log('движение вниз');
+                if (!event.target.children[0]) {
+                    event.target.insertAdjacentHTML('beforeend', '<div class="flat_button font_opus_std" onclick="clear_el(this, this.parentNode)">b</div>');
+                    event.target.dataset.sign = 'flat';
+                }
+            }
+            if (clnt_strtY > clnt_endY && clnt_strtY - clnt_endY > 50) {
+                console.log('движение вверх');
+                if (!event.target.children[0]) {
+                    event.target.insertAdjacentHTML('beforeend', '<div class="sharp_button font_opus_std" onclick="clear_el(this, this.parentNode)">#</div>');
+                    event.target.dataset.sign = 'sharp';
+                }
+            }
+            if (clnt_strtX < clnt_endX && clnt_endX - clnt_strtX > 50) {
+                console.log('движение вправо');
+                if (!event.target.children[0]) {
+                    event.target.insertAdjacentHTML('beforeend', '<div class="sharp_button font_opus_std" onclick="clear_el(this, this.parentNode)">&sect</div>');
+                    event.target.dataset.sign = 'natural ';
+                }
+            }
+        });
+
+
         // вывод текста на ноте
         if (!event.target.classList.contains('text_show') && label_on_off == 'on') {
             event.target.classList.add('text_show');
@@ -220,6 +273,13 @@ document.querySelector('.container_with_line_background').addEventListener('clic
         }
         let copy = event.target;
         hover_function(copy);
+    } else if (event.target.classList.contains('note')) {
+        event.target.removeAttribute('draggable');
+        event.target.classList.remove('active_note');
+        event.target.classList.remove('text_show');
+        event.target.removeAttribute('data-sign');
+        event.target.children[0] ? event.target.children[0].remove() : null;
+        event.target.classList.remove('new_line_for_C3');
     }
 
 
@@ -285,8 +345,12 @@ let add_reset_active_note = function () {
     let all_notes = document.querySelectorAll('.note');
     for (let item of all_notes) {
         if (item.classList.contains('active_note')) {
-            item.classList.toggle('active_note');
+            if (item.children[0]) {
+                item.children[0].remove();
+            }
+            item.classList.remove('active_note');
             item.classList.remove('text_show');
+            item.classList.remove('new_line_for_C3');
         }
     }
 }
