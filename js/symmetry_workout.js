@@ -147,18 +147,18 @@ allHrom.forEach(hrom => {
         this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_steps_1_7.svg';
         clicks = 0;
         break;
-      // case 2:
-      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
-      //   clicks += 1;
-      //   break;
-      // case 3:
-      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
-      //   clicks += 1;
-      //   break;
-      // case 4:
-      //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
-      //   clicks = 0;
-      //   break;
+        // case 2:
+        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_numbers_13.svg';
+        //   clicks += 1;
+        //   break;
+        // case 3:
+        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_half_tone_12.svg';
+        //   clicks += 1;
+        //   break;
+        // case 4:
+        //   this.childNodes[1].src = '/image/Symmetry/1_1_1_1_1_1_1_1_1_1_1_1_top_hromatic.svg';
+        //   clicks = 0;
+        //   break;
     }
   });
 });
@@ -792,11 +792,11 @@ checkBoxElem.onclick = function () {
 Object.defineProperty(
   Object.prototype,
   'randElement', {
-  value: function () {
-    var rand = Math.floor(Math.random() * this.length);
-    return this[rand];
+    value: function () {
+      var rand = Math.floor(Math.random() * this.length);
+      return this[rand];
+    }
   }
-}
 );
 
 let add_windows_facty = function () {
@@ -1112,4 +1112,3 @@ let balls_container = document.querySelector('.container_balls');
 document.querySelector('.balls_button').onclick = function () {
   balls_container.classList.toggle('show_flex');
 }
-
