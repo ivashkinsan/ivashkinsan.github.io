@@ -513,7 +513,7 @@ function playArray(newArray, reverse, blok_chord, up_down) {
     let delay = 300;
     blok_chord ? delay = 0 : delay = 300;
     let list = Array.from(newArray);
-    if (reverse)(list.reverse());
+    if (reverse) (list.reverse());
     if (up_down) {
         // console.log(list.length);
         console.log('up_down');
@@ -536,7 +536,7 @@ function playArray(newArray, reverse, blok_chord, up_down) {
             setTimeout(function () {
                 list[i].classList.remove('play_led');
             }, 300)
-            audioElements[i].play()
+            audioElements[i].play();
         }, int * delay);
         int += 1;
     }
@@ -601,8 +601,8 @@ const gain = new GainNode(context);
 const delay = new DelayNode(context);
 const source = new MediaElementAudioSourceNode(
     context, {
-        mediaElement: document.querySelector('audio')
-    });
+    mediaElement: document.querySelector('audio')
+});
 gain.gain.value = 0.5;
 source.connect(context.destination);
 source.connect(delay);
@@ -615,92 +615,28 @@ console.log(gain);
 console.log(delay);
 console.log(source);
 
-// предоставить зависимости
-function provide(map) {
-    this.addEventListener('inject', event => {
-        if (
-            event.target !== this &&
-            map.has(event.detail.token)
-        ) {
-            event.stopPropagation();
-            event.detail.provider = map.get(event.detail.token);
-        }
-    });
-};
-// запросить зависимость
-function inject(token) {
-    const event = new CustomEvent('inject', {
-        detail: {
-            token
-        },
-        bubbles: true,
-        cancelable: true,
-    });
-    this.dispatchEvent(event);
-    return event.detail.provider;
+function playAudio(audioFile) {
+    const audioContext = new AudioContext();
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+        const arrayBuffer = event.target.result;
+
+        audioContext.decodeAudioData(arrayBuffer, function (buffer) {
+            const source = audioContext.createBufferSource();
+            source.buffer = buffer;
+            source.connect(audioContext.destination);
+            source.start();
+        });
+    };
+
+    reader.readAsArrayBuffer(audioFile);
 }
 
-// что бы создавать кастомные элементы с механизмами выше
-// эмиксид
-export const InjectorElement = element => {
-    class extends element {
-        provide(map) {
-            // 
-        }
-        provide(map) {
-            // 
-        }
-    }
+function play(audioElement) {
+    const audioContext = new AudioContext();
+    const source = audioContext.createMediaElementSource(audioElement);
+
+    source.connect(audioContext.destination);
+    audioElement.play();
 }
-
-export class WCAudioContext
-extends InjectorElement(HTMLElement) {
-    connectedCallback() {
-        this.provide(new Map([
-            [
-                AudioContext, new AudioContext()
-            ]
-        ]));
-    }
-}
-
-export class WCMediaElementAudioSource extends InjectorElement(HTMLAudioElement) {
-    connectedCallback() {
-        this.provide(
-            new Map([
-                [
-                    AudioNode,
-                    new MediaElementAudioSourceNode(this.inject(AudioContext), {
-                        mediaElement: this
-                    }, ),
-                ]
-            ])
-        )
-    }
-}
-
-export class WCGain extends InjectorElement(HTMLAudioElement) {
-    #
-    node = new GainNode(this.inject(AudioContext));
-    connectedCallback() {
-        this.provide(
-            new Map([
-                [
-                    AudioNode,
-                    this.#node,
-                ]
-            ])
-        )
-    }
-
-    attributeChangedCallback(name, _, value) {
-        this.#node[name].value = parseFloat(value)
-    }
-
-    static get observedAttributes() {
-        return ['gain']
-    }
-}
-
-// 12-24
-// https://youtu.be/EsG2YAzUcT4?si=sg9uiFm0XJOfxKDB
