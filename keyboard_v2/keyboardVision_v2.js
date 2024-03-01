@@ -513,7 +513,7 @@ function playArray(newArray, reverse, blok_chord, up_down) {
     let delay = 300;
     blok_chord ? delay = 0 : delay = 300;
     let list = Array.from(newArray);
-    if (reverse) (list.reverse());
+    if (reverse)(list.reverse());
     if (up_down) {
         // console.log(list.length);
         console.log('up_down');
@@ -533,15 +533,22 @@ function playArray(newArray, reverse, blok_chord, up_down) {
         audioElements.push(audio);
         setTimeout(function () {
             list[i].classList.add('play_led');
-            setTimeout(function () { list[i].classList.remove('play_led'); }, 300)
+            setTimeout(function () {
+                list[i].classList.remove('play_led');
+            }, 300)
             audioElements[i].play()
         }, int * delay);
         int += 1;
     }
 }
 
-
-
+// let channels = 2;
+// let frameCount = audioCtx.sampleRate * 2.0;
+// let myArrayBuffer = audioCtx.createBuffer(
+//     channels,
+//     frameCount,
+//     audioCtx.sampleRate
+// );
 
 
 
@@ -586,3 +593,111 @@ play_up_down.addEventListener('click', () => {
     let all_active_keys = document.querySelectorAll('.ledON');
     playArray(all_active_keys, null, null, true);
 });
+
+
+// ======================================== audioContext =======================================
+const context = new AudioContext();
+const gain = new GainNode(context);
+const delay = new DelayNode(context);
+const source = new MediaElementAudioSourceNode(
+    context, {
+        mediaElement: document.querySelector('audio')
+    });
+gain.gain.value = 0.5;
+source.connect(context.destination);
+source.connect(delay);
+delay.connect(gain);
+gain.connect(context.destination);
+
+
+console.log(context);
+console.log(gain);
+console.log(delay);
+console.log(source);
+
+// предоставить зависимости
+function provide(map) {
+    this.addEventListener('inject', event => {
+        if (
+            event.target !== this &&
+            map.has(event.detail.token)
+        ) {
+            event.stopPropagation();
+            event.detail.provider = map.get(event.detail.token);
+        }
+    });
+};
+// запросить зависимость
+function inject(token) {
+    const event = new CustomEvent('inject', {
+        detail: {
+            token
+        },
+        bubbles: true,
+        cancelable: true,
+    });
+    this.dispatchEvent(event);
+    return event.detail.provider;
+}
+
+// что бы создавать кастомные элементы с механизмами выше
+// эмиксид
+export const InjectorElement = element => {
+    class extends element {
+        provide(map) {
+            // 
+        }
+        provide(map) {
+            // 
+        }
+    }
+}
+
+export class WCAudioContext
+extends InjectorElement(HTMLElement) {
+    connectedCallback() {
+        this.provide(new Map([
+            [
+                AudioContext, new AudioContext()
+            ]
+        ]));
+    }
+}
+
+export class WCMediaElementAudioSource extends InjectorElement(HTMLAudioElement) {
+    connectedCallback() {
+        this.provide(
+            new Map([
+                [
+                    AudioNode,
+                    new MediaElementAudioSourceNode(this.inject(AudioContext), {
+                        mediaElement: this
+                    }, ),
+                ]
+            ])
+        )
+    }
+}
+
+export class WCGain extends InjectorElement(HTMLAudioElement) {
+    #
+    node = new GainNode(this.inject(AudioContext));
+    connectedCallback() {
+        this.provide(
+            new Map([
+                [
+                    AudioNode,
+                    this.#node,
+                ]
+            ])
+        )
+    }
+
+    attributeChangedCallback(name, _, value) {
+        this.#node[name].value = parseFloat(value)
+    }
+
+    static get observedAttributes() {
+        return ['gain']
+    }
+}
