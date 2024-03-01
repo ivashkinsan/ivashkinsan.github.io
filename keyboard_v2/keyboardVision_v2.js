@@ -701,3 +701,6 @@ export class WCGain extends InjectorElement(HTMLAudioElement) {
         return ['gain']
     }
 }
+
+// 12-24
+// https://youtu.be/EsG2YAzUcT4?si=sg9uiFm0XJOfxKDB
