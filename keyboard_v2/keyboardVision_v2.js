@@ -180,14 +180,14 @@ clear.onclick = function () {
 
 // функция сортировки и присваивания класса black_key
 var calculateMassive = function (massive) {
-    console.log(massive);
+    // console.log(massive);
     for (let item of elements) {
         if (massive.includes(item.dataset.number)) {
             item.classList.add('black_key');
         }
     }
 };
-console.log(five_Black['C']);
+// console.log(five_Black['C']);
 calculateMassive(five_Black['C']);
 
 //нумерация клавиш цифрами
@@ -513,7 +513,7 @@ function playArray(newArray, reverse, blok_chord, up_down) {
     let delay = 300;
     blok_chord ? delay = 0 : delay = 300;
     let list = Array.from(newArray);
-    if (reverse) (list.reverse());
+    if (reverse)(list.reverse());
     if (up_down) {
         // console.log(list.length);
         console.log('up_down');
@@ -564,12 +564,6 @@ section_for_contextmenu.addEventListener('contextmenu', function (event) {
     }, 200)
 })
 
-let clear_2 = document.querySelector('.clear_2');
-clear_2.addEventListener('click', function () {
-    for (let item of all_key_for_sound) {
-        item.classList.remove('ledON')
-    }
-});
 
 let play_up = document.querySelector('.play_up');
 let play_down = document.querySelector('.play_down');
@@ -596,47 +590,47 @@ play_up_down.addEventListener('click', () => {
 
 
 // ======================================== audioContext =======================================
-const context = new AudioContext();
-const gain = new GainNode(context);
-const delay = new DelayNode(context);
-const source = new MediaElementAudioSourceNode(
-    context, {
-    mediaElement: document.querySelector('audio')
-});
-gain.gain.value = 0.5;
-source.connect(context.destination);
-source.connect(delay);
-delay.connect(gain);
-gain.connect(context.destination);
+// const context = new AudioContext();
+// const gain = new GainNode(context);
+// const delay = new DelayNode(context);
+// const source = new MediaElementAudioSourceNode(
+//     context, {
+//         mediaElement: document.querySelector('audio')
+//     });
+// gain.gain.value = 0.5;
+// source.connect(context.destination);
+// source.connect(delay);
+// delay.connect(gain);
+// gain.connect(context.destination);
 
 
-console.log(context);
-console.log(gain);
-console.log(delay);
-console.log(source);
+// console.log(context);
+// console.log(gain);
+// console.log(delay);
+// console.log(source);
 
-function playAudio(audioFile) {
-    const audioContext = new AudioContext();
-    const reader = new FileReader();
+// function playAudio(audioFile) {
+//     const audioContext = new AudioContext();
+//     const reader = new FileReader();
 
-    reader.onload = function (event) {
-        const arrayBuffer = event.target.result;
+//     reader.onload = function (event) {
+//         const arrayBuffer = event.target.result;
 
-        audioContext.decodeAudioData(arrayBuffer, function (buffer) {
-            const source = audioContext.createBufferSource();
-            source.buffer = buffer;
-            source.connect(audioContext.destination);
-            source.start();
-        });
-    };
+//         audioContext.decodeAudioData(arrayBuffer, function (buffer) {
+//             const source = audioContext.createBufferSource();
+//             source.buffer = buffer;
+//             source.connect(audioContext.destination);
+//             source.start();
+//         });
+//     };
 
-    reader.readAsArrayBuffer(audioFile);
-}
+//     reader.readAsArrayBuffer(audioFile);
+// }
 
-function play(audioElement) {
-    const audioContext = new AudioContext();
-    const source = audioContext.createMediaElementSource(audioElement);
+// function play(audioElement) {
+//     const audioContext = new AudioContext();
+//     const source = audioContext.createMediaElementSource(audioElement);
 
-    source.connect(audioContext.destination);
-    audioElement.play();
-}
+//     source.connect(audioContext.destination);
+//     audioElement.play();
+// }
