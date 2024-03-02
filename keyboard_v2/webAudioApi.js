@@ -29,10 +29,14 @@
 //     osc.frequency.value = event.target.value;
 // })
 
-const audioContext = new(window.AudioContext || window.webkitAudioContext)();
 
-console.log(AudioContext.sampleRate);
+// создание экземпляра аудио-контекста
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
+console.log('audioContext ===');
+console.log(audioContext);
+
+//создание буффера от аудио-контекста
 const buffer = audioContext.createBuffer(
     1,
     audioContext.sampleRate * 1,
@@ -40,14 +44,24 @@ const buffer = audioContext.createBuffer(
 );
 
 const channelData = buffer.getChannelData(0);
+console.log('channelData ===');
 console.log(channelData, length);
+
+// создание белого шума
 for (let i = 0; i < buffer.length; i++) {
+    // запись в массив 48000 рандомных значений
     channelData[i] = Math.random() * 2 - 1;
+    // console.log(channelData[i]);
 }
-
 const whiteNoiseSource = audioContext.createBufferSource();
+console.log('const whiteNoiseSource = audioContext.createBufferSource()')
+console.log(whiteNoiseSource);
 whiteNoiseSource.buffer = buffer;
+console.log('whiteNoiseSource.buffer = buffer');
+console.log(buffer);
+console.log(whiteNoiseSource.buffer);
 
+// создание гейн ноды
 const primaryGainControl = audioContext.createGain();
 primaryGainControl.gain.setValueAtTime(0.05, 0);
 
