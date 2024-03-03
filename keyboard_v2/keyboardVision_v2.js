@@ -510,58 +510,35 @@ symmetric_3.onclick = function () {
 
 // =================================== ВОСПРОИЗВЕДЕНИЕ ЗВУКА =================================
 function playArray(newArray, reverse, blok_chord, up_down) {
-    let delay = 300;
-    blok_chord ? delay = 0 : delay = 300;
     let list = Array.from(newArray);
     if (reverse)(list.reverse());
     if (up_down) {
-        // console.log(list.length);
-        console.log('up_down');
         for (let i = list.length - 1; i > 0; i--) {
-            console.log(i);
-            // let copy_el = list[i].cloneNode(true);
-            console.log(list[i]);
             list.push(list[i - 1]);
-
         }
-
     }
     let audioElements = [];
-    let int = 1;
     for (let i = 0; i < list.length; i++) {
-        let audio = new Audio(list[i].dataset.src);
-        audioElements.push(audio);
-        setTimeout(function () {
-            list[i].classList.add('play_led');
-            setTimeout(function () {
-                list[i].classList.remove('play_led');
-            }, 300)
-            audioElements[i].play();
-        }, int * delay);
-        int += 1;
+        audioElements.push(list[i]);
+    }
+    if (blok_chord) {
+        playMultipleAudioWithInterval(audioElements, 0);
+    } else {
+        playMultipleAudioWithInterval(audioElements, 250);
     }
 }
-
-// let channels = 2;
-// let frameCount = audioCtx.sampleRate * 2.0;
-// let myArrayBuffer = audioCtx.createBuffer(
-//     channels,
-//     frameCount,
-//     audioCtx.sampleRate
-// );
-
-
 
 
 let section_for_contextmenu = document.querySelector('.section');
 section_for_contextmenu.addEventListener('contextmenu', function (event) {
-    event.target.classList.add('play_led')
-    let audio = new Audio(event.target.dataset.src);
-    audio.play();
+
+    // let audio = new Audio(event.target.dataset.src);
+    // audio.play();
     event.preventDefault(false);
-    setTimeout(function () {
-        event.target.classList.remove('play_led')
-    }, 200)
+    // event.target.classList.add('play_led')
+    // setTimeout(function () {
+    //     event.target.classList.remove('play_led')
+    // }, 200)
 })
 
 
