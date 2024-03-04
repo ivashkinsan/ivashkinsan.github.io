@@ -1,0 +1,60 @@
+.contains{
+  
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+gap: 4px;
+}
+
+.big_tonality_contain{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    width: min-content;
+    font-size: 30px;
+}
+
+.column{
+    display: grid;
+    padding: 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    /* border: solid 1px black; */
+}
+
+.label_for_row{
+    text-align: center;
+    font-size: 26px;
+}
+
+.h2_label{
+    text-align: center;
+    grid-area: 1/1/1/3;
+    font-size: 20px;
+}
+.h3_label{
+    text-align: center;
+    grid-area: 2/1/2/3;
+    font-size: 20px;
+}
+.option_elem{
+    font-size: 24px;
+}
+.flex_column{
+    flex-direction: column;
+}
+
+.victory{
+    background-color: greenyellow;
+}
+
+select:disabled{
+    width: 55px;
+    height: 31px;
+    opacity: 1;
+    color: black;
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  text-align: center;
+    /* border-color: rgba(118, 118, 118, 0.0); */
+}
