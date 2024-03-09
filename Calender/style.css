@@ -117,7 +117,7 @@ h1 {
     background-size: contain;
     background-repeat: no-repeat;
     background-clip: content-box;
-    background-position: center;
+    background-position: top;
     z-index: 1001;
     opacity: 0;
 }

@@ -314,7 +314,10 @@ let go = function () {
             array[i].classList.add('change');
 
             if (i == array.length - 1) {
-                document.querySelector('.pop_up').classList.add('opacity');
+                setTimeout(function () {
+                    document.querySelector('.pop_up').classList.add('opacity');
+                }, 2000)
+
             }
         }, time += 80)
 
