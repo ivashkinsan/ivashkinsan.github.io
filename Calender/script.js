@@ -1,4 +1,3 @@
-
 let sample = document.getElementById("foobar");
 
 const calendar_2024 = {
@@ -317,7 +316,7 @@ let go = function () {
             if (i == array.length - 1) {
                 document.querySelector('.pop_up').classList.add('opacity');
             }
-        }, time += 140)
+        }, time += 80)
 
     }
 }
@@ -330,8 +329,15 @@ function pop_up_8() {
 }
 pop_up_8();
 
+let audio_start = false;
 let opacity = false;
 body.addEventListener('click', function () {
+    if (!audio_start) {
+        document.querySelector('.cursor').classList.add('hide');
+        sample.play();
+        audio_start = true;
+    }
+
     if (!opacity) {
         go();
         opacity = true;
@@ -344,6 +350,5 @@ body.addEventListener('click', function () {
 });
 
 window.onload = function () {
-    sample.play();
-}
 
+}

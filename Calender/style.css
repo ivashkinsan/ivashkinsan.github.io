@@ -156,3 +156,7 @@ h1 {
 #foobar {
     display: none
 }
+
+.hide{
+    display: none;
+}
