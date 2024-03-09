@@ -1,28 +1,33 @@
 let contains = document.querySelector('.contains');
-let note_str = '- C D E F G A B C#/Db D#/Eb F#/Gb G#/Ab A#/Bb';
-let note_opt_arr = [];
-note_opt_arr = note_str.split(' ');
-let chord_position_IIm7 = ['8', '6', '4', '2'];
-let chord_position_V7 = ['7', '5', '4', '2'];
-let chord_position_Imaj = ['7', '5', '3', '1'];
-let label_II_V_I = ['IIm7', 'V7', 'I^'];
+let note_str_arr = ['-', 'C', 'D', 'E', 'F', 'G', 'A', 'B', 'C#/Db', 'D#/Eb', 'F#/Gb', 'G#/Ab', 'A#/Bb'];
+let note_opt_arr = ['1', '2', '3', '4', '5', '6', '7', 'b2', 'b3', 'b5', 'b6', 'b7'];
+// note_opt_arr = note_str.split(' ');
+function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+    return array;
+}
+let chord_position_IIm7 = shuffle(note_opt_arr);
+console.log(chord_position_IIm7);
+// let chord_position_V7 = ['7', '5', '4', '2'];
+// let chord_position_Imaj = ['7', '5', '3', '1'];
+// let label_II_V_I = ['IIm7', 'V7', 'I^'];
 
 let all_answer = {
     'C root': {
         '1': 'C',
-        'b2': 'Db',
+        'b2': 'C#/Db',
         '2': 'D',
-        'b3': 'Eb',
+        'b3': 'D#/Eb',
         '3': 'E',
         '4': 'F',
-        'b5': 'Gb',
+        'b5': 'F#/Gb',
         '5': 'G',
-        'b6': 'Ab',
+        'b6': 'G#/Ab',
         '6': 'A',
-        'b7': 'Bb',
+        'b7': 'A#/Bb',
         '7': 'B',
         '8': 'C',
-    },
+    },//продолжить
     'Db root': {
         '1': 'Db',
         'b2': 'Ebb',
@@ -214,7 +219,7 @@ let create_select = function (matrix, user_answer_arr, chord_position, indx) {
         user_answer_arr[indx] = e.target.value;
         console.log(user_answer_arr);
         if (e.target.parentNode.dataset.name == user_answer_arr.join(' ')) {
-            console.log('WICTORY');
+            console.log('VICTORY');
             let in_4_select = e.target.parentNode.querySelectorAll('select');
             console.log(in_4_select);
             e.target.parentNode.classList.add('victory');
@@ -265,7 +270,7 @@ let create_column_in_select = function (matrix, chord_position, label_text, posi
     // column.append(create_h2(label_text));
     // column.append(create_h3(position_text));
     let data_answer = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 13; i++) {
         column.classList.add('column');
         indx = i;
         column.append(create_label_for_row(chord_position[i]));
@@ -283,14 +288,18 @@ let create_column_in_select = function (matrix, chord_position, label_text, posi
 // большой контейнер с тональностью
 let create_big_tonality_contain = function (label, matrix) {
     let big_tonality_contain = document.createElement('div');
-    big_tonality_contain.textContent = label;
+    // big_tonality_contain.textContent = label;
+    let label_for_contain = document.createElement('div');
+    label_for_contain.classList.add('label_for_contain');
+    label_for_contain.textContent = label;
+    big_tonality_contain.append(label_for_contain);
     big_tonality_contain.classList.add('big_tonality_contain');
 
 
 
-    big_tonality_contain.append(create_column_in_select(matrix, chord_position_IIm7, 'IIm7', 'root'));
-    big_tonality_contain.append(create_column_in_select(matrix, chord_position_V7, 'V7', '5st'));
-    big_tonality_contain.append(create_column_in_select(matrix, chord_position_Imaj, 'I^', 'root'));
+    big_tonality_contain.append(create_column_in_select(matrix, chord_position_IIm7));
+    // big_tonality_contain.append(create_column_in_select(matrix, chord_position_V7, 'V7', '5st'));
+    // big_tonality_contain.append(create_column_in_select(matrix, chord_position_Imaj, 'I^', 'root'));
 
     return big_tonality_contain;
 }
