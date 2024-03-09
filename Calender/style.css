@@ -1,28 +1,28 @@
-
-body{
+body {
     width: 100vw;
     height: 100vh;
     /* background-image: url(https://www.buhsoft.ru/images/preview/600x400/d6c37f897e91a118c6199dff39f087ef.jpg);
     background-repeat: no-repeat;
     background-size: contain; */
     background-color: rgb(253, 143, 211);
-/* background: linear-gradient(188deg, rgb(243, 94, 121) 0%, rgb(135, 171, 255) 100%); */
+    /* background: linear-gradient(188deg, rgb(243, 94, 121) 0%, rgb(135, 171, 255) 100%); */
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
 }
-.contains{
+
+.contains {
     font-size: 12px;
     display: grid;
     justify-items: center;
     align-items: start;
     /* gap: 5px; */
-grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 }
 
-.month{
+.month {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,16 +31,16 @@ grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     border-radius: 10px;
     padding: 5px;
     margin: 5px 6px 10px 6px;
-background-color: rgba(255, 255, 255, 0.567);
-z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.567);
+    z-index: 1000;
 }
 
-h1{
+h1 {
     font-size: 14px;
     line-height: 14px;
 }
 
-.row{
+.row {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -49,22 +49,23 @@ h1{
 }
 
 .day,
-.name_day{
+.name_day {
     width: 20px;
     text-align: center;
     position: relative;
-    line-height: 20px; 
-  
+    line-height: 20px;
+
 }
-.weekend{
+
+.weekend {
     color: red;
 }
 
-.previous_month{
-color: rgb(185, 185, 185);
+.previous_month {
+    color: rgb(185, 185, 185);
 }
 
-.change{
+.change {
     /* background-color: rgb(255, 111, 142); */
     /* background: linear-gradient(188deg, rgb(255, 111, 142) 0%, rgb(255, 61, 100) 100%); */
     /* border-radius: 50%; */
@@ -73,50 +74,80 @@ color: rgb(185, 185, 185);
     /* box-shadow: 2px 1px 3px rgb(135, 135, 135); */
 }
 
-.change{ 
-    
-    width: 20px; 
-    height: 20px; 
+.change {
+
+    width: 20px;
+    height: 20px;
     z-index: 1000;
     margin: 0;
     line-height: 20px;
-} 
+}
 
-.change:before, .change:after { 
-    position: absolute; 
-    content: ""; 
-    left: 4.5px; 
-    top: 4px; 
-    width: 5px; 
-    height: 7px; 
-    background: red; 
-    border-radius: 5px 5px 0 0; 
-    transform: rotate(-45deg); 
-    transform-origin: 0 100%; 
+.change:before,
+.change:after {
+    position: absolute;
+    content: "";
+    left: 4.5px;
+    top: 4px;
+    width: 5px;
+    height: 7px;
+    background: red;
+    border-radius: 5px 5px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
     z-index: 1;
-} 
+}
 
-.change:after { 
-    left: 0; 
-    transform: rotate(45deg); 
-    transform-origin :100% 100%; 
+.change:after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
     z-index: 1;
 }
 
 
-.pop_up{
-    /* display: flex; */
-    /* display: none; */
+.pop_up {
+    display: flex;
     position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
     background-color: rgb(253, 143, 211);
-    background-image: url('/Group 37.svg');
+    background-image: url('/Calender/Group\ 37.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-clip: content-box;
     background-position: center;
-    z-index: 999;
+    z-index: 1001;
+    opacity: 0;
 }
 
+.opacity {
+    opacity: 1;
+    transition-duration: 1000ms;
+}
+
+.cursor {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 100px;
+    width: 130px;
+    height: 130px;
+    background-image: url(/Calender/pointer-svgrepo-com.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    background-position: center;
+    animation: go-left-right 0.5s infinite alternate;
+}
+
+@keyframes go-left-right {
+    from {
+        transform: scale(0.8);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}

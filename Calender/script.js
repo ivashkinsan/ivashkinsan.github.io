@@ -292,28 +292,32 @@ function shuffle(array) {
     return array;
 }
 
-const body = document.querySelector('body');
+const body = document.querySelector('.body');
 body.appendChild(create_month());
 
 
-let all_day = document.querySelectorAll('.day');
-// console.log(all_day);
-let time = 0;
-let array = [...all_day];
-console.log(array);
-array = shuffle(array);
-console.log(array);
-for (let i = 0; i < array.length; i++) {
-    setTimeout(function () {
-        array[i].textContent = 8;
-        array[i].classList.add('change');
-        if (i == array.length) {
 
-        }
-    }, time += 30)
 
+
+
+let go = function () {
+    let all_day = document.querySelectorAll('.day');
+    let time = 0;
+    let array = [...all_day];
+    array = shuffle(array);
+
+    for (let i = 0; i < array.length; i++) {
+        setTimeout(function () {
+            array[i].textContent = 8;
+            array[i].classList.add('change');
+
+            if (i == array.length - 1) {
+                document.querySelector('.pop_up').classList.add('opacity');
+            }
+        }, time += 30)
+
+    }
 }
-
 
 function pop_up_8() {
     const pop_up = document.createElement('div');
@@ -321,5 +325,17 @@ function pop_up_8() {
     // pop_up.textContent = 8;
     body.appendChild(pop_up);
 }
-
 pop_up_8();
+
+let opacity = false;
+body.addEventListener('click', function () {
+    if (!opacity) {
+        go();
+        opacity = true;
+    } else {
+        document.querySelector('.contains').remove();
+        document.querySelector('.pop_up').classList.remove('opacity');
+        body.appendChild(create_month());
+        opacity = false;
+    }
+})
