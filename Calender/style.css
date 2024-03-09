@@ -151,3 +151,8 @@ h1 {
         transform: scale(1);
     }
 }
+
+
+#foobar {
+    display: none
+}

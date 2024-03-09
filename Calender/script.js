@@ -1,3 +1,6 @@
+
+let sample = document.getElementById("foobar");
+
 const calendar_2024 = {
     'yanuary': {
         name: 'январь',
@@ -314,7 +317,7 @@ let go = function () {
             if (i == array.length - 1) {
                 document.querySelector('.pop_up').classList.add('opacity');
             }
-        }, time += 30)
+        }, time += 140)
 
     }
 }
@@ -338,4 +341,9 @@ body.addEventListener('click', function () {
         body.appendChild(create_month());
         opacity = false;
     }
-})
+});
+
+window.onload = function () {
+    sample.play();
+}
+
