@@ -330,7 +330,7 @@ let x_circle_function = function (x_item, circle, xxx, yyy) {
 
 //Запуск целотоновой гаммы 1
 wholetoneButtonX.onclick = function () {
-    clearKey();
+    // clearKey();
     x_circle_function('x_item', "", 2, 2);
     monitor.textContent = this.dataset.symbol;
     x_item_led_boolean ^= true;
@@ -339,7 +339,7 @@ wholetoneButtonX.onclick = function () {
 };
 //Запуск целотоновой гаммы 2
 wholetoneButtonY.onclick = function () {
-    clearKey();
+    // clearKey();
     x_circle_function("", 'circle', 2, 2);
     monitor.textContent = this.dataset.symbol;
     circle_led_boolean ^= true;
@@ -349,7 +349,7 @@ wholetoneButtonY.onclick = function () {
 
 //Запуск целотоновых гамм 1 и 2
 wholetoneButtonXY.onclick = function () {
-    clearKey();
+    // clearKey();
     x_circle_function('x_item', 'circle', 2, 2);
     monitor.textContent = this.dataset.symbol;
     x_item_led_boolean ^= true;
