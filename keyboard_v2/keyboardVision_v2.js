@@ -13,55 +13,19 @@ let all_key_for_sound = document.querySelectorAll('.key');
 let all_audio_elem = document.querySelectorAll('audio');
 let array_of_nodelist = [...all_audio_elem];
 
-let notes_123 = document.querySelector('.notes_123');
-//массив цифр
+
 let notes_123_mas = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '1'];
-
-let halftones = document.querySelector('.halftones');
-//массив полутонов
 let halftones_mas = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
-
-let wholetones = document.querySelector('.wholetones');
-//массив тонов
 let wholetones_mas = ['0', '0.5', '1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5', '5.5', '6 / 0', '0.5', '1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5', '5.5', '6 / 0', '0.5', '1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5', '5.5', '6 / 0'];
-
-let notes_Intervals = document.querySelector('.notes_Intervals');
-//массив интервалов
 let notes_Intervals_mas = ['ч1', 'м2', 'Б2', 'м3', 'Б3', 'ч4', 'ТТТ', 'ч5', 'м6', 'Б6', 'м7', 'Б7', 'ч1', 'м2', 'Б2', 'м3', 'Б3', 'ч4', 'ТТТ', 'ч5', 'м6', 'Б6', 'м7', 'Б7', 'ч1', 'м2', 'Б2', 'м3', 'Б3', 'ч4', 'ТТТ', 'ч5', 'м6', 'Б6', 'м7', 'Б7', 'ч1'];
-
-let notes_rim = document.querySelector('.notes_rim');
-//массив римских цифр
 let notes_rim_mas = ['I', 'bII', 'II', 'bIII', 'III', 'IV', '#IV/bV', 'V', 'bVI', 'VI', 'bVII', 'VII', 'I', 'bII', 'II', 'bIII', 'III', 'IV', '#IV/bV', 'V', 'bVI', 'VI', 'bVII', 'VII', 'I', 'bII', 'II', 'bIII', 'III', 'IV', '#IV/bV', 'V', 'bVI', 'VI', 'bVII', 'VII', 'I'];
-
-
-let notes_Number = document.querySelector('.notes_Number');
-//массив ступеней
 let notes_Number_mas = ['1', 'b2', '2', 'b3', '3', '4', '#4/b5', '5', 'b6', '6', 'b7', '7', '1', 'b2', '2', 'b3', '3', '4', '#4/b5', '5', 'b6', '6', 'b7', '7', '1', 'b2', '2', 'b3', '3', '4', '#4/b5', '5', 'b6', '6', 'b7', '7', '1'];
-
-let maj_min = document.querySelector('.maj_min');
-//массив маж-мин
 let maj_min_mas = ['+', '-', '+', '-', '+', '+', '+/-', '+', '-', '+', '-', '+', '+', '-', '+', '-', '+', '+', '+/-', '+', '-', '+', '-', '+', '+', '-', '+', '-', '+', '+', '+/-', '+', '-', '+', '-', '+', '+'];
-
-let extensions = document.querySelector('.extensions');
-//массив надстроек
 let extensions_mas = ['1', 'b9', '9', '#9/b3', '3', '11', '#11/b5', '5', '#5/b13', '13', 'b7', '7', '1', 'b9', '9', '#9/b3', '3', '11', '#11/b5', '5', '#5/b13', '13', 'b7', '7', '1', 'b9', '9', '#9/b3', '3', '11', '#11/b5', '5', '#5/b13', '13', 'b7', '7', '1'];
-
-let chords = document.querySelector('.chords');
-//массив аккордов
 let chords_mas = ['(root)', 'frig', 'add2', 'min', 'maj', 'sus', 'dim', '(5)', 'aug', '6', '7', '^', '(root)', 'frig', 'add2', 'min', 'maj', 'sus', 'dim', '(5)', 'aug', '6', '7', '^', '(root)', 'frig', 'add2', 'min', 'maj', 'sus', 'dim', '(5)', 'aug', '6', '7', '^', '(root)'];
-
-let relative = document.querySelector('.relative');
-//массив релятив
 let relative_mas = ['ё', 'лу', 'ле', 'ву', 'ви', 'на', 'ни', 'зо', 'ру', 'ра', 'ту', 'ти', 'ё', 'лу', 'ле', 'ву', 'ви', 'на', 'ни', 'зо', 'ру', 'ра', 'ту', 'ти', 'ё', 'лу', 'ле', 'ву', 'ви', 'на', 'ни', 'зо', 'ру', 'ра', 'ту', 'ти', 'ё'];
-
-//цвета релятив
 let color = ['#00FF00', '#5A009D', '#fff44f', '#0000FF', '#FF8000', '#7FFFD4', ' #ce2029', '#9acd32', '#8a2be2', '#FFFF00', '#89CFF0', '#FF0000', '#00FF00', '#5A009D', '#fff44f', '#0000FF', '#FF8000', '#7FFFD4', ' #ce2029', '#9acd32', '#8a2be2', '#FFFF00', '#89CFF0', '#FF0000', '#00FF00', '#5A009D', '#fff44f', '#0000FF', '#FF8000', '#7FFFD4', ' #ce2029', '#9acd32', '#8a2be2', '#FFFF00', '#89CFF0', '#FF0000', '#00FF00'];
-
-let relative_center = document.querySelector('.relative_center');
-//массив релятив центр
 let relative_center_mas = ['ё', 'лу', 'ле', 'ву', 'ви', 'на', 'ни', 'зо', 'ру', 'ра', 'ту', 'ти', 'ё', 'лу', 'ле', 'ву', 'ви', 'на', 'ни', 'зо'];
-
-//цвета релятив
 let color_center = ['#00FF00', '#5A009D', '#fff44f', '#0000FF', '#FF8000', '#7FFFD4', ' #ce2029', '#9acd32', '#8a2be2', '#FFFF00', '#89CFF0', '#FF0000', '#00FF00', '#5A009D', '#fff44f', '#0000FF', '#FF8000', '#7FFFD4', ' #ce2029', '#9acd32'];
 
 
@@ -215,10 +179,10 @@ document.querySelector('.label_checkbox').addEventListener('change', function (e
     };
     //нумерация клавиш цифрами
     let noteLabel = function (input, output) {
-        const all_checkbox = document.querySelectorAll('.box_center > input.checked');
+        const all_checkbox = document.querySelectorAll('.box_center > input');
         for (let item of all_checkbox) {
-            if (elem.target.checked == true && item.checked == elem.target.checked) {
-                console.log(item);
+            if (elem.target == item) {
+                item.checked = true;
             } else {
                 item.checked = false;
             }
@@ -241,9 +205,15 @@ document.querySelector('.label_checkbox').addEventListener('change', function (e
         }
     };
     switch (elem.target.dataset.name) {
+        case 'clear':
+            for (let item of paragrNumb) {
+                item.textContent = '';
+            }
+            noteLabel(elem.target);
+            break;
         case 'цифры':
             noteLabel(elem.target, notes_Number_mas);
-            console.log(notes_Number, notes_Number_mas);
+            // console.log(notes_Number, notes_Number_mas);
             break;
         case 'полутон':
             noteLabel(elem.target, halftones_mas);
@@ -552,7 +522,7 @@ symmetric_3.onclick = function () {
 // =================================== ВОСПРОИЗВЕДЕНИЕ ЗВУКА =================================
 function playArray(newArray, reverse, blok_chord, up_down) {
     let list = Array.from(newArray);
-    if (reverse)(list.reverse());
+    if (reverse) (list.reverse());
     if (up_down) {
         for (let i = list.length - 1; i > 0; i--) {
             list.push(list[i - 1]);
