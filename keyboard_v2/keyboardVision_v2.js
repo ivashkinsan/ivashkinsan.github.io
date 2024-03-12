@@ -33,7 +33,7 @@ let notes_rim = document.querySelector('.notes_rim');
 //массив римских цифр
 let notes_rim_mas = ['I', 'bII', 'II', 'bIII', 'III', 'IV', '#IV/bV', 'V', 'bVI', 'VI', 'bVII', 'VII', 'I', 'bII', 'II', 'bIII', 'III', 'IV', '#IV/bV', 'V', 'bVI', 'VI', 'bVII', 'VII', 'I', 'bII', 'II', 'bIII', 'III', 'IV', '#IV/bV', 'V', 'bVI', 'VI', 'bVII', 'VII', 'I'];
 
-let paragrNumb = document.querySelectorAll('p')
+
 let notes_Number = document.querySelector('.notes_Number');
 //массив ступеней
 let notes_Number_mas = ['1', 'b2', '2', 'b3', '3', '4', '#4/b5', '5', 'b6', '6', 'b7', '7', '1', 'b2', '2', 'b3', '3', '4', '#4/b5', '5', 'b6', '6', 'b7', '7', '1', 'b2', '2', 'b3', '3', '4', '#4/b5', '5', 'b6', '6', 'b7', '7', '1'];
@@ -199,112 +199,126 @@ var calculateMassive = function (massive) {
 // console.log(five_Black['C']);
 calculateMassive(five_Black['C']);
 
-//нумерация клавиш цифрами
-let noteLabel = function (input, output) {
-    // const all_checkbox = document.querySelectorAll('.box_center > input');
-    // for (let item of all_checkbox) {
 
-    // }
-    console.log('noteLabel go');
-    for (let i = 0; i < paragrNumb.length; i++) {
-        if (input.checked == true) {
-            paragrNumb[i].textContent = output[i];
-            if (output[i] == "+" || output[i] == 'Б2' || output[i] == 'Б3' || output[i] == 'Б6' || output[i] == 'Б7' || output[i] == 'ч1' || output[i] == 'ч4' || output[i] == 'ч5') {
-                paragrNumb[i].style.fontSize = '40px';
-                paragrNumb[i].style.color = 'orange';
-            } else if (output[i] == "-" || output[i] == "+/-") {
-                paragrNumb[i].style.fontSize = '50px';
+
+
+document.querySelector('.label_checkbox').addEventListener('change', function (elem) {
+    let paragrNumb = document.querySelectorAll('p')
+    let noteLabelCenter = function (input, output) {
+        for (var i = 7; i < paragrNumb.length; i++) {
+            if (input.checked == true) {
+                paragrNumb[i].textContent = output[i];
             } else {
-                paragrNumb[i].style.fontSize = '24px';
-                paragrNumb[i].style.color = 'rgb(4, 0, 255)';
+                paragrNumb[i].textContent = '';
             }
-        } else {
-            paragrNumb[i].textContent = '';
         }
-    }
-};
-
-let noteLabelCenter = function (input, output) {
-    for (var i = 7; i < paragrNumb.length; i++) {
-        if (input.checked == true) {
-            paragrNumb[i].textContent = output[i];
-        } else {
-            paragrNumb[i].textContent = '';
+    };
+    //нумерация клавиш цифрами
+    let noteLabel = function (input, output) {
+        const all_checkbox = document.querySelectorAll('.box_center > input.checked');
+        for (let item of all_checkbox) {
+            if (elem.target.checked == true && item.checked == elem.target.checked) {
+                console.log(item);
+            } else {
+                item.checked = false;
+            }
         }
+        for (let i = 0; i < paragrNumb.length; i++) {
+            if (input.checked == true) {
+                paragrNumb[i].textContent = output[i];
+                if (output[i] == "+" || output[i] == 'Б2' || output[i] == 'Б3' || output[i] == 'Б6' || output[i] == 'Б7' || output[i] == 'ч1' || output[i] == 'ч4' || output[i] == 'ч5') {
+                    paragrNumb[i].style.fontSize = '40px';
+                    paragrNumb[i].style.color = 'orange';
+                } else if (output[i] == "-" || output[i] == "+/-") {
+                    paragrNumb[i].style.fontSize = '50px';
+                } else {
+                    paragrNumb[i].style.fontSize = '24px';
+                    paragrNumb[i].style.color = 'rgb(4, 0, 255)';
+                }
+            } else {
+                paragrNumb[i].textContent = '';
+            }
+        }
+    };
+    switch (elem.target.dataset.name) {
+        case 'цифры':
+            noteLabel(elem.target, notes_Number_mas);
+            console.log(notes_Number, notes_Number_mas);
+            break;
+        case 'полутон':
+            noteLabel(elem.target, halftones_mas);
+            break;
+        case 'тон':
+            noteLabel(elem.target, wholetones_mas);
+            break;
+        case 'интервалы':
+            noteLabel(elem.target, notes_Intervals_mas);
+            break;
+        case 'римские':
+            noteLabel(elem.target, notes_rim_mas);
+            break;
+        case 'ступени':
+            noteLabel(elem.target, notes_123_mas);
+            break;
+        case 'маж/мин':
+            noteLabel(elem.target, maj_min_mas);
+            break;
+        case 'надстройки':
+            noteLabel(elem.target, extensions_mas);
+            break;
+        case 'аккорды':
+            noteLabel(elem.target, chords_mas);
+            break;
+        case 'релятив':
+            noteLabel(elem.target, relative_mas);
+            noteColor();
+            console.log("YES");
+            break;
+        case 'релятив центр':
+            noteLabelCenter(elem.target, relative_center_mas);
+            noteColorCenter();
+            console.log("YES");
+            break;
     }
-};
+})
 
-// document.querySelector('.label_checkbox').addEventListener('click', function (elem) {
-//     switch (elem.target.dataset.name) {
-//         case 'цифры': noteLabel(notes_Number, notes_Number_mas);
-//             console.log(notes_Number, notes_Number_mas);
-//             break;
-//         case 'полутон': noteLabel(halftones, halftones_mas);
-//             break;
-//         case 'тон': noteLabel(wholetones, wholetones_mas);
-//             break;
-//         case 'интервалы': noteLabel(notes_Intervals, notes_Intervals_mas);
-//             break;
-//         case 'римские': noteLabel(notes_rim, notes_rim_mas);
-//             break;
-//         case 'ступени': noteLabel(notes_123, notes_123_mas);
-//             break;
-//         case 'маж/мин': noteLabel(maj_min, maj_min_mas);
-//             break;
-//         case 'надстройки': noteLabel(extensions, extensions_mas);
-//             break;
-//         case 'аккорды': noteLabel(chords, chords_mas);
-//             break;
-//         case 'релятив':
-//             noteLabel(relative, relative_mas);
-//             noteColor();
-//             console.log("YES");
-//             break;
-//         case 'релятив центр':
-//             noteLabelCenter(relative_center, relative_center_mas);
-//             noteColorCenter();
-//             console.log("YES");
-//             break;
-//     }
-// })
-
-notes_Number.addEventListener('click', function () {
-    noteLabel(notes_Number, notes_Number_mas);
-});
-halftones.addEventListener('click', function () {
-    noteLabel(halftones, halftones_mas);
-});
-wholetones.addEventListener('click', function () {
-    noteLabel(wholetones, wholetones_mas);
-});
-notes_Intervals.addEventListener('click', function () {
-    noteLabel(notes_Intervals, notes_Intervals_mas);
-});
-notes_rim.addEventListener('click', function () {
-    noteLabel(notes_rim, notes_rim_mas);
-});
-notes_123.addEventListener('click', function () {
-    noteLabel(notes_123, notes_123_mas);
-});
-maj_min.addEventListener('click', function () {
-    noteLabel(maj_min, maj_min_mas);
-});
-extensions.addEventListener('click', function () {
-    noteLabel(extensions, extensions_mas);
-});
-chords.addEventListener('click', function () {
-    noteLabel(chords, chords_mas);
-});
-relative.addEventListener('click', function () {
-    noteLabel(relative, relative_mas);
-    noteColor();
-    console.log("YES");
-});
-relative_center.addEventListener('click', function () {
-    noteLabelCenter(relative_center, relative_center_mas);
-    noteColorCenter();
-    console.log("YES");
-});
+// notes_Number.addEventListener('click', function () {
+//     noteLabel(notes_Number, notes_Number_mas);
+// });
+// halftones.addEventListener('click', function () {
+//     noteLabel(halftones, halftones_mas);
+// });
+// wholetones.addEventListener('click', function () {
+//     noteLabel(wholetones, wholetones_mas);
+// });
+// notes_Intervals.addEventListener('click', function () {
+//     noteLabel(notes_Intervals, notes_Intervals_mas);
+// });
+// notes_rim.addEventListener('click', function () {
+//     noteLabel(notes_rim, notes_rim_mas);
+// });
+// notes_123.addEventListener('click', function () {
+//     noteLabel(notes_123, notes_123_mas);
+// });
+// maj_min.addEventListener('click', function () {
+//     noteLabel(maj_min, maj_min_mas);
+// });
+// extensions.addEventListener('click', function () {
+//     noteLabel(extensions, extensions_mas);
+// });
+// chords.addEventListener('click', function () {
+//     noteLabel(chords, chords_mas);
+// });
+// relative.addEventListener('click', function () {
+//     noteLabel(relative, relative_mas);
+//     noteColor();
+//     console.log("YES");
+// });
+// relative_center.addEventListener('click', function () {
+//     noteLabelCenter(relative_center, relative_center_mas);
+//     noteColorCenter();
+//     console.log("YES");
+// });
 
 //расскрашивание клавиш
 let noteColor = function () {
@@ -538,7 +552,7 @@ symmetric_3.onclick = function () {
 // =================================== ВОСПРОИЗВЕДЕНИЕ ЗВУКА =================================
 function playArray(newArray, reverse, blok_chord, up_down) {
     let list = Array.from(newArray);
-    if (reverse) (list.reverse());
+    if (reverse)(list.reverse());
     if (up_down) {
         for (let i = list.length - 1; i > 0; i--) {
             list.push(list[i - 1]);
