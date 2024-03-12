@@ -24,7 +24,7 @@ body {
   text-align: center;
 }
 
-.label {
+.label_checkbox {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -230,11 +230,15 @@ p {
   background-color: rgb(89, 115, 204);
 }
 
-.clear_2 {
+.moni_hide {
   width: 100%;
   height: 30px;
 }
 
-.range_slide{
+.range_slide {
   width: 100%;
+}
+
+.hide {
+  opacity: 0;
 }
