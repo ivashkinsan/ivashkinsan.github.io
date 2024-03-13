@@ -1,17 +1,12 @@
-let winner_image = document.querySelector('.winner_image');
-
 let page_number = 0;
 let container_notes = document.querySelector('.container_notes');
 let monitor_for_text = document.querySelector('.monitor_for_text');
-// let nameStage = ['RA_up', 'ZO_up', 'NA', 'WI', 'LE', 'YO', 'TI', 'RA', 'ZO'];
-// let nameStage = ['RA_up', 'RU_up', 'ZO_up', 'NI', 'NA', 'WI', 'WU', 'LE', 'LU', 'YO', 'TI', 'TU', 'RA', 'RU', 'ZO'];
-
 let all_page_pigs;
 const audioAll = document.querySelectorAll('audio');
 let stop = 0;
 let reverse_item = 0;
-
 let start_ZO = 5;
+
 //прячем лишние горизонтальные линии
 let allLine = document.querySelectorAll('.line');
 for (let i = 0; i < allLine.length; i++) {
@@ -24,7 +19,6 @@ for (let i = 0; i < allLine.length; i++) {
 }
 
 // Создание массива с координатами горизонтального расположения
-// let start_Line_Left = 60;
 let grid_X = [];
 let interval_x = 50;
 let one_Item_Grid_X = 60; // первая нота отступ слева
@@ -133,33 +127,23 @@ NewGridStartMenuGO(full_menu);
 //слушаем события на start_buttons
 let start_buttons = document.querySelectorAll('.start_buttons');
 start_buttons.forEach(function (btn) {
-    // Вешаем событие клик
     btn.addEventListener('click', function () {
         for (i = 0; i < start_buttons.length; i++) {
             start_buttons[i].classList.remove('active_btn');
         }
         btn.classList.toggle('active_btn');
         startVariable = btn.dataSrc;
-        console.log(startVariable);
-        console.log(start_buttons.length);
     });
 });
 
 // функция для кнопки старт
-let startBtn = document.querySelector('.startBtn');
-let welcome = document.querySelector('.welcome');
-startBtn.addEventListener('click', function () {
-    welcome.style.display = 'none';
+document.querySelector('.startBtn').addEventListener('click', function () {
+    document.querySelector('.welcome').style.display = 'none';
     show();
     reverse_item = startVariable[0].all;
     console.log(reverse_item);
-
     start_game(startVariable);
-
 });
-// console.log(startVariable);
-
-
 
 // запуск одной страницы
 let start = function (pageArr) {
@@ -198,11 +182,9 @@ let start = function (pageArr) {
                         reverse_item = reverse_item - 1;
                         all_page_pigs[i].remove();
                         stop = stop - 1;
-                        console.log(reverse_item);
-
-
                     }
                 }
+
                 audio.load();
                 audio.play();
 
@@ -211,21 +193,14 @@ let start = function (pageArr) {
                     start_game(startVariable);
                 }
                 if (stop == 0 && reverse_item == 0) {
-                    winner_image.style.display = 'block';
+                    document.querySelector('.winner_image').style.display = 'block';
                 }
             });
 
         };
     }
     find_all_page_pigs();
-    // console.log(all_page_pigs[1].dataset.name);
 }
-
-
-
-
-// startVariable = parowoz[0];
-// start_new_page(startVariable);
 
 //старт игры
 start_game = function (game) {
@@ -233,10 +208,6 @@ start_game = function (game) {
     start(game[page_number]);
 
 }
-
-let button_left = document.querySelector('.button_left');
-let button_right = document.querySelector('.button_right');
-let button_menu = document.querySelector('.button_menu');
 let length_song = 0;
 
 //Сброс счетчиков
@@ -247,24 +218,21 @@ let reset = function () {
     length_song = 0;
 }
 
-
 //кнопка МЕНЮ
-button_menu.addEventListener('click', function () {
+document.querySelector('.button_menu').addEventListener('click', function () {
     reset();
     if (page_number <= length_song) {
         let note_delete = document.querySelectorAll('.note');
         for (let item of note_delete) {
             item.remove();
         }
-        welcome.style.display = 'block';
+        document.querySelector('.welcome').style.display = 'block';
     }
     show();
 });
 
 //кнопка Left
-button_left.addEventListener('click', function () {
-    // length_song = esli.length;
-    // console.log('left =' + page_number);
+document.querySelector('.button_left').addEventListener('click', function () {
     if (page_number > 0) {
         let note_delete = document.querySelectorAll('.note');
         for (let item of note_delete) {
@@ -276,9 +244,7 @@ button_left.addEventListener('click', function () {
 });
 
 //кнопки Right
-button_right.addEventListener('click', function () {
-    // length_song = esli.length;
-    // console.log('right =' + page_number);
+document.querySelector('.button_right').addEventListener('click', function () {
     if (page_number < length_song) {
         let note_delete = document.querySelectorAll('.note');
         for (let item of note_delete) {
@@ -289,18 +255,17 @@ button_right.addEventListener('click', function () {
     }
 });
 
-
-
-//кнопка на картинке победы
-winner_image.addEventListener('click', function () {
+//картинка успешного окончания песенки
+document.querySelector('.winner_image').addEventListener('click', function () {
     reset();
     if (page_number <= length_song) {
         let note_delete = document.querySelectorAll('.note');
         for (let item of note_delete) {
             item.remove();
         }
-        winner_image.style.display = 'none';
-        welcome.style.display = 'block';
+        console.log(this);
+        this.style.display = 'none';
+        document.querySelector('.welcome').style.display = 'block';
     }
     show();
 });
