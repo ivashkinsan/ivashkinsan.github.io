@@ -27,23 +27,36 @@ function create_answer() {
 
 function create_select_box(answers) {
     console.log(answers);
-    // 12 options_containers
-    // answers.forEach(element => {
-    //     console.log(element);
-    // });
-    for (let item in answers) {
-        let options_container = document.createElement('select');
-        console.log(Object.keys(answers[item]));
+    let obj_key_to_array = Object.keys(answers);
+    let obj_values_to_array = Object.values(answers);
+    console.log(obj_key_to_array);
+    console.log(obj_values_to_array);
+    for (let item of obj_key_to_array) {
         console.log(answers[item]);
-        for (let item_2 in answers[item]) {
-            let new_options = document.createElement('option');
-            new_options.value = answers[item][item_2];
-            new_options.textContent = answers[item].value;
+        let row_contain = document.createElement('div');
+        let label_root_ton = document.createElement('div');
+        label_root_ton.textContent = item;
 
-            options_container.append(new_options)
-        }
-        document.querySelector('.app').append(options_container);
+
+        row_contain.append(label_root_ton);
+        document.querySelector('.app').append(row_contain);
     }
+    // answers.forEach(function (value, index, array) {
+    // let options_container = document.createElement('select');
+    // 
+    // label_options_container.textContent = Object.keys(value);
+    // console.log(Object.keys(answers));
+    // console.log(answers[item]);
+    // for (let item_2 in answers[item]) {
+    //     let new_options = document.createElement('option');
+    //     new_options.value = answers[item][item_2];
+    //     new_options.textContent = answers[item].value;
+
+    //     options_container.append(new_options)
+    // }
+    // document.querySelector('.app').append(label_options_container);
+    // 
+    // })
 }
 
 create_select_box(create_answer());
