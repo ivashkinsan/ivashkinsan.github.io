@@ -32,9 +32,17 @@ function create_select_box(answers) {
     //     console.log(element);
     // });
     for (let item in answers) {
-        let options_container = document.createElement('div');
+        let options_container = document.createElement('select');
+        console.log(Object.keys(answers[item]));
         console.log(answers[item]);
-        document.querySelector('.app').append(item);
+        for (let item_2 in answers[item]) {
+            let new_options = document.createElement('option');
+            new_options.value = answers[item][item_2];
+            new_options.textContent = answers[item].value;
+
+            options_container.append(new_options)
+        }
+        document.querySelector('.app').append(options_container);
     }
 }
 
