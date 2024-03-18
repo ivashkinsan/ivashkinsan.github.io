@@ -45,15 +45,18 @@
 
 select {
     height: 30px;
+    width: 55px;
     text-align: center;
-    font-size: 20px;
+    font-size: 16px;
 
     -webkit-appearance: none;
     -moz-appearance: none;
     text-indent: 1px;
     text-overflow: '';
 }
-
+.answer_green{
+    background-color: greenyellow;
+}
 .h2_label {
     text-align: center;
     grid-area: 1/1/1/3;
