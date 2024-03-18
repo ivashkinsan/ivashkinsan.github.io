@@ -1,0 +1,74 @@
+:root{
+    --const: 420px;
+    --background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: OPUSTEXT;
+    color: #F4D6B1;
+    padding-top: 15px;
+    justify-content: start;
+    align-items: center;
+    background: var(--background);
+    border: 20px solid #DDB078;
+    border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
+    /* overflow: scroll; */
+}
+
+.containMatri{
+    position: relative;
+}
+
+.mtrxCircle{
+    display: block;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    outline: 1px solid rgba(125, 125, 125, 0.78);
+    border-radius: 50%;
+}
+
+
+.matrix_16{
+    width: calc(var(--const) / 16);
+    height: calc(var(--const) / 16);
+    z-index: 16;
+}
+.matrix_8{
+    width: calc(var(--const) / 8);
+    height: calc(var(--const) / 8);
+    z-index: 8;
+}
+.matrix_4{
+    width: calc(var(--const) / 4);
+    height: calc(var(--const) / 4);
+    z-index: 4;
+}
+.matrix_2{
+    width: calc(var(--const) / 2);
+    height: calc(var(--const) / 2);
+    z-index: 2;
+}
+.matrix_1{
+    width: calc(var(--const) / 1);
+    height: calc(var(--const) / 1);
+    z-index: 1;
+}
+
+.active{
+    position: absolute;
+    border: 1px solid white;
+    border-radius: 50%;
+    z-index: 1000;
+    background-color: rgb(44, 44, 44);
+}
