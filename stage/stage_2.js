@@ -26,17 +26,19 @@ function create_answer() {
 }
 
 function create_select_contains(answers) {
-    console.log(answers);
+    // console.log(answers);
     let obj_key_to_array = Object.keys(answers);
     let obj_values_to_array = Object.values(answers);
     let row_index = 0;
     for (let item of obj_key_to_array) {
         let row_contain = document.createElement('div');
-        let label_root_ton = document.createElement('h2');
+        let label_root_ton = document.createElement('div');
+        label_root_ton.classList.add('label_for_row');
         label_root_ton.textContent = item;
 
         row_contain.append(label_root_ton);
         row_contain.append(create_row_selects(obj_values_to_array, 0, row_index));
+        row_contain.classList.add('row_contain');
         row_index++;
         document.querySelector('.app').append(row_contain);
     }
@@ -66,9 +68,9 @@ function create_one_select_elem(input, answer) {
 
     select_elem.addEventListener('change', (e) => {
         // console.log(answer_arr);
-        console.log(e.target.value); 
+        console.log(e.target.value);
         console.log(e.target.value == select_elem.dataset.answer);
-        if(e.target.value == select_elem.dataset.answer){
+        if (e.target.value == select_elem.dataset.answer) {
             select_elem.disabled = true;
             select_elem.classList.add('answer_green');
         }
@@ -96,10 +98,10 @@ function create_row_selects(input, indx, row_index) {
         one_row.append(one_box_for_row);
         indx++;
     }
-    
+
     console.log(input[row_index]);
     console.log(row_index);
-    
+
     return one_row;
 }
 

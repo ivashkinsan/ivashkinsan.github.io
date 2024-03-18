@@ -205,7 +205,7 @@ body {
   color: rgb(136, 136, 136);
 }
 
-.black_key > .keyb_label {
+.black_key>.keyb_label {
   font-size: 12px;
   /* color: green; */
 }
@@ -399,7 +399,7 @@ body {
   left: -27px;
 }
 
-.new_line_for_C3::before{
+.new_line_for_C3::before {
   position: absolute;
   content: "";
   left: -25px;
@@ -408,7 +408,8 @@ body {
   background-color: #ffffff;
   z-index: 1;
 }
-.new_line_for_C3::after{
+
+.new_line_for_C3::after {
   position: absolute;
   content: "";
   left: 46px;
