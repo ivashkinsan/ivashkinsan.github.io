@@ -626,3 +626,202 @@ play_up_down.addEventListener('click', () => {
 
 
 console.log(document.body.style);
+
+
+
+// const audioMemory = {};
+// let audioContext = new AudioContext();
+// let source;
+
+// function cacheAudioFile(audioFile) {
+//     return fetch(audioFile)
+//         .then(response => response.arrayBuffer())
+//         .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+//         .then(audioBuffer => {
+//             audioMemory[audioFile] = audioBuffer;
+//         })
+//         .catch(error => {
+//             console.error('Error loading audio file:', error);
+//         });
+// }
+
+// function playCachedAudio(audioFile, startTime, stopTime) {
+//     source = audioContext.createBufferSource();
+//     source.buffer = audioMemory[audioFile];
+
+//     const gainNode = audioContext.createGain();
+//     source.connect(gainNode);
+//     gainNode.connect(audioContext.destination);
+
+//     source.start(0, startTime, stopTime - startTime);
+
+//     return source;
+// }
+
+// function stopAudioPlayback() {
+//     if (source && audioContext.state === 'running') {
+//         source.stop();
+//     }
+// }
+
+// // Управление кнопками Play и Stop
+// const playButton = document.querySelector('.play');
+// const stopButton = document.getElementById('stopButton');
+
+// playButton.addEventListener('click', () => {
+//     const audioFile = '/keyboard_v2/PIANO_BIG_FILES_192.mp3';
+//     cacheAudioFile(audioFile)
+//         .then(() => {
+//             playCachedAudio(audioFile, 55, 65); // Пример воспроизведения с 5 по 10 секунду
+//         });
+// });
+
+
+
+
+
+
+
+// const audioMemory = {};
+// let audioContext = new AudioContext();
+// let source;
+
+// function cacheAudioFile(audioFile) {
+//     return fetch(audioFile)
+//         .then(response => response.arrayBuffer())
+//         .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+//         .then(audioBuffer => {
+//             audioMemory[audioFile] = audioBuffer;
+//         })
+//         .catch(error => {
+//             console.error('Error loading audio file:', error);
+//         });
+// }
+
+// function playSound(note) {
+//     const audioFile = '/keyboard_v2/PIANO_BIG_FILES_192.mp3'; // Замените на ваш аудиофайл с нотами пианино
+//     if (!audioMemory[audioFile]) {
+//         cacheAudioFile(audioFile)
+//             .then(() => {
+//                 playSound(note);
+//             });
+//     } else {
+//         if (source) {
+//             source.stop();
+//         }
+
+//         source = audioContext.createBufferSource();
+//         source.buffer = audioMemory[audioFile];
+
+//         const gainNode = audioContext.createGain();
+//         gainNode.gain.value = 0.5; // Громкость сэмпла
+
+//         source.connect(gainNode);
+//         gainNode.connect(audioContext.destination);
+
+//         source.start(0);
+//     }
+// }
+
+// // Обработка клавиш клавиатуры для воспроизведения звуков
+// document.addEventListener('keydown', event => {
+//     switch(event.key) {
+//         case 'c':
+//             playSound('C');
+//             break;
+//         case 'd':
+//             playSound('D');
+//             break;
+//         case 'e':
+//             playSound('E');
+//             break;
+//         case 'f':
+//             playSound('F');
+//             break;
+//         case 'g':
+//             playSound('G');
+//             break;
+//         case 'a':
+//             playSound('A');
+//             break;
+//         case 'b':
+//             playSound('B');
+//             break;
+//     }
+// });
+
+
+
+// const audioMemory = {};
+// let audioContext = new AudioContext();
+// let source;
+// const tempo = 1;
+// const attackTime = 0.1; // Время нарастания звука
+// const releaseTime = 0.3; // Время затухания звука
+
+// function cacheAudioFile(audioFile) {
+//     return fetch(audioFile)
+//         .then(response => response.arrayBuffer())
+//         .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+//         .then(audioBuffer => {
+//             audioMemory[audioFile] = audioBuffer;
+//         })
+//         .catch(error => {
+//             console.error('Error loading audio file:', error);
+//         });
+// }
+
+// function playSound(note, startTime, duration) {
+//     const audioFile = '/keyboard_v2/PIANO_BIG_FILES_192.mp3'; // Путь к вашему аудиофайлу с нотами пианино
+//     if (!audioMemory[audioFile]) {
+//         cacheAudioFile(audioFile)
+//             .then(() => {
+//                 playSound(note, startTime, duration);
+//             });
+//     } else {
+//         if (source) {
+//             source.stop();
+//         }
+
+//         source = audioContext.createBufferSource();
+//         source.buffer = audioMemory[audioFile];
+
+//         const gainNode = audioContext.createGain();
+//         gainNode.gain.value = 0;
+
+//         source.connect(gainNode);
+//         gainNode.connect(audioContext.destination);
+
+//         const currentTime = audioContext.currentTime;
+//         gainNode.gain.linearRampToValueAtTime(0, currentTime);
+//         gainNode.gain.linearRampToValueAtTime(0.5, currentTime + attackTime);
+//         source.start(currentTime + startTime, startTime, duration / tempo);
+//         gainNode.gain.linearRampToValueAtTime(0, currentTime + startTime + duration / tempo + releaseTime);
+//     }
+// }
+
+// document.addEventListener('keydown', event => {
+//     switch(event.key) {
+//         case 'c':
+//             playSound('C', 0, 8);
+//             break;
+//         case 'd':
+//             playSound('D', 80, 8);
+//             break;
+//         case 'e':
+//             playSound('E', 120, 8);
+//             break;
+//         case 'f':
+//             playSound('F', 240, 8);
+//             break;
+//         case 'g':
+//             playSound('G', 320, 8);
+//             break;
+//         case 'a':
+//             playSound('A', 400, 8);
+//             break;
+//         case 'b':
+//             playSound('B', 480, 8);
+//             break;
+//     }
+// });
