@@ -212,7 +212,7 @@ document.querySelector('.label_checkbox').addEventListener('change', function (e
             noteLabel(elem.target);
             break;
         case 'цифры':
-            noteLabel(elem.target, notes_Number_mas);
+            noteLabel(elem.target, notes_123_mas);
             // console.log(notes_Number, notes_Number_mas);
             break;
         case 'полутон':
@@ -228,7 +228,7 @@ document.querySelector('.label_checkbox').addEventListener('change', function (e
             noteLabel(elem.target, notes_rim_mas);
             break;
         case 'ступени':
-            noteLabel(elem.target, notes_123_mas);
+            noteLabel(elem.target, notes_Number_mas);
             break;
         case 'маж/мин':
             noteLabel(elem.target, maj_min_mas);
@@ -522,7 +522,7 @@ symmetric_3.onclick = function () {
 // =================================== ВОСПРОИЗВЕДЕНИЕ ЗВУКА =================================
 function playArray(newArray, reverse, blok_chord, up_down) {
     let list = Array.from(newArray);
-    if (reverse) (list.reverse());
+    if (reverse)(list.reverse());
     if (up_down) {
         for (let i = list.length - 1; i > 0; i--) {
             list.push(list[i - 1]);
@@ -532,6 +532,7 @@ function playArray(newArray, reverse, blok_chord, up_down) {
     for (let i = 0; i < list.length; i++) {
         audioElements.push(list[i]);
     }
+    console.log(list);
     if (blok_chord) {
         playMultipleAudioWithInterval(audioElements, 0);
     } else {

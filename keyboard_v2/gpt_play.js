@@ -68,11 +68,12 @@
 
 
 function playMultipleAudioWithInterval(elements, interval) {
-    var context = new AudioContext();
-    var gainNode = context.createGain();
-    gainNode.connect(context.destination);
+    var context = new AudioContext(); // создаем аудио контекст
+    var gainNode = context.createGain(); // управление громкостью
+    gainNode.connect(context.destination); // подключение конечной точки
 
     function playFile(index) {
+
         if (index >= elements.length) {
             return;
         }
