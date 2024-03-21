@@ -121,6 +121,19 @@ const backgroundMatrix = {
                         break;
                 }
                 new_circle.addEventListener('click', function (elem) {
+                    
+                    let all_active_elem = document.querySelectorAll('.active ');
+              
+                    for(item of all_active_elem){
+                        console.log("elem.target.offsetLeft " + elem.target.offsetLeft + ">=" + item.parentNode.offsetLeft + "item.parentNode.offsetLeft");
+                        if(item.parentNode.offsetLeft >= elem.target.offsetLeft && 
+                            item.parentNode.offsetLeft < elem.target.offsetLeft + elem.target.offsetWidth - 1 &&
+                            !elem.target.classList.contains('active')
+                            ){
+                            item.remove();
+                        }
+                    }
+
                     console.log(elem.target.parentNode);
 
                     if (allNotes[elem.target.dataset.symbol]) {
@@ -130,9 +143,7 @@ const backgroundMatrix = {
                         elem.target.remove();
                     }
 
-                    let all_active_elem = document.querySelectorAll('.active ');
-
-                })
+                  })
                 containMatrix.append(new_circle);
             } // ***************** внутренний цикл
 
