@@ -130,6 +130,7 @@ const backgroundMatrix = {
                         elem.target.remove();
                     }
 
+                    let all_active_elem = document.querySelectorAll('.active ');
 
                 })
                 containMatrix.append(new_circle);
