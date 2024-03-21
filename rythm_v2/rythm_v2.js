@@ -86,19 +86,19 @@ const backgroundMatrix = {
         '8 16',         //15
         '16'            //16
     ],
-    createBackground(array, leftPosition){
+    createBackground(array, leftPosition) {
         let containMatrix = document.createElement('div');
         containMatrix.classList.add('containMatrix');
         // внешний цикл
         for (let outIndx = 0; outIndx < array.length; outIndx++) {
             let stringToArr = array[outIndx].split(' ');
 
-           // внутренний цикл
-            for(let inIndx = 0; inIndx < stringToArr.length; inIndx++){
+            // внутренний цикл
+            for (let inIndx = 0; inIndx < stringToArr.length; inIndx++) {
                 let new_circle = document.createElement('div');
                 new_circle.classList.add('mtrxCircle');
                 new_circle.style.left = leftPosition + 'px';
-                switch(stringToArr[inIndx]){
+                switch (stringToArr[inIndx]) {
                     case '16':
                         new_circle.classList.add('matrix_16');
                         new_circle.dataset.symbol = 16;
@@ -120,16 +120,22 @@ const backgroundMatrix = {
                         new_circle.dataset.symbol = 1;
                         break;
                 }
-                new_circle.addEventListener('click', function(elem){
-console.log(elem.target.dataset.symbol);
+                new_circle.addEventListener('click', function (elem) {
+                    console.log(elem.target.parentNode);
 
-if(allNotes[elem.target.dataset.symbol]){
-    elem.target.append(allNotes[elem.target.dataset.symbol].createDivTag());
-    // elem.stopPropagation();
-}
-})
+                    if (allNotes[elem.target.dataset.symbol]) {
+                        elem.target.append(allNotes[elem.target.dataset.symbol].createDivTag());
+                        // elem.stopPropagation();
+                    } else {
+                        elem.target.remove();
+                    }
+
+
+                })
                 containMatrix.append(new_circle);
-            }
+            } // ***************** внутренний цикл
+
+
             leftPosition = leftPosition + 26.25;
         }
         return containMatrix;

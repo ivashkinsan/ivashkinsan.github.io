@@ -1,9 +1,12 @@
-:root{
+:root {
     --const: 420px;
     --background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
 }
 
-*{
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
@@ -24,51 +27,57 @@ body {
     /* overflow: scroll; */
 }
 
-.containMatri{
+.containMatri {
     position: relative;
 }
 
-.mtrxCircle{
+.mtrxCircle {
     display: block;
     position: absolute;
     margin: auto;
     top: 0;
     bottom: 0;
-    outline: 1px solid rgba(125, 125, 125, 0.78);
+    /* border: 1px solid rgba(144, 144, 144, 0.78); */
+    box-shadow: 0 0 0 1px rgba(144, 144, 144, 0.78) inset;
     border-radius: 50%;
 }
 
 
-.matrix_16{
+.matrix_16 {
     width: calc(var(--const) / 16);
     height: calc(var(--const) / 16);
-    z-index: 16;
-}
-.matrix_8{
-    width: calc(var(--const) / 8);
-    height: calc(var(--const) / 8);
-    z-index: 8;
-}
-.matrix_4{
-    width: calc(var(--const) / 4);
-    height: calc(var(--const) / 4);
-    z-index: 4;
-}
-.matrix_2{
-    width: calc(var(--const) / 2);
-    height: calc(var(--const) / 2);
-    z-index: 2;
-}
-.matrix_1{
-    width: calc(var(--const) / 1);
-    height: calc(var(--const) / 1);
-    z-index: 1;
+    /* z-index: 16; */
 }
 
-.active{
+.matrix_8 {
+    width: calc(var(--const) / 8);
+    height: calc(var(--const) / 8);
+    /* z-index: 8; */
+}
+
+.matrix_4 {
+    width: calc(var(--const) / 4);
+    height: calc(var(--const) / 4);
+    /* z-index: 4; */
+}
+
+.matrix_2 {
+    width: calc(var(--const) / 2);
+    height: calc(var(--const) / 2);
+    /* z-index: 2; */
+}
+
+.matrix_1 {
+    width: calc(var(--const) / 1);
+    height: calc(var(--const) / 1);
+    /* z-index: 1; */
+}
+
+.active {
     position: absolute;
-    border: 1px solid white;
+    /* outline: 2px solid rgb(240, 222, 155); */
     border-radius: 50%;
     z-index: 1000;
-    background-color: rgb(44, 44, 44);
+    box-shadow: 0 0 0 1px rgb(233, 242, 156) inset;
+    /* background-color: rgb(0, 172, 194); */
 }
