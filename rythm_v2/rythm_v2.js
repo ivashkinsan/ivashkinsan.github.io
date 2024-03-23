@@ -120,39 +120,154 @@ const backgroundMatrix = {
                         new_circle.dataset.symbol = 1;
                         break;
                 }
-                new_circle.addEventListener('click', function (elem) {
-                    
-                    let all_active_elem = document.querySelectorAll('.active ');
-              
-                    for(item of all_active_elem){
-                        console.log("elem.target.offsetLeft " + elem.target.offsetLeft + ">=" + item.parentNode.offsetLeft + "item.parentNode.offsetLeft");
-                        if(item.parentNode.offsetLeft >= elem.target.offsetLeft && 
-                            item.parentNode.offsetLeft < elem.target.offsetLeft + elem.target.offsetWidth - 1 &&
-                            !elem.target.classList.contains('active')
-                            ){
-                            item.remove();
-                        }
-                    }
-
-                    console.log(elem.target.parentNode);
-
-                    if (allNotes[elem.target.dataset.symbol]) {
-                        elem.target.append(allNotes[elem.target.dataset.symbol].createDivTag());
-                        // elem.stopPropagation();
-                    } else {
-                        elem.target.remove();
-                    }
-
-                  })
+                new_circle.draggable = true;
+                new_circle.dataset.outIndx = outIndx+1;
+                new_circle.classList.add('droppable');
+                new_circle.addEventListener('click', listenAndCreateActivElem);
                 containMatrix.append(new_circle);
             } // ***************** внутренний цикл
-
-
             leftPosition = leftPosition + 26.25;
         }
+
+        // containMatrix.addEventListener('dragstart', function (evt) {
+        //     evt.target.classList.add(`selected`);
+        //     // evt.preventDefault();
+        //     // console.log(evt);
+        // })
+        // containMatrix.addEventListener('dragend', function (evt) {
+        //     evt.target.classList.remove(`selected`);
+        //     // console.log(evt);
+        // })
+        
+        // containMatrix.addEventListener('dragover', function (evt) {
+        //     evt.preventDefault();
+        //     console.log(evt);
+        // })
+
+
         return containMatrix;
     }
 }
 
+// функция проверки активных блоков, их создания методом createDivTag и удаление remove()
+let listenAndCreateActivElem = function(elem){
+    elem.preventDefault();
+    let all_active_elem = document.querySelectorAll('.active ');
+        for(item of all_active_elem){
+        // console.log("elem.target.offsetLeft " + elem.target.offsetLeft + ">=" + item.parentNode.offsetLeft + "item.parentNode.offsetLeft");
+        if(item.parentNode.offsetLeft >= elem.target.offsetLeft && 
+            item.parentNode.offsetLeft < elem.target.offsetLeft + elem.target.offsetWidth - 1 &&
+            !elem.target.classList.contains('active')
+            ){
+            item.remove();
+        }
+    }
+    // console.log(elem.target.parentNode);
+    if (allNotes[elem.target.dataset.symbol]) {
+        let activeBlock = allNotes[elem.target.dataset.symbol].createDivTag(elem.target.dataset.outIndx);
+        activeBlock.addEventListener('dragenter', dragoverFunction)
+        
+        elem.target.append(activeBlock);
+        // resizeBlocksFunction();
+        // elem.stopPropagation();
+    } else {
+        elem.target.remove();
+    }
+}
+
+let dragoverFunction = function(el){
+
+// let mtrxCircles = document.querySelectorAll('.mtrxCircle');
+// console.log(mtrxCircles);
+// for (item of mtrxCircles){
+//     console.log( item.classList);
+//     item.classList.remove('droppable');
+// }
+
+// let findIdenticalElements = document.querySelectorAll(`.${el.target.dataset.matrix}`);
+// for (item of findIdenticalElements){
+
+// if(item.children.length == 0){
+//     item.classList.add('droppable');
+// } else {
+//     el.target.classList.add('draggable');
+// }
+// }
+
+// const draggables = document.querySelectorAll('.draggable');
+let droppables = document.querySelectorAll('.droppable');
+
+droppables.forEach(droppable => {
+    droppable.addEventListener('dragenter', function(e) {
+        e.preventDefault();
+        droppable.classList.add('highlight');
+    });
+
+    droppable.addEventListener('dragover', function(e) {
+        e.preventDefault();
+    });
+
+    droppable.addEventListener('dragleave', function() {
+        droppable.classList.remove('highlight');
+    });
+
+    droppable.addEventListener('drop', function() {
+        droppable.classList.remove('highlight');
+    });
+});
+
+
+
+// draggables.forEach(draggable => {
+//     console.log(draggable);
+//     draggable.addEventListener('dragstart', function() {
+//         draggable.classList.add('dragging');
+//         console.log('startDragging');
+//     });
+
+//     draggable.addEventListener('dragend', function() {
+//         draggable.classList.remove('dragging');
+//         for (item of findIdenticalElements){
+//                 item.classList.remove('droppable');
+//                 item.classList.remove('draggable');
+//             }
+//     });
+// }
+// );
+}
+
+
 let app = document.querySelector('.app');
 app.append(backgroundMatrix.createBackground(backgroundMatrix.matrix_4x4, 40));
+
+
+
+
+
+// растягивание элемента за края
+// let resizeBlocksFunction = function(){
+//     const resizableBlocks = document.querySelectorAll('.resizable');
+// let isResizing = false;
+// let lastX;
+
+// resizableBlocks.forEach(block => {
+//     block.addEventListener('mousedown', function(e) {
+//         isResizing = true;
+//         lastX = e.clientX;
+//     });
+// });
+
+// document.addEventListener('mousemove', function(e) {
+//     if(isResizing) {
+//         resizableBlocks.forEach(block => {
+//             const diffX = e.clientX - lastX;
+//             block.style.width = (block.offsetWidth + diffX) + 'px';
+//             lastX = e.clientX;
+//         });
+//     }
+// });
+
+// document.addEventListener('mouseup', function() {
+//     isResizing = false;
+// });
+// }

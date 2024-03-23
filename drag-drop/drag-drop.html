@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Highlight Blocks on Drag & Drop</title>
+<style>
+    .draggable {
+        width: 100px;
+        height: 100px;
+        background-color: lightblue;
+        margin: 10px;
+        cursor: grab;
+    }
+
+    .droppable {
+        width: 120px;
+        height: 120px;
+        background-color: lightgreen;
+        margin: 10px;
+    }
+
+    .highlight {
+        border: 2px dashed red;
+    }
+</style>
+</head>
+<body>
+<div class="draggable" draggable="true">Drag me</div>
+<div class="droppable"></div>
+<div class="droppable"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const draggables = document.querySelectorAll('.draggable');
+    const droppables = document.querySelectorAll('.droppable');
+
+    droppables.forEach(droppable => {
+        droppable.addEventListener('dragenter', function(e) {
+            e.preventDefault();
+            droppable.classList.add('highlight');
+        });
+
+        droppable.addEventListener('dragover', function(e) {
+            e.preventDefault();
+        });
+
+        droppable.addEventListener('dragleave', function() {
+            droppable.classList.remove('highlight');
+        });
+
+        droppable.addEventListener('drop', function() {
+            droppable.classList.remove('highlight');
+        });
+    });
+
+    draggables.forEach(draggable => {
+        draggable.addEventListener('dragstart', function() {
+            draggable.classList.add('dragging');
+        });
+
+        draggable.addEventListener('dragend', function() {
+            draggable.classList.remove('dragging');
+        });
+    });
+});
+</script>
+</body>
+</html>

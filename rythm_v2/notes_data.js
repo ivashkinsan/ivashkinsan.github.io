@@ -11,10 +11,14 @@ const wholeNote = {
     'fontSymbol': '',
     'duration_16': 16,
     'measure': (420*16),
-    createDivTag(){
+    createDivTag(outIndx){
         let div = document.createElement('div');
         div.classList.add('active');
         div.classList.add('wholeNote');
+        div.classList.add('droppable');
+        div.dataset.data = 'wholeNote';
+        div.dataset.matrix = 'matrix_1';
+        div.dataset.outIndx = outIndx;
         div.style.width = '100%';
         div.style.height = '100%';
         return div;
@@ -27,10 +31,14 @@ const halfNote = {
     'fontSymbol': '',
     'duration_16': 8,
     'measure': (420*8),
-    createDivTag(){
+    createDivTag(outIndx){
         let div = document.createElement('div');
         div.classList.add('active');
         div.classList.add('halfNote');
+        div.classList.add('droppable');
+        div.dataset.data = 'halfNote';
+        div.dataset.matrix = 'matrix_2';
+        div.dataset.outIndx = outIndx;
         div.style.width = '100%';
         div.style.height = '100%';
         return div;
@@ -43,10 +51,14 @@ const quarterNote = {
     'fontSymbol': '',
     'duration_16': 4,
     'measure': (420*4),
-    createDivTag(){
+    createDivTag(outIndx){
         let div = document.createElement('div');
         div.classList.add('active');
         div.classList.add('quarterNote');
+        div.classList.add('droppable');
+        div.dataset.data = 'quarterNote';
+        div.dataset.matrix = 'matrix_4';
+        div.dataset.outIndx = outIndx;
         div.style.width = '100%';
         div.style.height = '100%';
         return div;
@@ -59,10 +71,14 @@ const eighthNote = {
     'fontSymbol': '',
     'duration_16': 2,
     'measure': (420*2),
-    createDivTag(){
+    createDivTag(outIndx){
         let div = document.createElement('div');
         div.classList.add('active');
         div.classList.add('eighthNote');
+        div.classList.add('droppable');
+        div.dataset.data = 'eighthNote';
+        div.dataset.matrix = 'matrix_8';
+        div.dataset.outIndx = outIndx;
         div.style.width = '100%';
         div.style.height = '100%';
         return div;
@@ -75,10 +91,14 @@ const sixteenthNote = {
     'fontSymbol': '',
     'duration_16': 1,
     'measure': (420*1),
-    createDivTag(){
+    createDivTag(outIndx){
         let div = document.createElement('div');
         div.classList.add('active');
         div.classList.add('sixteenthNote');
+        div.classList.add('droppable');
+        div.dataset.data = 'sixteenthNote';
+        div.dataset.matrix = 'matrix_16';
+        div.dataset.outIndx = outIndx;
         div.style.width = '100%';
         div.style.height = '100%';
         return div;
@@ -96,7 +116,7 @@ const tripleEighthNote = {
     createDivTag(){
         let div = document.createElement('div');
         div.classList.add('active');
-        div.classList.add('eighthNote');
+        div.classList.add('tripleEighthNote');
         div.style.width = '100%';
         div.style.height = '100%';
         div.addEventListener('click', function(elem){

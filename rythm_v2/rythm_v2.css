@@ -40,6 +40,7 @@ body {
     /* border: 1px solid rgba(144, 144, 144, 0.78); */
     box-shadow: 0 0 0 1px rgba(144, 144, 144, 0.78) inset;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 
@@ -80,4 +81,13 @@ body {
     z-index: 1000;
     box-shadow: 0 0 0 1px rgb(233, 242, 156) inset;
     /* background-color: rgb(0, 172, 194); */
+}
+
+.selected{
+    background-color: red;
+    opacity: 0.6;
+}
+
+.highlight {
+    border: 2px dashed red;
 }
