@@ -11,16 +11,18 @@ const wholeNote = {
     'fontSymbol': '',
     'duration_16': 16,
     'measure': (420*16),
-    createDivTag(outIndx){
+    createDivTag(outIndx,baseSize){
         let div = document.createElement('div');
         div.classList.add('active');
         div.classList.add('wholeNote');
-        div.classList.add('droppable');
+        // div.classList.add('droppable');
+        div.draggable = true;
         div.dataset.data = 'wholeNote';
         div.dataset.matrix = 'matrix_1';
         div.dataset.outIndx = outIndx;
-        div.style.width = '100%';
-        div.style.height = '100%';
+        div.style.width = baseSize / 1 + 'px';
+        div.style.height = baseSize / 1 + 'px';
+
         return div;
     }
 }
@@ -31,16 +33,17 @@ const halfNote = {
     'fontSymbol': '',
     'duration_16': 8,
     'measure': (420*8),
-    createDivTag(outIndx){
+    createDivTag(outIndx,baseSize){
         let div = document.createElement('div');
         div.classList.add('active');
         div.classList.add('halfNote');
-        div.classList.add('droppable');
+        // div.classList.add('droppable');
+        div.draggable = true;
         div.dataset.data = 'halfNote';
         div.dataset.matrix = 'matrix_2';
         div.dataset.outIndx = outIndx;
-        div.style.width = '100%';
-        div.style.height = '100%';
+        div.style.width = baseSize / 2 + 'px';
+        div.style.height = baseSize / 2 + 'px';
         return div;
     }
 }
@@ -51,16 +54,17 @@ const quarterNote = {
     'fontSymbol': '',
     'duration_16': 4,
     'measure': (420*4),
-    createDivTag(outIndx){
+    createDivTag(outIndx,baseSize){
         let div = document.createElement('div');
         div.classList.add('active');
         div.classList.add('quarterNote');
-        div.classList.add('droppable');
+        // div.classList.add('droppable');
+        div.draggable = true;
         div.dataset.data = 'quarterNote';
         div.dataset.matrix = 'matrix_4';
         div.dataset.outIndx = outIndx;
-        div.style.width = '100%';
-        div.style.height = '100%';
+        div.style.width = baseSize / 4 + 'px';
+        div.style.height = baseSize / 4 + 'px';
         return div;
     }
 }
@@ -71,16 +75,17 @@ const eighthNote = {
     'fontSymbol': '',
     'duration_16': 2,
     'measure': (420*2),
-    createDivTag(outIndx){
+    createDivTag(outIndx,baseSize){
         let div = document.createElement('div');
         div.classList.add('active');
         div.classList.add('eighthNote');
-        div.classList.add('droppable');
+        // div.classList.add('droppable');
+        div.draggable = true;
         div.dataset.data = 'eighthNote';
         div.dataset.matrix = 'matrix_8';
         div.dataset.outIndx = outIndx;
-        div.style.width = '100%';
-        div.style.height = '100%';
+        div.style.width = baseSize / 8 + 'px';
+        div.style.height = baseSize / 8 + 'px';
         return div;
     }
 }
@@ -91,16 +96,17 @@ const sixteenthNote = {
     'fontSymbol': '',
     'duration_16': 1,
     'measure': (420*1),
-    createDivTag(outIndx){
+    createDivTag(outIndx,baseSize){
         let div = document.createElement('div');
         div.classList.add('active');
         div.classList.add('sixteenthNote');
-        div.classList.add('droppable');
+        // div.classList.add('droppable');
+        div.draggable = true;
         div.dataset.data = 'sixteenthNote';
         div.dataset.matrix = 'matrix_16';
         div.dataset.outIndx = outIndx;
-        div.style.width = '100%';
-        div.style.height = '100%';
+        div.style.width = baseSize / 16 + 'px';
+        div.style.height = baseSize / 16 + 'px';
         return div;
     }
 }

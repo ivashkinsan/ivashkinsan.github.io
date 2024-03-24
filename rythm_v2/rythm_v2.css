@@ -44,39 +44,42 @@ body {
 }
 
 
-.matrix_16 {
+/* .matrix_16 {
     width: calc(var(--const) / 16);
     height: calc(var(--const) / 16);
-    /* z-index: 16; */
+   
 }
 
 .matrix_8 {
     width: calc(var(--const) / 8);
     height: calc(var(--const) / 8);
-    /* z-index: 8; */
+   
 }
 
 .matrix_4 {
     width: calc(var(--const) / 4);
     height: calc(var(--const) / 4);
-    /* z-index: 4; */
+  
 }
 
 .matrix_2 {
     width: calc(var(--const) / 2);
     height: calc(var(--const) / 2);
-    /* z-index: 2; */
+ 
 }
 
 .matrix_1 {
     width: calc(var(--const) / 1);
     height: calc(var(--const) / 1);
-    /* z-index: 1; */
-}
+
+} */
 
 .active {
     position: absolute;
     /* outline: 2px solid rgb(240, 222, 155); */
+    transform-origin: center center;
+    /* top:0; */
+    /* bottom: 0; */
     border-radius: 50%;
     z-index: 1000;
     box-shadow: 0 0 0 1px rgb(233, 242, 156) inset;
@@ -89,5 +92,9 @@ body {
 }
 
 .highlight {
-    border: 2px dashed red;
+    border: 2px dashed #DDB078;
+}
+
+.dragging{
+    background-color: red;
 }

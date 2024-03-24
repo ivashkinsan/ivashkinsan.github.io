@@ -36,6 +36,11 @@ let constNumber = 5;
 
 // console.log(420*16);
 // console.log(wholeNote.measure);
+const root = document.querySelector(':root');
+let baseSize = getComputedStyle(root).getPropertyValue('--const');
+// console.log(Number(baseSize.replace('px','')));
+baseSize = Number(baseSize.replace('px',''))
+let startDragElem;
 
 const backgroundMatrix = {
     'matrix_1x4': [
@@ -102,49 +107,88 @@ const backgroundMatrix = {
                     case '16':
                         new_circle.classList.add('matrix_16');
                         new_circle.dataset.symbol = 16;
+                        new_circle.style.width = baseSize / 16 + 'px';
+                        new_circle.style.height = baseSize / 16 + 'px';
                         break;
                     case '8':
                         new_circle.classList.add('matrix_8');
                         new_circle.dataset.symbol = 8;
+                        new_circle.style.width = baseSize / 8 + 'px';
+                        new_circle.style.height = baseSize / 8 + 'px';
                         break;
                     case '4':
                         new_circle.classList.add('matrix_4');
                         new_circle.dataset.symbol = 4;
+                        new_circle.style.width = baseSize / 4 + 'px';
+                        new_circle.style.height = baseSize / 4 + 'px';
                         break;
                     case '2':
                         new_circle.classList.add('matrix_2');
                         new_circle.dataset.symbol = 2;
+                        new_circle.style.width = baseSize / 2 + 'px';
+                        new_circle.style.height = baseSize / 2 + 'px';
                         break;
                     case '1':
                         new_circle.classList.add('matrix_1');
                         new_circle.dataset.symbol = 1;
+                        new_circle.style.width = baseSize / 1 + 'px';
+                        new_circle.style.height = baseSize / 1 + 'px';
                         break;
                 }
-                new_circle.draggable = true;
+                // new_circle.draggable = true;
+                
                 new_circle.dataset.outIndx = outIndx+1;
                 new_circle.classList.add('droppable');
                 new_circle.addEventListener('click', listenAndCreateActivElem);
                 containMatrix.append(new_circle);
+
+              
+                
+                new_circle.addEventListener('dragenter', function(e) {
+                    e.preventDefault();
+                    new_circle.classList.add('highlight');
+                    // startDragElem = e.target;
+                    // console.log(droppable.clientHeight);
+                });
+            
+                new_circle.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                });
+            
+                new_circle.addEventListener('dragleave', function() {
+                    new_circle.classList.remove('highlight');
+                });
+            
+                new_circle.addEventListener('drop', function(e) {
+                    new_circle.classList.remove('highlight');
+                    e.preventDefault();
+                    console.log(startDragElem);
+                    let widthElemNumb = Number(startDragElem.style.width.replace('px',''));
+                    let droppableElemWidth = Number(new_circle.style.width.replace('px',''));
+                    let newWidthElem = widthElemNumb + droppableElemWidth;
+                   
+                    startDragElem.style.width = newWidthElem + 'px';
+                    startDragElem.style.height = newWidthElem + 'px';
+                    // startDragElem.style.top = (-1 * (newWidthElem / 4)) + 'px';
+                    startDragElem.parentNode.style.border = 'solid 1px red';
+                    startDragElem.style.transform = `translateY(${-1 * ((newWidthElem / 4))}px)`;
+            
+                    console.log( 'STRT= ' + widthElemNumb);
+                    console.log( 'STRT / 2 = ' + (widthElemNumb / 2));
+                    console.log( 'END = ' + droppableElemWidth);
+                    console.log( 'END / 2 = ' + (droppableElemWidth / 2));
+                    console.log('transform = ' + startDragElem.style.transform);
+                    console.log( 'STRT + END = ' + newWidthElem);
+                    console.log('=========== END ===========');
+                           // el.style.width = fullWidth + droppable.clientHeight + 'px';
+                    // el.style.height = fullWidth + droppable.clientHeight + 'px';
+                    // el.style.top = Number((0 - fullWidth/2)) + 'px';
+              
+                });
+
             } // ***************** внутренний цикл
             leftPosition = leftPosition + 26.25;
         }
-
-        // containMatrix.addEventListener('dragstart', function (evt) {
-        //     evt.target.classList.add(`selected`);
-        //     // evt.preventDefault();
-        //     // console.log(evt);
-        // })
-        // containMatrix.addEventListener('dragend', function (evt) {
-        //     evt.target.classList.remove(`selected`);
-        //     // console.log(evt);
-        // })
-        
-        // containMatrix.addEventListener('dragover', function (evt) {
-        //     evt.preventDefault();
-        //     console.log(evt);
-        // })
-
-
         return containMatrix;
     }
 }
@@ -164,77 +208,94 @@ let listenAndCreateActivElem = function(elem){
     }
     // console.log(elem.target.parentNode);
     if (allNotes[elem.target.dataset.symbol]) {
-        let activeBlock = allNotes[elem.target.dataset.symbol].createDivTag(elem.target.dataset.outIndx);
-        activeBlock.addEventListener('dragenter', dragoverFunction)
+        let activeBlock = allNotes[elem.target.dataset.symbol].createDivTag(elem.target.dataset.outIndx,baseSize);
+        // activeBlock.addEventListener('dragenter', dragoverFunction)
+        activeBlock.addEventListener('dragstart', function(e) {
+            activeBlock.classList.add('dragging');
+            
+            startDragElem = e.target;
+            dragoverFunction(activeBlock);
+            // activeBlock.removeEventListener('dragstart',dragoverFunction);
+        });
+
+        activeBlock.addEventListener('dragend', function() {
+            activeBlock.classList.remove('dragging');
+           
+            
+               
+        });
         
+console.log(activeBlock);
         elem.target.append(activeBlock);
-        // resizeBlocksFunction();
-        // elem.stopPropagation();
     } else {
         elem.target.remove();
     }
 }
 
-let dragoverFunction = function(el){
-
-// let mtrxCircles = document.querySelectorAll('.mtrxCircle');
-// console.log(mtrxCircles);
-// for (item of mtrxCircles){
-//     console.log( item.classList);
-//     item.classList.remove('droppable');
-// }
-
-// let findIdenticalElements = document.querySelectorAll(`.${el.target.dataset.matrix}`);
-// for (item of findIdenticalElements){
-
-// if(item.children.length == 0){
-//     item.classList.add('droppable');
-// } else {
-//     el.target.classList.add('draggable');
-// }
-// }
-
-// const draggables = document.querySelectorAll('.draggable');
-let droppables = document.querySelectorAll('.droppable');
-
-droppables.forEach(droppable => {
-    droppable.addEventListener('dragenter', function(e) {
-        e.preventDefault();
-        droppable.classList.add('highlight');
-    });
-
-    droppable.addEventListener('dragover', function(e) {
-        e.preventDefault();
-    });
-
-    droppable.addEventListener('dragleave', function() {
-        droppable.classList.remove('highlight');
-    });
-
-    droppable.addEventListener('drop', function() {
-        droppable.classList.remove('highlight');
-    });
-});
+// let dragoverFunction = function(el){
 
 
+// // const draggables = document.querySelectorAll('.draggable');
+// let droppables = document.querySelectorAll('.droppable');
 
-// draggables.forEach(draggable => {
-//     console.log(draggable);
-//     draggable.addEventListener('dragstart', function() {
-//         draggable.classList.add('dragging');
-//         console.log('startDragging');
+// droppables.forEach(droppable => {
+//     droppable.addEventListener('dragenter', function(e) {
+//         e.preventDefault();
+//         droppable.classList.add('highlight');
+//         console.log(droppable.clientHeight);
 //     });
 
-//     draggable.addEventListener('dragend', function() {
-//         draggable.classList.remove('dragging');
-//         for (item of findIdenticalElements){
-//                 item.classList.remove('droppable');
-//                 item.classList.remove('draggable');
-//             }
+//     droppable.addEventListener('dragover', function(e) {
+//         e.preventDefault();
 //     });
+
+//     droppable.addEventListener('dragleave', function() {
+//         droppable.classList.remove('highlight');
+//     });
+
+//     droppable.addEventListener('drop', function(e) {
+//         droppable.classList.remove('highlight');
+//         e.preventDefault();
+//         let widthElemNumb = Number(el.style.width.replace('px',''));
+//         let droppableElemWidth = Number(droppable.clientHeight);
+//         let newWidthElem = widthElemNumb + droppableElemWidth;
+//         console.log( 'el.style.width = ' + widthElemNumb);
+//         console.log( 'droppable.clientHeight = ' + droppableElemWidth);
+//         console.log('top = ' + (-1 * (newWidthElem / 2 - droppableElemWidth / 2)) + 'px');
+//         console.log( '++' + newWidthElem);
+//         console.log('=========== END ===========');
+//         el.style.width = newWidthElem + 'px';
+//         el.style.height = newWidthElem + 'px';
+//         el.style.top = (-1 * (newWidthElem / 2 - droppableElemWidth / 2)) + 'px';
+
+//                // el.style.width = fullWidth + droppable.clientHeight + 'px';
+//         // el.style.height = fullWidth + droppable.clientHeight + 'px';
+//         // el.style.top = Number((0 - fullWidth/2)) + 'px';
+  
+//     });
+
+   
+// });
+
+
+
+// // draggables.forEach(draggable => {
+// //     console.log(draggable);
+// //     draggable.addEventListener('dragstart', function() {
+// //         draggable.classList.add('dragging');
+// //         console.log('startDragging');
+// //     });
+
+// //     draggable.addEventListener('dragend', function() {
+// //         draggable.classList.remove('dragging');
+// //         for (item of findIdenticalElements){
+// //                 item.classList.remove('droppable');
+// //                 item.classList.remove('draggable');
+// //             }
+// //     });
+// // }
+// // );
 // }
-// );
-}
 
 
 let app = document.querySelector('.app');
