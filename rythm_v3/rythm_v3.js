@@ -1,7 +1,10 @@
 // число-делитель для масштабирования
 let constNumber = 5;
 
-
+// let section_for_contextmenu = document.querySelector('.app');
+// section_for_contextmenu.addEventListener('contextmenu', function (event) {
+//     event.preventDefault(false);
+// })
 
 // для создания визуала в px и универсальных триольных/квинтольных блоков потребуется 
 // число которое без труда сможет делиться на 2,3,4,5,6,7
@@ -138,49 +141,24 @@ const backgroundMatrix = {
                 // new_circle.draggable = true;
                 
                 new_circle.dataset.outIndx = outIndx+1;
-                new_circle.classList.add('droppable');
-                new_circle.addEventListener('click', listenAndCreateActivElem);
-                containMatrix.append(new_circle);
-
-              
-                
-                new_circle.addEventListener('dragenter', function(e) {
-                    e.preventDefault();
-                    new_circle.classList.add('highlight');
-                    // startDragElem = e.target;
-                    // console.log(droppable.clientHeight);
+                // new_circle.classList.add('droppable');
+                new_circle.addEventListener('click', (e)=>{
+                    console.log(e.target);
+                    
+                    listenAndCreateActivElem(e.target);
+                    e.stopPropagation();
                 });
-            
-                new_circle.addEventListener('dragover', function(e) {
-                    e.preventDefault();
-                });
-            
-                new_circle.addEventListener('dragleave', function() {
-                    new_circle.classList.remove('highlight');
-                });
-            
-                new_circle.addEventListener('drop', function(e) {
-                    // delElemInBigElem(startDragElem);
-                    new_circle.classList.remove('highlight');
-                    e.preventDefault();
-                    console.log(startDragElem);
-                    let widthElemNumb = Number(startDragElem.style.width.replace('px',''));
-                    let droppableElemWidth = Number(new_circle.style.width.replace('px',''));
-                    let newWidthElem = widthElemNumb + droppableElemWidth;
-                   
-                    startDragElem.style.width = newWidthElem + 'px';
-                    startDragElem.style.height = newWidthElem + 'px';
-                  
-                    console.log(baseSize + ' / ' + newWidthElem);
-                    console.log('baseSize % newWidthElem');
-                    console.log(baseSize % newWidthElem);
-                    switch('true'){
-case (baseSize % 8 == 0):
-    console.log('деление без остатка');
-    break;
+                // dblclick contextmenu
+                new_circle.addEventListener('dblclick', (e)=>{
+                    console.log("doubleClick" + e.target);
+                    if(e.target.classList.contains('active')){
+                        e.target.remove();
                     }
                 });
+                containMatrix.append(new_circle);
+                
 
+              
             } // ***************** внутренний цикл
             leftPosition = leftPosition + 26.25;
         }
@@ -193,9 +171,9 @@ let delElemInBigElem = function(elem){
     let all_active_elem = document.querySelectorAll('.active ');
         for(item of all_active_elem){
         // console.log("elem.target.offsetLeft " + elem.target.offsetLeft + ">=" + item.parentNode.offsetLeft + "item.parentNode.offsetLeft");
-        if(item.parentNode.offsetLeft >= elem.target.offsetLeft && 
-            item.parentNode.offsetLeft < elem.target.offsetLeft + elem.target.offsetWidth - 1 &&
-            !elem.target.classList.contains('active')
+        if(item.parentNode.offsetLeft >= elem.offsetLeft && 
+            item.parentNode.offsetLeft < elem.offsetLeft + elem.offsetWidth - 1 &&
+            !elem.classList.contains('active')
             ){
             item.remove();
         }
@@ -205,25 +183,31 @@ let delElemInBigElem = function(elem){
 // функция проверки активных блоков, их создания методом createDivTag и удаление remove()
 let listenAndCreateActivElem = function(elem){
     delElemInBigElem(elem);
-
-    if (allNotes[elem.target.dataset.symbol]) {
-        let activeBlock = allNotes[elem.target.dataset.symbol].createDivTag(elem.target.dataset.outIndx,baseSize);
-        activeBlock.addEventListener('dragstart', function(e) {
-            activeBlock.classList.add('dragging');
-            
-            startDragElem = e.target;
-        });
-        activeBlock.addEventListener('dragend', function() {
-            activeBlock.classList.remove('dragging');            
-        });
+    if (allNotes[elem.dataset.symbol]) {
+        let activeBlock = allNotes[elem.dataset.symbol].createDivTag(elem.dataset.outIndx,baseSize);
         
-console.log(activeBlock);
-        elem.target.append(activeBlock);
-    } else {
-        elem.target.remove();
-    }
-}
+        // let leftHandle = document.createElement('div');
+        // leftHandle.classList.add('handle','left-handle');
+        // leftHandle.addEventListener('mousedown', (elem)=>{
+        //     startResizing(elem, 'left');
+        // });
 
+
+        // let righttHandle = document.createElement('div');
+        // righttHandle.classList.add('handle','right-handle');
+        // righttHandle.addEventListener('mousedown', (elem)=>{
+        //     startResizing(elem, 'right');
+        // });
+
+        // activeBlock.append(leftHandle);
+        // activeBlock.append(righttHandle);
+
+        
+console.log(activeBlock.classList);
+        elem.append(activeBlock);
+    } 
+
+}
 
 let app = document.querySelector('.app');
 app.append(backgroundMatrix.createBackground(backgroundMatrix.matrix_4x4, 40));

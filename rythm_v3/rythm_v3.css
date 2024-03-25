@@ -11,6 +11,13 @@
     padding: 0;
 }
 
+@font-face {
+    font-family: OPUSTEXT;
+    /* Гарнитура шрифта */
+    src: url(/fonts/Musisync-KVLZ.ttf);
+    /* Путь к файлу со шрифтом */
+}
+
 body {
     width: 100vw;
     height: 100vh;
@@ -22,7 +29,7 @@ body {
     justify-content: start;
     align-items: center;
     background: var(--background);
-    border: 20px solid #DDB078;
+    border: 10px solid #DDB078;
     border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
     /* overflow: scroll; */
 }
@@ -80,9 +87,14 @@ body {
     /* transform-origin: center center; */
     /* top:0; */
     /* bottom: 0; */
+    font-family: OPUSTEXT;
+    font-size: 20px;
+    line-height: 20px;
+    padding-left: 4px;
+    text-align: center;
     border-radius: 50%;
     z-index: 1000;
-    box-shadow: 0 0 0 1px rgb(233, 242, 156) inset;
+    box-shadow: 0 0 0 1.5px rgb(233, 242, 156) inset;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -101,4 +113,22 @@ body {
 }
 
 
+.handle {
+    position: absolute;
+    width: 5px;
+    height: 10px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    /* background-color: red; */
+    cursor: ew-resize;
+    z-index: 1001;
+}
 
+.left-handle {
+    left: 2px;
+}
+
+.right-handle {
+    right: 2px;
+}
