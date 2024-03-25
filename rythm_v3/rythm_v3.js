@@ -97,6 +97,9 @@ const backgroundMatrix = {
     createBackground(array, leftPosition) {
         let containMatrix = document.createElement('div');
         containMatrix.classList.add('containMatrix');
+
+        let activeElemLayer = document.createElement('div');
+        activeElemLayer.classList.add('activeElemLayer');
         // внешний цикл
         for (let outIndx = 0; outIndx < array.length; outIndx++) {
             let stringToArr = array[outIndx].split(' ');
@@ -138,31 +141,44 @@ const backgroundMatrix = {
                         new_circle.style.height = baseSize / 1 + 'px';
                         break;
                 }
-                // new_circle.draggable = true;
-                
+
                 new_circle.dataset.outIndx = outIndx+1;
-                // new_circle.classList.add('droppable');
                 new_circle.addEventListener('click', (e)=>{
-                    console.log(e.target);
-                    
-                    listenAndCreateActivElem(e.target);
-                    e.stopPropagation();
+
+                        if (allNotes[e.target.dataset.symbol]) {
+                            let activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx,baseSize);
+                            activeBlock.classList.add('active');
+                            activeBlock.style.left = e.target.offsetLeft + 'px';
+                            // activeElemLayer.append(activeBlock);
+
+                            function insertSortedDiv(container, newDiv) {
+                                container.appendChild(newDiv); // Вставляем новый div в конец контейнера
+                                const childrenArray = Array.from(container.children); // Преобразуем коллекцию дочерних элементов в массив
+                                childrenArray.sort((a, b) => a.offsetLeft - b.offsetLeft); // Сортируем дочерние элементы по offSetLeft
+                                childrenArray.forEach(child => container.appendChild(child)); // Вставляем отсортированные элементы обратно в контейнер
+                            }
+                            insertSortedDiv(activeElemLayer, activeBlock); // Вызываем функцию вставки и сортировки
+                            
+
+                            delElemInBigElem(activeBlock);
+                            activeBlock.addEventListener('dblclick', (e)=>{
+                                // console.log("doubleClick" + e.target);
+                                if(e.target.classList.contains('active')){
+                                    e.target.remove();
+                                }
+                            });
+                        }                    
+
                 });
                 // dblclick contextmenu
-                new_circle.addEventListener('dblclick', (e)=>{
-                    console.log("doubleClick" + e.target);
-                    if(e.target.classList.contains('active')){
-                        e.target.remove();
-                    }
-                });
+               
                 containMatrix.append(new_circle);
-                
+                // activeElemLayer.append(new_circle);
 
-              
             } // ***************** внутренний цикл
             leftPosition = leftPosition + 26.25;
         }
-        return containMatrix;
+        return [containMatrix,activeElemLayer];
     }
 }
 
@@ -171,8 +187,8 @@ let delElemInBigElem = function(elem){
     let all_active_elem = document.querySelectorAll('.active ');
         for(item of all_active_elem){
         // console.log("elem.target.offsetLeft " + elem.target.offsetLeft + ">=" + item.parentNode.offsetLeft + "item.parentNode.offsetLeft");
-        if(item.parentNode.offsetLeft >= elem.offsetLeft && 
-            item.parentNode.offsetLeft < elem.offsetLeft + elem.offsetWidth - 1 &&
+        if(item.offsetLeft >= elem.offsetLeft && 
+            item.offsetLeft < elem.offsetLeft + elem.offsetWidth - 1 &&
             !elem.classList.contains('active')
             ){
             item.remove();
@@ -181,34 +197,17 @@ let delElemInBigElem = function(elem){
 }
 
 // функция проверки активных блоков, их создания методом createDivTag и удаление remove()
-let listenAndCreateActivElem = function(elem){
-    delElemInBigElem(elem);
-    if (allNotes[elem.dataset.symbol]) {
-        let activeBlock = allNotes[elem.dataset.symbol].createDivTag(elem.dataset.outIndx,baseSize);
-        
-        // let leftHandle = document.createElement('div');
-        // leftHandle.classList.add('handle','left-handle');
-        // leftHandle.addEventListener('mousedown', (elem)=>{
-        //     startResizing(elem, 'left');
-        // });
-
-
-        // let righttHandle = document.createElement('div');
-        // righttHandle.classList.add('handle','right-handle');
-        // righttHandle.addEventListener('mousedown', (elem)=>{
-        //     startResizing(elem, 'right');
-        // });
-
-        // activeBlock.append(leftHandle);
-        // activeBlock.append(righttHandle);
-
-        
-// console.log(activeBlock.classList);
-activeBlock.classList.add('active');
-        elem.append(activeBlock);
-    } 
-
-}
+// let listenAndCreateActivElem = function(elem){
+//     delElemInBigElem(elem);
+//     if (allNotes[elem.dataset.symbol]) {
+//         let activeBlock = allNotes[elem.dataset.symbol].createDivTag(elem.dataset.outIndx,baseSize);
+//         activeBlock.classList.add('active');
+//         elem.append(activeBlock);
+//     } 
+// }
 
 let app = document.querySelector('.app');
-app.append(backgroundMatrix.createBackground(backgroundMatrix.matrix_4x4, 40));
+let allLayer = backgroundMatrix.createBackground(backgroundMatrix.matrix_4x4, 0);
+// console.log(allLayer);
+app.append(allLayer[0]);
+app.append(allLayer[1]);

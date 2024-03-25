@@ -21,8 +21,8 @@ function startResizing(e, direction) {
             
             let replaseSumm = target.style.height;
             replaseSumm = replaseSumm.replace('px','');
-           
-           hameleon(target,sizeIdentif[replaseSumm]); 
+            hameleon(target,sizeIdentif[replaseSumm]); 
+
         } else if (direction === 'left') {
             const diff = startX - e.clientX;
             let newWidth = Math.min(Math.max(startWidth + diff, minWidth), maxWidth);
@@ -31,6 +31,10 @@ function startResizing(e, direction) {
             target.style.width = newWidthRounded + 'px';
             target.style.height = newWidthRounded + 'px';
             target.style.left = Math.round(newLeft / step) * step + 'px';
+
+            let replaseSumm = target.style.height;
+            replaseSumm = replaseSumm.replace('px','');
+            hameleon(target,sizeIdentif[replaseSumm]);
         }
     }
 
@@ -42,13 +46,10 @@ function startResizing(e, direction) {
 }
 
 let hameleon = function(inputElem, noteObj){
-    // let classes = inputElem.getAttribute('class');
-    // classes = classes.split(' ');
-    // console.log(classes);
-    inputElem.classList.remove(classes[0]);
+    inputElem.classList.replace(inputElem.classList[0], noteObj.class);
     inputElem.classList.add(noteObj.class);
     inputElem.dataset.data = noteObj.nameEng;
-    inputElem.textContent = noteObj.fontSymbol;
+    inputElem.querySelector('p').textContent = noteObj.fontSymbol;
 }
 
 

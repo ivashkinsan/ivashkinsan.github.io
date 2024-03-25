@@ -6,7 +6,7 @@
 
 
 
-const wholeNote = {
+const wholeNote_1 = {
     'class': 'wholeNote',
     'symbol': 1,
     'nameRus': 'целая',
@@ -16,9 +16,12 @@ const wholeNote = {
     'measure': (420*16),
     createDivTag(outIndx,baseSize){
         let div = document.createElement('div');
-        
         div.classList.add(this.class);
-        div.textContent = this.fontSymbol;
+       
+        let p_label = document.createElement('p');
+        p_label.textContent = this.fontSymbol;
+        div.append(p_label);
+        
         div.dataset.data = this.nameEng;
         div.dataset.matrix = 'matrix_1';
         div.dataset.outIndx = outIndx;
@@ -29,7 +32,7 @@ const wholeNote = {
         return div;
     }
 }
-const halfNote = {
+const halfNote_2 = {
     'class':'halfNote',
     'symbol': 2,
     'nameRus': 'половинная',
@@ -39,9 +42,12 @@ const halfNote = {
     'measure': (420*8),
     createDivTag(outIndx,baseSize){
         let div = document.createElement('div');
-
         div.classList.add(this.class);
-        div.textContent = this.fontSymbol;
+
+        let p_label = document.createElement('p');
+        p_label.textContent = this.fontSymbol;
+        div.append(p_label);
+        
         div.dataset.data = this.nameEng;
         div.dataset.matrix = 'matrix_2';
         div.dataset.outIndx = outIndx;
@@ -52,18 +58,23 @@ const halfNote = {
         return div;
     }
 }
-const quarterNote = {
-    'class': 'quarterNote',
-    'symbol': 4,
-    'nameRus': 'четвертная',
-    'nameEng': 'quarterNote',
-    'fontSymbol': 'q',
-    'duration_16': 4,
-    'measure': (420*4),
+
+const quarterNote_4w8w16 = {
+    'class': 'quarterNote_4w8w16',
+    'symbol': 3,
+    'nameRus': 'четвертная с точкой и шестнадцатой',
+    'nameEng': 'quarterNote_4w8w16',
+    'fontSymbol': 'q+ek',
+    'duration_16': 7,
+    'measure': (420*7),
     createDivTag(outIndx,baseSize){
         let div = document.createElement('div');
         div.classList.add(this.class);
-        div.textContent = this.fontSymbol;
+        
+        let p_label = document.createElement('p');
+        p_label.textContent = this.fontSymbol;
+        div.append(p_label);
+
         div.dataset.data = this.nameEng;
         div.dataset.matrix = 'matrix_4';
         div.dataset.outIndx = outIndx;
@@ -74,18 +85,102 @@ const quarterNote = {
         return div;
     }
 }
-const eighthNoteWithAPoint = {
-    'class': 'eighthNoteWithAPoint',
+const quarterNote_4w8 = {
+    'class': 'quarterNote_4w8',
+    'symbol': 3,
+    'nameRus': 'четвертная с точкой',
+    'nameEng': 'quarterNote_4w8',
+    'fontSymbol': 'qk',
+    'duration_16': 6,
+    'measure': (420*6),
+    createDivTag(outIndx,baseSize){
+        let div = document.createElement('div');
+        div.classList.add(this.class);
+        
+        let p_label = document.createElement('p');
+        p_label.textContent = this.fontSymbol;
+        div.append(p_label);
+
+        div.dataset.data = this.nameEng;
+        div.dataset.matrix = 'matrix_4';
+        div.dataset.outIndx = outIndx;
+        div.style.width = baseSize / 4 + 'px';
+        div.style.height = baseSize / 4 + 'px';
+        div.append(createHandleLeftElem());
+        div.append(createHandleRightElem());
+        return div;
+    }
+}
+
+const quarterNote_4w16 = {
+    'class': 'quarterNote_4w16',
+    'symbol': 4.25,
+    'nameRus': 'четвертная c шестнадцатой',
+    'nameEng': 'quarterNote_4w16',
+    'fontSymbol': 'q+e',
+    'duration_16': 5,
+    'measure': (420*5),
+    createDivTag(outIndx,baseSize){
+        let div = document.createElement('div');
+        div.classList.add(this.class);
+        
+        let p_label = document.createElement('p');
+        p_label.textContent = this.fontSymbol;
+        div.append(p_label);
+
+        div.dataset.data = this.nameEng;
+        div.dataset.matrix = 'matrix_4';
+        div.dataset.outIndx = outIndx;
+        div.style.width = baseSize / 4 + 'px';
+        div.style.height = baseSize / 4 + 'px';
+        div.append(createHandleLeftElem());
+        div.append(createHandleRightElem());
+        return div;
+    }
+}
+
+const quarterNote_4 = {
+    'class': 'quarterNote_4',
+    'symbol': 4,
+    'nameRus': 'четвертная',
+    'nameEng': 'quarterNote_4',
+    'fontSymbol': 'q',
+    'duration_16': 4,
+    'measure': (420*4),
+    createDivTag(outIndx,baseSize){
+        let div = document.createElement('div');
+        div.classList.add(this.class);
+        
+        let p_label = document.createElement('p');
+        p_label.textContent = this.fontSymbol;
+        div.append(p_label);
+
+        div.dataset.data = this.nameEng;
+        div.dataset.matrix = 'matrix_4';
+        div.dataset.outIndx = outIndx;
+        div.style.width = baseSize / 4 + 'px';
+        div.style.height = baseSize / 4 + 'px';
+        div.append(createHandleLeftElem());
+        div.append(createHandleRightElem());
+        return div;
+    }
+}
+const eighthNote_8w16 = {
+    'class': 'eighthNote_8w16',
     'symbol': 6,
     'nameRus': 'восьмая с точкой',
-    'nameEng': 'eighthNoteWithAPoint',
-    'fontSymbol': 'i',
+    'nameEng': 'eighthNote_8w16',
+    'fontSymbol': 'ek',
     'duration_16': 3,
     'measure': (420*3),
     createDivTag(outIndx,baseSize){
         let div = document.createElement('div');
         div.classList.add(this.class);
-        div.textContent = this.fontSymbol;
+       
+        let p_label = document.createElement('p');
+        p_label.textContent = this.fontSymbol;
+        div.append(p_label);
+
         div.dataset.data = this.nameEng;
         div.dataset.matrix = 'matrix_8';
         div.dataset.outIndx = outIndx;
@@ -96,18 +191,22 @@ const eighthNoteWithAPoint = {
         return div;
     }
 }
-const eighthNote = {
-    'class': 'eighthNote',
+const eighthNote_8 = {
+    'class': 'eighthNote_8',
     'symbol': 8,
     'nameRus': 'восьмая',
-    'nameEng': 'eighthNote',
+    'nameEng': 'eighthNote_8',
     'fontSymbol': 'e',
     'duration_16': 2,
     'measure': (420*2),
     createDivTag(outIndx,baseSize){
         let div = document.createElement('div');
         div.classList.add(this.class);
-        div.textContent = this.fontSymbol;
+
+        let p_label = document.createElement('p');
+        p_label.textContent = this.fontSymbol;
+        div.append(p_label);
+
         div.dataset.data = this.nameEng;
         div.dataset.matrix = 'matrix_8';
         div.dataset.outIndx = outIndx;
@@ -119,18 +218,22 @@ const eighthNote = {
     }
 }
 
-const sixteenthNote = {
-    'class': 'sixteenthNote',
+const sixteenthNote_16 = {
+    'class': 'sixteenthNote_16',
     'symbol': 16,
     'nameRus': 'шестнадцатая',
-    'nameEng': 'sixteenthNote',
-    'fontSymbol': 's',
+    'nameEng': 'sixteenthNote_16',
+    'fontSymbol': 'x',
     'duration_16': 1,
     'measure': (420*1),
     createDivTag(outIndx,baseSize){
         let div = document.createElement('div');
         div.classList.add(this.class);
-        div.textContent = this.fontSymbol;
+
+        let p_label = document.createElement('p');
+        p_label.textContent = this.fontSymbol;
+        div.append(p_label);
+       
         div.dataset.data = this.nameEng;
         div.dataset.matrix = 'matrix_16';
         div.dataset.outIndx = outIndx;
@@ -167,11 +270,11 @@ const tripleEighthNote = {
 // console.log(tripleEighthNote.measure);
 
 const allNotes = {
-    1: wholeNote,
-    2: halfNote,
-    4: quarterNote,
-    8: eighthNote,
-    16: sixteenthNote,
+    1: wholeNote_1,
+    2: halfNote_2,
+    4: quarterNote_4,
+    8: eighthNote_8,
+    16: sixteenthNote_16,
     38: tripleEighthNote
 }
 // console.log(allNotes[1]);
@@ -199,15 +302,19 @@ let createHandleRightElem = function(){
 
 
     const sizeIdentif = {
-        26.25: sixteenthNote,
-        52.5: eighthNote,
+        26.25: sixteenthNote_16,
+        52.5: eighthNote_8,
         60: '',
         70: '',
+        78.750: eighthNote_8w16,
         84: '',
-        105: quarterNote,
+        105: quarterNote_4,
+        131.250: quarterNote_4w16,
         140: '',
-        210: halfNote,
-        420: wholeNote
+        157.500: quarterNote_4w8,
+        183.750: quarterNote_4w8w16,
+        210: halfNote_2,
+        420: wholeNote_1
     }
 
 //     целая w

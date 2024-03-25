@@ -17,13 +17,20 @@
     src: url(/fonts/Musisync-KVLZ.ttf);
     /* Путь к файлу со шрифтом */
 }
+@font-face {
+    font-family: MAESTRO;
+    /* Гарнитура шрифта */
+    src: url(/fonts/MAESTRO.TTF);
+    /* Путь к файлу со шрифтом */
+}
 
 body {
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    font-family: OPUSTEXT;
+    font-family: MAESTRO;
+    /* letter-spacing: 10px; */
     color: #F4D6B1;
     padding-top: 15px;
     justify-content: start;
@@ -34,8 +41,13 @@ body {
     /* overflow: scroll; */
 }
 
-.containMatri {
+.app{
     position: relative;
+}
+
+.containMatrix {
+    width: 420px;
+    height: 420px;
 }
 
 .mtrxCircle {
@@ -51,52 +63,30 @@ body {
 }
 
 
-/* .matrix_16 {
-    width: calc(var(--const) / 16);
-    height: calc(var(--const) / 16);
-   
-}
-
-.matrix_8 {
-    width: calc(var(--const) / 8);
-    height: calc(var(--const) / 8);
-   
-}
-
-.matrix_4 {
-    width: calc(var(--const) / 4);
-    height: calc(var(--const) / 4);
-  
-}
-
-.matrix_2 {
-    width: calc(var(--const) / 2);
-    height: calc(var(--const) / 2);
- 
-}
-
-.matrix_1 {
-    width: calc(var(--const) / 1);
-    height: calc(var(--const) / 1);
-
-} */
-
 .active {
     position: absolute;
-    /* outline: 2px solid rgb(240, 222, 155); */
-    /* transform-origin: center center; */
-    /* top:0; */
-    /* bottom: 0; */
-    font-family: OPUSTEXT;
-    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* align-items: center; */
+    font-family: MAESTRO;
+    
     line-height: 20px;
-    padding-left: 4px;
     text-align: center;
     border-radius: 50%;
     z-index: 1000;
     box-shadow: 0 0 0 1.5px rgb(233, 242, 156) inset;
     top: 50%;
+    cursor: pointer;
     transform: translateY(-50%);
+}
+
+.active > p{
+    padding-top: 5px;
+    user-select: none;
+    font-size: 16px;
+    pointer-events: none;
+    /* letter-spacing: -2px; */
 }
 
 .selected{
