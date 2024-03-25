@@ -21,10 +21,8 @@ function startResizing(e, direction) {
             
             let replaseSumm = target.style.height;
             replaseSumm = replaseSumm.replace('px','');
-            // console.log(replaseSumm);
-            // console.log(target);
-            console.log(sizeIdentif[replaseSumm].createDivTag('',baseSize));
-            // target.parentNode.replaceChild(sizeIdentif[replaseSumm].createDivTag('',baseSize), target);
+           
+           hameleon(target,sizeIdentif[replaseSumm]); 
         } else if (direction === 'left') {
             const diff = startX - e.clientX;
             let newWidth = Math.min(Math.max(startWidth + diff, minWidth), maxWidth);
@@ -37,9 +35,20 @@ function startResizing(e, direction) {
     }
 
     function stopResizing() {
+        // target.parentNode.replaceChild(sizeIdentif[replaseSumm].createDivTag('',baseSize), target);
         document.documentElement.removeEventListener('mousemove', resize);
         document.documentElement.removeEventListener('mouseup', stopResizing);
     }
+}
+
+let hameleon = function(inputElem, noteObj){
+    // let classes = inputElem.getAttribute('class');
+    // classes = classes.split(' ');
+    // console.log(classes);
+    inputElem.classList.remove(classes[0]);
+    inputElem.classList.add(noteObj.class);
+    inputElem.dataset.data = noteObj.nameEng;
+    inputElem.textContent = noteObj.fontSymbol;
 }
 
 

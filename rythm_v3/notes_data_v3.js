@@ -7,20 +7,19 @@
 
 
 const wholeNote = {
+    'class': 'wholeNote',
     'symbol': 1,
     'nameRus': 'целая',
-    'nameEng': 'whole',
+    'nameEng': 'wholeNote',
     'fontSymbol': 'w',
     'duration_16': 16,
     'measure': (420*16),
     createDivTag(outIndx,baseSize){
         let div = document.createElement('div');
-        div.classList.add('active');
-        div.classList.add('wholeNote');
-        // div.classList.add('droppable');
+        
+        div.classList.add(this.class);
         div.textContent = this.fontSymbol;
-        div.draggable = true;
-        div.dataset.data = 'wholeNote';
+        div.dataset.data = this.nameEng;
         div.dataset.matrix = 'matrix_1';
         div.dataset.outIndx = outIndx;
         div.style.width = baseSize / 1 + 'px';
@@ -31,20 +30,19 @@ const wholeNote = {
     }
 }
 const halfNote = {
+    'class':'halfNote',
     'symbol': 2,
     'nameRus': 'половинная',
-    'nameEng': 'half',
+    'nameEng': 'halfNote',
     'fontSymbol': 'h',
     'duration_16': 8,
     'measure': (420*8),
     createDivTag(outIndx,baseSize){
         let div = document.createElement('div');
-        div.classList.add('active');
-        div.classList.add('halfNote');
-        // div.classList.add('droppable');
+
+        div.classList.add(this.class);
         div.textContent = this.fontSymbol;
-        div.draggable = true;
-        div.dataset.data = 'halfNote';
+        div.dataset.data = this.nameEng;
         div.dataset.matrix = 'matrix_2';
         div.dataset.outIndx = outIndx;
         div.style.width = baseSize / 2 + 'px';
@@ -55,20 +53,18 @@ const halfNote = {
     }
 }
 const quarterNote = {
+    'class': 'quarterNote',
     'symbol': 4,
     'nameRus': 'четвертная',
-    'nameEng': 'quarter',
+    'nameEng': 'quarterNote',
     'fontSymbol': 'q',
     'duration_16': 4,
     'measure': (420*4),
     createDivTag(outIndx,baseSize){
         let div = document.createElement('div');
-        div.classList.add('active');
-        div.classList.add('quarterNote');
-        // div.classList.add('droppable');
+        div.classList.add(this.class);
         div.textContent = this.fontSymbol;
-        div.draggable = true;
-        div.dataset.data = 'quarterNote';
+        div.dataset.data = this.nameEng;
         div.dataset.matrix = 'matrix_4';
         div.dataset.outIndx = outIndx;
         div.style.width = baseSize / 4 + 'px';
@@ -78,21 +74,19 @@ const quarterNote = {
         return div;
     }
 }
-const eighthNote = {
-    'symbol': 8,
-    'nameRus': 'восьмая',
-    'nameEng': 'eighth',
-    'fontSymbol': 'e',
-    'duration_16': 2,
-    'measure': (420*2),
+const eighthNoteWithAPoint = {
+    'class': 'eighthNoteWithAPoint',
+    'symbol': 6,
+    'nameRus': 'восьмая с точкой',
+    'nameEng': 'eighthNoteWithAPoint',
+    'fontSymbol': 'i',
+    'duration_16': 3,
+    'measure': (420*3),
     createDivTag(outIndx,baseSize){
         let div = document.createElement('div');
-        div.classList.add('active');
-        div.classList.add('eighthNote');
-        // div.classList.add('droppable');
+        div.classList.add(this.class);
         div.textContent = this.fontSymbol;
-        div.draggable = true;
-        div.dataset.data = 'eighthNote';
+        div.dataset.data = this.nameEng;
         div.dataset.matrix = 'matrix_8';
         div.dataset.outIndx = outIndx;
         div.style.width = baseSize / 8 + 'px';
@@ -102,21 +96,42 @@ const eighthNote = {
         return div;
     }
 }
+const eighthNote = {
+    'class': 'eighthNote',
+    'symbol': 8,
+    'nameRus': 'восьмая',
+    'nameEng': 'eighthNote',
+    'fontSymbol': 'e',
+    'duration_16': 2,
+    'measure': (420*2),
+    createDivTag(outIndx,baseSize){
+        let div = document.createElement('div');
+        div.classList.add(this.class);
+        div.textContent = this.fontSymbol;
+        div.dataset.data = this.nameEng;
+        div.dataset.matrix = 'matrix_8';
+        div.dataset.outIndx = outIndx;
+        div.style.width = baseSize / 8 + 'px';
+        div.style.height = baseSize / 8 + 'px';
+        div.append(createHandleLeftElem());
+        div.append(createHandleRightElem());
+        return div;
+    }
+}
+
 const sixteenthNote = {
+    'class': 'sixteenthNote',
     'symbol': 16,
     'nameRus': 'шестнадцатая',
-    'nameEng': 'sixteenth',
+    'nameEng': 'sixteenthNote',
     'fontSymbol': 's',
     'duration_16': 1,
     'measure': (420*1),
     createDivTag(outIndx,baseSize){
         let div = document.createElement('div');
-        div.classList.add('active');
-        div.classList.add('sixteenthNote');
-        // div.classList.add('droppable');
+        div.classList.add(this.class);
         div.textContent = this.fontSymbol;
-        div.draggable = true;
-        div.dataset.data = 'sixteenthNote';
+        div.dataset.data = this.nameEng;
         div.dataset.matrix = 'matrix_16';
         div.dataset.outIndx = outIndx;
         div.style.width = baseSize / 16 + 'px';
@@ -194,3 +209,11 @@ let createHandleRightElem = function(){
         210: halfNote,
         420: wholeNote
     }
+
+//     целая w
+// половинка с точкой d
+// половинка р
+// четверть с точкой j
+// четверть q
+// восьмая c точкой i
+// восьмая e

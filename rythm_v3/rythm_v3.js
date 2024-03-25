@@ -203,7 +203,8 @@ let listenAndCreateActivElem = function(elem){
         // activeBlock.append(righttHandle);
 
         
-console.log(activeBlock.classList);
+// console.log(activeBlock.classList);
+activeBlock.classList.add('active');
         elem.append(activeBlock);
     } 
 
