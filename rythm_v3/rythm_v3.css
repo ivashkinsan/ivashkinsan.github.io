@@ -86,6 +86,7 @@ body {
     user-select: none;
     font-size: 16px;
     pointer-events: none;
+    z-index: 999;
     /* letter-spacing: -2px; */
 }
 
