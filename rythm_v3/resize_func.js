@@ -32,29 +32,24 @@ function startResizing(e, direction) {
             let replaseSumm = target.style.width;
             replaseSumm = replaseSumm.replace('px', '');
 
-            // изменение растягиваемого блока и паралельно соседнего
+            // изменение растягиваемого блока и паралельно соседнего левого
             let previousElement = target.previousElementSibling;
-            let targetLeftPosition = Number(target.style.left.replace('px', ''));
-            let previousElementLeftPosition = Number(previousElement.style.left.replace('px', ''));
-            let difference = targetLeftPosition - previousElementLeftPosition;
 
-            if (previousElement &&
-                previousElement.offsetLeft + previousElement.offsetWidth &&
-                previousElementLeftPosition + difference + 13 <= e.pageX // ??????????????????????????
-                // && previousElementLeftPosition + difference >= e.clientX
-            ) {
+
+            if (previousElement) {
+                let targetLeftPosition = Number(target.style.left.replace('px', ''));
+                let previousElementLeftPosition = Number(previousElement.style.left.replace('px', ''));
+                let difference = targetLeftPosition - previousElementLeftPosition;
+
                 hameleon(previousElement, sizeIdentif[difference], difference);
-                hameleon(target, sizeIdentif[replaseSumm]);
-            }
-            console.log(previousElementLeftPosition + difference + 13 + '<=' + e.pageX); // ??????????????????
-            console.log();
-            if (previousElementLeftPosition + difference + 13 <= e.pageX) { // ?????????????????????
-                // изменение растягиваемого блока
+
 
                 target.style.width = newWidthRounded + 'px'; // присвоение ширины
                 target.style.height = newWidthRounded + 'px'; // присвоение высоты
                 target.style.left = Math.round(newLeft / step) * step + 'px'; // присвоение положения левого края
             }
+            console.log(target);
+            hameleon(target, sizeIdentif[replaseSumm]);
             // console.log(previousElementLeftPosition);
             // console.log(difference);
             // console.log(previousElementLeftPosition + difference );
