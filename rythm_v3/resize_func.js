@@ -32,21 +32,27 @@ function startResizing(e, direction) {
             target.style.height = newWidthRounded + 'px';
             target.style.left = Math.round(newLeft / step) * step + 'px';
 
-            let replaseSumm = target.style.height;
+
+            // изменение растягиваемого блока
+            let replaseSumm = target.style.width;
             replaseSumm = replaseSumm.replace('px','');
             hameleon(target,sizeIdentif[replaseSumm]);
             
+
+            // изменение растягиваемого блока и паралельно соседнего
             let previousElement = target.previousElementSibling;
-            
-            console.log(previousElement.offsetLeft + previousElement.offsetWidth > target.offsetLeft);
-            if(previousElement.offsetLeft + previousElement.offsetWidth){
+            if(previousElement && previousElement.offsetLeft + previousElement.offsetWidth){
+            //        стартовая линия соседнего элемента слева     ширина соседа      Л сторона растягиваемого элемента
+            console.log(previousElement.offsetLeft + previousElement.offsetWidth > replaseSumm);
+            console.log(previousElement.offsetLeft, previousElement.offsetWidth, replaseSumm, target.style.left.replace('px',''));
                 // previousElement
                 let targetLeftPosition = Number(target.style.left.replace('px',''));
                 let previousElementLeftPosition = Number(previousElement.style.left.replace('px',''));
                 let difference = targetLeftPosition-previousElementLeftPosition;
-                console.log(targetLeftPosition);
-                console.log(previousElementLeftPosition);
-console.log(difference);
+                console.log('HERO L SIDE = ' + targetLeftPosition);
+                console.log('PERSONA in L = ' + previousElementLeftPosition);
+                console.log('разница = ' + difference);
+                console.log('=============================');
                 hameleon(previousElement,sizeIdentif[difference],difference);
             }
         }
@@ -59,13 +65,16 @@ console.log(difference);
     }
 }
 
-let hameleon = function(inputElem, noteObj, width){
+let hameleon = function(inputElem, noteObj, width, left){
     inputElem.classList.replace(inputElem.classList[0], noteObj.class);
     inputElem.classList.add(noteObj.class);
     inputElem.dataset.data = noteObj.nameEng;
     inputElem.querySelector('p').textContent = noteObj.fontSymbol;
     inputElem.style.width = width + 'px';
     inputElem.style.height = width + 'px';
+    if(left){
+        inputElem.style.left = left + 'px';
+    }
 }
 
 

@@ -161,6 +161,7 @@ const backgroundMatrix = {
                             activeBlock.style.left = e.target.style.left;
                             // activeElemLayer.append(activeBlock);
                             delElemInBigElem(e.target);
+                            
 
                             function insertSortedDiv(container, newDiv) {
                                 container.appendChild(newDiv); // Вставляем новый div в конец контейнера
@@ -170,7 +171,7 @@ const backgroundMatrix = {
                             }
                             insertSortedDiv(activeElemLayer, activeBlock); // Вызываем функцию вставки и сортировки
                             
-
+                            borderCollapsResize(activeBlock);
                             
                             activeBlock.addEventListener('dblclick', (e)=>{
                                 // console.log("doubleClick" + e.target);
@@ -205,13 +206,48 @@ let delElemInBigElem = function(elem){
     let activeContainLayer = document.querySelector('.activeElemLayer');
     let all_active_elem = activeContainLayer.querySelectorAll('.active ');
         for(inp_elem of all_active_elem){
-            // console.log(item.offsetLeft);
-        // console.log("inp_elem.offsetLeft " + inp_elem.offsetLeft + " >= " + elem.offsetLeft + " click");
-        if(inp_elem.offsetLeft >= elem.offsetLeft 
-            && inp_elem.offsetLeft < elem.offsetLeft + elem.offsetWidth - 1 
+let leftSideItem = Number(inp_elem.style.left.replace('px',''));
+let rightSideItem = leftSideItem + Number(inp_elem.style.width.replace('px',''))
+let leftSideHero = Number(elem.style.left.replace('px',''));
+let widthHero = Number(elem.style.width.replace('px',''));
+let rightSideHero = leftSideHero + widthHero;
+        if(leftSideItem >= leftSideHero 
+            && leftSideItem < leftSideHero + widthHero
+            && rightSideItem <= rightSideHero 
             && !elem.classList.contains('active')
             ){
                 inp_elem.remove();
+        }
+    }
+}
+
+// функция изменения соседних блоков при наложении границ
+let borderCollapsResize = function(elem){
+    let previousElement = elem.previousElementSibling;
+    if(previousElement){
+        let heroElemLeftSide = Number(elem.style.left.replace('px',''));
+        let leftSidePrevElem = Number(previousElement.style.left.replace('px',''));
+        let widthPrevElem = Number(previousElement.style.width.replace('px',''));
+        let rightSidePrevElem = leftSidePrevElem + widthPrevElem;
+        let summLeftCollaps = rightSidePrevElem - heroElemLeftSide;
+        let resultNewWidth = widthPrevElem - summLeftCollaps;
+        if(rightSidePrevElem > heroElemLeftSide){
+            // previousElement.style.width = () + 'px';
+            hameleon(previousElement,sizeIdentif[resultNewWidth], resultNewWidth);
+        }
+    }
+
+    let nextElement = elem.nextElementSibling;
+    if(nextElement){
+        let heroElemRightSide = Number(elem.style.left.replace('px','')) + Number(elem.style.width.replace('px',''));
+        let leftSideNextElem = Number(nextElement.style.left.replace('px',''));
+        let widthNextElem = Number(nextElement.style.width.replace('px',''));
+ 
+        let summCollaps = heroElemRightSide - leftSideNextElem;
+        let resultNewWidth = widthNextElem - summCollaps;
+        if(heroElemRightSide > leftSideNextElem){
+            // previousElement.style.width = () + 'px';
+            hameleon(nextElement,sizeIdentif[resultNewWidth], resultNewWidth, heroElemRightSide);
         }
     }
 }
