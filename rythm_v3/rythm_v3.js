@@ -1,6 +1,16 @@
 // число-делитель для масштабирования
 let constNumber = 5;
 
+let createNumberMatrix = function(){
+    let allPoint = [];
+    let onePoint = 0;
+    for(let i = 0; i < 16; i++){
+        allPoint.push(onePoint);
+        onePoint += 26.25;
+    }
+    console.log(allPoint);
+    return allPoint;
+}
 // let section_for_contextmenu = document.querySelector('.app');
 // section_for_contextmenu.addEventListener('contextmenu', function (event) {
 //     event.preventDefault(false);
@@ -148,8 +158,9 @@ const backgroundMatrix = {
                         if (allNotes[e.target.dataset.symbol]) {
                             let activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx,baseSize);
                             activeBlock.classList.add('active');
-                            activeBlock.style.left = e.target.offsetLeft + 'px';
+                            activeBlock.style.left = e.target.style.left;
                             // activeElemLayer.append(activeBlock);
+                            delElemInBigElem(e.target);
 
                             function insertSortedDiv(container, newDiv) {
                                 container.appendChild(newDiv); // Вставляем новый div в конец контейнера
@@ -160,7 +171,7 @@ const backgroundMatrix = {
                             insertSortedDiv(activeElemLayer, activeBlock); // Вызываем функцию вставки и сортировки
                             
 
-                            delElemInBigElem(activeBlock);
+                            
                             activeBlock.addEventListener('dblclick', (e)=>{
                                 // console.log("doubleClick" + e.target);
                                 if(e.target.classList.contains('active')){
@@ -176,6 +187,13 @@ const backgroundMatrix = {
                 // activeElemLayer.append(new_circle);
 
             } // ***************** внутренний цикл
+
+            let numbLabel = document.createElement('div');
+            let numb = createNumberMatrix();
+            numbLabel.classList.add('numbMatrx');
+            numbLabel.textContent = numb[outIndx];
+            numbLabel.style.left = leftPosition + 'px';
+            containMatrix.append(numbLabel)
             leftPosition = leftPosition + 26.25;
         }
         return [containMatrix,activeElemLayer];
@@ -184,14 +202,16 @@ const backgroundMatrix = {
 
 // функция удаления активных элементов внутри более большого активного блока
 let delElemInBigElem = function(elem){
-    let all_active_elem = document.querySelectorAll('.active ');
-        for(item of all_active_elem){
-        // console.log("elem.target.offsetLeft " + elem.target.offsetLeft + ">=" + item.parentNode.offsetLeft + "item.parentNode.offsetLeft");
-        if(item.offsetLeft >= elem.offsetLeft && 
-            item.offsetLeft < elem.offsetLeft + elem.offsetWidth - 1 &&
-            !elem.classList.contains('active')
+    let activeContainLayer = document.querySelector('.activeElemLayer');
+    let all_active_elem = activeContainLayer.querySelectorAll('.active ');
+        for(inp_elem of all_active_elem){
+            // console.log(item.offsetLeft);
+        // console.log("inp_elem.offsetLeft " + inp_elem.offsetLeft + " >= " + elem.offsetLeft + " click");
+        if(inp_elem.offsetLeft >= elem.offsetLeft 
+            && inp_elem.offsetLeft < elem.offsetLeft + elem.offsetWidth - 1 
+            && !elem.classList.contains('active')
             ){
-            item.remove();
+                inp_elem.remove();
         }
     }
 }
@@ -211,3 +231,6 @@ let allLayer = backgroundMatrix.createBackground(backgroundMatrix.matrix_4x4, 0)
 // console.log(allLayer);
 app.append(allLayer[0]);
 app.append(allLayer[1]);
+
+
+

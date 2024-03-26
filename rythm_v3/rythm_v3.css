@@ -29,7 +29,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    font-family: MAESTRO;
+    /* font-family: MAESTRO; */
     /* letter-spacing: 10px; */
     color: #F4D6B1;
     padding-top: 15px;
@@ -39,6 +39,17 @@ body {
     border: 10px solid #DDB078;
     border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
     /* overflow: scroll; */
+}
+
+
+.numbMatrx{
+    position: absolute;
+    top: 45%;
+    bottom: 55%;
+    margin: auto;
+    margin-top: -30px;
+    font-size: 6px;
+    transform: rotate(-90deg);
 }
 
 .app{

@@ -1,6 +1,6 @@
 const step = 26.25; // Шаг изменения блока
 const minWidth = 26.25;
-const maxWidth = 500;
+const maxWidth = 420;
 
 function startResizing(e, direction) {
     e.preventDefault();
@@ -35,6 +35,20 @@ function startResizing(e, direction) {
             let replaseSumm = target.style.height;
             replaseSumm = replaseSumm.replace('px','');
             hameleon(target,sizeIdentif[replaseSumm]);
+            
+            let previousElement = target.previousElementSibling;
+            
+            console.log(previousElement.offsetLeft + previousElement.offsetWidth > target.offsetLeft);
+            if(previousElement.offsetLeft + previousElement.offsetWidth){
+                // previousElement
+                let targetLeftPosition = Number(target.style.left.replace('px',''));
+                let previousElementLeftPosition = Number(previousElement.style.left.replace('px',''));
+                let difference = targetLeftPosition-previousElementLeftPosition;
+                console.log(targetLeftPosition);
+                console.log(previousElementLeftPosition);
+console.log(difference);
+                hameleon(previousElement,sizeIdentif[difference],difference);
+            }
         }
     }
 
@@ -45,11 +59,13 @@ function startResizing(e, direction) {
     }
 }
 
-let hameleon = function(inputElem, noteObj){
+let hameleon = function(inputElem, noteObj, width){
     inputElem.classList.replace(inputElem.classList[0], noteObj.class);
     inputElem.classList.add(noteObj.class);
     inputElem.dataset.data = noteObj.nameEng;
     inputElem.querySelector('p').textContent = noteObj.fontSymbol;
+    inputElem.style.width = width + 'px';
+    inputElem.style.height = width + 'px';
 }
 
 
