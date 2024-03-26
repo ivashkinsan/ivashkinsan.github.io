@@ -123,14 +123,17 @@ body {
     top: 0;
     bottom: 0;
     /* background-color: red; */
-    cursor: ew-resize;
+    /* cursor: ew-resize; */
     z-index: 1001;
 }
 
 .left-handle {
     left: 2px;
+    /* cursor: w-resize; */
+    cursor: url('/cursor/left_32px.png')16 16, auto;
 }
 
 .right-handle {
     right: 2px;
+    cursor: url('/cursor/right_32px.png')16 16, auto;
 }
