@@ -118,7 +118,7 @@ body {
 .handle {
     position: absolute;
     width: 5px;
-    height: 10px;
+    height: 30px;
     margin: auto;
     top: 0;
     bottom: 0;
@@ -128,12 +128,21 @@ body {
 }
 
 .left-handle {
-    left: 2px;
+    left: 7px;
     /* cursor: w-resize; */
     cursor: url('/cursor/left_32px.png')16 16, auto;
 }
 
 .right-handle {
-    right: 2px;
+    right: 7px;
     cursor: url('/cursor/right_32px.png')16 16, auto;
+}
+
+.left_double_arrow{
+    left: -2.5px;
+    cursor: url('/cursor/left-right_32px.png')16 16, auto;
+}
+.right_double_arrow{
+    right: -2.5px;
+    cursor: url('/cursor/left-right_32px.png')16 16, auto;
 }

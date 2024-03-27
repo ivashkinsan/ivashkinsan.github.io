@@ -171,6 +171,27 @@ const backgroundMatrix = {
                             }
                             insertSortedDiv(activeElemLayer, activeBlock); // Вызываем функцию вставки и сортировки
                             
+                            if(activeBlock.previousElementSibling){
+                                console.log('previousElementSibling');
+                                let left_double_arrow = document.createElement('div');
+                                left_double_arrow.classList.add('handle');
+                                left_double_arrow.classList.add('left_double_arrow');
+                                activeBlock.append(left_double_arrow);
+                                left_double_arrow.addEventListener('mousedown', (elem)=>{
+                                    startResizing(elem, 'left_right');
+                                });
+                            }
+                            if(activeBlock.nextElementSibling){
+                                console.log('nextElementSibling');
+                                let right_double_arrow = document.createElement('div');
+                                right_double_arrow.classList.add('handle');
+                                right_double_arrow.classList.add('right_double_arrow');
+                                activeBlock.append(right_double_arrow);
+                                right_double_arrow.addEventListener('mousedown', (elem)=>{
+                                    startResizing(elem, 'left_right');
+                                });
+                            }
+
                             borderCollapsResize(activeBlock);
                             
                             activeBlock.addEventListener('dblclick', (e)=>{
