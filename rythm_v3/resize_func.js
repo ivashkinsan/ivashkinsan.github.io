@@ -5,7 +5,7 @@ const maxWidth = 420;
 function startResizing(e, direction) {
     e.preventDefault();
 
-    const target = e.target.parentNode;
+    const target = e.target.parentNode; // растягиваемый блок
     const startX = e.clientX;
     const startWidth = parseFloat(getComputedStyle(target).width);
     const startLeft = parseFloat(getComputedStyle(target).left);
@@ -28,33 +28,39 @@ function startResizing(e, direction) {
             let newWidth = Math.min(Math.max(startWidth + diff, minWidth), maxWidth);
             const newLeft = startLeft - (newWidth - startWidth);
             const newWidthRounded = Math.round(newWidth / step) * step;
-            target.style.width = newWidthRounded + 'px';
-            target.style.height = newWidthRounded + 'px';
-            target.style.left = Math.round(newLeft / step) * step + 'px';
-
-
-            // изменение растягиваемого блока
+           
             let replaseSumm = target.style.width;
             replaseSumm = replaseSumm.replace('px','');
-            hameleon(target,sizeIdentif[replaseSumm]);
             
-
             // изменение растягиваемого блока и паралельно соседнего
             let previousElement = target.previousElementSibling;
-            if(previousElement && previousElement.offsetLeft + previousElement.offsetWidth){
-            //        стартовая линия соседнего элемента слева     ширина соседа      Л сторона растягиваемого элемента
-            console.log(previousElement.offsetLeft + previousElement.offsetWidth > replaseSumm);
-            console.log(previousElement.offsetLeft, previousElement.offsetWidth, replaseSumm, target.style.left.replace('px',''));
-                // previousElement
-                let targetLeftPosition = Number(target.style.left.replace('px',''));
-                let previousElementLeftPosition = Number(previousElement.style.left.replace('px',''));
-                let difference = targetLeftPosition-previousElementLeftPosition;
-                console.log('HERO L SIDE = ' + targetLeftPosition);
-                console.log('PERSONA in L = ' + previousElementLeftPosition);
-                console.log('разница = ' + difference);
-                console.log('=============================');
+            let targetLeftPosition = Number(target.style.left.replace('px',''));
+            let previousElementLeftPosition = Number(previousElement.style.left.replace('px',''));
+            let difference = targetLeftPosition-previousElementLeftPosition;
+             
+            if(previousElement 
+                && previousElement.offsetLeft + previousElement.offsetWidth
+                && previousElementLeftPosition + difference + 13 <= e.pageX // ??????????????????????????
+                // && previousElementLeftPosition + difference >= e.clientX
+                ){                
                 hameleon(previousElement,sizeIdentif[difference],difference);
+                hameleon(target,sizeIdentif[replaseSumm]);
             }
+console.log(previousElementLeftPosition + difference + 13 + '<=' + e.pageX); // ??????????????????????????
+console.log();
+            if(previousElementLeftPosition + difference + 13 <= e.pageX){ // ??????????????????????????
+                            // изменение растягиваемого блока
+
+                target.style.width = newWidthRounded + 'px'; // присвоение ширины
+                target.style.height = newWidthRounded + 'px'; // присвоение высоты
+                target.style.left = Math.round(newLeft / step) * step + 'px'; // присвоение положения левого края
+            }
+// console.log(previousElementLeftPosition);
+// console.log(difference);
+// console.log(previousElementLeftPosition + difference );
+// console.log(e.clientX - 20);
+           
+          
         }
     }
 
