@@ -241,6 +241,7 @@ const sixteenthNote_16 = {
         div.style.height = baseSize / 16 + 'px';
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
+        console.log(this.previousElementSibling);
         return div;
     }
 }
@@ -296,6 +297,16 @@ let createHandleRightElem = function(){
     return righttHandle;
 }
 
+let createHandleLeftRight = function (){
+    console.log('previousElementSibling');
+    let left_double_arrow = document.createElement('div');
+    left_double_arrow.classList.add('handle');
+    left_double_arrow.classList.add('left_double_arrow');
+    // activeBlock.append(left_double_arrow);
+    left_double_arrow.addEventListener('mousedown', (elem)=>{
+        startResizing(elem, 'left_right');
+    });
+}
     
     // activeBlock.append(leftHandle);
     // activeBlock.append(righttHandle);

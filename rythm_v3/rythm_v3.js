@@ -155,7 +155,8 @@ const backgroundMatrix = {
                 new_circle.dataset.outIndx = outIndx+1;
                 new_circle.addEventListener('click', (e)=>{
 
-                        if (allNotes[e.target.dataset.symbol]) {
+
+
                             let activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx,baseSize);
                             activeBlock.classList.add('active');
                             activeBlock.style.left = e.target.style.left;
@@ -171,26 +172,51 @@ const backgroundMatrix = {
                             }
                             insertSortedDiv(activeElemLayer, activeBlock); // Вызываем функцию вставки и сортировки
                             
-                            if(activeBlock.previousElementSibling){
-                                console.log('previousElementSibling');
-                                let left_double_arrow = document.createElement('div');
-                                left_double_arrow.classList.add('handle');
-                                left_double_arrow.classList.add('left_double_arrow');
-                                activeBlock.append(left_double_arrow);
-                                left_double_arrow.addEventListener('mousedown', (elem)=>{
+                            // есть ли граничащий блок с левой стороны
+                            let previousActiveBlock = activeBlock.previousElementSibling ? activeBlock.previousElementSibling : undefined;
+                            if(previousActiveBlock){
+                                let previousActiveBlockLeftSide = Number(previousActiveBlock.style.left.replace('px',''));
+                                let previousActiveBlockWidth = Number(previousActiveBlock.style.width.replace('px',''));
+                                let heroLeftSide = Number(e.target.style.left.replace('px',''));
+                                if(previousActiveBlockLeftSide + previousActiveBlockWidth == heroLeftSide){
+           
+                                    let left_double_arrow = document.createElement('div');
+                                    left_double_arrow.classList.add('handle');
+                                    left_double_arrow.classList.add('left_double_arrow');
+                                    activeBlock.append(left_double_arrow);
+                                    left_double_arrow.addEventListener('mousedown', (elem)=>{
                                     startResizing(elem, 'left_right');
-                                });
+                                    });                  
+                                }
                             }
-                            if(activeBlock.nextElementSibling){
-                                console.log('nextElementSibling');
-                                let right_double_arrow = document.createElement('div');
-                                right_double_arrow.classList.add('handle');
-                                right_double_arrow.classList.add('right_double_arrow');
-                                activeBlock.append(right_double_arrow);
-                                right_double_arrow.addEventListener('mousedown', (elem)=>{
+
+                            let nextActiveBlock = activeBlock.nextElementSibling ? activeBlock.nextElementSibling : undefined;
+                            if(nextActiveBlock){
+                                let nextActiveBlockLeftSide = Number(nextActiveBlock.style.left.replace('px',''));
+                                let nextActiveBlockWidth = Number(nextActiveBlock.style.width.replace('px',''));
+                                let heroLeftSide = Number(e.target.style.left.replace('px',''));
+                                let heroWidth = + Number(e.target.style.width.replace('px',''))
+                                if(heroLeftSide + heroWidth == nextActiveBlockLeftSide){
+                                    let left_double_arrow = document.createElement('div');
+                                    left_double_arrow.classList.add('handle');
+                                    left_double_arrow.classList.add('left_double_arrow');
+                                    nextActiveBlock.append(left_double_arrow);
+                                    left_double_arrow.addEventListener('mousedown', (elem)=>{
                                     startResizing(elem, 'left_right');
-                                });
+                                    });                  
+                                }
                             }
+
+                            // if(activeBlock.nextElementSibling){
+                            //     console.log('nextElementSibling');
+                            //     let right_double_arrow = document.createElement('div');
+                            //     right_double_arrow.classList.add('handle');
+                            //     right_double_arrow.classList.add('right_double_arrow');
+                            //     activeBlock.append(right_double_arrow);
+                            //     right_double_arrow.addEventListener('mousedown', (elem)=>{
+                            //         startResizing(elem, 'left_right');
+                            //     });
+                            // }
 
                             borderCollapsResize(activeBlock);
                             
@@ -200,7 +226,17 @@ const backgroundMatrix = {
                                     e.target.remove();
                                 }
                             });
-                        }                    
+
+
+    //                         if (allNotes[e.target.dataset.symbol]) {
+    //                             let allActive = activeElemLayer.querySelectorAll('.active');
+    //                             for (let i = 0; i < allActive.length; i++) {
+    //                                 console.log(allActive[i].style.left);
+    //                             }
+    // console.log(new_circle.style.left);
+    // console.log(new_circle.style.width);
+
+    //                     }                    
 
                 });
                 // dblclick contextmenu
