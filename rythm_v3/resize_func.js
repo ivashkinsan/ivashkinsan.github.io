@@ -18,49 +18,49 @@ function startResizing(e, direction) {
             const newWidth = Math.min(Math.max(startWidth + e.clientX - startX, minWidth), maxWidth);
             target.style.width = Math.round(newWidth / step) * step + 'px';
             target.style.height = Math.round(newWidth / step) * step + 'px';
-            
+
             let replaseSumm = target.style.height;
-            replaseSumm = replaseSumm.replace('px','');
-            hameleon(target,sizeIdentif[replaseSumm]); 
+            replaseSumm = replaseSumm.replace('px', '');
+            hameleon(target, sizeIdentif[replaseSumm]);
 
         } else if (direction === 'left') {
             const diff = startX - e.clientX;
             let newWidth = Math.min(Math.max(startWidth + diff, minWidth), maxWidth);
             const newLeft = startLeft - (newWidth - startWidth);
             const newWidthRounded = Math.round(newWidth / step) * step;
-           
+
             let replaseSumm = target.style.width;
-            replaseSumm = replaseSumm.replace('px','');
-            
+            replaseSumm = replaseSumm.replace('px', '');
+
             // изменение растягиваемого блока и паралельно соседнего
             let previousElement = target.previousElementSibling;
-            let targetLeftPosition = Number(target.style.left.replace('px',''));
-            let previousElementLeftPosition = Number(previousElement.style.left.replace('px',''));
-            let difference = targetLeftPosition-previousElementLeftPosition;
-             
-            if(previousElement 
-                && previousElement.offsetLeft + previousElement.offsetWidth
-                && previousElementLeftPosition + difference + 13 <= e.pageX // ??????????????????????????
+            let targetLeftPosition = Number(target.style.left.replace('px', ''));
+            let previousElementLeftPosition = Number(previousElement.style.left.replace('px', ''));
+            let difference = targetLeftPosition - previousElementLeftPosition;
+
+            if (previousElement &&
+                previousElement.offsetLeft + previousElement.offsetWidth &&
+                previousElementLeftPosition + difference + 13 <= e.pageX // ??????????????????????????
                 // && previousElementLeftPosition + difference >= e.clientX
-                ){                
-                hameleon(previousElement,sizeIdentif[difference],difference);
-                hameleon(target,sizeIdentif[replaseSumm]);
+            ) {
+                hameleon(previousElement, sizeIdentif[difference], difference);
+                hameleon(target, sizeIdentif[replaseSumm]);
             }
-console.log(previousElementLeftPosition + difference + 13 + '<=' + e.pageX); // ??????????????????????????
-console.log();
-            if(previousElementLeftPosition + difference + 13 <= e.pageX){ // ??????????????????????????
-                            // изменение растягиваемого блока
+            console.log(previousElementLeftPosition + difference + 13 + '<=' + e.pageX); // ??????????????????
+            console.log();
+            if (previousElementLeftPosition + difference + 13 <= e.pageX) { // ?????????????????????
+                // изменение растягиваемого блока
 
                 target.style.width = newWidthRounded + 'px'; // присвоение ширины
                 target.style.height = newWidthRounded + 'px'; // присвоение высоты
                 target.style.left = Math.round(newLeft / step) * step + 'px'; // присвоение положения левого края
             }
-// console.log(previousElementLeftPosition);
-// console.log(difference);
-// console.log(previousElementLeftPosition + difference );
-// console.log(e.clientX - 20);
-           
-          
+            // console.log(previousElementLeftPosition);
+            // console.log(difference);
+            // console.log(previousElementLeftPosition + difference );
+            // console.log(e.clientX - 20);
+
+
         }
     }
 
@@ -71,18 +71,14 @@ console.log();
     }
 }
 
-let hameleon = function(inputElem, noteObj, width, left){
+let hameleon = function (inputElem, noteObj, width, left) {
     inputElem.classList.replace(inputElem.classList[0], noteObj.class);
     inputElem.classList.add(noteObj.class);
     inputElem.dataset.data = noteObj.nameEng;
     inputElem.querySelector('p').textContent = noteObj.fontSymbol;
     inputElem.style.width = width + 'px';
     inputElem.style.height = width + 'px';
-    if(left){
+    if (left) {
         inputElem.style.left = left + 'px';
     }
 }
-
-
-    
-
