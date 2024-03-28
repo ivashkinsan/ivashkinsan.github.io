@@ -1,6 +1,8 @@
+
 const step = 26.25; // Шаг изменения блока
 const minWidth = 26.25;
 const maxWidth = 420;
+
 
 function startResizing(e, direction) {
     e.preventDefault();

@@ -73,11 +73,11 @@ const backgroundMatrix = {
         '16'            //8
     ],
     'matrix_3x4': [
-        '2 4 8 16',     //1
+        '1.5 2 4 8 16',     //1
         '16',           //2
         '8 16',         //3
         '16',           //4
-        '4 8 16',       //5
+        '2 4 8 16',       //5
         '16',           //6
         '8 16',         //7
         '16',           //8
@@ -143,6 +143,12 @@ const backgroundMatrix = {
                         new_circle.dataset.symbol = 2;
                         new_circle.style.width = baseSize / 2 + 'px';
                         new_circle.style.height = baseSize / 2 + 'px';
+                        break;
+                    case '1.5':
+                        new_circle.classList.add('matrix_1.5');
+                        new_circle.dataset.symbol = 1.5;
+                        new_circle.style.width = Math.floor(baseSize / 1.33) + 'px';
+                        new_circle.style.height = Math.floor(baseSize / 1.33) + 'px';
                         break;
                     case '1':
                         new_circle.classList.add('matrix_1');
@@ -282,7 +288,7 @@ let borderCollapsResize = function (elem) {
 }
 
 let app = document.querySelector('.app');
-let allLayer = backgroundMatrix.createBackground(backgroundMatrix.matrix_4x4, 0);
+let allLayer = backgroundMatrix.createBackground(backgroundMatrix.matrix_2x4, 0);
 // console.log(allLayer);
 app.append(allLayer[0]);
 app.append(allLayer[1]);

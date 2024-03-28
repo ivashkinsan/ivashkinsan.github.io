@@ -130,13 +130,13 @@ body {
 }
 
 .left-handle {
-    left: 7px;
+    left: 4px;
     /* cursor: w-resize; */
     cursor: url('/cursor/left_32px.png')16 16, auto;
 }
 
 .right-handle {
-    right: 7px;
+    right: 4px;
     cursor: url('/cursor/right_32px.png')16 16, auto;
 }
 
