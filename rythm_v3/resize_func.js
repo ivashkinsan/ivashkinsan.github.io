@@ -71,19 +71,37 @@ function startResizing(e, direction) {
 
         } else if (direction === 'left_right') {
             // изменение двух блоков одновременно
-            let previousElement = target.previousElementSibling;
+            let previousElement = target.previousElementSibling ? target.previousElementSibling : undefined;
             console.log(previousElement);
             if (previousElement) {
-                let targetLeftPosition = Number(target.style.left.replace('px', ''));
-                let previousElementLeftPosition = Number(previousElement.style.left.replace('px', ''));
-                let difference = targetLeftPosition - previousElementLeftPosition;
 
-                hameleon(previousElement, sizeIdentif[difference], difference);
+                // изменение основного блока с левым handle
+                const diff = startX - e.clientX;
+                let newWidth = Math.min(Math.max(startWidth + diff, minWidth), maxWidth);
+                const newLeft = startLeft - (newWidth - startWidth);
+                const newWidthRounded = Math.round(newWidth / step) * step;
 
-            } else {
+                let replaseSumm = target.style.width;
+                replaseSumm = replaseSumm.replace('px', '');
+
                 target.style.width = newWidthRounded + 'px'; // присвоение ширины
                 target.style.height = newWidthRounded + 'px'; // присвоение высоты
-                target.style.left = Math.round(newLeft / step) * step + 'px';
+                target.style.left = Math.round(newLeft / step) * step + 'px';;
+
+                hameleon(target, sizeIdentif[replaseSumm]);
+
+                // изменение блока с левой стороны
+                let previousElementWidth1 = Number(previousElement.style.width.replace('px', ''));
+
+
+                const newWidth2 = Math.min(Math.max(previousElementWidth1 + e.clientX - startX, minWidth), maxWidth);
+                console.log(newWidth2);
+                previousElement.style.width = Math.round(newWidth2 / step) * step + 'px';
+
+            } else {
+                // target.style.width = newWidthRounded + 'px'; // присвоение ширины
+                // target.style.height = newWidthRounded + 'px'; // присвоение высоты
+                // target.style.left = Math.round(newLeft / step) * step + 'px';
             }
 
         }
