@@ -8,7 +8,7 @@ let createNumberMatrix = function () {
         allPoint.push(onePoint);
         onePoint += 26.25;
     }
-    console.log(allPoint);
+    // console.log(allPoint);
     return allPoint;
 }
 // let section_for_contextmenu = document.querySelector('.app');
@@ -155,14 +155,10 @@ const backgroundMatrix = {
                 new_circle.dataset.outIndx = outIndx + 1;
                 new_circle.addEventListener('click', (e) => {
 
-
-
                     let activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx, baseSize);
                     activeBlock.classList.add('active');
                     activeBlock.style.left = e.target.style.left;
-                    // activeElemLayer.append(activeBlock);
                     delElemInBigElem(e.target);
-
 
                     function insertSortedDiv(container, newDiv) {
                         container.appendChild(newDiv); // Вставляем новый div в конец контейнера
@@ -172,84 +168,54 @@ const backgroundMatrix = {
                     }
                     insertSortedDiv(activeElemLayer, activeBlock); // Вызываем функцию вставки и сортировки
 
-                    // есть ли граничащий блок с левой стороны
+                    // есть ли граничащий блок с левой стороны ???
+                    let heroLeftSide = Number(e.target.style.left.replace('px', ''));
+                    let heroWidth = Number(e.target.style.width.replace('px', ''))
                     let previousActiveBlock = activeBlock.previousElementSibling ? activeBlock.previousElementSibling : undefined;
-                    if (previousActiveBlock) {
-                        let previousActiveBlockLeftSide = Number(previousActiveBlock.style.left.replace('px', ''));
-                        let previousActiveBlockWidth = Number(previousActiveBlock.style.width.replace('px', ''));
-                        let heroLeftSide = Number(e.target.style.left.replace('px', ''));
-                        if (previousActiveBlockLeftSide + previousActiveBlockWidth == heroLeftSide) {
-                            let handle = previousActiveBlock.querySelector('.right_double_arrow');
-                            console.log(handle);
-                            handle.style.display = 'block';
-                        }
-                    }
-
+                    let previousActiveBlockLeftSide = previousActiveBlock ? Number(previousActiveBlock.style.left.replace('px', '')) : undefined;
+                    let previousActiveBlockWidth = previousActiveBlock ? Number(previousActiveBlock.style.width.replace('px', '')) : undefined;
                     let nextActiveBlock = activeBlock.nextElementSibling ? activeBlock.nextElementSibling : undefined;
-                    if (nextActiveBlock) {
-                        let nextActiveBlockLeftSide = Number(nextActiveBlock.style.left.replace('px', ''));
-                        let nextActiveBlockWidth = Number(nextActiveBlock.style.width.replace('px', ''));
-                        let heroLeftSide = Number(e.target.style.left.replace('px', ''));
-                        let heroWidth = + Number(e.target.style.width.replace('px', ''))
-                        if (heroLeftSide + heroWidth == nextActiveBlockLeftSide) {
+                    let nextActiveBlockLeftSide = nextActiveBlock ? Number(nextActiveBlock.style.left.replace('px', '')) : undefined;
+                    let nextActiveBlockWidth = nextActiveBlock ? Number(nextActiveBlock.style.width.replace('px', '')) : undefined;                
+                    if (nextActiveBlock && nextActiveBlockLeftSide == heroLeftSide + heroWidth) {
                             let handle = nextActiveBlock.querySelector('.left_double_arrow');
                             handle.style.display = 'block';
-                        }
                     }
-
-                    // if(activeBlock.nextElementSibling){
-                    //     console.log('nextElementSibling');
-                    //     let right_double_arrow = document.createElement('div');
-                    //     right_double_arrow.classList.add('handle');
-                    //     right_double_arrow.classList.add('right_double_arrow');
-                    //     activeBlock.append(right_double_arrow);
-                    //     right_double_arrow.addEventListener('mousedown', (elem)=>{
-                    //         startResizing(elem, 'left_right');
-                    //     });
-                    // }
-
+                    if (previousActiveBlock && previousActiveBlockLeftSide + previousActiveBlockWidth == heroLeftSide) {
+                            let handle = activeBlock.querySelector('.left_double_arrow');
+                            handle.style.display = 'block';
+                    }
                     borderCollapsResize(activeBlock);
 
                     activeBlock.addEventListener('dblclick', (e) => {
                         // console.log("doubleClick" + e.target);
                         if (e.target.classList.contains('active')) {
                             e.target.remove();
-                            if (previousActiveBlock) {
-                                let handle = previousActiveBlock.querySelector('.right_double_arrow');
+                            if (nextActiveBlock) {
+                                let handle = nextActiveBlock.querySelector('.left_double_arrow');
                                 handle.style.display = 'none';
                             }
-                            if (nextActiveBlock) {
+                            if(nextActiveBlock && previousActiveBlock){
                                 let handle = nextActiveBlock.querySelector('.left_double_arrow');
                                 handle.style.display = 'none';
                             }
                         }
                     });
-
-
-                    //                         if (allNotes[e.target.dataset.symbol]) {
-                    //                             let allActive = activeElemLayer.querySelectorAll('.active');
-                    //                             for (let i = 0; i < allActive.length; i++) {
-                    //                                 console.log(allActive[i].style.left);
-                    //                             }
-                    // console.log(new_circle.style.left);
-                    // console.log(new_circle.style.width);
-
-                    //                     }                    
-
                 });
-                // dblclick contextmenu
 
                 containMatrix.append(new_circle);
-                // activeElemLayer.append(new_circle);
 
             } // ***************** внутренний цикл
 
-            let numbLabel = document.createElement('div');
-            let numb = createNumberMatrix();
-            numbLabel.classList.add('numbMatrx');
-            numbLabel.textContent = numb[outIndx];
-            numbLabel.style.left = leftPosition + 'px';
-            containMatrix.append(numbLabel)
+            // числовые значения границ для ориентировки +++++++++++++
+            // let numbLabel = document.createElement('div');
+            // let numb = createNumberMatrix();
+            // numbLabel.classList.add('numbMatrx');
+            // numbLabel.textContent = numb[outIndx];
+            // numbLabel.style.left = leftPosition + 'px';
+            // containMatrix.append(numbLabel)
+            //++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
             leftPosition = leftPosition + 26.25;
         }
         return [containMatrix, activeElemLayer];
@@ -279,7 +245,7 @@ let delElemInBigElem = function (elem) {
 // функция изменения соседних блоков при наложении границ
 let borderCollapsResize = function (elem) {
     let previousElement = elem.previousElementSibling;
-    if (previousElement) {
+    let resizePreviousElement = function(){
         let heroElemLeftSide = Number(elem.style.left.replace('px', ''));
         let leftSidePrevElem = Number(previousElement.style.left.replace('px', ''));
         let widthPrevElem = Number(previousElement.style.width.replace('px', ''));
@@ -291,37 +257,32 @@ let borderCollapsResize = function (elem) {
             hameleon(previousElement, sizeIdentif[resultNewWidth], resultNewWidth);
         }
     }
+    if (previousElement) {resizePreviousElement();}
 
     let nextElement = elem.nextElementSibling;
-    if (nextElement) {
+    let resizeNextElement = function(){
         let heroElemRightSide = Number(elem.style.left.replace('px', '')) + Number(elem.style.width.replace('px', ''));
         let leftSideNextElem = Number(nextElement.style.left.replace('px', ''));
         let widthNextElem = Number(nextElement.style.width.replace('px', ''));
-
         let summCollaps = heroElemRightSide - leftSideNextElem;
         let resultNewWidth = widthNextElem - summCollaps;
         if (heroElemRightSide > leftSideNextElem) {
-            // previousElement.style.width = () + 'px';
             hameleon(nextElement, sizeIdentif[resultNewWidth], resultNewWidth, heroElemRightSide);
         }
     }
-}
+    if (nextElement) {resizeNextElement()}
 
-// функция проверки активных блоков, их создания методом createDivTag и удаление remove()
-// let listenAndCreateActivElem = function(elem){
-//     delElemInBigElem(elem);
-//     if (allNotes[elem.dataset.symbol]) {
-//         let activeBlock = allNotes[elem.dataset.symbol].createDivTag(elem.dataset.outIndx,baseSize);
-//         activeBlock.classList.add('active');
-//         elem.append(activeBlock);
-//     } 
-// }
+    if(previousElement && nextElement){
+        let handle = elem.querySelector('.left_double_arrow');
+        handle.style.display = 'block';
+        let handleNext = nextElement.querySelector('.left_double_arrow');
+        handleNext.style.display = 'block';
+    }
+
+}
 
 let app = document.querySelector('.app');
 let allLayer = backgroundMatrix.createBackground(backgroundMatrix.matrix_4x4, 0);
 // console.log(allLayer);
 app.append(allLayer[0]);
 app.append(allLayer[1]);
-
-
-

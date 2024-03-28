@@ -30,7 +30,7 @@ const wholeNote_1 = {
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
         div.append(createHandleLeftRight()[0]);
-        div.append(createHandleLeftRight()[1]);
+        // div.append(createHandleLeftRight()[1]);
         return div;
     }
 }
@@ -58,7 +58,7 @@ const halfNote_2 = {
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
         div.append(createHandleLeftRight()[0]);
-        div.append(createHandleLeftRight()[1]);
+        // div.append(createHandleLeftRight()[1]);
         return div;
     }
 }
@@ -87,7 +87,7 @@ const quarterNote_4w8w16 = {
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
         div.append(createHandleLeftRight()[0]);
-        div.append(createHandleLeftRight()[1]);
+        // div.append(createHandleLeftRight()[1]);
         return div;
     }
 }
@@ -115,7 +115,7 @@ const quarterNote_4w8 = {
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
         div.append(createHandleLeftRight()[0]);
-        div.append(createHandleLeftRight()[1]);
+        // div.append(createHandleLeftRight()[1]);
         return div;
     }
 }
@@ -144,7 +144,7 @@ const quarterNote_4w16 = {
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
         div.append(createHandleLeftRight()[0]);
-        div.append(createHandleLeftRight()[1]);
+        // div.append(createHandleLeftRight()[1]);
         return div;
     }
 }
@@ -173,7 +173,7 @@ const quarterNote_4 = {
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
         div.append(createHandleLeftRight()[0]);
-        div.append(createHandleLeftRight()[1]);
+        // div.append(createHandleLeftRight()[1]);
         return div;
     }
 }
@@ -201,7 +201,7 @@ const eighthNote_8w16 = {
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
         div.append(createHandleLeftRight()[0]);
-        div.append(createHandleLeftRight()[1]);
+        // div.append(createHandleLeftRight()[1]);
         return div;
     }
 }
@@ -229,7 +229,7 @@ const eighthNote_8 = {
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
         div.append(createHandleLeftRight()[0]);
-        div.append(createHandleLeftRight()[1]);
+        // div.append(createHandleLeftRight()[1]);
         return div;
     }
 }
@@ -258,7 +258,7 @@ const sixteenthNote_16 = {
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
         div.append(createHandleLeftRight()[0]);
-        div.append(createHandleLeftRight()[1]);
+        // div.append(createHandleLeftRight()[1]);
         // div.append(createHandleLeftRight());
         console.log(this.previousElementSibling);
         return div;
