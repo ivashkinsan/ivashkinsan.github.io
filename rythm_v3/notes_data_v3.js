@@ -463,7 +463,6 @@ const sixteenthNote_16 = {
         div.append(createHandleLeftRight()[0]);
         // div.append(createHandleLeftRight()[1]);
         // div.append(createHandleLeftRight());
-        console.log(this.previousElementSibling);
         return div;
     }
 }
