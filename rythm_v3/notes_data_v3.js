@@ -13,15 +13,15 @@ const wholeNote_1 = {
     'nameEng': 'wholeNote',
     'fontSymbol': 'w',
     'duration_16': 16,
-    'measure': (420*16),
-    createDivTag(outIndx,baseSize){
+    'measure': (420 * 16),
+    createDivTag(outIndx, baseSize) {
         let div = document.createElement('div');
         div.classList.add(this.class);
-       
+
         let p_label = document.createElement('p');
         p_label.textContent = this.fontSymbol;
         div.append(p_label);
-        
+
         div.dataset.data = this.nameEng;
         div.dataset.matrix = 'matrix_1';
         div.dataset.outIndx = outIndx;
@@ -29,25 +29,27 @@ const wholeNote_1 = {
         div.style.height = baseSize / 1 + 'px';
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
+        div.append(createHandleLeftRight()[0]);
+        div.append(createHandleLeftRight()[1]);
         return div;
     }
 }
 const halfNote_2 = {
-    'class':'halfNote',
+    'class': 'halfNote',
     'symbol': 2,
     'nameRus': 'половинная',
     'nameEng': 'halfNote',
     'fontSymbol': 'h',
     'duration_16': 8,
-    'measure': (420*8),
-    createDivTag(outIndx,baseSize){
+    'measure': (420 * 8),
+    createDivTag(outIndx, baseSize) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
         p_label.textContent = this.fontSymbol;
         div.append(p_label);
-        
+
         div.dataset.data = this.nameEng;
         div.dataset.matrix = 'matrix_2';
         div.dataset.outIndx = outIndx;
@@ -55,6 +57,8 @@ const halfNote_2 = {
         div.style.height = baseSize / 2 + 'px';
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
+        div.append(createHandleLeftRight()[0]);
+        div.append(createHandleLeftRight()[1]);
         return div;
     }
 }
@@ -66,11 +70,11 @@ const quarterNote_4w8w16 = {
     'nameEng': 'quarterNote_4w8w16',
     'fontSymbol': 'q+ek',
     'duration_16': 7,
-    'measure': (420*7),
-    createDivTag(outIndx,baseSize){
+    'measure': (420 * 7),
+    createDivTag(outIndx, baseSize) {
         let div = document.createElement('div');
         div.classList.add(this.class);
-        
+
         let p_label = document.createElement('p');
         p_label.textContent = this.fontSymbol;
         div.append(p_label);
@@ -82,6 +86,8 @@ const quarterNote_4w8w16 = {
         div.style.height = baseSize / 4 + 'px';
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
+        div.append(createHandleLeftRight()[0]);
+        div.append(createHandleLeftRight()[1]);
         return div;
     }
 }
@@ -92,11 +98,11 @@ const quarterNote_4w8 = {
     'nameEng': 'quarterNote_4w8',
     'fontSymbol': 'qk',
     'duration_16': 6,
-    'measure': (420*6),
-    createDivTag(outIndx,baseSize){
+    'measure': (420 * 6),
+    createDivTag(outIndx, baseSize) {
         let div = document.createElement('div');
         div.classList.add(this.class);
-        
+
         let p_label = document.createElement('p');
         p_label.textContent = this.fontSymbol;
         div.append(p_label);
@@ -108,6 +114,8 @@ const quarterNote_4w8 = {
         div.style.height = baseSize / 4 + 'px';
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
+        div.append(createHandleLeftRight()[0]);
+        div.append(createHandleLeftRight()[1]);
         return div;
     }
 }
@@ -119,11 +127,11 @@ const quarterNote_4w16 = {
     'nameEng': 'quarterNote_4w16',
     'fontSymbol': 'q+e',
     'duration_16': 5,
-    'measure': (420*5),
-    createDivTag(outIndx,baseSize){
+    'measure': (420 * 5),
+    createDivTag(outIndx, baseSize) {
         let div = document.createElement('div');
         div.classList.add(this.class);
-        
+
         let p_label = document.createElement('p');
         p_label.textContent = this.fontSymbol;
         div.append(p_label);
@@ -135,6 +143,8 @@ const quarterNote_4w16 = {
         div.style.height = baseSize / 4 + 'px';
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
+        div.append(createHandleLeftRight()[0]);
+        div.append(createHandleLeftRight()[1]);
         return div;
     }
 }
@@ -146,11 +156,11 @@ const quarterNote_4 = {
     'nameEng': 'quarterNote_4',
     'fontSymbol': 'q',
     'duration_16': 4,
-    'measure': (420*4),
-    createDivTag(outIndx,baseSize){
+    'measure': (420 * 4),
+    createDivTag(outIndx, baseSize) {
         let div = document.createElement('div');
         div.classList.add(this.class);
-        
+
         let p_label = document.createElement('p');
         p_label.textContent = this.fontSymbol;
         div.append(p_label);
@@ -162,6 +172,8 @@ const quarterNote_4 = {
         div.style.height = baseSize / 4 + 'px';
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
+        div.append(createHandleLeftRight()[0]);
+        div.append(createHandleLeftRight()[1]);
         return div;
     }
 }
@@ -172,11 +184,11 @@ const eighthNote_8w16 = {
     'nameEng': 'eighthNote_8w16',
     'fontSymbol': 'ek',
     'duration_16': 3,
-    'measure': (420*3),
-    createDivTag(outIndx,baseSize){
+    'measure': (420 * 3),
+    createDivTag(outIndx, baseSize) {
         let div = document.createElement('div');
         div.classList.add(this.class);
-       
+
         let p_label = document.createElement('p');
         p_label.textContent = this.fontSymbol;
         div.append(p_label);
@@ -188,6 +200,8 @@ const eighthNote_8w16 = {
         div.style.height = baseSize / 8 + 'px';
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
+        div.append(createHandleLeftRight()[0]);
+        div.append(createHandleLeftRight()[1]);
         return div;
     }
 }
@@ -198,8 +212,8 @@ const eighthNote_8 = {
     'nameEng': 'eighthNote_8',
     'fontSymbol': 'e',
     'duration_16': 2,
-    'measure': (420*2),
-    createDivTag(outIndx,baseSize){
+    'measure': (420 * 2),
+    createDivTag(outIndx, baseSize) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
@@ -214,6 +228,8 @@ const eighthNote_8 = {
         div.style.height = baseSize / 8 + 'px';
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
+        div.append(createHandleLeftRight()[0]);
+        div.append(createHandleLeftRight()[1]);
         return div;
     }
 }
@@ -225,15 +241,15 @@ const sixteenthNote_16 = {
     'nameEng': 'sixteenthNote_16',
     'fontSymbol': 'x',
     'duration_16': 1,
-    'measure': (420*1),
-    createDivTag(outIndx,baseSize){
+    'measure': (420 * 1),
+    createDivTag(outIndx, baseSize) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
         p_label.textContent = this.fontSymbol;
         div.append(p_label);
-       
+
         div.dataset.data = this.nameEng;
         div.dataset.matrix = 'matrix_16';
         div.dataset.outIndx = outIndx;
@@ -241,6 +257,9 @@ const sixteenthNote_16 = {
         div.style.height = baseSize / 16 + 'px';
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
+        div.append(createHandleLeftRight()[0]);
+        div.append(createHandleLeftRight()[1]);
+        // div.append(createHandleLeftRight());
         console.log(this.previousElementSibling);
         return div;
     }
@@ -253,14 +272,14 @@ const tripleEighthNote = {
     'nameEng': 'triplet eighth',
     'fontSymbol': '',
     'duration_16': 2,
-    'measure': (420*2/3),
-    createDivTag(){
+    'measure': (420 * 2 / 3),
+    createDivTag() {
         let div = document.createElement('div');
         div.classList.add('active');
         div.classList.add('tripleEighthNote');
         div.style.width = '100%';
         div.style.height = '100%';
-        div.addEventListener('click', function(elem){
+        div.addEventListener('click', function (elem) {
             console.log('element');
             elem.stopPropagation();
             elem.target.remove();
@@ -280,53 +299,58 @@ const allNotes = {
 }
 // console.log(allNotes[1]);
 
-let createHandleLeftElem = function(){
+let createHandleLeftElem = function () {
     let leftHandle = document.createElement('div');
-    leftHandle.classList.add('handle','left-handle');
-    leftHandle.addEventListener('mousedown', (elem)=>{
+    leftHandle.classList.add('handle', 'left-handle');
+    leftHandle.addEventListener('mousedown', (elem) => {
         startResizing(elem, 'left');
     });
     return leftHandle;
 }
-let createHandleRightElem = function(){
+let createHandleRightElem = function () {
     let righttHandle = document.createElement('div');
-    righttHandle.classList.add('handle','right-handle');
-    righttHandle.addEventListener('mousedown', (elem)=>{
+    righttHandle.classList.add('handle', 'right-handle');
+    righttHandle.addEventListener('mousedown', (elem) => {
         startResizing(elem, 'right');
     });
     return righttHandle;
 }
 
-let createHandleLeftRight = function (){
-    console.log('previousElementSibling');
+let createHandleLeftRight = function () {
     let left_double_arrow = document.createElement('div');
     left_double_arrow.classList.add('handle');
     left_double_arrow.classList.add('left_double_arrow');
-    // activeBlock.append(left_double_arrow);
-    left_double_arrow.addEventListener('mousedown', (elem)=>{
+    left_double_arrow.addEventListener('mousedown', (elem) => {
         startResizing(elem, 'left_right');
     });
+    let right_double_arrow = document.createElement('div');
+    right_double_arrow.classList.add('handle');
+    right_double_arrow.classList.add('right_double_arrow');
+    right_double_arrow.addEventListener('mousedown', (elem) => {
+        startResizing(elem, 'left_right');
+    });
+    return [left_double_arrow, right_double_arrow];
 }
-    
-    // activeBlock.append(leftHandle);
-    // activeBlock.append(righttHandle);
+
+// activeBlock.append(leftHandle);
+// activeBlock.append(righttHandle);
 
 
-    const sizeIdentif = {
-        26.25: sixteenthNote_16,
-        52.5: eighthNote_8,
-        60: '',
-        70: '',
-        78.750: eighthNote_8w16,
-        84: '',
-        105: quarterNote_4,
-        131.250: quarterNote_4w16,
-        140: '',
-        157.500: quarterNote_4w8,
-        183.750: quarterNote_4w8w16,
-        210: halfNote_2,
-        420: wholeNote_1
-    }
+const sizeIdentif = {
+    26.25: sixteenthNote_16,
+    52.5: eighthNote_8,
+    60: '',
+    70: '',
+    78.750: eighthNote_8w16,
+    84: '',
+    105: quarterNote_4,
+    131.250: quarterNote_4w16,
+    140: '',
+    157.500: quarterNote_4w8,
+    183.750: quarterNote_4w8w16,
+    210: halfNote_2,
+    420: wholeNote_1
+}
 
 //     целая w
 // половинка с точкой d

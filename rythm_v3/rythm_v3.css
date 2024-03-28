@@ -17,6 +17,7 @@
     src: url(/fonts/Musisync-KVLZ.ttf);
     /* Путь к файлу со шрифтом */
 }
+
 @font-face {
     font-family: MAESTRO;
     /* Гарнитура шрифта */
@@ -34,7 +35,8 @@ body {
     color: #F4D6B1;
     padding-top: 15px;
     justify-content: start;
-    align-items: center;
+    align-items: start;
+    padding: 40px 0 0 40px;
     background: var(--background);
     border: 10px solid #DDB078;
     border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
@@ -42,7 +44,7 @@ body {
 }
 
 
-.numbMatrx{
+.numbMatrx {
     position: absolute;
     top: 45%;
     bottom: 55%;
@@ -52,7 +54,7 @@ body {
     transform: rotate(-90deg);
 }
 
-.app{
+.app {
     position: relative;
 }
 
@@ -81,7 +83,7 @@ body {
     justify-content: center;
     /* align-items: center; */
     font-family: MAESTRO;
-    
+
     line-height: 20px;
     text-align: center;
     border-radius: 50%;
@@ -92,7 +94,7 @@ body {
     transform: translateY(-50%);
 }
 
-.active > p{
+.active>p {
     padding-top: 5px;
     user-select: none;
     font-size: 16px;
@@ -101,7 +103,7 @@ body {
     /* letter-spacing: -2px; */
 }
 
-.selected{
+.selected {
     background-color: red;
     opacity: 0.6;
 }
@@ -110,7 +112,7 @@ body {
     border: 2px dashed #DDB078;
 }
 
-.dragging{
+.dragging {
     background-color: red;
 }
 
@@ -138,11 +140,14 @@ body {
     cursor: url('/cursor/right_32px.png')16 16, auto;
 }
 
-.left_double_arrow{
+.left_double_arrow {
+    display: none;
     left: -2.5px;
     cursor: url('/cursor/left-right_32px.png')16 16, auto;
 }
-.right_double_arrow{
+
+.right_double_arrow {
+    display: none;
     right: -2.5px;
     cursor: url('/cursor/left-right_32px.png')16 16, auto;
 }
