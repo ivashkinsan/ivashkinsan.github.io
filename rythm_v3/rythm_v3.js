@@ -288,7 +288,7 @@ let borderCollapsResize = function (elem) {
 }
 
 let app = document.querySelector('.app');
-let allLayer = backgroundMatrix.createBackground(backgroundMatrix.matrix_2x4, 0);
+let allLayer = backgroundMatrix.createBackground(backgroundMatrix.matrix_4x4, 0);
 // console.log(allLayer);
 app.append(allLayer[0]);
 app.append(allLayer[1]);
