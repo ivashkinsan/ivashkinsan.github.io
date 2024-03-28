@@ -34,6 +34,209 @@ const wholeNote_1 = {
         return div;
     }
 }
+
+const halfNote_2w4w8w16 = {
+    'class': 'halfNote_2w4w8w16',
+    'symbol': 2,
+    'nameRus': 'половинная и четверть и восьмая c точкой',
+    'nameEng': 'halfNote_2w4w8w16',
+    'fontSymbol': 'h+q+ek',
+    'duration_16': 15,
+    'measure': (420 * 15),
+    createDivTag(outIndx, baseSize) {
+        let div = document.createElement('div');
+        div.classList.add(this.class);
+
+        let p_label = document.createElement('p');
+        p_label.textContent = this.fontSymbol;
+        div.append(p_label);
+
+        div.dataset.data = this.nameEng;
+        div.dataset.matrix = 'matrix_2';
+        div.dataset.outIndx = outIndx;
+        div.style.width = baseSize / 2 + 'px';
+        div.style.height = baseSize / 2 + 'px';
+        div.append(createHandleLeftElem());
+        div.append(createHandleRightElem());
+        div.append(createHandleLeftRight()[0]);
+        // div.append(createHandleLeftRight()[1]);
+        return div;
+    }
+}
+
+const halfNote_2w4w8 = {
+    'class': 'halfNote_2w4w8',
+    'symbol': 2,
+    'nameRus': 'половинная и четверть и восьмая',
+    'nameEng': 'halfNote_2w4w8',
+    'fontSymbol': 'h+q+e',
+    'duration_16': 14,
+    'measure': (420 * 14),
+    createDivTag(outIndx, baseSize) {
+        let div = document.createElement('div');
+        div.classList.add(this.class);
+
+        let p_label = document.createElement('p');
+        p_label.textContent = this.fontSymbol;
+        div.append(p_label);
+
+        div.dataset.data = this.nameEng;
+        div.dataset.matrix = 'matrix_2';
+        div.dataset.outIndx = outIndx;
+        div.style.width = baseSize / 2 + 'px';
+        div.style.height = baseSize / 2 + 'px';
+        div.append(createHandleLeftElem());
+        div.append(createHandleRightElem());
+        div.append(createHandleLeftRight()[0]);
+        // div.append(createHandleLeftRight()[1]);
+        return div;
+    }
+}
+
+const halfNote_2w4w16 = {
+    'class': 'halfNote_2w4w16',
+    'symbol': 2,
+    'nameRus': 'половинная и четверть и шестнадцатая',
+    'nameEng': 'halfNote_2w4w16',
+    'fontSymbol': 'h+q+x',
+    'duration_16': 13,
+    'measure': (420 * 13),
+    createDivTag(outIndx, baseSize) {
+        let div = document.createElement('div');
+        div.classList.add(this.class);
+
+        let p_label = document.createElement('p');
+        p_label.textContent = this.fontSymbol;
+        div.append(p_label);
+
+        div.dataset.data = this.nameEng;
+        div.dataset.matrix = 'matrix_2';
+        div.dataset.outIndx = outIndx;
+        div.style.width = baseSize / 2 + 'px';
+        div.style.height = baseSize / 2 + 'px';
+        div.append(createHandleLeftElem());
+        div.append(createHandleRightElem());
+        div.append(createHandleLeftRight()[0]);
+        // div.append(createHandleLeftRight()[1]);
+        return div;
+    }
+}
+
+const halfNote_2w4 = {
+    'class': 'halfNote_2w4',
+    'symbol': 2,
+    'nameRus': 'половинная и четверть',
+    'nameEng': 'halfNote_2w4',
+    'fontSymbol': 'h+q',
+    'duration_16': 12,
+    'measure': (420 * 12),
+    createDivTag(outIndx, baseSize) {
+        let div = document.createElement('div');
+        div.classList.add(this.class);
+
+        let p_label = document.createElement('p');
+        p_label.textContent = this.fontSymbol;
+        div.append(p_label);
+
+        div.dataset.data = this.nameEng;
+        div.dataset.matrix = 'matrix_2';
+        div.dataset.outIndx = outIndx;
+        div.style.width = baseSize / 2 + 'px';
+        div.style.height = baseSize / 2 + 'px';
+        div.append(createHandleLeftElem());
+        div.append(createHandleRightElem());
+        div.append(createHandleLeftRight()[0]);
+        // div.append(createHandleLeftRight()[1]);
+        return div;
+    }
+}
+
+const halfNote_2w8w16 = {
+    'class': 'halfNote_2w8w16',
+    'symbol': 2,
+    'nameRus': 'половинная и восьмая с точкой',
+    'nameEng': 'halfNote_2w8w16',
+    'fontSymbol': 'h+ek',
+    'duration_16': 11,
+    'measure': (420 * 11),
+    createDivTag(outIndx, baseSize) {
+        let div = document.createElement('div');
+        div.classList.add(this.class);
+
+        let p_label = document.createElement('p');
+        p_label.textContent = this.fontSymbol;
+        div.append(p_label);
+
+        div.dataset.data = this.nameEng;
+        div.dataset.matrix = 'matrix_2';
+        div.dataset.outIndx = outIndx;
+        div.style.width = baseSize / 2 + 'px';
+        div.style.height = baseSize / 2 + 'px';
+        div.append(createHandleLeftElem());
+        div.append(createHandleRightElem());
+        div.append(createHandleLeftRight()[0]);
+        // div.append(createHandleLeftRight()[1]);
+        return div;
+    }
+}
+
+const halfNote_2w8 = {
+    'class': 'halfNote_2w8',
+    'symbol': 2,
+    'nameRus': 'половинная и восьмая',
+    'nameEng': 'halfNote_2w8',
+    'fontSymbol': 'h+e',
+    'duration_16': 10,
+    'measure': (420 * 10),
+    createDivTag(outIndx, baseSize) {
+        let div = document.createElement('div');
+        div.classList.add(this.class);
+
+        let p_label = document.createElement('p');
+        p_label.textContent = this.fontSymbol;
+        div.append(p_label);
+
+        div.dataset.data = this.nameEng;
+        div.dataset.matrix = 'matrix_2';
+        div.dataset.outIndx = outIndx;
+        div.style.width = baseSize / 2 + 'px';
+        div.style.height = baseSize / 2 + 'px';
+        div.append(createHandleLeftElem());
+        div.append(createHandleRightElem());
+        div.append(createHandleLeftRight()[0]);
+        // div.append(createHandleLeftRight()[1]);
+        return div;
+    }
+}
+
+const halfNote_2w16 = {
+    'class': 'halfNote_2w16',
+    'symbol': 2,
+    'nameRus': 'половинная и шестнадцатая',
+    'nameEng': 'halfNote_2w16',
+    'fontSymbol': 'h+x',
+    'duration_16': 9,
+    'measure': (420 * 9),
+    createDivTag(outIndx, baseSize) {
+        let div = document.createElement('div');
+        div.classList.add(this.class);
+
+        let p_label = document.createElement('p');
+        p_label.textContent = this.fontSymbol;
+        div.append(p_label);
+
+        div.dataset.data = this.nameEng;
+        div.dataset.matrix = 'matrix_2';
+        div.dataset.outIndx = outIndx;
+        div.style.width = baseSize / 2 + 'px';
+        div.style.height = baseSize / 2 + 'px';
+        div.append(createHandleLeftElem());
+        div.append(createHandleRightElem());
+        div.append(createHandleLeftRight()[0]);
+        // div.append(createHandleLeftRight()[1]);
+        return div;
+    }
+}
 const halfNote_2 = {
     'class': 'halfNote',
     'symbol': 2,
@@ -349,6 +552,13 @@ const sizeIdentif = {
     157.500: quarterNote_4w8,
     183.750: quarterNote_4w8w16,
     210: halfNote_2,
+    236.250: halfNote_2w16,
+    262.500: halfNote_2w8,
+    288.750: halfNote_2w8w16,
+    315: halfNote_2w4,
+    341.250: halfNote_2w4w16,
+    367.500: halfNote_2w4w8,
+    393.750: halfNote_2w4w8w16,
     420: wholeNote_1
 }
 
