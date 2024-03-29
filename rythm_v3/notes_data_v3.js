@@ -4,6 +4,10 @@
 // 52,5 60 70 84 105 140  210  420
 // выбрано число 420
 
+const root = document.querySelector(':root');
+let baseSize = getComputedStyle(root).getPropertyValue('--const');
+// console.log(Number(baseSize.replace('px','')));
+baseSize = Number(baseSize.replace('px', ''))
 
 
 const wholeNote_1 = {
@@ -11,7 +15,8 @@ const wholeNote_1 = {
     'symbol': 1,
     'nameRus': 'целая',
     'nameEng': 'wholeNote',
-    'fontSymbol': 'w',
+    'fontSymbol': '\uF077',
+    'pauseSymbol': '\uF0EE',
     'duration_16': 16,
     'measure': (420 * 16),
     createDivTag(outIndx, baseSize, is_pause) {
@@ -44,7 +49,8 @@ const halfNote_2w4w8w16 = {
     'symbol': 2,
     'nameRus': 'половинная и четверть и восьмая c точкой',
     'nameEng': 'halfNote_2w4w8w16',
-    'fontSymbol': 'h+q+ek',
+    'fontSymbol': '\uF068\uF071\uF06B\uF06B',
+    'pauseSymbol': '\uF0B7\uF0CE\uF06B\uF06B',
     'duration_16': 15,
     'measure': (420 * 15),
     createDivTag(outIndx, baseSize, is_pause) {
@@ -77,7 +83,8 @@ const halfNote_2w4w8 = {
     'symbol': 2,
     'nameRus': 'половинная и четверть и восьмая',
     'nameEng': 'halfNote_2w4w8',
-    'fontSymbol': 'h+q+e',
+    'fontSymbol': '\uF068\uF071\uF06B',
+    'pauseSymbol': '\uF0B7\uF0CE\uF06B',
     'duration_16': 14,
     'measure': (420 * 14),
     createDivTag(outIndx, baseSize, is_pause) {
@@ -110,7 +117,8 @@ const halfNote_2w4w16 = {
     'symbol': 2,
     'nameRus': 'половинная и четверть и шестнадцатая',
     'nameEng': 'halfNote_2w4w16',
-    'fontSymbol': 'h+q+x',
+    'fontSymbol': '\uF068\uF071\uF078',
+    'pauseSymbol': '\uF0B7\uF0CE\uF0C5',
     'duration_16': 13,
     'measure': (420 * 13),
     createDivTag(outIndx, baseSize, is_pause) {
@@ -143,7 +151,8 @@ const halfNote_2w4 = {
     'symbol': 2,
     'nameRus': 'половинная и четверть',
     'nameEng': 'halfNote_2w4',
-    'fontSymbol': 'h+q',
+    'fontSymbol': '\uF068\uF06B',
+    'pauseSymbol': '\uF0B7\uF06B',
     'duration_16': 12,
     'measure': (420 * 12),
     createDivTag(outIndx, baseSize, is_pause) {
@@ -176,7 +185,8 @@ const halfNote_2w8w16 = {
     'symbol': 2,
     'nameRus': 'половинная и восьмая с точкой',
     'nameEng': 'halfNote_2w8w16',
-    'fontSymbol': 'h+ek',
+    'fontSymbol': '\uF068\uF065\uF06B',
+    'pauseSymbol': '\uF0B7\uF0E4\uF06B',
     'duration_16': 11,
     'measure': (420 * 11),
     createDivTag(outIndx, baseSize, is_pause) {
@@ -209,7 +219,8 @@ const halfNote_2w8 = {
     'symbol': 2,
     'nameRus': 'половинная и восьмая',
     'nameEng': 'halfNote_2w8',
-    'fontSymbol': 'h+e',
+    'fontSymbol': '\uF068\uF065',
+    'pauseSymbol': '\uF0B7\uF0E4',
     'duration_16': 10,
     'measure': (420 * 10),
     createDivTag(outIndx, baseSize, is_pause) {
@@ -242,7 +253,8 @@ const halfNote_2w16 = {
     'symbol': 2,
     'nameRus': 'половинная и шестнадцатая',
     'nameEng': 'halfNote_2w16',
-    'fontSymbol': 'h+x',
+    'fontSymbol': '\uF068\uF078',
+    'pauseSymbol': '\uF0B7\uF0C5',
     'duration_16': 9,
     'measure': (420 * 9),
     createDivTag(outIndx, baseSize, is_pause) {
@@ -375,8 +387,8 @@ const quarterNote_4w16 = {
     'symbol': 4.25,
     'nameRus': 'четвертная c шестнадцатой',
     'nameEng': 'quarterNote_4w16',
-    'fontSymbol': '\uF071\uF05F\uF078',
-    'pauseSymbol': '\uF0CE\uF05F\uF0C5',
+    'fontSymbol': '\uF071\uF078',
+    'pauseSymbol': '\uF0CE\uF0C5',
     'duration_16': 5,
     'measure': (420 * 5),
     createDivTag(outIndx, baseSize, is_pause) {
@@ -499,7 +511,6 @@ const eighthNote_8 = {
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
         div.append(createHandleLeftRight()[0]);
-        // div.append(createHandleLeftRight()[1]);
         return div;
     }
 }

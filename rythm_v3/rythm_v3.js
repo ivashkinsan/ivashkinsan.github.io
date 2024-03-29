@@ -47,13 +47,13 @@ let createNumberMatrix = function () {
 // 840     840       840     840       840     840       840     840
 // 420 420 420 420   420 420 420 420   420 420 420 420   420 420 420 420
 
-// console.log(420*16);
-// console.log(wholeNote.measure);
-const root = document.querySelector(':root');
-let baseSize = getComputedStyle(root).getPropertyValue('--const');
-// console.log(Number(baseSize.replace('px','')));
-baseSize = Number(baseSize.replace('px', ''))
-let startDragElem;
+
+// для создания визуала в px и универсальных триольных/квинтольных блоков потребуется 
+// число которое без труда сможет делиться на 2,3,4,5,6,7
+// 8    7  6  5  4   3    2    1
+// 52,5 60 70 84 105 140  210  420
+// выбрано число 420
+
 
 const backgroundMatrix = {
     'matrix_1x4': [
