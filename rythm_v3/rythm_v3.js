@@ -161,12 +161,18 @@ const backgroundMatrix = {
                 new_circle.dataset.outIndx = outIndx + 1;
                 new_circle.addEventListener('click', (e) => {
                     
-                    if(e.offsetY > Number(e.target.style.height.replace('px','')) / 2){
+
+                    let activeBlock;
+
+                    if(e.offsetY > Number(e.target.style.height.replace('px','')) / 2){ // создание ноты
                         console.log('Нижняя часть => ' + e.offsetY);
-                    } else {
-                        console.log('Верхняя часть => ' + e.offsetY);
+                        activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx, baseSize);
+                    } else { // создание паузы
+                        console.log('Верхняя часть => ' + e.offsetY); 
+                        activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx, baseSize, true);
+                        activeBlock.classList.add('pause');
                     }
-                    let activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx, baseSize);
+
                     activeBlock.classList.add('active');
                     activeBlock.style.left = e.target.style.left;
                     delElemInBigElem(e.target);

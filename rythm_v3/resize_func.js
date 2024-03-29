@@ -141,7 +141,11 @@ let hameleon = function (inputElem, noteObj, width, left) {
     inputElem.classList.replace(inputElem.classList[0], noteObj.class);
     inputElem.classList.add(noteObj.class);
     inputElem.dataset.data = noteObj.nameEng;
-    inputElem.querySelector('p').textContent = noteObj.fontSymbol;
+    if(inputElem.classList.contains('pause')){
+        inputElem.querySelector('p').textContent = noteObj.pauseSymbol;
+    } else {
+        inputElem.querySelector('p').textContent = noteObj.fontSymbol;
+    }
     inputElem.style.width = width + 'px';
     inputElem.style.height = width + 'px';
     if (left) {

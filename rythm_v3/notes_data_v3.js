@@ -14,12 +14,16 @@ const wholeNote_1 = {
     'fontSymbol': 'w',
     'duration_16': 16,
     'measure': (420 * 16),
-    createDivTag(outIndx, baseSize) {
+    createDivTag(outIndx, baseSize, is_pause) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
-        p_label.textContent = this.fontSymbol;
+        if(is_pause){
+            p_label.textContent = this.pauseSymbol;
+        } else {
+            p_label.textContent = this.fontSymbol;
+        }
         div.append(p_label);
 
         div.dataset.data = this.nameEng;
@@ -43,12 +47,16 @@ const halfNote_2w4w8w16 = {
     'fontSymbol': 'h+q+ek',
     'duration_16': 15,
     'measure': (420 * 15),
-    createDivTag(outIndx, baseSize) {
+    createDivTag(outIndx, baseSize, is_pause) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
-        p_label.textContent = this.fontSymbol;
+        if(is_pause){
+            p_label.textContent = this.pauseSymbol;
+        } else {
+            p_label.textContent = this.fontSymbol;
+        }
         div.append(p_label);
 
         div.dataset.data = this.nameEng;
@@ -72,12 +80,16 @@ const halfNote_2w4w8 = {
     'fontSymbol': 'h+q+e',
     'duration_16': 14,
     'measure': (420 * 14),
-    createDivTag(outIndx, baseSize) {
+    createDivTag(outIndx, baseSize, is_pause) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
-        p_label.textContent = this.fontSymbol;
+        if(is_pause){
+            p_label.textContent = this.pauseSymbol;
+        } else {
+            p_label.textContent = this.fontSymbol;
+        }
         div.append(p_label);
 
         div.dataset.data = this.nameEng;
@@ -101,12 +113,16 @@ const halfNote_2w4w16 = {
     'fontSymbol': 'h+q+x',
     'duration_16': 13,
     'measure': (420 * 13),
-    createDivTag(outIndx, baseSize) {
+    createDivTag(outIndx, baseSize, is_pause) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
-        p_label.textContent = this.fontSymbol;
+        if(is_pause){
+            p_label.textContent = this.pauseSymbol;
+        } else {
+            p_label.textContent = this.fontSymbol;
+        }
         div.append(p_label);
 
         div.dataset.data = this.nameEng;
@@ -130,12 +146,16 @@ const halfNote_2w4 = {
     'fontSymbol': 'h+q',
     'duration_16': 12,
     'measure': (420 * 12),
-    createDivTag(outIndx, baseSize) {
+    createDivTag(outIndx, baseSize, is_pause) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
-        p_label.textContent = this.fontSymbol;
+        if(is_pause){
+            p_label.textContent = this.pauseSymbol;
+        } else {
+            p_label.textContent = this.fontSymbol;
+        }
         div.append(p_label);
 
         div.dataset.data = this.nameEng;
@@ -159,12 +179,16 @@ const halfNote_2w8w16 = {
     'fontSymbol': 'h+ek',
     'duration_16': 11,
     'measure': (420 * 11),
-    createDivTag(outIndx, baseSize) {
+    createDivTag(outIndx, baseSize, is_pause) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
-        p_label.textContent = this.fontSymbol;
+        if(is_pause){
+            p_label.textContent = this.pauseSymbol;
+        } else {
+            p_label.textContent = this.fontSymbol;
+        }
         div.append(p_label);
 
         div.dataset.data = this.nameEng;
@@ -188,12 +212,16 @@ const halfNote_2w8 = {
     'fontSymbol': 'h+e',
     'duration_16': 10,
     'measure': (420 * 10),
-    createDivTag(outIndx, baseSize) {
+    createDivTag(outIndx, baseSize, is_pause) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
-        p_label.textContent = this.fontSymbol;
+        if(is_pause){
+            p_label.textContent = this.pauseSymbol;
+        } else {
+            p_label.textContent = this.fontSymbol;
+        }
         div.append(p_label);
 
         div.dataset.data = this.nameEng;
@@ -217,12 +245,16 @@ const halfNote_2w16 = {
     'fontSymbol': 'h+x',
     'duration_16': 9,
     'measure': (420 * 9),
-    createDivTag(outIndx, baseSize) {
+    createDivTag(outIndx, baseSize, is_pause) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
-        p_label.textContent = this.fontSymbol;
+        if(is_pause){
+            p_label.textContent = this.pauseSymbol;
+        } else {
+            p_label.textContent = this.fontSymbol;
+        }
         div.append(p_label);
 
         div.dataset.data = this.nameEng;
@@ -242,15 +274,20 @@ const halfNote_2 = {
     'symbol': 2,
     'nameRus': 'половинная',
     'nameEng': 'halfNote',
-    'fontSymbol': 'h',
+    'fontSymbol': '\uF068',
+    'pauseSymbol': '\uF0B7',
     'duration_16': 8,
     'measure': (420 * 8),
-    createDivTag(outIndx, baseSize) {
+    createDivTag(outIndx, baseSize, is_pause) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
-        p_label.textContent = this.fontSymbol;
+        if(is_pause){
+            p_label.textContent = this.pauseSymbol;
+        } else {
+            p_label.textContent = this.fontSymbol;
+        }
         div.append(p_label);
 
         div.dataset.data = this.nameEng;
@@ -271,15 +308,20 @@ const quarterNote_4w8w16 = {
     'symbol': 3,
     'nameRus': 'четвертная с точкой и шестнадцатой',
     'nameEng': 'quarterNote_4w8w16',
-    'fontSymbol': 'q+ek',
+    'fontSymbol': '\uF071 \uF02E\uF02E',
+    'pauseSymbol': '\uF0CE \uF06B\uF06B',
     'duration_16': 7,
     'measure': (420 * 7),
-    createDivTag(outIndx, baseSize) {
+    createDivTag(outIndx, baseSize, is_pause) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
-        p_label.textContent = this.fontSymbol;
+        if(is_pause){
+            p_label.textContent = this.pauseSymbol;
+        } else {
+            p_label.textContent = this.fontSymbol;
+        }
         div.append(p_label);
 
         div.dataset.data = this.nameEng;
@@ -299,15 +341,20 @@ const quarterNote_4w8 = {
     'symbol': 3,
     'nameRus': 'четвертная с точкой',
     'nameEng': 'quarterNote_4w8',
-    'fontSymbol': 'qk',
+    'fontSymbol': '\uF071\uF02E',
+    'pauseSymbol': '\uF0CE\uF06B',
     'duration_16': 6,
     'measure': (420 * 6),
-    createDivTag(outIndx, baseSize) {
+    createDivTag(outIndx, baseSize, is_pause) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
-        p_label.textContent = this.fontSymbol;
+        if(is_pause){
+            p_label.textContent = this.pauseSymbol;
+        } else {
+            p_label.textContent = this.fontSymbol;
+        }
         div.append(p_label);
 
         div.dataset.data = this.nameEng;
@@ -328,15 +375,20 @@ const quarterNote_4w16 = {
     'symbol': 4.25,
     'nameRus': 'четвертная c шестнадцатой',
     'nameEng': 'quarterNote_4w16',
-    'fontSymbol': 'q+e',
+    'fontSymbol': '\uF071\uF05F\uF078',
+    'pauseSymbol': '\uF0CE\uF05F\uF0C5',
     'duration_16': 5,
     'measure': (420 * 5),
-    createDivTag(outIndx, baseSize) {
+    createDivTag(outIndx, baseSize, is_pause) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
-        p_label.textContent = this.fontSymbol;
+        if(is_pause){
+            p_label.textContent = this.pauseSymbol;
+        } else {
+            p_label.textContent = this.fontSymbol;
+        }
         div.append(p_label);
 
         div.dataset.data = this.nameEng;
@@ -357,15 +409,20 @@ const quarterNote_4 = {
     'symbol': 4,
     'nameRus': 'четвертная',
     'nameEng': 'quarterNote_4',
-    'fontSymbol': 'q',
+    'fontSymbol': '\uF071',
+    'pauseSymbol': '\uF0CE',
     'duration_16': 4,
     'measure': (420 * 4),
-    createDivTag(outIndx, baseSize) {
+    createDivTag(outIndx, baseSize, is_pause) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
-        p_label.textContent = this.fontSymbol;
+        if(is_pause){
+            p_label.textContent = this.pauseSymbol;
+        } else {
+            p_label.textContent = this.fontSymbol;
+        }
         div.append(p_label);
 
         div.dataset.data = this.nameEng;
@@ -385,15 +442,20 @@ const eighthNote_8w16 = {
     'symbol': 6,
     'nameRus': 'восьмая с точкой',
     'nameEng': 'eighthNote_8w16',
-    'fontSymbol': 'ek',
+    'fontSymbol': '\uF065 \uF06B',
+    'pauseSymbol': '\uF0E4 \uF02E',
     'duration_16': 3,
     'measure': (420 * 3),
-    createDivTag(outIndx, baseSize) {
+    createDivTag(outIndx, baseSize, is_pause) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
-        p_label.textContent = this.fontSymbol;
+        if(is_pause){
+            p_label.textContent = this.pauseSymbol;
+        } else {
+            p_label.textContent = this.fontSymbol;
+        }
         div.append(p_label);
 
         div.dataset.data = this.nameEng;
@@ -413,15 +475,20 @@ const eighthNote_8 = {
     'symbol': 8,
     'nameRus': 'восьмая',
     'nameEng': 'eighthNote_8',
-    'fontSymbol': 'e',
+    'fontSymbol': '\uF065',
+    'pauseSymbol': '\uF0E4',
     'duration_16': 2,
     'measure': (420 * 2),
-    createDivTag(outIndx, baseSize) {
+    createDivTag(outIndx, baseSize, is_pause) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
-        p_label.textContent = this.fontSymbol;
+        if(is_pause){
+            p_label.textContent = this.pauseSymbol;
+        } else {
+            p_label.textContent = this.fontSymbol;
+        }
         div.append(p_label);
 
         div.dataset.data = this.nameEng;
@@ -442,15 +509,20 @@ const sixteenthNote_16 = {
     'symbol': 16,
     'nameRus': 'шестнадцатая',
     'nameEng': 'sixteenthNote_16',
-    'fontSymbol': 'x',
+    'fontSymbol': '\uF078',
+    'pauseSymbol': '\uF0C5',
     'duration_16': 1,
     'measure': (420 * 1),
-    createDivTag(outIndx, baseSize) {
+    createDivTag(outIndx, baseSize, is_pause) {
         let div = document.createElement('div');
         div.classList.add(this.class);
 
         let p_label = document.createElement('p');
-        p_label.textContent = this.fontSymbol;
+        if(is_pause){
+            p_label.textContent = this.pauseSymbol;
+        } else {
+            p_label.textContent = this.fontSymbol;
+        }
         div.append(p_label);
 
         div.dataset.data = this.nameEng;
@@ -461,8 +533,6 @@ const sixteenthNote_16 = {
         div.append(createHandleLeftElem());
         div.append(createHandleRightElem());
         div.append(createHandleLeftRight()[0]);
-        // div.append(createHandleLeftRight()[1]);
-        // div.append(createHandleLeftRight());
         return div;
     }
 }

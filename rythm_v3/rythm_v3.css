@@ -84,7 +84,7 @@ body {
     /* align-items: center; */
     font-family: MAESTRO;
 
-    line-height: 20px;
+    
     text-align: center;
     border-radius: 50%;
     z-index: 1000;
@@ -94,13 +94,27 @@ body {
     transform: translateY(-50%);
 }
 
+.pause{
+    box-shadow: none;
+    /* box-shadow: 0 0 0 1.5px rgba(233, 242, 156, 0.404) inset; */
+    border: 1.5px dotted rgba(255, 255, 255, 0.465);
+    
+}
+
 .active>p {
     padding-top: 5px;
     user-select: none;
     font-size: 16px;
+    line-height: 20px;
     pointer-events: none;
     z-index: 999;
     /* letter-spacing: -2px; */
+}
+
+.pause>p{
+    padding-top: 0px;
+    line-height: 10px;
+    font-size: 20px;
 }
 
 .selected {
