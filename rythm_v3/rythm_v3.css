@@ -98,7 +98,7 @@ body {
 .pause{
     box-shadow: none;
     /* box-shadow: 0 0 0 1.5px rgba(233, 242, 156, 0.404) inset; */
-    border: 1.5px dotted rgba(255, 255, 255, 0.465);
+    border: 2.5px dotted rgba(255, 255, 255, 0.465);
     
 }
 
@@ -114,7 +114,7 @@ body {
 
 .pause>p{
     padding-top: 0px;
-    line-height: 10px;
+    /* line-height: 25px; */
     font-size: 20px;
 }
 
@@ -169,50 +169,66 @@ body {
 
 /* ========== размер длительностей ========== */
 .wholeNote > p{
-    font-size: calc(var(--font-size) * 16 );
+    font-size: calc(var(--font-size) * 4.75 );
+    line-height: calc(var(--font-size) * 8.5);
 }
 .halfNote_2w4w8w16 > p{
-    font-size: calc(var(--font-size) * 15 );
+    font-size: calc(var(--font-size) * 4.5 );
+    line-height: calc(var(--font-size) * 8);
 }
 .halfNote_2w4w8 > p{
-    font-size: calc(var(--font-size) * 14 );
+    font-size: calc(var(--font-size) * 4.25);
+    line-height: calc(var(--font-size) * 7.5);
 }
 .halfNote_2w4w16 > p{
-    font-size: calc(var(--font-size) * 13 );
+    font-size: calc(var(--font-size) * 4 );
+    line-height: calc(var(--font-size) * 7);
 }
 .halfNote_2w4 > p{
-    font-size: calc(var(--font-size) * 12 );
+    font-size: calc(var(--font-size) * 3.75);
+    line-height: calc(var(--font-size) * 6.5);
 }
 .halfNote_2w8w16 > p{
-    font-size: calc(var(--font-size) * 11 );
+    font-size: calc(var(--font-size) * 3.5 );
+    line-height: calc(var(--font-size) * 6);
 }
 .halfNote_2w8 > p{
-    font-size: calc(var(--font-size) * 10 );
+    font-size: calc(var(--font-size) * 3.25);
+    line-height: calc(var(--font-size) * 5.5);
 }
 .halfNote_2w16 > p{
-    font-size: calc(var(--font-size) * 9 );
+    font-size: calc(var(--font-size) * 3 );
+    line-height: calc(var(--font-size) * 5);
 }
 .halfNote > p{  
-    font-size: calc(var(--font-size) * 8 );
+    font-size: calc(var(--font-size) * 2.75 );
+    line-height: calc(var(--font-size) * 4.5);
     }
 .quarterNote_4w8w16 > p{
-    font-size: calc(var(--font-size) * 7 );
+    font-size: calc(var(--font-size) * 2.5 );
+    line-height: calc(var(--font-size) * 4);
 }
 .quarterNote_4w8 > p{
-    font-size: calc(var(--font-size) * 6 );
+    font-size: calc(var(--font-size) * 2.25 );
+    line-height: calc(var(--font-size) * 3.5);
 }
 .quarterNote_4w16 > p{
-    font-size: calc(var(--font-size) * 5 );
+    font-size: calc(var(--font-size) * 2 );
+    line-height: calc(var(--font-size) * 3);
 }
 .quarterNote_4 > p{
-    font-size: calc(var(--font-size) * 4 );
+    font-size: calc(var(--font-size) * 1.75 );
+    line-height: calc(var(--font-size) * 2.5);
 }
 .eighthNote_8w16 > p{
-    font-size: calc(var(--font-size) * 3 );
+    font-size: calc(var(--font-size) * 1.5 );
+    line-height: calc(var(--font-size) * 3);
 }
 .eighthNote_8 > p{
-    font-size: calc(var(--font-size) * 2 );
+    font-size: calc(var(--font-size) * 1.25 );
+    line-height: calc(var(--font-size) * 2.5);
 }
 .sixteenthNote_16 > p{
     font-size: calc(var(--font-size) * 1 );
+    line-height: calc(var(--font-size) * 1.5);
 }

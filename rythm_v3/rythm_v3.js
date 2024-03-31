@@ -160,10 +160,8 @@ const backgroundMatrix = {
 
                 new_circle.dataset.outIndx = outIndx + 1;
                 new_circle.addEventListener('click', (e) => {
-                    
 
                     let activeBlock;
-
                     if(e.offsetY > Number(e.target.style.height.replace('px','')) / 2){ // создание ноты
                         console.log('Нижняя часть => ' + e.offsetY);
                         activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx, baseSize);
@@ -172,7 +170,7 @@ const backgroundMatrix = {
                         activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx, baseSize, true);
                         activeBlock.classList.add('pause');
                     }
-
+                  
                     activeBlock.classList.add('active');
                     activeBlock.style.left = e.target.style.left;
                     delElemInBigElem(e.target);
@@ -204,8 +202,8 @@ const backgroundMatrix = {
                     }
                     borderCollapsResize(activeBlock);
 
-                    activeBlock.addEventListener('dblclick', (e) => {
-                        // console.log("doubleClick" + e.target);
+                    activeBlock.addEventListener('contextmenu', (e) => {                            
+                        e.preventDefault(true);
                         if (e.target.classList.contains('active')) {
                             e.target.remove();
                             if (nextActiveBlock) {
@@ -218,7 +216,22 @@ const backgroundMatrix = {
                             }
                         }
                     });
+
+                    activeBlock.addEventListener('mousedown',(ev)=>{
+                        if(ev.button == 0){
+                        let evTargetWidth = Number(ev.target.style.width.replace('px',''));
+                        if(!activeBlock.classList.contains('pause')){
+                            activeBlock.classList.add('pause');
+                            hameleon(activeBlock,sizeIdentif[evTargetWidth], evTargetWidth, true);
+                        } else { 
+                            activeBlock.classList.remove('pause');
+                            hameleon(activeBlock,sizeIdentif[evTargetWidth], evTargetWidth, );
+                        }
+                    }
+                    })
                 });
+
+
 
                 containMatrix.append(new_circle);
 
@@ -262,6 +275,12 @@ let delElemInBigElem = function (elem) {
 // функция изменения соседних блоков при наложении границ
 let borderCollapsResize = function (elem) {
     let previousElement = elem.previousElementSibling;
+    let nxtElPosition;
+    let prElPositionR;
+    let heroElPositionL;
+    let heroElPositionR;
+
+
     let resizePreviousElement = function(){
         let heroElemLeftSide = Number(elem.style.left.replace('px', ''));
         let leftSidePrevElem = Number(previousElement.style.left.replace('px', ''));
@@ -274,7 +293,10 @@ let borderCollapsResize = function (elem) {
             hameleon(previousElement, sizeIdentif[resultNewWidth], resultNewWidth);
         }
     }
-    if (previousElement) {resizePreviousElement();}
+    if (previousElement) {
+        resizePreviousElement();
+        prElPositionR = Number(previousElement.style.left.replace('px','')) + Number(previousElement.style.width.replace('px',''));
+    }
 
     let nextElement = elem.nextElementSibling;
     let resizeNextElement = function(){
@@ -287,13 +309,28 @@ let borderCollapsResize = function (elem) {
             hameleon(nextElement, sizeIdentif[resultNewWidth], resultNewWidth, heroElemRightSide);
         }
     }
-    if (nextElement) {resizeNextElement()}
+    if (nextElement) {
+        resizeNextElement();
+        nxtElPosition = Number(nextElement.style.left.replace('px',''));
+    }
 
     if(previousElement && nextElement){
         let handle = elem.querySelector('.left_double_arrow');
         handle.style.display = 'block';
         let handleNext = nextElement.querySelector('.left_double_arrow');
         handleNext.style.display = 'block';
+    }
+ 
+    
+    heroElPositionL = Number(elem.style.left.replace('px',''));
+    heroElPositionR = Number(elem.style.left.replace('px','')) + Number(elem.style.width.replace('px',''));
+    if(prElPositionR == heroElPositionL){
+        let handle = elem.querySelector('.left_double_arrow');
+        handle.style.display = 'block';
+    }
+    if(heroElPositionR == nxtElPosition){
+        let handle = nextElement.querySelector('.left_double_arrow');
+        handle.style.display = 'block';
     }
 
 }

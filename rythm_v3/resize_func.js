@@ -5,8 +5,8 @@ const maxWidth = 420;
 
 
 function startResizing(e, direction) {
-    e.preventDefault();
-
+    e.preventDefault(true);
+    e.stopPropagation();
     const target = e.target.parentNode; // растягиваемый блок
     const startX = e.clientX;
     const startWidth = parseFloat(getComputedStyle(target).width);
@@ -22,6 +22,8 @@ function startResizing(e, direction) {
 
     // функция изменения размера элементов
     function resize(e) {
+        e.preventDefault(true);
+        e.stopPropagation();
         if (direction === 'right') {
             const newWidth = Math.min(Math.max(startWidth + e.clientX - startX, minWidth), maxWidth);
 
@@ -130,7 +132,9 @@ function startResizing(e, direction) {
         }
     }
 
-    function stopResizing() {
+    function stopResizing(e) {
+        e.preventDefault(true);
+        e.stopPropagation();
         // target.parentNode.replaceChild(sizeIdentif[replaseSumm].createDivTag('',baseSize), target);
         document.documentElement.removeEventListener('mousemove', resize);
         document.documentElement.removeEventListener('mouseup', stopResizing);
