@@ -4,6 +4,27 @@
 // 52,5 60 70 84 105 140  210  420
 // выбрано число 420
 
+
+const unicodeSymbol = {
+'wholeNote':'',
+'halfNote_2w4w8w16':'',
+'halfNote_2w4w8':'',
+'halfNote_2w4w16':'',
+'halfNote_2w4':'',
+'halfNote_2w8w16':'',
+'halfNote_2w8':'',
+'halfNote_2w16':'',
+'halfNote':'',
+'quarterNote_4w8w16':'',
+'quarterNote_4w8':'',
+'quarterNote_4w16':'',
+'quarterNote_4':'',
+'eighthNote_8w16':'',
+'eighthNote_8':'',
+'sixteenthNote_16':''
+}
+
+
 const root = document.querySelector(':root');
 let baseSize = getComputedStyle(root).getPropertyValue('--const');
 // console.log(Number(baseSize.replace('px','')));

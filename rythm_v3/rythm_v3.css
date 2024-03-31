@@ -1,6 +1,7 @@
 :root {
     --const: 420px;
     --background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
+    --font-size: 14px;
 }
 
 * {
@@ -104,7 +105,7 @@ body {
 .active>p {
     padding-top: 5px;
     user-select: none;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
     pointer-events: none;
     z-index: 999;
@@ -164,4 +165,54 @@ body {
     display: none;
     right: -2.5px;
     cursor: url('/cursor/left-right_32px.png')16 16, auto;
+}
+
+/* ========== размер длительностей ========== */
+.wholeNote > p{
+    font-size: calc(var(--font-size) * 16 );
+}
+.halfNote_2w4w8w16 > p{
+    font-size: calc(var(--font-size) * 15 );
+}
+.halfNote_2w4w8 > p{
+    font-size: calc(var(--font-size) * 14 );
+}
+.halfNote_2w4w16 > p{
+    font-size: calc(var(--font-size) * 13 );
+}
+.halfNote_2w4 > p{
+    font-size: calc(var(--font-size) * 12 );
+}
+.halfNote_2w8w16 > p{
+    font-size: calc(var(--font-size) * 11 );
+}
+.halfNote_2w8 > p{
+    font-size: calc(var(--font-size) * 10 );
+}
+.halfNote_2w16 > p{
+    font-size: calc(var(--font-size) * 9 );
+}
+.halfNote > p{  
+    font-size: calc(var(--font-size) * 8 );
+    }
+.quarterNote_4w8w16 > p{
+    font-size: calc(var(--font-size) * 7 );
+}
+.quarterNote_4w8 > p{
+    font-size: calc(var(--font-size) * 6 );
+}
+.quarterNote_4w16 > p{
+    font-size: calc(var(--font-size) * 5 );
+}
+.quarterNote_4 > p{
+    font-size: calc(var(--font-size) * 4 );
+}
+.eighthNote_8w16 > p{
+    font-size: calc(var(--font-size) * 3 );
+}
+.eighthNote_8 > p{
+    font-size: calc(var(--font-size) * 2 );
+}
+.sixteenthNote_16 > p{
+    font-size: calc(var(--font-size) * 1 );
 }
