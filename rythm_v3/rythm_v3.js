@@ -11,10 +11,10 @@ let createNumberMatrix = function () {
     // console.log(allPoint);
     return allPoint;
 }
-// let section_for_contextmenu = document.querySelector('.app');
-// section_for_contextmenu.addEventListener('contextmenu', function (event) {
-//     event.preventDefault(false);
-// })
+let section_for_contextmenu = document.querySelector('.app');
+section_for_contextmenu.addEventListener('contextmenu', function (event) {
+    event.preventDefault(false);
+})
 
 // для создания визуала в px и универсальных триольных/квинтольных блоков потребуется 
 // число которое без труда сможет делиться на 2,3,4,5,6,7
@@ -160,7 +160,7 @@ const backgroundMatrix = {
 
                 new_circle.dataset.outIndx = outIndx + 1;
                 new_circle.addEventListener('click', (e) => {
-
+console.log(e.button);
                     let activeBlock;
                     if(e.offsetY > Number(e.target.style.height.replace('px','')) / 2){ // создание ноты
                         console.log('Нижняя часть => ' + e.offsetY);
