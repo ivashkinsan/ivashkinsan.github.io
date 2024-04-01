@@ -27,18 +27,18 @@ const alphabet = {
     // 'Z': '1 1 1 1 1 1',
 }
 
-const cardAlphabet = function(){
+const cardAlphabet = function () {
     let cardAlphabet = document.createElement('div');
     cardAlphabet.classList.add('cardAlphabet');
 
-    for(let item in alphabet){
+    for (let item in alphabet) {
         let cardAlphabet_card = document.createElement('div');
         let array = alphabet[item].split(' ');
         cardAlphabet_card.classList.add('cardAlphabet_card');
         cardAlphabet_card.dataset.data = alphabet[item];
         cardAlphabet_card.draggable = true;
 
-        for(let elem of array){
+        for (let elem of array) {
             let cardAlphabet_card_circle = document.createElement('div');
             cardAlphabet_card_circle.classList.add('cardAlphabet_card_circle');
             elem == 1 ? cardAlphabet_card_circle.classList.add('card_circle_on') : undefined;
@@ -48,7 +48,7 @@ const cardAlphabet = function(){
         cardAlphabet_card.addEventListener('dragstart', drag, false);
         cardAlphabet.append(cardAlphabet_card);
     }
-    
+
     return cardAlphabet;
 }
 let appForInsertCardAlphabet = document.querySelector('.cardAlphabetContain');
@@ -64,7 +64,7 @@ function drag(event) {
 function allowDrop(event) {
     event.preventDefault();
     console.log('сработало');
-    
+
     event.target.classList.add('drop_insert_border_on');
 }
 
@@ -73,30 +73,37 @@ function dragLeave(event) {
 }
 function drop(event) {
     event.preventDefault();
-    event.target.classList.remove('drop_insert_border_on');
-    console.log('отпустил');
-    // event.target.click();
-    let customData = event.dataTransfer.getData('customData');
-    let customData_array = customData.split(' ');
-    let interval = Number(event.target.style.width.replace('px','')) / customData_array.length;
-    let target_left_position = Number(event.target.style.left.replace('px',''));
-    for(let item of customData_array){
-        if(item == '1'){
-
-        }
-        console.log(target_left_position + interval);
-target_left_position = target_left_position + interval;
-console.log(target_left_position);
-    }
-
-    // var data = event.dataTransfer.getData('text');
-    // var draggedElement = document.getElementById(data);
-    // event.target.appendChild(draggedElement);
+    create_note_after_drop(event);
 }
+
+// var data = event.dataTransfer.getData('text');
+// var draggedElement = document.getElementById(data);
+// event.target.appendChild(draggedElement);
 
 const all_droppable_elem = document.querySelectorAll('.mtrxCircle');
 for (let item of all_droppable_elem) {
     item.addEventListener('dragover', allowDrop, false);
     item.addEventListener('dragleave', dragLeave, false);
     item.addEventListener('drop', drop, false);
+}
+
+let create_note_after_drop = function (event) {
+    event.target.classList.remove('drop_insert_border_on');
+    console.log('отпустил');
+    // event.target.click();
+    let customData = event.dataTransfer.getData('customData');
+    let customData_array = customData.split(' ');
+    let interval = Number(event.target.style.width.replace('px', '')) / customData_array.length;
+    let target_left_position = Number(event.target.style.left.replace('px', ''));
+    for (let item of customData_array) {
+        target_left_position = target_left_position + interval;
+        if (item == '1') {
+            let newCircle = sizeIdentif[interval].createDivTag('', interval);
+            create_and_append_active_elem(event, activeElemLayer);
+            console.log(newCircle);
+        }
+        // console.log(target_left_position + interval);
+
+        // console.log(target_left_position);
+    }
 }

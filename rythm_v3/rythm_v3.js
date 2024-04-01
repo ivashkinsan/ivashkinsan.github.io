@@ -57,7 +57,11 @@ let createNumberMatrix = function () {
 // 8    7  6  5  4   3    2    1
 // 52,5 60 70 84 105 140  210  420
 // выбрано число 420
+let containMatrix = document.createElement('div');
+containMatrix.classList.add('containMatrix');
 
+let activeElemLayer = document.createElement('div');
+activeElemLayer.classList.add('activeElemLayer');
 
 const backgroundMatrix = {
     'matrix_1x4': [
@@ -109,11 +113,7 @@ const backgroundMatrix = {
         '16'            //16
     ],
     createBackground(array, leftPosition) {
-        let containMatrix = document.createElement('div');
-        containMatrix.classList.add('containMatrix');
 
-        let activeElemLayer = document.createElement('div');
-        activeElemLayer.classList.add('activeElemLayer');
         // внешний цикл
         for (let outIndx = 0; outIndx < array.length; outIndx++) {
             let stringToArr = array[outIndx].split(' ');
@@ -164,79 +164,8 @@ const backgroundMatrix = {
 
                 new_circle.dataset.outIndx = outIndx + 1;
                 new_circle.addEventListener('click', (e) => {
-console.log(e.button);
-                    let activeBlock;
-                    if(e.offsetY > Number(e.target.style.height.replace('px','')) / 2){ // создание ноты
-                        console.log('Нижняя часть => ' + e.offsetY);
-                        activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx, baseSize);
-                    } else { // создание паузы
-                        console.log('Верхняя часть => ' + e.offsetY); 
-                        activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx, baseSize, true);
-                        activeBlock.classList.add('pause');
-                    }
-                  
-                    activeBlock.classList.add('active');
-                    activeBlock.style.left = e.target.style.left;
-                    delElemInBigElem(e.target);
-
-                    function insertSortedDiv(container, newDiv) {
-                        container.appendChild(newDiv); // Вставляем новый div в конец контейнера
-                        const childrenArray = Array.from(container.children); // Преобразуем коллекцию дочерних элементов в массив
-                        childrenArray.sort((a, b) => a.offsetLeft - b.offsetLeft); // Сортируем дочерние элементы по offSetLeft
-                        childrenArray.forEach(child => container.appendChild(child)); // Вставляем отсортированные элементы обратно в контейнер
-                    }
-                    insertSortedDiv(activeElemLayer, activeBlock); // Вызываем функцию вставки и сортировки
-
-                    // есть ли граничащий блок с левой стороны ???
-                    let heroLeftSide = Number(e.target.style.left.replace('px', ''));
-                    let heroWidth = Number(e.target.style.width.replace('px', ''))
-                    let previousActiveBlock = activeBlock.previousElementSibling ? activeBlock.previousElementSibling : undefined;
-                    let previousActiveBlockLeftSide = previousActiveBlock ? Number(previousActiveBlock.style.left.replace('px', '')) : undefined;
-                    let previousActiveBlockWidth = previousActiveBlock ? Number(previousActiveBlock.style.width.replace('px', '')) : undefined;
-                    let nextActiveBlock = activeBlock.nextElementSibling ? activeBlock.nextElementSibling : undefined;
-                    let nextActiveBlockLeftSide = nextActiveBlock ? Number(nextActiveBlock.style.left.replace('px', '')) : undefined;
-                    let nextActiveBlockWidth = nextActiveBlock ? Number(nextActiveBlock.style.width.replace('px', '')) : undefined;                
-                    if (nextActiveBlock && nextActiveBlockLeftSide == heroLeftSide + heroWidth) {
-                            let handle = nextActiveBlock.querySelector('.left_double_arrow');
-                            handle.style.display = 'block';
-                    }
-                    if (previousActiveBlock && previousActiveBlockLeftSide + previousActiveBlockWidth == heroLeftSide) {
-                            let handle = activeBlock.querySelector('.left_double_arrow');
-                            handle.style.display = 'block';
-                    }
-                    borderCollapsResize(activeBlock);
-
-                    activeBlock.addEventListener('contextmenu', (e) => {                            
-                        e.preventDefault(true);
-                        if (e.target.classList.contains('active')) {
-                            e.target.remove();
-                            if (nextActiveBlock) {
-                                let handle = nextActiveBlock.querySelector('.left_double_arrow');
-                                handle.style.display = 'none';
-                            }
-                            if(nextActiveBlock && previousActiveBlock){
-                                let handle = nextActiveBlock.querySelector('.left_double_arrow');
-                                handle.style.display = 'none';
-                            }
-                        }
-                    });
-
-                    activeBlock.addEventListener('mousedown',(ev)=>{
-                        if(ev.button == 0){
-                        let evTargetWidth = Number(ev.target.style.width.replace('px',''));
-                        if(!activeBlock.classList.contains('pause')){
-                            activeBlock.classList.add('pause');
-                            hameleon(activeBlock,sizeIdentif[evTargetWidth], evTargetWidth, true);
-                        } else { 
-                            activeBlock.classList.remove('pause');
-                            hameleon(activeBlock,sizeIdentif[evTargetWidth], evTargetWidth, );
-                        }
-                    }
-                    })
+                    create_and_append_active_elem(e, activeElemLayer);
                 });
-
-
-
                 containMatrix.append(new_circle);
 
             } // ***************** внутренний цикл
@@ -285,7 +214,7 @@ let borderCollapsResize = function (elem) {
     let heroElPositionR;
 
 
-    let resizePreviousElement = function(){
+    let resizePreviousElement = function () {
         let heroElemLeftSide = Number(elem.style.left.replace('px', ''));
         let leftSidePrevElem = Number(previousElement.style.left.replace('px', ''));
         let widthPrevElem = Number(previousElement.style.width.replace('px', ''));
@@ -299,11 +228,11 @@ let borderCollapsResize = function (elem) {
     }
     if (previousElement) {
         resizePreviousElement();
-        prElPositionR = Number(previousElement.style.left.replace('px','')) + Number(previousElement.style.width.replace('px',''));
+        prElPositionR = Number(previousElement.style.left.replace('px', '')) + Number(previousElement.style.width.replace('px', ''));
     }
 
     let nextElement = elem.nextElementSibling;
-    let resizeNextElement = function(){
+    let resizeNextElement = function () {
         let heroElemRightSide = Number(elem.style.left.replace('px', '')) + Number(elem.style.width.replace('px', ''));
         let leftSideNextElem = Number(nextElement.style.left.replace('px', ''));
         let widthNextElem = Number(nextElement.style.width.replace('px', ''));
@@ -315,28 +244,104 @@ let borderCollapsResize = function (elem) {
     }
     if (nextElement) {
         resizeNextElement();
-        nxtElPosition = Number(nextElement.style.left.replace('px',''));
+        nxtElPosition = Number(nextElement.style.left.replace('px', ''));
     }
 
-    if(previousElement && nextElement){
+    if (previousElement && nextElement) {
         let handle = elem.querySelector('.left_double_arrow');
         handle.style.display = 'block';
         let handleNext = nextElement.querySelector('.left_double_arrow');
         handleNext.style.display = 'block';
     }
- 
-    
-    heroElPositionL = Number(elem.style.left.replace('px',''));
-    heroElPositionR = Number(elem.style.left.replace('px','')) + Number(elem.style.width.replace('px',''));
-    if(prElPositionR == heroElPositionL){
+
+
+    heroElPositionL = Number(elem.style.left.replace('px', ''));
+    heroElPositionR = Number(elem.style.left.replace('px', '')) + Number(elem.style.width.replace('px', ''));
+    if (prElPositionR == heroElPositionL) {
         let handle = elem.querySelector('.left_double_arrow');
         handle.style.display = 'block';
     }
-    if(heroElPositionR == nxtElPosition){
+    if (heroElPositionR == nxtElPosition) {
         let handle = nextElement.querySelector('.left_double_arrow');
         handle.style.display = 'block';
     }
 
+}
+
+let insertSortedDiv = function (container, newDiv) {
+    container.appendChild(newDiv); // Вставляем новый div в конец контейнера
+    const childrenArray = Array.from(container.children); // Преобразуем коллекцию дочерних элементов в массив
+    childrenArray.sort((a, b) => a.offsetLeft - b.offsetLeft); // Сортируем дочерние элементы по offSetLeft
+    childrenArray.forEach(child => container.appendChild(child)); // Вставляем отсортированные элементы обратно в контейнер
+}
+
+
+
+let create_and_append_active_elem = function (e, activeElemLayer) {
+    console.log(e.button);
+    let activeBlock;
+    if (e.offsetY > Number(e.target.style.height.replace('px', '')) / 2) { // создание ноты
+        console.log('Нижняя часть => ' + e.offsetY);
+        activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx, baseSize);
+    } else { // создание паузы
+        console.log('Верхняя часть => ' + e.offsetY);
+        activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx, baseSize, true);
+        activeBlock.classList.add('pause');
+    }
+
+    activeBlock.classList.add('active');
+    activeBlock.style.left = e.target.style.left;
+    delElemInBigElem(e.target);
+
+
+    insertSortedDiv(activeElemLayer, activeBlock); // Вызываем функцию вставки и сортировки
+
+    // есть ли граничащий блок с левой стороны ???
+    let heroLeftSide = Number(e.target.style.left.replace('px', ''));
+    let heroWidth = Number(e.target.style.width.replace('px', ''))
+    let previousActiveBlock = activeBlock.previousElementSibling ? activeBlock.previousElementSibling : undefined;
+    let previousActiveBlockLeftSide = previousActiveBlock ? Number(previousActiveBlock.style.left.replace('px', '')) : undefined;
+    let previousActiveBlockWidth = previousActiveBlock ? Number(previousActiveBlock.style.width.replace('px', '')) : undefined;
+    let nextActiveBlock = activeBlock.nextElementSibling ? activeBlock.nextElementSibling : undefined;
+    let nextActiveBlockLeftSide = nextActiveBlock ? Number(nextActiveBlock.style.left.replace('px', '')) : undefined;
+    let nextActiveBlockWidth = nextActiveBlock ? Number(nextActiveBlock.style.width.replace('px', '')) : undefined;
+    if (nextActiveBlock && nextActiveBlockLeftSide == heroLeftSide + heroWidth) {
+        let handle = nextActiveBlock.querySelector('.left_double_arrow');
+        handle.style.display = 'block';
+    }
+    if (previousActiveBlock && previousActiveBlockLeftSide + previousActiveBlockWidth == heroLeftSide) {
+        let handle = activeBlock.querySelector('.left_double_arrow');
+        handle.style.display = 'block';
+    }
+    borderCollapsResize(activeBlock);
+
+    activeBlock.addEventListener('contextmenu', (e) => {
+        e.preventDefault(true);
+        if (e.target.classList.contains('active')) {
+            e.target.remove();
+            if (nextActiveBlock) {
+                let handle = nextActiveBlock.querySelector('.left_double_arrow');
+                handle.style.display = 'none';
+            }
+            if (nextActiveBlock && previousActiveBlock) {
+                let handle = nextActiveBlock.querySelector('.left_double_arrow');
+                handle.style.display = 'none';
+            }
+        }
+    });
+
+    activeBlock.addEventListener('mousedown', (ev) => {
+        if (ev.button == 0) {
+            let evTargetWidth = Number(ev.target.style.width.replace('px', ''));
+            if (!activeBlock.classList.contains('pause')) {
+                activeBlock.classList.add('pause');
+                hameleon(activeBlock, sizeIdentif[evTargetWidth], evTargetWidth, true);
+            } else {
+                activeBlock.classList.remove('pause');
+                hameleon(activeBlock, sizeIdentif[evTargetWidth], evTargetWidth,);
+            }
+        }
+    })
 }
 
 let app = document.querySelector('.app');
