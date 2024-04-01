@@ -6,7 +6,7 @@ let createNumberMatrix = function () {
     let onePoint = 0;
     for (let i = 0; i < 16; i++) {
         allPoint.push(onePoint);
-        onePoint += 26.25;
+        onePoint += baseSize / 16;
     }
     // console.log(allPoint);
     return allPoint;
@@ -169,7 +169,7 @@ const backgroundMatrix = {
                 });
                 containMatrix.append(new_circle);
             }
-            leftPosition = leftPosition + 26.25;
+            leftPosition = leftPosition + (baseSize / 16);
         }
         return [containMatrix, activeElemLayer];
     }

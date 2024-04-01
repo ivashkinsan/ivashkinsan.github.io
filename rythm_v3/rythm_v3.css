@@ -1,7 +1,7 @@
 :root {
-    --const: 420px;
+    --const: 840px;
     --background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
-    --font-size: 14px;
+    --font-size: calc(var(--const) / 30);
     --matrix-color: rgba(144, 144, 144, 0.78);
     --active-elem-color: #f0f09d;
 }
@@ -64,8 +64,8 @@ body {
 }
 
 .containMatrix {
-    width: 420px;
-    height: 420px;
+    width: var(--const);
+    height: var(--const);
 }
 
 .mtrxCircle {
@@ -149,13 +149,13 @@ body {
 }
 
 .left-handle {
-    left: 4px;
+    left: 1px;
     /* cursor: w-resize; */
     cursor: url('/cursor/left_32px.png')16 16, auto;
 }
 
 .right-handle {
-    right: 4px;
+    right: 1px;
     cursor: url('/cursor/right_32px.png')16 16, auto;
 }
 

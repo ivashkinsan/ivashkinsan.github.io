@@ -280,33 +280,29 @@ const sixteenthNote_16 = new Note(
 
 
 
-const allNotes = {
-    1: wholeNote_1,
-    2: halfNote_2,
-    4: quarterNote_4,
-    8: eighthNote_8,
-    16: sixteenthNote_16,
-}
+// const allNotes = {
+//     1: wholeNote_1,
+//     2: halfNote_2,
+//     4: quarterNote_4,
+//     8: eighthNote_8,
+//     16: sixteenthNote_16,
+// }
 
 const sizeIdentif = {
-    26.25: sixteenthNote_16,
-    52.5: eighthNote_8,
-    60: '',
-    70: '',
-    78.750: eighthNote_8w16,
-    84: '',
-    105: quarterNote_4,
-    131.250: quarterNote_4w16,
-    140: '',
-    157.500: quarterNote_4w8,
-    183.750: quarterNote_4w8w16,
-    210: halfNote_2,
-    236.250: halfNote_2w16,
-    262.500: halfNote_2w8,
-    288.750: halfNote_2w8w16,
-    315: halfNote_2w4,
-    341.250: halfNote_2w4w16,
-    367.500: halfNote_2w4w8,
-    393.750: halfNote_2w4w8w16,
-    420: wholeNote_1
+    [(baseSize / 16) * 1]: sixteenthNote_16,
+    [(baseSize / 16) * 2]: eighthNote_8,
+    [(baseSize / 16) * 3]: eighthNote_8w16,
+    [(baseSize / 16) * 4]: quarterNote_4,
+    [(baseSize / 16) * 5]: quarterNote_4w16,
+    [(baseSize / 16) * 6]: quarterNote_4w8,
+    [(baseSize / 16) * 7]: quarterNote_4w8w16,
+    [(baseSize / 16) * 8]: halfNote_2,
+    [(baseSize / 16) * 9]: halfNote_2w16,
+    [(baseSize / 16) * 10]: halfNote_2w8,
+    [(baseSize / 16) * 11]: halfNote_2w8w16,
+    [(baseSize / 16) * 12]: halfNote_2w4,
+    [(baseSize / 16) * 13]: halfNote_2w4w16,
+    [(baseSize / 16) * 14]: halfNote_2w4w8,
+    [(baseSize / 16) * 15]: halfNote_2w4w8w16,
+    [(baseSize / 16) * 16]: wholeNote_1
 }

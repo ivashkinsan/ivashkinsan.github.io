@@ -1,7 +1,7 @@
 
-const step = 26.25; // Шаг изменения блока
-const minWidth = 26.25;
-const maxWidth = 420;
+const step = baseSize / 16; // Шаг изменения блока
+const minWidth = baseSize / 16;
+const maxWidth = baseSize;
 
 
 function startResizing(e, direction) {
