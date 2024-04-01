@@ -52,11 +52,10 @@ const cardAlphabet = function () {
     return cardAlphabet;
 }
 let appForInsertCardAlphabet = document.querySelector('.cardAlphabetContain');
-// console.log(appForInsertCardAlphabet);
 appForInsertCardAlphabet.append(cardAlphabet());
 
 function drag(event) {
-    console.log(event.target);
+
     event.dataTransfer.setData('text', event.target);
     event.dataTransfer.setData('customData', event.target.dataset.data);
 }
@@ -88,28 +87,41 @@ for (let item of all_droppable_elem) {
 }
 
 let create_note_after_drop = function (event, dropElem) {
+
+    let allActiveForDelete = activeElemLayer.querySelectorAll('.active');
+    let dropElemLeftSide = Number(dropElem.style.left.replace('px', ''));
+    let dropElemRightSide = dropElemLeftSide + Number(dropElem.style.width.replace('px', ''));
+    let itemLeft;
+    for (let item of allActiveForDelete) {
+        itemLeft = Number(item.style.left.replace('px', ''));
+        if (itemLeft >= dropElemLeftSide && itemLeft < dropElemRightSide) {
+            item.remove();
+        }
+    }
     dropElem.classList.remove('drop_insert_border_on');
-    console.log('отпустил');
+
     // event.target.click();
     let customData = event.dataTransfer.getData('customData');
     let customData_array = customData.split(' ');
     let interval = Number(dropElem.style.width.replace('px', '')) / customData_array.length;
     let target_left_position = Number(dropElem.style.left.replace('px', ''));
     for (let item of customData_array) {
-        
+
         if (item == '1') {
             let newCircle = sizeIdentif[interval].createDivTag('', interval);
             newCircle.style.width = interval + 'px';
             newCircle.style.height = interval + 'px';
             // newCircle.style.left = target_left_position + 'px';
-            create_and_append_active_elem(newCircle, activeElemLayer,target_left_position + 'px');
-           console.log(interval);
-            console.log(newCircle);
-            
+            create_and_append_active_elem(newCircle, activeElemLayer, target_left_position + 'px', 'drop');
+        }
+        if (item == '0') {
+            let newCircle = sizeIdentif[interval].createDivTag('', interval, true);
+            newCircle.style.width = interval + 'px';
+            newCircle.style.height = interval + 'px';
+            // newCircle.style.left = target_left_position + 'px';
+            create_and_append_active_elem(newCircle, activeElemLayer, target_left_position + 'px', 'drop', true);
         }
         target_left_position = target_left_position + interval;
-        // console.log(target_left_position + interval);
 
-        // console.log(target_left_position);
     }
 }

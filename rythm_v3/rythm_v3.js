@@ -165,10 +165,10 @@ const backgroundMatrix = {
                 new_circle.dataset.outIndx = outIndx + 1;
                 new_circle.addEventListener('click', (e) => {
                     let leftTargerPosition = e.target.style.left;
-                    create_and_append_active_elem(e.target, activeElemLayer,leftTargerPosition);
+                    create_and_append_active_elem(e.target, activeElemLayer, leftTargerPosition, 'click');
                 });
                 containMatrix.append(new_circle);
-            } 
+            }
             leftPosition = leftPosition + 26.25;
         }
         return [containMatrix, activeElemLayer];
@@ -176,7 +176,7 @@ const backgroundMatrix = {
 }
 
 // функция удаления активных элементов внутри более большого активного блока
-let delElemInBigElem = function (elem) {
+let delElemInBigElem = function (elem, eventType) {
     let activeContainLayer = document.querySelector('.activeElemLayer');
     let all_active_elem = activeContainLayer.querySelectorAll('.active ');
     for (inp_elem of all_active_elem) {
@@ -189,6 +189,7 @@ let delElemInBigElem = function (elem) {
             && leftSideItem < leftSideHero + widthHero
             && rightSideItem <= rightSideHero
             && !elem.classList.contains('active')
+            && eventType == 'click'
         ) {
             inp_elem.remove();
         }
@@ -267,14 +268,24 @@ let insertSortedDiv = function (container, newDiv) {
 
 
 
-let create_and_append_active_elem = function (generatingEl, activeElemLayer, leftPosition) {
-    console.log(generatingEl);
+let create_and_append_active_elem = function (clickElem, activeElemLayer, leftPosition, eventType, is_pause) {
+
     let activeBlock;
-    let sizeElemForGenerate = Number(generatingEl.style.width.replace('px',''));
-    console.log(sizeElemForGenerate);
+    let sizeElemForGenerate = Number(clickElem.style.width.replace('px', ''));
+
     // if (e.offsetY > Number(e.target.style.height.replace('px', '')) / 2) {
-        // console.log('Нижняя часть => ' + e.offsetY);
-        activeBlock = sizeIdentif[sizeElemForGenerate].createDivTag(generatingEl.dataset.outIndx, baseSize);
+    // console.log('Нижняя часть => ' + e.offsetY);
+
+    if (is_pause == true) {
+        activeBlock = sizeIdentif[sizeElemForGenerate].createDivTag(clickElem.dataset.outIndx, baseSize, true);
+        activeBlock.style.left = leftPosition;
+        activeBlock.classList.add('pause');
+    } else {
+        activeBlock = sizeIdentif[sizeElemForGenerate].createDivTag(clickElem.dataset.outIndx, baseSize);
+        activeBlock.style.left = leftPosition;
+
+    }
+
     // } else {
     //     console.log('Верхняя часть => ' + e.offsetY);
     //     activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx, baseSize, true);
@@ -282,14 +293,14 @@ let create_and_append_active_elem = function (generatingEl, activeElemLayer, lef
     // }
 
     activeBlock.classList.add('active');
-    activeBlock.style.left = leftPosition;
-    // activeBlock.style.left = generatingEl.style.left;
-    delElemInBigElem(generatingEl);
+
+    // activeBlock.style.left = clickElem.style.left;
+    delElemInBigElem(clickElem, eventType);
     insertSortedDiv(activeElemLayer, activeBlock); // Вызываем функцию вставки и сортировки
 
     // есть ли граничащий блок с левой стороны ???
-    let heroLeftSide = Number(generatingEl.style.left.replace('px', ''));
-    let heroWidth = Number(generatingEl.style.width.replace('px', ''))
+    let heroLeftSide = Number(activeBlock.style.left.replace('px', ''));
+    let heroWidth = Number(activeBlock.style.width.replace('px', ''))
     let previousActiveBlock = activeBlock.previousElementSibling ? activeBlock.previousElementSibling : undefined;
     let previousActiveBlockLeftSide = previousActiveBlock ? Number(previousActiveBlock.style.left.replace('px', '')) : undefined;
     let previousActiveBlockWidth = previousActiveBlock ? Number(previousActiveBlock.style.width.replace('px', '')) : undefined;
