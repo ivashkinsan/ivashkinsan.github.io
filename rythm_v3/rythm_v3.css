@@ -2,6 +2,8 @@
     --const: 420px;
     --background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
     --font-size: 14px;
+    --matrix-color: rgba(144, 144, 144, 0.78);
+    --active-elem-color: #f0f09d;
 }
 
 * {
@@ -34,10 +36,10 @@ body {
     /* font-family: MAESTRO; */
     /* letter-spacing: 10px; */
     color: #F4D6B1;
-    padding-top: 15px;
+    /* padding-top: 15px; */
     justify-content: start;
     align-items: start;
-    padding: 40px 0 0 40px;
+    /* padding: 40px 0 0 40px; */
     background: var(--background);
     border: 10px solid #DDB078;
     border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%);
@@ -57,6 +59,8 @@ body {
 
 .app {
     position: relative;
+    margin-top: 30px;
+    margin-left: 80px;
 }
 
 .containMatrix {
@@ -71,7 +75,7 @@ body {
     top: 0;
     bottom: 0;
     /* border: 1px solid rgba(144, 144, 144, 0.78); */
-    box-shadow: 0 0 0 1px rgba(144, 144, 144, 0.78) inset;
+    box-shadow: 0 0 0 1px var(--matrix-color) inset;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -89,7 +93,7 @@ body {
     text-align: center;
     border-radius: 50%;
     z-index: 1000;
-    box-shadow: 0 0 0 1.5px rgb(233, 242, 156) inset;
+    box-shadow: 0 0 0 1.5px var(--active-elem-color) inset;
     top: 50%;
     cursor: pointer;
     transform: translateY(-50%);
@@ -118,7 +122,7 @@ body {
     font-size: 20px;
 }
 
-.selected {
+/* .selected {
     background-color: red;
     opacity: 0.6;
 }
@@ -129,7 +133,7 @@ body {
 
 .dragging {
     background-color: red;
-}
+} */
 
 
 .handle {
@@ -231,4 +235,46 @@ body {
 .sixteenthNote_16 > p{
     font-size: calc(var(--font-size) * 1 );
     line-height: calc(var(--font-size) * 1.5);
+}
+
+
+/* ======================== cardAlphabet ========================== */
+.cardAlphabetContain{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 15px;
+    width: auto;
+    
+}
+/* .cardAlphabet{
+
+} */
+
+.cardAlphabet_card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 3px;
+    margin: 3px;
+    gap: 2px;
+    border: 1px solid var(--matrix-color);
+    border-radius: 3px;
+    cursor: grab;
+}
+
+.cardAlphabet_card_circle{
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--matrix-color);
+    border-radius: 50%;
+}
+.card_circle_on{
+    background-color: var(--matrix-color);
+}
+
+/* ======================= drop ========================= */
+.drop_insert_border_on{
+    /* box-shadow: 0 0 0 1px red inset; */
+    border: 1.5px dashed #dedede;
 }
