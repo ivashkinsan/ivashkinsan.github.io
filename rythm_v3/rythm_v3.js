@@ -164,21 +164,11 @@ const backgroundMatrix = {
 
                 new_circle.dataset.outIndx = outIndx + 1;
                 new_circle.addEventListener('click', (e) => {
-                    create_and_append_active_elem(e, activeElemLayer);
+                    let leftTargerPosition = e.target.style.left;
+                    create_and_append_active_elem(e.target, activeElemLayer,leftTargerPosition);
                 });
                 containMatrix.append(new_circle);
-
-            } // ***************** внутренний цикл
-
-            // числовые значения границ для ориентировки +++++++++++++
-            // let numbLabel = document.createElement('div');
-            // let numb = createNumberMatrix();
-            // numbLabel.classList.add('numbMatrx');
-            // numbLabel.textContent = numb[outIndx];
-            // numbLabel.style.left = leftPosition + 'px';
-            // containMatrix.append(numbLabel)
-            //++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
+            } 
             leftPosition = leftPosition + 26.25;
         }
         return [containMatrix, activeElemLayer];
@@ -277,28 +267,29 @@ let insertSortedDiv = function (container, newDiv) {
 
 
 
-let create_and_append_active_elem = function (e, activeElemLayer) {
-    console.log(e.button);
+let create_and_append_active_elem = function (generatingEl, activeElemLayer, leftPosition) {
+    console.log(generatingEl);
     let activeBlock;
-    if (e.offsetY > Number(e.target.style.height.replace('px', '')) / 2) { // создание ноты
-        console.log('Нижняя часть => ' + e.offsetY);
-        activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx, baseSize);
-    } else { // создание паузы
-        console.log('Верхняя часть => ' + e.offsetY);
-        activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx, baseSize, true);
-        activeBlock.classList.add('pause');
-    }
+    let sizeElemForGenerate = Number(generatingEl.style.width.replace('px',''));
+    console.log(sizeElemForGenerate);
+    // if (e.offsetY > Number(e.target.style.height.replace('px', '')) / 2) {
+        // console.log('Нижняя часть => ' + e.offsetY);
+        activeBlock = sizeIdentif[sizeElemForGenerate].createDivTag(generatingEl.dataset.outIndx, baseSize);
+    // } else {
+    //     console.log('Верхняя часть => ' + e.offsetY);
+    //     activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx, baseSize, true);
+    //     activeBlock.classList.add('pause');
+    // }
 
     activeBlock.classList.add('active');
-    activeBlock.style.left = e.target.style.left;
-    delElemInBigElem(e.target);
-
-
+    activeBlock.style.left = leftPosition;
+    // activeBlock.style.left = generatingEl.style.left;
+    delElemInBigElem(generatingEl);
     insertSortedDiv(activeElemLayer, activeBlock); // Вызываем функцию вставки и сортировки
 
     // есть ли граничащий блок с левой стороны ???
-    let heroLeftSide = Number(e.target.style.left.replace('px', ''));
-    let heroWidth = Number(e.target.style.width.replace('px', ''))
+    let heroLeftSide = Number(generatingEl.style.left.replace('px', ''));
+    let heroWidth = Number(generatingEl.style.width.replace('px', ''))
     let previousActiveBlock = activeBlock.previousElementSibling ? activeBlock.previousElementSibling : undefined;
     let previousActiveBlockLeftSide = previousActiveBlock ? Number(previousActiveBlock.style.left.replace('px', '')) : undefined;
     let previousActiveBlockWidth = previousActiveBlock ? Number(previousActiveBlock.style.width.replace('px', '')) : undefined;
@@ -315,10 +306,10 @@ let create_and_append_active_elem = function (e, activeElemLayer) {
     }
     borderCollapsResize(activeBlock);
 
-    activeBlock.addEventListener('contextmenu', (e) => {
-        e.preventDefault(true);
-        if (e.target.classList.contains('active')) {
-            e.target.remove();
+    activeBlock.addEventListener('contextmenu', (event) => {
+        event.preventDefault(true);
+        if (event.target.classList.contains('active')) {
+            event.target.remove();
             if (nextActiveBlock) {
                 let handle = nextActiveBlock.querySelector('.left_double_arrow');
                 handle.style.display = 'none';
@@ -330,9 +321,9 @@ let create_and_append_active_elem = function (e, activeElemLayer) {
         }
     });
 
-    activeBlock.addEventListener('mousedown', (ev) => {
-        if (ev.button == 0) {
-            let evTargetWidth = Number(ev.target.style.width.replace('px', ''));
+    activeBlock.addEventListener('mousedown', (event) => {
+        if (event.button == 0) {
+            let evTargetWidth = Number(event.target.style.width.replace('px', ''));
             if (!activeBlock.classList.contains('pause')) {
                 activeBlock.classList.add('pause');
                 hameleon(activeBlock, sizeIdentif[evTargetWidth], evTargetWidth, true);

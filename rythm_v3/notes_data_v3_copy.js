@@ -60,12 +60,14 @@ class Note {
         div.dataset.outIndx = outIndx;
         div.style.width = baseSize / this.measure + 'px';
         div.style.height = baseSize / this.measure + 'px';
+        console.log(this);
         div.append(this.createHandleLeftElem());
         div.append(this.createHandleRightElem());
         div.append(this.createHandleLeftRight()[0]);
         return div;
     }
     createHandleLeftElem = function () {
+        console.log('createHandleLeftElem');
         let leftHandle = document.createElement('div');
         leftHandle.classList.add('handle', 'left-handle');
         leftHandle.addEventListener('mousedown', (elem) => {
@@ -74,6 +76,7 @@ class Note {
         return leftHandle;
     }
     createHandleRightElem = function () {
+        console.log('createHandleRightElem');
         let righttHandle = document.createElement('div');
         righttHandle.classList.add('handle', 'right-handle');
         righttHandle.addEventListener('mousedown', (elem) => {
@@ -83,6 +86,7 @@ class Note {
     }
     
     createHandleLeftRight = function () {
+        console.log('createHandleLeftRight');
         let left_double_arrow = document.createElement('div');
         left_double_arrow.classList.add('handle');
         left_double_arrow.classList.add('left_double_arrow');

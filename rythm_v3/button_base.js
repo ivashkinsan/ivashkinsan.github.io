@@ -73,7 +73,7 @@ function dragLeave(event) {
 }
 function drop(event) {
     event.preventDefault();
-    create_note_after_drop(event);
+    create_note_after_drop(event, event.target);
 }
 
 // var data = event.dataTransfer.getData('text');
@@ -87,21 +87,27 @@ for (let item of all_droppable_elem) {
     item.addEventListener('drop', drop, false);
 }
 
-let create_note_after_drop = function (event) {
-    event.target.classList.remove('drop_insert_border_on');
+let create_note_after_drop = function (event, dropElem) {
+    dropElem.classList.remove('drop_insert_border_on');
     console.log('отпустил');
     // event.target.click();
     let customData = event.dataTransfer.getData('customData');
     let customData_array = customData.split(' ');
-    let interval = Number(event.target.style.width.replace('px', '')) / customData_array.length;
-    let target_left_position = Number(event.target.style.left.replace('px', ''));
+    let interval = Number(dropElem.style.width.replace('px', '')) / customData_array.length;
+    let target_left_position = Number(dropElem.style.left.replace('px', ''));
     for (let item of customData_array) {
-        target_left_position = target_left_position + interval;
+        
         if (item == '1') {
             let newCircle = sizeIdentif[interval].createDivTag('', interval);
-            create_and_append_active_elem(event, activeElemLayer);
+            newCircle.style.width = interval + 'px';
+            newCircle.style.height = interval + 'px';
+            // newCircle.style.left = target_left_position + 'px';
+            create_and_append_active_elem(newCircle, activeElemLayer,target_left_position + 'px');
+           console.log(interval);
             console.log(newCircle);
+            
         }
+        target_left_position = target_left_position + interval;
         // console.log(target_left_position + interval);
 
         // console.log(target_left_position);
