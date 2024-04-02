@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rythm_v3</title>
     <link rel="stylesheet" href="/rythm_v3/rythm_v3.css">
+    <link rel="stylesheet" href="/rythm_v3/metronome_style.css">
 </head>
 
 
@@ -21,9 +22,73 @@
     w d h j q i e s</br> -->
 
 </div>
+
+
+
+<div class="metronome_container">
+     <button id="play-button" class="">
+        <div id="play-pause-icon" class="play"></div>
+    </button>
+
+    <!-- <div class="tempo-controls"> -->
+    <button class="tempo-change" data-change="-5">-5</button>
+    <button class="tempo-change" data-change="-1">-</button>
+
+    <div class="tempo-container">
+        <div id="tempo">120</div>
+        <div class="bpm">bpm</div>
+    </div>
+
+    <button class="tempo-change" data-change="+1">+</button>
+    <button class="tempo-change" data-change="+5">+5</button>
+    
+       <!-- выбор группы -->
+       <label for="">группа</label>
+       <select class="select_group">
+           <option value="value_NO" selected>---</option>
+           <option value="value_1">1</option>
+           <option value="value_2">2</option>
+           <option value="value_3">3</option>
+           <option value="value_4">4</option>
+           <option value="value_5">5</option>
+           <option value="value_3+2">3+2</option>
+       </select>
+       <!-- выбор подсветки длительностей метронома -->
+       <label for="">подсветка</label>
+       <select class="select_speed">
+           <option value="value_NO" selected>---</option>
+           <option value="value_2">2</option>
+           <option value="value_4">4</option>
+           <option value="value_8">8</option>
+           <option value="value_16">16</option>
+       </select>
+       <button class="clear">сброс</button>
+</div>
+
+
+
+
+
+<div class="author">Copyright © 2022 Ивашкин Александр</div>
+<style>
+    .author {
+        font-family: Arial, Helvetica, sans-serif;
+        position: absolute;
+        bottom: 12px;
+        /* width: 300px; */
+        /* left: 90%; */
+        right: 15px;
+        font-size: 1.2vw;
+        text-align: center;
+        margin-left: -150px;
+        color: #ffffff2a;
+    }
+</style>
+
 <script src="/rythm_v3/notes_data_v3.js"></script>
 <script src="/rythm_v3/resize_func.js"></script>
 <script src="/rythm_v3/rythm_v3.js"></script>
 <script src="/rythm_v3/button_base.js"></script>
+<script src="/rythm_v3/metronome_v3.js"></script>
 </body>
 </html>

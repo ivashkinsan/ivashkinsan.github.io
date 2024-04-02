@@ -99,6 +99,7 @@ class Note {
     }
 }
 
+// ================================ длительности кратные 16-ой ====================================
 const wholeNote_1 = new Note(
     'wholeNote',
     uncSbl.n1,
@@ -278,15 +279,32 @@ const sixteenthNote_16 = new Note(
 );
 
 
+// ======================  триольные длительности ====================
+const eighthNote_8_triple = new Note(
+    'eighthNote_8_triple',
+    uncSbl.n8,
+    uncSbl.p8,
+    16,
+    'триольная восьмая',
+    'eighthNote_8_triple',
+    12,
+    (420 * 1)
+);
+
+const quarterNote_4_triple = new Note(
+    'quarterNote_4_triple',
+    uncSbl.n4,
+    uncSbl.p4,
+    4,
+    'триольная четвертная',
+    'quarterNote_4_triple',
+    6,
+    (420 * 4)
+);
 
 
-// const allNotes = {
-//     1: wholeNote_1,
-//     2: halfNote_2,
-//     4: quarterNote_4,
-//     8: eighthNote_8,
-//     16: sixteenthNote_16,
-// }
+
+
 
 const sizeIdentif = {
     [(baseSize / 16) * 1]: sixteenthNote_16,
@@ -304,5 +322,8 @@ const sizeIdentif = {
     [(baseSize / 16) * 13]: halfNote_2w4w16,
     [(baseSize / 16) * 14]: halfNote_2w4w8,
     [(baseSize / 16) * 15]: halfNote_2w4w8w16,
-    [(baseSize / 16) * 16]: wholeNote_1
+    [(baseSize / 16) * 16]: wholeNote_1,
+// триоли
+    [baseSize / 12]: eighthNote_8_triple,
+    [baseSize / 6]: quarterNote_4_triple,
 }

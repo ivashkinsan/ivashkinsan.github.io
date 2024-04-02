@@ -60,7 +60,7 @@ body {
 .app {
     position: relative;
     margin-top: 30px;
-    margin-left: 80px;
+    margin-left: 130px;
 }
 
 .containMatrix {
@@ -107,34 +107,17 @@ body {
 }
 
 .active>p {
-    padding-top: 5px;
     user-select: none;
     font-size: 14px;
-    line-height: 20px;
+    margin-top: 9px;
     pointer-events: none;
     z-index: 999;
-    /* letter-spacing: -2px; */
 }
 
 .pause>p{
-    padding-top: 0px;
-    /* line-height: 25px; */
+    margin-top: -8px;
     font-size: 20px;
 }
-
-/* .selected {
-    background-color: red;
-    opacity: 0.6;
-}
-
-.highlight {
-    border: 2px dashed #DDB078;
-}
-
-.dragging {
-    background-color: red;
-} */
-
 
 .handle {
     position: absolute;
@@ -237,6 +220,15 @@ body {
     line-height: calc(var(--font-size) * 1.5);
 }
 
+.eighthNote_8_triple > p{
+    font-size: calc(var(--font-size) * 1.1 );
+    line-height: calc(var(--font-size) * 1.5);
+}
+
+.quarterNote_4_triple > p{
+    font-size: calc(var(--font-size) * 1.75 );
+    line-height: calc(var(--font-size) * 2.5);
+}
 
 /* ======================== cardAlphabet ========================== */
 .cardAlphabetContain{
@@ -254,7 +246,7 @@ body {
 .cardAlphabet_card{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 3px;
     margin: 3px;
     gap: 2px;
@@ -264,8 +256,8 @@ body {
 }
 
 .cardAlphabet_card_circle{
-    width: 10px;
-    height: 10px;
+    width: 20px;
+    height: 20px;
     border: 1px solid var(--matrix-color);
     border-radius: 50%;
 }

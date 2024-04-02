@@ -23,8 +23,10 @@ const alphabet = {
     'V': '1 0 1',
     'W': '1 1 1',
     'X': '0 0 0',
-    // 'Y': '1 1 1 1 1',
-    // 'Z': '1 1 1 1 1 1',
+    'a': '1 0',
+    'b': '0 1',
+    'c': '1 1',
+    'd': '1 1',
 }
 
 const cardAlphabet = function () {
@@ -108,9 +110,11 @@ let create_note_after_drop = function (event, dropElem) {
     for (let item of customData_array) {
 
         if (item == '1') {
+            console.log(sizeIdentif[interval]);
             let newCircle = sizeIdentif[interval].createDivTag('', interval);
             newCircle.style.width = interval + 'px';
             newCircle.style.height = interval + 'px';
+            
             // newCircle.style.left = target_left_position + 'px';
             create_and_append_active_elem(newCircle, activeElemLayer, target_left_position + 'px', 'drop');
         }
