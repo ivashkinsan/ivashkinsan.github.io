@@ -63,6 +63,8 @@ containMatrix.classList.add('containMatrix');
 let activeElemLayer = document.createElement('div');
 activeElemLayer.classList.add('activeElemLayer');
 
+let newOutIndMatrix = {};
+
 const backgroundMatrix = {
     'matrix_1x4': [
         '4 8 16',       //1
@@ -169,11 +171,16 @@ const backgroundMatrix = {
                 });
                 containMatrix.append(new_circle);
             }
+
+            newOutIndMatrix[leftPosition] = String(outIndx + 1);
             leftPosition = leftPosition + (baseSize / 16);
+            
         }
         return [containMatrix, activeElemLayer];
     }
 }
+
+console.log(newOutIndMatrix);
 
 // функция удаления активных элементов внутри более большого активного блока
 let delElemInBigElem = function (elem, eventType) {

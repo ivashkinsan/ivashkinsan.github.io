@@ -4,6 +4,8 @@ const minWidth = baseSize / 16;
 const maxWidth = baseSize;
 
 
+
+
 function startResizing(e, direction) {
     e.preventDefault(true);
     e.stopPropagation();
@@ -69,20 +71,20 @@ function startResizing(e, direction) {
             let previousElement = target.previousElementSibling ? target.previousElementSibling : undefined;
             let previousElementStyleLeft = previousElement ? Number(previousElement.style.left.replace('px', '')) : undefined;
             let previousElementStyleWidth = previousElement ? Number(previousElement.style.width.replace('px', '')) : undefined;
+            let newLeftPositionTarget = Math.round(newLeft / step) * step;
             if (previousElement) {
-
                 if (e.x - appLeftSide > previousElementStyleLeft + previousElementStyleWidth) {
                     target.style.width = newWidthRounded + 'px'; // присвоение ширины
                     target.style.height = newWidthRounded + 'px'; // присвоение высоты
-                    target.style.left = Math.round(newLeft / step) * step + 'px';
+                    target.style.left = newLeftPositionTarget + 'px';
                 }
 
             } else if (e.x > appLeftSide) {
                 target.style.width = newWidthRounded + 'px'; // присвоение ширины
                 target.style.height = newWidthRounded + 'px'; // присвоение высоты
-                target.style.left = Math.round(newLeft / step) * step + 'px';
+                target.style.left = newLeftPositionTarget + 'px';
             }
-            hameleon(target, sizeIdentif[replaseSumm]);
+            hameleon(target, sizeIdentif[replaseSumm], newOutIndMatrix[newLeftPositionTarget]);
 
             // появление handle при соприкосании блоков и разделении
             if (previousElement && previousElementStyleLeft + previousElementStyleWidth != Number(target.style.left.replace('px', ''))) {
@@ -102,10 +104,10 @@ function startResizing(e, direction) {
                 let previousElement = target.previousElementSibling ? target.previousElementSibling : undefined;
                 let previousElementLeftSide = previousElement ? Number(previousElement.style.left.replace('px', '')) : undefined;
                 let previousElementWidth = previousElement ? Number(previousElement.style.width.replace('px', '')) : undefined;
-
-                if (previousElement && previousElementLeftSide + previousElementWidth <= e.x - appLeftSide + previousElementWidth - 15) {
-
-                    let widthHero = Number(target.style.width.replace('px', ''));
+                let widthHero = Number(target.style.width.replace('px', ''));
+                
+                
+                if (previousElement){                                       
                     // изменение основного блока с левым handle
                     const diff = startX - e.clientX;
                     let newWidth = Math.min(Math.max(startWidth + diff, minWidth), maxWidth);
@@ -113,17 +115,20 @@ function startResizing(e, direction) {
                     const newWidthRounded = Math.round(newWidth / step) * step;
 
                     let replaseSumm = Number(target.style.width.replace('px', ''));
+                    let difference = newWidthRounded - widthHero;
 
+                    let newLeftPositionTarget = Math.round(newLeft / step) * step;
+                    
+                if(previousElementWidth - difference >= minWidth){
                     target.style.width = newWidthRounded + 'px'; // присвоение ширины
                     target.style.height = newWidthRounded + 'px'; // присвоение высоты
-                    target.style.left = Math.round(newLeft / step) * step + 'px';;
-                    hameleon(target, sizeIdentif[replaseSumm]);
+                    target.style.left = newLeftPositionTarget + 'px';;
+                    hameleon(target, sizeIdentif[replaseSumm],newOutIndMatrix[newLeftPositionTarget]);
                     // изменение блока с левой стороны
-                    let difference = newWidthRounded - widthHero;
                     previousElement.style.width = (previousElementWidth - difference) + 'px';
                     previousElement.style.height = (previousElementWidth - difference) + 'px';
                     hameleon(previousElement, sizeIdentif[previousElementWidth - difference]);
-
+                }
                 }
             }
 
@@ -139,19 +144,26 @@ function startResizing(e, direction) {
     }
 }
 
-let hameleon = function (inputElem, noteObj, width, left) {
-
+let hameleon = function (inputElem, noteObj, outIndx) {
+console.log(outIndx);
     inputElem.classList.replace(inputElem.classList[0], noteObj.class);
     inputElem.classList.add(noteObj.class);
     inputElem.dataset.data = noteObj.nameEng;
+    if(outIndx){
+        inputElem.dataset.outIndx = outIndx
+    }     
     if (inputElem.classList.contains('pause')) {
         inputElem.querySelector('p').textContent = noteObj.pauseSymbol;
+    } else if( noteObj.fontSymbol[inputElem.dataset.outIndx] ){
+        console.log(true);
+        inputElem.querySelector('p').textContent = noteObj.fontSymbol[inputElem.dataset.outIndx];
     } else {
-        inputElem.querySelector('p').textContent = noteObj.fontSymbol;
+        inputElem.querySelector('p').textContent = noteObj.fontSymbol.default;
     }
-    inputElem.style.width = width + 'px';
-    inputElem.style.height = width + 'px';
-    if (left) {
-        inputElem.style.left = left + 'px';
-    }
+
+    // inputElem.style.width = width + 'px';
+    // inputElem.style.height = width + 'px';
+    // if (left) {
+    //     inputElem.style.left = left + 'px';
+    // }
 }
