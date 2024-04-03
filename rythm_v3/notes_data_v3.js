@@ -101,10 +101,9 @@ class Note {
 
 // ================================ длительности кратные 16-ой ====================================
 const wholeNote_1 = new Note(
-    'wholeNote',
-    { 
+    'wholeNote', {
         'default': uncSbl.n1
-},
+    },
     uncSbl.p1,
     1,
     'целая',
@@ -114,10 +113,9 @@ const wholeNote_1 = new Note(
 );
 
 const halfNote_2w4w8w16 = new Note(
-    'halfNote_2w4w8w16',
-    { 
+    'halfNote_2w4w8w16', {
         'default': uncSbl.n2 + uncSbl.pnt + uncSbl.pnt + uncSbl.pnt
-},
+    },
     uncSbl.p2 + uncSbl.pnt + uncSbl.pnt + uncSbl.pnt,
     2,
     'половинная и четверть и восьмая c точкой',
@@ -127,10 +125,9 @@ const halfNote_2w4w8w16 = new Note(
 );
 
 const halfNote_2w4w8 = new Note(
-    'halfNote_2w4w8',
-    { 
+    'halfNote_2w4w8', {
         'default': uncSbl.n2 + uncSbl.pnt + uncSbl.pnt
-},
+    },
     uncSbl.p2 + uncSbl.pnt + uncSbl.pnt,
     2,
     'половинная и четверть и восьмая',
@@ -140,10 +137,9 @@ const halfNote_2w4w8 = new Note(
 );
 
 const halfNote_2w4w16 = new Note(
-    'halfNote_2w4w16',
-    { 
+    'halfNote_2w4w16', {
         'default': uncSbl.n2 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n16
-},
+    },
     uncSbl.p2 + '  ' + uncSbl.p4 + '  ' + uncSbl.p16,
     2,
     'половинная и четверть и шестнадцатая',
@@ -153,10 +149,9 @@ const halfNote_2w4w16 = new Note(
 );
 
 const halfNote_2w4 = new Note(
-    'halfNote_2w4',
-    { 
+    'halfNote_2w4', {
         'default': uncSbl.n2 + uncSbl.pnt
-},
+    },
     uncSbl.p2 + uncSbl.pnt,
     2,
     'половинная и четверть',
@@ -166,8 +161,7 @@ const halfNote_2w4 = new Note(
 );
 
 const halfNote_2w8w16 = new Note(
-    'halfNote_2w8w16',
-    { 
+    'halfNote_2w8w16', {
         'default': uncSbl.n2 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt
     },
     uncSbl.p2 + '  ' + uncSbl.p8 + uncSbl.pnt,
@@ -179,10 +173,9 @@ const halfNote_2w8w16 = new Note(
 );
 
 const halfNote_2w8 = new Note(
-    'halfNote_2w8',
-    { 
+    'halfNote_2w8', {
         'default': uncSbl.n2 + uncSbl.dash + uncSbl.n8
-},
+    },
     uncSbl.p2 + ' ' + uncSbl.p8,
     2,
     'половинная и восьмая',
@@ -192,9 +185,9 @@ const halfNote_2w8 = new Note(
 );
 
 const halfNote_2w16 = new Note(
-    'halfNote_2w16',
-    { 
-        'default': uncSbl.n2 + uncSbl.dash + uncSbl.n16},
+    'halfNote_2w16', {
+        'default': uncSbl.n2 + uncSbl.dash + uncSbl.n16
+    },
     uncSbl.p2 + ' ' + uncSbl.p16,
     2,
     'половинная и шестнадцатая',
@@ -204,8 +197,7 @@ const halfNote_2w16 = new Note(
 );
 
 const halfNote_2 = new Note(
-    'halfNote',
-    { 
+    'halfNote', {
         'default': uncSbl.n2
     },
     uncSbl.p2,
@@ -217,9 +209,9 @@ const halfNote_2 = new Note(
 );
 
 const quarterNote_4w8w16 = new Note(
-    'quarterNote_4w8w16',
-    { 
-        'default': uncSbl.n4 + uncSbl.pnt + uncSbl.pnt},
+    'quarterNote_4w8w16', {
+        'default': uncSbl.n4 + uncSbl.pnt + uncSbl.pnt
+    },
     uncSbl.p4 + uncSbl.pnt + uncSbl.pnt,
     3,
     'четвертная с точкой и шестнадцатой',
@@ -229,9 +221,9 @@ const quarterNote_4w8w16 = new Note(
 );
 
 const quarterNote_4w8 = new Note(
-    'quarterNote_4w8',
-    { 
-        'default': uncSbl.n4 + ' ' + uncSbl.pnt},
+    'quarterNote_4w8', {
+        'default': uncSbl.n4 + ' ' + uncSbl.pnt
+    },
     uncSbl.p4 + ' ' + uncSbl.pnt,
     3,
     'четвертная с точкой',
@@ -241,8 +233,7 @@ const quarterNote_4w8 = new Note(
 );
 
 const quarterNote_4w16 = new Note(
-    'quarterNote_4w16',
-    { 
+    'quarterNote_4w16', {
         'default': uncSbl.n4 + uncSbl.dash + uncSbl.n16
     },
     uncSbl.p4 + ' ' + uncSbl.p16,
@@ -255,12 +246,14 @@ const quarterNote_4w16 = new Note(
 
 
 const quarterNote_4 = new Note(
-    'quarterNote_4',
-    { 
+    'quarterNote_4', {
         'default': uncSbl.n4,
-   
-    }, 
-uncSbl.p4,
+        '2': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n16,
+        '6': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n16,
+        '10': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n16,
+
+    },
+    uncSbl.p4,
     4,
     'четвертная',
     'quarterNote_4',
@@ -270,8 +263,8 @@ uncSbl.p4,
 
 const eighthNote_8w16 = new Note(
     'eighthNote_8w16',
-    
-    { 
+
+    {
         'default': uncSbl.n8 + uncSbl.pnt,
         '3': uncSbl.n8 + uncSbl.dash + uncSbl.n16,
         '7': uncSbl.n8 + uncSbl.dash + uncSbl.n16,
@@ -290,13 +283,12 @@ const eighthNote_8w16 = new Note(
 
 
 const eighthNote_8 = new Note(
-    'eighthNote_8',
-    {
-        'default': uncSbl.n8, 
-    '4': uncSbl.n16 + uncSbl.dash + uncSbl.n16,
-    '8': uncSbl.n16 + uncSbl.dash + uncSbl.n16,
-    '12': uncSbl.n16 + uncSbl.dash + uncSbl.n16
-},
+    'eighthNote_8', {
+        'default': uncSbl.n8,
+        '4': uncSbl.n16 + uncSbl.dash + uncSbl.n16,
+        '8': uncSbl.n16 + uncSbl.dash + uncSbl.n16,
+        '12': uncSbl.n16 + uncSbl.dash + uncSbl.n16
+    },
     uncSbl.p8,
     8,
     'восьмая',
@@ -306,8 +298,7 @@ const eighthNote_8 = new Note(
 );
 
 const sixteenthNote_16 = new Note(
-    'sixteenthNote_16',
-    { 
+    'sixteenthNote_16', {
         'default': uncSbl.n16
     },
     uncSbl.p16,
@@ -363,7 +354,7 @@ const sizeIdentif = {
     [(baseSize / 16) * 14]: halfNote_2w4w8,
     [(baseSize / 16) * 15]: halfNote_2w4w8w16,
     [(baseSize / 16) * 16]: wholeNote_1,
-// триоли
+    // триоли
     [baseSize / 12]: eighthNote_8_triple,
     [baseSize / 6]: quarterNote_4_triple,
 }
@@ -372,7 +363,7 @@ const sizeIdentif = {
 
 // восьмая на позиции 4 8 12 должна менять символ на "16 16"
 // восьмая с точкой на позиции 3 7 11 должна менять символ на "8 16"
-				
+
 // четверть на позиции 2 6 10 должна менять символ на "8 точка 16"
 // четверть на позиции 3 7 11 должна менять символ на "8 8"
 // четверть на позиции 4 8 12 должна менять символ на "16 точка 8" и т.п.
