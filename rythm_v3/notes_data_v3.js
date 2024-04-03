@@ -343,8 +343,9 @@ const sixteenthNote_16 = new Note(
 
 // ======================  триольные длительности ====================
 const eighthNote_8_triple = new Note(
-    'eighthNote_8_triple',
-    uncSbl.n8,
+    'eighthNote_8_triple', {
+    'default': uncSbl.n8
+},
     uncSbl.p8,
     16,
     'триольная восьмая',
@@ -355,7 +356,9 @@ const eighthNote_8_triple = new Note(
 
 const quarterNote_4_triple = new Note(
     'quarterNote_4_triple',
-    uncSbl.n4,
+    {
+        'default': uncSbl.n4
+    },
     uncSbl.p4,
     4,
     'триольная четвертная',
