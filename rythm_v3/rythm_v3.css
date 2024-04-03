@@ -105,6 +105,7 @@ body {
     top: 50%;
     cursor: pointer;
     transform: translateY(-50%);
+    transition: ease-in 100ms;
 }
 
 .pause{
@@ -265,8 +266,8 @@ body {
 }
 
 .cardAlphabet_card_circle{
-    width: calc(var(--const) / 60);
-    height: calc(var(--const) / 60);
+    width: calc(var(--const) / 45);
+    height: calc(var(--const) / 45);
     border: 1px solid var(--matrix-color);
     border-radius: 50%;
 }

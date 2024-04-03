@@ -213,15 +213,16 @@ let borderCollapsResize = function (elem) {
 
 
     let resizePreviousElement = function () {
-        let heroElemLeftSide = Number(elem.style.left.replace('px', ''));
-        let leftSidePrevElem = Number(previousElement.style.left.replace('px', ''));
-        let widthPrevElem = Number(previousElement.style.width.replace('px', ''));
-        let rightSidePrevElem = leftSidePrevElem + widthPrevElem;
-        let summLeftCollaps = rightSidePrevElem - heroElemLeftSide;
+        let heroElemLeftSide = Number(elem.style.left.replace('px', '')); // лев сторона центрального
+        let leftSidePrevElem = Number(previousElement.style.left.replace('px', '')); // лев сторона левого блока
+        let widthPrevElem = Number(previousElement.style.width.replace('px', '')); // ширина пред блока
+        let rightSidePrevElem = leftSidePrevElem + widthPrevElem; // правая сторона пред блока
+        let summLeftCollaps = rightSidePrevElem - heroElemLeftSide; // вычисление накладки
+        console.log();
         let resultNewWidth = widthPrevElem - summLeftCollaps;
         if (rightSidePrevElem > heroElemLeftSide) {
             // previousElement.style.width = () + 'px';
-            hameleon(previousElement, sizeIdentif[resultNewWidth], resultNewWidth);
+            hameleon(previousElement, sizeIdentif[resultNewWidth], newOutIndMatrix[leftSidePrevElem], resultNewWidth);
         }
     }
     if (previousElement) {
@@ -237,7 +238,12 @@ let borderCollapsResize = function (elem) {
         let summCollaps = heroElemRightSide - leftSideNextElem;
         let resultNewWidth = widthNextElem - summCollaps;
         if (heroElemRightSide > leftSideNextElem) {
-            hameleon(nextElement, sizeIdentif[resultNewWidth], resultNewWidth, heroElemRightSide);
+            hameleon(
+                nextElement, 
+                sizeIdentif[resultNewWidth], 
+                newOutIndMatrix[heroElemRightSide],
+                resultNewWidth, 
+                heroElemRightSide);
         }
     }
     if (nextElement) {
@@ -292,12 +298,6 @@ let create_and_append_active_elem = function (clickElem, activeElemLayer, leftPo
         activeBlock.style.left = leftPosition;
 
     }
-
-    // } else {
-    //     console.log('Верхняя часть => ' + e.offsetY);
-    //     activeBlock = allNotes[e.target.dataset.symbol].createDivTag(e.target.dataset.outIndx, baseSize, true);
-    //     activeBlock.classList.add('pause');
-    // }
 
     activeBlock.classList.add('active');
 

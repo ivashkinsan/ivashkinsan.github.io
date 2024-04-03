@@ -118,6 +118,7 @@ function startResizing(e, direction) {
                     let difference = newWidthRounded - widthHero;
 
                     let newLeftPositionTarget = Math.round(newLeft / step) * step;
+                    let leftPositionPreviousElem = Number(previousElement.style.left.replace('px',''));
                     
                 if(previousElementWidth - difference >= minWidth){
                     target.style.width = newWidthRounded + 'px'; // присвоение ширины
@@ -125,9 +126,10 @@ function startResizing(e, direction) {
                     target.style.left = newLeftPositionTarget + 'px';;
                     hameleon(target, sizeIdentif[replaseSumm],newOutIndMatrix[newLeftPositionTarget]);
                     // изменение блока с левой стороны
+                    
                     previousElement.style.width = (previousElementWidth - difference) + 'px';
                     previousElement.style.height = (previousElementWidth - difference) + 'px';
-                    hameleon(previousElement, sizeIdentif[previousElementWidth - difference]);
+                    hameleon(previousElement, sizeIdentif[previousElementWidth - difference], newOutIndMatrix[leftPositionPreviousElem]);
                 }
                 }
             }
@@ -144,7 +146,7 @@ function startResizing(e, direction) {
     }
 }
 
-let hameleon = function (inputElem, noteObj, outIndx) {
+let hameleon = function (inputElem, noteObj, outIndx, width, left) {
 console.log(outIndx);
     inputElem.classList.replace(inputElem.classList[0], noteObj.class);
     inputElem.classList.add(noteObj.class);
@@ -161,9 +163,9 @@ console.log(outIndx);
         inputElem.querySelector('p').textContent = noteObj.fontSymbol.default;
     }
 
-    // inputElem.style.width = width + 'px';
-    // inputElem.style.height = width + 'px';
-    // if (left) {
-    //     inputElem.style.left = left + 'px';
-    // }
+    inputElem.style.width = width + 'px';
+    inputElem.style.height = width + 'px';
+    if (left) {
+        inputElem.style.left = left + 'px';
+    }
 }

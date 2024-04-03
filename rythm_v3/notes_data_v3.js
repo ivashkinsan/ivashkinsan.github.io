@@ -174,7 +174,13 @@ const halfNote_2w8w16 = new Note(
 
 const halfNote_2w8 = new Note(
     'halfNote_2w8', {
-    'default': uncSbl.n2 + uncSbl.dash + uncSbl.n8
+    'default': uncSbl.n2 + uncSbl.dash + uncSbl.n8,
+    '2': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
+    '3': uncSbl.n4 + uncSbl.pnt + uncSbl.dash + uncSbl.n4,
+    '4': uncSbl.n16 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n16,
+    '5': uncSbl.n4 +  uncSbl.dash + uncSbl.n4 + uncSbl.pnt,
+    '6': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
+    '7': uncSbl.n8 + uncSbl.dash + uncSbl.n2
 },
     uncSbl.p2 + ' ' + uncSbl.p8,
     2,
@@ -186,7 +192,14 @@ const halfNote_2w8 = new Note(
 
 const halfNote_2w16 = new Note(
     'halfNote_2w16', {
-    'default': uncSbl.n2 + uncSbl.dash + uncSbl.n16
+    'default': uncSbl.n2 + uncSbl.dash + uncSbl.n16,
+    '2': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n8,
+    '3': uncSbl.n4 + uncSbl.pnt + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
+    '4': uncSbl.n16 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n4,
+    '5': uncSbl.n4 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n16,
+    '6': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n4 + uncSbl.pnt,
+    '7': uncSbl.n8 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
+    '8': uncSbl.n16 + uncSbl.dash + uncSbl.n2
 },
     uncSbl.p2 + ' ' + uncSbl.p16,
     2,
@@ -198,7 +211,14 @@ const halfNote_2w16 = new Note(
 
 const halfNote_2 = new Note(
     'halfNote', {
-    'default': uncSbl.n2
+    'default': uncSbl.n2,
+    '2': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n16,
+    '3': uncSbl.n4 + uncSbl.pnt + uncSbl.dash + uncSbl.n8,
+    '4': uncSbl.n16 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
+    '5': uncSbl.n4 + uncSbl.dash + uncSbl.n4,
+    '6': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n16,
+    '7': uncSbl.n8 + uncSbl.dash + uncSbl.n4 + uncSbl.pnt,
+    '8': uncSbl.n16 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
 },
     uncSbl.p2,
     2,
@@ -210,7 +230,15 @@ const halfNote_2 = new Note(
 
 const quarterNote_4w8w16 = new Note(
     'quarterNote_4w8w16', {
-    'default': uncSbl.n4 + uncSbl.pnt + uncSbl.pnt
+    'default': uncSbl.n4 + uncSbl.pnt + uncSbl.pnt,
+    '2': uncSbl.n8 + uncSbl.pnt + uncSbl.dash  + uncSbl.n4,
+    '3': uncSbl.n4 + uncSbl.pnt + uncSbl.dash  + uncSbl.n16,
+    '4': uncSbl.n16 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n8,
+    '5': uncSbl.n4 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
+    '6': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n4,
+    '7': uncSbl.n8 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n16,
+    '8': uncSbl.n16 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n8,
+    '10': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n4
 },
     uncSbl.p4 + uncSbl.pnt + uncSbl.pnt,
     3,
