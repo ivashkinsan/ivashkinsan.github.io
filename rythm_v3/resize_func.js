@@ -35,6 +35,7 @@ function startResizing(e, direction) {
             let nextElement = target.nextElementSibling ? target.nextElementSibling : undefined;
             let nextElementStyleLeft = nextElement ? Number(nextElement.style.left.replace('px', '')) : undefined;
             let nextElementStyleWidth = nextElement ? Number(nextElement.style.width.replace('px', '')) : undefined;
+            let previousElement = target.previousElementSibling ? target.previousElementSibling : undefined;
             if (nextElement) {
 
                 if (e.x < nextElementStyleLeft + appLeftSide) {
@@ -59,6 +60,16 @@ function startResizing(e, direction) {
                 handle.style.display = 'block';
             }
 
+            if (previousElement.classList.contains('sixteenthNote_16') && target.classList.contains('eighthNote_8')) {
+                let handle = target.querySelector('.left_double_arrow');
+                handle.classList.remove('display_none');
+            }
+            if (previousElement.classList.contains('sixteenthNote_16') && target.classList.contains('sixteenthNote_16')) {
+                let handle = target.querySelector('.left_double_arrow');
+                handle.classList.add('display_none');
+            }
+
+
         } else if (direction === 'left') {
             const diff = startX - e.clientX;
             let newWidth = Math.min(Math.max(startWidth + diff, minWidth), maxWidth);
@@ -68,6 +79,7 @@ function startResizing(e, direction) {
             let replaseSumm = target.style.width;
             replaseSumm = replaseSumm.replace('px', '');
 
+            let nextElement = target.nextElementSibling ? target.nextElementSibling : undefined;
             let previousElement = target.previousElementSibling ? target.previousElementSibling : undefined;
             let previousElementStyleLeft = previousElement ? Number(previousElement.style.left.replace('px', '')) : undefined;
             let previousElementStyleWidth = previousElement ? Number(previousElement.style.width.replace('px', '')) : undefined;
@@ -95,19 +107,23 @@ function startResizing(e, direction) {
                 let handle = target.querySelector('.left_double_arrow');
                 handle.style.display = 'block';
             }
+            if (target.classList.contains('sixteenthNote_16') && nextElement.classList.contains('sixteenthNote_16')) {
+                let handle = target.querySelector('.left_double_arrow');
+                handle.classList.add('display_none');
+            }
 
         } else if (direction === 'left_right') { // изменение двух блоков одновременно
 
             let searchHandleClass = target.querySelector('.left_double_arrow');
-            if (searchHandleClass.style.display == 'block') {
+            if (searchHandleClass.classList.contains('display_block')) {
 
                 let previousElement = target.previousElementSibling ? target.previousElementSibling : undefined;
                 let previousElementLeftSide = previousElement ? Number(previousElement.style.left.replace('px', '')) : undefined;
                 let previousElementWidth = previousElement ? Number(previousElement.style.width.replace('px', '')) : undefined;
                 let widthHero = Number(target.style.width.replace('px', ''));
-                
-                
-                if (previousElement){                                       
+
+
+                if (previousElement) {
                     // изменение основного блока с левым handle
                     const diff = startX - e.clientX;
                     let newWidth = Math.min(Math.max(startWidth + diff, minWidth), maxWidth);
@@ -118,19 +134,21 @@ function startResizing(e, direction) {
                     let difference = newWidthRounded - widthHero;
 
                     let newLeftPositionTarget = Math.round(newLeft / step) * step;
-                    let leftPositionPreviousElem = Number(previousElement.style.left.replace('px',''));
-                    
-                if(previousElementWidth - difference >= minWidth){
-                    target.style.width = newWidthRounded + 'px'; // присвоение ширины
-                    target.style.height = newWidthRounded + 'px'; // присвоение высоты
-                    target.style.left = newLeftPositionTarget + 'px';;
-                    hameleon(target, sizeIdentif[replaseSumm],newOutIndMatrix[newLeftPositionTarget]);
-                    // изменение блока с левой стороны
-                    
-                    previousElement.style.width = (previousElementWidth - difference) + 'px';
-                    previousElement.style.height = (previousElementWidth - difference) + 'px';
-                    hameleon(previousElement, sizeIdentif[previousElementWidth - difference], newOutIndMatrix[leftPositionPreviousElem]);
-                }
+                    let leftPositionPreviousElem = Number(previousElement.style.left.replace('px', ''));
+
+                    if (previousElementWidth - difference >= minWidth) {
+                        target.style.width = newWidthRounded + 'px'; // присвоение ширины
+                        target.style.height = newWidthRounded + 'px'; // присвоение высоты
+                        target.style.left = newLeftPositionTarget + 'px';;
+                        hameleon(target, sizeIdentif[replaseSumm], newOutIndMatrix[newLeftPositionTarget]);
+                        // изменение блока с левой стороны
+
+                        previousElement.style.width = (previousElementWidth - difference) + 'px';
+                        previousElement.style.height = (previousElementWidth - difference) + 'px';
+                        hameleon(previousElement, sizeIdentif[previousElementWidth - difference], newOutIndMatrix[leftPositionPreviousElem]);
+                    }
+
+
                 }
             }
 
@@ -151,12 +169,12 @@ let hameleon = function (inputElem, noteObj, outIndx, width, left) {
     inputElem.classList.replace(inputElem.classList[0], noteObj.class);
     inputElem.classList.add(noteObj.class);
     inputElem.dataset.data = noteObj.nameEng;
-    if(outIndx){
+    if (outIndx) {
         inputElem.dataset.outIndx = outIndx
-    }     
+    }
     if (inputElem.classList.contains('pause')) {
         inputElem.querySelector('p').textContent = noteObj.pauseSymbol.default;
-    } else if( noteObj.fontSymbol[inputElem.dataset.outIndx] ){
+    } else if (noteObj.fontSymbol[inputElem.dataset.outIndx]) {
         console.log(true);
         inputElem.querySelector('p').textContent = noteObj.fontSymbol[inputElem.dataset.outIndx];
     } else {

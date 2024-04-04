@@ -97,7 +97,7 @@ body {
     /* align-items: center; */
     font-family: MAESTRO;
 
-    
+
     text-align: center;
     border-radius: 50%;
     z-index: 1000;
@@ -108,11 +108,11 @@ body {
     transition: ease-in 100ms;
 }
 
-.pause{
+.pause {
     box-shadow: none;
     /* box-shadow: 0 0 0 1.5px rgba(233, 242, 156, 0.404) inset; */
     border: 2.5px dotted rgba(255, 255, 255, 0.465);
-    
+
 }
 
 .active>p {
@@ -123,7 +123,7 @@ body {
     z-index: 999;
 }
 
-.pause>p{
+.pause>p {
     margin-top: -8px;
     font-size: 20px;
 }
@@ -158,102 +158,127 @@ body {
 }
 
 .right_double_arrow {
-    display: none;
+    /* display: none; */
     right: -2.5px;
     cursor: url('/cursor/left-right_32px.png')16 16, auto;
 }
 
+.display_block {
+    display: block;
+}
+
+.display_none {
+    display: none;
+}
+
+
 /* ========== размер длительностей ========== */
-.wholeNote > p{
-    font-size: calc(var(--font-size) * 4.75 );
+.wholeNote>p {
+    font-size: calc(var(--font-size) * 4.75);
     line-height: calc(var(--font-size) * 8.5);
 }
-.halfNote_2w4w8w16 > p{
-    font-size: calc(var(--font-size) * 4.5 );
+
+.halfNote_2w4w8w16>p {
+    font-size: calc(var(--font-size) * 4.5);
     line-height: calc(var(--font-size) * 8);
 }
-.halfNote_2w4w8 > p{
+
+.halfNote_2w4w8>p {
     font-size: calc(var(--font-size) * 4.25);
     line-height: calc(var(--font-size) * 7.5);
 }
-.halfNote_2w4w16 > p{
-    font-size: calc(var(--font-size) * 4 );
+
+.halfNote_2w4w16>p {
+    font-size: calc(var(--font-size) * 4);
     line-height: calc(var(--font-size) * 7);
 }
-.halfNote_2w4 > p{
+
+.halfNote_2w4>p {
     font-size: calc(var(--font-size) * 3.75);
     line-height: calc(var(--font-size) * 6.5);
 }
-.halfNote_2w8w16 > p{
-    font-size: calc(var(--font-size) * 3.5 );
+
+.halfNote_2w8w16>p {
+    font-size: calc(var(--font-size) * 3.5);
     line-height: calc(var(--font-size) * 6);
 }
-.halfNote_2w8 > p{
+
+.halfNote_2w8>p {
     font-size: calc(var(--font-size) * 3.25);
     line-height: calc(var(--font-size) * 5.5);
 }
-.halfNote_2w16 > p{
-    font-size: calc(var(--font-size) * 3 );
+
+.halfNote_2w16>p {
+    font-size: calc(var(--font-size) * 3);
     line-height: calc(var(--font-size) * 5);
 }
-.halfNote > p{  
-    font-size: calc(var(--font-size) * 2.75 );
+
+.halfNote>p {
+    font-size: calc(var(--font-size) * 2.75);
     line-height: calc(var(--font-size) * 4.5);
-    }
-.quarterNote_4w8w16 > p{
-    font-size: calc(var(--font-size) * 2.5 );
+}
+
+.quarterNote_4w8w16>p {
+    font-size: calc(var(--font-size) * 2.5);
     line-height: calc(var(--font-size) * 4);
 }
-.quarterNote_4w8 > p{
-    font-size: calc(var(--font-size) * 2.25 );
+
+.quarterNote_4w8>p {
+    font-size: calc(var(--font-size) * 2.25);
     line-height: calc(var(--font-size) * 3.5);
 }
-.quarterNote_4w16 > p{
-    font-size: calc(var(--font-size) * 2 );
+
+.quarterNote_4w16>p {
+    font-size: calc(var(--font-size) * 2);
     line-height: calc(var(--font-size) * 3);
 }
-.quarterNote_4 > p{
-    font-size: calc(var(--font-size) * 1.75 );
+
+.quarterNote_4>p {
+    font-size: calc(var(--font-size) * 1.75);
     line-height: calc(var(--font-size) * 2.5);
 }
-.eighthNote_8w16 > p{
-    font-size: calc(var(--font-size) * 1.5 );
+
+.eighthNote_8w16>p {
+    font-size: calc(var(--font-size) * 1.5);
     line-height: calc(var(--font-size) * 3);
 }
-.eighthNote_8 > p{
-    font-size: calc(var(--font-size) * 1.25 );
+
+.eighthNote_8>p {
+    font-size: calc(var(--font-size) * 1.25);
     line-height: calc(var(--font-size) * 2.5);
 }
-.sixteenthNote_16 > p{
-    font-size: calc(var(--font-size) * 1 );
+
+.sixteenthNote_16>p {
+    font-size: calc(var(--font-size) * 1);
     line-height: calc(var(--font-size) * 1.5);
 }
 
-.eighthNote_8_triple > p{
-    font-size: calc(var(--font-size) * 1.1 );
+.eighthNote_8_triple>p {
+    font-size: calc(var(--font-size) * 1.1);
     line-height: calc(var(--font-size) * 1.5);
 }
 
-.quarterNote_4_triple > p{
-    font-size: calc(var(--font-size) * 1.75 );
+.quarterNote_4_triple>p {
+    font-size: calc(var(--font-size) * 1.75);
     line-height: calc(var(--font-size) * 2.5);
 }
 
 /* ======================== cardAlphabet ========================== */
-.cardAlphabetContain{
+.cardAlphabetContain {
     position: absolute;
     display: flex;
     flex-direction: column;
     top: 15px;
     left: 15px;
     width: auto;
-    
+
 }
+
 /* .cardAlphabet{
 
 } */
 
-.cardAlphabet_card{
+.cardAlphabet_card {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -265,18 +290,19 @@ body {
     cursor: grab;
 }
 
-.cardAlphabet_card_circle{
+.cardAlphabet_card_circle {
     width: calc(var(--const) / 45);
     height: calc(var(--const) / 45);
     border: 1px solid var(--matrix-color);
     border-radius: 50%;
 }
-.card_circle_on{
+
+.card_circle_on {
     background-color: var(--matrix-color);
 }
 
 /* ======================= drop ========================= */
-.drop_insert_border_on{
+.drop_insert_border_on {
     /* box-shadow: 0 0 0 1px red inset; */
     border: 1.5px dashed #dedede;
 }

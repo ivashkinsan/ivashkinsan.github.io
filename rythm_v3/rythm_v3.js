@@ -174,7 +174,7 @@ const backgroundMatrix = {
 
             newOutIndMatrix[leftPosition] = String(outIndx + 1);
             leftPosition = leftPosition + (baseSize / 16);
-            
+
         }
         return [containMatrix, activeElemLayer];
     }
@@ -239,10 +239,10 @@ let borderCollapsResize = function (elem) {
         let resultNewWidth = widthNextElem - summCollaps;
         if (heroElemRightSide > leftSideNextElem) {
             hameleon(
-                nextElement, 
-                sizeIdentif[resultNewWidth], 
+                nextElement,
+                sizeIdentif[resultNewWidth],
                 newOutIndMatrix[heroElemRightSide],
-                resultNewWidth, 
+                resultNewWidth,
                 heroElemRightSide);
         }
     }
@@ -253,9 +253,9 @@ let borderCollapsResize = function (elem) {
 
     if (previousElement && nextElement) {
         let handle = elem.querySelector('.left_double_arrow');
-        handle.style.display = 'block';
+        handle.classList.remove('display_none');
         let handleNext = nextElement.querySelector('.left_double_arrow');
-        handleNext.style.display = 'block';
+        handle.classList.remove('display_none');
     }
 
 
@@ -263,13 +263,16 @@ let borderCollapsResize = function (elem) {
     heroElPositionR = Number(elem.style.left.replace('px', '')) + Number(elem.style.width.replace('px', ''));
     if (prElPositionR == heroElPositionL) {
         let handle = elem.querySelector('.left_double_arrow');
-        handle.style.display = 'block';
+        handle.classList.remove('display_none');
     }
     if (heroElPositionR == nxtElPosition) {
         let handle = nextElement.querySelector('.left_double_arrow');
-        handle.style.display = 'block';
+        handle.classList.remove('display_none');
     }
-
+    if (previousElement && previousElement.classList.contains('sixteenthNote_16') && elem.classList.contains('sixteenthNote_16')) {
+        let handle = elem.querySelector('.left_double_arrow');
+        handle.classList.add('display_none');
+    }
 }
 
 let insertSortedDiv = function (container, newDiv) {
@@ -307,21 +310,36 @@ let create_and_append_active_elem = function (clickElem, activeElemLayer, leftPo
 
     // есть ли граничащий блок с левой стороны ???
     let heroLeftSide = Number(activeBlock.style.left.replace('px', ''));
-    let heroWidth = Number(activeBlock.style.width.replace('px', ''))
+    let heroWidth = Number(activeBlock.style.width.replace('px', ''));
     let previousActiveBlock = activeBlock.previousElementSibling ? activeBlock.previousElementSibling : undefined;
     let previousActiveBlockLeftSide = previousActiveBlock ? Number(previousActiveBlock.style.left.replace('px', '')) : undefined;
     let previousActiveBlockWidth = previousActiveBlock ? Number(previousActiveBlock.style.width.replace('px', '')) : undefined;
     let nextActiveBlock = activeBlock.nextElementSibling ? activeBlock.nextElementSibling : undefined;
     let nextActiveBlockLeftSide = nextActiveBlock ? Number(nextActiveBlock.style.left.replace('px', '')) : undefined;
     let nextActiveBlockWidth = nextActiveBlock ? Number(nextActiveBlock.style.width.replace('px', '')) : undefined;
+
+
     if (nextActiveBlock && nextActiveBlockLeftSide == heroLeftSide + heroWidth) {
         let handle = nextActiveBlock.querySelector('.left_double_arrow');
-        handle.style.display = 'block';
+        handle.classList.remove('display_none');
     }
     if (previousActiveBlock && previousActiveBlockLeftSide + previousActiveBlockWidth == heroLeftSide) {
         let handle = activeBlock.querySelector('.left_double_arrow');
-        handle.style.display = 'block';
+        handle.classList.remove('display_none');
     }
+
+    if (nextActiveBlock && activeBlock.classList.contains('sixteenthNote_16') && nextActiveBlock.classList.contains('sixteenthNote_16')) {
+
+        let handle = nextActiveBlock.querySelector('.left_double_arrow');
+        console.log(handle);
+        handle.classList.add('display_none');
+    }
+
+    // console.log(activeBlock);
+    // console.log(previousActiveBlock);
+
+
+
     borderCollapsResize(activeBlock);
 
     activeBlock.addEventListener('contextmenu', (event) => {
@@ -330,11 +348,11 @@ let create_and_append_active_elem = function (clickElem, activeElemLayer, leftPo
             event.target.remove();
             if (nextActiveBlock) {
                 let handle = nextActiveBlock.querySelector('.left_double_arrow');
-                handle.style.display = 'none';
+                handle.classList.add('display_none');
             }
             if (nextActiveBlock && previousActiveBlock) {
                 let handle = nextActiveBlock.querySelector('.left_double_arrow');
-                handle.style.display = 'none';
+                handle.classList.add('display_none');
             }
         }
     });
