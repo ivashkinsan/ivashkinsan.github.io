@@ -147,7 +147,7 @@ function startResizing(e, direction) {
 }
 
 let hameleon = function (inputElem, noteObj, outIndx, width, left) {
-console.log(outIndx);
+
     inputElem.classList.replace(inputElem.classList[0], noteObj.class);
     inputElem.classList.add(noteObj.class);
     inputElem.dataset.data = noteObj.nameEng;
@@ -155,7 +155,7 @@ console.log(outIndx);
         inputElem.dataset.outIndx = outIndx
     }     
     if (inputElem.classList.contains('pause')) {
-        inputElem.querySelector('p').textContent = noteObj.pauseSymbol;
+        inputElem.querySelector('p').textContent = noteObj.pauseSymbol.default;
     } else if( noteObj.fontSymbol[inputElem.dataset.outIndx] ){
         console.log(true);
         inputElem.querySelector('p').textContent = noteObj.fontSymbol[inputElem.dataset.outIndx];
