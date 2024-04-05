@@ -306,3 +306,12 @@ body {
     /* box-shadow: 0 0 0 1px red inset; */
     border: 1.5px dashed #dedede;
 }
+
+.drag_Start_end{
+    box-shadow: 0 0 0 2px white;
+
+}
+
+.newTripletLine{
+    background-color: #DDB078;
+}

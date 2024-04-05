@@ -60,16 +60,16 @@ function startResizing(e, direction) {
                 handle.style.display = 'block';
             }
 
-            if (previousElement.classList.contains('sixteenthNote_16') && target.classList.contains('eighthNote_8')) {
-                let handle = target.querySelector('.left_double_arrow');
-                handle.classList.remove('display_none');
+            if(previousElement){
+                if (previousElement.classList.contains('sixteenthNote_16') && target.classList.contains('eighthNote_8')) {
+                    let handle = target.querySelector('.left_double_arrow');
+                    handle.classList.remove('display_none');
+                }
+                if (previousElement.classList.contains('sixteenthNote_16') && target.classList.contains('sixteenthNote_16')) {
+                    let handle = target.querySelector('.left_double_arrow');
+                    handle.classList.add('display_none');
+                }
             }
-            if (previousElement.classList.contains('sixteenthNote_16') && target.classList.contains('sixteenthNote_16')) {
-                let handle = target.querySelector('.left_double_arrow');
-                handle.classList.add('display_none');
-            }
-
-
         } else if (direction === 'left') {
             const diff = startX - e.clientX;
             let newWidth = Math.min(Math.max(startWidth + diff, minWidth), maxWidth);
@@ -107,11 +107,12 @@ function startResizing(e, direction) {
                 let handle = target.querySelector('.left_double_arrow');
                 handle.style.display = 'block';
             }
-            if (target.classList.contains('sixteenthNote_16') && nextElement.classList.contains('sixteenthNote_16')) {
-                let handle = target.querySelector('.left_double_arrow');
-                handle.classList.add('display_none');
+            if(nextElement){
+                if (target.classList.contains('sixteenthNote_16') && nextElement.classList.contains('sixteenthNote_16')) {
+                    let handle = target.querySelector('.left_double_arrow');
+                    handle.classList.add('display_none');
+                }
             }
-
         } else if (direction === 'left_right') { // изменение двух блоков одновременно
 
             let searchHandleClass = target.querySelector('.left_double_arrow');
@@ -157,7 +158,7 @@ function startResizing(e, direction) {
     }
 
     function stopResizing(e) {
-        e.preventDefault(true);
+        e.preventDefault();
         e.stopPropagation();
         document.documentElement.removeEventListener('mousemove', resize);
         document.documentElement.removeEventListener('mouseup', stopResizing);
@@ -175,7 +176,7 @@ let hameleon = function (inputElem, noteObj, outIndx, width, left) {
     if (inputElem.classList.contains('pause')) {
         inputElem.querySelector('p').textContent = noteObj.pauseSymbol.default;
     } else if (noteObj.fontSymbol[inputElem.dataset.outIndx]) {
-        console.log(true);
+        // console.log(true);
         inputElem.querySelector('p').textContent = noteObj.fontSymbol[inputElem.dataset.outIndx];
     } else {
         inputElem.querySelector('p').textContent = noteObj.fontSymbol.default;
@@ -185,5 +186,35 @@ let hameleon = function (inputElem, noteObj, outIndx, width, left) {
     inputElem.style.height = width + 'px';
     if (left) {
         inputElem.style.left = left + 'px';
+    }
+}
+
+let coord = {};
+let coordCreate = function(){
+    coord = {
+        left: {
+            start: '',
+            end: '',
+            width: '',
+            newStart: '',
+            newEnd: '',
+            newWidth: ''
+        },
+        center: {
+            start: '',
+            end: '',
+            width: '',
+            newStart: '',
+            newEnd: '',
+            newWidth: ''
+        },
+        right: {
+            start: '',
+            end: '',
+            width: '',
+            newStart: '',
+            newEnd: '',
+            newWidth: ''
+        }
     }
 }

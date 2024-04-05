@@ -165,7 +165,10 @@ const backgroundMatrix = {
                 }
 
                 new_circle.dataset.outIndx = outIndx + 1;
+                new_circle.draggable = false;
                 new_circle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
                     let leftTargerPosition = e.target.style.left;
                     create_and_append_active_elem(e.target, activeElemLayer, leftTargerPosition, 'click');
                 });
@@ -179,8 +182,6 @@ const backgroundMatrix = {
         return [containMatrix, activeElemLayer];
     }
 }
-
-console.log(newOutIndMatrix);
 
 // функция удаления активных элементов внутри более большого активного блока
 let delElemInBigElem = function (elem, eventType) {
@@ -289,9 +290,6 @@ let create_and_append_active_elem = function (clickElem, activeElemLayer, leftPo
     let activeBlock;
     let sizeElemForGenerate = Number(clickElem.style.width.replace('px', ''));
 
-    // if (e.offsetY > Number(e.target.style.height.replace('px', '')) / 2) {
-    // console.log('Нижняя часть => ' + e.offsetY);
-
     if (is_pause == true) {
         activeBlock = sizeIdentif[sizeElemForGenerate].createDivTag(clickElem.dataset.outIndx, baseSize, true);
         activeBlock.style.left = leftPosition;
@@ -335,11 +333,6 @@ let create_and_append_active_elem = function (clickElem, activeElemLayer, leftPo
         handle.classList.add('display_none');
     }
 
-    // console.log(activeBlock);
-    // console.log(previousActiveBlock);
-
-
-
     borderCollapsResize(activeBlock);
 
     activeBlock.addEventListener('contextmenu', (event) => {
@@ -358,6 +351,8 @@ let create_and_append_active_elem = function (clickElem, activeElemLayer, leftPo
     });
 
     activeBlock.addEventListener('mousedown', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
         if (event.button == 0) {
             let evTargetWidth = Number(event.target.style.width.replace('px', ''));
             if (!activeBlock.classList.contains('pause')) {

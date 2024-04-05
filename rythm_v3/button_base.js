@@ -26,7 +26,7 @@ const alphabet = {
     'a': '1 0',
     'b': '0 1',
     'c': '1 1',
-    'd': '1 1',
+    'd': '0 0',
 }
 
 const cardAlphabet = function () {
@@ -47,7 +47,8 @@ const cardAlphabet = function () {
 
             cardAlphabet_card.append(cardAlphabet_card_circle);
         }
-        cardAlphabet_card.addEventListener('dragstart', drag, false);
+        cardAlphabet_card.addEventListener('dragstart', dragstart, false);
+        cardAlphabet_card.addEventListener('dragend', dragend, false);
         cardAlphabet.append(cardAlphabet_card);
     }
 
@@ -56,40 +57,68 @@ const cardAlphabet = function () {
 let appForInsertCardAlphabet = document.querySelector('.cardAlphabetContain');
 appForInsertCardAlphabet.append(cardAlphabet());
 
-function drag(event) {
 
-    event.dataTransfer.setData('text', event.target);
-    event.dataTransfer.setData('customData', event.target.dataset.data);
+
+let add_and_remove_eventListener = function(add){
+    const all_droppable_elem = document.querySelectorAll('.mtrxCircle');
+    if(add){
+        for (let item of all_droppable_elem) {
+            // item.addEventListener('dragstart', dragstart, false);
+            item.addEventListener('dragover', dragover, false);
+            item.addEventListener('dragleave', dragLeave, false);
+            item.addEventListener('drop', drop, false);
+        }
+    } else {
+        for (let item of all_droppable_elem) {
+        item.removeEventListener('dragover', dragover, false);
+        item.removeEventListener('dragleave', dragLeave, false);
+        item.removeEventListener('drop', drop, false);
+        }
+    }
 }
 
-function allowDrop(event) {
-    event.preventDefault();
-    console.log('сработало');
 
+function dragstart(event) {
+    event.stopPropagation();
+    event.dataTransfer.setData('elem', event.target);
+    event.dataTransfer.setData('customData', event.target.dataset.data);
+
+this.classList.add('drag_Start_end');
+console.log('dragstart');
+
+add_and_remove_eventListener(true);
+}
+
+function dragend(event) {
+    console.log('dragend');
+    event.stopPropagation();
+    this.classList.remove('drag_Start_end');
+
+
+}
+
+function dragover(event) {
+    console.log('dragover');
+    event.preventDefault();
     event.target.classList.add('drop_insert_border_on');
 }
 
 function dragLeave(event) {
-    event.target.classList.remove('drop_insert_border_on');
+    console.log('dragLeave');
+        event.preventDefault();
+        event.target.classList.remove('drop_insert_border_on');
+
+
 }
 function drop(event) {
+    console.log('drop');
     event.preventDefault();
     create_note_after_drop(event, event.target);
+    add_and_remove_eventListener(false);
 }
 
-// var data = event.dataTransfer.getData('text');
-// var draggedElement = document.getElementById(data);
-// event.target.appendChild(draggedElement);
-
-const all_droppable_elem = document.querySelectorAll('.mtrxCircle');
-for (let item of all_droppable_elem) {
-    item.addEventListener('dragover', allowDrop, false);
-    item.addEventListener('dragleave', dragLeave, false);
-    item.addEventListener('drop', drop, false);
-}
 
 let create_note_after_drop = function (event, dropElem) {
-
     let allActiveForDelete = activeElemLayer.querySelectorAll('.active');
     let dropElemLeftSide = Number(dropElem.style.left.replace('px', ''));
     let dropElemRightSide = dropElemLeftSide + Number(dropElem.style.width.replace('px', ''));
@@ -100,9 +129,10 @@ let create_note_after_drop = function (event, dropElem) {
             item.remove();
         }
     }
+  
     dropElem.classList.remove('drop_insert_border_on');
+    // let startElem = event.dataTransfer.getData('elem');
 
-    // event.target.click();
     let customData = event.dataTransfer.getData('customData');
     let customData_array = customData.split(' ');
     let interval = Number(dropElem.style.width.replace('px', '')) / customData_array.length;
@@ -110,22 +140,35 @@ let create_note_after_drop = function (event, dropElem) {
     for (let item of customData_array) {
 
         if (item == '1') {
-            console.log(sizeIdentif[interval]);
+
             let newCircle = sizeIdentif[interval].createDivTag('', interval);
-            newCircle.style.width = interval + 'px';
-            newCircle.style.height = interval + 'px';
-            
-            // newCircle.style.left = target_left_position + 'px';
+            // newCircle.style.width = interval + 'px';
+            // newCircle.style.height = interval + 'px';
+            createTripletLine(customData_array.length, newCircle,interval);
             create_and_append_active_elem(newCircle, activeElemLayer, target_left_position + 'px', 'drop');
         }
         if (item == '0') {
             let newCircle = sizeIdentif[interval].createDivTag('', interval, true);
-            newCircle.style.width = interval + 'px';
-            newCircle.style.height = interval + 'px';
-            // newCircle.style.left = target_left_position + 'px';
+            // newCircle.style.width = interval + 'px';
+            // newCircle.style.height = interval + 'px';
+
             create_and_append_active_elem(newCircle, activeElemLayer, target_left_position + 'px', 'drop', true);
+            createTripletLine(customData_array.length, newCircle,interval);
         }
         target_left_position = target_left_position + interval;
+    }
 
+   
+}
+
+let createTripletLine = function(count, parentElem, interval){
+    let number = count ? Number(count) : undefined;
+    if(number == 3){
+        let newTripletLine = document.createElement('div');
+        newTripletLine.classList.add('newTripletLine');
+        newTripletLine.style.width = interval * 3 + 'px';
+        newTripletLine.style.height = 3 + 'px';
+        parentElem.append(newTripletLine);
+        console.log('3');
     }
 }

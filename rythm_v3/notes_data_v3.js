@@ -109,8 +109,6 @@ const wholeNote_1 = new Note(
     (420 * 16)
 );
 
-console.log(wholeNote_1.createDivTag());
-
 const halfNote_2w4w8w16 = new Note(
     'halfNote_2w4w8w16', {
     'default': uncSbl.n2 + uncSbl.pnt + uncSbl.pnt + uncSbl.pnt
