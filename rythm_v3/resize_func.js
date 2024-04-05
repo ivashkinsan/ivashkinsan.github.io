@@ -60,7 +60,7 @@ function startResizing(e, direction) {
                 handle.style.display = 'block';
             }
 
-            if(previousElement){
+            if (previousElement) {
                 if (previousElement.classList.contains('sixteenthNote_16') && target.classList.contains('eighthNote_8')) {
                     let handle = target.querySelector('.left_double_arrow');
                     handle.classList.remove('display_none');
@@ -107,7 +107,7 @@ function startResizing(e, direction) {
                 let handle = target.querySelector('.left_double_arrow');
                 handle.style.display = 'block';
             }
-            if(nextElement){
+            if (nextElement) {
                 if (target.classList.contains('sixteenthNote_16') && nextElement.classList.contains('sixteenthNote_16')) {
                     let handle = target.querySelector('.left_double_arrow');
                     handle.classList.add('display_none');
@@ -189,32 +189,32 @@ let hameleon = function (inputElem, noteObj, outIndx, width, left) {
     }
 }
 
-let coord = {};
-let coordCreate = function(){
-    coord = {
-        left: {
-            start: '',
-            end: '',
-            width: '',
-            newStart: '',
-            newEnd: '',
-            newWidth: ''
-        },
-        center: {
-            start: '',
-            end: '',
-            width: '',
-            newStart: '',
-            newEnd: '',
-            newWidth: ''
-        },
-        right: {
-            start: '',
-            end: '',
-            width: '',
-            newStart: '',
-            newEnd: '',
-            newWidth: ''
-        }
-    }
-}
+// let coord = {};
+// let coordCreate = function(){
+//     coord = {
+//         left: {
+//             start: '',
+//             end: '',
+//             width: '',
+//             newStart: '',
+//             newEnd: '',
+//             newWidth: ''
+//         },
+//         center: {
+//             start: '',
+//             end: '',
+//             width: '',
+//             newStart: '',
+//             newEnd: '',
+//             newWidth: ''
+//         },
+//         right: {
+//             start: '',
+//             end: '',
+//             width: '',
+//             newStart: '',
+//             newEnd: '',
+//             newWidth: ''
+//         }
+//     }
+// }
