@@ -47,7 +47,6 @@ function startResizing(e, direction) {
                 target.style.width = Math.round(newWidth / step) * step + 'px';
                 target.style.height = Math.round(newWidth / step) * step + 'px';
             }
-
             hameleon(target, sizeIdentif[replaseSumm]);
 
             // появление handle при соприкосании блоков и разделении
@@ -148,12 +147,8 @@ function startResizing(e, direction) {
                         previousElement.style.height = (previousElementWidth - difference) + 'px';
                         hameleon(previousElement, sizeIdentif[previousElementWidth - difference], newOutIndMatrix[leftPositionPreviousElem]);
                     }
-
-
                 }
             }
-
-
         }
     }
 
@@ -181,7 +176,6 @@ let hameleon = function (inputElem, noteObj, outIndx, width, left) {
     } else {
         inputElem.querySelector('p').textContent = noteObj.fontSymbol.default;
     }
-
     inputElem.style.width = width + 'px';
     inputElem.style.height = width + 'px';
     if (left) {
@@ -190,8 +184,8 @@ let hameleon = function (inputElem, noteObj, outIndx, width, left) {
 }
 
 let coord = {};
-let coordCreate = function(){
-    coord = {
+let coordCreate = function(name){
+    coord[name] = {
         left: {
             start: '',
             end: '',
@@ -220,4 +214,5 @@ let coordCreate = function(){
     return coord;
 }
 
-console.dir(coordCreate());
+console.dir(coordCreate('first'));
+console.dir(coordCreate('second'));
