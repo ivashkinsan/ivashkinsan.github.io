@@ -98,7 +98,8 @@ class Note {
 
 // ================================ длительности кратные 16-ой ====================================
 const wholeNote_1 = new Note(
-    'wholeNote', {
+    'wholeNote', 
+    {
     'default': uncSbl.n1
 },
 {
@@ -112,7 +113,8 @@ const wholeNote_1 = new Note(
 );
 
 const halfNote_2w4w8w16 = new Note(
-    'halfNote_2w4w8w16', {
+    'halfNote_2w4w8w16', 
+    {
     'default': uncSbl.n2 + uncSbl.pnt + uncSbl.pnt + uncSbl.pnt
 },
     uncSbl.p2 + uncSbl.pnt + uncSbl.pnt + uncSbl.pnt,
@@ -124,7 +126,8 @@ const halfNote_2w4w8w16 = new Note(
 );
 
 const halfNote_2w4w8 = new Note(
-    'halfNote_2w4w8', {
+    'halfNote_2w4w8', 
+    {
     'default': uncSbl.n2 + uncSbl.pnt + uncSbl.pnt
 },
     uncSbl.p2 + uncSbl.pnt + uncSbl.pnt,
@@ -136,7 +139,8 @@ const halfNote_2w4w8 = new Note(
 );
 
 const halfNote_2w4w16 = new Note(
-    'halfNote_2w4w16', {
+    'halfNote_2w4w16', 
+    {
     'default': uncSbl.n2 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n16
 },
     uncSbl.p2 + '  ' + uncSbl.p4 + '  ' + uncSbl.p16,
@@ -148,7 +152,8 @@ const halfNote_2w4w16 = new Note(
 );
 
 const halfNote_2w4 = new Note(
-    'halfNote_2w4', {
+    'halfNote_2w4', 
+    {
     'default': uncSbl.n2 + uncSbl.pnt
 },
     uncSbl.p2 + uncSbl.pnt,
@@ -160,7 +165,8 @@ const halfNote_2w4 = new Note(
 );
 
 const halfNote_2w8w16 = new Note(
-    'halfNote_2w8w16', {
+    'halfNote_2w8w16', 
+    {
     'default': uncSbl.n2 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt
 },
     uncSbl.p2 + '  ' + uncSbl.p8 + uncSbl.pnt,
