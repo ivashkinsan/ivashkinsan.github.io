@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIDI Keyboard Input</title>
+</head>
+<body>
+<script>
+navigator.requestMIDIAccess()
+    .then(function(access) {
+        // Получение доступа к MIDI устройствам
+        console.log('MIDI доступен');
+        
+        function onMIDIMessage(message) {
+            const command = message.data[0];
+            const note = message.data[1];
+            const velocity = (message.data.length > 2) ? message.data[2] : 0;
+
+            // Реагировать на сообщения MIDI
+            console.log('Команда: ' + command + ', Нота: ' + note + ', Скорость: ' + velocity);
+        }
+
+        const inputs = access.inputs.values();
+        for (let input = inputs.next(); input && !input.done; input = inputs.next()) {
+            input.value.onmidimessage = onMIDIMessage;
+        }
+    })
+    .catch(function(err) {
+        console.error('MIDI не доступен', err);
+    });
+</script>
+</body>
+</html>
