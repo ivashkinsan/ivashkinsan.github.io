@@ -29,34 +29,44 @@ const alphabet = {
     'd': '0 0',
 }
 
-const cardAlphabet = function () {
-    let cardAlphabet = document.createElement('div');
+const createCircle = (elem) => {
+    const cardAlphabetCardCircle = document.createElement('div');
+    cardAlphabetCardCircle.classList.add('cardAlphabet_card_circle');
+    if (elem == 1) {
+        cardAlphabetCardCircle.classList.add('card_circle_on');
+    }
+    return cardAlphabetCardCircle;
+}
+
+const cardAlphabet = () => {
+    const cardAlphabet = document.createElement('div');
     cardAlphabet.classList.add('cardAlphabet');
 
-    for (let item in alphabet) {
-        let cardAlphabet_card = document.createElement('div');
-        let array = alphabet[item].split(' ');
-        cardAlphabet_card.classList.add('cardAlphabet_card');
-        cardAlphabet_card.dataset.data = alphabet[item];
-        cardAlphabet_card.draggable = true;
+    const docFragment = document.createDocumentFragment();
 
-        for (let elem of array) {
-            let cardAlphabet_card_circle = document.createElement('div');
-            cardAlphabet_card_circle.classList.add('cardAlphabet_card_circle');
-            elem == 1 ? cardAlphabet_card_circle.classList.add('card_circle_on') : undefined;
+    Object.entries(alphabet).forEach(([item, value]) => {
+        const cardAlphabetCard = document.createElement('div');
+        cardAlphabetCard.classList.add('cardAlphabet_card');
+        cardAlphabetCard.dataset.data = value;
+        cardAlphabetCard.draggable = true;
 
-            cardAlphabet_card.append(cardAlphabet_card_circle);
-        }
-        cardAlphabet_card.addEventListener('dragstart', dragstart, false);
-        cardAlphabet_card.addEventListener('dragend', dragend, false);
-        cardAlphabet.append(cardAlphabet_card);
-    }
+        value.split(' ').map(createCircle).forEach(circle => {
+            cardAlphabetCard.appendChild(circle);
+        });
+
+        cardAlphabetCard.addEventListener('dragstart', dragstart, false);
+        cardAlphabetCard.addEventListener('dragend', dragend, false);
+
+        docFragment.appendChild(cardAlphabetCard);
+    });
+
+    cardAlphabet.appendChild(docFragment);
 
     return cardAlphabet;
 }
-let appForInsertCardAlphabet = document.querySelector('.cardAlphabetContain');
-appForInsertCardAlphabet.append(cardAlphabet());
 
+const appForInsertCardAlphabet = document.querySelector('.cardAlphabetContain');
+appForInsertCardAlphabet.append(cardAlphabet());
 
 
 let add_and_remove_eventListener = function (add) {
@@ -84,90 +94,79 @@ function dragstart(event) {
     event.dataTransfer.setData('customData', event.target.dataset.data);
 
     this.classList.add('drag_Start_end');
-    console.log('dragstart');
 
     add_and_remove_eventListener(true);
 }
 
 function dragend(event) {
-    console.log('dragend');
     event.stopPropagation();
     this.classList.remove('drag_Start_end');
-
-
 }
 
 function dragover(event) {
-    console.log('dragover');
     event.preventDefault();
     event.target.classList.add('drop_insert_border_on');
 }
 
 function dragLeave(event) {
-    console.log('dragLeave');
     event.preventDefault();
     event.target.classList.remove('drop_insert_border_on');
-
-
 }
+
 function drop(event) {
-    console.log('drop');
     event.preventDefault();
-    create_note_after_drop(event, event.target);
+    createNoteAfterDrop(event, event.target);
     add_and_remove_eventListener(false);
 }
 
 
-let create_note_after_drop = function (event, dropElem) {
+
+let createNoteAfterDrop = (event, dropElem) => {
     let allActiveForDelete = activeElemLayer.querySelectorAll('.active');
-    let dropElemLeftSide = Number(dropElem.style.left.replace('px', ''));
-    let dropElemRightSide = dropElemLeftSide + Number(dropElem.style.width.replace('px', ''));
-    let itemLeft;
+    let dropElemPosition = extractPositionData(dropElem.style);
+
     for (let item of allActiveForDelete) {
-        itemLeft = Number(item.style.left.replace('px', ''));
-        if (itemLeft >= dropElemLeftSide && itemLeft < dropElemRightSide) {
+        let itemLeft = Number(item.style.left.replace('px', ''));
+        if (itemLeft >= dropElemPosition.left && itemLeft < dropElemPosition.right) {
             item.remove();
         }
     }
-
     dropElem.classList.remove('drop_insert_border_on');
 
-    let customData = event.dataTransfer.getData('customData');
-    let customData_array = customData.split(' ');
-    let interval = Number(dropElem.style.width.replace('px', '')) / customData_array.length;
-    let target_left_position = Number(dropElem.style.left.replace('px', ''));
-    for (let item of customData_array) {
+    let customData = event.dataTransfer.getData('customData').split(' ');
+    let interval = dropElemPosition.width / customData.length;
+    let targetLeftPosition = dropElemPosition.left;
 
-        if (item == '1') {
+    for (let item of customData) {
+        let isZero = item === '0';
+        let newCircle = sizeIdentif[interval].createDivTag('', interval, isZero);
+        newCircle.style.width = newCircle.style.height = `${interval}px`;
 
-            let newCircle = sizeIdentif[interval].createDivTag('', interval);
-            newCircle.style.width = interval + 'px';
-            newCircle.style.height = interval + 'px';
-            createTripletLine(customData_array.length, newCircle, interval);
-            create_and_append_active_elem(newCircle, activeElemLayer, target_left_position + 'px', 'drop');
+        if (!isZero) {
+            createTripletLine(customData.length, newCircle, interval);
         }
-        if (item == '0') {
-            let newCircle = sizeIdentif[interval].createDivTag('', interval, true);
-            newCircle.style.width = interval + 'px';
-            newCircle.style.height = interval + 'px';
 
-            create_and_append_active_elem(newCircle, activeElemLayer, target_left_position + 'px', 'drop', true);
-            createTripletLine(customData_array.length, newCircle, interval);
-        }
-        target_left_position = target_left_position + interval;
+        create_and_append_active_elem(newCircle, activeElemLayer, `${targetLeftPosition}px`, 'drop', isZero);
+        createTripletLine(customData.length, newCircle, interval);
+        targetLeftPosition += interval;
     }
-
-
 }
 
-let createTripletLine = function (count, parentElem, interval) {
-    let number = count ? Number(count) : undefined;
-    if (number == 3) {
+let extractPositionData = (style) => {
+    let position = { "left": 0, "right": 0, "width": 0 };
+    position.left = Number(style.left.replace('px', ''));
+    position.width = Number(style.width.replace('px', ''));
+    position.right = position.left + position.width;
+    return position;
+}
+
+let createTripletLine = (count, parentElem, interval) => {
+    if (count === 3) {
         let newTripletLine = document.createElement('div');
         newTripletLine.classList.add('newTripletLine');
-        newTripletLine.style.width = interval * 3 + 'px';
-        newTripletLine.style.height = 3 + 'px';
+        newTripletLine.style.width = `${interval * 3}px`;
+        newTripletLine.style.height = '3px';
         parentElem.append(newTripletLine);
-        console.log('3');
     }
 }
+
