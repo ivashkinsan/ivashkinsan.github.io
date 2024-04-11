@@ -101,7 +101,10 @@ body {
     text-align: center;
     border-radius: 50%;
     z-index: 1000;
-    box-shadow: 0 0 0 1.5px var(--active-elem-color) inset;
+    /* box-shadow: 0 0 0 1.5px var(--active-elem-color) inset; */
+    /* box-shadow: 0 0 0 1px rgba(199, 199, 199, 0.451) inset, 0px 5px 5px 0px black; */
+    box-shadow: 0 0 0 1px rgba(199, 199, 199, 0.451) inset;
+    background: rgba(9, 2, 37, 0.177);
     top: 50%;
     cursor: pointer;
     transform: translateY(-50%);
@@ -111,21 +114,23 @@ body {
 .pause {
     box-shadow: none;
     /* box-shadow: 0 0 0 1.5px rgba(233, 242, 156, 0.404) inset; */
-    border: 2.5px dotted rgba(255, 255, 255, 0.465);
+    border: 2.5px dotted rgba(255, 255, 255, 0.596);
+    background: none;
 
 }
 
 .active>p {
     user-select: none;
-    font-size: 14px;
-    margin-top: 9px;
+    /* font-size: 14px; */
+    margin-top: calc(var(--base-size) / 105);
     pointer-events: none;
     z-index: 999;
 }
 
 .pause>p {
-    margin-top: -8px;
-    font-size: 20px;
+    margin-top: calc(-1 * (var(--base-size) / 105));
+    ;
+    /* font-size: 20px; */
 }
 
 .handle {
@@ -307,11 +312,11 @@ body {
     border: 1.5px dashed #dedede;
 }
 
-.drag_Start_end{
+.drag_Start_end {
     box-shadow: 0 0 0 2px white;
 
 }
 
-.newTripletLine{
+.newTripletLine {
     background-color: #DDB078;
 }

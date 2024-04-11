@@ -29,39 +29,46 @@ function startResizing(e, direction) {
         if (direction === 'right') {
             const newWidth = Math.min(Math.max(startWidth + e.clientX - startX, minWidth), maxWidth);
 
-            let replaceSum = target.style.height.replace('px', '');
+            let replaseSumm = target.style.height;
+            replaseSumm = replaseSumm.replace('px', '');
 
-            let nextElement = target.nextElementSibling;
-            let nextElementStyleLeft = nextElement ? parseFloat(nextElement.style.left) : undefined;
-            let nextElementStyleWidth = nextElement ? parseFloat(nextElement.style.width) : undefined;
-            let previousElement = target.previousElementSibling;
-
+            let nextElement = target.nextElementSibling ? target.nextElementSibling : undefined;
+            let nextElementStyleLeft = nextElement ? Number(nextElement.style.left.replace('px', '')) : undefined;
+            let nextElementStyleWidth = nextElement ? Number(nextElement.style.width.replace('px', '')) : undefined;
+            let previousElement = target.previousElementSibling ? target.previousElementSibling : undefined;
             if (nextElement) {
-                if (e.clientX < nextElementStyleLeft + appLeftSide || e.clientX < appRightSide) {
+
+                if (e.x < nextElementStyleLeft + appLeftSide) {
                     target.style.width = Math.round(newWidth / step) * step + 'px';
                     target.style.height = Math.round(newWidth / step) * step + 'px';
+                    hameleon(target, sizeIdentif[replaseSumm]);
                 }
-            } else if (e.clientX < appRightSide) {
+
+            } else if (e.x < appRightSide) {
                 target.style.width = Math.round(newWidth / step) * step + 'px';
                 target.style.height = Math.round(newWidth / step) * step + 'px';
+                hameleon(target, sizeIdentif[replaseSumm]);
             }
 
-            hameleon(target, sizeIdentif[replaceSum]);
 
-            if (nextElement) {
-                const handle = nextElement.querySelector('.left_double_arrow');
-                if (nextElementStyleLeft != Number(target.style.left.replace('px', '')) + Number(target.style.width.replace('px', ''))) {
-                    handle.style.display = 'none';
-                } else {
-                    handle.style.display = 'block';
-                }
+
+            // появление handle при соприкосании блоков и разделении
+            if (nextElement && nextElementStyleLeft != Number(target.style.left.replace('px', '')) + Number(target.style.width.replace('px', ''))) {
+                let handle = nextElement.querySelector('.left_double_arrow');
+                handle.style.display = 'none';
+            }
+            if (nextElement && nextElementStyleLeft == Number(target.style.left.replace('px', '')) + Number(target.style.width.replace('px', ''))) {
+                let handle = nextElement.querySelector('.left_double_arrow');
+                handle.style.display = 'block';
             }
 
             if (previousElement) {
-                const handle = target.querySelector('.left_double_arrow');
                 if (previousElement.classList.contains('sixteenthNote_16') && target.classList.contains('eighthNote_8')) {
+                    let handle = target.querySelector('.left_double_arrow');
                     handle.classList.remove('display_none');
-                } else if (previousElement.classList.contains('sixteenthNote_16') && target.classList.contains('sixteenthNote_16')) {
+                }
+                if (previousElement.classList.contains('sixteenthNote_16') && target.classList.contains('sixteenthNote_16')) {
+                    let handle = target.querySelector('.left_double_arrow');
                     handle.classList.add('display_none');
                 }
             }
@@ -71,77 +78,86 @@ function startResizing(e, direction) {
             let newWidth = Math.min(Math.max(startWidth + diff, minWidth), maxWidth);
             const newLeft = startLeft - (newWidth - startWidth);
             const newWidthRounded = Math.round(newWidth / step) * step;
-            const newLeftPositionTarget = Math.round(newLeft / step) * step;
 
-            let replaceSum = target.style.width;
-            let replacedSumParsed = parseFloat(replaceSum.replace('px', ''));
+            let replaseSumm = target.style.width;
+            replaseSumm = replaseSumm.replace('px', '');
 
-            let nextElement = target.nextElementSibling;
-            let previousElement = target.previousElementSibling;
-            let previousElementStyleLeft = previousElement ? parseFloat(previousElement.style.left) : undefined;
-            let previousElementStyleWidth = previousElement ? parseFloat(previousElement.style.width) : undefined;
-
+            let nextElement = target.nextElementSibling ? target.nextElementSibling : undefined;
+            let previousElement = target.previousElementSibling ? target.previousElementSibling : undefined;
+            let previousElementStyleLeft = previousElement ? Number(previousElement.style.left.replace('px', '')) : undefined;
+            let previousElementStyleWidth = previousElement ? Number(previousElement.style.width.replace('px', '')) : undefined;
+            let newLeftPositionTarget = Math.round(newLeft / step) * step;
             if (previousElement) {
-                if (e.x - appLeftSide > previousElementStyleLeft + previousElementStyleWidth || e.x > appLeftSide) {
-                    target.style.width = newWidthRounded + 'px';
-                    target.style.height = newWidthRounded + 'px';
+                if (e.x - appLeftSide > previousElementStyleLeft + previousElementStyleWidth) {
+                    target.style.width = newWidthRounded + 'px'; // присвоение ширины
+                    target.style.height = newWidthRounded + 'px'; // присвоение высоты
                     target.style.left = newLeftPositionTarget + 'px';
+                    hameleon(target, sizeIdentif[replaseSumm], newOutIndMatrix[newLeftPositionTarget]);
                 }
+
             } else if (e.x > appLeftSide) {
-                target.style.width = newWidthRounded + 'px';
-                target.style.height = newWidthRounded + 'px';
+                target.style.width = newWidthRounded + 'px'; // присвоение ширины
+                target.style.height = newWidthRounded + 'px'; // присвоение высоты
                 target.style.left = newLeftPositionTarget + 'px';
+                hameleon(target, sizeIdentif[replaseSumm], newOutIndMatrix[newLeftPositionTarget]);
             }
 
-            hameleon(target, sizeIdentif[replacedSumParsed], newOutIndMatrix[newLeftPositionTarget]);
 
-            if (previousElement && previousElementStyleLeft + previousElementStyleWidth != replacedSumParsed) {
+            // появление handle при соприкосании блоков и разделении
+            if (previousElement && previousElementStyleLeft + previousElementStyleWidth != Number(target.style.left.replace('px', ''))) {
                 let handle = target.querySelector('.left_double_arrow');
                 handle.style.display = 'none';
             }
-            if (previousElement && previousElementStyleLeft + previousElementStyleWidth === replacedSumParsed) {
+            if (previousElement && previousElementStyleLeft + previousElementStyleWidth == Number(target.style.left.replace('px', ''))) {
                 let handle = target.querySelector('.left_double_arrow');
                 handle.style.display = 'block';
             }
-            if (nextElement && target.classList.contains('sixteenthNote_16') && nextElement.classList.contains('sixteenthNote_16')) {
-                let handle = target.querySelector('.left_double_arrow');
-                handle.classList.add('display_none');
+            if (nextElement) {
+                if (target.classList.contains('sixteenthNote_16') && nextElement.classList.contains('sixteenthNote_16')) {
+                    let handle = target.querySelector('.left_double_arrow');
+                    handle.classList.add('display_none');
+                }
             }
-
         } else if (direction === 'left_right') { // изменение двух блоков одновременно
 
             let searchHandleClass = target.querySelector('.left_double_arrow');
-
             if (searchHandleClass.classList.contains('display_block')) {
-                let previousElement = target.previousElementSibling;
-                let previousElementLeftSide = previousElement ? parseFloat(previousElement.style.left) : undefined;
-                let previousElementWidth = previousElement ? parseFloat(previousElement.style.width) : undefined;
-                let widthHero = parseFloat(target.style.width);
+
+                let previousElement = target.previousElementSibling ? target.previousElementSibling : undefined;
+                let previousElementLeftSide = previousElement ? Number(previousElement.style.left.replace('px', '')) : undefined;
+                let previousElementWidth = previousElement ? Number(previousElement.style.width.replace('px', '')) : undefined;
+                let widthHero = Number(target.style.width.replace('px', ''));
+
 
                 if (previousElement) {
+                    // изменение основного блока с левым handle
                     const diff = startX - e.clientX;
                     let newWidth = Math.min(Math.max(startWidth + diff, minWidth), maxWidth);
                     const newLeft = startLeft - (newWidth - startWidth);
                     const newWidthRounded = Math.round(newWidth / step) * step;
 
-                    let replaceSum = parseFloat(target.style.width);
+                    let replaseSumm = Number(target.style.width.replace('px', ''));
                     let difference = newWidthRounded - widthHero;
+
                     let newLeftPositionTarget = Math.round(newLeft / step) * step;
-                    let leftPositionPreviousElem = parseFloat(previousElement.style.left);
+                    let leftPositionPreviousElem = Number(previousElement.style.left.replace('px', ''));
 
                     if (previousElementWidth - difference >= minWidth) {
-                        target.style.width = newWidthRounded + 'px';
-                        target.style.height = newWidthRounded + 'px';
-                        target.style.left = newLeftPositionTarget + 'px';
-                        hameleon(target, sizeIdentif[replaceSum], newOutIndMatrix[newLeftPositionTarget]);
-
+                        target.style.width = newWidthRounded + 'px'; // присвоение ширины
+                        target.style.height = newWidthRounded + 'px'; // присвоение высоты
+                        target.style.left = newLeftPositionTarget + 'px';;
+                        hameleon(target, sizeIdentif[replaseSumm], newOutIndMatrix[newLeftPositionTarget]);
                         // изменение блока с левой стороны
+
                         previousElement.style.width = (previousElementWidth - difference) + 'px';
                         previousElement.style.height = (previousElementWidth - difference) + 'px';
                         hameleon(previousElement, sizeIdentif[previousElementWidth - difference], newOutIndMatrix[leftPositionPreviousElem]);
                     }
+
+
                 }
             }
+
 
         }
     }
