@@ -170,3 +170,49 @@ let createTripletLine = (count, parentElem, interval) => {
     }
 }
 
+
+
+
+
+const newRootBaseSizeValue = function(){
+// Изменяем значение переменной --font-size на 16px
+document.documentElement.style.setProperty('--base-size', '420px');
+
+// root = document.querySelector(':root');
+baseSize = getComputedStyle(root).getPropertyValue('--base-size');
+
+baseSize = Number(baseSize.replace('px', ''))
+
+
+console.log(document.documentElement.style);
+// Получаем элемент, который требуется перерисовать (например, элемент с классом "example-element")
+const element = document.querySelector('body');
+
+// Перезапускаем стили элемента для обновления изменений
+const tempDisplay = element.style.display;
+element.style.display = 'none';
+element.offsetHeight; // Принудительно перерисовываем элемент
+element.style.display = tempDisplay;
+
+const parentNode = document.querySelector('.containMatrix'); // Замените 'parent-node' на id вашего родительского узла
+
+while (parentNode.firstChild) {
+    parentNode.removeChild(parentNode.firstChild);
+}
+
+
+sizeIdentif = createSizeIdentif();
+step = baseSize / 16; // Шаг изменения блока
+minWidth = baseSize / 16;
+maxWidth = baseSize;
+
+
+allLayer = backgroundMatrix.createBackground(backgroundMatrix.matrix_4x4, 0);
+console.log(allLayer);
+app.append(allLayer[0]);
+app.append(allLayer[1]);
+}
+
+let newRootButton = document.querySelector('.newRootBaseSizeValue');
+
+newRootButton.addEventListener('click', newRootBaseSizeValue, false);

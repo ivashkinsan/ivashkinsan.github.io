@@ -1,7 +1,7 @@
 
-const step = baseSize / 16; // Шаг изменения блока
-const minWidth = baseSize / 16;
-const maxWidth = baseSize;
+let step = baseSize / 16; // Шаг изменения блока
+let minWidth = baseSize / 16;
+let maxWidth = baseSize;
 
 
 

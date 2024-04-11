@@ -25,7 +25,7 @@ const uncSbl = {
 
 
 const root = document.querySelector(':root');
-let baseSize = getComputedStyle(root).getPropertyValue('--const');
+let baseSize = getComputedStyle(root).getPropertyValue('--base-size');
 
 baseSize = Number(baseSize.replace('px', ''))
 
@@ -486,30 +486,34 @@ const quarterNote_4_triple = new Note(
 );
 
 
+let sizeIdentif = {};
 
-
-
-const sizeIdentif = {
-    [(baseSize / 16) * 1]: sixteenthNote_16,
-    [(baseSize / 16) * 2]: eighthNote_8,
-    [(baseSize / 16) * 3]: eighthNote_8w16,
-    [(baseSize / 16) * 4]: quarterNote_4,
-    [(baseSize / 16) * 5]: quarterNote_4w16,
-    [(baseSize / 16) * 6]: quarterNote_4w8,
-    [(baseSize / 16) * 7]: quarterNote_4w8w16,
-    [(baseSize / 16) * 8]: halfNote_2,
-    [(baseSize / 16) * 9]: halfNote_2w16,
-    [(baseSize / 16) * 10]: halfNote_2w8,
-    [(baseSize / 16) * 11]: halfNote_2w8w16,
-    [(baseSize / 16) * 12]: halfNote_2w4,
-    [(baseSize / 16) * 13]: halfNote_2w4w16,
-    [(baseSize / 16) * 14]: halfNote_2w4w8,
-    [(baseSize / 16) * 15]: halfNote_2w4w8w16,
-    [(baseSize / 16) * 16]: wholeNote_1,
-    // триоли
-    [baseSize / 12]: eighthNote_8_triple,
-    [baseSize / 6]: quarterNote_4_triple,
+const createSizeIdentif = function(){
+    let newSizeIdentif = {
+        [(baseSize / 16) * 1]: sixteenthNote_16,
+        [(baseSize / 16) * 2]: eighthNote_8,
+        [(baseSize / 16) * 3]: eighthNote_8w16,
+        [(baseSize / 16) * 4]: quarterNote_4,
+        [(baseSize / 16) * 5]: quarterNote_4w16,
+        [(baseSize / 16) * 6]: quarterNote_4w8,
+        [(baseSize / 16) * 7]: quarterNote_4w8w16,
+        [(baseSize / 16) * 8]: halfNote_2,
+        [(baseSize / 16) * 9]: halfNote_2w16,
+        [(baseSize / 16) * 10]: halfNote_2w8,
+        [(baseSize / 16) * 11]: halfNote_2w8w16,
+        [(baseSize / 16) * 12]: halfNote_2w4,
+        [(baseSize / 16) * 13]: halfNote_2w4w16,
+        [(baseSize / 16) * 14]: halfNote_2w4w8,
+        [(baseSize / 16) * 15]: halfNote_2w4w8w16,
+        [(baseSize / 16) * 16]: wholeNote_1,
+        // триоли
+        [baseSize / 12]: eighthNote_8_triple,
+        [baseSize / 6]: quarterNote_4_triple,
+    }
+    return newSizeIdentif;
 }
+
+sizeIdentif = createSizeIdentif();
 
 
 
