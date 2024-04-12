@@ -1,7 +1,7 @@
 
-let step = baseSize / 16; // Шаг изменения блока
-let minWidth = baseSize / 16;
-let maxWidth = baseSize;
+let step = backgroundMatrix.baseSize / 16; // Шаг изменения блока
+let minWidth = backgroundMatrix.baseSize / 16;
+let maxWidth = backgroundMatrix.baseSize;
 
 
 
@@ -20,8 +20,8 @@ function startResizing(e, direction) {
     // родительский блок для корректировки положения курсора на оси x
     let appForPosition = document.querySelector('.app');
     let appLeftSide = appForPosition.offsetLeft;
-    let appRightSide = Number(appForPosition.clientWidth) + Number(appLeftSide);
-
+    let appRightSide = backgroundMatrix.baseWidth + Number(appLeftSide);
+console.log(appRightSide);
     // функция изменения размера элементов
     function resize(e) {
         e.preventDefault(true);
@@ -186,10 +186,11 @@ let hameleon = function (inputElem, noteObj, outIndx, width, left) {
     if (outIndx) {
         inputElem.dataset.outIndx = outIndx
     }
-    if (inputElem.classList.contains('pause')) {
+    if (inputElem.classList.contains('pause') && noteObj.pauseSymbol[inputElem.dataset.outIndx]) {
+        inputElem.querySelector('p').textContent = noteObj.pauseSymbol[inputElem.dataset.outIndx];
+    }else if (inputElem.classList.contains('pause') && !noteObj.fontSymbol[inputElem.dataset.outIndx]){
         inputElem.querySelector('p').textContent = noteObj.pauseSymbol.default;
     } else if (noteObj.fontSymbol[inputElem.dataset.outIndx]) {
-        // console.log(true);
         inputElem.querySelector('p').textContent = noteObj.fontSymbol[inputElem.dataset.outIndx];
     } else {
         inputElem.querySelector('p').textContent = noteObj.fontSymbol.default;

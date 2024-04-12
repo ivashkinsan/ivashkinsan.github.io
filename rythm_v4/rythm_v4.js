@@ -67,6 +67,10 @@ activeElemLayer.classList.add('activeElemLayer');
 let newOutIndMatrix = {};
 
 const backgroundMatrix = {
+    'baseSize': 0,
+    'baseWidth': 0,
+    'leftAppSide':0,
+    'rightAppSide': 0,
     'matrix_1x4': [
         '4 8 16',       //1
         '16',           //2
@@ -150,7 +154,12 @@ const backgroundMatrix = {
         '16'            //16
     ],
     createBackground(array, leftPosition) {
-
+        const root = document.querySelector(':root');
+        this.baseSize = parseFloat(getComputedStyle(root).getPropertyValue('--base-size'));
+        this.baseWidth = this.baseSize / 16 * array.length;
+        console.log(this.baseWidth);
+        // baseSize = Number(baseSize.replace('px', ''))
+        
         // внешний цикл
         for (let outIndx = 0; outIndx < array.length; outIndx++) {
             let stringToArr = array[outIndx].split(' ');
@@ -164,38 +173,38 @@ const backgroundMatrix = {
                     case '16':
                         new_circle.classList.add('matrix_16');
                         new_circle.dataset.symbol = 16;
-                        new_circle.style.width = baseSize / 16 + 'px';
-                        new_circle.style.height = baseSize / 16 + 'px';
+                        new_circle.style.width = this.baseSize / 16 + 'px';
+                        new_circle.style.height = this.baseSize / 16 + 'px';
                         break;
                     case '8':
                         new_circle.classList.add('matrix_8');
                         new_circle.dataset.symbol = 8;
-                        new_circle.style.width = baseSize / 8 + 'px';
-                        new_circle.style.height = baseSize / 8 + 'px';
+                        new_circle.style.width = this.baseSize / 8 + 'px';
+                        new_circle.style.height = this.baseSize / 8 + 'px';
                         break;
                     case '4':
                         new_circle.classList.add('matrix_4');
                         new_circle.dataset.symbol = 4;
-                        new_circle.style.width = baseSize / 4 + 'px';
-                        new_circle.style.height = baseSize / 4 + 'px';
+                        new_circle.style.width = this.baseSize / 4 + 'px';
+                        new_circle.style.height = this.baseSize / 4 + 'px';
                         break;
                     case '2':
                         new_circle.classList.add('matrix_2');
                         new_circle.dataset.symbol = 2;
-                        new_circle.style.width = baseSize / 2 + 'px';
-                        new_circle.style.height = baseSize / 2 + 'px';
+                        new_circle.style.width = this.baseSize / 2 + 'px';
+                        new_circle.style.height = this.baseSize / 2 + 'px';
                         break;
                     case '1.5':
                         new_circle.classList.add('matrix_1.5');
                         new_circle.dataset.symbol = 1.5;
-                        new_circle.style.width = Math.floor(baseSize / 1.33) + 'px';
-                        new_circle.style.height = Math.floor(baseSize / 1.33) + 'px';
+                        new_circle.style.width = Math.floor(this.baseSize / 1.33) + 'px';
+                        new_circle.style.height = Math.floor(this.baseSize / 1.33) + 'px';
                         break;
                     case '1':
                         new_circle.classList.add('matrix_1');
                         new_circle.dataset.symbol = 1;
-                        new_circle.style.width = baseSize / 1 + 'px';
-                        new_circle.style.height = baseSize / 1 + 'px';
+                        new_circle.style.width = this.baseSize / 1 + 'px';
+                        new_circle.style.height = this.baseSize / 1 + 'px';
                         break;
                 }
 
@@ -211,7 +220,7 @@ const backgroundMatrix = {
             }
 
             newOutIndMatrix[leftPosition] = String(outIndx + 1);
-            leftPosition = leftPosition + (baseSize / 16);
+            leftPosition = leftPosition + (this.baseSize / 16);
 
         }
         return [containMatrix, activeElemLayer];
@@ -324,13 +333,12 @@ let create_and_append_active_elem = function (clickElem, activeElemLayer, leftPo
 
     let activeBlock;
     let sizeElemForGenerate = Number(clickElem.style.width.replace('px', ''));
-
     if (is_pause == true) {
-        activeBlock = sizeIdentif[sizeElemForGenerate].createDivTag(clickElem.dataset.outIndx, baseSize, true);
+        activeBlock = sizeIdentif[sizeElemForGenerate].createDivTag(clickElem.dataset.outIndx, backgroundMatrix.baseSize, true);
         activeBlock.style.left = leftPosition;
         activeBlock.classList.add('pause');
     } else {
-        activeBlock = sizeIdentif[sizeElemForGenerate].createDivTag(clickElem.dataset.outIndx, baseSize);
+        activeBlock = sizeIdentif[sizeElemForGenerate].createDivTag(clickElem.dataset.outIndx, backgroundMatrix.baseSize);
         activeBlock.style.left = leftPosition;
 
     }
@@ -392,17 +400,17 @@ let create_and_append_active_elem = function (clickElem, activeElemLayer, leftPo
             let evTargetWidth = Number(event.target.style.width.replace('px', ''));
             if (!activeBlock.classList.contains('pause')) {
                 activeBlock.classList.add('pause');
-                hameleon(activeBlock, sizeIdentif[evTargetWidth], evTargetWidth, true);
+                hameleon(activeBlock, sizeIdentif[evTargetWidth], event.target.dataset.outIndx, true);
             } else {
                 activeBlock.classList.remove('pause');
-                hameleon(activeBlock, sizeIdentif[evTargetWidth], evTargetWidth,);
+                hameleon(activeBlock, sizeIdentif[evTargetWidth], event.target.dataset.outIndx);
             }
         }
     })
 }
 
 let app = document.querySelector('.app');
-stateAppMatrix = backgroundMatrix.matrix_4x4;
+stateAppMatrix = backgroundMatrix.matrix_8x4;
 let allLayer = backgroundMatrix.createBackground(stateAppMatrix, 0);
 
 // console.log(allLayer);

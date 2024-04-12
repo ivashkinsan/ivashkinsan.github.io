@@ -174,20 +174,14 @@ let createTripletLine = (count, parentElem, interval) => {
 
 
 
-const newRootBaseSizeValue = function (param) {
+const newRootBaseSizeValue = function (param, previousParam) {
     // Изменяем значение переменной --font-size на 16px
     document.documentElement.style.setProperty('--base-size', `${param}px`);
 
-    // root = document.querySelector(':root');
-    baseSize = getComputedStyle(root).getPropertyValue('--base-size');
-
-    baseSize = Number(baseSize.replace('px', ''))
-
-
-    console.log(document.documentElement.style);
+    root = document.querySelector(':root');
+    backgroundMatrix.baseSize = parseFloat( getComputedStyle(root).getPropertyValue('--base-size'));
     // Получаем элемент, который требуется перерисовать (например, элемент с классом "example-element")
     const element = document.querySelector('body');
-
     // Перезапускаем стили элемента для обновления изменений
     const tempDisplay = element.style.display;
     element.style.display = 'none';
@@ -199,23 +193,29 @@ const newRootBaseSizeValue = function (param) {
         parentNode.removeChild(parentNode.firstChild);
     }
 
-
     sizeIdentif = createSizeIdentif();
-    step = baseSize / 16; // Шаг изменения блока
-    minWidth = baseSize / 16;
-    maxWidth = baseSize;
-
+    step = backgroundMatrix.baseSize / 16; // Шаг изменения блока
+    minWidth = backgroundMatrix.baseSize / 16;
+    maxWidth = backgroundMatrix.baseSize;
 
     allLayer = backgroundMatrix.createBackground(stateAppMatrix, 0);
 
     app.append(allLayer[0]);
     app.append(allLayer[1]);
 
-    searsh_all_elem();
+    searsh_all_elem(); // для метронома
+
+    let differenceNumb = previousParam / param;
+    let allActiveForResize = document.querySelectorAll('.active');
+    for(let item of allActiveForResize){
+        let itemWidth = parseFloat(window.getComputedStyle(item).width);
+        let itemLeft = parseFloat(window.getComputedStyle(item).left);
+        hameleon(item, sizeIdentif[(itemWidth / differenceNumb)], '',(itemWidth / differenceNumb), (itemLeft / differenceNumb));
+    }
 }
 
 let newRootButton420 = document.querySelector('.newRootBaseSizeValue420');
 let newRootButton840 = document.querySelector('.newRootBaseSizeValue840');
 
-newRootButton420.addEventListener('click', () => newRootBaseSizeValue(420));
-newRootButton840.addEventListener('click', () => newRootBaseSizeValue(840));
+newRootButton420.addEventListener('click', () => newRootBaseSizeValue(420,backgroundMatrix.baseSize));
+newRootButton840.addEventListener('click', () => newRootBaseSizeValue(840,backgroundMatrix.baseSize));
