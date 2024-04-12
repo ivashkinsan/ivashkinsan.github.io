@@ -1,5 +1,6 @@
 // число-делитель для масштабирования
 let constNumber = 5;
+let stateAppMatrix;
 
 let createNumberMatrix = function () {
     let allPoint = [];
@@ -97,6 +98,40 @@ const backgroundMatrix = {
         '16'            //12
     ],
     'matrix_4x4': [
+        '1 2 4 8 16',   //1
+        '16',           //2
+        '8 16',         //3
+        '16',           //4
+        '4 8 16',       //5
+        '16',           //6
+        '8 16',         //7
+        '16',           //8
+        '2 4 8 16',     //9
+        '16',           //10
+        '8 16',         //11
+        '16',           //12
+        '4 8 16',       //13
+        '16',           //14
+        '8 16',         //15
+        '16'            //16
+    ],
+    'matrix_8x4': [
+        '1 2 4 8 16',   //1
+        '16',           //2
+        '8 16',         //3
+        '16',           //4
+        '4 8 16',       //5
+        '16',           //6
+        '8 16',         //7
+        '16',           //8
+        '2 4 8 16',     //9
+        '16',           //10
+        '8 16',         //11
+        '16',           //12
+        '4 8 16',       //13
+        '16',           //14
+        '8 16',         //15
+        '16',            //16
         '1 2 4 8 16',   //1
         '16',           //2
         '8 16',         //3
@@ -367,7 +402,9 @@ let create_and_append_active_elem = function (clickElem, activeElemLayer, leftPo
 }
 
 let app = document.querySelector('.app');
-let allLayer = backgroundMatrix.createBackground(backgroundMatrix.matrix_4x4, 0);
+stateAppMatrix = backgroundMatrix.matrix_4x4;
+let allLayer = backgroundMatrix.createBackground(stateAppMatrix, 0);
+
 // console.log(allLayer);
 app.append(allLayer[0]);
 app.append(allLayer[1]);

@@ -194,8 +194,7 @@ const newRootBaseSizeValue = function (param) {
     element.offsetHeight; // Принудительно перерисовываем элемент
     element.style.display = tempDisplay;
 
-    const parentNode = document.querySelector('.containMatrix'); // Замените 'parent-node' на id вашего родительского узла
-
+    const parentNode = document.querySelector('.containMatrix');
     while (parentNode.firstChild) {
         parentNode.removeChild(parentNode.firstChild);
     }
@@ -207,7 +206,7 @@ const newRootBaseSizeValue = function (param) {
     maxWidth = baseSize;
 
 
-    allLayer = backgroundMatrix.createBackground(backgroundMatrix.matrix_4x4, 0);
+    allLayer = backgroundMatrix.createBackground(stateAppMatrix, 0);
 
     app.append(allLayer[0]);
     app.append(allLayer[1]);

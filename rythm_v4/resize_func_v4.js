@@ -116,6 +116,14 @@ function startResizing(e, direction) {
                 if (target.classList.contains('sixteenthNote_16') && nextElement.classList.contains('sixteenthNote_16')) {
                     let handle = target.querySelector('.left_double_arrow');
                     handle.classList.add('display_none');
+                    console.log('16+16');
+                }
+            }
+            if (nextElement) {
+                if (target.classList.contains('sixteenthNote_8') && nextElement.classList.contains('sixteenthNote_16')) {
+                    let handle = nextElement.querySelector('.left_double_arrow');
+                    handle.classList.add('block');
+                    console.log('8+16');
                 }
             }
         } else if (direction === 'left_right') { // изменение двух блоков одновременно
