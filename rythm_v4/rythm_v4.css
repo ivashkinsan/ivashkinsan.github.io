@@ -14,6 +14,7 @@
 } */
 
 * {
+    user-select: none;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -51,7 +52,7 @@ body {
     /* border: 10px solid #DDB078; */
     box-shadow: 0 0 0 10px #DDB078 inset;
     /* border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%); */
-    /* overflow: scroll; */
+    overflow: hidden;
 }
 
 
@@ -104,7 +105,8 @@ body {
     /* box-shadow: 0 0 0 1.5px var(--active-elem-color) inset; */
     /* box-shadow: 0 0 0 1px rgba(199, 199, 199, 0.451) inset, 0px 5px 5px 0px black; */
     box-shadow: 0 0 0 1px rgba(199, 199, 199, 0.451) inset;
-    background: rgba(9, 2, 37, 0.177);
+    /* background: rgba(9, 2, 37, 0.177); */
+    background:#16161634;;
     top: 50%;
     cursor: pointer;
     transform: translateY(-50%);
@@ -268,8 +270,108 @@ body {
     line-height: calc(var(--font-size) * 2.5);
 }
 
+
+
+/* ======================= drop ========================= */
+.drop_insert_border_on {
+    /* box-shadow: 0 0 0 1px red inset; */
+    border: 1.5px dashed #dedede;
+}
+
+.drag_Start_end {
+    box-shadow: 0 0 0 2px white;
+
+}
+
+.newTripletLine {
+    background-color: #DDB078;
+}
+
+.elem_footer{
+    display: flex;
+    flex-direction: row;
+    /* margin-left: 15px; */
+    padding: 0 10px;
+    gap: 5px;
+    border-left: 1px solid white
+
+}
+
+.elem_footer > div{
+    /* margin: 5px; */
+    /* padding: 3px; */
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    border: 1px rgba(255, 255, 255, 0.27) solid;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.elem_footer > .btn_active{
+    border: 1px solid white;
+}
+.elem_footer >p{
+    line-height: 32px;
+}
+
+
+/* ======================  top шторка  ==================== */
+.topBar{
+    display: grid;
+    grid-template-columns: repeat(8, calc(var(--base-size) / 7));
+    grid-auto-flow: column;
+    gap: 10px;
+    padding: 10px;
+    width: auto;
+    height: auto;
+    border: 1px white dotted;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: #16161622;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10px;
+    z-index: 1000;
+}
+
+.hidden_topBar {
+    top: -100%;
+}
+
+.grid_el_0 { grid-column: 1; }
+.grid_el_1 { grid-column: 1; }
+.grid_el_2 { grid-column: 1; }
+.grid_el_3 { grid-column: 1; }
+.grid_el_4  { grid-column: 2; }
+.grid_el_5 { grid-column: 2; }
+.grid_el_6 { grid-column: 2; }
+.grid_el_7 { grid-column: 2; }
+.grid_el_8 { grid-column: 2; }
+.grid_el_9 { grid-column: 2; }
+.grid_el_10 { grid-column: 3; }
+.grid_el_11 { grid-column: 3; }
+.grid_el_12 { grid-column: 3; }
+.grid_el_13 { grid-column: 3; }
+.grid_el_14 { grid-column: 4; }
+.grid_el_15 { grid-column: 4; }
+.grid_el_16 { grid-column: 5; }
+.grid_el_17 { grid-column: 5; }
+.grid_el_18 { grid-column: 5; }
+.grid_el_19 { grid-column: 6; }
+.grid_el_20 { grid-column: 6; }
+.grid_el_21 { grid-column: 6; }
+.grid_el_22 { grid-column: 7; }
+.grid_el_23 { grid-column: 7; }
+.grid_el_24 { grid-column: 8; }
+.grid_el_25 { grid-column: 8; }
+.grid_el_26 { grid-column: 8; }
+.grid_el_27 { grid-column: 8; }
+
 /* ======================== cardAlphabet ========================== */
-.cardAlphabetContain {
+/* .cardAlphabetContain {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -277,18 +379,15 @@ body {
     left: 15px;
     width: auto;
 
-}
-
-/* .cardAlphabet{
-
 } */
+
 
 .cardAlphabet_card {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     padding: 3px;
-    margin: 3px;
+    /* margin: 3px; */
     gap: 2px;
     border: 1px solid var(--matrix-color);
     border-radius: 3px;
@@ -306,17 +405,3 @@ body {
     background-color: var(--matrix-color);
 }
 
-/* ======================= drop ========================= */
-.drop_insert_border_on {
-    /* box-shadow: 0 0 0 1px red inset; */
-    border: 1.5px dashed #dedede;
-}
-
-.drag_Start_end {
-    box-shadow: 0 0 0 2px white;
-
-}
-
-.newTripletLine {
-    background-color: #DDB078;
-}

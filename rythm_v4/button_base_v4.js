@@ -40,13 +40,15 @@ const createCircle = (elem) => {
 
 const cardAlphabet = () => {
     const cardAlphabet = document.createElement('div');
-    cardAlphabet.classList.add('cardAlphabet');
+    cardAlphabet.classList.add('topBar');
 
     const docFragment = document.createDocumentFragment();
 
-    Object.entries(alphabet).forEach(([item, value]) => {
+    Object.entries(alphabet).forEach(([item, value],index) => {
+      console.log(index);
         const cardAlphabetCard = document.createElement('div');
         cardAlphabetCard.classList.add('cardAlphabet_card');
+        cardAlphabetCard.classList.add(`grid_el_${index}`);
         cardAlphabetCard.dataset.data = value;
         cardAlphabetCard.draggable = true;
 

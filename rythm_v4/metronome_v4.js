@@ -69,7 +69,7 @@ class Metronome {
         }
 
 
-        switch (document.querySelector('.select_speed').value) {
+        switch (document.querySelector('.contain_btn_pulse').dataset.value) {
             case 'value_NO':
                 break;
             case 'value_2':
@@ -188,10 +188,11 @@ for (let i = 0; i < tempoChangeButtons.length; i++) {
     });
 };
 
-document.querySelector('.select_speed').addEventListener('change', function () {
+document.querySelector('.contain_btn_pulse').addEventListener('change', function () {
+    console.log('change');
     // console.log(this.value);
     clear_all_elem();
-    switch (this.value) {
+    switch (this.dataset.value) {
         case 'value_NO':
             break;
         case 'value_2':
@@ -225,11 +226,13 @@ document.querySelector('.select_speed').addEventListener('change', function () {
     }
 })
 
-document.querySelector('.select_group').addEventListener('change', function () {
+document.querySelector('.contain_btn_group').addEventListener('change', function () {
     // console.log(this.value);
     // clear_all_elem();
-    switch (this.value) {
+    console.log(this.dataset.value);
+    switch (this.dataset.value) {
         case 'value_NO':
+            metronome.beatsPerBar = 0;
             break;
         case 'value_1':
             metronome.beatsPerBar = 1;

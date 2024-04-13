@@ -215,6 +215,7 @@ const backgroundMatrix = {
                     e.stopPropagation();
                     let leftTargerPosition = e.target.style.left;
                     create_and_append_active_elem(e.target, activeElemLayer, leftTargerPosition, 'click');
+                    
                 });
                 containMatrix.append(new_circle);
             }
@@ -407,6 +408,7 @@ let create_and_append_active_elem = function (clickElem, activeElemLayer, leftPo
             }
         }
     })
+    saveState();
 }
 
 let app = document.querySelector('.app');
