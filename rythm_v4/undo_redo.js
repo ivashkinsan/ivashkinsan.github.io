@@ -9,7 +9,7 @@ function saveState() {
     undoStack.push(treeContainer.innerHTML);
     undoButton.disabled = false;
     redoButton.disabled = true;
-    console.log(getEventListeners());
+    // console.log(getEventListeners());
 }
 
 // Функция для отмены последнего изменения
