@@ -135,20 +135,36 @@ let createNoteAfterDrop = (event, dropElem) => {
 
     let customData = event.dataTransfer.getData('customData').split(' ');
     let interval = dropElemPosition.width / customData.length;
+    let constInterval = interval;
     let targetLeftPosition = dropElemPosition.left;
 
-    for (let item of customData) {
-        let isZero = item === '0';
+    for (let i = 0; i < customData.length; i++) {
+        console.log(customData[i]);
+        let isZero = customData[i] === '0';
+        // if(customData[i+1] === '0'){
+        //     console.log('следующий ноль');
+        //     interval = interval + constInterval;
+        //             }
+
         let newCircle = sizeIdentif[interval].createDivTag('', interval, isZero);
         newCircle.style.width = newCircle.style.height = `${interval}px`;
+
+
 
         if (!isZero) {
             createTripletLine(customData.length, newCircle, interval);
         }
 
+
+
         create_and_append_active_elem(newCircle, activeElemLayer, `${targetLeftPosition}px`, 'drop', isZero);
         createTripletLine(customData.length, newCircle, interval);
         targetLeftPosition += interval;
+        // if(customData[i+1] === '0'){
+        //     console.log('уменьшаем');
+        //    interval = interval - constInterval;
+        //    i++;
+        //             }
     }
 }
 
