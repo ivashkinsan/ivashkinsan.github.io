@@ -45,7 +45,7 @@ const cardAlphabet = () => {
     const docFragment = document.createDocumentFragment();
 
     Object.entries(alphabet).forEach(([item, value],index) => {
-      console.log(index);
+    //   console.log(index);
         const cardAlphabetCard = document.createElement('div');
         cardAlphabetCard.classList.add('cardAlphabet_card');
         cardAlphabetCard.classList.add(`grid_el_${index}`);
@@ -124,6 +124,7 @@ function drop(event) {
 
 
 let createNoteAfterDrop = (event, dropElem) => {
+    const activeElemLayer = document.querySelector('.activeElemLayer');
     let allActiveForDelete = activeElemLayer.querySelectorAll('.active');
     let dropElemPosition = extractPositionData(dropElem.style);
 
@@ -143,23 +144,17 @@ let createNoteAfterDrop = (event, dropElem) => {
     for (let i = 0; i < customData.length; i++) {
         console.log(customData[i]);
         let isZero = customData[i] === '0';
-        // if(customData[i+1] === '0'){
-        //     console.log('следующий ноль');
-        //     interval = interval + constInterval;
-        //             }
+        // if (!isZero) {
+        //     createTripletLine(customData.length, newCircle, interval);
+        // }
 
         let newCircle = sizeIdentif[interval].createDivTag('', interval, isZero);
         newCircle.style.width = newCircle.style.height = `${interval}px`;
-
-
-
-        if (!isZero) {
-            createTripletLine(customData.length, newCircle, interval);
-        }
-
-
-
-        create_and_append_active_elem(newCircle, activeElemLayer, `${targetLeftPosition}px`, 'drop', isZero);
+        newCircle.style.left = targetLeftPosition + 'px';
+        create_and_append_active_elem(newCircle, activeElemLayer, 'drop', isZero);
+       
+       
+       
         createTripletLine(customData.length, newCircle, interval);
         targetLeftPosition += interval;
         // if(customData[i+1] === '0'){

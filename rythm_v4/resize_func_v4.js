@@ -179,7 +179,7 @@ console.log(appRightSide);
 }
 
 let hameleon = function (inputElem, noteObj, outIndx, width, left) {
-
+console.log(inputElem);
     inputElem.classList.replace(inputElem.classList[0], noteObj.class);
     inputElem.classList.add(noteObj.class);
     inputElem.dataset.data = noteObj.nameEng;
@@ -233,5 +233,5 @@ let coordCreate = function (name) {
     return coord;
 }
 
-console.dir(coordCreate('first'));
-console.dir(coordCreate('second'));
+// console.dir(coordCreate('first'));
+// console.dir(coordCreate('second'));

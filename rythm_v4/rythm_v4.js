@@ -58,11 +58,7 @@ let createNumberMatrix = function () {
 // 8    7  6  5  4   3    2    1
 // 52,5 60 70 84 105 140  210  420
 // выбрано число 420
-let containMatrix = document.createElement('div');
-containMatrix.classList.add('containMatrix');
 
-let activeElemLayer = document.createElement('div');
-activeElemLayer.classList.add('activeElemLayer');
 
 let newOutIndMatrix = {};
 
@@ -157,7 +153,14 @@ const backgroundMatrix = {
         const root = document.querySelector(':root');
         this.baseSize = parseFloat(getComputedStyle(root).getPropertyValue('--base-size'));
         this.baseWidth = this.baseSize / 16 * array.length;
-        console.log(this.baseWidth);
+        
+        const containMatrix = document.createElement('div');
+        containMatrix.classList.add('containMatrix');
+        
+        const activeElemLayer = document.createElement('div');
+        activeElemLayer.classList.add('activeElemLayer');
+
+        console.log("baseWidth = " + this.baseWidth);
         // baseSize = Number(baseSize.replace('px', ''))
         
         // внешний цикл
@@ -210,13 +213,12 @@ const backgroundMatrix = {
 
                 new_circle.dataset.outIndx = outIndx + 1;
                 new_circle.draggable = false;
+         
+
                 new_circle.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    let leftTargerPosition = e.target.style.left;
-                    create_and_append_active_elem(e.target, activeElemLayer, leftTargerPosition, 'click');
-                    
+                    create_and_append_active_elem(e.target, activeElemLayer, 'click');
                 });
+
                 containMatrix.append(new_circle);
             }
 
@@ -328,22 +330,25 @@ let insertSortedDiv = function (container, newDiv) {
     childrenArray.forEach(child => container.appendChild(child)); // Вставляем отсортированные элементы обратно в контейнер
 }
 
+// let magicNoteToPause = function(elem){
+// if(!elem.classList.contains('pause')){
+//     elem.classList.add('pause');
+// } else {
+//     elem.classList.remove('pause');
+// }
+// }
 
-
-let create_and_append_active_elem = function (clickElem, activeElemLayer, leftPosition, eventType, is_pause) {
-
+let create_and_append_active_elem = function (clickElem, activeElemLayer, eventType, is_pause) {
+    let leftTargerPosition = clickElem.style.left;
     let activeBlock;
     let sizeElemForGenerate = Number(clickElem.style.width.replace('px', ''));
     if (is_pause == true) {
         activeBlock = sizeIdentif[sizeElemForGenerate].createDivTag(clickElem.dataset.outIndx, backgroundMatrix.baseSize, true);
-        activeBlock.style.left = leftPosition;
         activeBlock.classList.add('pause');
     } else {
         activeBlock = sizeIdentif[sizeElemForGenerate].createDivTag(clickElem.dataset.outIndx, backgroundMatrix.baseSize);
-        activeBlock.style.left = leftPosition;
-
     }
-
+    activeBlock.style.left = leftTargerPosition;
     activeBlock.classList.add('active');
 
     // activeBlock.style.left = clickElem.style.left;
@@ -377,38 +382,53 @@ let create_and_append_active_elem = function (clickElem, activeElemLayer, leftPo
         handle.classList.add('display_none');
     }
 
+
     borderCollapsResize(activeBlock);
+
+    activeBlock.addEventListener('mousedown', (event) => {
+        clickForActiveElem(event);
+    })
 
     activeBlock.addEventListener('contextmenu', (event) => {
         event.preventDefault(true);
-        if (event.target.classList.contains('active')) {
-            event.target.remove();
-            if (nextActiveBlock) {
-                let handle = nextActiveBlock.querySelector('.left_double_arrow');
-                handle.classList.add('display_none');
-            }
-            if (nextActiveBlock && previousActiveBlock) {
-                let handle = nextActiveBlock.querySelector('.left_double_arrow');
-                handle.classList.add('display_none');
-            }
-        }
+        onContextClickForDelActiveElem(event);
     });
 
-    activeBlock.addEventListener('mousedown', (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        if (event.button == 0) {
-            let evTargetWidth = Number(event.target.style.width.replace('px', ''));
-            if (!activeBlock.classList.contains('pause')) {
-                activeBlock.classList.add('pause');
-                hameleon(activeBlock, sizeIdentif[evTargetWidth], event.target.dataset.outIndx, true);
-            } else {
-                activeBlock.classList.remove('pause');
-                hameleon(activeBlock, sizeIdentif[evTargetWidth], event.target.dataset.outIndx);
-            }
-        }
-    })
+
     saveState();
+}
+
+// функция клика по активному элементу
+let clickForActiveElem = function(event){
+    event.preventDefault();
+    event.stopPropagation();
+    if (event.button == 0) {
+        let evTargetWidth = Number(event.target.style.width.replace('px', ''));
+        if (!event.target.classList.contains('pause')) {
+            event.target.classList.add('pause');
+            hameleon(event.target, sizeIdentif[evTargetWidth], event.target.dataset.outIndx, true);
+        } else {
+            event.target.classList.remove('pause');
+            hameleon(event.target, sizeIdentif[evTargetWidth], event.target.dataset.outIndx);
+        }
+    }
+}
+// функция удаления правой кнопкой активного элемента
+let onContextClickForDelActiveElem = function(event){
+    let previousActiveBlock = event.target.previousElementSibling ? event.target.previousElementSibling : undefined;
+    let nextActiveBlock = event.target.nextElementSibling ? event.target.nextElementSibling : undefined;
+    
+    if (event.target.classList.contains('active')) {
+        event.target.remove();
+        if (nextActiveBlock) {
+            let handle = nextActiveBlock.querySelector('.left_double_arrow');
+            handle.classList.add('display_none');
+        }
+        if (nextActiveBlock && previousActiveBlock) {
+            let handle = nextActiveBlock.querySelector('.left_double_arrow');
+            handle.classList.add('display_none');
+        }
+    }
 }
 
 let app = document.querySelector('.app');
