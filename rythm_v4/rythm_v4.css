@@ -69,7 +69,8 @@ body {
 .app {
     position: relative;
     margin-top: calc(var(--base-size) / 30);
-    margin-left: calc(var(--base-size) / 6);
+    /* margin-left: calc(var(--base-size) / 6); */
+    margin-left: 90px;
 }
 
 .containMatrix {
@@ -106,7 +107,8 @@ body {
     /* box-shadow: 0 0 0 1px rgba(199, 199, 199, 0.451) inset, 0px 5px 5px 0px black; */
     box-shadow: 0 0 0 1px rgba(199, 199, 199, 0.451) inset;
     /* background: rgba(9, 2, 37, 0.177); */
-    background:#16161634;;
+    background: #16161634;
+    ;
     top: 50%;
     cursor: pointer;
     transform: translateY(-50%);
@@ -287,7 +289,7 @@ body {
     background-color: #DDB078;
 }
 
-.elem_footer{
+.elem_footer {
     display: flex;
     flex-direction: row;
     /* margin-left: 15px; */
@@ -295,7 +297,7 @@ body {
     gap: 5px;
 }
 
-.elem_footer > div{
+.elem_footer>div {
     /* margin: 5px; */
     /* padding: 3px; */
     width: 32px;
@@ -307,22 +309,24 @@ body {
     cursor: pointer;
 }
 
-.elem_footer > .btn_active{
+.elem_footer>.btn_active {
     border: 1px solid white;
 }
-.elem_footer >p{
+
+.elem_footer>p {
     line-height: 32px;
 }
 
-.line_border_left{
+.line_border_left {
     height: 32px;
     width: 2px;
     background-color: white;
 }
 
 /* ======================  top шторка  ==================== */
-.topBar{
+.topBar {
     display: grid;
+    position: relative;
     grid-template-columns: repeat(8, calc(var(--base-size) / 7));
     grid-auto-flow: column;
     gap: 15px;
@@ -339,7 +343,7 @@ body {
     top: 10px;
     z-index: 1000;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .hidden_topBar {
@@ -349,45 +353,117 @@ body {
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
 }
 
-.grid_el_0 { grid-column: 1; }
-.grid_el_1 { grid-column: 1; }
-.grid_el_2 { grid-column: 1; }
-.grid_el_3 { grid-column: 1; }
-.grid_el_4  { grid-column: 2; }
-.grid_el_5 { grid-column: 2; }
-.grid_el_6 { grid-column: 2; }
-.grid_el_7 { grid-column: 2; }
-.grid_el_8 { grid-column: 2; }
-.grid_el_9 { grid-column: 2; }
-.grid_el_10 { grid-column: 3; }
-.grid_el_11 { grid-column: 3; }
-.grid_el_12 { grid-column: 3; }
-.grid_el_13 { grid-column: 3; }
-.grid_el_14 { grid-column: 4; }
-.grid_el_15 { grid-column: 4; }
-.grid_el_16 { grid-column: 5; }
-.grid_el_17 { grid-column: 5; }
-.grid_el_18 { grid-column: 5; }
-.grid_el_19 { grid-column: 6; }
-.grid_el_20 { grid-column: 6; }
-.grid_el_21 { grid-column: 6; }
-.grid_el_22 { grid-column: 7; }
-.grid_el_23 { grid-column: 7; }
-.grid_el_24 { grid-column: 8; }
-.grid_el_25 { grid-column: 8; }
-.grid_el_26 { grid-column: 8; }
-.grid_el_27 { grid-column: 8; }
+.grid_el_0 {
+    grid-column: 1;
+}
 
-/* ======================== cardAlphabet ========================== */
-/* .cardAlphabetContain {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    top: 15px;
-    left: 15px;
-    width: auto;
+.grid_el_1 {
+    grid-column: 1;
+}
 
-} */
+.grid_el_2 {
+    grid-column: 1;
+}
+
+.grid_el_3 {
+    grid-column: 1;
+}
+
+.grid_el_4 {
+    grid-column: 2;
+}
+
+.grid_el_5 {
+    grid-column: 2;
+}
+
+.grid_el_6 {
+    grid-column: 2;
+}
+
+.grid_el_7 {
+    grid-column: 2;
+}
+
+.grid_el_8 {
+    grid-column: 2;
+}
+
+.grid_el_9 {
+    grid-column: 2;
+}
+
+.grid_el_10 {
+    grid-column: 3;
+}
+
+.grid_el_11 {
+    grid-column: 3;
+}
+
+.grid_el_12 {
+    grid-column: 3;
+}
+
+.grid_el_13 {
+    grid-column: 3;
+}
+
+.grid_el_14 {
+    grid-column: 4;
+}
+
+.grid_el_15 {
+    grid-column: 4;
+}
+
+.grid_el_16 {
+    grid-column: 5;
+}
+
+.grid_el_17 {
+    grid-column: 5;
+}
+
+.grid_el_18 {
+    grid-column: 5;
+}
+
+.grid_el_19 {
+    grid-column: 6;
+}
+
+.grid_el_20 {
+    grid-column: 6;
+}
+
+.grid_el_21 {
+    grid-column: 6;
+}
+
+.grid_el_22 {
+    grid-column: 7;
+}
+
+.grid_el_23 {
+    grid-column: 7;
+}
+
+.grid_el_24 {
+    grid-column: 8;
+}
+
+.grid_el_25 {
+    grid-column: 8;
+}
+
+.grid_el_26 {
+    grid-column: 8;
+}
+
+.grid_el_27 {
+    grid-column: 8;
+}
 
 
 .cardAlphabet_card {
@@ -413,3 +489,28 @@ body {
     background-color: var(--matrix-color);
 }
 
+.btn_open_and_close_card_alphabet {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+
+
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+    transform: rotate(-45deg);
+    /* background-color: aquamarine; */
+    cursor: pointer;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
+}
+
+.inBody {
+    /* bottom: -45px; */
+    transform-origin: center;
+    bottom: -55px;
+    transform: rotate(0.375turn);
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
+}

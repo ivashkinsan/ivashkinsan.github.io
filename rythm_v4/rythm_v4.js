@@ -68,11 +68,11 @@ let newOutIndMatrix = {};
 const backgroundMatrix = {
     'baseSize': 0,
     'baseWidth': 0,
-    'leftAppSide':0,
+    'leftAppSide': 0,
     'rightAppSide': 0,
     'step': 0,
-    'minWidth':0,
-    'maxWidth':0,
+    'minWidth': 0,
+    'maxWidth': 0,
     'matrix_1x4': [
         '4 8 16',       //1
         '16',           //2
@@ -159,16 +159,16 @@ const backgroundMatrix = {
         const root = document.querySelector(':root');
         this.baseSize = parseFloat(getComputedStyle(root).getPropertyValue('--base-size'));
         this.baseWidth = this.baseSize / 16 * array.length;
-        
+
         const containMatrix = document.createElement('div');
         containMatrix.classList.add('containMatrix');
-        
+
         const activeElemLayer = document.createElement('div');
         activeElemLayer.classList.add('activeElemLayer');
 
         // console.log("baseWidth = " + this.baseWidth);
         // baseSize = Number(baseSize.replace('px', ''))
-        
+
         this.step = backgroundMatrix.baseSize / 16; // Шаг изменения блока
         this.minWidth = backgroundMatrix.baseSize / 16;
         this.maxWidth = backgroundMatrix.baseSize;
@@ -223,7 +223,7 @@ const backgroundMatrix = {
 
                 new_circle.dataset.outIndx = outIndx + 1;
                 new_circle.draggable = false;
-         
+
 
                 new_circle.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -290,9 +290,9 @@ let borderCollapsResize = function (elem) {
         if (rightSidePrevElem > heroElemLeftSide) {
             // previousElement.style.width = () + 'px';
             hameleon(
-                previousElement, 
-                sizeIdentif[resultNewWidth], 
-                newOutIndMatrix[leftSidePrevElem], 
+                previousElement,
+                sizeIdentif[resultNewWidth],
+                newOutIndMatrix[leftSidePrevElem],
                 resultNewWidth);
         }
     }
@@ -422,7 +422,7 @@ let create_and_append_active_elem = function (clickElem, activeElemLayer, eventT
 }
 
 // функция клика по активному элементу
-let clickForActiveElem = function(event){
+let clickForActiveElem = function (event) {
     event.preventDefault();
     event.stopPropagation();
     if (event.button == 0) {
@@ -437,10 +437,10 @@ let clickForActiveElem = function(event){
     }
 }
 // функция удаления правой кнопкой активного элемента
-let onContextClickForDelActiveElem = function(event){
+let onContextClickForDelActiveElem = function (event) {
     let previousActiveBlock = event.target.previousElementSibling ? event.target.previousElementSibling : undefined;
     let nextActiveBlock = event.target.nextElementSibling ? event.target.nextElementSibling : undefined;
-    
+
     if (event.target.classList.contains('active')) {
         event.target.remove();
         if (nextActiveBlock) {
@@ -464,7 +464,3 @@ app.append(allLayer[1]);
 
 console.log(backgroundMatrix);
 
-function toggleCurtain() {
-    const topBar = document.querySelector('.topBar');
-    topBar.classList.toggle('hidden_topBar');
-}

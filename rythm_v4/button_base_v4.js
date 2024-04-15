@@ -38,14 +38,26 @@ const createCircle = (elem) => {
     return cardAlphabetCardCircle;
 }
 
+const createBtnOpenAndCloseCardAlphabet = function () {
+    let btn = document.createElement('div');
+    btn.classList.add('btn_open_and_close_card_alphabet');
+    btn.addEventListener('click', function () {
+        const topBar = document.querySelector('.topBar');
+        topBar.classList.toggle('hidden_topBar');
+        btn.classList.toggle('inBody');
+    })
+    return btn;
+}
+
+
 const cardAlphabet = () => {
     const cardAlphabet = document.createElement('div');
     cardAlphabet.classList.add('topBar');
 
     const docFragment = document.createDocumentFragment();
 
-    Object.entries(alphabet).forEach(([item, value],index) => {
-    //   console.log(index);
+    Object.entries(alphabet).forEach(([item, value], index) => {
+        //   console.log(index);
         const cardAlphabetCard = document.createElement('div');
         cardAlphabetCard.classList.add('cardAlphabet_card');
         cardAlphabetCard.classList.add(`grid_el_${index}`);
@@ -62,6 +74,7 @@ const cardAlphabet = () => {
         docFragment.appendChild(cardAlphabetCard);
     });
 
+    cardAlphabet.appendChild(createBtnOpenAndCloseCardAlphabet());
     cardAlphabet.appendChild(docFragment);
 
     return cardAlphabet;
@@ -152,9 +165,9 @@ let createNoteAfterDrop = (event, dropElem) => {
         newCircle.style.width = newCircle.style.height = `${interval}px`;
         newCircle.style.left = targetLeftPosition + 'px';
         create_and_append_active_elem(newCircle, activeElemLayer, 'drop', isZero);
-       
-       
-       
+
+
+
         createTripletLine(customData.length, newCircle, interval);
         targetLeftPosition += interval;
         // if(customData[i+1] === '0'){
@@ -192,7 +205,7 @@ const newRootBaseSizeValue = function (param, previousParam) {
     document.documentElement.style.setProperty('--base-size', `${param}px`);
     let root = document.querySelector(':root');
 
-    backgroundMatrix.baseSize = parseFloat( getComputedStyle(root).getPropertyValue('--base-size'));
+    backgroundMatrix.baseSize = parseFloat(getComputedStyle(root).getPropertyValue('--base-size'));
     backgroundMatrix.baseWidth = backgroundMatrix.baseSize;
 
     let body = document.querySelector('body');
@@ -221,16 +234,16 @@ const newRootBaseSizeValue = function (param, previousParam) {
 
     let differenceNumb = previousParam / param;
     let allActiveForResize = document.querySelectorAll('.active');
-    for(let item of allActiveForResize){
+    for (let item of allActiveForResize) {
         console.log(item);
         let itemWidth = parseFloat(window.getComputedStyle(item).width);
         let itemLeft = parseFloat(window.getComputedStyle(item).left);
-        hameleon(item, sizeIdentif[(itemWidth / differenceNumb)], item.dataset.outIndx,(itemWidth / differenceNumb), (itemLeft / differenceNumb));
+        hameleon(item, sizeIdentif[(itemWidth / differenceNumb)], item.dataset.outIndx, (itemWidth / differenceNumb), (itemLeft / differenceNumb));
     }
 }
 
 let newRootButton420 = document.querySelector('.newRootBaseSizeValue420');
 let newRootButton840 = document.querySelector('.newRootBaseSizeValue840');
 
-newRootButton420.addEventListener('click', () => newRootBaseSizeValue(420,backgroundMatrix.baseSize));
-newRootButton840.addEventListener('click', () => newRootBaseSizeValue(840,backgroundMatrix.baseSize));
+newRootButton420.addEventListener('click', () => newRootBaseSizeValue(420, backgroundMatrix.baseSize));
+newRootButton840.addEventListener('click', () => newRootBaseSizeValue(840, backgroundMatrix.baseSize));
