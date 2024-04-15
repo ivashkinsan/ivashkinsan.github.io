@@ -30,10 +30,18 @@ let schet_for_led = 0;
 let led_beat = function (level) {
     // console.log('click');
     // console.log(level[schet_for_led]);
+
+    if(schet_for_led == 0){
+        setTimeout(function(){
+            play();
+        },55);
+        
+    }
     for (let item of level) {
         item.classList.remove('add_metronome_click_active');
     }
     level[schet_for_led].classList.add('add_metronome_click_active');
+   
     // переключение доли
     schet_for_led += 1;
     //сброс счетчика
@@ -264,4 +272,48 @@ let clearActiveElem = function(){
     }
 }
 let clearButton = document.querySelector('.clear');
-clearButton.addEventListener('click',clearActiveElem)
+clearButton.addEventListener('click',clearActiveElem);
+
+
+
+
+var context = new AudioContext();
+var buffer; 
+
+window.fetch('/Example_audio/Example_1.mp3')
+  .then(response => response.arrayBuffer())
+  .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+  .then(audioBuffer => {
+    buffer = audioBuffer;
+    
+  });
+
+function play() {
+  var source1 = context.createBufferSource();
+  source1.buffer = buffer;
+  source1.connect(context.destination);
+  source1.start(); 
+
+//   source1.onended = event => {
+//     var source2 = context.createBufferSource();
+//     source2.buffer = buffer;
+//     source2.connect(context.destination);
+//     source2.start(); 
+//     source2.onended = play;
+//   };
+}
+
+
+// var context = new AudioContext();
+// var source = context.createBufferSource();
+
+// fetch('audio_file.mp3')
+//     .then(response => response.arrayBuffer())
+//     .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+//     .then(audioBuffer => {
+//         source.buffer = audioBuffer;
+//         source.connect(context.destination);
+//         // Увеличиваем скорость воспроизведения в два раза
+//         source.playbackRate.value = 2.0;
+//         source.start();
+//     });
