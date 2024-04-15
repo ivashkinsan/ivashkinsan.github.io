@@ -13,5 +13,6 @@
 точка - F06B F02E
 плюс - F0F6   F084
 тире - F05F
+пробел - F020
 
 https://fontdrop.info/#/

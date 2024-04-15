@@ -172,6 +172,7 @@ const backgroundMatrix = {
         this.step = backgroundMatrix.baseSize / 16; // Шаг изменения блока
         this.minWidth = backgroundMatrix.baseSize / 16;
         this.maxWidth = backgroundMatrix.baseSize;
+        containMatrix.style.width = this.baseWidth + 'px';
 
         // внешний цикл
         for (let outIndx = 0; outIndx < array.length; outIndx++) {
