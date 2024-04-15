@@ -7,8 +7,10 @@ let redoStack = [];
 // Функция для сохранения текущего состояния DOM-дерева
 function saveState() {
     undoStack.push(treeContainer.innerHTML);
+    redoStack = [];
     undoButton.disabled = false;
     redoButton.disabled = true;
+    console.log(undoStack);
 }
 
 // Функция для отмены последнего изменения
@@ -71,3 +73,4 @@ let returnAddEventListener = function(){
        }
     }
 }
+

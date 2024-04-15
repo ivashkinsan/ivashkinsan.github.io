@@ -64,16 +64,32 @@ class Note {
     createHandleLeftElem = function () {
         let leftHandle = document.createElement('div');
         leftHandle.classList.add('handle', 'left-handle');
-        leftHandle.addEventListener('mousedown', (elem) => {
-            startResizing(elem, 'left');
+        leftHandle.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            startResizing(event, 'left');
+        });
+        leftHandle.addEventListener('touchmove', (event) => {
+            console.log('touchstart Left Handle');
+            event.preventDefault();
+            event.stopPropagation();
+            startResizing(event, 'left');
         });
         return leftHandle;
     }
     createHandleRightElem = function () {
         let righttHandle = document.createElement('div');
         righttHandle.classList.add('handle', 'right-handle');
-        righttHandle.addEventListener('mousedown', (elem) => {
-            startResizing(elem, 'right');
+        righttHandle.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            startResizing(event, 'right');
+        });
+        righttHandle.addEventListener('touchmove', (event) => {
+            console.log('touchstart Right Handle');
+            event.preventDefault();
+            event.stopPropagation();
+            startResizing(event, 'right');
         });
         return righttHandle;
     }
@@ -84,8 +100,16 @@ class Note {
         left_double_arrow.classList.add('left_double_arrow');
         left_double_arrow.classList.add('display_block');
         left_double_arrow.classList.add('display_none');
-        left_double_arrow.addEventListener('mousedown', (elem) => {
-            startResizing(elem, 'left_right');
+        left_double_arrow.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            startResizing(event, 'left_right');
+        });
+        left_double_arrow.addEventListener('touchmove', (event) => {
+            console.log('touchstart Left-Right Handle');
+            event.preventDefault();
+            event.stopPropagation();
+            startResizing(event, 'left_right');
         });
 
         return left_double_arrow;

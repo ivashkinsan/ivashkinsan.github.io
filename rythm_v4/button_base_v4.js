@@ -162,6 +162,7 @@ let createNoteAfterDrop = (event, dropElem) => {
         //    interval = interval - constInterval;
         //    i++;
         //             }
+        saveState();
     }
 }
 
@@ -188,31 +189,31 @@ let createTripletLine = (count, parentElem, interval) => {
 
 
 const newRootBaseSizeValue = function (param, previousParam) {
-    // Изменяем значение переменной --font-size на 16px
     document.documentElement.style.setProperty('--base-size', `${param}px`);
+    let root = document.querySelector(':root');
 
-    root = document.querySelector(':root');
     backgroundMatrix.baseSize = parseFloat( getComputedStyle(root).getPropertyValue('--base-size'));
-    // Получаем элемент, который требуется перерисовать (например, элемент с классом "example-element")
-    const element = document.querySelector('body');
+    backgroundMatrix.baseWidth = backgroundMatrix.baseSize;
+
+    let body = document.querySelector('body');
     // Перезапускаем стили элемента для обновления изменений
-    const tempDisplay = element.style.display;
-    element.style.display = 'none';
-    element.offsetHeight; // Принудительно перерисовываем элемент
-    element.style.display = tempDisplay;
+    let tempDisplay = body.style.display;
+    body.style.display = 'none';
+    body.offsetHeight; // Принудительно перерисовываем элемент
+    body.style.display = tempDisplay;
 
     const parentNode = document.querySelector('.containMatrix');
     while (parentNode.firstChild) {
         parentNode.removeChild(parentNode.firstChild);
     }
-
     sizeIdentif = createSizeIdentif();
-    step = backgroundMatrix.baseSize / 16; // Шаг изменения блока
-    minWidth = backgroundMatrix.baseSize / 16;
-    maxWidth = backgroundMatrix.baseSize;
+    // let step = backgroundMatrix.step; // Шаг изменения блока
+    // let minWidth = backgroundMatrix.minWidth;
+    // let maxWidth = backgroundMatrix.maxWidth;
 
     allLayer = backgroundMatrix.createBackground(stateAppMatrix, 0);
-
+    app.children[0].remove();
+    app.children[0].remove();
     app.append(allLayer[0]);
     app.append(allLayer[1]);
 
@@ -221,9 +222,10 @@ const newRootBaseSizeValue = function (param, previousParam) {
     let differenceNumb = previousParam / param;
     let allActiveForResize = document.querySelectorAll('.active');
     for(let item of allActiveForResize){
+        console.log(item);
         let itemWidth = parseFloat(window.getComputedStyle(item).width);
         let itemLeft = parseFloat(window.getComputedStyle(item).left);
-        hameleon(item, sizeIdentif[(itemWidth / differenceNumb)], '',(itemWidth / differenceNumb), (itemLeft / differenceNumb));
+        hameleon(item, sizeIdentif[(itemWidth / differenceNumb)], item.dataset.outIndx,(itemWidth / differenceNumb), (itemLeft / differenceNumb));
     }
 }
 

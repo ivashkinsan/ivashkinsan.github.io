@@ -27,6 +27,7 @@
 
 
 <div class="metronome_container">
+    <div class="line_border_left"></div>
     <button id="play-button" class="">
         <div id="play-pause-icon" class="play"></div>
     </button>
@@ -37,11 +38,13 @@
 
     <div class="tempo-container">
         <div id="tempo">120</div>
-        <div class="bpm">bpm</div>
+        <div class="bpm">ск/уд/м</div>
     </div>
 
     <button class="tempo-change" data-change="+1">+</button>
     <button class="tempo-change" data-change="+5">+5</button>
+
+    <div class="line_border_left"></div>
 
     <div class="elem_footer contain_btn_pulse">
         <p>пульс</p>
@@ -51,6 +54,7 @@
         <div class="btn_pls" data-value="value_8">8</div>
         <div class="btn_pls" data-value="value_16">16</div>
     </div>
+    <div class="line_border_left"></div>
     <div class="elem_footer contain_btn_group">
         <p>группа</p>
         <div class="btn_grp btn_active" data-value="value_NO">--</div>
@@ -61,7 +65,7 @@
         <div class="btn_grp " data-value="value_5">5</div>
         <!-- <div class="btn_grp " data-value="value_3+2">3+2</div> -->
     </div>
-
+    <div class="line_border_left"></div>
     <button class="clear">сброс</button>
     <button class="newRootBaseSizeValue420">420</button>
     <button class="newRootBaseSizeValue840">840</button>
@@ -69,18 +73,11 @@
     <button onclick="toggleCurtain()">шторка</button>
     <button id="undoButton" disabled>отме</button>
     <button id="redoButton" disabled>повт</button>
+    <div class="line_border_left"></div>
 </div>
 
 
-<div class="topBar hidden_topBar"></div>
-
-
-<script>
-    function toggleCurtain() {
-        const topBar = document.querySelector('.topBar');
-        topBar.classList.toggle('hidden_topBar');
-    }
-</script>
+<!-- <div class="topBar hidden_topBar"></div> -->
 
 
 

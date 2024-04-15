@@ -62,11 +62,17 @@ let createNumberMatrix = function () {
 
 let newOutIndMatrix = {};
 
+
+
+
 const backgroundMatrix = {
     'baseSize': 0,
     'baseWidth': 0,
     'leftAppSide':0,
     'rightAppSide': 0,
+    'step': 0,
+    'minWidth':0,
+    'maxWidth':0,
     'matrix_1x4': [
         '4 8 16',       //1
         '16',           //2
@@ -160,9 +166,13 @@ const backgroundMatrix = {
         const activeElemLayer = document.createElement('div');
         activeElemLayer.classList.add('activeElemLayer');
 
-        console.log("baseWidth = " + this.baseWidth);
+        // console.log("baseWidth = " + this.baseWidth);
         // baseSize = Number(baseSize.replace('px', ''))
         
+        this.step = backgroundMatrix.baseSize / 16; // Шаг изменения блока
+        this.minWidth = backgroundMatrix.baseSize / 16;
+        this.maxWidth = backgroundMatrix.baseSize;
+
         // внешний цикл
         for (let outIndx = 0; outIndx < array.length; outIndx++) {
             let stringToArr = array[outIndx].split(' ');
@@ -216,6 +226,15 @@ const backgroundMatrix = {
          
 
                 new_circle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('click');
+                    create_and_append_active_elem(e.target, activeElemLayer, 'click');
+                });
+                new_circle.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('touchstart');
                     create_and_append_active_elem(e.target, activeElemLayer, 'click');
                 });
 
@@ -270,7 +289,11 @@ let borderCollapsResize = function (elem) {
         let resultNewWidth = widthPrevElem - summLeftCollaps;
         if (rightSidePrevElem > heroElemLeftSide) {
             // previousElement.style.width = () + 'px';
-            hameleon(previousElement, sizeIdentif[resultNewWidth], newOutIndMatrix[leftSidePrevElem], resultNewWidth);
+            hameleon(
+                previousElement, 
+                sizeIdentif[resultNewWidth], 
+                newOutIndMatrix[leftSidePrevElem], 
+                resultNewWidth);
         }
     }
     if (previousElement) {
@@ -387,15 +410,15 @@ let create_and_append_active_elem = function (clickElem, activeElemLayer, eventT
 
     activeBlock.addEventListener('mousedown', (event) => {
         clickForActiveElem(event);
+
     })
 
     activeBlock.addEventListener('contextmenu', (event) => {
         event.preventDefault(true);
         onContextClickForDelActiveElem(event);
+
     });
 
-
-    saveState();
 }
 
 // функция клика по активному элементу
@@ -404,9 +427,9 @@ let clickForActiveElem = function(event){
     event.stopPropagation();
     if (event.button == 0) {
         let evTargetWidth = Number(event.target.style.width.replace('px', ''));
-        if (!event.target.classList.contains('pause')) {
+        if (!event.target.classList.contains('pause') && !event.target.classList.contains('handle')) {
             event.target.classList.add('pause');
-            hameleon(event.target, sizeIdentif[evTargetWidth], event.target.dataset.outIndx, true);
+            hameleon(event.target, sizeIdentif[evTargetWidth], event.target.dataset.outIndx);
         } else {
             event.target.classList.remove('pause');
             hameleon(event.target, sizeIdentif[evTargetWidth], event.target.dataset.outIndx);
@@ -438,3 +461,10 @@ let allLayer = backgroundMatrix.createBackground(stateAppMatrix, 0);
 // console.log(allLayer);
 app.append(allLayer[0]);
 app.append(allLayer[1]);
+
+console.log(backgroundMatrix);
+
+function toggleCurtain() {
+    const topBar = document.querySelector('.topBar');
+    topBar.classList.toggle('hidden_topBar');
+}

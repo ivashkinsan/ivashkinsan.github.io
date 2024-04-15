@@ -1,14 +1,16 @@
 
-let step = backgroundMatrix.baseSize / 16; // Шаг изменения блока
-let minWidth = backgroundMatrix.baseSize / 16;
-let maxWidth = backgroundMatrix.baseSize;
+
 
 
 
 
 function startResizing(e, direction) {
+    console.log(e);
     e.preventDefault(true);
     e.stopPropagation();
+    let step = backgroundMatrix.step; // Шаг изменения блока
+    let minWidth = backgroundMatrix.minWidth;
+    let maxWidth = backgroundMatrix.maxWidth;
     const target = e.target.parentNode; // растягиваемый блок
     const startX = e.clientX;
     const startWidth = parseFloat(getComputedStyle(target).width);
@@ -171,18 +173,16 @@ console.log(appRightSide);
     }
 
     function stopResizing(e) {
-        e.preventDefault();
-        e.stopPropagation();
         document.documentElement.removeEventListener('mousemove', resize);
         document.documentElement.removeEventListener('mouseup', stopResizing);
     }
 }
 
 let hameleon = function (inputElem, noteObj, outIndx, width, left) {
-console.log(inputElem);
+// console.log(inputElem);
     inputElem.classList.replace(inputElem.classList[0], noteObj.class);
     inputElem.classList.add(noteObj.class);
-    inputElem.dataset.data = noteObj.nameEng;
+    // inputElem.dataset.data = noteObj.nameEng;
     if (outIndx) {
         inputElem.dataset.outIndx = outIndx
     }
@@ -235,3 +235,10 @@ let coordCreate = function (name) {
 
 // console.dir(coordCreate('first'));
 // console.dir(coordCreate('second'));
+
+let app_forMouseUpEvent = document.querySelector('.app');
+
+app_forMouseUpEvent.addEventListener('mouseup', function (e) {
+    console.log('mouseup');
+    saveState();
+})
