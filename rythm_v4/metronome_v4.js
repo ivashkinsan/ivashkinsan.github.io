@@ -5,7 +5,7 @@ let eighth_notes;
 let sixteenth_notes;
 let all_click_items;
 
-let searsh_all_elem = function () {
+let searsh_all_elem = function () { // функция сбора данных о матрице
     half_notes = document.querySelectorAll('.matrix_2');
     quarter_notes = document.querySelectorAll('.matrix_4');
     eighth_notes = document.querySelectorAll('.matrix_8');
@@ -13,7 +13,7 @@ let searsh_all_elem = function () {
     all_click_items = document.querySelectorAll('.mtrxCircle');
 }
 
-searsh_all_elem();
+searsh_all_elem(); // поиск дом элементов
 
 
 let clear_all_elem = function () {
@@ -28,55 +28,53 @@ let schet_for_led = 0;
 
 //добавление подсветки кликам метронома
 let led_beat = function (level) {
-    // console.log('click');
+    // на инпуте приходит NodeList с однотипными элементами quarter_notes 4 или eighth_notes 8
+    console.log(level);
     // console.log(level[schet_for_led]);
 
-    if(schet_for_led == 0){
-        setTimeout(function(){
-            play();
-        },55);
-        
-    }
-    for (let item of level) {
+    if(schet_for_led == 0){//=================================================
+        setTimeout(function(){//=================================================
+            // play();//=================================================
+        },55);  //=================================================
+    }//=================================================
+
+
+    for (let item of level) { // удаление подсветки
         item.classList.remove('add_metronome_click_active');
     }
+    // последовательное добавление элементам подсветки
     level[schet_for_led].classList.add('add_metronome_click_active');
    
-    // переключение доли
-    schet_for_led += 1;
-    //сброс счетчика
-    if (schet_for_led == level.length) {
+    schet_for_led += 1;  // переключение доли (индекса)
+    if (schet_for_led == level.length) {  //сброс счетчика если счет достиг длинны NodeList
         schet_for_led = 0;
     }
 }
 
-class Metronome {
+class Metronome { // создание нового класса
     constructor(tempo = 50) {
-        this.audioContext = null;
+        this.audioContext = null; // обозначение свойства для будущего audioContext
         this.notesInQueue = []; // заметки, которые были помещены в веб-аудио и могут быть или не быть воспроизведены еще {note, time}
-        this.currentBeatInBar = 0;
-        this.beatsPerBar = 4;
-        this.tempo = tempo;
+        this.currentBeatInBar = 0; // текущее положение в такте
+        this.beatsPerBar = 4; // размер такта
+        this.tempo = tempo; // темп
         this.lookahead = 25; // Как часто вызывать функцию планирования (в миллисекундах)
         this.scheduleAheadTime = 0.1; // Насколько далеко вперед запланировать аудио (сек)
         this.nextNoteTime = 0.0; // когда нужно сделать следующую ноту
-        this.isRunning = false;
+        this.isRunning = false; // запущен ли метроном
         this.intervalID = null;
+        // Уникальный идентификатор intervalID, возвращаемый глобальным методом setInterval(), 
+        // позволяет впоследствии удалить запущенный setInterval c помощью clearInterval()
     }
-
-
-
-    nextNote() {
+    // метод в конструкторе, где this - класс Metronome
+    nextNote() { // функция исполнения следующей ноты
         // Передвинуть текущую ноту и время на четвертную ноту 
         var secondsPerBeat = 60.0 / this.tempo; // Обратите внимание, что для расчета длительности доли используется ТЕКУЩЕЕ значение темпа.
         this.nextNoteTime += secondsPerBeat; // Добавляем длину удара к времени последнего удара
-
         this.currentBeatInBar++; // Увеличиваем номер доли, переносим на ноль
-        if (this.currentBeatInBar == this.beatsPerBar) {
-            this.currentBeatInBar = 0;
+        if (this.currentBeatInBar == this.beatsPerBar) { // если текущее положение доли равно размеру такта
+            this.currentBeatInBar = 0; // переходим на ноль в начало
         }
-
-
         switch (document.querySelector('.contain_btn_pulse').dataset.value) {
             case 'value_NO':
                 break;
@@ -97,33 +95,31 @@ class Metronome {
                 // this.beatsPerBar = sixteenth_notes.length;
                 break;
         }
-
-
     }
-
-    scheduleNote(beatNumber, time) {
-        // помещаем ноту в очередь, даже если мы не играем.
-        this.notesInQueue.push({
+    // метод в конструкторе, где this - класс Metronome
+    scheduleNote(beatNumber, time) { // расписание нот
+        // помещаем ноту в очередь, даже если её не играем.
+        this.notesInQueue.push({ // заметки в очереди
             note: beatNumber,
             time: time
         });
 
         // создаем осциллятор
-        const osc = this.audioContext.createOscillator();
-        const envelope = this.audioContext.createGain();
+        const osc = this.audioContext.createOscillator(); // вызов метода создания Oscillator с присвоением в osc
+        const envelope = this.audioContext.createGain();  // вызов метода создания Gain с присвоением в envelope (конверт)
 
-        osc.frequency.value = (beatNumber % this.beatsPerBar == 0) ? 1000 : 800;
-        envelope.gain.value = 1;
-        envelope.gain.exponentialRampToValueAtTime(1, time + 0.001);
-        envelope.gain.exponentialRampToValueAtTime(0.001, time + 0.02);
+        osc.frequency.value = (beatNumber % this.beatsPerBar == 0) ? 1000 : 800; // высота звука метронома
+        envelope.gain.value = 1; // громкость
+        envelope.gain.exponentialRampToValueAtTime(1, time + 0.001); // плавность в конце воспроизведения
+        envelope.gain.exponentialRampToValueAtTime(0.001, time + 0.02); // плавность в начале воспроизведения
 
-        osc.connect(envelope);
-        envelope.connect(this.audioContext.destination);
+        osc.connect(envelope); // соединениеосциллатора с гейном
+        envelope.connect(this.audioContext.destination); // подключение гейна к аудио выходу
 
-        osc.start(time);
-        osc.stop(time + 0.03);
+        osc.start(time); // запуск осцилатора
+        osc.stop(time + 0.03); // остановка осцилатора
     }
-
+    // метод в конструкторе, где this - класс Metronome
     scheduler() {
         // пока есть ноты, которые нужно будет сыграть перед следующим интервалом, запланируйте их и переместите указатель.
         while (this.nextNoteTime < this.audioContext.currentTime + this.scheduleAheadTime) {
@@ -131,31 +127,27 @@ class Metronome {
             this.nextNote();
         }
     }
-
+    // метод в конструкторе, где this - класс Metronome
     start() {
         schet_for_led = 0;
-
-        if (this.isRunning) return;
-
-        if (this.audioContext == null) {
+        if (this.isRunning) return; // если метроном запущен выйти из функции
+        if (this.audioContext == null) { // если аудиоконтект пустой сздать новый
             this.audioContext = new(window.AudioContext || window.webkitAudioContext)();
         }
-
-        this.isRunning = true;
-
-        this.currentBeatInBar = 0;
-        this.nextNoteTime = this.audioContext.currentTime + 0.05;
-
+        this.isRunning = true; // сделать запись о запуске
+        this.currentBeatInBar = 0; // с указанного положения в такте
+        this.nextNoteTime = this.audioContext.currentTime + 0.05; // добавление к текущему времени ???????
         this.intervalID = setInterval(() => this.scheduler(), this.lookahead);
+        // строка выше запуск метода sheduler у метронома с добавлением интервала lookahead = 25
     }
-
+    // метод в конструкторе, где this - класс Metronome
     stop() {
-        this.isRunning = false;
+        this.isRunning = false; // остановить метроном отметкой в запуске
 
-        clearInterval(this.intervalID);
+        clearInterval(this.intervalID); // очистить значение интервала
     }
-
-    startStop() {
+    // метод в конструкторе, где this - класс Metronome
+    startStop() { // при вызове функции остановить или запустить воспроизведение
         if (this.isRunning) {
             this.stop();
         } else {
@@ -164,21 +156,22 @@ class Metronome {
     }
 
 }
+// ================================================= описание класса закончено
 
-let metronome = new Metronome();
-let tempo = document.getElementById('tempo');
-tempo.textContent = metronome.tempo;
+let metronome = new Metronome(); // наследование от класса Метронома
+let tempo = document.getElementById('tempo'); // привязка элемента для отображения темпа
+tempo.textContent = metronome.tempo; // запись значения темпа
 
-let playPauseIcon = document.getElementById('play-pause-icon');
+let playPauseIcon = document.getElementById('play-pause-icon'); // кнопка паузы
 
-let playButton = document.getElementById('play-button');
-playButton.addEventListener('click', function () {
-    metronome.startStop();
-    clear_all_elem();
+let playButton = document.getElementById('play-button'); // кнопка плей
+playButton.addEventListener('click', function () { // событие на кнопке плей
+    metronome.startStop(); // вызов метода у метронома
+    clear_all_elem(); // очистка всех элементов
 
     console.log(metronome.notesInQueue);
 
-    if (metronome.isRunning) {
+    if (metronome.isRunning) { // изменение класса у кнопки плей и пауза
         playPauseIcon.className = 'pause_metr';
     } else {
         playPauseIcon.className = 'play';
@@ -187,6 +180,7 @@ playButton.addEventListener('click', function () {
 
 });
 
+// значение темпа
 let tempoChangeButtons = document.getElementsByClassName('tempo-change');
 for (let i = 0; i < tempoChangeButtons.length; i++) {
     tempoChangeButtons[i].addEventListener('click', function () {
@@ -265,18 +259,18 @@ document.querySelector('.contain_btn_group').addEventListener('change', function
     }
 })
 
-let clearActiveElem = function(){
+let clearActiveElem = function(){// функция очистки подсветки всех активных элементов
     let allActiveElem = document.querySelectorAll('.active');
     for(let item of allActiveElem){
         item.remove();
     }
 }
 let clearButton = document.querySelector('.clear');
-clearButton.addEventListener('click',clearActiveElem);
+clearButton.addEventListener('click',clearActiveElem); // очистка подсветки
 
 
 
-
+// подключение аудио файла для диктанта
 var context = new AudioContext();
 var buffer; 
 
