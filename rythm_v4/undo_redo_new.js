@@ -6,6 +6,7 @@ let redoStack = [];
 
 // Функция для сохранения текущего состояния DOM-дерева
 function saveState() {
+    console.log('saveSatate');
     undoStack.push(treeContainer.innerHTML);
     redoStack = [];
     undoButton.disabled = false;
@@ -41,7 +42,7 @@ redoButton.addEventListener('click', redo);
 // Сохраняем начальное состояние DOM-дерева
 saveState();
 
-let returnAddEventListener = function(){
+let returnAddEventListener = function () {
     let activeElemLayer = document.querySelector('.activeElemLayer');
     let all_active_elem = activeElemLayer.querySelectorAll('.active ');
     for (let item of all_active_elem) {
@@ -52,25 +53,25 @@ let returnAddEventListener = function(){
             event.preventDefault(true);
             onContextClickForDelActiveElem(event);
         });
-       for(let child of item.childNodes){
-        switch(child.classList[1]){
-            case 'left-handle':
-                child.addEventListener('mousedown',function(elem){
-                    startResizing(elem, 'left');
-                })
-                break;
-            case 'right-handle':
-                child.addEventListener('mousedown',function(elem){
-                    startResizing(elem, 'right');
-                })
-                break;
-            case 'left_double_arrow':
-                child.addEventListener('mousedown',function(elem){
-                    startResizing(elem, 'left_right');
-                })
-                break;
+        for (let child of item.childNodes) {
+            switch (child.classList[1]) {
+                case 'left-handle':
+                    child.addEventListener('mousedown', function (elem) {
+                        startResizing(elem, 'left');
+                    })
+                    break;
+                case 'right-handle':
+                    child.addEventListener('mousedown', function (elem) {
+                        startResizing(elem, 'right');
+                    })
+                    break;
+                case 'left_double_arrow':
+                    child.addEventListener('mousedown', function (elem) {
+                        startResizing(elem, 'left_right');
+                    })
+                    break;
+            }
         }
-       }
     }
 }
 

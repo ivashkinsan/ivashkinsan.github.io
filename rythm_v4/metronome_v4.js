@@ -32,10 +32,10 @@ let led_beat = function (level) {
     console.log(level);
     // console.log(level[schet_for_led]);
 
-    if(schet_for_led == 0){//=================================================
-        setTimeout(function(){//=================================================
-            // play();//=================================================
-        },55);  //=================================================
+    if (schet_for_led == 0) {//=================================================
+        setTimeout(function () {//=================================================
+            play();//=================================================
+        }, 55);  //=================================================
     }//=================================================
 
 
@@ -44,7 +44,7 @@ let led_beat = function (level) {
     }
     // последовательное добавление элементам подсветки
     level[schet_for_led].classList.add('add_metronome_click_active');
-   
+
     schet_for_led += 1;  // переключение доли (индекса)
     if (schet_for_led == level.length) {  //сброс счетчика если счет достиг длинны NodeList
         schet_for_led = 0;
@@ -132,7 +132,7 @@ class Metronome { // создание нового класса
         schet_for_led = 0;
         if (this.isRunning) return; // если метроном запущен выйти из функции
         if (this.audioContext == null) { // если аудиоконтект пустой сздать новый
-            this.audioContext = new(window.AudioContext || window.webkitAudioContext)();
+            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
         }
         this.isRunning = true; // сделать запись о запуске
         this.currentBeatInBar = 0; // с указанного положения в такте
@@ -251,50 +251,50 @@ document.querySelector('.contain_btn_group').addEventListener('change', function
         case 'value_5':
             metronome.beatsPerBar = 5;
             break;
-            // case 'value_3+2':
-            //     let arr_3_2 = [1, 1, 1, 2, 3];
-            //     metronome.beatsPerBar = arr_3_2.forEach();
-            //     console.log(arr_3_2);
-            //     break;
+        // case 'value_3+2':
+        //     let arr_3_2 = [1, 1, 1, 2, 3];
+        //     metronome.beatsPerBar = arr_3_2.forEach();
+        //     console.log(arr_3_2);
+        //     break;
     }
 })
 
-let clearActiveElem = function(){// функция очистки подсветки всех активных элементов
+let clearActiveElem = function () {// функция очистки подсветки всех активных элементов
     let allActiveElem = document.querySelectorAll('.active');
-    for(let item of allActiveElem){
+    for (let item of allActiveElem) {
         item.remove();
     }
 }
 let clearButton = document.querySelector('.clear');
-clearButton.addEventListener('click',clearActiveElem); // очистка подсветки
+clearButton.addEventListener('click', clearActiveElem); // очистка подсветки
 
 
 
 // подключение аудио файла для диктанта
 var context = new AudioContext();
-var buffer; 
+var buffer;
 
 window.fetch('/Example_audio/Example_1.mp3')
-  .then(response => response.arrayBuffer())
-  .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
-  .then(audioBuffer => {
-    buffer = audioBuffer;
-    
-  });
+    .then(response => response.arrayBuffer())
+    .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+    .then(audioBuffer => {
+        buffer = audioBuffer;
+
+    });
 
 function play() {
-  var source1 = context.createBufferSource();
-  source1.buffer = buffer;
-  source1.connect(context.destination);
-  source1.start(); 
+    var source1 = context.createBufferSource();
+    source1.buffer = buffer;
+    source1.connect(context.destination);
+    source1.start();
 
-//   source1.onended = event => {
-//     var source2 = context.createBufferSource();
-//     source2.buffer = buffer;
-//     source2.connect(context.destination);
-//     source2.start(); 
-//     source2.onended = play;
-//   };
+    //   source1.onended = event => {
+    //     var source2 = context.createBufferSource();
+    //     source2.buffer = buffer;
+    //     source2.connect(context.destination);
+    //     source2.start(); 
+    //     source2.onended = play;
+    //   };
 }
 
 
