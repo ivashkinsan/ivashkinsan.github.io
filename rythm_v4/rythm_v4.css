@@ -275,7 +275,20 @@ body {
     line-height: calc(var(--font-size) * 2.5);
 }
 
-
+.eighthNote_8_triple+.eighthNote_8_triple+.eighthNote_8_triple::before {
+    content: '3';
+    position: absolute;
+    font-size: 35px;
+    /* line-height: -100px; */
+    top: -20px;
+    left: -100px;
+    width: 140px;
+    height: 20px;
+    border-top: 1px solid red;
+    border-left: 1px solid red;
+    border-right: 1px solid red;
+    /* background: red; */
+}
 
 /* ======================= drop ========================= */
 .drop_insert_border_on {
