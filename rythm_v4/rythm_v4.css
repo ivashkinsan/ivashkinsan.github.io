@@ -4,7 +4,7 @@
     --background: linear-gradient(180deg, #182A48 0%, #516AA4 100%);
     --font-size: calc(var(--base-size) / 30);
     --matrix-color: rgba(144, 144, 144, 0.78);
-    --active-elem-color: #f0f09d;
+    --active-elem-color: #F4D6B1;
 }
 
 /* @media (max-width: 600px) and (max-height: 300px) {
@@ -275,19 +275,52 @@ body {
     line-height: calc(var(--font-size) * 2.5);
 }
 
+/* .eighthNote_8_triple {
+    position: relative;
+} */
+
 .eighthNote_8_triple+.eighthNote_8_triple+.eighthNote_8_triple::before {
+    content: '';
+    position: absolute;
+    font-size: 35px;
+    width: 140px;
+    height: 20px;
+    transform: translateY(-25px) translateX(-70px);
+    border-top: 1px solid var(--active-elem-color);
+    border-left: 1px solid var(--active-elem-color);
+    border-right: 1px solid var(--active-elem-color);
+}
+
+.eighthNote_8_triple+.eighthNote_8_triple+.eighthNote_8_triple::after {
     content: '3';
     position: absolute;
     font-size: 35px;
-    /* line-height: -100px; */
-    top: -20px;
-    left: -100px;
+    line-height: 0px;
     width: 140px;
     height: 20px;
-    border-top: 1px solid red;
-    border-left: 1px solid red;
-    border-right: 1px solid red;
-    /* background: red; */
+    transform: translateY(-50px) translateX(-70px);
+}
+
+.quarterNote_4_triple+.eighthNote_8_triple+.eighthNote_8_triple::before {
+    content: '';
+    position: absolute;
+    font-size: 35px;
+    width: 140px;
+    height: 20px;
+    transform: translateY(-25px) translateX(-70px);
+    border-top: 1px solid var(--active-elem-color);
+    border-left: 1px solid var(--active-elem-color);
+    border-right: 1px solid var(--active-elem-color);
+}
+
+.quarterNote_4_triple+.quarterNote_4_triple+.quarterNote_4_triple::after {
+    content: '3';
+    position: absolute;
+    font-size: 35px;
+    line-height: 0px;
+    width: 140px;
+    height: 20px;
+    transform: translateY(-50px) translateX(-70px);
 }
 
 /* ======================= drop ========================= */

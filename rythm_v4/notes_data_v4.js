@@ -115,6 +115,10 @@ class Note {
 
         return left_double_arrow;
     }
+
+    createTripletLine = function () {
+        console.log(nextElement);
+    }
 }
 
 // ================================ длительности кратные 16-ой ====================================
