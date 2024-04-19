@@ -120,6 +120,17 @@ class Note {
         console.log(nextElement);
     }
 }
+// показ и скрытие ручки растягивания двух элементов сразу
+leftDoubleArrowDisplayNone = function(block){
+    let handle = block.querySelector('.left_double_arrow');
+    console.log(handle);
+    handle.classList.add('display_none');
+}
+leftDoubleArrowDisplayNoneRemove = function(block){
+    let handle = block.querySelector('.left_double_arrow');
+    console.log(handle);
+    handle.classList.remove('display_none');
+}
 
 // ================================ длительности кратные 16-ой ====================================
 const wholeNote_1 = new Note(

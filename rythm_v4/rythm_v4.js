@@ -1,17 +1,3 @@
-// число-делитель для масштабирования
-let constNumber = 5;
-let stateAppMatrix;
-
-let createNumberMatrix = function () {
-    let allPoint = [];
-    let onePoint = 0;
-    for (let i = 0; i < 16; i++) {
-        allPoint.push(onePoint);
-        onePoint += baseSize / 16;
-    }
-    // console.log(allPoint);
-    return allPoint;
-}
 
 
 // let section_for_contextmenu = document.querySelector('.app');
@@ -60,10 +46,23 @@ let createNumberMatrix = function () {
 // выбрано число 420
 
 
+// число-делитель для масштабирования
+let constNumber = 5;
+let stateAppMatrix;
+
+let createNumberMatrix = function () {
+    let allPoint = [];
+    let onePoint = 0;
+    for (let i = 0; i < 16; i++) {
+        allPoint.push(onePoint);
+        onePoint += baseSize / 16;
+    }
+    // console.log(allPoint);
+    return allPoint;
+}
+
+
 let newOutIndMatrix = {};
-
-
-
 
 const backgroundMatrix = {
     'baseSize': 0,
@@ -363,58 +362,53 @@ let insertSortedDiv = function (container, newDiv) {
 // }
 
 let create_and_append_active_elem = function (clickElem, activeElemLayer, eventType, is_pause) {
-    let leftTargerPosition = clickElem.style.left;
-    let activeBlock;
+    // let clickElemLeftPosition = clickElem.style.left;
+    let createdBlock;
     let sizeElemForGenerate = Number(clickElem.style.width.replace('px', ''));
     if (is_pause == true) {
-        activeBlock = sizeIdentif[sizeElemForGenerate].createDivTag(clickElem.dataset.outIndx, backgroundMatrix.baseSize, true);
-        activeBlock.classList.add('pause');
+        createdBlock = sizeIdentif[sizeElemForGenerate].createDivTag(clickElem.dataset.outIndx, backgroundMatrix.baseSize, true);
+        createdBlock.classList.add('pause');
     } else {
-        activeBlock = sizeIdentif[sizeElemForGenerate].createDivTag(clickElem.dataset.outIndx, backgroundMatrix.baseSize);
+        createdBlock = sizeIdentif[sizeElemForGenerate].createDivTag(clickElem.dataset.outIndx, backgroundMatrix.baseSize);
     }
-    activeBlock.style.left = leftTargerPosition;
-    activeBlock.classList.add('active');
+    createdBlock.style.left = clickElem.style.left;;
+    // createdBlock.style.left = clickElemLeftPosition;
+    createdBlock.classList.add('active');
 
     // activeBlock.style.left = clickElem.style.left;
     delElemInBigElem(clickElem, eventType);
-    insertSortedDiv(activeElemLayer, activeBlock); // Вызываем функцию вставки и сортировки
+    insertSortedDiv(activeElemLayer, createdBlock); // Вызываем функцию вставки и сортировки
 
     // есть ли граничащий блок с левой стороны ???
-    let heroLeftSide = Number(activeBlock.style.left.replace('px', ''));
-    let heroWidth = Number(activeBlock.style.width.replace('px', ''));
-    let previousActiveBlock = activeBlock.previousElementSibling ? activeBlock.previousElementSibling : undefined;
+    let heroLeftSide = Number(createdBlock.style.left.replace('px', ''));
+    let heroWidth = Number(createdBlock.style.width.replace('px', ''));
+    let previousActiveBlock = createdBlock.previousElementSibling ? createdBlock.previousElementSibling : undefined;
     let previousActiveBlockLeftSide = previousActiveBlock ? Number(previousActiveBlock.style.left.replace('px', '')) : undefined;
     let previousActiveBlockWidth = previousActiveBlock ? Number(previousActiveBlock.style.width.replace('px', '')) : undefined;
-    let nextActiveBlock = activeBlock.nextElementSibling ? activeBlock.nextElementSibling : undefined;
+    let nextActiveBlock = createdBlock.nextElementSibling ? createdBlock.nextElementSibling : undefined;
     let nextActiveBlockLeftSide = nextActiveBlock ? Number(nextActiveBlock.style.left.replace('px', '')) : undefined;
     let nextActiveBlockWidth = nextActiveBlock ? Number(nextActiveBlock.style.width.replace('px', '')) : undefined;
 
 
     if (nextActiveBlock && nextActiveBlockLeftSide == heroLeftSide + heroWidth) {
-        let handle = nextActiveBlock.querySelector('.left_double_arrow');
-        handle.classList.remove('display_none');
+       leftDoubleArrowDisplayNoneRemove(nextActiveBlock);
     }
     if (previousActiveBlock && previousActiveBlockLeftSide + previousActiveBlockWidth == heroLeftSide) {
-        let handle = activeBlock.querySelector('.left_double_arrow');
-        handle.classList.remove('display_none');
+       leftDoubleArrowDisplayNoneRemove(createdBlock);
     }
-
-    if (nextActiveBlock && activeBlock.classList.contains('sixteenthNote_16') && nextActiveBlock.classList.contains('sixteenthNote_16')) {
-
-        let handle = nextActiveBlock.querySelector('.left_double_arrow');
-        console.log(handle);
-        handle.classList.add('display_none');
+    if (nextActiveBlock && createdBlock.classList.contains('sixteenthNote_16') && nextActiveBlock.classList.contains('sixteenthNote_16')) {
+       leftDoubleArrowDisplayNone(nextActiveBlock);
     }
 
 
-    borderCollapsResize(activeBlock);
+    borderCollapsResize(createdBlock);
 
-    activeBlock.addEventListener('mousedown', (event) => {
+    createdBlock.addEventListener('mousedown', (event) => {
         clickForActiveElem(event);
 
     })
 
-    activeBlock.addEventListener('contextmenu', (event) => {
+    createdBlock.addEventListener('contextmenu', (event) => {
         event.preventDefault(true);
         onContextClickForDelActiveElem(event);
 
@@ -465,3 +459,43 @@ app.append(allLayer[1]);
 
 console.log(backgroundMatrix);
 
+// let newExperimentObj = {
+//     'width': '30px',
+//     'height': '30px',
+//     'color': '#000000',
+//     'backgroundColor': '#FFFFFF',
+//     'borderRadius': '50%',
+//     'border': '1px solid #000000',
+//     'newBlock': null, 
+//     'newSlider': null, 
+//     createElem(){
+//         this.newBlock = document.createElement('div'); // Используем `this` здесь
+//         this.newBlock.style.width = this.width;
+//         this.newBlock.style.height = this.height;
+//         this.newBlock.style.backgroundColor = this.backgroundColor;
+//         this.newBlock.style.color = this.color;
+//         this.newBlock.style.borderRadius = this.borderRadius;
+//         this.newBlock.style.border = this.border;
+//     },
+//     createSlider(){
+//         this.newSlider = document.createElement('input'); // Используем `this` здесь
+//         this.newSlider.type = 'range';
+//         this.newSlider.min = '0';
+//         this.newSlider.max = '800';
+//         this.newSlider.textContent = 'slider';
+//         this.newSlider.addEventListener('input', ()=>{
+//             this.width = this.newSlider.value + 'px';
+//             this.height = this.newSlider.value + 'px';
+//             if(this.newBlock) { // Проверяем, существует ли элемент
+//                this.newBlock.style.width = this.width;
+//                this.newBlock.style.height = this.height;
+//             }
+//         })
+//     }
+// }
+// newExperimentObj.createElem();
+// newExperimentObj.createSlider();
+
+// document.querySelector('body').append(newExperimentObj.newBlock);
+// document.querySelector('body').append(newExperimentObj.newSlider);
+ console.log(this);
