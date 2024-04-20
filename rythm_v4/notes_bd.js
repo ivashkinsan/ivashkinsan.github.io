@@ -22,8 +22,16 @@ class Note_v2 {
         this.rightHandle = null;
         this.leftRightHandle = null;
     }
+    createNoteDiv() {
+        let newNoteDiv = document.createElement('div');
+        newNoteDiv.classList.add(this.class);
+        newNoteDiv.append(this.leftHandle);
+        newNoteDiv.append(this.rightHandle);
+        newNoteDiv.append(this.leftRightHandle);
+        this.newNote = newNoteDiv;
+    }
 
-    createHandle(){
+    createHandle() {
         // left
         let leftHandle = document.createElement('div');
         leftHandle.classList.add('handle', 'left-handle');
@@ -42,15 +50,15 @@ class Note_v2 {
         let righttHandle = document.createElement('div');
         righttHandle.classList.add('handle', 'right-handle');
         righttHandle.addEventListener('mousedown', (event) => {
-                // event.preventDefault();
-                // event.stopPropagation();
-                // startResizing(event, 'right');
+            // event.preventDefault();
+            // event.stopPropagation();
+            // startResizing(event, 'right');
         });
         righttHandle.addEventListener('touchmove', (event) => {
-                // console.log('touchstart Right Handle');
-                // event.preventDefault();
-                // event.stopPropagation();
-                // startResizing(event, 'right');
+            // console.log('touchstart Right Handle');
+            // event.preventDefault();
+            // event.stopPropagation();
+            // startResizing(event, 'right');
         });
         this.rightHandle = righttHandle;
         // left-right
@@ -73,18 +81,18 @@ class Note_v2 {
         this.leftRightHandle = left_double_arrow;
     }
 
-    get rightSide(){
+    get rightSide() {
         return parseInt(this.leftSide) + parseInt(this.width);
     }
 
-    findPrevNextElemsAndFindParam(){
-        if(newNote.nextElementSibling){
+    findPrevNextElemsAndFindParam() {
+        if (newNote.nextElementSibling) {
             this.nextElem = newNote.nextElementSibling;
             this.nextElemWidth = Number(this.nextElem.style.width.replace('px', ''));
             this.nextElemLeftSide = Number(this.nextElem.style.left.replace('px', ''));
             this.nextElemRightSide = nextElemLeftSide + nextElemWidth;
         }
-        if(newNote.previousElementSibling){
+        if (newNote.previousElementSibling) {
             this.previousElem = newNote.previousElementSibling;
             this.previousElemWidth = Number(this.previousElem.style.width.replace('px', ''));
             this.previousElemLeftSide = Number(this.previousElem.style.left.replace('px', ''));
@@ -95,29 +103,29 @@ class Note_v2 {
 
 
 const sixteenthNote_16_new = new Note_v2(
-{
-    'name':'sixteenthNote_16',
-    'class':'sixteenthNote_16',
-    'indxPosition': 1,
-    'width': '16px',
-    'height': '16px',
-    'left': '420px',
-    'right': '420px',
-    'notesSymbol':  {
-        'default': uncSbl.n16
-    },
-    'pausesSymbol':   {
-        'default': uncSbl.p16
-    },
-}
+    {
+        'name': 'sixteenthNote_16',
+        'class': 'sixteenthNote_16',
+        'indxPosition': 1,
+        'width': '16px',
+        'height': '16px',
+        'left': '420px',
+        'right': '420px',
+        'notesSymbol': {
+            'default': uncSbl.n16
+        },
+        'pausesSymbol': {
+            'default': uncSbl.p16
+        },
+    }
 );
 console.log(sixteenthNote_16_new);
 // console.log(sixteenthNote_16_new.leftHandle());
 
 sixteenthNote_16_new.createHandle();
-console.log(sixteenthNote_16_new.leftHandle);
-console.log(sixteenthNote_16_new.rightHandle);
-console.log(sixteenthNote_16_new.leftRightHandle);
+sixteenthNote_16_new.createNoteDiv();
+console.log(sixteenthNote_16_new.newNote);
+
 
 
 
