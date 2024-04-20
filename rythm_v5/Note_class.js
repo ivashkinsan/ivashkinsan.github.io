@@ -22,6 +22,7 @@ class Note_v2 {
         this.rightHandle = null;
         this.leftRightHandle = null;
     }
+
     createNoteDiv() {
         let newNoteDiv = document.createElement('div');
         newNoteDiv.classList.add(this.class);
@@ -30,7 +31,6 @@ class Note_v2 {
         newNoteDiv.append(this.leftRightHandle);
         this.newNote = newNoteDiv;
     }
-
     createHandle() {
         // left
         let leftHandle = document.createElement('div');
@@ -80,11 +80,13 @@ class Note_v2 {
         });
         this.leftRightHandle = left_double_arrow;
     }
-
-    get rightSide() {
-        return parseInt(this.leftSide) + parseInt(this.width);
+    leftRightHandleShowHide() {
+        if(this.leftRightHandle.style.display == 'none'){
+            this.leftRightHandle.style.display = 'block';
+        }else{
+            this.leftRightHandle.style.display = 'none';
+        }
     }
-
     findPrevNextElemsAndFindParam() {
         if (newNote.nextElementSibling) {
             this.nextElem = newNote.nextElementSibling;
@@ -99,32 +101,36 @@ class Note_v2 {
             this.previousElemRightSide = previousElemLeftSide + previousElemWidth;
         }
     }
+    get rightSide() {
+        return parseInt(this.leftSide) + parseInt(this.width);
+    }
+
 }
 
 
-const sixteenthNote_16_new = new Note_v2(
-    {
-        'name': 'sixteenthNote_16',
-        'class': 'sixteenthNote_16',
-        'indxPosition': 1,
-        'width': '16px',
-        'height': '16px',
-        'left': '420px',
-        'right': '420px',
-        'notesSymbol': {
-            'default': uncSbl.n16
-        },
-        'pausesSymbol': {
-            'default': uncSbl.p16
-        },
-    }
-);
-console.log(sixteenthNote_16_new);
-// console.log(sixteenthNote_16_new.leftHandle());
+// const sixteenthNote_16_new = new Note_v2(
+//     {
+//         'name': 'sixteenthNote_16',
+//         'class': 'sixteenthNote_16',
+//         'indxPosition': 1,
+//         'width': '16px',
+//         'height': '16px',
+//         'left': '420px',
+//         'right': '420px',
+//         'notesSymbol': {
+//             'default': uncSbl.n16
+//         },
+//         'pausesSymbol': {
+//             'default': uncSbl.p16
+//         },
+//     }
+// );
+// console.log(sixteenthNote_16_new);
+// // console.log(sixteenthNote_16_new.leftHandle());
 
-sixteenthNote_16_new.createHandle();
-sixteenthNote_16_new.createNoteDiv();
-console.log(sixteenthNote_16_new.newNote);
+// sixteenthNote_16_new.createHandle();
+// sixteenthNote_16_new.createNoteDiv();
+// console.log(sixteenthNote_16_new.newNote);
 
 
 

@@ -449,6 +449,10 @@ let onContextClickForDelActiveElem = function (event) {
     }
 }
 
+
+
+
+
 let app = document.querySelector('.app');
 stateAppMatrix = backgroundMatrix.matrix_8x4;
 let allLayer = backgroundMatrix.createBackground(stateAppMatrix, 0);
@@ -457,45 +461,3 @@ let allLayer = backgroundMatrix.createBackground(stateAppMatrix, 0);
 app.append(allLayer[0]);
 app.append(allLayer[1]);
 
-console.log(backgroundMatrix);
-
-// let newExperimentObj = {
-//     'width': '30px',
-//     'height': '30px',
-//     'color': '#000000',
-//     'backgroundColor': '#FFFFFF',
-//     'borderRadius': '50%',
-//     'border': '1px solid #000000',
-//     'newBlock': null, 
-//     'newSlider': null, 
-//     createElem(){
-//         this.newBlock = document.createElement('div'); // Используем `this` здесь
-//         this.newBlock.style.width = this.width;
-//         this.newBlock.style.height = this.height;
-//         this.newBlock.style.backgroundColor = this.backgroundColor;
-//         this.newBlock.style.color = this.color;
-//         this.newBlock.style.borderRadius = this.borderRadius;
-//         this.newBlock.style.border = this.border;
-//     },
-//     createSlider(){
-//         this.newSlider = document.createElement('input'); // Используем `this` здесь
-//         this.newSlider.type = 'range';
-//         this.newSlider.min = '0';
-//         this.newSlider.max = '800';
-//         this.newSlider.textContent = 'slider';
-//         this.newSlider.addEventListener('input', ()=>{
-//             this.width = this.newSlider.value + 'px';
-//             this.height = this.newSlider.value + 'px';
-//             if(this.newBlock) { // Проверяем, существует ли элемент
-//                this.newBlock.style.width = this.width;
-//                this.newBlock.style.height = this.height;
-//             }
-//         })
-//     }
-// }
-// newExperimentObj.createElem();
-// newExperimentObj.createSlider();
-
-// document.querySelector('body').append(newExperimentObj.newBlock);
-// document.querySelector('body').append(newExperimentObj.newSlider);
- console.log(this);

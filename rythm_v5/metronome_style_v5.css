@@ -1,0 +1,114 @@
+/* * {
+    margin: 0; padding: 0;
+} */
+
+/* html {
+    height: 100%;
+} */
+
+:root {
+    /* --const: 840px; */
+    /* --background: linear-gradient(180deg, #182A48 0%, #516AA4 100%); */
+    /* --font-size: calc(var(--const) / 30); */
+    --matrix-color: rgba(144, 144, 144, 0.78);
+    /* --active-elem-color: #f0f09d; */
+}
+
+.metronome_container {
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: reverse;
+    
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 10px;
+    margin: 10px;
+    height: auto;
+
+    gap: 10px;
+   
+    color: white;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#play-button {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+}
+
+.title {
+    /* font-size: 20px; */
+    text-align: center;
+}
+
+#tempo {
+    /* width: 30px; */
+    font-size: 20px;
+}
+
+.bpm {
+    font-size: 12px;
+   
+}
+
+.tempo-controls {
+    /* margin-top: 30px; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row;
+}
+
+.tempo-container {
+    text-align: center;
+    width:50px;
+    margin: 0 10px;
+}
+
+button {
+    /* -webkit-appearance: none; */
+    /* padding: 6px; */
+    border: 1px solid var(--matrix-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    /* margin: 5px; */
+    background: none;
+    color: white;
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+.play {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 25px solid #ffffff;
+    margin-left: 7.5px;
+}
+
+.pause_metr {
+    box-sizing: content-box;
+    width: 7.5px;
+    height: 30px;
+    border: none;
+    border-left: 7.5px solid #ffffff;
+    border-right: 7.5px solid #ffffff;
+}
+
+.add_metronome_click_active{
+    background: #ffffff17;
+}
