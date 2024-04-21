@@ -30,7 +30,7 @@ console.log(appRightSide);
         e.stopPropagation();
         if (direction === 'right') {
             const newWidth = Math.min(Math.max(startWidth + e.clientX - startX, minWidth), maxWidth);
-
+            
             let replaseSumm = target.style.height;
             replaseSumm = replaseSumm.replace('px', '');
 

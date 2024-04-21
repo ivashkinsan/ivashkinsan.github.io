@@ -21,12 +21,15 @@ class Note {
         this.nextElemRightSide = null;
         this.div = null;
         this.handle = {};
+        this.startResizing = this.startResizing.bind(this);
+        // this.resize = this.resize.bind(this);
         // this.leftHandle = null;
         // this.rightHandle = null;
         // this.leftRightHandle = null;
     }
 
     createHandle() {
+
         // left
         let leftHandle = document.createElement('div');
         leftHandle.classList.add('handle', 'left-handle');
@@ -35,32 +38,21 @@ class Note {
             event.stopPropagation();
             // event.preventDefault();
             // event.stopPropagation();
-            // startResizing(event, 'left');
+            // this.startResizing('left');
         });
-        leftHandle.addEventListener('touchmove', (event) => {
-            // event.preventDefault();
-            // event.stopPropagation();
-            // startResizing(event, 'left');
-        });
+
         this.handle.leftHandle = leftHandle;
+
         // right
         let righttHandle = document.createElement('div');
         righttHandle.classList.add('handle', 'right-handle');
         righttHandle.addEventListener('mousedown', (event) => {
             event.preventDefault();
             event.stopPropagation();
-            // event.preventDefault();
-            // event.stopPropagation();
-            // startResizing(event, 'right');
+            console.log(event);
+            this.startResizing( this,'right');
         });
-        righttHandle.addEventListener('touchmove', (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            // console.log('touchstart Right Handle');
-            // event.preventDefault();
-            // event.stopPropagation();
-            // startResizing(event, 'right');
-        });
+
         this.handle.rightHandle = righttHandle;
 
         // left-right
@@ -74,12 +66,7 @@ class Note {
             // event.stopPropagation();
             // startResizing(event, 'left_right');
         });
-        left_double_arrow.addEventListener('touchmove', (event) => {
-            // console.log('touchstart Left-Right Handle');
-            // event.preventDefault();
-            // event.stopPropagation();
-            // startResizing(event, 'left_right');
-        });
+
         this.handle.leftRightHandle = left_double_arrow;
     }
     leftRightHandleShowHide() {
@@ -162,9 +149,41 @@ class Note {
                 item.div.remove();
                 backgroundMatrix.activeLayerStack[key] = null;
                 delete backgroundMatrix.activeLayerStack[key];
+                ifBorderCollapse_resize();
             }
         }
     }
+    ifBorderCollapse_resize(){
+        if (this.previousElemRightSide > this.leftSidePosition) {
+            this.previousElem.width = this.previousElem.width - (this.previousElemRightSide - this.leftSidePosition);
+            
+            console.log(this.previousElem.width);
+        }
+    }
+    startResizing(obj, direction){
+       console.log(this.startResizing.resize);
+        document.documentElement.addEventListener('mousemove', resize);
+        document.documentElement.addEventListener('mouseup', stopResizing);
+        function resize(mouseTarget, direction, event){
+            // console.log(this);
+            if(direction === 'right'){
+                // console.log(event.clientX);            
+                const startX = event.clientX;
+                // console.log(this);
+        // console.log('startX = ' + startX);
+        // console.log('this.width = ' + this.width);
+        // console.log('event.clientX = ' + event.clientX );
+                let newWidth = Math.min(Math.max(this.width + event.clientX - startX, backgroundMatrix.minWidth), backgroundMatrix.maxWidth);
+                // console.log(newWidth);
+            }
+        }
+       function stopResizing(){
+            document.documentElement.removeEventListener('mousemove', this.resize);
+            document.documentElement.removeEventListener('mouseup', this.stopResizing);
+        }
+    }
+
+
     idGenerator(){
         return String(
       Date.now().toString(32) +
