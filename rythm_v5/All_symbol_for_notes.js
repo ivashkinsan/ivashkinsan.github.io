@@ -22,17 +22,19 @@ const allSymbolForNotes_2_4 = {
 
 
     'sixteenthNote_16': {
-        'fontSymbolVal': {
+        'class': 'sixteenthNote_16',
+        'notesSymbol': {
             'default': uncSbl.n16
         },
-        'pauseSymbolVal':{
+        'pausesSymbol':{
             'default': uncSbl.p16
         },
     },
 
 
     'eighthNote_8': {
-        'fontSymbolVal': {
+        'class': 'eighthNote_8',
+        'notesSymbol': {
             'default': uncSbl.n8,
             '4': uncSbl.n16 + uncSbl.dash + uncSbl.n16,
             '8': uncSbl.n16 + uncSbl.dash + uncSbl.n16,
@@ -41,7 +43,7 @@ const allSymbolForNotes_2_4 = {
             '24': uncSbl.n16 + uncSbl.dash + uncSbl.n16,
             '28': uncSbl.n16 + uncSbl.dash + uncSbl.n16
         },
-        'pauseSymbolVal':{
+        'pausesSymbol':{
             'default': uncSbl.p8,
         '4': uncSbl.p16 + uncSbl.space + uncSbl.p16,
         '8': uncSbl.p16 + uncSbl.space + uncSbl.p16,
@@ -54,7 +56,8 @@ const allSymbolForNotes_2_4 = {
 
 
     'eighthNote_8w16': {
-        'fontSymbolVal': {
+        'class': 'eighthNote_8w16',
+        'notesSymbol': {
             'default': uncSbl.n8 + uncSbl.pnt,
             '3': uncSbl.n8 + uncSbl.dash + uncSbl.n16,
             '7': uncSbl.n8 + uncSbl.dash + uncSbl.n16,
@@ -72,7 +75,7 @@ const allSymbolForNotes_2_4 = {
             '24': uncSbl.n16 + uncSbl.dash + uncSbl.n8,
             '28': uncSbl.n16 + uncSbl.dash + uncSbl.n8
         },
-        'pauseSymbolVal':{
+        'pausesSymbol':{
         'default': uncSbl.p8 + uncSbl.pnt,
         '3': uncSbl.p8 + uncSbl.space + uncSbl.p16,
         '7': uncSbl.p8 + uncSbl.space + uncSbl.p16,
@@ -94,7 +97,8 @@ const allSymbolForNotes_2_4 = {
 
 
     'quarterNote_4': {
-        'fontSymbolVal': {
+        'class': 'quarterNote_4',
+        'notesSymbol': {
             'default': uncSbl.n4,
             '2': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n16,
             '6': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n16,
@@ -120,7 +124,7 @@ const allSymbolForNotes_2_4 = {
             '24': uncSbl.n16 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
             '28': uncSbl.n16 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt
         },
-        'pauseSymbolVal':{
+        'pausesSymbol':{
             'default': uncSbl.p4,
             '2': uncSbl.p8 + uncSbl.pnt + uncSbl.space + uncSbl.p16,
             '6': uncSbl.p8 + uncSbl.pnt + uncSbl.space + uncSbl.p16,
@@ -149,7 +153,8 @@ const allSymbolForNotes_2_4 = {
 
 
     'quarterNote_4w16': {
-        'fontSymbolVal': {
+        'class': 'quarterNote_4w16',
+        'notesSymbol': {
             'default': uncSbl.n4 + uncSbl.dash + uncSbl.n16,
         '2': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n8,
         '6': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n8,
@@ -175,7 +180,7 @@ const allSymbolForNotes_2_4 = {
         '24': uncSbl.n16 + uncSbl.dash + uncSbl.n4,
         '28': uncSbl.n16 + uncSbl.dash + uncSbl.n4,
         },
-        'pauseSymbolVal':{
+        'pausesSymbol':{
             'default': uncSbl.p4 + uncSbl.space + uncSbl.p16,
             '2': uncSbl.p8 + uncSbl.pnt + uncSbl.space + uncSbl.p8,
             '6': uncSbl.p8 + uncSbl.pnt + uncSbl.space + uncSbl.p8,
@@ -205,7 +210,8 @@ const allSymbolForNotes_2_4 = {
 
 
     'quarterNote_4w8': {
-        'fontSymbolVal': {
+        'class': 'quarterNote_4w8',
+        'notesSymbol': {
             'default': uncSbl.n4 + uncSbl.pnt,
             '2': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
             '6': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
@@ -230,7 +236,7 @@ const allSymbolForNotes_2_4 = {
             '15': uncSbl.n8 + uncSbl.dash + uncSbl.n4,
             '23': uncSbl.n8 + uncSbl.dash + uncSbl.n4,
         },
-        'pauseSymbolVal':{
+        'pausesSymbol':{
             'default': uncSbl.p4 + uncSbl.pnt,
             '2': uncSbl.p8 + uncSbl.pnt + uncSbl.space + uncSbl.p8 + uncSbl.pnt,
             '6': uncSbl.p8 + uncSbl.pnt + uncSbl.space + uncSbl.p8 + uncSbl.pnt,
@@ -259,7 +265,8 @@ const allSymbolForNotes_2_4 = {
 
 
     'quarterNote_4w8w16': {
-        'fontSymbolVal': {
+        'class': 'quarterNote_4w8w16',
+        'notesSymbol': {
             'default': uncSbl.n4 + uncSbl.pnt + uncSbl.pnt,
         '2': uncSbl.n4 + uncSbl.pnt + uncSbl.pnt,
         '9': uncSbl.n4 + uncSbl.pnt + uncSbl.pnt,
@@ -292,7 +299,7 @@ const allSymbolForNotes_2_4 = {
         '15': uncSbl.n8 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n16,
         '23': uncSbl.n8 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n16,
         },
-        'pauseSymbolVal':{
+        'pausesSymbol':{
             'default': uncSbl.p4 + uncSbl.pnt + uncSbl.pnt,
         '2': uncSbl.p4 + uncSbl.pnt + uncSbl.pnt,
         '9': uncSbl.p4 + uncSbl.pnt + uncSbl.pnt,
@@ -329,7 +336,8 @@ const allSymbolForNotes_2_4 = {
     
 
     'halfNote_2': {
-        'fontSymbolVal': {
+        'class': 'halfNote_2',
+        'notesSymbol': {
             'default': uncSbl.n2,
 
             '2': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n16,
@@ -360,7 +368,7 @@ const allSymbolForNotes_2_4 = {
             '16': uncSbl.n16 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
             '24': uncSbl.n16 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
         },
-        'pauseSymbolVal':{
+        'pausesSymbol':{
             'default': uncSbl.p2,
 
             '2': uncSbl.p8 + uncSbl.pnt + uncSbl.space + uncSbl.p4 + uncSbl.space + uncSbl.p16,
@@ -395,7 +403,8 @@ const allSymbolForNotes_2_4 = {
     
 
     'halfNote_2w16': {
-        'fontSymbolVal': {
+        'class': 'halfNote_2w16',
+        'notesSymbol': {
             'default': uncSbl.n2 + uncSbl.dash + uncSbl.n16,
             '2': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n8,
             '3': uncSbl.n4 + uncSbl.pnt + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
@@ -405,7 +414,7 @@ const allSymbolForNotes_2_4 = {
             '7': uncSbl.n8 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
             '8': uncSbl.n16 + uncSbl.dash + uncSbl.n2
         },
-        'pauseSymbolVal':{
+        'pausesSymbol':{
             'default': uncSbl.p2 + uncSbl.p16,
         '2': uncSbl.p8 + uncSbl.pnt + uncSbl.p4 + uncSbl.p8,
         '3': uncSbl.p4 + uncSbl.pnt + uncSbl.p8 + uncSbl.pnt,
@@ -419,7 +428,8 @@ const allSymbolForNotes_2_4 = {
 
 
     'halfNote_2w8': {
-        'fontSymbolVal': {
+        'class': 'halfNote_2w8',
+        'notesSymbol': {
             'default': uncSbl.n2 + uncSbl.dash + uncSbl.n8,
             '2': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
             '3': uncSbl.n4 + uncSbl.pnt + uncSbl.dash + uncSbl.n4,
@@ -428,7 +438,7 @@ const allSymbolForNotes_2_4 = {
             '6': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
             '7': uncSbl.n8 + uncSbl.dash + uncSbl.n2
         },
-        'pauseSymbolVal':{
+        'pausesSymbol':{
             'default': uncSbl.p2 + uncSbl.dash + uncSbl.p8,
             '2': uncSbl.p8 + uncSbl.pnt + uncSbl.p4 + uncSbl.p8 + uncSbl.pnt,
             '3': uncSbl.p4 + uncSbl.pnt + uncSbl.p4,
@@ -441,60 +451,66 @@ const allSymbolForNotes_2_4 = {
 
 
     'halfNote_2w8w16': {
-        'fontSymbolVal': {
+        'class': 'halfNote_2w8w16',
+        'notesSymbol': {
             'default': uncSbl.n2 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
         },
-        'pauseSymbolVal':{
+        'pausesSymbol':{
             'default': uncSbl.p2 + uncSbl.p8 + uncSbl.pnt,
     },
     },
 
 
     'halfNote_2w4': {
-        'fontSymbolVal': {
+        'class': 'halfNote_2w4',
+        'notesSymbol': {
             'default': uncSbl.n2 + uncSbl.pnt
         },
-        'pauseSymbolVal':{
+        'pausesSymbol':{
             'default': uncSbl.p2 + uncSbl.pnt,
         },
     },
 
 
     'halfNote_2w4w16': {
-        'fontSymbolVal': {
+        'class': 'halfNote_2w4w16',
+        'notesSymbol': {
             'default': uncSbl.n2 + uncSbl.dash + uncSbl.n4 + uncSbl.dash + uncSbl.n16
         },
-        'pauseSymbolVal':{
+        'pausesSymbol':{
             'default': uncSbl.p2 + '  ' + uncSbl.p4 + '  ' + uncSbl.p16,
         },
     },
 
 
     'halfNote_2w4w8': {
-        'fontSymbolVal': {
+        'class': 'halfNote_2w4w8',
+        'notesSymbol': {
            'default': uncSbl.n2 + uncSbl.pnt + uncSbl.pnt
         },
-        'pauseSymbolVal':{
+        'pausesSymbol':{
             'default': uncSbl.p2 + uncSbl.pnt + uncSbl.pnt,
         },
     },
 
 
     'halfNote_2w4w8w16': {
-        'fontSymbolVal': {
+        'class': 'halfNote_2w4w8w16',
+        'notesSymbol': {
           'default': uncSbl.n2 + uncSbl.pnt + uncSbl.pnt + uncSbl.pnt
         },
-        'pauseSymbolVal':{
+        'pausesSymbol':{
             'default': uncSbl.p2 + uncSbl.pnt + uncSbl.pnt + uncSbl.pnt
         },
     },
 
 
     'wholeNote_1': {
-        'fontSymbolVal': {
+        'class': 'wholeNote_1',
+        'notesSymbol': {
             'default': uncSbl.n1
         },
-        'pauseSymbolVal':{
+        'pausesSymbol':{
             'default': uncSbl.p1
         },
     },

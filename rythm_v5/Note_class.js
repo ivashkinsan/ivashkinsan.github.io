@@ -1,14 +1,15 @@
-class Note_v2 {
-    constructor(obj) {
-        this.name = obj.name;
+class Note {
+    constructor(obj, size, leftPosition, indxPosition) {
+        this.name = obj.class;
         this.class = obj.class;
-        this.indxPosition = null;
-        this.width = obj.width;
-        this.height = obj.height;
-        this.leftSide = obj.left;
+        this.indxPosition = indxPosition;
+        this.width = size;
+        this.height = size;
+        this.leftPosition = leftPosition;
         // this.rightSide = null;
         this.notesSymbol = obj.notesSymbol;
         this.pausesSymbol = obj.pausesSymbol;
+        this.label = null;
         this.previousElem = null;
         this.previousElemWidth = null;
         this.previousElemLeftSide = null;
@@ -17,19 +18,29 @@ class Note_v2 {
         this.nextElemWidth = null;
         this.nextElemLeftSide = null;
         this.nextElemRightSide = null;
-        this.newNote = null;
-        this.leftHandle = null;
-        this.rightHandle = null;
-        this.leftRightHandle = null;
+        this.div = null;
+        this.handle = {};
+        // this.leftHandle = null;
+        // this.rightHandle = null;
+        // this.leftRightHandle = null;
     }
 
     createNoteDiv() {
         let newNoteDiv = document.createElement('div');
         newNoteDiv.classList.add(this.class);
-        newNoteDiv.append(this.leftHandle);
-        newNoteDiv.append(this.rightHandle);
-        newNoteDiv.append(this.leftRightHandle);
-        this.newNote = newNoteDiv;
+        newNoteDiv.classList.add('active');
+        newNoteDiv.style.width = this.width + 'px';
+        newNoteDiv.style.height = this.height + 'px';
+        newNoteDiv.style.left = this.leftPosition + 'px';
+        this.div = newNoteDiv;
+
+        this.createHandle();
+        this.createLabel();
+        this.div.append(this.handle.leftHandle);
+        this.div.append(this.handle.rightHandle);
+        this.div.append(this.handle.leftRightHandle);
+        this.div.append(this.label);
+       
     }
     createHandle() {
         // left
@@ -45,7 +56,7 @@ class Note_v2 {
             // event.stopPropagation();
             // startResizing(event, 'left');
         });
-        this.leftHandle = leftHandle;
+        this.handle.leftHandle = leftHandle;
         // right
         let righttHandle = document.createElement('div');
         righttHandle.classList.add('handle', 'right-handle');
@@ -60,7 +71,8 @@ class Note_v2 {
             // event.stopPropagation();
             // startResizing(event, 'right');
         });
-        this.rightHandle = righttHandle;
+        this.handle.rightHandle = righttHandle;
+
         // left-right
         let left_double_arrow = document.createElement('div');
         left_double_arrow.classList.add('handle');
@@ -78,7 +90,7 @@ class Note_v2 {
             // event.stopPropagation();
             // startResizing(event, 'left_right');
         });
-        this.leftRightHandle = left_double_arrow;
+        this.handle.leftRightHandle = left_double_arrow;
     }
     leftRightHandleShowHide() {
         if(this.leftRightHandle.style.display == 'none'){
@@ -90,16 +102,25 @@ class Note_v2 {
     findPrevNextElemsAndFindParam() {
         if (newNote.nextElementSibling) {
             this.nextElem = newNote.nextElementSibling;
-            this.nextElemWidth = Number(this.nextElem.style.width.replace('px', ''));
-            this.nextElemLeftSide = Number(this.nextElem.style.left.replace('px', ''));
+            this.nextElemWidth = parseInt(this.nextElem.style.width);
+            this.nextElemLeftSide = parseInt(this.nextElem.style.left);
             this.nextElemRightSide = nextElemLeftSide + nextElemWidth;
         }
         if (newNote.previousElementSibling) {
             this.previousElem = newNote.previousElementSibling;
-            this.previousElemWidth = Number(this.previousElem.style.width.replace('px', ''));
-            this.previousElemLeftSide = Number(this.previousElem.style.left.replace('px', ''));
+            this.previousElemWidth = parseInt(this.previousElem.style.width);
+            this.previousElemLeftSide = parseInt(this.previousElem.style.left);
             this.previousElemRightSide = previousElemLeftSide + previousElemWidth;
         }
+    }
+    createLabel(is_pause){
+        let p_label = document.createElement('p');
+        if (is_pause) {
+            p_label.textContent = this.pausesSymbol.default;
+        } else {
+            p_label.textContent = this.notesSymbol.default;
+        }
+        this.label = p_label;
     }
     get rightSide() {
         return parseInt(this.leftSide) + parseInt(this.width);

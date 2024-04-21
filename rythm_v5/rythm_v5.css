@@ -45,8 +45,8 @@ body {
     /* letter-spacing: 10px; */
     color: #F4D6B1;
     /* padding-top: 15px; */
-    justify-content: start;
-    align-items: start;
+    justify-content: center;
+    align-items: center;
     /* padding: 40px 0 0 40px; */
     background: var(--background);
     /* border: 10px solid #DDB078; */
@@ -73,12 +73,17 @@ body {
     left: 0;
     right: 0;
     margin: auto;
+    background: red;
     /* margin-left: 90px; */
 }
 
 .containMatrix {
     /* width: var(--base-size); */
     /* height: var(--base-size); */
+    /* position: absolute; */
+    /* left: 0; */
+    /* right: 0; */
+    /* margin: auto; */
 }
 
 .mtrxCircle {
