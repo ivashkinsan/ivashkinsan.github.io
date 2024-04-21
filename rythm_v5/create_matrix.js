@@ -2,6 +2,7 @@ const backgroundMatrix = {
     'app': null,
     'containMatrix': null,
     'activeLayer': null,
+    'activeLayerStack': {},
     'root': null,
     'newOutIndMatrix': {},
     'sizeIdentif': {},
@@ -123,6 +124,7 @@ const backgroundMatrix = {
         this.minWidth = backgroundMatrix.baseSize / 16;
         this.maxWidth = backgroundMatrix.baseSize;
     },
+    // в бэкграунде на каждый элемент настроен клик
     createBackground(array, startleftPosition) {
         this.baseWidth = this.baseSize / 16 * array.length;
         this.containMatrix.style.width = this.baseWidth + 'px';
@@ -175,7 +177,6 @@ const backgroundMatrix = {
                 new_circle.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    console.log('click');
                     this.create_note(
                         new_circle.dataset.name,
                         parseInt(new_circle.style.width),
@@ -229,19 +230,27 @@ const backgroundMatrix = {
             leftPosition,
             indxPosition
          );
+       
         note.createNoteDiv();
+        this.activeLayerStack[note.id] = note;
         this.activeLayer.append(note.div);
         this.sortedActiveLayer(this.activeLayer, note.div);
-        console.log(note);
-        console.log(backgroundMatrix);
+        note.findPrevNextElemsAndFindParam();
+        note.addEventListenerForPauseTransform();
+
+        note.div.addEventListener('contextmenu', (event)=>{
+            event.preventDefault();
+            event.stopPropagation();
+            note.deleteNote(note.id);
+            note = null;
+    })
     },
     sortedActiveLayer(container, newDiv) {
         container.appendChild(newDiv); // Вставляем новый div в конец контейнера
         const childrenArray = Array.from(container.children); // Преобразуем коллекцию дочерних элементов в массив
         childrenArray.sort((a, b) => a.offsetLeft - b.offsetLeft); // Сортируем дочерние элементы по offSetLeft
         childrenArray.forEach(child => container.appendChild(child)); // Вставляем отсортированные элементы обратно в контейнер
-    }
-
+    },
 }
 
 
@@ -253,7 +262,7 @@ backgroundMatrix.find_Root_baseSize_baseWidth_step_minWidth_max_width();
 backgroundMatrix.createSizeIdentif();
 backgroundMatrix.createBackground(backgroundMatrix.matrix_8x4, backgroundMatrix.startleftPosition);
 
-console.log(backgroundMatrix.app);
-console.log(backgroundMatrix.containMatrix);
-console.log(backgroundMatrix.activeLayer);
-console.log(backgroundMatrix);
+// console.log(backgroundMatrix.app);
+// console.log(backgroundMatrix.containMatrix);
+// console.log(backgroundMatrix.activeLayer);
+// console.log(backgroundMatrix);

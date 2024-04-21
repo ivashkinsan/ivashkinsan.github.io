@@ -2,11 +2,12 @@ class Note {
     constructor(obj, size, leftPosition, indxPosition) {
         this.name = obj.class;
         this.class = obj.class;
+        this.id = null;
         this.indxPosition = indxPosition;
         this.width = size;
         this.height = size;
-        this.leftPosition = leftPosition;
-        // this.rightSide = null;
+        this.leftSidePosition = leftPosition;
+        this.rightSidePosition = null;
         this.notesSymbol = obj.notesSymbol;
         this.pausesSymbol = obj.pausesSymbol;
         this.label = null;
@@ -25,28 +26,13 @@ class Note {
         // this.leftRightHandle = null;
     }
 
-    createNoteDiv() {
-        let newNoteDiv = document.createElement('div');
-        newNoteDiv.classList.add(this.class);
-        newNoteDiv.classList.add('active');
-        newNoteDiv.style.width = this.width + 'px';
-        newNoteDiv.style.height = this.height + 'px';
-        newNoteDiv.style.left = this.leftPosition + 'px';
-        this.div = newNoteDiv;
-
-        this.createHandle();
-        this.createLabel();
-        this.div.append(this.handle.leftHandle);
-        this.div.append(this.handle.rightHandle);
-        this.div.append(this.handle.leftRightHandle);
-        this.div.append(this.label);
-       
-    }
     createHandle() {
         // left
         let leftHandle = document.createElement('div');
         leftHandle.classList.add('handle', 'left-handle');
         leftHandle.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             // event.preventDefault();
             // event.stopPropagation();
             // startResizing(event, 'left');
@@ -61,11 +47,15 @@ class Note {
         let righttHandle = document.createElement('div');
         righttHandle.classList.add('handle', 'right-handle');
         righttHandle.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             // event.preventDefault();
             // event.stopPropagation();
             // startResizing(event, 'right');
         });
         righttHandle.addEventListener('touchmove', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             // console.log('touchstart Right Handle');
             // event.preventDefault();
             // event.stopPropagation();
@@ -100,17 +90,18 @@ class Note {
         }
     }
     findPrevNextElemsAndFindParam() {
-        if (newNote.nextElementSibling) {
-            this.nextElem = newNote.nextElementSibling;
+        if (this.div.nextElementSibling) {
+            console.log('nextElementSibling');
+            this.nextElem = this.div.nextElementSibling;
             this.nextElemWidth = parseInt(this.nextElem.style.width);
             this.nextElemLeftSide = parseInt(this.nextElem.style.left);
-            this.nextElemRightSide = nextElemLeftSide + nextElemWidth;
+            this.nextElemRightSide = this.nextElemLeftSide + this.nextElemWidth;
         }
-        if (newNote.previousElementSibling) {
-            this.previousElem = newNote.previousElementSibling;
+        if (this.div.previousElementSibling) {
+            this.previousElem = this.div.previousElementSibling;
             this.previousElemWidth = parseInt(this.previousElem.style.width);
             this.previousElemLeftSide = parseInt(this.previousElem.style.left);
-            this.previousElemRightSide = previousElemLeftSide + previousElemWidth;
+            this.previousElemRightSide = this.previousElemLeftSide + this.previousElemWidth;
         }
     }
     createLabel(is_pause){
@@ -122,6 +113,64 @@ class Note {
         }
         this.label = p_label;
     }
+    createNoteDiv() {
+        let newNoteDiv = document.createElement('div');
+        newNoteDiv.classList.add(this.class);
+        newNoteDiv.classList.add('active');
+        newNoteDiv.style.width = this.width + 'px';
+        newNoteDiv.style.height = this.height + 'px';
+        newNoteDiv.style.left = this.leftSidePosition + 'px';
+        this.div = newNoteDiv;
+
+        this.createHandle();
+        this.createLabel();
+        this.id = this.idGenerator();
+        this.rightSidePosition = this.leftSidePosition + this.width;
+        this.div.append(this.handle.leftHandle);
+        this.div.append(this.handle.rightHandle);
+        this.div.append(this.handle.leftRightHandle);
+        this.div.append(this.label);
+        this.delElemInBigElem();
+        // console.log(this); 
+    }
+    addEventListenerForPauseTransform(){
+        this.div.addEventListener('mousedown', (event)=>{
+            event.preventDefault();
+            event.stopPropagation();
+            if (event.button == 0) {
+                if (!this.div.classList.contains('pause') && !this.div.classList.contains('handle')) {
+                    this.div.classList.add('pause');
+                    this.label.textContent = this.pausesSymbol.default;
+                } else {
+                    this.div.classList.remove('pause');
+                    this.label.textContent = this.notesSymbol.default;
+                }
+            }
+        })
+    }
+    deleteNote(id){
+        backgroundMatrix.activeLayerStack[id].div.remove();
+        delete backgroundMatrix.activeLayerStack[id];
+    }
+    delElemInBigElem(){
+        for (let key in backgroundMatrix.activeLayerStack) {
+            let item = backgroundMatrix.activeLayerStack[key];
+            if (item.leftSidePosition >= this.leftSidePosition
+                && item.leftSidePosition < this.rightSidePosition
+                && item.rightSidePosition <= this.rightSidePosition
+            ) {
+                item.div.remove();
+                backgroundMatrix.activeLayerStack[key] = null;
+                delete backgroundMatrix.activeLayerStack[key];
+            }
+        }
+    }
+    idGenerator(){
+        return String(
+      Date.now().toString(32) +
+        Math.random().toString(16)
+    ).replace(/\./g, '')}
+
     get rightSide() {
         return parseInt(this.leftSide) + parseInt(this.width);
     }
