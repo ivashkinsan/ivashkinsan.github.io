@@ -237,6 +237,8 @@ const backgroundMatrix = {
         this.sortedActiveLayer(this.activeLayer, note.div);
         note.findPrevNextElemsAndFindParam();
         note.addEventListenerForPauseTransform();
+        console.log(note);
+
 
         note.div.addEventListener('contextmenu', (event)=>{
             event.preventDefault();

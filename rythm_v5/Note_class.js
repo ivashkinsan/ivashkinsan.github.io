@@ -22,7 +22,8 @@ class Note {
         this.div = null;
         this.handle = {};
         this.startResizing = this.startResizing.bind(this);
-        // this.resize = this.resize.bind(this);
+        this.resize = this.resize.bind(this);
+        this.stopResizing = this.stopResizing.bind(this);
         // this.leftHandle = null;
         // this.rightHandle = null;
         // this.leftRightHandle = null;
@@ -46,11 +47,10 @@ class Note {
         // right
         let righttHandle = document.createElement('div');
         righttHandle.classList.add('handle', 'right-handle');
-        righttHandle.addEventListener('mousedown', (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            console.log(event);
-            this.startResizing( this,'right');
+        righttHandle.addEventListener('mousedown', (eventMSD) => {
+            eventMSD.preventDefault();
+            eventMSD.stopPropagation();
+            this.startResizing(eventMSD, 'right',);
         });
 
         this.handle.rightHandle = righttHandle;
@@ -160,29 +160,34 @@ class Note {
             console.log(this.previousElem.width);
         }
     }
-    startResizing(obj, direction){
-       console.log(this.startResizing.resize);
-        document.documentElement.addEventListener('mousemove', resize);
-        document.documentElement.addEventListener('mouseup', stopResizing);
-        function resize(mouseTarget, direction, event){
-            // console.log(this);
-            if(direction === 'right'){
-                // console.log(event.clientX);            
-                const startX = event.clientX;
-                // console.log(this);
-        // console.log('startX = ' + startX);
-        // console.log('this.width = ' + this.width);
-        // console.log('event.clientX = ' + event.clientX );
-                let newWidth = Math.min(Math.max(this.width + event.clientX - startX, backgroundMatrix.minWidth), backgroundMatrix.maxWidth);
-                // console.log(newWidth);
+    startResizing(eventMSD, direction){
+        const startX = eventMSD.clientX;
+        console.log(backgroundMatrix);
+       console.log(this.startResizing);
+        document.documentElement.addEventListener('mousemove', (event)=>this.resize(direction,event,startX));
+        document.documentElement.addEventListener('mouseup', ()=>this.stopResizing());
+
+
+    }
+    resize(direction, event, startX){
+        if(direction === 'right'){
+            let newWidth = Math.min(Math.max(this.width + event.clientX - startX, backgroundMatrix.minWidth), backgroundMatrix.maxWidth);
+    //   console.log('offsetLeft = ' + backgroundMatrix.app.offsetLeft);
+    
+            if(this.nextElem){
+                console.log(this.nextElem);
+                if(event.x < this.nextElemLeftSide + backgroundMatrix.app.offsetLeft){
+                    this.width = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step + 'px';
+                    this.height = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step + 'px';
+                }
+
             }
         }
-       function stopResizing(){
-            document.documentElement.removeEventListener('mousemove', this.resize);
-            document.documentElement.removeEventListener('mouseup', this.stopResizing);
-        }
     }
-
+    stopResizing(){
+        document.documentElement.removeEventListener('mousemove', this.resize);
+        document.documentElement.removeEventListener('mouseup', this.stopResizing);
+    }
 
     idGenerator(){
         return String(

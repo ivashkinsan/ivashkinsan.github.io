@@ -22,6 +22,7 @@ function startResizing(e, direction) {
     // родительский блок для корректировки положения курсора на оси x
     let appForPosition = document.querySelector('.app');
     let appLeftSide = appForPosition.offsetLeft;
+    console.log('appLeftSide = ' + appLeftSide);
     let appRightSide = backgroundMatrix.baseWidth + Number(appLeftSide);
 console.log(appRightSide);
     // функция изменения размера элементов
