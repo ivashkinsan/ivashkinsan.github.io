@@ -252,7 +252,14 @@ const backgroundMatrix = {
         const childrenArray = Array.from(container.children); // Преобразуем коллекцию дочерних элементов в массив
         childrenArray.sort((a, b) => a.offsetLeft - b.offsetLeft); // Сортируем дочерние элементы по offSetLeft
         childrenArray.forEach(child => container.appendChild(child)); // Вставляем отсортированные элементы обратно в контейнер
+        this.researchAllNextPrevElem();
     },
+    researchAllNextPrevElem(){
+        for(let key in this.activeLayerStack){
+            this.activeLayerStack[key].findPrevNextElemsAndFindParam();
+        }
+        console.log(this.activeLayerStack);
+    }
 }
 
 
