@@ -7,13 +7,14 @@ class Note {
         this._width = size;
         this._height = size;
         this._leftSidePosition = leftPosition;
+        this.newLeftPosition = null;
         this.startWidth = null;
         this.rightSidePosition = null;
         this.notesSymbol = obj.notesSymbol;
         this.pausesSymbol = obj.pausesSymbol;
         this.label = null;
         this.previousElem = null;
-        this.previousElemWidth = null;
+        this._previousElemWidth = null;
         this.previousElemLeftSide = null;
         this.previousElemRightSide = null;
         this.nextElem = null;
@@ -27,6 +28,7 @@ class Note {
         this.stopResizing = this.stopResizing.bind(this);
         this.direction = null;
         this.startX = null;
+        this.diff = null;
         // this.leftHandle = null;
         // this.rightHandle = null;
         // this.leftRightHandle = null;
@@ -37,12 +39,12 @@ class Note {
         // left
         let leftHandle = document.createElement('div');
         leftHandle.classList.add('handle', 'left-handle');
-        leftHandle.addEventListener('mousedown', (event) => {
+        leftHandle.addEventListener('mousedown', (eventMSD) => {
             event.preventDefault();
             event.stopPropagation();
             // event.preventDefault();
             // event.stopPropagation();
-            // this.startResizing('left');
+            this.startResizing(eventMSD, 'left',);
         });
 
         this.handle.leftHandle = leftHandle;
@@ -54,6 +56,8 @@ class Note {
             eventMSD.preventDefault();
             eventMSD.stopPropagation();
             this.startResizing(eventMSD, 'right',);
+            // console.log(backgroundMatrix);
+            // console.log(backgroundMatrix.app.getBoundingClientRect());
         });
 
         this.handle.rightHandle = righttHandle;
@@ -63,11 +67,12 @@ class Note {
         left_double_arrow.classList.add('handle');
         left_double_arrow.classList.add('left_double_arrow');
         left_double_arrow.classList.add('display_block');
-        left_double_arrow.classList.add('display_none');
-        left_double_arrow.addEventListener('mousedown', (event) => {
-            // event.preventDefault();
-            // event.stopPropagation();
-            // startResizing(event, 'left_right');
+        // left_double_arrow.classList.add('display_none');
+        left_double_arrow.addEventListener('mousedown', (eventMSD) => {
+            event.preventDefault();
+            event.stopPropagation();
+            this.startResizing(eventMSD, 'left_right',);
+            console.log(this.previousElemWidth);
         });
 
         this.handle.leftRightHandle = left_double_arrow;
@@ -81,7 +86,6 @@ class Note {
     }
     findPrevNextElemsAndFindParam() {
         if (this.div.nextElementSibling) {
-            // console.log('nextElementSibling');
             this.nextElem = this.div.nextElementSibling;
             this.nextElemWidth = parseInt(this.nextElem.style.width);
             this.nextElemLeftSide = parseInt(this.nextElem.style.left);
@@ -92,6 +96,7 @@ class Note {
             this.previousElemWidth = parseInt(this.previousElem.style.width);
             this.previousElemLeftSide = parseInt(this.previousElem.style.left);
             this.previousElemRightSide = this.previousElemLeftSide + this.previousElemWidth;
+            console.log(this);
         }
     }
     createLabel(is_pause){
@@ -167,6 +172,7 @@ class Note {
         const startX = eventMSD.clientX;
         this.startX = startX;
         this.startWidth = parseFloat(this._width);
+        this.startLeft = parseFloat(this._leftSidePosition);
         this.direction = direction;
 
         document.documentElement.addEventListener('mousemove', this.resize);
@@ -177,24 +183,56 @@ class Note {
     resize(event){
         event.preventDefault();
         event.stopPropagation();
-        console.log([this.startWidth,event.clientX,this.startX,backgroundMatrix.minWidth,backgroundMatrix.maxWidth]);
-        console.log(event);
+        // console.log([this.startWidth,event.clientX,this.startX,backgroundMatrix.minWidth,backgroundMatrix.maxWidth]);
+        // console.log(event);
         if(this.direction === 'right'){
             let newWidth = Math.min(Math.max(this.startWidth + event.clientX - this.startX, backgroundMatrix.minWidth), backgroundMatrix.maxWidth);
-    console.log(this._width);
-    console.log(newWidth);
             if(this.nextElem){
                 if(event.x < this.nextElemLeftSide + backgroundMatrix.app.offsetLeft){     
-                    // this.width = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step;
-                    // this.height = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step;
+                    this.width = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step;
+                }
+            } else if(event.x < backgroundMatrix.rightAppSide){
+                this.width = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step;
+            }         
+        } else if (this.direction === 'left') {
+            this.diff = this.startX - event.clientX;
+            let newWidth = Math.min(Math.max(this.startWidth + this.diff, backgroundMatrix.minWidth), backgroundMatrix.maxWidth);
+            const newLeft = this.startLeft - (newWidth - this.startWidth);
+            const newWidthRoundet = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step;
+            this.newLeftPosition = Math.round(newLeft / backgroundMatrix.step) * backgroundMatrix.step;
+            if(this.previousElem){
+                if(event.x - backgroundMatrix.leftAppSide > this.previousElemLeftSide + this.previousElemWidth){
+                    this.width = newWidthRoundet;
+                    this.leftSidePosition = this.newLeftPosition;
+                }
+            } else if(event.x > backgroundMatrix.leftAppSide){
+                this.width = newWidthRoundet;
+                this.leftSidePosition = this.newLeftPosition;
+            }
+        } else if (this.direction === 'left_right'){
+            console.log(this.previousElem);
+            if(this.previousElem){
+                this.diff = this.startX - event.clientX;
+                let newWidth = Math.min(Math.max(this.startWidth + this.diff, backgroundMatrix.minWidth), backgroundMatrix.maxWidth);
+                const newLeft = this.startLeft - (newWidth - this.startWidth);
+                const newWidthRoundet = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step;
+                let difference = newWidthRoundet - this.startWidth;
+                this.newLeftPosition = Math.round(newLeft / backgroundMatrix.step) * backgroundMatrix.step;
+                console.log([this.width, newWidthRoundet, this.previousElemWidth, difference]);
+                if(this.previousElemWidth - difference >= backgroundMatrix.minWidth){
+                    
+                    this.width = newWidthRoundet;
+                    this.leftSidePosition = this.newLeftPosition;
+
+                    this.previousElemWidth = this.previousElemWidth - difference;
                 }
             }
-            this.width = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step;
         }
     }
     stopResizing(){
         
         console.log('MOUSE_UP');
+        backgroundMatrix.researchAllNextPrevElem();
         // console.log(document.documentElement);
         document.documentElement.removeEventListener('mousemove', this.resize);
         document.documentElement.removeEventListener('mouseup', this.stopResizing);
@@ -222,7 +260,23 @@ class Note {
         this.div.style.width = this._width;
         this.div.style.height = this._width;
     }
-
+     /**
+     * @param {string} value
+     */
+    set leftSidePosition(value){
+        this._leftSidePosition = value + 'px';
+        this.div.style.left = this._leftSidePosition;
+    }
+      /**
+     * @param {string} value
+     */
+    get previousElemWidth(){
+        return parseFloat(this._previousElemWidth);
+    }
+    set previousElemWidth(value){
+        this._previousElemWidth = value;
+        this.previousElem.style.width =  this._previousElemWidth;
+    }
 }
 
 

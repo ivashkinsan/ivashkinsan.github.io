@@ -126,6 +126,9 @@ const backgroundMatrix = {
     },
     // в бэкграунде на каждый элемент настроен клик
     createBackground(array, startleftPosition) {
+        let boundingPosition = this.app.getBoundingClientRect();
+        // this.leftAppSide = boundingPosition.left;
+        // this.rightAppSide = boundingPosition.right;
         this.baseWidth = this.baseSize / 16 * array.length;
         this.containMatrix.style.width = this.baseWidth + 'px';
         // внешний цикл
@@ -193,6 +196,12 @@ const backgroundMatrix = {
                 // });
 
                 this.containMatrix.append(new_circle);
+                if(outIndx == 0){
+                    this.leftAppSide = new_circle.getBoundingClientRect().left;
+                }
+                if(outIndx == array.length-1){
+                    this.rightAppSide = new_circle.getBoundingClientRect().right;
+                }
             }
 
             this.newOutIndMatrix[startleftPosition] = String(outIndx + 1);
