@@ -1,7 +1,7 @@
 class Note {
     constructor(obj, size, leftPosition, indxPosition) {
         this.name = obj.class;
-        this.class = obj.class;
+        this._class = obj.class;
         this.id = null;
         this.indxPosition = indxPosition;
         this._width = size;
@@ -9,15 +9,18 @@ class Note {
         this._leftSidePosition = leftPosition;
         this.newLeftPosition = null;
         this.startWidth = null;
-        this.rightSidePosition = null;
+        this._rightSidePosition = null;
         this.notesSymbol = obj.notesSymbol;
         this.pausesSymbol = obj.pausesSymbol;
-        this.label = null;
+        this._label = null;
         this.previousElem = null;
+        this.previousElemId = null;
         this._previousElemWidth = null;
+        this.previousElemStartWidth = null;
         this.previousElemLeftSide = null;
         this.previousElemRightSide = null;
         this.nextElem = null;
+        this.nextElemId = null;
         this.nextElemWidth = null;
         this.nextElemLeftSide = null;
         this.nextElemRightSide = null;
@@ -87,16 +90,25 @@ class Note {
     findPrevNextElemsAndFindParam() {
         if (this.div.nextElementSibling) {
             this.nextElem = this.div.nextElementSibling;
-            this.nextElemWidth = parseInt(this.nextElem.style.width);
-            this.nextElemLeftSide = parseInt(this.nextElem.style.left);
+            this.nextElemId = this.nextElem.dataset.id;
+            this.nextElemWidth = String(this.nextElem.style.width.replace('px',''));
+            this.nextElemLeftSide = String(this.nextElem.style.left.replace('px',''));
             this.nextElemRightSide = this.nextElemLeftSide + this.nextElemWidth;
+            console.log({
+                nextElem: this.nextElem,
+                nextElemId: this.nextElemId,
+                nextElemWidth: this.nextElemWidth,
+                nextElemLeftSide: this.nextElemLeftSide,
+                nextElemRightSide: this.nextElemRightSide,
+            });
         }
         if (this.div.previousElementSibling) {
             this.previousElem = this.div.previousElementSibling;
-            this.previousElemWidth = parseInt(this.previousElem.style.width);
-            this.previousElemLeftSide = parseInt(this.previousElem.style.left);
+            this.previousElemId = this.previousElem.dataset.id;
+            this.previousElemWidth = String(this.previousElem.style.width.replace('px',''));
+            this.previousElemLeftSide = String(this.previousElem.style.left.replace('px',''));
             this.previousElemRightSide = this.previousElemLeftSide + this.previousElemWidth;
-            console.log(this);
+            // console.log(this);
         }
     }
     createLabel(is_pause) {
@@ -106,12 +118,13 @@ class Note {
         } else {
             p_label.textContent = this.notesSymbol.default;
         }
-        this.label = p_label;
+        this._label = p_label;
     }
     createNoteDiv() {
         let newNoteDiv = document.createElement('div');
-        newNoteDiv.classList.add(this.class);
+        newNoteDiv.classList.add(this._class);
         newNoteDiv.classList.add('active');
+        console.log(this._width);
         newNoteDiv.style.width = this._width + 'px';
         newNoteDiv.style.height = this._height + 'px';
         newNoteDiv.style.left = this._leftSidePosition + 'px';
@@ -120,11 +133,12 @@ class Note {
         this.createHandle();
         this.createLabel();
         this.id = this.idGenerator();
-        this.rightSidePosition = this.leftSidePosition + this.width;
+        this.div.dataset.id = this.id;
+        this.rightSidePosition = this._leftSidePosition + this.width;
         this.div.append(this.handle.leftHandle);
         this.div.append(this.handle.rightHandle);
         this.div.append(this.handle.leftRightHandle);
-        this.div.append(this.label);
+        this.div.append(this._label);
         this.delElemInBigElem();
         // console.log(this); 
     }
@@ -149,21 +163,22 @@ class Note {
     }
     delElemInBigElem() {
         for (let key in backgroundMatrix.activeLayerStack) {
+            
             let item = backgroundMatrix.activeLayerStack[key];
-            if (item.leftSidePosition >= this.leftSidePosition
-                && item.leftSidePosition < this.rightSidePosition
-                && item.rightSidePosition <= this.rightSidePosition
+            if (item._leftSidePosition >= this._leftSidePosition
+                && item._leftSidePosition < this._rightSidePosition
+                && item._rightSidePosition <= this._rightSidePosition
             ) {
                 item.div.remove();
                 backgroundMatrix.activeLayerStack[key] = null;
                 delete backgroundMatrix.activeLayerStack[key];
-                ifBorderCollapse_resize();
+                // ifBorderCollapse_resize();
             }
         }
     }
     ifBorderCollapse_resize() {
-        if (this.previousElemRightSide > this.leftSidePosition) {
-            this.previousElem.width = this.previousElem.width - (this.previousElemRightSide - this.leftSidePosition);
+        if (this.previousElemRightSide > this._leftSidePosition) {
+            this.previousElem.width = this.previousElem.width - (this.previousElemRightSide - this._leftSidePosition);
 
             console.log(this.previousElem.width);
         }
@@ -174,6 +189,7 @@ class Note {
         this.startWidth = parseFloat(this._width);
         this.startLeft = parseFloat(this._leftSidePosition);
         this.direction = direction;
+        this.previousElemStartWidth = this.previousElemWidth;
 
         document.documentElement.addEventListener('mousemove', this.resize);
         document.documentElement.addEventListener('mouseup', this.stopResizing);
@@ -190,6 +206,7 @@ class Note {
             if (this.nextElem) {
                 if (event.x < this.nextElemLeftSide + backgroundMatrix.app.offsetLeft) {
                     this.width = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step;
+                    this.hameleon();
                 }
             } else if (event.x < backgroundMatrix.rightAppSide) {
                 this.width = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step;
@@ -206,50 +223,62 @@ class Note {
                 if (event.x - backgroundMatrix.leftAppSide > this.previousElemLeftSide + this.previousElemWidth) {
                     this.width = newWidthRoundet;
                     this.leftSidePosition = this.newLeftPosition;
+                    this.indxPosition = backgroundMatrix.newOutIndMatrix[this._leftSidePosition];
+                    this.hameleon();
                 }
             } else if (event.x > backgroundMatrix.leftAppSide) {
                 this.width = newWidthRoundet;
                 this.leftSidePosition = this.newLeftPosition;
+                this.indxPosition = backgroundMatrix.newOutIndMatrix[this._leftSidePosition];
+                this.hameleon();
             }
         } else if (this.direction === 'left_right') {
-            console.log(this.previousElem);
+            // console.log(this.previousElem);
+
             if (this.previousElem) {
+
                 this.diff = this.startX - event.clientX;
                 let newWidth = Math.min(Math.max(this.startWidth + this.diff, backgroundMatrix.minWidth), backgroundMatrix.maxWidth);
                 const newLeft = this.startLeft - (newWidth - this.startWidth);
                 const newWidthRoundet = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step;
                 let difference = newWidthRoundet - this.startWidth;
-                this.newLeftPosition = Math.round(newLeft / backgroundMatrix.step) * backgroundMatrix.step;
-                console.log([this.width, newWidthRoundet, this.previousElemWidth, difference]);
-                if (this.previousElemWidth - difference >= backgroundMatrix.minWidth) {
 
+                this.newLeftPosition = Math.round(newLeft / backgroundMatrix.step) * backgroundMatrix.step;
+
+                
+                if (this.previousElemStartWidth - difference >= backgroundMatrix.minWidth) {
+                    // console.log([this.width, newWidthRoundet, this._previousElemWidth, difference]);
                     this.width = newWidthRoundet;
                     this.leftSidePosition = this.newLeftPosition;
+                    this.indxPosition = backgroundMatrix.newOutIndMatrix[this._leftSidePosition];
+                    this.hameleon();
 
-                    this.previousElemWidth = this.previousElemWidth - difference;
+                    this.previousElemWidth = this.previousElemStartWidth - difference;
+                    console.log('this.previousElemWidth = ' + this.previousElemWidth);
+                    backgroundMatrix.activeLayerStack[this.previousElemId].width = this.previousElemWidth;
+                    backgroundMatrix.activeLayerStack[this.previousElemId].hameleon();
+
                 }
             }
         }
     }
     stopResizing() {
 
-        console.log('MOUSE_UP');
+        
         backgroundMatrix.researchAllNextPrevElem();
-        // console.log(document.documentElement);
+        
+        this.notesSymbol = allSymbolForNotes_2_4[this.name]['notesSymbol'];
+        this.pausesSymbol = allSymbolForNotes_2_4[this.name]['pausesSymbol'];
         document.documentElement.removeEventListener('mousemove', this.resize);
         document.documentElement.removeEventListener('mouseup', this.stopResizing);
+        // console.log('MOUSE_UP');
+        // console.log(this.notesSymbol);
     }
     hameleon() {
-        // обновить параметры элемента
-        // this.name 
-        // this.class
-        // this.width
-        // this.notesSymbol
-        // this.pausesSymbol
-        this.name = backgroundMatrix.sizeIdentif[this.width];
-        this.class = backgroundMatrix.sizeIdentif[this.width];
-        console.log(backgroundMatrix.sizeIdentif[this.width])
-
+        console.log(this.class);
+        this.name = backgroundMatrix.sizeIdentif[this._width];
+        this.class = backgroundMatrix.sizeIdentif[this._width];
+        this.label = allSymbolForNotes_2_4[backgroundMatrix.sizeIdentif[this._width]];
     }
 
     idGenerator() {
@@ -259,38 +288,63 @@ class Note {
         ).replace(/\./g, '')
     }
 
-    get getRightSidePosition() {
-        return parseInt(this.leftSide) + parseInt(this.width);
+    set rightSidePosition(value){
+        this._rightSidePosition = value;
+    }
+    get rightSidePosition() {
+        return this.leftSide + this.width;
     }
 
     /**
      * @param {string} value
      */
-    get width() {
-        return parseFloat(this._width);
-    }
+    // get width() {
+    //     return parseFloat(this._width);
+    // }
     set width(value) {
-        this._width = value + 'px';
-        this._height = value + 'px';
-        this.div.style.width = this._width;
-        this.div.style.height = this._width;
+        this._width = value;
+        this._height = value;
+        this.div.style.width = this._width + 'px';
+        this.div.style.height = this._width + 'px';
     }
     /**
     * @param {string} value
     */
     set leftSidePosition(value) {
-        this._leftSidePosition = value + 'px';
-        this.div.style.left = this._leftSidePosition;
+        this._leftSidePosition = value;
+        this.div.style.left = this._leftSidePosition + 'px';
     }
     /**
-   * @param {string} value
-   */
+     * @param {string} value
+     */
+set class(value){
+    console.log(this._class);
+    this.div.classList.remove(this._class);
+    this._class = value;
+    this.div.classList.add(this._class);
+}
     get previousElemWidth() {
         return parseFloat(this._previousElemWidth);
     }
     set previousElemWidth(value) {
+        // console.log([value, this._previousElemWidth,this.previousElem.style.width]);
         this._previousElemWidth = value;
-        this.previousElem.style.width = this._previousElemWidth;
+        this.previousElem.style.width = this._previousElemWidth + 'px';
+        this.previousElem.style.height = this._previousElemWidth + 'px';
+    }
+
+    /**
+     * @param {{ textContent: any; }} value
+     */
+    set label(value){
+        if(value.notesSymbol[this.indxPosition]){
+            this._label.textContent = value.notesSymbol[this.indxPosition];
+        } else {
+            this._label.textContent = value.notesSymbol['default'];
+        }
+       
+// this.label = value;
+
     }
 }
 

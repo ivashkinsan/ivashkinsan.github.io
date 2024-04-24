@@ -182,8 +182,8 @@ const backgroundMatrix = {
                     e.stopPropagation();
                     this.create_note(
                         new_circle.dataset.name,
-                        parseInt(new_circle.style.width),
-                        parseInt(e.target.style.left),
+                        Number(new_circle.style.width.replace('px','')),
+                        Number(e.target.style.left.replace('px','')),
                         new_circle.dataset.indxPosition
                     );
                     // create_and_append_active_elem(e.target, activeElemLayer, 'click');
@@ -231,6 +231,7 @@ const backgroundMatrix = {
             [backgroundMatrix.baseSize / 6]: 'quarterNote_4_triple',
         }
         this.sizeIdentif = newSizeIdentif;
+        console.log(newSizeIdentif);
     },
     create_note(name, width, leftPosition, indxPosition){
         let note = new Note(
@@ -239,14 +240,14 @@ const backgroundMatrix = {
             leftPosition,
             indxPosition
          );
-       
+    //    console.log(allSymbolForNotes_2_4[name]);
         note.createNoteDiv();
         this.activeLayerStack[note.id] = note;
         this.activeLayer.append(note.div);
         this.sortedActiveLayer(this.activeLayer, note.div);
         note.findPrevNextElemsAndFindParam();
         note.addEventListenerForPauseTransform();
-        console.log(note);
+        // console.log(note);
 
 
         note.div.addEventListener('contextmenu', (event)=>{
@@ -267,7 +268,7 @@ const backgroundMatrix = {
         for(let key in this.activeLayerStack){
             this.activeLayerStack[key].findPrevNextElemsAndFindParam();
         }
-        console.log(this.activeLayerStack);
+        // console.log(this.activeLayerStack);
     }
 }
 
@@ -279,8 +280,9 @@ backgroundMatrix.createActiveLayer();
 backgroundMatrix.find_Root_baseSize_baseWidth_step_minWidth_max_width();
 backgroundMatrix.createSizeIdentif();
 backgroundMatrix.createBackground(backgroundMatrix.matrix_8x4, backgroundMatrix.startleftPosition);
-
+// console.log(backgroundMatrix.newOutIndMatrix);
 // console.log(backgroundMatrix.app);
 // console.log(backgroundMatrix.containMatrix);
 // console.log(backgroundMatrix.activeLayer);
+
 // console.log(backgroundMatrix);
