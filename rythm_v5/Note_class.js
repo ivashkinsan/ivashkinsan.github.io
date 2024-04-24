@@ -91,22 +91,15 @@ class Note {
         if (this.div.nextElementSibling) {
             this.nextElem = this.div.nextElementSibling;
             this.nextElemId = this.nextElem.dataset.id;
-            this.nextElemWidth = String(this.nextElem.style.width.replace('px',''));
-            this.nextElemLeftSide = String(this.nextElem.style.left.replace('px',''));
+            this.nextElemWidth = Number(this.nextElem.style.width.replace('px',''));
+            this.nextElemLeftSide = Number(this.nextElem.style.left.replace('px',''));
             this.nextElemRightSide = this.nextElemLeftSide + this.nextElemWidth;
-            console.log({
-                nextElem: this.nextElem,
-                nextElemId: this.nextElemId,
-                nextElemWidth: this.nextElemWidth,
-                nextElemLeftSide: this.nextElemLeftSide,
-                nextElemRightSide: this.nextElemRightSide,
-            });
         }
         if (this.div.previousElementSibling) {
             this.previousElem = this.div.previousElementSibling;
             this.previousElemId = this.previousElem.dataset.id;
-            this.previousElemWidth = String(this.previousElem.style.width.replace('px',''));
-            this.previousElemLeftSide = String(this.previousElem.style.left.replace('px',''));
+            this.previousElemWidth = Number(this.previousElem.style.width.replace('px',''));
+            this.previousElemLeftSide = Number(this.previousElem.style.left.replace('px',''));
             this.previousElemRightSide = this.previousElemLeftSide + this.previousElemWidth;
             // console.log(this);
         }
