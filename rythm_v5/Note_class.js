@@ -78,9 +78,9 @@ class Note {
         this.handle.leftRightHandle = left_double_arrow;
     }
     leftRightHandleShowHide() {
-        if(this.leftRightHandle.style.display == 'none'){
+        if (this.leftRightHandle.style.display == 'none') {
             this.leftRightHandle.style.display = 'block';
-        }else{
+        } else {
             this.leftRightHandle.style.display = 'none';
         }
     }
@@ -99,7 +99,7 @@ class Note {
             console.log(this);
         }
     }
-    createLabel(is_pause){
+    createLabel(is_pause) {
         let p_label = document.createElement('p');
         if (is_pause) {
             p_label.textContent = this.pausesSymbol.default;
@@ -128,8 +128,8 @@ class Note {
         this.delElemInBigElem();
         // console.log(this); 
     }
-    addEventListenerForPauseTransform(){
-        this.div.addEventListener('mousedown', (event)=>{
+    addEventListenerForPauseTransform() {
+        this.div.addEventListener('mousedown', (event) => {
             event.preventDefault();
             event.stopPropagation();
             if (event.button == 0) {
@@ -143,11 +143,11 @@ class Note {
             }
         })
     }
-    deleteNote(id){
+    deleteNote(id) {
         backgroundMatrix.activeLayerStack[id].div.remove();
         delete backgroundMatrix.activeLayerStack[id];
     }
-    delElemInBigElem(){
+    delElemInBigElem() {
         for (let key in backgroundMatrix.activeLayerStack) {
             let item = backgroundMatrix.activeLayerStack[key];
             if (item.leftSidePosition >= this.leftSidePosition
@@ -161,14 +161,14 @@ class Note {
             }
         }
     }
-    ifBorderCollapse_resize(){
+    ifBorderCollapse_resize() {
         if (this.previousElemRightSide > this.leftSidePosition) {
             this.previousElem.width = this.previousElem.width - (this.previousElemRightSide - this.leftSidePosition);
-            
+
             console.log(this.previousElem.width);
         }
     }
-    startResizing(eventMSD, direction){
+    startResizing(eventMSD, direction) {
         const startX = eventMSD.clientX;
         this.startX = startX;
         this.startWidth = parseFloat(this._width);
@@ -180,38 +180,40 @@ class Note {
 
 
     }
-    resize(event){
+    resize(event) {
         event.preventDefault();
         event.stopPropagation();
         // console.log([this.startWidth,event.clientX,this.startX,backgroundMatrix.minWidth,backgroundMatrix.maxWidth]);
         // console.log(event);
-        if(this.direction === 'right'){
+        if (this.direction === 'right') {
             let newWidth = Math.min(Math.max(this.startWidth + event.clientX - this.startX, backgroundMatrix.minWidth), backgroundMatrix.maxWidth);
-            if(this.nextElem){
-                if(event.x < this.nextElemLeftSide + backgroundMatrix.app.offsetLeft){     
+            if (this.nextElem) {
+                if (event.x < this.nextElemLeftSide + backgroundMatrix.app.offsetLeft) {
                     this.width = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step;
                 }
-            } else if(event.x < backgroundMatrix.rightAppSide){
+            } else if (event.x < backgroundMatrix.rightAppSide) {
                 this.width = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step;
-            }         
+                this.hameleon();
+            }
+
         } else if (this.direction === 'left') {
             this.diff = this.startX - event.clientX;
             let newWidth = Math.min(Math.max(this.startWidth + this.diff, backgroundMatrix.minWidth), backgroundMatrix.maxWidth);
             const newLeft = this.startLeft - (newWidth - this.startWidth);
             const newWidthRoundet = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step;
             this.newLeftPosition = Math.round(newLeft / backgroundMatrix.step) * backgroundMatrix.step;
-            if(this.previousElem){
-                if(event.x - backgroundMatrix.leftAppSide > this.previousElemLeftSide + this.previousElemWidth){
+            if (this.previousElem) {
+                if (event.x - backgroundMatrix.leftAppSide > this.previousElemLeftSide + this.previousElemWidth) {
                     this.width = newWidthRoundet;
                     this.leftSidePosition = this.newLeftPosition;
                 }
-            } else if(event.x > backgroundMatrix.leftAppSide){
+            } else if (event.x > backgroundMatrix.leftAppSide) {
                 this.width = newWidthRoundet;
                 this.leftSidePosition = this.newLeftPosition;
             }
-        } else if (this.direction === 'left_right'){
+        } else if (this.direction === 'left_right') {
             console.log(this.previousElem);
-            if(this.previousElem){
+            if (this.previousElem) {
                 this.diff = this.startX - event.clientX;
                 let newWidth = Math.min(Math.max(this.startWidth + this.diff, backgroundMatrix.minWidth), backgroundMatrix.maxWidth);
                 const newLeft = this.startLeft - (newWidth - this.startWidth);
@@ -219,8 +221,8 @@ class Note {
                 let difference = newWidthRoundet - this.startWidth;
                 this.newLeftPosition = Math.round(newLeft / backgroundMatrix.step) * backgroundMatrix.step;
                 console.log([this.width, newWidthRoundet, this.previousElemWidth, difference]);
-                if(this.previousElemWidth - difference >= backgroundMatrix.minWidth){
-                    
+                if (this.previousElemWidth - difference >= backgroundMatrix.minWidth) {
+
                     this.width = newWidthRoundet;
                     this.leftSidePosition = this.newLeftPosition;
 
@@ -229,20 +231,33 @@ class Note {
             }
         }
     }
-    stopResizing(){
-        
+    stopResizing() {
+
         console.log('MOUSE_UP');
         backgroundMatrix.researchAllNextPrevElem();
         // console.log(document.documentElement);
         document.documentElement.removeEventListener('mousemove', this.resize);
         document.documentElement.removeEventListener('mouseup', this.stopResizing);
     }
+    hameleon() {
+        // обновить параметры элемента
+        // this.name 
+        // this.class
+        // this.width
+        // this.notesSymbol
+        // this.pausesSymbol
+        this.name = backgroundMatrix.sizeIdentif[this.width];
+        this.class = backgroundMatrix.sizeIdentif[this.width];
+        console.log(backgroundMatrix.sizeIdentif[this.width])
 
-    idGenerator(){
+    }
+
+    idGenerator() {
         return String(
-      Date.now().toString(32) +
-        Math.random().toString(16)
-    ).replace(/\./g, '')}
+            Date.now().toString(32) +
+            Math.random().toString(16)
+        ).replace(/\./g, '')
+    }
 
     get getRightSidePosition() {
         return parseInt(this.leftSide) + parseInt(this.width);
@@ -251,31 +266,31 @@ class Note {
     /**
      * @param {string} value
      */
-    get width(){
+    get width() {
         return parseFloat(this._width);
     }
-    set width(value){
+    set width(value) {
         this._width = value + 'px';
         this._height = value + 'px';
         this.div.style.width = this._width;
         this.div.style.height = this._width;
     }
-     /**
-     * @param {string} value
-     */
-    set leftSidePosition(value){
+    /**
+    * @param {string} value
+    */
+    set leftSidePosition(value) {
         this._leftSidePosition = value + 'px';
         this.div.style.left = this._leftSidePosition;
     }
-      /**
-     * @param {string} value
-     */
-    get previousElemWidth(){
+    /**
+   * @param {string} value
+   */
+    get previousElemWidth() {
         return parseFloat(this._previousElemWidth);
     }
-    set previousElemWidth(value){
+    set previousElemWidth(value) {
         this._previousElemWidth = value;
-        this.previousElem.style.width =  this._previousElemWidth;
+        this.previousElem.style.width = this._previousElemWidth;
     }
 }
 
