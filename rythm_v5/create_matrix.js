@@ -240,19 +240,17 @@ const backgroundMatrix = {
             leftPosition,
             indxPosition
          );
-    //    console.log(allSymbolForNotes_2_4[name]);
-        note.createNoteDiv();
+        note.createNoteDiv(); // создать див элемент ноты
+        note.createHandle(); // создать внутренние handle
+        note.createLabel(); // создать внутренний p для сивола нот и пауз
+        note.delElemInBigElem(); // удалить элементы внутри нового блока
+
         this.activeLayerStack[note.id] = note;
-        this.activeLayer.append(note.div);
-        this.sortedActiveLayer(this.activeLayer, note.div);
-        note.findPrevNextElemsAndFindParam();
-        console.log(note.previousElemRightSide);
-        note.addEventListenerForPauseTransform();
-        backgroundMatrix.researchAllNextPrevElem();
-        
-        note.ifBorderCollapse_resize()
-
-
+        this.activeLayer.append(note.div); // вставить ноту в активный слой
+        this.sortedActiveLayer(this.activeLayer, note.div); // сортировать с лева на право
+        this.researchAllNextPrevElem();  // найти и добавить все параметры окружения у активных нот
+        note.ifBorderCollapse_resize(); // если новая нота наслаивается на уже имеющуюся - изменить размер старой
+        note.addEventListenerForPauseTransform(); // добавить обработчик для ссмены ноты на паузу
         note.div.addEventListener('contextmenu', (event)=>{
             event.preventDefault();
             event.stopPropagation();
@@ -276,14 +274,11 @@ const backgroundMatrix = {
         const childrenArray = Array.from(container.children); // Преобразуем коллекцию дочерних элементов в массив
         childrenArray.sort((a, b) => a.offsetLeft - b.offsetLeft); // Сортируем дочерние элементы по offSetLeft
         childrenArray.forEach(child => container.appendChild(child)); // Вставляем отсортированные элементы обратно в контейнер
-        this.researchAllNextPrevElem();
     },
     researchAllNextPrevElem(){
         for(let key in this.activeLayerStack){
             this.activeLayerStack[key].findPrevNextElemsAndFindParam();
-            console.log(this.activeLayerStack[key]);
         }
-        // console.log(this.activeLayerStack);
     }
 }
 

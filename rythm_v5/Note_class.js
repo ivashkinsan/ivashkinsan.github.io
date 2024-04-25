@@ -32,9 +32,6 @@ class Note {
         this.direction = null;
         this.startX = null;
         this.diff = null;
-        // this.leftHandle = null;
-        // this.rightHandle = null;
-        // this.leftRightHandle = null;
     }
 
     createHandle() {
@@ -43,14 +40,16 @@ class Note {
         let leftHandle = document.createElement('div');
         leftHandle.classList.add('handle', 'left-handle');
         leftHandle.addEventListener('mousedown', (eventMSD) => {
-            event.preventDefault();
-            event.stopPropagation();
+            eventMSD.preventDefault();
+            eventMSD.stopPropagation();
             // event.preventDefault();
             // event.stopPropagation();
             this.startResizing(eventMSD, 'left',);
         });
 
         this.handle.leftHandle = leftHandle;
+        console.log(this.div);
+        this.div.append(this.handle.leftHandle);
 
         // right
         let righttHandle = document.createElement('div');
@@ -64,6 +63,7 @@ class Note {
         });
 
         this.handle.rightHandle = righttHandle;
+        this.div.append(this.handle.rightHandle);
 
         // left-right
         let left_double_arrow = document.createElement('div');
@@ -79,6 +79,7 @@ class Note {
         });
 
         this.handle.leftRightHandle = left_double_arrow;
+        this.div.append(this.handle.leftRightHandle);
     }
     leftRightHandleShowHide() {
         if (this.leftRightHandle.style.display == 'none') {
@@ -105,6 +106,7 @@ class Note {
             this.previousElem = this.div.previousElementSibling;
             this.previousElemId = this.previousElem.dataset.id;
             this._previousElemWidth = Number(this.previousElem.style.width.replace('px',''));
+            console.log(this._previousElemWidth);
             this.previousElemLeftSide = Number(this.previousElem.style.left.replace('px',''));
             this.previousElemRightSide = this.previousElemLeftSide + this.previousElemWidth;
             this.previousElemStartWidth = this.previousElemLeftSide + this.previousElemWidth;
@@ -126,6 +128,7 @@ class Note {
             p_label.textContent = this.notesSymbol.default;
         }
         this._label = p_label;
+        this.div.append(this._label);
     }
     createNoteDiv() {
         let newNoteDiv = document.createElement('div');
@@ -134,19 +137,11 @@ class Note {
         newNoteDiv.style.width = this._width + 'px';
         newNoteDiv.style.height = this._height + 'px';
         newNoteDiv.style.left = this._leftSidePosition + 'px';
-        this.div = newNoteDiv;
-
-        this.createHandle();
-        this.createLabel();
+        
         this.id = this.idGenerator();
+        this.div = newNoteDiv;
         this.div.dataset.id = this.id;
         this.rightSidePosition = this._leftSidePosition + this._width;
-        this.div.append(this.handle.leftHandle);
-        this.div.append(this.handle.rightHandle);
-        this.div.append(this.handle.leftRightHandle);
-        this.div.append(this._label);
-
-        this.delElemInBigElem();
     }
     addEventListenerForPauseTransform() {
         this.div.addEventListener('mousedown', (event) => {
@@ -170,11 +165,7 @@ class Note {
     }
     delElemInBigElem() {
         for (let key in backgroundMatrix.activeLayerStack) {
-
             let item = backgroundMatrix.activeLayerStack[key];
-            // console.log([item._leftSidePosition,'>=',this._leftSidePosition]);
-            // console.log([item._leftSidePosition, '<', this._rightSidePosition]);
-            // console.log([item._rightSidePosition, '<=', this._rightSidePosition]);
             if (item._leftSidePosition >= this._leftSidePosition
                 && item._leftSidePosition < this._rightSidePosition
                 && item._rightSidePosition <= this._rightSidePosition
@@ -182,26 +173,38 @@ class Note {
                 item.div.remove();
                 backgroundMatrix.activeLayerStack[key] = null;
                 delete backgroundMatrix.activeLayerStack[key];
-                // this.ifBorderCollapse_resize();
-               
             }
         }
- 
     }
     ifBorderCollapse_resize() {
         if (this.previousElemRightSide > this._leftSidePosition) {
             this.previousElemWidth = this._previousElemWidth - (this.previousElemRightSide - this._leftSidePosition);
-            // console.log(this.previousElemId);
-            console.log(backgroundMatrix.activeLayerStack[this.previousElemId]);
+            backgroundMatrix.activeLayerStack[this.previousElemId].width = this._previousElemWidth;
             backgroundMatrix.activeLayerStack[this.previousElemId].hameleon();
-            console.log(this.previousElemWidth);
+            backgroundMatrix.researchAllNextPrevElem();
+        }
+        if(this._rightSidePosition > this.nextElemLeftSide && this.nextElemRightSide > this._rightSidePosition){
+            let diff = this._rightSidePosition - this.nextElemLeftSide;
+            let newWidth = this.nextElemWidth - diff;
+            let newLeftSidePosition = this.nextElemLeftSide + diff;
+            let newIndxPosition = backgroundMatrix.newOutIndMatrix[newLeftSidePosition];
+            backgroundMatrix.activeLayerStack[this.nextElemId].width = newWidth;
+            backgroundMatrix.activeLayerStack[this.nextElemId].leftSidePosition = newLeftSidePosition;
+            backgroundMatrix.activeLayerStack[this.nextElemId].indxPosition = newIndxPosition;
+            backgroundMatrix.activeLayerStack[this.nextElemId].hameleon();
+            console.log();
+            // this.nextElemLeftSide = this.nextElemLeftSide + diff;
         }
     }
     startResizing(eventMSD, direction) {
         const startX = eventMSD.clientX;
         this.startX = startX;
-        this.startWidth = parseFloat(this._width);
-        this.startLeft = parseFloat(this._leftSidePosition);
+        this.startWidth = this._width;
+        this.startLeft = this._leftSidePosition;
+        console.log({
+            'this.startWidth': parseFloat(this._width),
+            'this.startLeft': parseFloat(this._leftSidePosition)
+        });
         this.direction = direction;
         this.previousElemStartWidth = this.previousElemWidth;
 
@@ -213,8 +216,6 @@ class Note {
     resize(event) {
         event.preventDefault();
         event.stopPropagation();
-        // console.log([this.startWidth,event.clientX,this.startX,backgroundMatrix.minWidth,backgroundMatrix.maxWidth]);
-        // console.log(event);
         if (this.direction === 'right') {
             let newWidth = Math.min(Math.max(this.startWidth + event.clientX - this.startX, backgroundMatrix.minWidth), backgroundMatrix.maxWidth);
             if (this.nextElem) {
@@ -247,10 +248,7 @@ class Note {
                 this.hameleon();
             }
         } else if (this.direction === 'left_right') {
-            // console.log(this.previousElem);
-
             if (this.previousElem) {
-
                 this.diff = this.startX - event.clientX;
                 let newWidth = Math.min(Math.max(this.startWidth + this.diff, backgroundMatrix.minWidth), backgroundMatrix.maxWidth);
                 const newLeft = this.startLeft - (newWidth - this.startWidth);
@@ -258,18 +256,15 @@ class Note {
                 let difference = newWidthRoundet - this.startWidth;
 
                 this.newLeftPosition = Math.round(newLeft / backgroundMatrix.step) * backgroundMatrix.step;
-
                 
                 if (this.previousElemStartWidth - difference >= backgroundMatrix.minWidth) {
-                    // console.log([this.width, newWidthRoundet, this._previousElemWidth, difference]);
                     this.width = newWidthRoundet;
                     this.leftSidePosition = this.newLeftPosition;
                     this.indxPosition = backgroundMatrix.newOutIndMatrix[this._leftSidePosition];
                     this.hameleon();
 
                     this.previousElemWidth = this.previousElemStartWidth - difference;
-                    console.log('this.previousElemWidth = ' + this.previousElemWidth);
-                    backgroundMatrix.activeLayerStack[this.previousElemId].width = this.previousElemWidth;
+                    backgroundMatrix.activeLayerStack[this.previousElemId].width = this._previousElemWidth;
                     backgroundMatrix.activeLayerStack[this.previousElemId].hameleon();
 
                 }
@@ -277,34 +272,19 @@ class Note {
         }
     }
     stopResizing() {
-
-        
+    
         backgroundMatrix.researchAllNextPrevElem();
-        
         this.notesSymbol = allSymbolForNotes_2_4[this.name]['notesSymbol'];
         this.pausesSymbol = allSymbolForNotes_2_4[this.name]['pausesSymbol'];
         document.documentElement.removeEventListener('mousemove', this.resize);
         document.documentElement.removeEventListener('mouseup', this.stopResizing);
-        // this.findPrevNextElemsAndFindParam();
-        // if(this.previousElem){
-        //     backgroundMatrix.activeLayerStack[this.previousElemId].findPrevNextElemsAndFindParam();
-        // }
-        // if(this.nextElem){
-        //     backgroundMatrix.activeLayerStack[this.nextElemId].findPrevNextElemsAndFindParam();
-        // }
-        // backgroundMatrix.researchAllNextPrevElem();
-
-
-        // console.log('MOUSE_UP');
-        // console.log(this.notesSymbol);
     }
     hameleon() {
         // console.log(this._class);
         this.name = backgroundMatrix.sizeIdentif[this._width];
         this.class = backgroundMatrix.sizeIdentif[this._width];
-
         this.label = allSymbolForNotes_2_4[backgroundMatrix.sizeIdentif[this._width]];
-        backgroundMatrix.researchAllNextPrevElem();
+        this._rightSidePosition = this._leftSidePosition + this._width;
     }
 
     idGenerator() {
@@ -380,34 +360,3 @@ class Note {
 
     }
 }
-
-
-// const sixteenthNote_16_new = new Note_v2(
-//     {
-//         'name': 'sixteenthNote_16',
-//         'class': 'sixteenthNote_16',
-//         'indxPosition': 1,
-//         'width': '16px',
-//         'height': '16px',
-//         'left': '420px',
-//         'right': '420px',
-//         'notesSymbol': {
-//             'default': uncSbl.n16
-//         },
-//         'pausesSymbol': {
-//             'default': uncSbl.p16
-//         },
-//     }
-// );
-// console.log(sixteenthNote_16_new);
-// // console.log(sixteenthNote_16_new.leftHandle());
-
-// sixteenthNote_16_new.createHandle();
-// sixteenthNote_16_new.createNoteDiv();
-// console.log(sixteenthNote_16_new.newNote);
-
-
-
-
-
-
