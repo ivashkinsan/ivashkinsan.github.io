@@ -94,14 +94,28 @@ class Note {
             this.nextElemWidth = Number(this.nextElem.style.width.replace('px',''));
             this.nextElemLeftSide = Number(this.nextElem.style.left.replace('px',''));
             this.nextElemRightSide = this.nextElemLeftSide + this.nextElemWidth;
+        } else {
+            this.nextElem = null;
+            this.nextElemId = null;
+            this.nextElemWidth = null;
+            this.nextElemLeftSide = null;
+            this.nextElemRightSide = null;
         }
         if (this.div.previousElementSibling) {
             this.previousElem = this.div.previousElementSibling;
             this.previousElemId = this.previousElem.dataset.id;
-            this.previousElemWidth = Number(this.previousElem.style.width.replace('px',''));
+            this._previousElemWidth = Number(this.previousElem.style.width.replace('px',''));
             this.previousElemLeftSide = Number(this.previousElem.style.left.replace('px',''));
             this.previousElemRightSide = this.previousElemLeftSide + this.previousElemWidth;
+            this.previousElemStartWidth = this.previousElemLeftSide + this.previousElemWidth;
             // console.log(this);
+        } else {
+            this.previousElem = null;
+            this.previousElemId = null;
+            this._previousElemWidth = null;
+            this.previousElemLeftSide = null;
+            this.previousElemRightSide = null;
+            this.previousElemStartWidth = null;
         }
     }
     createLabel(is_pause) {
@@ -117,7 +131,6 @@ class Note {
         let newNoteDiv = document.createElement('div');
         newNoteDiv.classList.add(this._class);
         newNoteDiv.classList.add('active');
-        console.log(this._width);
         newNoteDiv.style.width = this._width + 'px';
         newNoteDiv.style.height = this._height + 'px';
         newNoteDiv.style.left = this._leftSidePosition + 'px';
@@ -127,13 +140,13 @@ class Note {
         this.createLabel();
         this.id = this.idGenerator();
         this.div.dataset.id = this.id;
-        this.rightSidePosition = this._leftSidePosition + this.width;
+        this.rightSidePosition = this._leftSidePosition + this._width;
         this.div.append(this.handle.leftHandle);
         this.div.append(this.handle.rightHandle);
         this.div.append(this.handle.leftRightHandle);
         this.div.append(this._label);
+
         this.delElemInBigElem();
-        // console.log(this); 
     }
     addEventListenerForPauseTransform() {
         this.div.addEventListener('mousedown', (event) => {
@@ -142,10 +155,10 @@ class Note {
             if (event.button == 0) {
                 if (!this.div.classList.contains('pause') && !this.div.classList.contains('handle')) {
                     this.div.classList.add('pause');
-                    this.label.textContent = this.pausesSymbol.default;
+                    this._label.textContent = this.pausesSymbol.default;
                 } else {
                     this.div.classList.remove('pause');
-                    this.label.textContent = this.notesSymbol.default;
+                    this._label.textContent = this.notesSymbol.default;
                 }
             }
         })
@@ -153,11 +166,15 @@ class Note {
     deleteNote(id) {
         backgroundMatrix.activeLayerStack[id].div.remove();
         delete backgroundMatrix.activeLayerStack[id];
+        backgroundMatrix.researchAllNextPrevElem();
     }
     delElemInBigElem() {
         for (let key in backgroundMatrix.activeLayerStack) {
-            
+
             let item = backgroundMatrix.activeLayerStack[key];
+            // console.log([item._leftSidePosition,'>=',this._leftSidePosition]);
+            // console.log([item._leftSidePosition, '<', this._rightSidePosition]);
+            // console.log([item._rightSidePosition, '<=', this._rightSidePosition]);
             if (item._leftSidePosition >= this._leftSidePosition
                 && item._leftSidePosition < this._rightSidePosition
                 && item._rightSidePosition <= this._rightSidePosition
@@ -165,15 +182,19 @@ class Note {
                 item.div.remove();
                 backgroundMatrix.activeLayerStack[key] = null;
                 delete backgroundMatrix.activeLayerStack[key];
-                // ifBorderCollapse_resize();
+                // this.ifBorderCollapse_resize();
+               
             }
         }
+ 
     }
     ifBorderCollapse_resize() {
         if (this.previousElemRightSide > this._leftSidePosition) {
-            this.previousElem.width = this.previousElem.width - (this.previousElemRightSide - this._leftSidePosition);
-
-            console.log(this.previousElem.width);
+            this.previousElemWidth = this._previousElemWidth - (this.previousElemRightSide - this._leftSidePosition);
+            // console.log(this.previousElemId);
+            console.log(backgroundMatrix.activeLayerStack[this.previousElemId]);
+            backgroundMatrix.activeLayerStack[this.previousElemId].hameleon();
+            console.log(this.previousElemWidth);
         }
     }
     startResizing(eventMSD, direction) {
@@ -264,14 +285,26 @@ class Note {
         this.pausesSymbol = allSymbolForNotes_2_4[this.name]['pausesSymbol'];
         document.documentElement.removeEventListener('mousemove', this.resize);
         document.documentElement.removeEventListener('mouseup', this.stopResizing);
+        // this.findPrevNextElemsAndFindParam();
+        // if(this.previousElem){
+        //     backgroundMatrix.activeLayerStack[this.previousElemId].findPrevNextElemsAndFindParam();
+        // }
+        // if(this.nextElem){
+        //     backgroundMatrix.activeLayerStack[this.nextElemId].findPrevNextElemsAndFindParam();
+        // }
+        // backgroundMatrix.researchAllNextPrevElem();
+
+
         // console.log('MOUSE_UP');
         // console.log(this.notesSymbol);
     }
     hameleon() {
-        console.log(this.class);
+        // console.log(this._class);
         this.name = backgroundMatrix.sizeIdentif[this._width];
         this.class = backgroundMatrix.sizeIdentif[this._width];
+
         this.label = allSymbolForNotes_2_4[backgroundMatrix.sizeIdentif[this._width]];
+        backgroundMatrix.researchAllNextPrevElem();
     }
 
     idGenerator() {
@@ -285,15 +318,12 @@ class Note {
         this._rightSidePosition = value;
     }
     get rightSidePosition() {
-        return this.leftSide + this.width;
+        return this._leftSidePosition + this._width;
     }
 
     /**
      * @param {string} value
      */
-    // get width() {
-    //     return parseFloat(this._width);
-    // }
     set width(value) {
         this._width = value;
         this._height = value;
@@ -310,14 +340,14 @@ class Note {
     /**
      * @param {string} value
      */
-set class(value){
-    console.log(this._class);
+    set class(value){
+    // console.log(this._class);
     this.div.classList.remove(this._class);
     this._class = value;
     this.div.classList.add(this._class);
-}
+    }
     get previousElemWidth() {
-        return parseFloat(this._previousElemWidth);
+        return this._previousElemWidth;
     }
     set previousElemWidth(value) {
         // console.log([value, this._previousElemWidth,this.previousElem.style.width]);
@@ -331,9 +361,19 @@ set class(value){
      */
     set label(value){
         if(value.notesSymbol[this.indxPosition]){
-            this._label.textContent = value.notesSymbol[this.indxPosition];
+            if(this.div.classList.contains('pause')){
+                this._label.textContent = value.pausesSymbol[this.indxPosition];
+            } else {
+                this._label.textContent = value.notesSymbol[this.indxPosition];
+            }
+           
         } else {
-            this._label.textContent = value.notesSymbol['default'];
+            if(this.div.classList.contains('pause')){
+                this._label.textContent = value.pausesSymbol['default'];
+            }else {
+                this._label.textContent = value.notesSymbol['default'];
+            }
+            
         }
        
 // this.label = value;

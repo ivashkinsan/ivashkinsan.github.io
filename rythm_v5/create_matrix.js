@@ -246,15 +246,29 @@ const backgroundMatrix = {
         this.activeLayer.append(note.div);
         this.sortedActiveLayer(this.activeLayer, note.div);
         note.findPrevNextElemsAndFindParam();
+        console.log(note.previousElemRightSide);
         note.addEventListenerForPauseTransform();
-        // console.log(note);
+        backgroundMatrix.researchAllNextPrevElem();
+        
+        note.ifBorderCollapse_resize()
 
 
         note.div.addEventListener('contextmenu', (event)=>{
             event.preventDefault();
             event.stopPropagation();
+            let previousElemId = this.previousElemId ? this.previousElemId : null;
+            let nextElemId = this.nextElemId ? this.nextElemId : null;
             note.deleteNote(note.id);
             note = null;
+            if(previousElemId){
+                console.log(backgroundMatrix.activeLayerStack[previousElemId]);
+                backgroundMatrix.activeLayerStack[previousElemId].findPrevNextElemsAndFindParam();
+            }
+            if(nextElemId){
+                console.log(backgroundMatrix.activeLayerStack[nextElemId]);
+                backgroundMatrix.activeLayerStack[nextElemId].findPrevNextElemsAndFindParam();
+            }
+            // console.log(note);
     })
     },
     sortedActiveLayer(container, newDiv) {
@@ -267,6 +281,7 @@ const backgroundMatrix = {
     researchAllNextPrevElem(){
         for(let key in this.activeLayerStack){
             this.activeLayerStack[key].findPrevNextElemsAndFindParam();
+            console.log(this.activeLayerStack[key]);
         }
         // console.log(this.activeLayerStack);
     }
