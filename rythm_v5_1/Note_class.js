@@ -54,10 +54,10 @@ class Note {
 
         // left-right
         let left_double_arrow = document.createElement('div');
+        left_double_arrow.draggable = true;
         left_double_arrow.classList.add('handle');
         left_double_arrow.classList.add('left_double_arrow');
-        left_double_arrow.classList.add('display_block');
-        // left_double_arrow.classList.add('display_none');
+        left_double_arrow.classList.add('display_none');
         left_double_arrow.addEventListener('mousedown', (eventMSD) => {
             eventMSD.preventDefault();
             eventMSD.stopPropagation();
@@ -66,6 +66,29 @@ class Note {
 
         this.handle.leftRightHandle = left_double_arrow;
         this.div.append(this.handle.leftRightHandle);
+    }
+    findPrevNextForShowHandle() {
+        if (bgMatrix.idStack[this.previousElemId]
+            && bgMatrix.idStack[this.previousElemId]._rightSidePosition == this._leftSidePosition
+        ) {
+            this.handle.leftRightHandle.classList.remove('display_none');
+            if (bgMatrix.idStack[this.previousElemId].div.classList.contains('sixteenthNote_16')
+                && this.div.classList.contains('sixteenthNote_16')
+            ) {
+                this.handle.leftRightHandle.classList.add('display_none');
+            }
+        } else if (bgMatrix.idStack[this.previousElemId]) {
+            this.handle.leftRightHandle.classList.add('display_none');
+        }
+        if (bgMatrix.idStack[this.nextElemId]
+            && bgMatrix.idStack[this.nextElemId]._rightSidePosition == this._leftSidePosition) {
+            bgMatrix.idStack[this.nextElemId].handle.leftRightHandle.classList.remove('display_none');
+        }
+        if (!bgMatrix.idStack[this.previousElemId] && !bgMatrix.idStack[this.nextElemId]) {
+            this.handle.leftRightHandle.classList.add('display_none');
+        }
+
+
     }
     handleBehavior(sms) {
         if (sms == 'show' && this._leftSidePosition == this.previousElemRightSide) {

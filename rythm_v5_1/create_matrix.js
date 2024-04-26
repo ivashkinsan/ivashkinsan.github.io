@@ -262,14 +262,16 @@ const bgMatrix = {
             let nextElemId = this.nextElemId ? this.nextElemId : undefined;
             note.deleteNote(note.id);
             note = null;
-            if (previousElemId) {
-                console.log(['PreviousEl', bgMatrix.idStack[previousElemId]]);
-                bgMatrix.idStack[previousElemId].findPrevNextElemsAndFindParam();
-            }
-            if (nextElemId) {
-                console.log(['NextEl', bgMatrix.idStack[nextElemId]]);
-                bgMatrix.idStack[nextElemId].findPrevNextElemsAndFindParam();
-            }
+            // if (previousElemId) {
+            //     console.log(['PreviousEl', bgMatrix.idStack[previousElemId]]);
+            //     bgMatrix.idStack[previousElemId].findPrevNextElemsAndFindParam();
+            // }
+            // if (nextElemId) {
+            //     console.log(['NextEl', bgMatrix.idStack[nextElemId]]);
+            //     bgMatrix.idStack[nextElemId].findPrevNextElemsAndFindParam();
+            // }
+            this.researchAllNextPrevElem();
+            // note.findPrevNextForShowHandle();
         })
     },
     sortedActiveLayer(container, newDiv) {
@@ -281,6 +283,7 @@ const bgMatrix = {
     researchAllNextPrevElem() {
         for (let key in this.idStack) {
             this.idStack[key].findPrevNextElemsAndFindParam();
+            this.idStack[key].findPrevNextForShowHandle();
         }
     }
 }

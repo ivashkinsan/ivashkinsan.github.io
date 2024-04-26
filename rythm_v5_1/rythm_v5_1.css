@@ -147,7 +147,7 @@ body {
 
 .handle {
     position: absolute;
-    width: 5px;
+    width: 10px;
     height: 30px;
     margin: auto;
     top: 0;
@@ -169,15 +169,59 @@ body {
 }
 
 .left_double_arrow {
-    display: none;
+    /* display: none; */
+    height: 150px;
+
     left: -2.5px;
     cursor: url('/cursor/left-right_32px.png')16 16, auto;
+
 }
 
-.right_double_arrow {
-    /* display: none; */
-    right: -2.5px;
-    cursor: url('/cursor/left-right_32px.png')16 16, auto;
+.left_double_arrow:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid var(--active-elem-color);
+    border-bottom: 1px solid var(--active-elem-color);
+    transform: scaleY(2);
+    /* Масштабирование увеличение */
+    transition: .5s;
+    /* Плавный переход */
+    opacity: 0;
+    z-index: -1;
+}
+
+.left_double_arrow:hover:before {
+    transform: scaleY(1.2);
+    /* Масштабирование уменьшение */
+    opacity: 1;
+}
+
+.left_double_arrow:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid var(--active-elem-color);
+    border-bottom: 1px solid var(--active-elem-color);
+    transform: scale(0);
+    transition: .5s;
+    /* Плавный переход */
+    background: var(--active-elem-color);
+    z-index: -1;
+}
+
+.left_double_arrow:hover:after {
+    transform: scale(1);
+}
+
+.right_double_arrow:hover {
+    color: var(--active-elem-color);
 }
 
 .display_block {
