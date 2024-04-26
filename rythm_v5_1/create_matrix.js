@@ -99,6 +99,41 @@ const bgMatrix = {
         '8 16',         //15
         '16'            //16
     ],
+    'experiment': [
+        '1 2 4 8 16',   //1
+        '1 2 4 8 16',       //2
+        '1 2 4 8 16',        //3
+        '1 2 4 8 16',       //4
+        '1 2 4 8 16',      //5
+        '1 2 4 8 16',         //6
+        '1 2 4 8 16',        //7
+        '1 2 4 8 16',           //8
+        '1 2 4 8 16',     //9
+        '1 2 4 8 16',          //10
+        '1 2 4 8 16',         //11
+        '1 2 4 8 16',         //12
+        '1 2 4 8 16',       //13
+        '1 2 4 8 16',         //14
+        '1 2 4 8 16',         //15
+        '1 2 4 8 16',          //16
+
+        '1 2 4 8 16',   //1
+        '16',           //2
+        '8 16',         //3
+        '16',           //4
+        '4 8 16',       //5
+        '16',           //6
+        '8 16',         //7
+        '16',           //8
+        '2 4 8 16',     //9
+        '16',           //10
+        '8 16',         //11
+        '16',           //12
+        '4 8 16',       //13
+        '16',           //14
+        '8 16',         //15
+        '16'            //16
+    ],
     addApp() {
         let app = document.querySelector('.app');
         this.app = app;
@@ -295,7 +330,7 @@ bgMatrix.createContainMatrix();
 bgMatrix.createActiveLayer();
 bgMatrix.find_Root_baseSize_baseWidth_step_minWidth_max_width();
 bgMatrix.createSizeIdentif();
-bgMatrix.createBackground(bgMatrix.matrix_8x4, bgMatrix.startleftPosition);
+bgMatrix.createBackground(bgMatrix.matrix_4x4, bgMatrix.startleftPosition);
 // console.log(bgMatrix.newOutIndMatrix);
 // console.log(bgMatrix.app);
 // console.log(bgMatrix.containMatrix);

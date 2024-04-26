@@ -55,7 +55,7 @@ class Note {
         // left-right
         let left_double_arrow = document.createElement('div');
         left_double_arrow.draggable = true;
-        left_double_arrow.classList.add('handle');
+        // left_double_arrow.classList.add('handle');
         left_double_arrow.classList.add('left_double_arrow');
         left_double_arrow.classList.add('display_none');
         left_double_arrow.addEventListener('mousedown', (eventMSD) => {
@@ -195,6 +195,7 @@ class Note {
                 bgMatrix.idStack[this.nextElemId].leftSidePosition = newLeftSidePosition;
                 bgMatrix.idStack[this.nextElemId].indxPosition = newIndxPosition;
                 bgMatrix.idStack[this.nextElemId].hameleon();
+                bgMatrix.researchAllNextPrevElem();
             }
         }
     }
