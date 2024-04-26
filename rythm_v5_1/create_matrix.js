@@ -181,30 +181,40 @@ const bgMatrix = {
                         new_circle.dataset.name = this.sizeIdentif[this.baseSize / 16];
                         new_circle.style.width = this.baseSize / 16 + 'px';
                         new_circle.style.height = this.baseSize / 16 + 'px';
+                        new_circle.classList.add('mtrxCircle');
+                        new_circle.classList.add('matrix_16');
                         break;
                     case '8':
                         new_circle.classList.add(this.sizeIdentif[this.baseSize / 8]);
                         new_circle.dataset.name = this.sizeIdentif[this.baseSize / 8];
                         new_circle.style.width = this.baseSize / 8 + 'px';
                         new_circle.style.height = this.baseSize / 8 + 'px';
+                        new_circle.classList.add('mtrxCircle');
+                        new_circle.classList.add('matrix_8');
                         break;
                     case '4':
                         new_circle.classList.add(this.sizeIdentif[this.baseSize / 4]);
                         new_circle.dataset.name = this.sizeIdentif[this.baseSize / 4];
                         new_circle.style.width = this.baseSize / 4 + 'px';
                         new_circle.style.height = this.baseSize / 4 + 'px';
+                        new_circle.classList.add('mtrxCircle');
+                        new_circle.classList.add('matrix_4');
                         break;
                     case '2':
                         new_circle.classList.add(this.sizeIdentif[this.baseSize / 2]);
                         new_circle.dataset.name = this.sizeIdentif[this.baseSize / 2];
                         new_circle.style.width = this.baseSize / 2 + 'px';
                         new_circle.style.height = this.baseSize / 2 + 'px';
+                        new_circle.classList.add('mtrxCircle');
+                        new_circle.classList.add('matrix_2');
                         break;
                     case '1':
                         new_circle.classList.add(this.sizeIdentif[this.baseSize / 1]);
                         new_circle.dataset.name = this.sizeIdentif[this.baseSize / 1];
                         new_circle.style.width = this.baseSize / 1 + 'px';
                         new_circle.style.height = this.baseSize / 1 + 'px';
+                        new_circle.classList.add('mtrxCircle');
+                        new_circle.classList.add('matrix_1');
                         break;
                 }
 
