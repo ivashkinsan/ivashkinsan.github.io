@@ -13,17 +13,8 @@ class Note {
         this.notesSymbol = obj.notesSymbol;
         this.pausesSymbol = obj.pausesSymbol;
         this._label = null;
-        // this.previousElem = null; //??????????
         this.previousElemId = null;
-        // this._previousElemWidth = null;//??????????
-        // this.previousElemStartWidth = null;//??????????
-        // this.previousElemLeftSide = null;//??????????
-        // this.previousElemRightSide = null;//??????????
-        // this.nextElem = null;//??????????
         this.nextElemId = null;
-        // this.nextElemWidth = null;//??????????
-        // this.nextElemLeftSide = null;//??????????
-        // this.nextElemRightSide = null;//??????????
         this.div = null;
         this.handle = {};
         this.startResizing = this.startResizing.bind(this);
@@ -71,14 +62,13 @@ class Note {
             eventMSD.preventDefault();
             eventMSD.stopPropagation();
             this.startResizing(eventMSD, 'left_right',);
-            // console.log(this.previousElemWidth);
         });
 
         this.handle.leftRightHandle = left_double_arrow;
         this.div.append(this.handle.leftRightHandle);
     }
-    handleBehavior(sms){
-        if(sms == 'show' && this._leftSidePosition == this.previousElemRightSide){
+    handleBehavior(sms) {
+        if (sms == 'show' && this._leftSidePosition == this.previousElemRightSide) {
             this.handle.leftRightHandle.style.display = 'block';
             this.handle.leftRightHandle.classList.remove('display_none');
             console.log([this._leftSidePosition, " == ", this.previousElemRightSide]);
@@ -86,43 +76,23 @@ class Note {
             this.handle.leftRightHandle.style.display = 'none';
             this.handle.leftRightHandle.classList.add('display_none');
         }
-        
+
     }
     findPrevNextElemsAndFindParam() {
         console.log(bgMatrix.idStack);
         if (this.div.nextElementSibling) {
-            // this.nextElem = this.div.nextElementSibling;
             this.nextElemId = this.div.nextElementSibling.dataset.id;
             this.nextElem = this.div.nextElementSibling
-            // this.nextElemWidth = Number(this.nextElem.style.width.replace('px',''));
-            // this.nextElemLeftSide = Number(this.nextElem.style.left.replace('px',''));
-            // this.nextElemRightSide = this.nextElemLeftSide + this.nextElemWidth;
-            // bgMatrix.idStack[this.nextElemId].handleBehavior('show');
         } else {
-            // this.nextElem = null;
             this.nextElemId = null;
             this.nextElem = null;
-            // this.nextElemWidth = null;
-            // this.nextElemLeftSide = null;
-            // this.nextElemRightSide = null;
         }
         if (this.div.previousElementSibling) {
-            // this.previousElem = this.div.previousElementSibling;
             this.previousElemId = this.div.previousElementSibling.dataset.id;
             this.previousElem = this.div.previousElementSibling;
-            // this._previousElemWidth = Number(this.previousElem.style.width.replace('px',''));
-            // this.previousElemLeftSide = Number(this.previousElem.style.left.replace('px',''));
-            // this.previousElemRightSide = this.previousElemLeftSide + this.previousElemWidth;
-            // this.previousElemStartWidth = this.previousElemLeftSide + this.previousElemWidth;
-            // this.handleBehavior('show');
         } else {
-            // this.previousElem = null;
             this.previousElemId = null;
             this.previousElem = null;
-            // this._previousElemWidth = null;
-            // this.previousElemLeftSide = null;
-            // this.previousElemRightSide = null;
-            // this.previousElemStartWidth = null;
         }
     }
     createLabel(is_pause) {
@@ -142,7 +112,7 @@ class Note {
         newNoteDiv.style.width = this._width + 'px';
         newNoteDiv.style.height = this._height + 'px';
         newNoteDiv.style.left = this._leftSidePosition + 'px';
-        
+
         this.id = this.idGenerator();
         this.div = newNoteDiv;
         this.div.dataset.id = this.id;
@@ -153,15 +123,18 @@ class Note {
             event.preventDefault();
             event.stopPropagation();
             if (event.button == 0) {
-                if (!this.div.classList.contains('pause') && !this.div.classList.contains('handle')) {
-                    this.div.classList.add('pause');
-                    this._label.textContent = this.pausesSymbol.default;
-                } else {
-                    this.div.classList.remove('pause');
-                    this._label.textContent = this.notesSymbol.default;
-                }
+                this.magicNoteOrPause();
             }
         })
+    }
+    magicNoteOrPause() {
+        if (!this.div.classList.contains('pause') && !this.div.classList.contains('handle')) {
+            this.div.classList.add('pause');
+            this._label.textContent = this.pausesSymbol.default;
+        } else {
+            this.div.classList.remove('pause');
+            this._label.textContent = this.notesSymbol.default;
+        }
     }
     deleteNote(id) {
         bgMatrix.idStack[id].div.remove();
@@ -182,23 +155,24 @@ class Note {
         }
     }
     ifBorderCollapse_resize() {
-        if (this.previousElemRightSide > this._leftSidePosition) {
-            this.previousElemWidth = this._previousElemWidth - (this.previousElemRightSide - this._leftSidePosition);
-            bgMatrix.idStack[this.previousElemId].width = this._previousElemWidth;
-            bgMatrix.idStack[this.previousElemId].hameleon();
-            bgMatrix.researchAllNextPrevElem();
+        if (bgMatrix.idStack[this.previousElemId]) {
+            if (bgMatrix.idStack[this.previousElemId]._rightSidePosition > this._leftSidePosition) {
+                bgMatrix.idStack[this.previousElemId].width = bgMatrix.idStack[this.previousElemId]._width - (bgMatrix.idStack[this.previousElemId]._rightSidePosition - this._leftSidePosition);
+                bgMatrix.idStack[this.previousElemId].hameleon();
+                bgMatrix.researchAllNextPrevElem();
+            }
         }
-        if(this._rightSidePosition > this.nextElemLeftSide && this.nextElemRightSide > this._rightSidePosition){
-            let diff = this._rightSidePosition - this.nextElemLeftSide;
-            let newWidth = this.nextElemWidth - diff;
-            let newLeftSidePosition = this.nextElemLeftSide + diff;
-            let newIndxPosition = bgMatrix.newOutIndMatrix[newLeftSidePosition];
-            bgMatrix.idStack[this.nextElemId].width = newWidth;
-            bgMatrix.idStack[this.nextElemId].leftSidePosition = newLeftSidePosition;
-            bgMatrix.idStack[this.nextElemId].indxPosition = newIndxPosition;
-            bgMatrix.idStack[this.nextElemId].hameleon();
-            console.log();
-            // this.nextElemLeftSide = this.nextElemLeftSide + diff;
+        if (bgMatrix.idStack[this.nextElemId]) {
+            if (this._rightSidePosition > bgMatrix.idStack[this.nextElemId]._leftSidePosition && bgMatrix.idStack[this.nextElemId]._rightSidePosition > this._rightSidePosition) {
+                let diff = this._rightSidePosition - bgMatrix.idStack[this.nextElemId]._leftSidePosition;
+                let newWidth = bgMatrix.idStack[this.nextElemId]._width - diff;
+                let newLeftSidePosition = bgMatrix.idStack[this.nextElemId]._leftSidePosition + diff;
+                let newIndxPosition = bgMatrix.newOutIndMatrix[newLeftSidePosition];
+                bgMatrix.idStack[this.nextElemId].width = newWidth;
+                bgMatrix.idStack[this.nextElemId].leftSidePosition = newLeftSidePosition;
+                bgMatrix.idStack[this.nextElemId].indxPosition = newIndxPosition;
+                bgMatrix.idStack[this.nextElemId].hameleon();
+            }
         }
     }
     startResizing(eventMSD, direction) {
@@ -206,18 +180,11 @@ class Note {
         this.startX = startX;
         this.startWidth = this._width;
         this.startLeft = this._leftSidePosition;
-        // console.log({
-        //     'this.startWidth': parseFloat(this._width),
-        //     'this.startLeft': parseFloat(this._leftSidePosition)
-        // });
         this.direction = direction;
-        // this.previousElemStartWidth = this.previousElemWidth;
-        if(bgMatrix.idStack[this.previousElemId]){
-            console.log(bgMatrix.idStack[this.previousElemId]);
+        if (bgMatrix.idStack[this.previousElemId]) {
             bgMatrix.idStack[this.previousElemId].startWidth = bgMatrix.idStack[this.previousElemId].width;
-            console.log(bgMatrix.idStack[this.previousElemId].startWidth);
         }
-        
+
         document.documentElement.addEventListener('mousemove', this.resize);
         document.documentElement.addEventListener('mouseup', this.stopResizing);
 
@@ -259,7 +226,6 @@ class Note {
                 this.hameleon();
             }
         } else if (this.direction === 'left_right') {
-            console.log(bgMatrix.idStack[this.previousElemId].startWidth);
             if (bgMatrix.idStack[this.previousElemId]) {
                 this.diff = this.startX - event.clientX;
                 let newWidth = Math.min(Math.max(this.startWidth + this.diff, bgMatrix.minWidth), bgMatrix.maxWidth);
@@ -268,23 +234,21 @@ class Note {
                 let difference = newWidthRoundet - this.startWidth;
 
                 this.newLeftPosition = Math.round(newLeft / bgMatrix.step) * bgMatrix.step;
-                
+
                 if (bgMatrix.idStack[this.previousElemId].startWidth - difference >= bgMatrix.minWidth) {
                     this.width = newWidthRoundet;
                     this.leftSidePosition = this.newLeftPosition;
                     this.indxPosition = bgMatrix.newOutIndMatrix[this._leftSidePosition];
                     this.hameleon();
 
-                    bgMatrix.idStack[this.previousElemId]._width = bgMatrix.idStack[this.previousElemId].startWidth - difference;
-                    bgMatrix.idStack[this.previousElemId].width = this._previousElemWidth;
+                    bgMatrix.idStack[this.previousElemId].width = bgMatrix.idStack[this.previousElemId].startWidth - difference;
                     bgMatrix.idStack[this.previousElemId].hameleon();
-
                 }
             }
         }
     }
     stopResizing() {
-    
+
         bgMatrix.researchAllNextPrevElem();
         this.notesSymbol = allSymbolForNotes_2_4[this.name]['notesSymbol'];
         this.pausesSymbol = allSymbolForNotes_2_4[this.name]['pausesSymbol'];
@@ -306,7 +270,7 @@ class Note {
         ).replace(/\./g, '')
     }
 
-    set rightSidePosition(value){
+    set rightSidePosition(value) {
         this._rightSidePosition = value;
     }
     get rightSidePosition() {
@@ -316,7 +280,7 @@ class Note {
     /**
      * @param {string} value
      */
-    get width(){
+    get width() {
         return this._width;
     }
     set width(value) {
@@ -335,43 +299,31 @@ class Note {
     /**
      * @param {string} value
      */
-    set class(value){
-    // console.log(this._class);
-    this.div.classList.remove(this._class);
-    this._class = value;
-    this.div.classList.add(this._class);
+    set class(value) {
+        // console.log(this._class);
+        this.div.classList.remove(this._class);
+        this._class = value;
+        this.div.classList.add(this._class);
     }
-    // get previousElemWidth() {
-    //     return this._previousElemWidth;
-    // }
-    // set previousElemWidth(value) {
-    //     // console.log([value, this._previousElemWidth,this.previousElem.style.width]);
-    //     this._previousElemWidth = value;
-    //     this.previousElem.style.width = this._previousElemWidth + 'px';
-    //     this.previousElem.style.height = this._previousElemWidth + 'px';
-    // }
 
     /**
      * @param {{ textContent: any; }} value
      */
-    set label(value){
-        if(value.notesSymbol[this.indxPosition]){
-            if(this.div.classList.contains('pause')){
+    set label(value) {
+        if (value.notesSymbol[this.indxPosition]) {
+            if (this.div.classList.contains('pause')) {
                 this._label.textContent = value.pausesSymbol[this.indxPosition];
             } else {
                 this._label.textContent = value.notesSymbol[this.indxPosition];
             }
-           
+
         } else {
-            if(this.div.classList.contains('pause')){
+            if (this.div.classList.contains('pause')) {
                 this._label.textContent = value.pausesSymbol['default'];
-            }else {
+            } else {
                 this._label.textContent = value.notesSymbol['default'];
             }
-            
-        }
-       
-// this.label = value;
 
+        }
     }
 }

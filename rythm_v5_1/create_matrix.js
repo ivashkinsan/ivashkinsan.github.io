@@ -6,7 +6,7 @@ const bgMatrix = {
     'root': null,
     'newOutIndMatrix': {},
     'sizeIdentif': {},
-    
+
     'step': null,
     'baseSize': null,
     'baseWidth': null,
@@ -16,7 +16,7 @@ const bgMatrix = {
 
     'leftAppSide': null,
     'rightAppSide': null,
-    
+
     'matrix_1x4': [
         '4 8 16',       //1
         '16',           //2
@@ -99,26 +99,26 @@ const bgMatrix = {
         '8 16',         //15
         '16'            //16
     ],
-    addApp(){
+    addApp() {
         let app = document.querySelector('.app');
         this.app = app;
     },
-    createContainMatrix(){
+    createContainMatrix() {
         let newContainMatrix = document.createElement('div');
         newContainMatrix.classList.add('containMatrix');
         this.containMatrix = newContainMatrix;
         this.app.append(newContainMatrix);
     },
-    createActiveLayer(){
+    createActiveLayer() {
         let newActiveLayer = document.createElement('div');
         newActiveLayer.classList.add('activeLayer');
         this.activeLayer = newActiveLayer;
         this.app.append(newActiveLayer);
     },
-    find_Root_baseSize_baseWidth_step_minWidth_max_width(){
+    find_Root_baseSize_baseWidth_step_minWidth_max_width() {
         this.root = document.querySelector(':root');
         this.baseSize = parseFloat(getComputedStyle(this.root).getPropertyValue('--base-size'));
-        
+
         // this.baseWidth = this.baseSize;
         this.step = bgMatrix.baseSize / 16; // Шаг изменения блока
         this.minWidth = bgMatrix.baseSize / 16;
@@ -182,11 +182,10 @@ const bgMatrix = {
                     e.stopPropagation();
                     this.create_note(
                         new_circle.dataset.name,
-                        Number(new_circle.style.width.replace('px','')),
-                        Number(e.target.style.left.replace('px','')),
+                        Number(new_circle.style.width.replace('px', '')),
+                        Number(e.target.style.left.replace('px', '')),
                         new_circle.dataset.indxPosition
                     );
-                    // create_and_append_active_elem(e.target, activeElemLayer, 'click');
                 });
                 // new_circle.addEventListener('touchstart', (e) => {
                 //     e.preventDefault();
@@ -196,10 +195,10 @@ const bgMatrix = {
                 // });
 
                 this.containMatrix.append(new_circle);
-                if(outIndx == 0){
+                if (outIndx == 0) {
                     this.leftAppSide = new_circle.getBoundingClientRect().left;
                 }
-                if(outIndx == array.length-1){
+                if (outIndx == array.length - 1) {
                     this.rightAppSide = new_circle.getBoundingClientRect().right;
                 }
             }
@@ -210,6 +209,7 @@ const bgMatrix = {
     },
     createSizeIdentif() {
         let newSizeIdentif = {
+            // основные длительности
             [(bgMatrix.baseSize / 16) * 1]: 'sixteenthNote_16',
             [(bgMatrix.baseSize / 16) * 2]: 'eighthNote_8',
             [(bgMatrix.baseSize / 16) * 3]: 'eighthNote_8w16',
@@ -233,13 +233,13 @@ const bgMatrix = {
         this.sizeIdentif = newSizeIdentif;
         // console.log(newSizeIdentif);
     },
-    create_note(name, width, leftPosition, indxPosition){
+    create_note(name, width, leftPosition, indxPosition, isPause) {
         let note = new Note(
-            allSymbolForNotes_2_4[name], 
+            allSymbolForNotes_2_4[name],
             width,
             leftPosition,
             indxPosition
-         );
+        );
         note.createNoteDiv(); // создать див элемент ноты
         note.createHandle(); // создать внутренние handle
         note.createLabel(); // создать внутренний p для сивола нот и пауз
@@ -250,24 +250,27 @@ const bgMatrix = {
         this.sortedActiveLayer(this.activeLayer, note.div); // сортировать с лева на право
         this.researchAllNextPrevElem();  // найти и добавить все параметры окружения у активных нот
         note.ifBorderCollapse_resize(); // если новая нота наслаивается на уже имеющуюся - изменить размер старой
+        if (isPause) {
+            note.magicNoteOrPause();
+        }
+
         note.addEventListenerForPauseTransform(); // добавить обработчик для ссмены ноты на паузу
-        note.div.addEventListener('contextmenu', (event)=>{
+        note.div.addEventListener('contextmenu', (event) => {
             event.preventDefault();
             event.stopPropagation();
-            let previousElemId = this.previousElemId ? this.previousElemId : null;
-            let nextElemId = this.nextElemId ? this.nextElemId : null;
+            let previousElemId = this.previousElemId ? this.previousElemId : undefined;
+            let nextElemId = this.nextElemId ? this.nextElemId : undefined;
             note.deleteNote(note.id);
             note = null;
-            if(previousElemId){
-                console.log(bgMatrix.idStack[previousElemId]);
+            if (previousElemId) {
+                console.log(['PreviousEl', bgMatrix.idStack[previousElemId]]);
                 bgMatrix.idStack[previousElemId].findPrevNextElemsAndFindParam();
             }
-            if(nextElemId){
-                console.log(bgMatrix.idStack[nextElemId]);
+            if (nextElemId) {
+                console.log(['NextEl', bgMatrix.idStack[nextElemId]]);
                 bgMatrix.idStack[nextElemId].findPrevNextElemsAndFindParam();
             }
-            // console.log(note);
-    })
+        })
     },
     sortedActiveLayer(container, newDiv) {
         container.appendChild(newDiv); // Вставляем новый div в конец контейнера
@@ -275,8 +278,8 @@ const bgMatrix = {
         childrenArray.sort((a, b) => a.offsetLeft - b.offsetLeft); // Сортируем дочерние элементы по offSetLeft
         childrenArray.forEach(child => container.appendChild(child)); // Вставляем отсортированные элементы обратно в контейнер
     },
-    researchAllNextPrevElem(){
-        for(let key in this.idStack){
+    researchAllNextPrevElem() {
+        for (let key in this.idStack) {
             this.idStack[key].findPrevNextElemsAndFindParam();
         }
     }
