@@ -13,17 +13,17 @@ class Note {
         this.notesSymbol = obj.notesSymbol;
         this.pausesSymbol = obj.pausesSymbol;
         this._label = null;
-        this.previousElem = null; //??????????
+        // this.previousElem = null; //??????????
         this.previousElemId = null;
-        this._previousElemWidth = null;//??????????
-        this.previousElemStartWidth = null;//??????????
-        this.previousElemLeftSide = null;//??????????
-        this.previousElemRightSide = null;//??????????
-        this.nextElem = null;//??????????
+        // this._previousElemWidth = null;//??????????
+        // this.previousElemStartWidth = null;//??????????
+        // this.previousElemLeftSide = null;//??????????
+        // this.previousElemRightSide = null;//??????????
+        // this.nextElem = null;//??????????
         this.nextElemId = null;
-        this.nextElemWidth = null;//??????????
-        this.nextElemLeftSide = null;//??????????
-        this.nextElemRightSide = null;//??????????
+        // this.nextElemWidth = null;//??????????
+        // this.nextElemLeftSide = null;//??????????
+        // this.nextElemRightSide = null;//??????????
         this.div = null;
         this.handle = {};
         this.startResizing = this.startResizing.bind(this);
@@ -66,12 +66,12 @@ class Note {
         left_double_arrow.classList.add('handle');
         left_double_arrow.classList.add('left_double_arrow');
         left_double_arrow.classList.add('display_block');
-        left_double_arrow.classList.add('display_none');
+        // left_double_arrow.classList.add('display_none');
         left_double_arrow.addEventListener('mousedown', (eventMSD) => {
-            event.preventDefault();
-            event.stopPropagation();
+            eventMSD.preventDefault();
+            eventMSD.stopPropagation();
             this.startResizing(eventMSD, 'left_right',);
-            console.log(this.previousElemWidth);
+            // console.log(this.previousElemWidth);
         });
 
         this.handle.leftRightHandle = left_double_arrow;
@@ -89,35 +89,40 @@ class Note {
         
     }
     findPrevNextElemsAndFindParam() {
+        console.log(bgMatrix.idStack);
         if (this.div.nextElementSibling) {
-            this.nextElem = this.div.nextElementSibling;
-            this.nextElemId = this.nextElem.dataset.id;
-            this.nextElemWidth = Number(this.nextElem.style.width.replace('px',''));
-            this.nextElemLeftSide = Number(this.nextElem.style.left.replace('px',''));
-            this.nextElemRightSide = this.nextElemLeftSide + this.nextElemWidth;
-            backgroundMatrix.activeLayerStack[this.nextElemId].handleBehavior('show');
+            // this.nextElem = this.div.nextElementSibling;
+            this.nextElemId = this.div.nextElementSibling.dataset.id;
+            this.nextElem = this.div.nextElementSibling
+            // this.nextElemWidth = Number(this.nextElem.style.width.replace('px',''));
+            // this.nextElemLeftSide = Number(this.nextElem.style.left.replace('px',''));
+            // this.nextElemRightSide = this.nextElemLeftSide + this.nextElemWidth;
+            // bgMatrix.idStack[this.nextElemId].handleBehavior('show');
         } else {
-            this.nextElem = null;
+            // this.nextElem = null;
             this.nextElemId = null;
-            this.nextElemWidth = null;
-            this.nextElemLeftSide = null;
-            this.nextElemRightSide = null;
+            this.nextElem = null;
+            // this.nextElemWidth = null;
+            // this.nextElemLeftSide = null;
+            // this.nextElemRightSide = null;
         }
         if (this.div.previousElementSibling) {
+            // this.previousElem = this.div.previousElementSibling;
+            this.previousElemId = this.div.previousElementSibling.dataset.id;
             this.previousElem = this.div.previousElementSibling;
-            this.previousElemId = this.previousElem.dataset.id;
-            this._previousElemWidth = Number(this.previousElem.style.width.replace('px',''));
-            this.previousElemLeftSide = Number(this.previousElem.style.left.replace('px',''));
-            this.previousElemRightSide = this.previousElemLeftSide + this.previousElemWidth;
-            this.previousElemStartWidth = this.previousElemLeftSide + this.previousElemWidth;
-            this.handleBehavior('show');
+            // this._previousElemWidth = Number(this.previousElem.style.width.replace('px',''));
+            // this.previousElemLeftSide = Number(this.previousElem.style.left.replace('px',''));
+            // this.previousElemRightSide = this.previousElemLeftSide + this.previousElemWidth;
+            // this.previousElemStartWidth = this.previousElemLeftSide + this.previousElemWidth;
+            // this.handleBehavior('show');
         } else {
-            this.previousElem = null;
+            // this.previousElem = null;
             this.previousElemId = null;
-            this._previousElemWidth = null;
-            this.previousElemLeftSide = null;
-            this.previousElemRightSide = null;
-            this.previousElemStartWidth = null;
+            this.previousElem = null;
+            // this._previousElemWidth = null;
+            // this.previousElemLeftSide = null;
+            // this.previousElemRightSide = null;
+            // this.previousElemStartWidth = null;
         }
     }
     createLabel(is_pause) {
@@ -159,39 +164,39 @@ class Note {
         })
     }
     deleteNote(id) {
-        backgroundMatrix.activeLayerStack[id].div.remove();
-        delete backgroundMatrix.activeLayerStack[id];
-        backgroundMatrix.researchAllNextPrevElem();
+        bgMatrix.idStack[id].div.remove();
+        delete bgMatrix.idStack[id];
+        bgMatrix.researchAllNextPrevElem();
     }
     delElemInBigElem() {
-        for (let key in backgroundMatrix.activeLayerStack) {
-            let item = backgroundMatrix.activeLayerStack[key];
+        for (let key in bgMatrix.idStack) {
+            let item = bgMatrix.idStack[key];
             if (item._leftSidePosition >= this._leftSidePosition
                 && item._leftSidePosition < this._rightSidePosition
                 && item._rightSidePosition <= this._rightSidePosition
             ) {
                 item.div.remove();
-                backgroundMatrix.activeLayerStack[key] = null;
-                delete backgroundMatrix.activeLayerStack[key];
+                bgMatrix.idStack[key] = null;
+                delete bgMatrix.idStack[key];
             }
         }
     }
     ifBorderCollapse_resize() {
         if (this.previousElemRightSide > this._leftSidePosition) {
             this.previousElemWidth = this._previousElemWidth - (this.previousElemRightSide - this._leftSidePosition);
-            backgroundMatrix.activeLayerStack[this.previousElemId].width = this._previousElemWidth;
-            backgroundMatrix.activeLayerStack[this.previousElemId].hameleon();
-            backgroundMatrix.researchAllNextPrevElem();
+            bgMatrix.idStack[this.previousElemId].width = this._previousElemWidth;
+            bgMatrix.idStack[this.previousElemId].hameleon();
+            bgMatrix.researchAllNextPrevElem();
         }
         if(this._rightSidePosition > this.nextElemLeftSide && this.nextElemRightSide > this._rightSidePosition){
             let diff = this._rightSidePosition - this.nextElemLeftSide;
             let newWidth = this.nextElemWidth - diff;
             let newLeftSidePosition = this.nextElemLeftSide + diff;
-            let newIndxPosition = backgroundMatrix.newOutIndMatrix[newLeftSidePosition];
-            backgroundMatrix.activeLayerStack[this.nextElemId].width = newWidth;
-            backgroundMatrix.activeLayerStack[this.nextElemId].leftSidePosition = newLeftSidePosition;
-            backgroundMatrix.activeLayerStack[this.nextElemId].indxPosition = newIndxPosition;
-            backgroundMatrix.activeLayerStack[this.nextElemId].hameleon();
+            let newIndxPosition = bgMatrix.newOutIndMatrix[newLeftSidePosition];
+            bgMatrix.idStack[this.nextElemId].width = newWidth;
+            bgMatrix.idStack[this.nextElemId].leftSidePosition = newLeftSidePosition;
+            bgMatrix.idStack[this.nextElemId].indxPosition = newIndxPosition;
+            bgMatrix.idStack[this.nextElemId].hameleon();
             console.log();
             // this.nextElemLeftSide = this.nextElemLeftSide + diff;
         }
@@ -201,13 +206,18 @@ class Note {
         this.startX = startX;
         this.startWidth = this._width;
         this.startLeft = this._leftSidePosition;
-        console.log({
-            'this.startWidth': parseFloat(this._width),
-            'this.startLeft': parseFloat(this._leftSidePosition)
-        });
+        // console.log({
+        //     'this.startWidth': parseFloat(this._width),
+        //     'this.startLeft': parseFloat(this._leftSidePosition)
+        // });
         this.direction = direction;
-        this.previousElemStartWidth = this.previousElemWidth;
-
+        // this.previousElemStartWidth = this.previousElemWidth;
+        if(bgMatrix.idStack[this.previousElemId]){
+            console.log(bgMatrix.idStack[this.previousElemId]);
+            bgMatrix.idStack[this.previousElemId].startWidth = bgMatrix.idStack[this.previousElemId].width;
+            console.log(bgMatrix.idStack[this.previousElemId].startWidth);
+        }
+        
         document.documentElement.addEventListener('mousemove', this.resize);
         document.documentElement.addEventListener('mouseup', this.stopResizing);
 
@@ -217,55 +227,57 @@ class Note {
         event.preventDefault();
         event.stopPropagation();
         if (this.direction === 'right') {
-            let newWidth = Math.min(Math.max(this.startWidth + event.clientX - this.startX, backgroundMatrix.minWidth), backgroundMatrix.maxWidth);
-            if (this.nextElem) {
-                if (event.x < this.nextElemLeftSide + backgroundMatrix.app.offsetLeft) {
-                    this.width = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step;
+            let newWidth = Math.min(Math.max(this.startWidth + event.clientX - this.startX, bgMatrix.minWidth), bgMatrix.maxWidth);
+            console.log(bgMatrix.idStack[this.nextElemId]);
+            if (bgMatrix.idStack[this.nextElemId]) {
+                if (event.x < bgMatrix.idStack[this.nextElemId]._leftSidePosition + bgMatrix.app.offsetLeft) {
+                    this.width = Math.round(newWidth / bgMatrix.step) * bgMatrix.step;
                     this.hameleon();
                 }
-            } else if (event.x < backgroundMatrix.rightAppSide) {
-                this.width = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step;
+            } else if (event.x < bgMatrix.rightAppSide) {
+                this.width = Math.round(newWidth / bgMatrix.step) * bgMatrix.step;
                 this.hameleon();
             }
 
         } else if (this.direction === 'left') {
             this.diff = this.startX - event.clientX;
-            let newWidth = Math.min(Math.max(this.startWidth + this.diff, backgroundMatrix.minWidth), backgroundMatrix.maxWidth);
+            let newWidth = Math.min(Math.max(this.startWidth + this.diff, bgMatrix.minWidth), bgMatrix.maxWidth);
             const newLeft = this.startLeft - (newWidth - this.startWidth);
-            const newWidthRoundet = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step;
-            this.newLeftPosition = Math.round(newLeft / backgroundMatrix.step) * backgroundMatrix.step;
-            if (this.previousElem) {
-                if (event.x - backgroundMatrix.leftAppSide > this.previousElemLeftSide + this.previousElemWidth) {
+            const newWidthRoundet = Math.round(newWidth / bgMatrix.step) * bgMatrix.step;
+            this.newLeftPosition = Math.round(newLeft / bgMatrix.step) * bgMatrix.step;
+            if (bgMatrix.idStack[this.previousElemId]) {
+                if (event.x - bgMatrix.leftAppSide > bgMatrix.idStack[this.previousElemId]._leftSidePosition + bgMatrix.idStack[this.previousElemId]._width) {
                     this.width = newWidthRoundet;
                     this.leftSidePosition = this.newLeftPosition;
-                    this.indxPosition = backgroundMatrix.newOutIndMatrix[this._leftSidePosition];
+                    this.indxPosition = bgMatrix.newOutIndMatrix[this._leftSidePosition];
                     this.hameleon();
                 }
-            } else if (event.x > backgroundMatrix.leftAppSide) {
+            } else if (event.x > bgMatrix.leftAppSide) {
                 this.width = newWidthRoundet;
                 this.leftSidePosition = this.newLeftPosition;
-                this.indxPosition = backgroundMatrix.newOutIndMatrix[this._leftSidePosition];
+                this.indxPosition = bgMatrix.newOutIndMatrix[this._leftSidePosition];
                 this.hameleon();
             }
         } else if (this.direction === 'left_right') {
-            if (this.previousElem) {
+            console.log(bgMatrix.idStack[this.previousElemId].startWidth);
+            if (bgMatrix.idStack[this.previousElemId]) {
                 this.diff = this.startX - event.clientX;
-                let newWidth = Math.min(Math.max(this.startWidth + this.diff, backgroundMatrix.minWidth), backgroundMatrix.maxWidth);
+                let newWidth = Math.min(Math.max(this.startWidth + this.diff, bgMatrix.minWidth), bgMatrix.maxWidth);
                 const newLeft = this.startLeft - (newWidth - this.startWidth);
-                const newWidthRoundet = Math.round(newWidth / backgroundMatrix.step) * backgroundMatrix.step;
+                const newWidthRoundet = Math.round(newWidth / bgMatrix.step) * bgMatrix.step;
                 let difference = newWidthRoundet - this.startWidth;
 
-                this.newLeftPosition = Math.round(newLeft / backgroundMatrix.step) * backgroundMatrix.step;
+                this.newLeftPosition = Math.round(newLeft / bgMatrix.step) * bgMatrix.step;
                 
-                if (this.previousElemStartWidth - difference >= backgroundMatrix.minWidth) {
+                if (bgMatrix.idStack[this.previousElemId].startWidth - difference >= bgMatrix.minWidth) {
                     this.width = newWidthRoundet;
                     this.leftSidePosition = this.newLeftPosition;
-                    this.indxPosition = backgroundMatrix.newOutIndMatrix[this._leftSidePosition];
+                    this.indxPosition = bgMatrix.newOutIndMatrix[this._leftSidePosition];
                     this.hameleon();
 
-                    this.previousElemWidth = this.previousElemStartWidth - difference;
-                    backgroundMatrix.activeLayerStack[this.previousElemId].width = this._previousElemWidth;
-                    backgroundMatrix.activeLayerStack[this.previousElemId].hameleon();
+                    bgMatrix.idStack[this.previousElemId]._width = bgMatrix.idStack[this.previousElemId].startWidth - difference;
+                    bgMatrix.idStack[this.previousElemId].width = this._previousElemWidth;
+                    bgMatrix.idStack[this.previousElemId].hameleon();
 
                 }
             }
@@ -273,7 +285,7 @@ class Note {
     }
     stopResizing() {
     
-        backgroundMatrix.researchAllNextPrevElem();
+        bgMatrix.researchAllNextPrevElem();
         this.notesSymbol = allSymbolForNotes_2_4[this.name]['notesSymbol'];
         this.pausesSymbol = allSymbolForNotes_2_4[this.name]['pausesSymbol'];
         document.documentElement.removeEventListener('mousemove', this.resize);
@@ -281,9 +293,9 @@ class Note {
     }
     hameleon() {
         // console.log(this._class);
-        this.name = backgroundMatrix.sizeIdentif[this._width];
-        this.class = backgroundMatrix.sizeIdentif[this._width];
-        this.label = allSymbolForNotes_2_4[backgroundMatrix.sizeIdentif[this._width]];
+        this.name = bgMatrix.sizeIdentif[this._width];
+        this.class = bgMatrix.sizeIdentif[this._width];
+        this.label = allSymbolForNotes_2_4[bgMatrix.sizeIdentif[this._width]];
         this._rightSidePosition = this._leftSidePosition + this._width;
     }
 
@@ -304,6 +316,9 @@ class Note {
     /**
      * @param {string} value
      */
+    get width(){
+        return this._width;
+    }
     set width(value) {
         this._width = value;
         this._height = value;
@@ -326,15 +341,15 @@ class Note {
     this._class = value;
     this.div.classList.add(this._class);
     }
-    get previousElemWidth() {
-        return this._previousElemWidth;
-    }
-    set previousElemWidth(value) {
-        // console.log([value, this._previousElemWidth,this.previousElem.style.width]);
-        this._previousElemWidth = value;
-        this.previousElem.style.width = this._previousElemWidth + 'px';
-        this.previousElem.style.height = this._previousElemWidth + 'px';
-    }
+    // get previousElemWidth() {
+    //     return this._previousElemWidth;
+    // }
+    // set previousElemWidth(value) {
+    //     // console.log([value, this._previousElemWidth,this.previousElem.style.width]);
+    //     this._previousElemWidth = value;
+    //     this.previousElem.style.width = this._previousElemWidth + 'px';
+    //     this.previousElem.style.height = this._previousElemWidth + 'px';
+    // }
 
     /**
      * @param {{ textContent: any; }} value

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rythm_v5</title>
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <link rel="stylesheet" href="/rythm_v5_1/rythm_v5_1.css">
+    <link rel="stylesheet" href="/rythm_v5_1/metronome_style_v5_1.css">
+    <!-- вычисление размера экрана -->
+    <!-- <script type="text/javascript">
+        var winWidth = window.innerWidth;
+        var winHeight = window.innerHeight;
+        alert("Width: " + winWidth + ", " + "Height: " + winHeight);
+    </script> -->
+</head>
+
+
+<div class="app"></div>
+<div class="cardAlphabetContain"></div>
+<div class="font" style="font-size: 40px">
+    <!-- !@#$%^&*()_+`~\|</br>
+        qwertyuiop[]</br>
+    asdfghjkl;''</br>
+    zxcvbnm,./</br>
+    QWERTYUIOP{}</br>
+    ASDFGHJKL:""</br>
+    ZXCVBNM?</br>
+    w d h j q i e s</br> -->
+
+</div>
+
+
+
+<div class="metronome_container">
+    <div class="line_border_left"></div>
+    <button id="play-button" class="">
+        <div id="play-pause-icon" class="play"></div>
+    </button>
+
+    <!-- <div class="tempo-controls"> -->
+    <button class="tempo-change" data-change="-5">-5</button>
+    <button class="tempo-change" data-change="-1">-</button>
+
+    <div class="tempo-container">
+        <div id="tempo">120</div>
+        <div class="bpm">ск/уд/м</div>
+    </div>
+
+    <button class="tempo-change" data-change="+1">+</button>
+    <button class="tempo-change" data-change="+5">+5</button>
+
+    <div class="line_border_left"></div>
+
+    <div class="elem_footer contain_btn_pulse">
+        <p>пульс</p>
+        <div class="btn_pls btn_active" data-value="value_NO">--</div>
+        <div class="btn_pls" data-value="value_2">2</div>
+        <div class="btn_pls" data-value="value_4">4</div>
+        <div class="btn_pls" data-value="value_8">8</div>
+        <div class="btn_pls" data-value="value_16">16</div>
+    </div>
+    <div class="line_border_left"></div>
+    <div class="elem_footer contain_btn_group">
+        <p>группа</p>
+        <div class="btn_grp btn_active" data-value="value_NO">--</div>
+        <div class="btn_grp " data-value="value_1">1</div>
+        <div class="btn_grp " data-value="value_2">2</div>
+        <div class="btn_grp " data-value="value_3">3</div>
+        <div class="btn_grp " data-value="value_4">4</div>
+        <div class="btn_grp " data-value="value_5">5</div>
+        <!-- <div class="btn_grp " data-value="value_3+2">3+2</div> -->
+    </div>
+    <div class="line_border_left"></div>
+    <button class="clear">сброс</button>
+    <button class="newRootBaseSizeValue420">420</button>
+    <button class="newRootBaseSizeValue840">840</button>
+    <button class="noPause">без пауз</button>
+    <!-- <button onclick="toggleCurtain()">шторка</button> -->
+    <button id="undoButton" disabled>отме</button>
+    <button id="redoButton" disabled>повт</button>
+    <div class="line_border_left"></div>
+</div>
+
+
+<!-- <div style="left: 120px; width: 3px; height: 3px; background: red; position: absolute;">123</div> -->
+
+<audio id="myAudio" preload="auto">
+    <source src="/Example_audio/Example_1.mp3" type="audio/mpeg">
+</audio>
+
+<div class="author">Copyright © 2022 Ивашкин Александр</div>
+<style>
+    .author {
+        font-family: Arial, Helvetica, sans-serif;
+        position: absolute;
+        bottom: 12px;
+        /* width: 300px; */
+        /* left: 90%; */
+        right: 15px;
+        font-size: 0.8vw;
+        text-align: center;
+        margin-left: -150px;
+        color: #ffffff3a;
+    }
+</style>
+
+<script src="/rythm_v5_1/Note_class.js"></script>
+<script src="/rythm_v5_1/All_symbol_for_notes.js"></script>
+<script src="/rythm_v5_1/create_matrix.js"></script>
+</body>
+
+</html>
