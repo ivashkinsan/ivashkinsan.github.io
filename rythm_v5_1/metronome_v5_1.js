@@ -260,6 +260,7 @@ document.querySelector('.contain_btn_group').addEventListener('change', function
 })
 
 let clearActiveElem = function () {// функция очистки подсветки всех активных элементов
+    bgMatrix.saveState();
     let allActiveElem = document.querySelectorAll('.active');
     for (let item of allActiveElem) {
         item.remove();

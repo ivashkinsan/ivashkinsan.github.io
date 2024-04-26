@@ -17,6 +17,11 @@ const bgMatrix = {
     'leftAppSide': null,
     'rightAppSide': null,
 
+    undoStack: [],
+    redoStack: [],
+    undoButton: null,
+    redoButton: null,
+
     'matrix_1x4': [
         '4 8 16',       //1
         '16',           //2
@@ -137,6 +142,11 @@ const bgMatrix = {
     addApp() {
         let app = document.querySelector('.app');
         this.app = app;
+        // let app_forMouseUpEvent = document.querySelector('.app');
+        app.addEventListener('mouseup', () =>{
+        console.log('mouseup');
+        this.saveState();
+})
     },
     createContainMatrix() {
         let newContainMatrix = document.createElement('div');
@@ -161,7 +171,7 @@ const bgMatrix = {
     },
     // в бэкграунде на каждый элемент настроен клик
     createBackground(array, startleftPosition) {
-        let boundingPosition = this.app.getBoundingClientRect();
+        // let boundingPosition = this.app.getBoundingClientRect();
         // this.leftAppSide = boundingPosition.left;
         // this.rightAppSide = boundingPosition.right;
         this.baseWidth = this.baseSize / 16 * array.length;
@@ -222,7 +232,7 @@ const bgMatrix = {
                 new_circle.draggable = false;
 
 
-                new_circle.addEventListener('click', (e) => {
+                new_circle.addEventListener('mousedown', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     this.create_note(
@@ -330,9 +340,98 @@ const bgMatrix = {
             this.idStack[key].findPrevNextElemsAndFindParam();
             this.idStack[key].findPrevNextForShowHandle();
         }
+    },
+    saveState() {
+        let state = {...this.idStack};
+        this.undoStack.push(state);
+        this.redoStack = [];
+
+        // this.undoStack.push(this.activeLayer.innerHTML);
+        this.redoStack = [];
+        this.undoButton.disabled = false;
+        this.redoButton.disabled = true;
+        console.log('saveSatate');
+        console.log(this.undoStack);
+    },
+    undo() {
+        clearActiveElem();
+        this.redoStack.push({...this.idStack});
+        console.log(this.undoStack);
+        this.idStack = this.undoStack.pop();
+        console.log(this.undoStack);
+        this.redoButton.disabled = false;
+        if (this.undoStack.length === 0) {
+            this.undoButton.disabled = true;
+        }
+        
+        for(let key in this.idStack){
+            // console.log(this.idStack[key]);
+            this.activeLayer.append(this.idStack[key].div);
+        }
+        console.log('undo');
+       
+    },
+    redo() {
+        this.undoStack.push({...this.idStack});
+        this.idStack = this.redoStack.pop();
+        this.undoButton.disabled = false;
+        if (this.redoStack.length === 0) {
+            this.redoButton.disabled = true;
+        }
+
+        clearActiveElem();
+        for(let key in this.idStack){
+            console.log(this.idStack[key]);
+            // this.idStack[key].delElemInBigElem();
+            this.activeLayer.append(this.idStack[key].div);
+        }
+        console.log('redo');
+        console.log(this.undoStack);
+        // returnAddEventListener();
     }
 }
 
+bgMatrix.undoButton = document.getElementById('undoButton');
+bgMatrix.redoButton = document.getElementById('redoButton');
+bgMatrix.undoButton.addEventListener('click', (e)=>{
+    bgMatrix.undo();
+});
+bgMatrix.redoButton.addEventListener('click', (e)=>{
+    bgMatrix.redo();
+});
+
+// let returnAddEventListener = function () {
+//     // let activeElemLayer = document.querySelector('.activeLayer');
+//     let all_active_elem = bgMatrix.activeLayer.querySelectorAll('.active ');
+//     for (let item of all_active_elem) {
+//         item.addEventListener('mousedown', (event) => {
+//             clickForActiveElem(event);
+//         })
+//         item.addEventListener('contextmenu', (event) => {
+//             event.preventDefault(true);
+//             onContextClickForDelActiveElem(event);
+//         });
+//         for (let child of item.childNodes) {
+//             switch (child.classList[1]) {
+//                 case 'left-handle':
+//                     child.addEventListener('mousedown', function (elem) {
+//                         startResizing(elem, 'left');
+//                     })
+//                     break;
+//                 case 'right-handle':
+//                     child.addEventListener('mousedown', function (elem) {
+//                         startResizing(elem, 'right');
+//                     })
+//                     break;
+//                 case 'left_double_arrow':
+//                     child.addEventListener('mousedown', function (elem) {
+//                         startResizing(elem, 'left_right');
+//                     })
+//                     break;
+//             }
+//         }
+//     }
+// }
 
 
 bgMatrix.addApp();
@@ -347,3 +446,5 @@ bgMatrix.createBackground(bgMatrix.matrix_4x4, bgMatrix.startleftPosition);
 // console.log(bgMatrix.activeLayer);
 
 // console.log(bgMatrix);
+
+bgMatrix.saveState();

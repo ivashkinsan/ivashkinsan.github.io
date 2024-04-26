@@ -116,6 +116,7 @@ function dragstart(event) {
 function dragend(event) {
     event.stopPropagation();
     this.classList.remove('drag_Start_end');
+    bgMatrix.saveState();
 }
 
 function dragover(event) {
@@ -188,23 +189,23 @@ let createNoteAfterDrop = (event, dropElem) => {
     }
 }
 
-let extractPositionData = (style) => {
-    let position = { "left": 0, "right": 0, "width": 0 };
-    position.left = Number(style.left.replace('px', ''));
-    position.width = Number(style.width.replace('px', ''));
-    position.right = position.left + position.width;
-    return position;
-}
+// let extractPositionData = (style) => {
+//     let position = { "left": 0, "right": 0, "width": 0 };
+//     position.left = Number(style.left.replace('px', ''));
+//     position.width = Number(style.width.replace('px', ''));
+//     position.right = position.left + position.width;
+//     return position;
+// }
 
-let createTripletLine = (count, parentElem, interval) => {
-    if (count === 3) {
-        let newTripletLine = document.createElement('div');
-        newTripletLine.classList.add('newTripletLine');
-        newTripletLine.style.width = `${interval * 3}px`;
-        newTripletLine.style.height = '3px';
-        parentElem.append(newTripletLine);
-    }
-}
+// let createTripletLine = (count, parentElem, interval) => {
+//     if (count === 3) {
+//         let newTripletLine = document.createElement('div');
+//         newTripletLine.classList.add('newTripletLine');
+//         newTripletLine.style.width = `${interval * 3}px`;
+//         newTripletLine.style.height = '3px';
+//         parentElem.append(newTripletLine);
+//     }
+// }
 
 
 
@@ -254,5 +255,5 @@ const newRootBaseSizeValue = function (param, previousParam) {
 let newRootButton420 = document.querySelector('.newRootBaseSizeValue420');
 let newRootButton840 = document.querySelector('.newRootBaseSizeValue840');
 
-newRootButton420.addEventListener('click', () => newRootBaseSizeValue(420, backgroundMatrix.baseSize));
-newRootButton840.addEventListener('click', () => newRootBaseSizeValue(840, backgroundMatrix.baseSize));
+// newRootButton420.addEventListener('click', () => newRootBaseSizeValue(420, backgroundMatrix.baseSize));
+// newRootButton840.addEventListener('click', () => newRootBaseSizeValue(840, backgroundMatrix.baseSize));

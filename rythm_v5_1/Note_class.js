@@ -37,7 +37,7 @@ class Note {
         });
 
         this.handle.leftHandle = leftHandle;
-        console.log(this.div);
+        // console.log(this.div);
         this.div.append(this.handle.leftHandle);
 
         // right
@@ -102,7 +102,7 @@ class Note {
 
     }
     findPrevNextElemsAndFindParam() {
-        console.log(bgMatrix.idStack);
+        // console.log(bgMatrix.idStack);
         if (this.div.nextElementSibling) {
             this.nextElemId = this.div.nextElementSibling.dataset.id;
             this.nextElem = this.div.nextElementSibling
@@ -278,6 +278,7 @@ class Note {
         this.pausesSymbol = allSymbolForNotes_2_4[this.name]['pausesSymbol'];
         document.documentElement.removeEventListener('mousemove', this.resize);
         document.documentElement.removeEventListener('mouseup', this.stopResizing);
+        bgMatrix.saveState();
     }
     hameleon() {
         // console.log(this._class);
