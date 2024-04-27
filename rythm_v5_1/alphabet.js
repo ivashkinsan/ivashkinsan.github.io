@@ -189,13 +189,13 @@ let createNoteAfterDrop = (event, dropElem) => {
     }
 }
 
-// let extractPositionData = (style) => {
-//     let position = { "left": 0, "right": 0, "width": 0 };
-//     position.left = Number(style.left.replace('px', ''));
-//     position.width = Number(style.width.replace('px', ''));
-//     position.right = position.left + position.width;
-//     return position;
-// }
+let extractPositionData = (style) => {
+    let position = { "left": 0, "right": 0, "width": 0 };
+    position.left = Number(style.left.replace('px', ''));
+    position.width = Number(style.width.replace('px', ''));
+    position.right = position.left + position.width;
+    return position;
+}
 
 // let createTripletLine = (count, parentElem, interval) => {
 //     if (count === 3) {

@@ -229,7 +229,7 @@ const bgMatrix = {
                 new_circle.dataset.indxPosition = outIndx + 1;
                 new_circle.draggable = false;
 
-                new_circle.append(this.createLabelSolf());
+                new_circle.append(this.createLabelSolf(new_circle.classList[1]));
 
                 new_circle.addEventListener('mousedown', (e) => {
                     e.preventDefault();
@@ -272,10 +272,15 @@ const bgMatrix = {
         // this.leftAppSide = boundingPosition.left;
         // this.rightAppSide = boundingPosition.right;
     },
-    createLabelSolf() {
+    createLabelSolf(info) {
         let newLabel = new solfedjioLabel();
-        allSolfejioLabel.push(newLabel);
-        return newLabel;
+        // newLabel.createDiv();
+        newLabel.textContent = '*';
+        newLabel.paragraph.dataset.class = info;
+        console.log(newLabel.paragraph);
+        this.allSolfejioLabel.push(newLabel.paragraph);
+        // console.log(this.allSolfejioLabel);
+        return newLabel.paragraph;
     },
     createSizeIdentif() {
         let newSizeIdentif = {

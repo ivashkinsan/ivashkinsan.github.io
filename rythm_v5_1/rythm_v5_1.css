@@ -98,6 +98,19 @@ body {
     cursor: pointer;
 }
 
+.mtrxCircle_label{
+    position: absolute;
+    
+    /* width: 100%; */
+    /* top: 50%; */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    z-index: 0;
+    user-select: none;
+    pointer-events: none;
+}
+
 
 .active {
     position: absolute;
@@ -132,16 +145,16 @@ body {
 }
 
 .active>p {
-    user-select: none;
+    
     /* font-size: 14px; */
     margin-top: calc(var(--base-size) / 105);
+    user-select: none;
     pointer-events: none;
     z-index: 999;
 }
 
 .pause>p {
     margin-top: calc(-1 * (var(--base-size) / 105));
-    ;
     /* font-size: 20px; */
 }
 

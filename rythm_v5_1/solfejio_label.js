@@ -20,16 +20,18 @@ const solfedjio = {
 
 class solfedjioLabel {
     constructor() {
-        this.paragraph = null;
-        this._textContent = 'ex';
-    }
-    createDiv() {
-        this.paragraph = document.createElement('p');
+        this.paragraph = document.createElement('div');
         this.paragraph.classList.add('mtrxCircle_label');
+        this._textContent = 'ex';
         this.paragraph.textContent = this._textContent;
     }
+    createDiv() {
+        // this.paragraph = document.createElement('p');
+        // this.paragraph.classList.add('mtrxCircle_label');
+        
+    }
     /**
-     * @param {any} value
+     * @param {string} value
      */
     set textContent(value) {
         this._textContent = value;
