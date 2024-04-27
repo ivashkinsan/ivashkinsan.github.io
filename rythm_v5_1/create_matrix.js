@@ -6,6 +6,7 @@ const bgMatrix = {
     'root': null,
     'newOutIndMatrix': {},
     'sizeIdentif': {},
+    'allSolfejioLabel': [],
 
     'step': null,
     'baseSize': null,
@@ -143,10 +144,10 @@ const bgMatrix = {
         let app = document.querySelector('.app');
         this.app = app;
         // let app_forMouseUpEvent = document.querySelector('.app');
-        app.addEventListener('mouseup', () =>{
-        console.log('mouseup');
-        this.saveState();
-})
+        app.addEventListener('mouseup', () => {
+            console.log('mouseup');
+            this.saveState();
+        })
     },
     createContainMatrix() {
         let newContainMatrix = document.createElement('div');
@@ -228,6 +229,7 @@ const bgMatrix = {
                 new_circle.dataset.indxPosition = outIndx + 1;
                 new_circle.draggable = false;
 
+                new_circle.append(this.createLabelSolf());
 
                 new_circle.addEventListener('mousedown', (e) => {
                     e.preventDefault();
@@ -257,7 +259,7 @@ const bgMatrix = {
 
             this.newOutIndMatrix[startleftPosition] = String(outIndx + 1);
             startleftPosition = startleftPosition + (this.baseSize / 16);
-            
+
         }
         // ================ red marker =====================
         let boundingPosition = this.app.getBoundingClientRect();
@@ -269,6 +271,11 @@ const bgMatrix = {
         document.querySelector('body').append(marker);
         // this.leftAppSide = boundingPosition.left;
         // this.rightAppSide = boundingPosition.right;
+    },
+    createLabelSolf() {
+        let newLabel = new solfedjioLabel();
+        allSolfejioLabel.push(newLabel);
+        return newLabel;
     },
     createSizeIdentif() {
         let newSizeIdentif = {
@@ -350,7 +357,7 @@ const bgMatrix = {
         }
     },
     saveState() {
-        let state = {...this.idStack};
+        let state = { ...this.idStack };
         this.undoStack.push(state);
         this.redoStack = [];
 
@@ -363,7 +370,7 @@ const bgMatrix = {
     },
     undo() {
         clearActiveElem();
-        this.redoStack.push({...this.idStack});
+        this.redoStack.push({ ...this.idStack });
         console.log(this.undoStack);
         this.idStack = this.undoStack.pop();
         console.log(this.undoStack);
@@ -371,16 +378,16 @@ const bgMatrix = {
         if (this.undoStack.length === 0) {
             this.undoButton.disabled = true;
         }
-        
-        for(let key in this.idStack){
+
+        for (let key in this.idStack) {
             // console.log(this.idStack[key]);
             this.activeLayer.append(this.idStack[key].div);
         }
         console.log('undo');
-       
+
     },
     redo() {
-        this.undoStack.push({...this.idStack});
+        this.undoStack.push({ ...this.idStack });
         this.idStack = this.redoStack.pop();
         this.undoButton.disabled = false;
         if (this.redoStack.length === 0) {
@@ -388,7 +395,7 @@ const bgMatrix = {
         }
 
         clearActiveElem();
-        for(let key in this.idStack){
+        for (let key in this.idStack) {
             console.log(this.idStack[key]);
             // this.idStack[key].delElemInBigElem();
             this.activeLayer.append(this.idStack[key].div);
@@ -401,10 +408,10 @@ const bgMatrix = {
 
 bgMatrix.undoButton = document.getElementById('undoButton');
 bgMatrix.redoButton = document.getElementById('redoButton');
-bgMatrix.undoButton.addEventListener('click', (e)=>{
+bgMatrix.undoButton.addEventListener('click', (e) => {
     bgMatrix.undo();
 });
-bgMatrix.redoButton.addEventListener('click', (e)=>{
+bgMatrix.redoButton.addEventListener('click', (e) => {
     bgMatrix.redo();
 });
 
@@ -456,3 +463,9 @@ bgMatrix.createBackground(bgMatrix.matrix_4x4, bgMatrix.startleftPosition);
 // console.log(bgMatrix);
 
 bgMatrix.saveState();
+
+
+
+console.log(solfedjio);
+
+// 16 = 
