@@ -116,7 +116,7 @@ function dragstart(event) {
 function dragend(event) {
     event.stopPropagation();
     this.classList.remove('drag_Start_end');
-    bgMatrix.saveState();
+    // bgMatrix.saveState();
 }
 
 function dragover(event) {

@@ -171,9 +171,6 @@ const bgMatrix = {
     },
     // в бэкграунде на каждый элемент настроен клик
     createBackground(array, startleftPosition) {
-        // let boundingPosition = this.app.getBoundingClientRect();
-        // this.leftAppSide = boundingPosition.left;
-        // this.rightAppSide = boundingPosition.right;
         this.baseWidth = this.baseSize / 16 * array.length;
         this.containMatrix.style.width = this.baseWidth + 'px';
         // внешний цикл
@@ -260,7 +257,18 @@ const bgMatrix = {
 
             this.newOutIndMatrix[startleftPosition] = String(outIndx + 1);
             startleftPosition = startleftPosition + (this.baseSize / 16);
+            
         }
+        // ================ red marker =====================
+        let boundingPosition = this.app.getBoundingClientRect();
+        console.log(boundingPosition);
+        let marker = document.createElement('div');
+        marker.style = 'position: absolute; width: 3px; height: 50px; background: red; z-index: 2000;'
+        marker.style.left = boundingPosition.left + 'px';
+        marker.style.top = boundingPosition.top + 'px';
+        document.querySelector('body').append(marker);
+        // this.leftAppSide = boundingPosition.left;
+        // this.rightAppSide = boundingPosition.right;
     },
     createSizeIdentif() {
         let newSizeIdentif = {
