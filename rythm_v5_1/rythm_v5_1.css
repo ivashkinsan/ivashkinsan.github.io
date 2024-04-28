@@ -442,11 +442,13 @@ body {
 /* ======================  top шторка  ==================== */
 
 .cardAlphabetContain {
-    /* position: relative; */
+    display: flex;
+    flex-direction: row;
     position: fixed;
     left: 50%;
     top: 10px;
-    /* width: auto; */
+
+    /* width: 800px; */
     border: 1px rgba(255, 255, 255, 0.489) solid;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
@@ -455,17 +457,18 @@ body {
     z-index: 1000;
     transform: translateX(-50%);
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 .tab{
     display: grid;
-    grid-template-columns: repeat(8, calc(var(--base-size) / 9));
+    grid-template-columns: repeat(8, auto);
     grid-auto-flow: column;
     width: auto;
     height: auto;
     gap: 10px;
     padding: 40px 15px 15px 10px;
+    /* transform: translateX(-725px); */
 }
 
 .menuInTopBar{
@@ -514,28 +517,76 @@ body {
 
 
 .cardAlphabet_card {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 3px;
-    /* margin: 3px; */
-    gap: 2px;
+    display: grid;
+    /* justify-content: center; */
+    padding: 5px 10px;
+    min-width: calc(var(--base-size) / 10);
+    gap: 5px;
     border: 1px solid var(--matrix-color);
     border-radius: 3px;
     cursor: grab;
 }
-
-.cardAlphabet_card_circle {
-    /* width: calc(var(--base-size) / 45);
-    height: calc(var(--base-size) / 45); */
+.cardAlphabet_card.four {
+    grid-template-columns: repeat(4, 1fr);
+}
+.cardAlphabet_card.three {
+    grid-template-columns: repeat(3, 1fr);
+}
+.cardAlphabet_card.two {
+    grid-template-columns: repeat(2, 1fr);
+}
+.grid_el{
+    /* align-items: center; */
     width: calc(var(--base-size) / 65);
+    /* width: 100%; */
     height: calc(var(--base-size) / 65);
     border: 1px solid var(--matrix-color);
+    background-color: unset;
     border-radius: 50%;
+    align-self: center;
+}
+/* 
+.card_circle_fill_0 {
+
+} */
+
+.grid_el.grid_el.card_circle_fill_1 {
+    background-color: var(--matrix-color);
 }
 
-.card_circle_on {
-    background-color: var(--matrix-color);
+.grid_el.card_circle_fill_1111{
+    width: unset;
+    grid-column: span 4;
+   border-radius: 5px;
+   background-color: var(--matrix-color);
+}
+.card_circle_fill_111{
+    width: unset;
+    grid-column: span 3;
+   border-radius: 5px;
+   background-color: var(--matrix-color);
+}
+.card_circle_fill_11{
+    width: unset;
+    grid-column: span 2;
+   border-radius: 5px;
+   background-color: var(--matrix-color);
+}
+.card_circle_fill_00{
+    width: unset;
+    grid-column: span 2;
+   border-radius: 5px;
+   /* background-color: var(--matrix-color); */
+}
+.card_circle_fill_000{
+    width: unset;
+    grid-column: span 3;
+   border-radius: 5px;
+}
+.card_circle_fill_0000{
+    width: unset;
+    grid-column: span 4;
+   border-radius: 5px;
 }
 
 .btn_open_and_close_card_alphabet {

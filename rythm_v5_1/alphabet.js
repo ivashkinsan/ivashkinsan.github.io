@@ -29,7 +29,7 @@ const alphabet = {
     'd': '0 0',
 }
 
-const alphabetLong = {
+const alphabet_2 = {
     'A': '1111',
     'B': '0 111',
     'C': '00 11',
@@ -46,18 +46,18 @@ const alphabetLong = {
     'N': '1 11 1',
     'O': '1 1 1 1',
     'P': '0000',
-    'Q': '11',
+    'Q': '111',
     'R': '0 11',
     'S': '0 0 1',
     'T': '1 11',
     'U': '0 1 1',
     'V': '11 1',
     'W': '1 1 1',
-    'X': '0 0 0',
+    'X': '000',
     'a': '1 0',
     'b': '0 1',
     'c': '1 1',
-    'd': '0 0',
+    'd': '00',
 }
 
 const createMenuInTopBar = function(){
@@ -88,10 +88,26 @@ const createMenuInTopBar = function(){
 
 const createCircle = (elem) => {
     const cardAlphabetCardCircle = document.createElement('div');
-    cardAlphabetCardCircle.classList.add('cardAlphabet_card_circle');
-    if (elem == 1) {
-        cardAlphabetCardCircle.classList.add('card_circle_on');
+    cardAlphabetCardCircle.classList.add(`grid_el`);
+    switch(elem){
+        case '0': cardAlphabetCardCircle.classList.add('card_circle_fill_0');
+        break;
+        case '1': cardAlphabetCardCircle.classList.add('card_circle_fill_1');
+        break;
+        case '1111': cardAlphabetCardCircle.classList.add('card_circle_fill_1111');
+        break;
+        case '111': cardAlphabetCardCircle.classList.add('card_circle_fill_111');
+        break;
+        case '11': cardAlphabetCardCircle.classList.add('card_circle_fill_11');
+        break;
+        case '00': cardAlphabetCardCircle.classList.add('card_circle_fill_00');
+        break;
+        case '000': cardAlphabetCardCircle.classList.add('card_circle_fill_000');
+        break;
+        case '0000': cardAlphabetCardCircle.classList.add('card_circle_fill_0000');
+        break;
     }
+
     return cardAlphabetCardCircle;
 }
 
@@ -116,6 +132,14 @@ const createTab_1 = () => {
     Object.entries(alphabet).forEach(([item, value], index) => {
         const cardAlphabetCard = document.createElement('div');
         cardAlphabetCard.classList.add('cardAlphabet_card');
+        switch(true){
+            case index <= 15: cardAlphabetCard.classList.add('four');
+            break;
+            case index <= 23: cardAlphabetCard.classList.add('three');
+            break;
+            case index <= 28: cardAlphabetCard.classList.add('two');
+            break;
+        }
         cardAlphabetCard.classList.add(`grid_el_${index}`);
         cardAlphabetCard.dataset.data = value;
         cardAlphabetCard.draggable = true;
@@ -136,10 +160,19 @@ const createTab_2 = () => {
        tab_2.classList.add('tab');
        tab_2.classList.add('tab_2');
        const tab_2_docFragment = document.createDocumentFragment();
-       Object.entries(alphabet).forEach(([item, value], index) => {
-           const cardAlphabetCard = document.createElement('div');
-           cardAlphabetCard.classList.add('cardAlphabet_card');
-           cardAlphabetCard.classList.add(`grid_el_${index}`);
+       Object.entries(alphabet_2).forEach(([item, value], index) => {
+        const cardAlphabetCard = document.createElement('div');
+        cardAlphabetCard.classList.add('cardAlphabet_card');
+        let newArrForLength = alphabet[item].split(' ');
+        switch(true){
+            case index <= 15: cardAlphabetCard.classList.add('four');
+            break;
+            case index <= 23: cardAlphabetCard.classList.add('three');
+            break;
+            case index <= 28: cardAlphabetCard.classList.add('two');
+            break;
+        }
+        cardAlphabetCard.classList.add(`grid_el_${index}`);
            cardAlphabetCard.dataset.data = value;
            cardAlphabetCard.draggable = true;
            value.split(' ').map(createCircle).forEach(circle => {
@@ -157,7 +190,7 @@ const appForInsertCardAlphabet = document.querySelector('.cardAlphabetContain');
 appForInsertCardAlphabet.appendChild(createBtnOpenAndCloseCardAlphabet());
 appForInsertCardAlphabet.appendChild(createMenuInTopBar());
 appForInsertCardAlphabet.append(createTab_1());
-// appForInsertCardAlphabet.append(createTab_2());
+appForInsertCardAlphabet.append(createTab_2());
 
 
 let add_and_remove_eventListener = function (add) {

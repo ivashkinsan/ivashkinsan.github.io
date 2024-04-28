@@ -279,7 +279,7 @@ const bgMatrix = {
         // newLabel.createDiv();
         newLabel.textContent = '';
         newLabel.paragraph.dataset.class = info;
-        console.log(newLabel.paragraph);
+        // console.log(newLabel.paragraph);
         this.allSolfejioLabel.push(newLabel.paragraph);
         // console.log(this.allSolfejioLabel);
         return newLabel.paragraph;
