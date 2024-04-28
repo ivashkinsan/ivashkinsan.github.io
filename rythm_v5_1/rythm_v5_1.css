@@ -251,7 +251,7 @@ body {
 }
 
 
-/* ========== размер длительностей ========== */
+/* ========== размер шрифтов в активных нотах ========== */
 .wholeNote_1>p {
     font-size: calc(var(--font-size) * 4.75);
     line-height: calc(var(--font-size) * 8.5);
@@ -440,146 +440,77 @@ body {
 }
 
 /* ======================  top шторка  ==================== */
-.topBar {
-    display: grid;
-    position: relative;
-    grid-template-columns: repeat(8, calc(var(--base-size) / 7));
-    grid-auto-flow: column;
-    gap: 15px;
-    padding: 15px;
-    width: auto;
-    height: auto;
+
+.cardAlphabetContain {
+    /* position: relative; */
+    position: fixed;
+    left: 50%;
+    top: 10px;
+    /* width: auto; */
     border: 1px rgba(255, 255, 255, 0.489) solid;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    background-color: #16161622;
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 10px;
+    background-color: #283353c7;
+        
     z-index: 1000;
+    transform: translateX(-50%);
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
     /* overflow: hidden; */
 }
 
+.tab{
+    display: grid;
+    grid-template-columns: repeat(8, calc(var(--base-size) / 9));
+    grid-auto-flow: column;
+    width: auto;
+    height: auto;
+    gap: 10px;
+    padding: 40px 15px 15px 10px;
+}
+
+.menuInTopBar{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+    width: 100%;
+    border-bottom: 1px solid var(--matrix-color);
+
+}
+.menuInTopBar__menuElem{
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    color: var(--matrix-color);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.menuInTopBar__menuElem:hover{
+    color: rgb(188, 188, 188);
+    cursor: pointer;
+    transition: linear 400ms;
+}
+
+.alg_active{
+    color: rgb(188, 188, 188);
+    text-decoration: underline;
+}
+
 .hidden_topBar {
-    /* top: -100%; */
-    /* z-index: 0; */
     transform: translate(-50%, -110%);
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
 }
 
-.grid_el_0 {
-    grid-column: 1;
-}
-
-.grid_el_1 {
-    grid-column: 1;
-}
-
-.grid_el_2 {
-    grid-column: 1;
-}
-
-.grid_el_3 {
-    grid-column: 1;
-}
-
-.grid_el_4 {
-    grid-column: 2;
-}
-
-.grid_el_5 {
-    grid-column: 2;
-}
-
-.grid_el_6 {
-    grid-column: 2;
-}
-
-.grid_el_7 {
-    grid-column: 2;
-}
-
-.grid_el_8 {
-    grid-column: 2;
-}
-
-.grid_el_9 {
-    grid-column: 2;
-}
-
-.grid_el_10 {
-    grid-column: 3;
-}
-
-.grid_el_11 {
-    grid-column: 3;
-}
-
-.grid_el_12 {
-    grid-column: 3;
-}
-
-.grid_el_13 {
-    grid-column: 3;
-}
-
-.grid_el_14 {
-    grid-column: 4;
-}
-
-.grid_el_15 {
-    grid-column: 4;
-}
-
-.grid_el_16 {
-    grid-column: 5;
-}
-
-.grid_el_17 {
-    grid-column: 5;
-}
-
-.grid_el_18 {
-    grid-column: 5;
-}
-
-.grid_el_19 {
-    grid-column: 6;
-}
-
-.grid_el_20 {
-    grid-column: 6;
-}
-
-.grid_el_21 {
-    grid-column: 6;
-}
-
-.grid_el_22 {
-    grid-column: 7;
-}
-
-.grid_el_23 {
-    grid-column: 7;
-}
-
-.grid_el_24 {
-    grid-column: 8;
-}
-
-.grid_el_25 {
-    grid-column: 8;
-}
-
-.grid_el_26 {
-    grid-column: 8;
-}
-
-.grid_el_27 {
-    grid-column: 8;
-}
+/* Распределение колонок в топ баре */
+.grid_el_0, .grid_el_1, .grid_el_2, .grid_el_3 {grid-column: 1;}
+.grid_el_4, .grid_el_5, .grid_el_6, .grid_el_7, .grid_el_8, .grid_el_9 {grid-column: 2;}
+.grid_el_10, .grid_el_11, .grid_el_12, .grid_el_13 {grid-column: 3;}
+.grid_el_14, .grid_el_15 {grid-column: 4;}
+.grid_el_16, .grid_el_17, .grid_el_18 {grid-column: 5;}
+.grid_el_19, .grid_el_20, .grid_el_21 {grid-column: 6;}
+.grid_el_22, .grid_el_23 {grid-column: 7;}
+.grid_el_24, .grid_el_25, .grid_el_26, .grid_el_27 {grid-column: 8;}
 
 
 .cardAlphabet_card {
@@ -595,8 +526,10 @@ body {
 }
 
 .cardAlphabet_card_circle {
-    width: calc(var(--base-size) / 45);
-    height: calc(var(--base-size) / 45);
+    /* width: calc(var(--base-size) / 45);
+    height: calc(var(--base-size) / 45); */
+    width: calc(var(--base-size) / 65);
+    height: calc(var(--base-size) / 65);
     border: 1px solid var(--matrix-color);
     border-radius: 50%;
 }

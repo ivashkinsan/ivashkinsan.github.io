@@ -261,21 +261,23 @@ const bgMatrix = {
             startleftPosition = startleftPosition + (this.baseSize / 16);
 
         }
+
+
         // ================ red marker =====================
-        let boundingPosition = this.app.getBoundingClientRect();
-        console.log(boundingPosition);
-        let marker = document.createElement('div');
-        marker.style = 'position: absolute; width: 3px; height: 50px; background: red; z-index: 2000;'
-        marker.style.left = boundingPosition.left + 'px';
-        marker.style.top = boundingPosition.top + 'px';
-        document.querySelector('body').append(marker);
+        // let boundingPosition = this.app.getBoundingClientRect();
+        // console.log(boundingPosition);
+        // let marker = document.createElement('div');
+        // marker.style = 'position: absolute; width: 3px; height: 50px; background: red; z-index: 2000;'
+        // marker.style.left = boundingPosition.left + 'px';
+        // marker.style.top = boundingPosition.top + 'px';
+        // document.querySelector('body').append(marker);
         // this.leftAppSide = boundingPosition.left;
         // this.rightAppSide = boundingPosition.right;
     },
     createLabelSolf(info) {
         let newLabel = new solfedjioLabel();
         // newLabel.createDiv();
-        newLabel.textContent = '*';
+        newLabel.textContent = '';
         newLabel.paragraph.dataset.class = info;
         console.log(newLabel.paragraph);
         this.allSolfejioLabel.push(newLabel.paragraph);
