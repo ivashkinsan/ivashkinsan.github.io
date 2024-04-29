@@ -461,7 +461,7 @@ bgMatrix.createContainMatrix();
 bgMatrix.createActiveLayer();
 bgMatrix.find_Root_baseSize_baseWidth_step_minWidth_max_width();
 bgMatrix.createSizeIdentif();
-bgMatrix.createBackground(bgMatrix.matrix_4x4, bgMatrix.startleftPosition);
+bgMatrix.createBackground(bgMatrix.matrix_8x4, bgMatrix.startleftPosition);
 // console.log(bgMatrix.newOutIndMatrix);
 // console.log(bgMatrix.app);
 // console.log(bgMatrix.containMatrix);
