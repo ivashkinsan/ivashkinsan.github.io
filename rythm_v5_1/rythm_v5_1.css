@@ -134,6 +134,7 @@ body {
     cursor: pointer;
     transform: translateY(-50%);
     transition: ease-in 100ms;
+    
 }
 
 .pause {
@@ -174,11 +175,13 @@ body {
     left: 3px;
     /* cursor: w-resize; */
     cursor: url('/cursor/left_32px.png')16 16, auto;
+    touch-action: none;
 }
 
 .right-handle {
     right: 3px;
     cursor: url('/cursor/right_32px.png')16 16, auto;
+    touch-action: none;
 }
 
 .left_double_arrow {

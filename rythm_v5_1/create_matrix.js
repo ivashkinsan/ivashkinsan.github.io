@@ -332,6 +332,7 @@ const bgMatrix = {
         }
 
         note.addEventListenerForPauseTransform(); // добавить обработчик для ссмены ноты на паузу
+        note.addTouchEventForPauseAndResizeTransform(); // добавить обработчик для ссмены ноты на паузу
         note.div.addEventListener('contextmenu', (event) => {
             event.preventDefault();
             event.stopPropagation();
@@ -372,8 +373,8 @@ const bgMatrix = {
         this.redoStack = [];
         this.undoButton.disabled = false;
         this.redoButton.disabled = true;
-        console.log('saveSatate');
-        console.log(this.undoStack);
+        // console.log('saveSatate');
+        // console.log(this.undoStack);
     },
     undo() {
         clearActiveElem();
@@ -390,7 +391,7 @@ const bgMatrix = {
             // console.log(this.idStack[key]);
             this.activeLayer.append(this.idStack[key].div);
         }
-        console.log('undo');
+        // console.log('undo');
 
     },
     redo() {
@@ -407,8 +408,8 @@ const bgMatrix = {
             // this.idStack[key].delElemInBigElem();
             this.activeLayer.append(this.idStack[key].div);
         }
-        console.log('redo');
-        console.log(this.undoStack);
+        // console.log('redo');
+        // console.log(this.undoStack);
         // returnAddEventListener();
     }
 }

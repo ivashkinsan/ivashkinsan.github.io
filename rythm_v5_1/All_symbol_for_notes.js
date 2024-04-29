@@ -39,6 +39,7 @@ const allSymbolForNotes_2_4 = {
             '4': uncSbl.n16 + uncSbl.dash + uncSbl.n16,
             '8': uncSbl.n16 + uncSbl.dash + uncSbl.n16,
             '12': uncSbl.n16 + uncSbl.dash + uncSbl.n16,
+            '16': uncSbl.n16 + uncSbl.dash + uncSbl.n16,
             '20': uncSbl.n16 + uncSbl.dash + uncSbl.n16,
             '24': uncSbl.n16 + uncSbl.dash + uncSbl.n16,
             '28': uncSbl.n16 + uncSbl.dash + uncSbl.n16
@@ -48,6 +49,7 @@ const allSymbolForNotes_2_4 = {
             '4': uncSbl.p16 + uncSbl.space + uncSbl.p16,
             '8': uncSbl.p16 + uncSbl.space + uncSbl.p16,
             '12': uncSbl.p16 + uncSbl.space + uncSbl.p16,
+            '16': uncSbl.p16 + uncSbl.space + uncSbl.p16,
             '20': uncSbl.p16 + uncSbl.space + uncSbl.p16,
             '24': uncSbl.p16 + uncSbl.space + uncSbl.p16,
             '28': uncSbl.p16 + uncSbl.space + uncSbl.p16
@@ -108,13 +110,13 @@ const allSymbolForNotes_2_4 = {
             '22': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n16,
             '26': uncSbl.n8 + uncSbl.pnt + uncSbl.dash + uncSbl.n16,
 
-            '3': uncSbl.n8 + uncSbl.dash + uncSbl.n8,
+            // '3': uncSbl.n8 + uncSbl.dash + uncSbl.n8,
             '7': uncSbl.n8 + uncSbl.dash + uncSbl.n8,
-            '11': uncSbl.n8 + uncSbl.dash + uncSbl.n8,
+            // '11': uncSbl.n8 + uncSbl.dash + uncSbl.n8,
             '15': uncSbl.n8 + uncSbl.dash + uncSbl.n8,
-            '19': uncSbl.n8 + uncSbl.dash + uncSbl.n8,
+            // '19': uncSbl.n8 + uncSbl.dash + uncSbl.n8,
             '23': uncSbl.n8 + uncSbl.dash + uncSbl.n8,
-            '27': uncSbl.n8 + uncSbl.dash + uncSbl.n8,
+            // '27': uncSbl.n8 + uncSbl.dash + uncSbl.n8,
 
             '4': uncSbl.n16 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
             '8': uncSbl.n16 + uncSbl.dash + uncSbl.n8 + uncSbl.pnt,
@@ -133,13 +135,13 @@ const allSymbolForNotes_2_4 = {
             '22': uncSbl.p8 + uncSbl.pnt + uncSbl.space + uncSbl.p16,
             '26': uncSbl.p8 + uncSbl.pnt + uncSbl.space + uncSbl.p16,
 
-            '3': uncSbl.p8 + uncSbl.space + uncSbl.p8,
+            // '3': uncSbl.p8 + uncSbl.space + uncSbl.p8,
             '7': uncSbl.p8 + uncSbl.space + uncSbl.p8,
-            '11': uncSbl.p8 + uncSbl.space + uncSbl.p8,
+            // '11': uncSbl.p8 + uncSbl.space + uncSbl.p8,
             '15': uncSbl.p8 + uncSbl.space + uncSbl.p8,
-            '19': uncSbl.p8 + uncSbl.space + uncSbl.p8,
+            // '19': uncSbl.p8 + uncSbl.space + uncSbl.p8,
             '23': uncSbl.p8 + uncSbl.space + uncSbl.p8,
-            '27': uncSbl.p8 + uncSbl.space + uncSbl.p8,
+            // '27': uncSbl.p8 + uncSbl.space + uncSbl.p8,
 
             '4': uncSbl.p16 + uncSbl.space + uncSbl.p8 + uncSbl.pnt,
             '8': uncSbl.p16 + uncSbl.space + uncSbl.p8 + uncSbl.pnt,

@@ -143,11 +143,39 @@ class Note {
     }
     addEventListenerForPauseTransform() {
         this.div.addEventListener('mousedown', (event) => {
+            console.log(event);
             event.preventDefault();
             event.stopPropagation();
             if (event.button == 0) {
                 this.magicNoteOrPause();
             }
+        })
+    }
+    addTouchEventForPauseAndResizeTransform(){
+        this.div.addEventListener('touchstart', (event) => {
+
+            let touch = event.touches[0];
+            let rect = event.target.getBoundingClientRect();
+            let touchX_inElem = touch.clientX - rect.left;
+            let touchY_inElem = touch.clientY - rect.top;
+            let percentForTouchLeftRight = (this.width / 100 * 20);
+            // console.log('width','touchX','touchY');
+            // console.log([this.width,touchX_inElem,(this.width - touchX_inElem),percentForTouchLeftRight]);
+            // console.log(`Touch start relative to element at: ${touchX}, ${touchY}`);
+// console.log((this.width - touchX_inElem) < percentForTouchLeftRight);
+            if((this.width - touchX_inElem) < percentForTouchLeftRight){
+                this.magicNoteOrPause();
+                this.startResizing(event, 'right',);
+            }
+            if(touchX_inElem < percentForTouchLeftRight){
+                this.magicNoteOrPause();
+                this.startResizing(event, 'left',);
+            }
+            event.preventDefault();
+            event.stopPropagation();
+            // if (event.touches[0]) {
+            //     this.magicNoteOrPause();
+            // }
         })
     }
     magicNoteOrPause() {
@@ -200,7 +228,12 @@ class Note {
         }
     }
     startResizing(eventMSD, direction) {
-        const startX = eventMSD.clientX;
+        let startX;
+        if (eventMSD.touches) {
+            startX = eventMSD.touches[0].clientX; 
+          } else {
+            startX = eventMSD.clientX;
+          }
         this.startX = startX;
         this.startWidth = this._width;
         this.startLeft = this._leftSidePosition;
@@ -209,23 +242,33 @@ class Note {
             bgMatrix.idStack[this.previousElemId].startWidth = bgMatrix.idStack[this.previousElemId].width;
         }
 
-        document.documentElement.addEventListener('mousemove', this.resize);
-        document.documentElement.addEventListener('mouseup', this.stopResizing);
-
-
+        if (eventMSD.touches) {
+            document.documentElement.addEventListener('touchmove', this.resize);
+            document.documentElement.addEventListener('touchend', this.stopResizing);
+          } else {
+            document.documentElement.addEventListener('mousemove', this.resize);
+            document.documentElement.addEventListener('mouseup', this.stopResizing);
+          }
     }
     resize(event) {
-        event.preventDefault();
-        event.stopPropagation();
+        // event.preventDefault();
+        // event.stopPropagation();
+        if (event.touches) {
+            event = event.touches[0]; 
+          }
+          console.log(event);
+          console.log(event.clientX);
+          console.log(this);
+          console.log(event.x);
         if (this.direction === 'right') {
             let newWidth = Math.min(Math.max(this.startWidth + event.clientX - this.startX, bgMatrix.minWidth), bgMatrix.maxWidth);
-            console.log(bgMatrix.idStack[this.nextElemId]);
+            // console.log(bgMatrix.idStack[this.nextElemId]);
             if (bgMatrix.idStack[this.nextElemId]) {
-                if (event.x < bgMatrix.idStack[this.nextElemId]._leftSidePosition + bgMatrix.app.offsetLeft) {
+                if (event.screenX < bgMatrix.idStack[this.nextElemId]._leftSidePosition + bgMatrix.app.offsetLeft) {
                     this.width = Math.round(newWidth / bgMatrix.step) * bgMatrix.step;
                     this.hameleon();
                 }
-            } else if (event.x < bgMatrix.rightAppSide) {
+            } else if (event.screenX < bgMatrix.rightAppSide) {
                 this.width = Math.round(newWidth / bgMatrix.step) * bgMatrix.step;
                 this.hameleon();
             }
@@ -237,13 +280,13 @@ class Note {
             const newWidthRoundet = Math.round(newWidth / bgMatrix.step) * bgMatrix.step;
             this.newLeftPosition = Math.round(newLeft / bgMatrix.step) * bgMatrix.step;
             if (bgMatrix.idStack[this.previousElemId]) {
-                if (event.x - bgMatrix.leftAppSide > bgMatrix.idStack[this.previousElemId]._leftSidePosition + bgMatrix.idStack[this.previousElemId]._width) {
+                if (event.screenX - bgMatrix.leftAppSide > bgMatrix.idStack[this.previousElemId]._leftSidePosition + bgMatrix.idStack[this.previousElemId]._width) {
                     this.width = newWidthRoundet;
                     this.leftSidePosition = this.newLeftPosition;
                     this.indxPosition = bgMatrix.newOutIndMatrix[this._leftSidePosition];
                     this.hameleon();
                 }
-            } else if (event.x > bgMatrix.leftAppSide) {
+            } else if (event.screenX > bgMatrix.leftAppSide) {
                 this.width = newWidthRoundet;
                 this.leftSidePosition = this.newLeftPosition;
                 this.indxPosition = bgMatrix.newOutIndMatrix[this._leftSidePosition];
@@ -278,6 +321,8 @@ class Note {
         this.pausesSymbol = allSymbolForNotes_2_4[this.name]['pausesSymbol'];
         document.documentElement.removeEventListener('mousemove', this.resize);
         document.documentElement.removeEventListener('mouseup', this.stopResizing);
+        document.documentElement.removeEventListener('touchmove', this.resize);
+        document.documentElement.removeEventListener('touchup', this.stopResizing);
         bgMatrix.saveState();
     }
     hameleon() {
