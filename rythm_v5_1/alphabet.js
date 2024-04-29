@@ -60,29 +60,77 @@ const alphabet_2 = {
     'd': '00',
 }
 
+const alphabet_3 = {
+    'A': 'T k d m',
+    'B': 't K d m',
+    'C': 't k D m',
+    'D': 't k d M',
+    'E': 'T K d m',
+    'F': 't K D m',
+    'G': 't k D M',
+    'H': 'T k d M',
+    'I': 'T k D m',
+    'J': 't K d M',
+    'K': 'T K D m',
+    'L': 't K D M',
+    'M': 'T k D M',
+    'N': 'T K d M',
+    'O': 'T K D M',
+    'P': 't k d m',
+    'Q': 'T k t',
+    'R': 't K t',
+    'S': 't k T',
+    'T': 'T K t',
+    'U': 't K T',
+    'V': 'T k T',
+    'W': 'T K T',
+    'X': 't k t',
+    'a': 'T k',
+    'b': 't K',
+    'c': 'T K',
+    'd': 't k',
+}
+
 const createMenuInTopBar = function(){
     const menuInTopBar = document.createElement('div');
     menuInTopBar.classList.add('menuInTopBar');
-    const nameElem = ['АЛГОРИТМЫ', 'АЛГОРИТМЫ+', 'СЛОГИ'];
+    const nameElem = ['АЛГОРИТМЫ', 'АЛГОРИТМЫ+', 'АКЦЕНТЫ'];
+    const tabNumber = ['tab_1','tab_2','tab_3']
     let allMenuElem = [];
     for(let item of nameElem){
         const menuElem = document.createElement('div');
         allMenuElem.push(menuElem);
         menuElem.classList.add('menuInTopBar__menuElem');
         menuElem.textContent = item;
+        menuElem.dataset.table = tabNumber.shift();
         menuInTopBar.appendChild(menuElem);
         if(menuElem.textContent == 'АЛГОРИТМЫ'){
             menuElem.classList.add('alg_active');
         }
-        menuElem.addEventListener('click', function(){
+        menuElem.addEventListener('click', function(event){
             allMenuElem.map(function(elem){
                 elem.classList.remove('alg_active');
             })
             menuElem.classList.add('alg_active');
+switch(event.target.dataset.table){
+case 'tab_1':
+    document.querySelector('.tab_1').classList.remove('display_none');
+    document.querySelector('.tab_2').classList.add('display_none');
+    document.querySelector('.tab_3').classList.add('display_none');
+    break;
+case 'tab_2':
+    document.querySelector('.tab_1').classList.add('display_none');
+    document.querySelector('.tab_2').classList.remove('display_none');
+    document.querySelector('.tab_3').classList.add('display_none');
+    break;
+case 'tab_3':
+    document.querySelector('.tab_1').classList.add('display_none');
+    document.querySelector('.tab_2').classList.add('display_none');
+    document.querySelector('.tab_3').classList.remove('display_none');
+    break;
+}
         })
     }
-    
-    // menuInTopBar.appendChild();
     return menuInTopBar;
 }
 
@@ -107,8 +155,31 @@ const createCircle = (elem) => {
         case '0000': cardAlphabetCardCircle.classList.add('card_circle_fill_0000');
         break;
     }
-
+    switch(elem){
+        case 't': 
+        case 'T': 
+            cardAlphabetCardCircle.textContent = 'Ta';
+        break;
+        case 'k':
+        case 'K':
+            cardAlphabetCardCircle.textContent = 'Ka';
+        break;
+        case 'd': 
+        case 'D': 
+            cardAlphabetCardCircle.textContent = 'Di';
+        break;
+        case 'm': 
+        case 'M': 
+            cardAlphabetCardCircle.textContent = 'Mi';
+        break;
+    }
+    if(isUpperCase(elem)){
+        cardAlphabetCardCircle.classList.add('akcent');
+    }
     return cardAlphabetCardCircle;
+}
+function isUpperCase(letter) {
+    return letter === letter.toUpperCase() && letter !== letter.toLowerCase();
 }
 
 const createBtnOpenAndCloseCardAlphabet = function () {
@@ -116,7 +187,7 @@ const createBtnOpenAndCloseCardAlphabet = function () {
     btn.classList.add('btn_open_and_close_card_alphabet');
     btn.addEventListener('click', function () {
         const cardAlphabetContain = document.querySelector('.cardAlphabetContain');
-        cardAlphabetContain.classList.toggle('hidden_topBar');
+        cardAlphabetContain.classList.toggle('hidden_cardAlphabetContain');
         btn.classList.toggle('inBody');
     })
     return btn;
@@ -128,6 +199,7 @@ const createTab_1 = () => {
     const tab_1 = document.createElement('div');
     tab_1.classList.add('tab');
     tab_1.classList.add('tab_1');
+    tab_1.dataset.table = 'tab_1';
     const tab_1_docFragment = document.createDocumentFragment();
     Object.entries(alphabet).forEach(([item, value], index) => {
         const cardAlphabetCard = document.createElement('div');
@@ -159,6 +231,8 @@ const createTab_2 = () => {
        const tab_2 = document.createElement('div');
        tab_2.classList.add('tab');
        tab_2.classList.add('tab_2');
+       tab_2.dataset.table = 'tab_2';
+       tab_2.classList.add('display_none');
        const tab_2_docFragment = document.createDocumentFragment();
        Object.entries(alphabet_2).forEach(([item, value], index) => {
         const cardAlphabetCard = document.createElement('div');
@@ -186,11 +260,45 @@ const createTab_2 = () => {
        return tab_2;
 }
 
+const createTab_3 = () => {
+    // TAB_1
+    const tab_3 = document.createElement('div');
+    tab_3.classList.add('tab');
+    tab_3.classList.add('tab_3');
+    tab_3.dataset.table = 'tab_3';
+    tab_3.classList.add('display_none');
+    const tab_3_docFragment = document.createDocumentFragment();
+    Object.entries(alphabet_3).forEach(([item, value], index) => {
+        const cardAlphabetCard = document.createElement('div');
+        cardAlphabetCard.classList.add('cardAlphabet_card');
+        switch(true){
+            case index <= 15: cardAlphabetCard.classList.add('four');
+            break;
+            case index <= 23: cardAlphabetCard.classList.add('three');
+            break;
+            case index <= 28: cardAlphabetCard.classList.add('two');
+            break;
+        }
+        cardAlphabetCard.classList.add(`grid_el_${index}`);
+        cardAlphabetCard.dataset.data = value;
+        cardAlphabetCard.draggable = true;
+        value.split(' ').map(createCircle).forEach(circle => {
+            cardAlphabetCard.appendChild(circle);
+        });
+        cardAlphabetCard.addEventListener('dragstart', dragstart, false);
+        cardAlphabetCard.addEventListener('dragend', dragend, false);
+        tab_3_docFragment.appendChild(cardAlphabetCard);
+    });
+    tab_3.appendChild(tab_3_docFragment);
+   return tab_3;
+}
+
 const appForInsertCardAlphabet = document.querySelector('.cardAlphabetContain');
 appForInsertCardAlphabet.appendChild(createBtnOpenAndCloseCardAlphabet());
 appForInsertCardAlphabet.appendChild(createMenuInTopBar());
 appForInsertCardAlphabet.append(createTab_1());
 appForInsertCardAlphabet.append(createTab_2());
+appForInsertCardAlphabet.append(createTab_3());
 
 
 let add_and_remove_eventListener = function (add) {

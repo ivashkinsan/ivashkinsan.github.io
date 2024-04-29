@@ -242,13 +242,6 @@ body {
     color: var(--active-elem-color);
 }
 
-.display_block {
-    display: block;
-}
-
-.display_none {
-    display: none;
-}
 
 
 /* ========== размер шрифтов в активных нотах ========== */
@@ -448,27 +441,22 @@ body {
     left: 50%;
     top: 10px;
 
-    /* width: 800px; */
+    width: 746px;
+    height: 255px;
     border: 1px rgba(255, 255, 255, 0.489) solid;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     background-color: #283353c7;
         
-    z-index: 1000;
+    
     transform: translateX(-50%);
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
-    overflow: hidden;
+    z-index: 1000;
 }
 
-.tab{
-    display: grid;
-    grid-template-columns: repeat(8, auto);
-    grid-auto-flow: column;
-    width: auto;
-    height: auto;
-    gap: 10px;
-    padding: 40px 15px 15px 10px;
-    /* transform: translateX(-725px); */
+.hidden_cardAlphabetContain {
+    transform: translate(-50%, -110%);
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
 }
 
 .menuInTopBar{
@@ -500,12 +488,21 @@ body {
     text-decoration: underline;
 }
 
-.hidden_topBar {
-    transform: translate(-50%, -110%);
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
+
+
+.tab{
+    /* position: absolute; */
+    display: grid;
+    grid-template-columns: repeat(8, auto);
+    grid-auto-flow: column;
+    /* width: 100%; */
+    /* height: auto; */
+    gap: 10px;
+    padding: 40px 15px 15px 10px;
+    /* transform: translateX(-725px); */
 }
 
-/* Распределение колонок в топ баре */
+/* Распределение колонок в табе */
 .grid_el_0, .grid_el_1, .grid_el_2, .grid_el_3 {grid-column: 1;}
 .grid_el_4, .grid_el_5, .grid_el_6, .grid_el_7, .grid_el_8, .grid_el_9 {grid-column: 2;}
 .grid_el_10, .grid_el_11, .grid_el_12, .grid_el_13 {grid-column: 3;}
@@ -519,73 +516,89 @@ body {
 .cardAlphabet_card {
     display: grid;
     /* justify-content: center; */
+    /* justify-items: center; */
     padding: 5px 10px;
-    min-width: calc(var(--base-size) / 10);
+    /* min-width: calc(var(--base-size) / 10); */
     gap: 5px;
     border: 1px solid var(--matrix-color);
     border-radius: 3px;
     cursor: grab;
 }
 .cardAlphabet_card.four {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 14px);
 }
 .cardAlphabet_card.three {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 14px);
 }
 .cardAlphabet_card.two {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 14px);
 }
 .grid_el{
-    /* align-items: center; */
+    position: relative;
     width: calc(var(--base-size) / 65);
-    /* width: 100%; */
     height: calc(var(--base-size) / 65);
-    border: 1px solid var(--matrix-color);
+    
     background-color: unset;
-    border-radius: 50%;
-    align-self: center;
+    font-size: 12px;
+    line-height: 24px;
+    color: var(--matrix-color);;
 }
-/* 
-.card_circle_fill_0 {
-
-} */
+.akcent::before{
+    content: '>';
+    position: absolute;
+    color: rgb(212, 212, 212);
+    top: -10px;
+  left: 5px;
+}
+.grid_el.grid_el.card_circle_fill_0 {
+    border: 1px solid var(--matrix-color);
+    border-radius: 50%;
+}
 
 .grid_el.grid_el.card_circle_fill_1 {
+    border: 1px solid var(--matrix-color);
+    border-radius: 50%;
     background-color: var(--matrix-color);
 }
 
 .grid_el.card_circle_fill_1111{
     width: unset;
     grid-column: span 4;
+    border: 1px solid var(--matrix-color);
    border-radius: 5px;
    background-color: var(--matrix-color);
 }
 .card_circle_fill_111{
     width: unset;
     grid-column: span 3;
+    border: 1px solid var(--matrix-color);
    border-radius: 5px;
    background-color: var(--matrix-color);
 }
 .card_circle_fill_11{
     width: unset;
     grid-column: span 2;
+    border: 1px solid var(--matrix-color);
    border-radius: 5px;
    background-color: var(--matrix-color);
 }
 .card_circle_fill_00{
     width: unset;
     grid-column: span 2;
+    border: 1px solid var(--matrix-color);
    border-radius: 5px;
    /* background-color: var(--matrix-color); */
 }
 .card_circle_fill_000{
     width: unset;
     grid-column: span 3;
+    border: 1px solid var(--matrix-color);
    border-radius: 5px;
 }
 .card_circle_fill_0000{
     width: unset;
     grid-column: span 4;
+    border: 1px solid var(--matrix-color);
    border-radius: 5px;
 }
 
@@ -605,6 +618,7 @@ body {
     /* background-color: aquamarine; */
     cursor: pointer;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
+   
 }
 
 .inBody {
@@ -613,4 +627,12 @@ body {
     bottom: -45px;
     transform: rotate(0.375turn);
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
+}
+
+.display_block {
+    display: block;
+}
+
+.display_none {
+    display: none;
 }
