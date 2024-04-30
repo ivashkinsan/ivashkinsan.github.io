@@ -30,6 +30,7 @@ class Note {
         // left
         let leftHandle = document.createElement('div');
         leftHandle.classList.add('handle', 'left-handle');
+        leftHandle.classList.add('display_none');
         leftHandle.addEventListener('mousedown', (eventMSD) => {
             eventMSD.preventDefault();
             eventMSD.stopPropagation();
@@ -43,6 +44,7 @@ class Note {
         // right
         let righttHandle = document.createElement('div');
         righttHandle.classList.add('handle', 'right-handle');
+        righttHandle.classList.add('display_none');
         righttHandle.addEventListener('mousedown', (eventMSD) => {
             eventMSD.preventDefault();
             eventMSD.stopPropagation();
@@ -142,7 +144,7 @@ class Note {
         this.rightSidePosition = this._leftSidePosition + this._width;
     }
     addEventListenerForPauseTransform() {
-        this.div.addEventListener('mousedown', (event) => {
+        this.div.addEventListener('click', (event) => {
             console.log(event);
             event.preventDefault();
             event.stopPropagation();
@@ -150,6 +152,27 @@ class Note {
                 this.magicNoteOrPause();
             }
         })
+        this.div.addEventListener('mousemove', this.findCursorPosition);
+    }
+    findCursorPosition(e){
+        let rect = this.getBoundingClientRect();
+        let percentForTouchLeftRight = (rect.width / 100 * 20)
+        let x = e.clientX - rect.left;
+        let y = e.clientY - rect.top;
+        console.log(rect);
+        console.log( `rect = ${rect} x = ${x} y = ${y}`);
+        if((rect.width - x) < percentForTouchLeftRight || x < percentForTouchLeftRight){
+            this.style.cursor = 'url(\'/cursor/left_and_right_40_figma.svg\')16 16, auto';
+        } else {
+            this.style.cursor = 'url(\'/cursor/note_pause_40_figma.svg\')16 16, auto'; }
+ if(x < percentForTouchLeftRight){
+
+ }
+        // if (y < rect.height / 2) {
+        //     this.style.cursor = "pointer";
+        // } else {
+        //     this.style.cursor = "default";
+        // }
     }
     addTouchEventForPauseAndResizeTransform(){
         this.div.addEventListener('touchstart', (event) => {
