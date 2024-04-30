@@ -144,12 +144,24 @@ class Note {
         this.rightSidePosition = this._leftSidePosition + this._width;
     }
     addEventListenerForPauseTransform() {
-        this.div.addEventListener('click', (event) => {
-            console.log(event);
+        this.div.addEventListener('mousedown', (event) => {
+            let rect = this.div.getBoundingClientRect();
+        let percentForTouchLeftRight = (rect.width / 100 * 20)
+        let x = event.clientX - rect.left;
+        let y = event.clientY - rect.top;
+            // console.log(event);
             event.preventDefault();
             event.stopPropagation();
-            if (event.button == 0) {
-                this.magicNoteOrPause();
+           
+
+            if((rect.width - x) < percentForTouchLeftRight){
+                this.startResizing(event, 'right',);
+            } else if(x < percentForTouchLeftRight){
+                this.startResizing(event, 'left',);
+            } else {
+                if (event.button == 0) {
+                    this.magicNoteOrPause();
+                }
             }
         })
         this.div.addEventListener('mousemove', this.findCursorPosition);
@@ -159,15 +171,14 @@ class Note {
         let percentForTouchLeftRight = (rect.width / 100 * 20)
         let x = e.clientX - rect.left;
         let y = e.clientY - rect.top;
-        console.log(rect);
-        console.log( `rect = ${rect} x = ${x} y = ${y}`);
+        // console.log(rect);
+        // console.log( `rect = ${rect} x = ${x} y = ${y}`);
         if((rect.width - x) < percentForTouchLeftRight || x < percentForTouchLeftRight){
             this.style.cursor = 'url(\'/cursor/left_and_right_40_figma.svg\')16 16, auto';
         } else {
-            this.style.cursor = 'url(\'/cursor/note_pause_40_figma.svg\')16 16, auto'; }
- if(x < percentForTouchLeftRight){
+            this.style.cursor = 'url(\'/cursor/note_pause_40_figma.svg\')16 16, auto'; 
+        }
 
- }
         // if (y < rect.height / 2) {
         //     this.style.cursor = "pointer";
         // } else {
