@@ -143,6 +143,25 @@ class Note {
         this.div.dataset.id = this.id;
         this.rightSidePosition = this._leftSidePosition + this._width;
     }
+    findCursorPosition(e){
+        let rect = this.getBoundingClientRect();
+        let percentForTouchLeftRight = (rect.width / 100 * 20)
+        let x = e.clientX - rect.left;
+        let y = e.clientY - rect.top;
+        // console.log(rect);
+        // console.log( `rect = ${rect} x = ${x} y = ${y}`);
+        if((rect.width - x) < percentForTouchLeftRight || x < percentForTouchLeftRight){
+            this.style.cursor = 'url(\'/cursor/left_and_right_40_figma.svg\')16 16, auto';
+        } else {
+            this.style.cursor = 'url(\'/cursor/note_pause_40_figma.svg\')16 16, auto'; 
+        }
+
+        // if (y < rect.height / 2) {
+        //     this.style.cursor = "pointer";
+        // } else {
+        //     this.style.cursor = "default";
+        // }
+    }
     addEventListenerForPauseTransform() {
         this.div.addEventListener('mousedown', (event) => {
             let rect = this.div.getBoundingClientRect();
@@ -166,25 +185,7 @@ class Note {
         })
         this.div.addEventListener('mousemove', this.findCursorPosition);
     }
-    findCursorPosition(e){
-        let rect = this.getBoundingClientRect();
-        let percentForTouchLeftRight = (rect.width / 100 * 20)
-        let x = e.clientX - rect.left;
-        let y = e.clientY - rect.top;
-        // console.log(rect);
-        // console.log( `rect = ${rect} x = ${x} y = ${y}`);
-        if((rect.width - x) < percentForTouchLeftRight || x < percentForTouchLeftRight){
-            this.style.cursor = 'url(\'/cursor/left_and_right_40_figma.svg\')16 16, auto';
-        } else {
-            this.style.cursor = 'url(\'/cursor/note_pause_40_figma.svg\')16 16, auto'; 
-        }
 
-        // if (y < rect.height / 2) {
-        //     this.style.cursor = "pointer";
-        // } else {
-        //     this.style.cursor = "default";
-        // }
-    }
     addTouchEventForPauseAndResizeTransform(){
         this.div.addEventListener('touchstart', (event) => {
 
@@ -262,13 +263,24 @@ class Note {
         }
     }
     startResizing(eventMSD, direction) {
-        let startX;
+        let rect = this.div.getBoundingClientRect();
+        // let right = rect.right;
+        // let left = rect.left;
+        // console.log(rect);
         if (eventMSD.touches) {
-            startX = eventMSD.touches[0].clientX; 
+            
+            // this.startX = eventMSD.touches ? eventMSD.touches[0].clientX : undefined;
+            if(direction == 'right'){this.startX = rect.right };
+            if(direction == 'left'){this.startX = rect.left };
+            // console.log([this.startX,left, right]);
           } else {
-            startX = eventMSD.clientX;
+            
+            // this.startX = eventMSD.clientX;
+            if(direction == 'right'){this.startX = rect.right };
+            if(direction == 'left'){this.startX = rect.left };
+            if(direction == 'left_right'){this.startX = rect.left };
           }
-        this.startX = startX;
+        
         this.startWidth = this._width;
         this.startLeft = this._leftSidePosition;
         this.direction = direction;
@@ -290,37 +302,38 @@ class Note {
         if (event.touches) {
             event = event.touches[0]; 
           }
-          console.log(event);
-          console.log(event.clientX);
-          console.log(this);
-          console.log(event.x);
+        //   console.log(event);
+        //   console.log(event.clientX);
+        //   console.log(this);
+         // console.log(event.x); // в touch событии этого параметра нет
         if (this.direction === 'right') {
             let newWidth = Math.min(Math.max(this.startWidth + event.clientX - this.startX, bgMatrix.minWidth), bgMatrix.maxWidth);
             // console.log(bgMatrix.idStack[this.nextElemId]);
             if (bgMatrix.idStack[this.nextElemId]) {
-                if (event.screenX < bgMatrix.idStack[this.nextElemId]._leftSidePosition + bgMatrix.app.offsetLeft) {
+                if (event.clientX < bgMatrix.idStack[this.nextElemId]._leftSidePosition + bgMatrix.app.offsetLeft) {
                     this.width = Math.round(newWidth / bgMatrix.step) * bgMatrix.step;
                     this.hameleon();
                 }
-            } else if (event.screenX < bgMatrix.rightAppSide) {
+            } else if (event.clientX < bgMatrix.rightAppSide) {
                 this.width = Math.round(newWidth / bgMatrix.step) * bgMatrix.step;
                 this.hameleon();
             }
 
         } else if (this.direction === 'left') {
+            // корректировка неточности тач события
             this.diff = this.startX - event.clientX;
             let newWidth = Math.min(Math.max(this.startWidth + this.diff, bgMatrix.minWidth), bgMatrix.maxWidth);
             const newLeft = this.startLeft - (newWidth - this.startWidth);
             const newWidthRoundet = Math.round(newWidth / bgMatrix.step) * bgMatrix.step;
             this.newLeftPosition = Math.round(newLeft / bgMatrix.step) * bgMatrix.step;
             if (bgMatrix.idStack[this.previousElemId]) {
-                if (event.screenX - bgMatrix.leftAppSide > bgMatrix.idStack[this.previousElemId]._leftSidePosition + bgMatrix.idStack[this.previousElemId]._width) {
+                if (event.clientX - bgMatrix.leftAppSide > bgMatrix.idStack[this.previousElemId]._leftSidePosition + bgMatrix.idStack[this.previousElemId]._width) {
                     this.width = newWidthRoundet;
                     this.leftSidePosition = this.newLeftPosition;
                     this.indxPosition = bgMatrix.newOutIndMatrix[this._leftSidePosition];
                     this.hameleon();
                 }
-            } else if (event.screenX > bgMatrix.leftAppSide) {
+            } else if (event.clientX > bgMatrix.leftAppSide) {
                 this.width = newWidthRoundet;
                 this.leftSidePosition = this.newLeftPosition;
                 this.indxPosition = bgMatrix.newOutIndMatrix[this._leftSidePosition];

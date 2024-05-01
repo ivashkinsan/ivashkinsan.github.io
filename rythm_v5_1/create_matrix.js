@@ -162,9 +162,21 @@ const bgMatrix = {
         this.app.append(newActiveLayer);
     },
     find_Root_baseSize_baseWidth_step_minWidth_max_width() {
+        if(baseSettings.screenWidth < 850){
+            document.documentElement.style.setProperty('--base-size', 400);
+        }
+        if(baseSettings.screenWidth > 850 || baseSettings.screenWidth < 1366){
+            document.documentElement.style.setProperty('--base-size', 600);
+        }
+        if(baseSettings.screenWidth > 1366){
+            document.documentElement.style.setProperty('--base-size', 840);
+        }
+        document.querySelector('body').style.width = baseSettings.screenWidth;
+        document.querySelector('body').style.height = baseSettings.screenHeight;
         this.root = document.querySelector(':root');
         this.baseSize = parseFloat(getComputedStyle(this.root).getPropertyValue('--base-size'));
-
+console.log('baseSettings');
+        console.log(baseSettings);
         // this.baseWidth = this.baseSize;
         this.step = bgMatrix.baseSize / 16; // Шаг изменения блока
         this.minWidth = bgMatrix.baseSize / 16;

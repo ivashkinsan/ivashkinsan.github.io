@@ -37,7 +37,7 @@
 }
 
 body {
-    width: auto;
+    width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -50,9 +50,12 @@ body {
     /* padding: 40px 0 0 40px; */
     background: var(--background);
     /* border: 10px solid #DDB078; */
-    box-shadow: 0 0 0 10px #DDB078 inset;
+    /* box-shadow: 0 0 0 10px #DDB078 inset; */
     /* border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%); */
-    overflow: hidden;
+    
+    /* overflow: hidden; */
+    /* overflow-x: hidden; отключает горизонтальный скролл */
+  /* overflow-y: scroll; включает вертикальный скролл */
 }
 
 

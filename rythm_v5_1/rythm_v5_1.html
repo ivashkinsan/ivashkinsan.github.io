@@ -9,11 +9,15 @@
     <link rel="stylesheet" href="/rythm_v5_1/rythm_v5_1.css">
     <link rel="stylesheet" href="/rythm_v5_1/metronome_style_v5_1.css">
     <!-- вычисление размера экрана -->
-    <!-- <script type="text/javascript">
-        var winWidth = window.innerWidth;
-        var winHeight = window.innerHeight;
-        alert("Width: " + winWidth + ", " + "Height: " + winHeight);
-    </script> -->
+    <script type="text/javascript">
+        const baseSettings = {
+            'screenWidth': window.innerWidth,
+            'screenHeight': window.innerHeight,
+        }
+        // var winWidth = window.innerWidth;
+        // var winHeight = window.innerHeight;
+        alert("Width: " + baseSettings.screenWidth + ", " + "Height: " + baseSettings.screenHeight);
+    </script>
 </head>
 
 
