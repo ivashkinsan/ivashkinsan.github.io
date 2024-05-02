@@ -144,7 +144,7 @@ const bgMatrix = {
         let app = document.querySelector('.app');
         this.app = app;
         // let app_forMouseUpEvent = document.querySelector('.app');
-        app.addEventListener('mouseup', () => {
+        this.app.addEventListener('mouseup', () => {
             console.log('mouseup');
             this.saveState();
         })
@@ -163,16 +163,16 @@ const bgMatrix = {
     },
     find_Root_baseSize_baseWidth_step_minWidth_max_width() {
         if(baseSettings.screenWidth < 850){
-            document.documentElement.style.setProperty('--base-size', 400);
+            document.documentElement.style.setProperty('--base-size', '400px');
         }
         if(baseSettings.screenWidth > 850 || baseSettings.screenWidth < 1366){
-            document.documentElement.style.setProperty('--base-size', 600);
+            document.documentElement.style.setProperty('--base-size', '600px');
         }
         if(baseSettings.screenWidth > 1366){
-            document.documentElement.style.setProperty('--base-size', 840);
+            document.documentElement.style.setProperty('--base-size', '840px');
         }
-        document.querySelector('body').style.width = baseSettings.screenWidth;
-        document.querySelector('body').style.height = baseSettings.screenHeight;
+        // document.querySelector('body').style.width = baseSettings.screenWidth + 'px';
+        // document.querySelector('body').style.height = baseSettings.screenHeight + 'px';
         this.root = document.querySelector(':root');
         this.baseSize = parseFloat(getComputedStyle(this.root).getPropertyValue('--base-size'));
 console.log('baseSettings');
@@ -377,34 +377,33 @@ console.log('baseSettings');
         }
     },
     saveState() {
-        let state = { ...this.idStack };
-        this.undoStack.push(state);
-        this.redoStack = [];
+        this.undoStack.push({ ...this.idStack }); // сохранить текущеесостояние в отдельный элемент массива
+        this.redoStack = []; // очистить редо стек
 
         // this.undoStack.push(this.activeLayer.innerHTML);
-        this.redoStack = [];
-        this.undoButton.disabled = false;
-        this.redoButton.disabled = true;
-        // console.log('saveSatate');
-        // console.log(this.undoStack);
+        this.undoButton.disabled = false; // активировать ундо баттон
+        this.redoButton.disabled = true; // деактивировать редо баттон
+        // console.log(`SAVE STATE undo = ${this.undoStack.length} redo ${this.redoStack.length}`);
+        // console.log(this.idStack);
     },
     undo() {
         clearActiveElem();
-        this.redoStack.push({ ...this.idStack });
-        console.log(this.undoStack);
-        this.idStack = this.undoStack.pop();
-        console.log(this.undoStack);
-        this.redoButton.disabled = false;
-        if (this.undoStack.length === 0) {
-            this.undoButton.disabled = true;
+        this.redoStack.push({ ...this.idStack }); // сохранить в эелемент массива редоСтек текущее состояние стека
+
+        this.idStack = this.undoStack.pop(); // удалить последний элемент массива и записать в айдиСтек
+        this.redoButton.disabled = false; // выключить активность редо кнопки
+        if (this.undoStack.length === 0) { // если длина стека будет ноль
+            this.undoButton.disabled = true; // выключить активность кнопки ундо
         }
 
-        for (let key in this.idStack) {
+        for (let key in this.idStack) { // пройти циклом по активному стеку
             // console.log(this.idStack[key]);
-            this.activeLayer.append(this.idStack[key].div);
+            this.activeLayer.append(this.idStack[key].div); // добавить дивы объектов в активный слой
         }
-        // console.log('undo');
-
+        // console.log(`UNDO BTN / undo = ${this.undoStack.length} redo ${this.redoStack.length}`);
+        // console.log(this.idStack);
+        // console.log(this.undoStack);
+        // console.log(this.redoStack);
     },
     redo() {
         this.undoStack.push({ ...this.idStack });
@@ -416,10 +415,11 @@ console.log('baseSettings');
 
         clearActiveElem();
         for (let key in this.idStack) {
-            console.log(this.idStack[key]);
+            // console.log(this.idStack[key]);
             // this.idStack[key].delElemInBigElem();
             this.activeLayer.append(this.idStack[key].div);
         }
+        // console.log(`REDO BTN / undo = ${this.undoStack.length} redo ${this.redoStack.length}`);
         // console.log('redo');
         // console.log(this.undoStack);
         // returnAddEventListener();

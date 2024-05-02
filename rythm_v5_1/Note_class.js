@@ -370,7 +370,6 @@ class Note {
         document.documentElement.removeEventListener('mouseup', this.stopResizing);
         document.documentElement.removeEventListener('touchmove', this.resize);
         document.documentElement.removeEventListener('touchup', this.stopResizing);
-        bgMatrix.saveState();
     }
     hameleon() {
         // console.log(this._class);

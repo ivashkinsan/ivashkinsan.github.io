@@ -253,67 +253,67 @@ body {
 /* ========== размер шрифтов в активных нотах ========== */
 .wholeNote_1>p {
     font-size: calc(var(--font-size) * 4.75);
-    line-height: calc(var(--font-size) * 8.5);
+    line-height: calc(var(--font-size) * 9);
 }
 
 .halfNote_2w4w8w16>p {
     font-size: calc(var(--font-size) * 4.5);
-    line-height: calc(var(--font-size) * 8);
+    line-height: calc(var(--font-size) * 8.5);
 }
 
 .halfNote_2w4w8>p {
     font-size: calc(var(--font-size) * 4.25);
-    line-height: calc(var(--font-size) * 7.5);
+    line-height: calc(var(--font-size) * 8);
 }
 
 .halfNote_2w4w16>p {
     font-size: calc(var(--font-size) * 4);
-    line-height: calc(var(--font-size) * 7);
+    line-height: calc(var(--font-size) * 7.5);
 }
 
 .halfNote_2w4>p {
     font-size: calc(var(--font-size) * 3.75);
-    line-height: calc(var(--font-size) * 6.5);
+    line-height: calc(var(--font-size) * 7);
 }
 
 .halfNote_2w8w16>p {
     font-size: calc(var(--font-size) * 3.5);
-    line-height: calc(var(--font-size) * 6);
+    line-height: calc(var(--font-size) * 6.5);
 }
 
 .halfNote_2w8>p {
     font-size: calc(var(--font-size) * 3.25);
-    line-height: calc(var(--font-size) * 5.5);
+    line-height: calc(var(--font-size) * 6);
 }
 
 .halfNote_2w16>p {
     font-size: calc(var(--font-size) * 3);
-    line-height: calc(var(--font-size) * 5);
+    line-height: calc(var(--font-size) * 5.5);
 }
 
 .halfNote_2>p {
     font-size: calc(var(--font-size) * 2.75);
-    line-height: calc(var(--font-size) * 4.5);
+    line-height: calc(var(--font-size) * 5);
 }
 
 .quarterNote_4w8w16>p {
     font-size: calc(var(--font-size) * 2.5);
-    line-height: calc(var(--font-size) * 4);
+    line-height: calc(var(--font-size) * 4.5);
 }
 
 .quarterNote_4w8>p {
     font-size: calc(var(--font-size) * 2.25);
-    line-height: calc(var(--font-size) * 3.5);
+    line-height: calc(var(--font-size) * 4);
 }
 
 .quarterNote_4w16>p {
     font-size: calc(var(--font-size) * 2);
-    line-height: calc(var(--font-size) * 3);
+    line-height: calc(var(--font-size) * 3.5);
 }
 
 .quarterNote_4>p {
     font-size: calc(var(--font-size) * 1.75);
-    line-height: calc(var(--font-size) * 2.5);
+    line-height: calc(var(--font-size) * 3);
 }
 
 .eighthNote_8w16>p {
