@@ -30,34 +30,34 @@ const alphabet = {
 }
 
 const alphabet_2 = {
-    'A': '1111',
-    'B': '0 111',
-    'C': '00 11',
-    'D': '000 1',
-    'E': '1 111',
-    'F': '0 1 11',
-    'G': '00 1 1',
-    'H': '111 1',
-    'I': '11 11',
-    'J': '0 11 1',
-    'K': '1 1 11',
+    'A': '1111 - - -',
+    'B': '0 111 - -',
+    'C': '00 - 11 -',
+    'D': '000 - - 1',
+    'E': '1 111 - -',
+    'F': '0 1 11 -',
+    'G': '00 - 1 1',
+    'H': '111 - - 1',
+    'I': '11 - 11 -',
+    'J': '0 11 - 1',
+    'K': '1 1 11 -',
     'L': '0 1 1 1',
-    'M': '11 1 1',
-    'N': '1 11 1',
+    'M': '11 - 1 1',
+    'N': '1 11 - 1',
     'O': '1 1 1 1',
-    'P': '0000',
-    'Q': '111',
-    'R': '0 11',
+    'P': '0000 - - -',
+    'Q': '111 - -',
+    'R': '0 11 -',
     'S': '0 0 1',
-    'T': '1 11',
+    'T': '1 11 -',
     'U': '0 1 1',
-    'V': '11 1',
+    'V': '11 - 1',
     'W': '1 1 1',
-    'X': '000',
+    'X': '000 -',
     'a': '1 0',
     'b': '0 1',
     'c': '1 1',
-    'd': '00',
+    'd': '00 -',
 }
 
 const alphabet_3 = {
@@ -176,7 +176,12 @@ const createCircle = (elem) => {
     if(isUpperCase(elem)){
         cardAlphabetCardCircle.classList.add('akcent');
     }
-    return cardAlphabetCardCircle;
+    if(elem != '-'){
+        return cardAlphabetCardCircle;
+    } else {
+        return 'undefined';
+    }
+    
 }
 function isUpperCase(letter) {
     return letter === letter.toUpperCase() && letter !== letter.toLowerCase();
@@ -212,10 +217,13 @@ const createTab_1 = () => {
             case index <= 28: cardAlphabetCard.classList.add('two');
             break;
         }
-        cardAlphabetCard.classList.add(`grid_el_${index}`);
-        cardAlphabetCard.dataset.data = value;
-        cardAlphabetCard.draggable = true;
-        value.split(' ').map(createCircle).forEach(circle => {
+        
+        value.split(' ').map(
+             createCircle
+        ).forEach(circle => {
+            cardAlphabetCard.classList.add(`grid_el_${index}`);
+            cardAlphabetCard.dataset.data = value;
+            cardAlphabetCard.draggable = true;
             cardAlphabetCard.appendChild(circle);
         });
         cardAlphabetCard.addEventListener('dragstart', dragstart, false);
@@ -237,7 +245,7 @@ const createTab_2 = () => {
        Object.entries(alphabet_2).forEach(([item, value], index) => {
         const cardAlphabetCard = document.createElement('div');
         cardAlphabetCard.classList.add('cardAlphabet_card');
-        let newArrForLength = alphabet[item].split(' ');
+        // let newArrForLength = alphabet[item].split(' ');
         switch(true){
             case index <= 15: cardAlphabetCard.classList.add('four');
             break;
@@ -246,16 +254,25 @@ const createTab_2 = () => {
             case index <= 28: cardAlphabetCard.classList.add('two');
             break;
         }
-        cardAlphabetCard.classList.add(`grid_el_${index}`);
-           cardAlphabetCard.dataset.data = value;
-           cardAlphabetCard.draggable = true;
-           value.split(' ').map(createCircle).forEach(circle => {
-               cardAlphabetCard.appendChild(circle);
+            cardAlphabetCard.classList.add(`grid_el_${index}`);
+            cardAlphabetCard.dataset.data = value;
+            cardAlphabetCard.draggable = true;
+           value.split(' ')
+           .map(createCircle)
+           .forEach(circle => {
+            console.log(circle);
+            if(circle != 'undefined'){
+                
+                cardAlphabetCard.appendChild(circle);
+                
+            } 
            });
-           cardAlphabetCard.addEventListener('dragstart', dragstart, false);
-           cardAlphabetCard.addEventListener('dragend', dragend, false);
-           tab_2_docFragment.appendChild(cardAlphabetCard);
+            console.log(cardAlphabetCard);
+            cardAlphabetCard.addEventListener('dragstart', dragstart, false);
+            cardAlphabetCard.addEventListener('dragend', dragend, false);
+            tab_2_docFragment.appendChild(cardAlphabetCard);
        });
+    //    console.log(tab_2_docFragment);
        tab_2.appendChild(tab_2_docFragment);
        return tab_2;
 }
@@ -368,42 +385,60 @@ let createNoteAfterDrop = (event, dropElem) => {
     dropElem.classList.remove('drop_insert_border_on');
 
     let customData = event.dataTransfer.getData('customData').split(' ');
-    let interval = dropElemPosition.width / customData.length;
-    let constInterval = interval;
+    let interval;
+    let isPause;
+    
+    // let constInterval = interval;
     let targetLeftPosition = dropElemPosition.left;
 
     for (let i = 0; i < customData.length; i++) {
         console.log(customData[i]);
-        let isPause = customData[i] === '0';
-        // if (!isZero) {
-        //     createTripletLine(customData.length, newCircle, interval);
-        // }
+        switch (customData[i]){
+            case '1':
+                interval = dropElemPosition.width / customData.length;
+                isPause = false;
+                break;
+            case '0':
+                interval = dropElemPosition.width / customData.length;
+                isPause = true;
+                break;
+            case '11':
+                interval = (dropElemPosition.width / customData.length) * 2;
+                isPause = false;
+                break;
+            case '111':
+                interval = (dropElemPosition.width / customData.length) * 3;
+                isPause = false;
+                break;
+            case '1111':
+                interval = (dropElemPosition.width / customData.length) * 4;
+                isPause = false;
+                break;
+            case '00':
+                interval = (dropElemPosition.width / customData.length) * 2;
+                isPause = true;
+                break;
+            case '000':
+                interval = (dropElemPosition.width / customData.length) * 3;
+                isPause = true;
+                break;
+            case '0000':
+                interval = (dropElemPosition.width / customData.length) * 4;
+                isPause = true;
+                break;
+        }
 
-
-
-        // let newCircle = sizeIdentif[interval].createDivTag('', interval, isZero);
-        // newCircle.style.width = newCircle.style.height = `${interval}px`;
-        // newCircle.style.left = targetLeftPosition + 'px';
-        // create_and_append_active_elem(newCircle, activeElemLayer, 'drop', isZero);
-
-        // create_note(name, width, leftPosition, indxPosition)
-        bgMatrix.create_note(
-            bgMatrix.sizeIdentif[interval],
-            interval,
-            targetLeftPosition,
-            undefined,
-            isPause);
-
-
-        // createTripletLine(customData.length, newCircle, interval);
+        
+if(customData[i] != '-'){
+    bgMatrix.create_note(
+        bgMatrix.sizeIdentif[interval],
+        interval,
+        targetLeftPosition,
+        undefined,
+        isPause);
         targetLeftPosition += interval;
-        // if(customData[i+1] === '0'){
-        //     console.log('уменьшаем');
-        //    interval = interval - constInterval;
-        //    i++;
-        //             }
-        // saveState();
-    }
+}
+}
 }
 
 let extractPositionData = (style) => {

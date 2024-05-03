@@ -4,6 +4,7 @@ class Note {
         this._class = obj.class;
         this.id = null;
         this.indxPosition = indxPosition;
+        this._isPause = false;
         this._width = size;
         this._height = size;
         this._leftSidePosition = leftPosition;
@@ -120,15 +121,17 @@ class Note {
             this.previousElem = null;
         }
     }
-    createLabel(is_pause) {
+    createLabel() {
         let p_label = document.createElement('p');
-        if (is_pause) {
-            p_label.textContent = this.pausesSymbol.default;
-        } else {
-            p_label.textContent = this.notesSymbol.default;
-        }
+        // if (is_pause) {
+            // p_label.textContent = this.pausesSymbol.default;
+        // } else {
+            // p_label.textContent = this.notesSymbol.default;
+        // }
+        
         this._label = p_label;
         this.div.append(this._label);
+        this.isPause = false;
     }
     createNoteDiv() {
         let newNoteDiv = document.createElement('div');
@@ -179,10 +182,11 @@ class Note {
                 this.startResizing(event, 'left',);
             } else {
                 if (event.button == 0) {
-                    this.magicNoteOrPause();
+                    this.isPause = this._isPause === true ? false : true;
                 }
             }
         })
+        
         this.div.addEventListener('mousemove', this.findCursorPosition);
     }
 
@@ -213,15 +217,15 @@ class Note {
             // }
         })
     }
-    magicNoteOrPause() {
-        if (!this.div.classList.contains('pause') && !this.div.classList.contains('handle')) {
-            this.div.classList.add('pause');
-            this._label.textContent = this.pausesSymbol.default;
-        } else {
-            this.div.classList.remove('pause');
-            this._label.textContent = this.notesSymbol.default;
-        }
-    }
+    // magicNoteOrPause() {
+    //     if (!this.div.classList.contains('pause') && !this.div.classList.contains('handle')) {
+    //         this.div.classList.add('pause');
+    //         this._label.textContent = this.pausesSymbol.default;
+    //     } else {
+    //         this.div.classList.remove('pause');
+    //         this._label.textContent = this.notesSymbol.default;
+    //     }
+    // }
     deleteNote(id) {
         bgMatrix.idStack[id].div.remove();
         delete bgMatrix.idStack[id];
@@ -302,10 +306,6 @@ class Note {
         if (event.touches) {
             event = event.touches[0]; 
           }
-        //   console.log(event);
-        //   console.log(event.clientX);
-        //   console.log(this);
-         // console.log(event.x); // в touch событии этого параметра нет
         if (this.direction === 'right') {
             let newWidth = Math.min(Math.max(this.startWidth + event.clientX - this.startX, bgMatrix.minWidth), bgMatrix.maxWidth);
             // console.log(bgMatrix.idStack[this.nextElemId]);
@@ -442,4 +442,24 @@ class Note {
 
         }
     }
+    /**
+     * @param {{boolean}} value
+     */
+    // при установке паузы изменяются: класс, текст внутри label, переменная _isPause 
+    set isPause(value){
+        if(value === true){
+                this.div.classList.add('pause');
+                this._label.textContent = this.pausesSymbol.default;
+                this._isPause = true;
+        } else if(value === false){
+            this.div.classList.remove('pause');
+            this._label.textContent = this.notesSymbol.default;
+            this._isPause = false;
+        }
+    }
+    get isPause(){
+        return this._isPause;
+    }
 }
+
+//   if (!this.div.classList.contains('pause') && !this.div.classList.contains('handle')) {

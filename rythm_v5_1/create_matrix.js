@@ -340,7 +340,8 @@ console.log('baseSettings');
         this.researchAllNextPrevElem();  // найти и добавить все параметры окружения у активных нот
         note.ifBorderCollapse_resize(); // если новая нота наслаивается на уже имеющуюся - изменить размер старой
         if (isPause) {
-            note.magicNoteOrPause();
+            // note.magicNoteOrPause();
+            note.isPause = true;
         }
 
         note.addEventListenerForPauseTransform(); // добавить обработчик для ссмены ноты на паузу
@@ -379,12 +380,8 @@ console.log('baseSettings');
     saveState() {
         this.undoStack.push({ ...this.idStack }); // сохранить текущеесостояние в отдельный элемент массива
         this.redoStack = []; // очистить редо стек
-
-        // this.undoStack.push(this.activeLayer.innerHTML);
         this.undoButton.disabled = false; // активировать ундо баттон
         this.redoButton.disabled = true; // деактивировать редо баттон
-        // console.log(`SAVE STATE undo = ${this.undoStack.length} redo ${this.redoStack.length}`);
-        // console.log(this.idStack);
     },
     undo() {
         clearActiveElem();
@@ -392,27 +389,20 @@ console.log('baseSettings');
 
         this.idStack = this.undoStack.pop(); // удалить последний элемент массива и записать в айдиСтек
         this.redoButton.disabled = false; // выключить активность редо кнопки
-        if (this.undoStack.length === 0) { // если длина стека будет ноль
-            this.undoButton.disabled = true; // выключить активность кнопки ундо
-        }
-
         for (let key in this.idStack) { // пройти циклом по активному стеку
             // console.log(this.idStack[key]);
             this.activeLayer.append(this.idStack[key].div); // добавить дивы объектов в активный слой
         }
+        if (this.undoStack.length === 0) { // если длина стека будет ноль
+            this.undoButton.disabled = true; // выключить активность кнопки ундо
+        }
         // console.log(`UNDO BTN / undo = ${this.undoStack.length} redo ${this.redoStack.length}`);
         // console.log(this.idStack);
-        // console.log(this.undoStack);
-        // console.log(this.redoStack);
     },
     redo() {
         this.undoStack.push({ ...this.idStack });
         this.idStack = this.redoStack.pop();
         this.undoButton.disabled = false;
-        if (this.redoStack.length === 0) {
-            this.redoButton.disabled = true;
-        }
-
         clearActiveElem();
         for (let key in this.idStack) {
             // console.log(this.idStack[key]);
@@ -421,8 +411,9 @@ console.log('baseSettings');
         }
         // console.log(`REDO BTN / undo = ${this.undoStack.length} redo ${this.redoStack.length}`);
         // console.log('redo');
-        // console.log(this.undoStack);
-        // returnAddEventListener();
+        if (this.redoStack.length === 0) {
+            this.redoButton.disabled = true;
+        }
     }
 }
 
@@ -435,39 +426,6 @@ bgMatrix.redoButton.addEventListener('click', (e) => {
     bgMatrix.redo();
 });
 
-// let returnAddEventListener = function () {
-//     // let activeElemLayer = document.querySelector('.activeLayer');
-//     let all_active_elem = bgMatrix.activeLayer.querySelectorAll('.active ');
-//     for (let item of all_active_elem) {
-//         item.addEventListener('mousedown', (event) => {
-//             clickForActiveElem(event);
-//         })
-//         item.addEventListener('contextmenu', (event) => {
-//             event.preventDefault(true);
-//             onContextClickForDelActiveElem(event);
-//         });
-//         for (let child of item.childNodes) {
-//             switch (child.classList[1]) {
-//                 case 'left-handle':
-//                     child.addEventListener('mousedown', function (elem) {
-//                         startResizing(elem, 'left');
-//                     })
-//                     break;
-//                 case 'right-handle':
-//                     child.addEventListener('mousedown', function (elem) {
-//                         startResizing(elem, 'right');
-//                     })
-//                     break;
-//                 case 'left_double_arrow':
-//                     child.addEventListener('mousedown', function (elem) {
-//                         startResizing(elem, 'left_right');
-//                     })
-//                     break;
-//             }
-//         }
-//     }
-// }
-
 
 bgMatrix.addApp();
 bgMatrix.createContainMatrix();
@@ -475,17 +433,9 @@ bgMatrix.createActiveLayer();
 bgMatrix.find_Root_baseSize_baseWidth_step_minWidth_max_width();
 bgMatrix.createSizeIdentif();
 bgMatrix.createBackground(bgMatrix.matrix_8x4, bgMatrix.startleftPosition);
-// console.log(bgMatrix.newOutIndMatrix);
-// console.log(bgMatrix.app);
-// console.log(bgMatrix.containMatrix);
-// console.log(bgMatrix.activeLayer);
-
-// console.log(bgMatrix);
 
 bgMatrix.saveState();
 
 
 
 console.log(solfedjio);
-
-// 16 = 
