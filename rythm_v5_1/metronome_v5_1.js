@@ -228,36 +228,36 @@ document.querySelector('.contain_btn_pulse').addEventListener('change', function
     }
 })
 
-document.querySelector('.contain_btn_group').addEventListener('change', function () {
-    // console.log(this.value);
-    // clear_all_elem();
-    console.log(this.dataset.value);
-    switch (this.dataset.value) {
-        case 'value_NO':
-            metronome.beatsPerBar = 0;
-            break;
-        case 'value_1':
-            metronome.beatsPerBar = 1;
-            break;
-        case 'value_2':
-            metronome.beatsPerBar = 2;
-            break;
-        case 'value_3':
-            metronome.beatsPerBar = 3;
-            break;
-        case 'value_4':
-            metronome.beatsPerBar = 4;
-            break;
-        case 'value_5':
-            metronome.beatsPerBar = 5;
-            break;
-        // case 'value_3+2':
-        //     let arr_3_2 = [1, 1, 1, 2, 3];
-        //     metronome.beatsPerBar = arr_3_2.forEach();
-        //     console.log(arr_3_2);
-        //     break;
-    }
-})
+// document.querySelector('.contain_btn_group').addEventListener('change', function () {
+//     // console.log(this.value);
+//     // clear_all_elem();
+//     console.log(this.dataset.value);
+//     switch (this.dataset.value) {
+//         case 'value_NO':
+//             metronome.beatsPerBar = 0;
+//             break;
+//         case 'value_1':
+//             metronome.beatsPerBar = 1;
+//             break;
+//         case 'value_2':
+//             metronome.beatsPerBar = 2;
+//             break;
+//         case 'value_3':
+//             metronome.beatsPerBar = 3;
+//             break;
+//         case 'value_4':
+//             metronome.beatsPerBar = 4;
+//             break;
+//         case 'value_5':
+//             metronome.beatsPerBar = 5;
+//             break;
+//         // case 'value_3+2':
+//         //     let arr_3_2 = [1, 1, 1, 2, 3];
+//         //     metronome.beatsPerBar = arr_3_2.forEach();
+//         //     console.log(arr_3_2);
+//         //     break;
+//     }
+// })
 
 let clearActiveElem = function () {// функция очистки подсветки всех активных элементов
     let allActiveElem = document.querySelectorAll('.active');

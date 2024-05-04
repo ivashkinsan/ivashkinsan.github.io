@@ -35,7 +35,9 @@
     src: url(/fonts/Maestro2.ttf);
     /* Путь к файлу со шрифтом */
 }
-
+.font{
+    font-family: MAESTRO;
+}
 body {
     width: 100vw;
     height: 100vh;
@@ -412,18 +414,24 @@ body {
     gap: 5px;
 }
 
-.elem_footer>div {
-    /* margin: 5px; */
-    /* padding: 3px; */
+.btn_pls{
     width: 32px;
     height: 32px;
+    font-size: 22px;
+    line-height: 42px;
     text-align: center;
-    line-height: 32px;
     border: 1px rgba(255, 255, 255, 0.27) solid;
     border-radius: 5px;
     cursor: pointer;
 }
 
+.elem_footer :nth-child(2){
+    line-height: 37px;
+}
+
+.clear, .undo, .redo {
+    font-size: 26px;
+}
 .elem_footer>.btn_active {
     border: 1px solid white;
 }
