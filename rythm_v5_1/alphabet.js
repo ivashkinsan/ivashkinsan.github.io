@@ -260,14 +260,10 @@ const createTab_2 = () => {
            value.split(' ')
            .map(createCircle)
            .forEach(circle => {
-            console.log(circle);
             if(circle != 'undefined'){
-                
                 cardAlphabetCard.appendChild(circle);
-                
             } 
            });
-            console.log(cardAlphabetCard);
             cardAlphabetCard.addEventListener('dragstart', dragstart, false);
             cardAlphabetCard.addEventListener('dragend', dragend, false);
             tab_2_docFragment.appendChild(cardAlphabetCard);
@@ -376,12 +372,20 @@ let createNoteAfterDrop = (event, dropElem) => {
     let allActiveForDelete = bgMatrix.activeLayer.querySelectorAll('.active');
     let dropElemPosition = extractPositionData(dropElem.style);
 
-    for (let item of allActiveForDelete) {
-        let itemLeft = Number(item.style.left.replace('px', ''));
-        if (itemLeft >= dropElemPosition.left && itemLeft < dropElemPosition.right) {
-            item.remove();
-        }
-    }
+    // for (let item of allActiveForDelete) {
+    //     let itemLeft = Number(item.style.left.replace('px', ''));
+    //     if (itemLeft >= dropElemPosition.left && itemLeft < dropElemPosition.right) {
+    //         console.log('delete in createNoteAfterDrop');
+    //         bgMatrix.idStack[item.dataset.id].deleteNote(item.dataset.id);
+    //     }
+    // }
+    // for (let item of allActiveForDelete) {
+    //     let itemLeft = Number(item.style.left.replace('px', ''));
+    //     if (itemLeft >= dropElemPosition.left && itemLeft < dropElemPosition.right) {
+    //         item.remove();
+    //     }
+    // }
+    
     dropElem.classList.remove('drop_insert_border_on');
 
     let customData = event.dataTransfer.getData('customData').split(' ');
@@ -392,7 +396,6 @@ let createNoteAfterDrop = (event, dropElem) => {
     let targetLeftPosition = dropElemPosition.left;
 
     for (let i = 0; i < customData.length; i++) {
-        console.log(customData[i]);
         switch (customData[i]){
             case '1':
                 interval = dropElemPosition.width / customData.length;

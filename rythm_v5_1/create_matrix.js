@@ -336,7 +336,7 @@ console.log('baseSettings');
 
         this.idStack[note.id] = note;
         this.activeLayer.append(note.div); // вставить ноту в активный слой
-        this.sortedActiveLayer(this.activeLayer, note.div); // сортировать с лева на право
+        this.sortedActiveLayer(); // сортировать с лева на право
         this.researchAllNextPrevElem();  // найти и добавить все параметры окружения у активных нот
         note.ifBorderCollapse_resize(); // если новая нота наслаивается на уже имеющуюся - изменить размер старой
         if (isPause) {
@@ -366,10 +366,10 @@ console.log('baseSettings');
         })
     },
     sortedActiveLayer(container, newDiv) {
-        container.appendChild(newDiv); // Вставляем новый div в конец контейнера
-        const childrenArray = Array.from(container.children); // Преобразуем коллекцию дочерних элементов в массив
+        // container.appendChild(newDiv); // Вставляем новый div в конец контейнера
+        const childrenArray = Array.from(this.activeLayer.children); // Преобразуем коллекцию дочерних элементов в массив
         childrenArray.sort((a, b) => a.offsetLeft - b.offsetLeft); // Сортируем дочерние элементы по offSetLeft
-        childrenArray.forEach(child => container.appendChild(child)); // Вставляем отсортированные элементы обратно в контейнер
+        childrenArray.forEach(child => this.activeLayer.appendChild(child)); // Вставляем отсортированные элементы обратно в контейнер
     },
     researchAllNextPrevElem() {
         for (let key in this.idStack) {

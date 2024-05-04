@@ -238,6 +238,7 @@ class Note {
                 && item._leftSidePosition < this._rightSidePosition
                 && item._rightSidePosition <= this._rightSidePosition
             ) {
+                console.log('delElemInBigElem');
                 item.div.remove();
                 bgMatrix.idStack[key] = null;
                 delete bgMatrix.idStack[key];
@@ -246,14 +247,31 @@ class Note {
     }
     ifBorderCollapse_resize() {
         if (bgMatrix.idStack[this.previousElemId]) {
-            if (bgMatrix.idStack[this.previousElemId]._rightSidePosition > this._leftSidePosition) {
+            if (
+                bgMatrix.idStack[this.previousElemId]._rightSidePosition > this._leftSidePosition
+                && bgMatrix.idStack[this.previousElemId]._leftSidePosition != this._leftSidePosition
+            ) {
                 bgMatrix.idStack[this.previousElemId].width = bgMatrix.idStack[this.previousElemId]._width - (bgMatrix.idStack[this.previousElemId]._rightSidePosition - this._leftSidePosition);
                 bgMatrix.idStack[this.previousElemId].hameleon();
+                bgMatrix.researchAllNextPrevElem();
+                console.log('ifBorderCollapse_resize previousElem');
+            } else if(
+                bgMatrix.idStack[this.previousElemId]._leftSidePosition == this._leftSidePosition
+                && this._width < bgMatrix.idStack[this.previousElemId]._width
+            ){
+                bgMatrix.idStack[this.previousElemId].leftSidePosition = bgMatrix.idStack[this.previousElemId]._leftSidePosition + this._width;
+                bgMatrix.idStack[this.previousElemId].width = bgMatrix.idStack[this.previousElemId]._width - this._width;
+                bgMatrix.idStack[this.previousElemId].indxPosition = bgMatrix.newOutIndMatrix[bgMatrix.idStack[this.previousElemId]._leftSidePosition];
+                bgMatrix.idStack[this.previousElemId].hameleon();
+                bgMatrix.sortedActiveLayer();
                 bgMatrix.researchAllNextPrevElem();
             }
         }
         if (bgMatrix.idStack[this.nextElemId]) {
-            if (this._rightSidePosition > bgMatrix.idStack[this.nextElemId]._leftSidePosition && bgMatrix.idStack[this.nextElemId]._rightSidePosition > this._rightSidePosition) {
+            if (
+                this._rightSidePosition > bgMatrix.idStack[this.nextElemId]._leftSidePosition 
+                && bgMatrix.idStack[this.nextElemId]._rightSidePosition > this._rightSidePosition
+            ) {
                 let diff = this._rightSidePosition - bgMatrix.idStack[this.nextElemId]._leftSidePosition;
                 let newWidth = bgMatrix.idStack[this.nextElemId]._width - diff;
                 let newLeftSidePosition = bgMatrix.idStack[this.nextElemId]._leftSidePosition + diff;
@@ -263,6 +281,7 @@ class Note {
                 bgMatrix.idStack[this.nextElemId].indxPosition = newIndxPosition;
                 bgMatrix.idStack[this.nextElemId].hameleon();
                 bgMatrix.researchAllNextPrevElem();
+                console.log('ifBorderCollapse_resize nextElem');
             }
         }
     }
