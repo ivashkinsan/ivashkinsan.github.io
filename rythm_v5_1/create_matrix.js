@@ -40,7 +40,7 @@ const bgMatrix = {
         '16'            //8
     ],
     'matrix_3x4': [
-        '1.5 2 4 8 16',     //1
+        '2.5 2 4 8 16',     //1
         '16',           //2
         '8 16',         //3
         '16',           //4
@@ -70,6 +70,54 @@ const bgMatrix = {
         '16',           //14
         '8 16',         //15
         '16'            //16
+    ],
+    'matrix_5x4': [
+        '1 2 4 8 16',   //1
+        '16',           //2
+        '8 16',         //3
+        '16',           //4
+        '1 2 4 8 16',       //5
+        '16',           //6
+        '8 16',         //7
+        '16',           //8
+        '2 4 8 16',     //9
+        '16',           //10
+        '8 16',         //11
+        '16',           //12
+        '2 4 8 16',       //13
+        '16',           //14
+        '8 16',         //15
+        '16',            //16
+        '4 8 16',       //17
+        '16',           //18
+        '8 16',         //19
+        '16'            //20
+    ],
+    'matrix_6x4': [
+        '2.5 2 4 8 16', //1
+        '16',           //2
+        '8 16',         //3
+        '16',           //4
+        '2 4 8 16',     //5
+        '16',           //6
+        '8 16',         //7
+        '16',           //8
+        '4 8 16',       //9
+        '16',           //10
+        '8 16',         //11
+        '16',           //12
+        '2.5 2 4 8 16', //1
+        '16',           //2
+        '8 16',         //3
+        '16',           //4
+        '2 4 8 16',     //5
+        '16',           //6
+        '8 16',         //7
+        '16',           //8
+        '4 8 16',       //9
+        '16',           //10
+        '8 16',         //11
+        '16',           //12
     ],
     'matrix_8x4': [
         '1 2 4 8 16',   //1
@@ -184,6 +232,11 @@ console.log('baseSettings');
     },
     // в бэкграунде на каждый элемент настроен клик
     createBackground(array, startleftPosition) {
+
+        while(this.containMatrix.firstChild) {
+            this.containMatrix.removeChild(this.containMatrix.firstChild);
+        }
+
         this.baseWidth = this.baseSize / 16 * array.length;
         this.containMatrix.style.width = this.baseWidth + 'px';
         // внешний цикл
@@ -236,6 +289,16 @@ console.log('baseSettings');
                         new_circle.classList.add('mtrxCircle');
                         new_circle.classList.add('matrix_1');
                         break;
+
+                    case '2.5':
+                        new_circle.classList.add(this.sizeIdentif[((bgMatrix.baseSize / 16) * 12)]);
+                        new_circle.dataset.name = this.sizeIdentif[((bgMatrix.baseSize / 16) * 12)];
+                        new_circle.style.width = ((bgMatrix.baseSize / 16) * 12) + 'px';
+                        new_circle.style.height = ((bgMatrix.baseSize / 16) * 12) + 'px';
+                        new_circle.classList.add('mtrxCircle');
+                        new_circle.classList.add('matrix_2.5');
+                        break;
+                        
                 }
 
                 new_circle.dataset.indxPosition = outIndx + 1;
@@ -273,7 +336,6 @@ console.log('baseSettings');
             startleftPosition = startleftPosition + (this.baseSize / 16);
 
         }
-
 
         // ================ red marker =====================
         // let boundingPosition = this.app.getBoundingClientRect();

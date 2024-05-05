@@ -6,28 +6,74 @@
 //  6х8     9х8     12х8
 
 const sizeMenu = new Object({
-    'div': null,
-    'element': [],
+    'variants': ['2:4','3:4','4:4','5:4','6:4','7:4','8:4','6:8','9:8','12:8','sw'],
+    'button': null,
+    'contain': null,
+    'elementsArr': [],
     createMenu(){
-        let newMenu = document.createElement('div');
-        newMenu.classList.add('sizeMenu');
-        this.div = newMenu;
-    },
-    createElement(){
-        let newElement = document.createElement('div');
-        newElement.classList.add('element');
-        this.element.push(newElement);
-        this.div.append(newElement);
+        let menuContain = document.createElement('div');
+        menuContain.classList.add('menuContain');
+        menuContain.classList.add('menuContainDspNone');
+        this.contain = menuContain;
     },
     generateAllButton(){
-        for (let i = 0; i < this.element.length; i++) {
-            this.element[i].textContent = this.element[i].dataset.number;
+        for (let i = 0; i < this.variants.length; i++) {
+            let newElement = document.createElement('div');
+            newElement.classList.add('menuElement');
+            this.elementsArr.push(newElement);
+            newElement.textContent = this.variants[i];
+            this.contain.append(newElement);
+            newElement.addEventListener('click',(e)=>{
+                e.stopPropagation();
+                e.preventDefault();
+                this.elementsArr.forEach((elem)=>{
+                    elem.classList.remove('menuElementActive');
+                })
+                e.target.classList.add('menuElementActive');
+                switch(e.target.textContent){
+                    case '2:4':
+                        bgMatrix.createBackground(bgMatrix.matrix_2x4, bgMatrix.startleftPosition);
+                        break;
+                    case '3:4':
+                        bgMatrix.createBackground(bgMatrix.matrix_3x4, bgMatrix.startleftPosition);
+                        break;
+                    case '4:4':
+                        bgMatrix.createBackground(bgMatrix.matrix_4x4, bgMatrix.startleftPosition);
+                        break;
+                    case '5:4':
+                        bgMatrix.createBackground(bgMatrix.matrix_5x4, bgMatrix.startleftPosition);
+                        break;
+                    case '6:4':
+                        bgMatrix.createBackground(bgMatrix.matrix_6x4, bgMatrix.startleftPosition);
+                        break;
+                    case '7:4':
+                        bgMatrix.createBackground(bgMatrix.matrix_6x4, bgMatrix.startleftPosition);
+                        break;
+                    case '8:4':
+                        bgMatrix.createBackground(bgMatrix.matrix_8x4, bgMatrix.startleftPosition);
+                        break;
+                }
+            })
         }
-    }
+    },
+    createButtonSizeMenu(){
+        let sizeMenuButton = document.createElement('div');
+        sizeMenuButton.classList.add('sizeMenuBtn');
+        sizeMenuButton.textContent = '\u{2630}';
+        this.button = sizeMenuButton;
+        sizeMenuButton.append(this.contain);
+        sizeMenuButton.addEventListener('click',(e)=>{
+            this.contain.classList.toggle('menuContainDspNone');
+        })
+    },
 })
 sizeMenu.createMenu();
+sizeMenu.generateAllButton();
+sizeMenu.createButtonSizeMenu();
 
-sizeMenu.createElement();
-sizeMenu.createElement();
-sizeMenu.createElement();
+
+
+
 console.log(sizeMenu);
+let metrContain = document.querySelector('.metronome_container');
+metrContain.append(sizeMenu.button);
