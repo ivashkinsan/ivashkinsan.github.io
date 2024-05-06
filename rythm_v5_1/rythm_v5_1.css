@@ -35,9 +35,11 @@
     src: url(/fonts/Maestro2.ttf);
     /* Путь к файлу со шрифтом */
 }
-.font{
+
+.font {
     font-family: MAESTRO;
 }
+
 body {
     width: 100vw;
     height: 100vh;
@@ -54,10 +56,10 @@ body {
     /* border: 10px solid #DDB078; */
     /* box-shadow: 0 0 0 10px #DDB078 inset; */
     /* border-color: linear-gradient(180deg, #DDB078 25.52%, #F4D6B1 59.9%); */
-    
+
     /* overflow: hidden; */
     /* overflow-x: hidden; отключает горизонтальный скролл */
-  /* overflow-y: scroll; включает вертикальный скролл */
+    /* overflow-y: scroll; включает вертикальный скролл */
 }
 
 
@@ -103,9 +105,9 @@ body {
     cursor: pointer;
 }
 
-.mtrxCircle_label{
+.mtrxCircle_label {
     position: absolute;
-    
+
     /* width: 100%; */
     /* top: 50%; */
     left: 50%;
@@ -139,7 +141,7 @@ body {
     cursor: pointer;
     transform: translateY(-50%);
     transition: ease-in 100ms;
-    
+
 }
 
 .pause {
@@ -151,7 +153,7 @@ body {
 }
 
 .active>p {
-    
+
     /* font-size: 14px; */
     margin-top: calc(var(--base-size) / 105);
     user-select: none;
@@ -414,7 +416,7 @@ body {
     gap: 5px;
 }
 
-.btn_pls{
+.btn_pulse {
     width: 32px;
     height: 32px;
     font-size: 22px;
@@ -425,13 +427,16 @@ body {
     cursor: pointer;
 }
 
-.elem_footer :nth-child(2){
+.elem_footer :nth-child(2) {
     line-height: 37px;
 }
 
-.clear, .undo, .redo {
+.clear,
+.undo,
+.redo {
     font-size: 26px;
 }
+
 .elem_footer>.btn_active {
     border: 1px solid white;
 }
@@ -461,8 +466,8 @@ body {
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     background-color: #283353c7;
-        
-    
+
+
     transform: translateX(-50%);
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
     z-index: 1000;
@@ -473,7 +478,7 @@ body {
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
 }
 
-.menuInTopBar{
+.menuInTopBar {
     position: absolute;
     display: flex;
     flex-direction: row;
@@ -482,29 +487,30 @@ body {
     border-bottom: 1px solid var(--matrix-color);
 
 }
-.menuInTopBar__menuElem{
+
+.menuInTopBar__menuElem {
     width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
     text-align: center;
     color: var(--matrix-color);
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.menuInTopBar__menuElem:hover{
+.menuInTopBar__menuElem:hover {
     color: rgb(188, 188, 188);
     cursor: pointer;
     transition: linear 400ms;
 }
 
-.alg_active{
+.alg_active {
     color: rgb(188, 188, 188);
     text-decoration: underline;
 }
 
 
 
-.tab{
+.tab {
     /* position: absolute; */
     display: grid;
     grid-template-columns: repeat(8, auto);
@@ -517,14 +523,57 @@ body {
 }
 
 /* Распределение колонок в табе */
-.grid_el_0, .grid_el_1, .grid_el_2, .grid_el_3 {grid-column: 1;}
-.grid_el_4, .grid_el_5, .grid_el_6, .grid_el_7, .grid_el_8, .grid_el_9 {grid-column: 2;}
-.grid_el_10, .grid_el_11, .grid_el_12, .grid_el_13 {grid-column: 3;}
-.grid_el_14, .grid_el_15 {grid-column: 4;}
-.grid_el_16, .grid_el_17, .grid_el_18 {grid-column: 5;}
-.grid_el_19, .grid_el_20, .grid_el_21 {grid-column: 6;}
-.grid_el_22, .grid_el_23 {grid-column: 7;}
-.grid_el_24, .grid_el_25, .grid_el_26, .grid_el_27 {grid-column: 8;}
+.grid_el_0,
+.grid_el_1,
+.grid_el_2,
+.grid_el_3 {
+    grid-column: 1;
+}
+
+.grid_el_4,
+.grid_el_5,
+.grid_el_6,
+.grid_el_7,
+.grid_el_8,
+.grid_el_9 {
+    grid-column: 2;
+}
+
+.grid_el_10,
+.grid_el_11,
+.grid_el_12,
+.grid_el_13 {
+    grid-column: 3;
+}
+
+.grid_el_14,
+.grid_el_15 {
+    grid-column: 4;
+}
+
+.grid_el_16,
+.grid_el_17,
+.grid_el_18 {
+    grid-column: 5;
+}
+
+.grid_el_19,
+.grid_el_20,
+.grid_el_21 {
+    grid-column: 6;
+}
+
+.grid_el_22,
+.grid_el_23 {
+    grid-column: 7;
+}
+
+.grid_el_24,
+.grid_el_25,
+.grid_el_26,
+.grid_el_27 {
+    grid-column: 8;
+}
 
 
 .cardAlphabet_card {
@@ -538,32 +587,39 @@ body {
     border-radius: 3px;
     cursor: grab;
 }
+
 .cardAlphabet_card.four {
     grid-template-columns: repeat(4, 14px);
 }
+
 .cardAlphabet_card.three {
     grid-template-columns: repeat(3, 14px);
 }
+
 .cardAlphabet_card.two {
     grid-template-columns: repeat(2, 14px);
 }
-.grid_el{
+
+.grid_el {
     position: relative;
     width: calc(var(--base-size) / 65);
     height: calc(var(--base-size) / 65);
-    
+
     background-color: unset;
     font-size: 12px;
     line-height: 24px;
-    color: var(--matrix-color);;
+    color: var(--matrix-color);
+    ;
 }
-.akcent::before{
+
+.akcent::before {
     content: '>';
     position: absolute;
     color: rgb(212, 212, 212);
     top: -10px;
-  left: 5px;
+    left: 5px;
 }
+
 .grid_el.grid_el.card_circle_fill_0 {
     border: 1px solid var(--matrix-color);
     border-radius: 50%;
@@ -575,45 +631,50 @@ body {
     background-color: var(--matrix-color);
 }
 
-.grid_el.card_circle_fill_1111{
+.grid_el.card_circle_fill_1111 {
     width: unset;
     grid-column: span 4;
     border: 1px solid var(--matrix-color);
-   border-radius: 5px;
-   background-color: var(--matrix-color);
+    border-radius: 5px;
+    background-color: var(--matrix-color);
 }
-.card_circle_fill_111{
+
+.card_circle_fill_111 {
     width: unset;
     grid-column: span 3;
     border: 1px solid var(--matrix-color);
-   border-radius: 5px;
-   background-color: var(--matrix-color);
+    border-radius: 5px;
+    background-color: var(--matrix-color);
 }
-.card_circle_fill_11{
+
+.card_circle_fill_11 {
     width: unset;
     grid-column: span 2;
     border: 1px solid var(--matrix-color);
-   border-radius: 5px;
-   background-color: var(--matrix-color);
+    border-radius: 5px;
+    background-color: var(--matrix-color);
 }
-.card_circle_fill_00{
+
+.card_circle_fill_00 {
     width: unset;
     grid-column: span 2;
     border: 1px solid var(--matrix-color);
-   border-radius: 5px;
-   /* background-color: var(--matrix-color); */
+    border-radius: 5px;
+    /* background-color: var(--matrix-color); */
 }
-.card_circle_fill_000{
+
+.card_circle_fill_000 {
     width: unset;
     grid-column: span 3;
     border: 1px solid var(--matrix-color);
-   border-radius: 5px;
+    border-radius: 5px;
 }
-.card_circle_fill_0000{
+
+.card_circle_fill_0000 {
     width: unset;
     grid-column: span 4;
     border: 1px solid var(--matrix-color);
-   border-radius: 5px;
+    border-radius: 5px;
 }
 
 .btn_open_and_close_card_alphabet {
@@ -632,7 +693,7 @@ body {
     /* background-color: aquamarine; */
     cursor: pointer;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
-   
+
 }
 
 .inBody {

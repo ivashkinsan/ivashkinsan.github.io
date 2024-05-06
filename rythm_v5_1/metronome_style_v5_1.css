@@ -28,7 +28,7 @@
     align-items: center;
     justify-content: center;
     flex-flow: reverse;
-    
+
     left: 50%;
     transform: translateX(-50%);
     bottom: 10px;
@@ -36,9 +36,9 @@
     height: auto;
 
     gap: 10px;
-   
+
     color: white;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     z-index: 2000;
 }
 
@@ -64,7 +64,7 @@
 
 .bpm {
     font-size: 12px;
-   
+
 }
 
 .tempo-controls {
@@ -78,7 +78,7 @@
 
 .tempo-container {
     text-align: center;
-    width:50px;
+    width: 50px;
     margin: 0 10px;
 }
 
@@ -98,36 +98,42 @@ button {
 button:focus {
     outline: none;
 }
-button:active{
+
+button:active {
     background-color: rgba(240, 248, 255, 0.493);
 }
-button:disabled{
+
+button:disabled {
     opacity: 0.3;
 }
-.contain_btn_pulse{
+
+.contain_btn_pulse {
     font-family: MAESTRO;
 }
 
-.sizeMenuBtn{
+.sizeMenuBtn {
     width: 40px;
     height: 40px;
     font-size: 28px;
     text-align: center;
     cursor: pointer;
 }
-.menuContain{
+
+.menuContain {
     position: absolute;
     display: flex;
     flex-direction: row;
     gap: 15px;
     top: -40px;
     right: 0;
-    
+
 }
-.menuContainDspNone{
+
+.menuContainDspNone {
     display: none;
 }
-.menuElement{
+
+.menuElement {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -140,13 +146,16 @@ button:disabled{
     border: 1px var(--matrix-color) solid;
     border-radius: 50%;
 }
-.menuElement:hover{
+
+.menuElement:hover {
     background-color: rgba(240, 248, 255, 0.500);
 }
-.menuElementActive{
+
+.menuElementActive {
     border-color: white;
     background-color: rgba(240, 248, 255, 0.150);
 }
+
 .play {
     width: 0;
     height: 0;
@@ -165,6 +174,28 @@ button:disabled{
     border-right: 7.5px solid #ffffff;
 }
 
-.add_metronome_click_active{
+.add_metronome_click_active {
     background: #ffffff17;
+}
+
+.akcent_container {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: -20px;
+    width: min-content;
+    height: min-content;
+    gap: 5px;
+}
+
+.circle_akcent_elem {
+    width: 15px;
+    height: 15px;
+    border: 1px solid whitesmoke;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.circle_akcent_elem_active {
+    background-color: whitesmoke;
 }

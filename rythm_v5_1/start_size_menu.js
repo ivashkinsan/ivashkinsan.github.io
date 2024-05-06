@@ -103,6 +103,5 @@ sizeMenu.createButtonSizeMenu();
 
 
 
-console.log(sizeMenu);
 let metrContain = document.querySelector('.metronome_container');
 metrContain.append(sizeMenu.button);
