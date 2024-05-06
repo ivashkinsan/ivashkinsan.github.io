@@ -94,7 +94,7 @@ const bgMatrix = {
         '16'            //20
     ],
     'matrix_6x4': [
-        '2.5 2 4 8 16', //1
+        '2w4 2 4 8 16', //1
         '16',           //2
         '8 16',         //3
         '16',           //4
@@ -106,7 +106,7 @@ const bgMatrix = {
         '16',           //10
         '8 16',         //11
         '16',           //12
-        '2.5 2 4 8 16', //1
+        '2w4 2 4 8 16', //1
         '16',           //2
         '8 16',         //3
         '16',           //4
@@ -189,37 +189,37 @@ const bgMatrix = {
         '16'            //16
     ],
     'matrix_6x8': [
-        '4.5 8.5 16',   //1
+        '4w8 8w16 16',   //1
         '16',           //2
         '16',           //3
-        '8.5 16',       //4
+        '8w16 16',       //4
         '16',           //5
         '16',           //6
     ],
     'matrix_9x8': [
-        '4.5 8.5 16',   //1
+        '2w16 4w8 8w16 16',   //1
         '16',           //2
         '16',           //3
-        '4.5 8.5 16',   //4
+        '4w8 8w16 16',   //4
         '16',           //5
         '16',           //6
-        '8.5 16',       //7
+        '8w16 16',       //7
         '16',           //8
         '16',           //9
     ],
     'matrix_12x8': [
-        '4.5 8.5 16',   //1
-        '16',           //2
-        '16',           //3
-        '4.5 8.5 16',   //4
-        '16',           //5
-        '16',           //6
-        '4.5 8.5 16',   //7
-        '16',           //8
-        '16',           //9
-        '8.5 16',       //10
-        '16',           //11
-        '16',           //12
+        '2w4 4w8 8w16 16',     //1
+        '16',                       //2
+        '16',                       //3
+        '8w16 16',         //4
+        '16',                       //5
+        '16',                       //6
+        '4w8 8w16 16',              //7
+        '16',                       //8
+        '16',                       //9
+        '8w16 16',                  //10
+        '16',                       //11
+        '16',                       //12
     ],
     addApp() {
         let app = document.querySelector('.app');
@@ -323,29 +323,37 @@ const bgMatrix = {
                         new_circle.classList.add('matrix_1');
                         break;
 
-                    case '2.5':
+                    case '2w4':
                         new_circle.classList.add(this.sizeIdentif[((bgMatrix.baseSize / 16) * 12)]);
                         new_circle.dataset.name = this.sizeIdentif[((bgMatrix.baseSize / 16) * 12)];
                         new_circle.style.width = ((bgMatrix.baseSize / 16) * 12) + 'px';
                         new_circle.style.height = ((bgMatrix.baseSize / 16) * 12) + 'px';
                         new_circle.classList.add('mtrxCircle');
-                        new_circle.classList.add('matrix_2.5');
+                        new_circle.classList.add('matrix_2w4');
                         break;
-                    case '4.5':
+                    case '2w16':
+                        new_circle.classList.add(this.sizeIdentif[((bgMatrix.baseSize / 16) * 9)]);
+                        new_circle.dataset.name = this.sizeIdentif[((bgMatrix.baseSize / 16) * 9)];
+                        new_circle.style.width = ((bgMatrix.baseSize / 16) * 9) + 'px';
+                        new_circle.style.height = ((bgMatrix.baseSize / 16) * 9) + 'px';
+                        new_circle.classList.add('mtrxCircle');
+                        new_circle.classList.add('matrix_2w4');
+                        break;
+                    case '4w8':
                         new_circle.classList.add(this.sizeIdentif[((bgMatrix.baseSize / 16) * 6)]);
                         new_circle.dataset.name = this.sizeIdentif[((bgMatrix.baseSize / 16) * 6)];
                         new_circle.style.width = ((bgMatrix.baseSize / 16) * 6) + 'px';
                         new_circle.style.height = ((bgMatrix.baseSize / 16) * 6) + 'px';
                         new_circle.classList.add('mtrxCircle');
-                        new_circle.classList.add('matrix_4.5');
+                        new_circle.classList.add('matrix_4w8');
                         break;
-                    case '8.5':
+                    case '8w16':
                         new_circle.classList.add(this.sizeIdentif[((bgMatrix.baseSize / 16) * 3)]);
                         new_circle.dataset.name = this.sizeIdentif[((bgMatrix.baseSize / 16) * 3)];
                         new_circle.style.width = ((bgMatrix.baseSize / 16) * 3) + 'px';
                         new_circle.style.height = ((bgMatrix.baseSize / 16) * 3) + 'px';
                         new_circle.classList.add('mtrxCircle');
-                        new_circle.classList.add('matrix_8.5');
+                        new_circle.classList.add('matrix_8w16');
                         break;
 
                 }
