@@ -2,8 +2,8 @@ class Metronome { // создание нового класса
     constructor(tempo = 50) {
         this.allNotes = {};
         this.schet_for_led = 0,
-            this.contain_btn_pulse = null,
-            this.audioContext = null; // обозначение свойства для будущего audioContext
+        this.contain_btn_pulse = null,
+        this.audioContext = null; // обозначение свойства для будущего audioContext
         this.notesInQueue = []; // заметки, которые были помещены в веб-аудио и могут быть или не быть воспроизведены еще {note, time}
         this.currentBeatInBar = 0; // текущее положение в такте
         this.beatsPerBar = 4; // размер такта
@@ -13,6 +13,8 @@ class Metronome { // создание нового класса
         this.nextNoteTime = 0.0; // когда нужно сделать следующую ноту
         this.isRunning = false; // запущен ли метроном
         this.intervalID = null;
+        this.akcents = [];
+        this.akcentBoolean = false;
         // Уникальный идентификатор intervalID, возвращаемый глобальным методом setInterval(), 
         // позволяет впоследствии удалить запущенный setInterval c помощью clearInterval()
     }
@@ -75,6 +77,9 @@ class Metronome { // создание нового класса
         }
         // последовательное добавление элементам подсветки
         level[this.schet_for_led].classList.add('add_metronome_click_active');
+console.log(this.schet_for_led);
+// console.log(this.akcents[this.schet_for_led]);
+
 
         this.schet_for_led += 1;  // переключение доли (индекса)
         if (this.schet_for_led == level.length) {  //сброс счетчика если счет достиг длинны NodeList
@@ -85,16 +90,23 @@ class Metronome { // создание нового класса
     // метод в конструкторе, где this - класс Metronome
     scheduleNote(beatNumber, time) { // расписание нот
         // помещаем ноту в очередь, даже если её не играем.
+        if(this.akcents[this.schet_for_led] == 1){
+            this.akcentBoolean = true;
+        } else {
+            this.akcentBoolean = false;
+        }
+        
         this.notesInQueue.push({ // заметки в очереди
             note: beatNumber,
             time: time
         });
-
+        // console.log(this.notesInQueue);
         // создаем осциллятор
         const osc = this.audioContext.createOscillator(); // вызов метода создания Oscillator с присвоением в osc
         const envelope = this.audioContext.createGain();  // вызов метода создания Gain с присвоением в envelope (конверт)
 
-        osc.frequency.value = (beatNumber % this.beatsPerBar == 0) ? 1000 : 800; // высота звука метронома
+        // osc.frequency.value = (beatNumber % this.beatsPerBar == 0) ? 1000 : 800; // высота звука метронома
+        osc.frequency.value = this.akcentBoolean ? 1000 : 800; // высота звука метронома
         envelope.gain.value = 1; // громкость
         envelope.gain.exponentialRampToValueAtTime(1, time + 0.001); // плавность в конце воспроизведения
         envelope.gain.exponentialRampToValueAtTime(0.001, time + 0.02); // плавность в начале воспроизведения
@@ -106,7 +118,8 @@ class Metronome { // создание нового класса
         osc.stop(time + 0.03); // остановка осцилатора
     }
     // метод в конструкторе, где this - класс Metronome
-    scheduler() {
+    scheduler() { // планировщик
+        // console.log([this.nextNoteTime, this.audioContext.currentTime, this.scheduleAheadTime] );
         // пока есть ноты, которые нужно будет сыграть перед следующим интервалом, запланируйте их и переместите указатель.
         while (this.nextNoteTime < this.audioContext.currentTime + this.scheduleAheadTime) {
             this.scheduleNote(this.currentBeatInBar, this.nextNoteTime);
@@ -155,7 +168,7 @@ playButton.addEventListener('click', function () { // событие на кно
     metronome.startStop(); // вызов метода у метронома
     metronome.clear_all_elem(); // очистка всех элементов
 
-    console.log(metronome.notesInQueue);
+    // console.log(metronome.notesInQueue);
 
     if (metronome.isRunning) { // изменение класса у кнопки плей и пауза
         playPauseIcon.className = 'pause_metr';
