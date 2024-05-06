@@ -188,6 +188,39 @@ const bgMatrix = {
         '8 16',         //15
         '16'            //16
     ],
+    'matrix_6x8': [
+        '4.5 8.5 16',   //1
+        '16',           //2
+        '16',           //3
+        '8.5 16',       //4
+        '16',           //5
+        '16',           //6
+    ],
+    'matrix_9x8': [
+        '4.5 8.5 16',   //1
+        '16',           //2
+        '16',           //3
+        '4.5 8.5 16',   //4
+        '16',           //5
+        '16',           //6
+        '8.5 16',       //7
+        '16',           //8
+        '16',           //9
+    ],
+    'matrix_12x8': [
+        '4.5 8.5 16',   //1
+        '16',           //2
+        '16',           //3
+        '4.5 8.5 16',   //4
+        '16',           //5
+        '16',           //6
+        '4.5 8.5 16',   //7
+        '16',           //8
+        '16',           //9
+        '8.5 16',       //10
+        '16',           //11
+        '16',           //12
+    ],
     addApp() {
         let app = document.querySelector('.app');
         this.app = app;
@@ -210,20 +243,20 @@ const bgMatrix = {
         this.app.append(newActiveLayer);
     },
     find_Root_baseSize_baseWidth_step_minWidth_max_width() {
-        if(baseSettings.screenWidth < 850){
+        if (baseSettings.screenWidth < 850) {
             document.documentElement.style.setProperty('--base-size', '400px');
         }
-        if(baseSettings.screenWidth > 850 || baseSettings.screenWidth < 1366){
+        if (baseSettings.screenWidth > 850 || baseSettings.screenWidth < 1366) {
             document.documentElement.style.setProperty('--base-size', '600px');
         }
-        if(baseSettings.screenWidth > 1366){
+        if (baseSettings.screenWidth > 1366) {
             document.documentElement.style.setProperty('--base-size', '840px');
         }
         // document.querySelector('body').style.width = baseSettings.screenWidth + 'px';
         // document.querySelector('body').style.height = baseSettings.screenHeight + 'px';
         this.root = document.querySelector(':root');
         this.baseSize = parseFloat(getComputedStyle(this.root).getPropertyValue('--base-size'));
-console.log('baseSettings');
+        console.log('baseSettings');
         console.log(baseSettings);
         // this.baseWidth = this.baseSize;
         this.step = bgMatrix.baseSize / 16; // Шаг изменения блока
@@ -233,7 +266,7 @@ console.log('baseSettings');
     // в бэкграунде на каждый элемент настроен клик
     createBackground(array, startleftPosition) {
 
-        while(this.containMatrix.firstChild) {
+        while (this.containMatrix.firstChild) {
             this.containMatrix.removeChild(this.containMatrix.firstChild);
         }
 
@@ -298,7 +331,23 @@ console.log('baseSettings');
                         new_circle.classList.add('mtrxCircle');
                         new_circle.classList.add('matrix_2.5');
                         break;
-                        
+                    case '4.5':
+                        new_circle.classList.add(this.sizeIdentif[((bgMatrix.baseSize / 16) * 6)]);
+                        new_circle.dataset.name = this.sizeIdentif[((bgMatrix.baseSize / 16) * 6)];
+                        new_circle.style.width = ((bgMatrix.baseSize / 16) * 6) + 'px';
+                        new_circle.style.height = ((bgMatrix.baseSize / 16) * 6) + 'px';
+                        new_circle.classList.add('mtrxCircle');
+                        new_circle.classList.add('matrix_4.5');
+                        break;
+                    case '8.5':
+                        new_circle.classList.add(this.sizeIdentif[((bgMatrix.baseSize / 16) * 3)]);
+                        new_circle.dataset.name = this.sizeIdentif[((bgMatrix.baseSize / 16) * 3)];
+                        new_circle.style.width = ((bgMatrix.baseSize / 16) * 3) + 'px';
+                        new_circle.style.height = ((bgMatrix.baseSize / 16) * 3) + 'px';
+                        new_circle.classList.add('mtrxCircle');
+                        new_circle.classList.add('matrix_8.5');
+                        break;
+
                 }
 
                 new_circle.dataset.indxPosition = outIndx + 1;
