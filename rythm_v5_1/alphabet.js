@@ -91,44 +91,44 @@ const alphabet_3 = {
     'd': 't k',
 }
 
-const createMenuInTopBar = function(){
+const createMenuInTopBar = function () {
     const menuInTopBar = document.createElement('div');
     menuInTopBar.classList.add('menuInTopBar');
     const nameElem = ['АЛГОРИТМЫ', 'АЛГОРИТМЫ+', 'АКЦЕНТЫ'];
-    const tabNumber = ['tab_1','tab_2','tab_3']
+    const tabNumber = ['tab_1', 'tab_2', 'tab_3']
     let allMenuElem = [];
-    for(let item of nameElem){
+    for (let item of nameElem) {
         const menuElem = document.createElement('div');
         allMenuElem.push(menuElem);
         menuElem.classList.add('menuInTopBar__menuElem');
         menuElem.textContent = item;
         menuElem.dataset.table = tabNumber.shift();
         menuInTopBar.appendChild(menuElem);
-        if(menuElem.textContent == 'АЛГОРИТМЫ'){
+        if (menuElem.textContent == 'АЛГОРИТМЫ') {
             menuElem.classList.add('alg_active');
         }
-        menuElem.addEventListener('click', function(event){
-            allMenuElem.map(function(elem){
+        menuElem.addEventListener('click', function (event) {
+            allMenuElem.map(function (elem) {
                 elem.classList.remove('alg_active');
             })
             menuElem.classList.add('alg_active');
-switch(event.target.dataset.table){
-case 'tab_1':
-    document.querySelector('.tab_1').classList.remove('display_none');
-    document.querySelector('.tab_2').classList.add('display_none');
-    document.querySelector('.tab_3').classList.add('display_none');
-    break;
-case 'tab_2':
-    document.querySelector('.tab_1').classList.add('display_none');
-    document.querySelector('.tab_2').classList.remove('display_none');
-    document.querySelector('.tab_3').classList.add('display_none');
-    break;
-case 'tab_3':
-    document.querySelector('.tab_1').classList.add('display_none');
-    document.querySelector('.tab_2').classList.add('display_none');
-    document.querySelector('.tab_3').classList.remove('display_none');
-    break;
-}
+            switch (event.target.dataset.table) {
+                case 'tab_1':
+                    document.querySelector('.tab_1').classList.remove('display_none');
+                    document.querySelector('.tab_2').classList.add('display_none');
+                    document.querySelector('.tab_3').classList.add('display_none');
+                    break;
+                case 'tab_2':
+                    document.querySelector('.tab_1').classList.add('display_none');
+                    document.querySelector('.tab_2').classList.remove('display_none');
+                    document.querySelector('.tab_3').classList.add('display_none');
+                    break;
+                case 'tab_3':
+                    document.querySelector('.tab_1').classList.add('display_none');
+                    document.querySelector('.tab_2').classList.add('display_none');
+                    document.querySelector('.tab_3').classList.remove('display_none');
+                    break;
+            }
         })
     }
     return menuInTopBar;
@@ -137,51 +137,51 @@ case 'tab_3':
 const createCircle = (elem) => {
     const cardAlphabetCardCircle = document.createElement('div');
     cardAlphabetCardCircle.classList.add(`grid_el`);
-    switch(elem){
+    switch (elem) {
         case '0': cardAlphabetCardCircle.classList.add('card_circle_fill_0');
-        break;
+            break;
         case '1': cardAlphabetCardCircle.classList.add('card_circle_fill_1');
-        break;
+            break;
         case '1111': cardAlphabetCardCircle.classList.add('card_circle_fill_1111');
-        break;
+            break;
         case '111': cardAlphabetCardCircle.classList.add('card_circle_fill_111');
-        break;
+            break;
         case '11': cardAlphabetCardCircle.classList.add('card_circle_fill_11');
-        break;
+            break;
         case '00': cardAlphabetCardCircle.classList.add('card_circle_fill_00');
-        break;
+            break;
         case '000': cardAlphabetCardCircle.classList.add('card_circle_fill_000');
-        break;
+            break;
         case '0000': cardAlphabetCardCircle.classList.add('card_circle_fill_0000');
-        break;
+            break;
     }
-    switch(elem){
-        case 't': 
-        case 'T': 
+    switch (elem) {
+        case 't':
+        case 'T':
             cardAlphabetCardCircle.textContent = 'Ta';
-        break;
+            break;
         case 'k':
         case 'K':
             cardAlphabetCardCircle.textContent = 'Ka';
-        break;
-        case 'd': 
-        case 'D': 
+            break;
+        case 'd':
+        case 'D':
             cardAlphabetCardCircle.textContent = 'Di';
-        break;
-        case 'm': 
-        case 'M': 
+            break;
+        case 'm':
+        case 'M':
             cardAlphabetCardCircle.textContent = 'Mi';
-        break;
+            break;
     }
-    if(isUpperCase(elem)){
+    if (isUpperCase(elem)) {
         cardAlphabetCardCircle.classList.add('akcent');
     }
-    if(elem != '-'){
+    if (elem != '-') {
         return cardAlphabetCardCircle;
     } else {
         return 'undefined';
     }
-    
+
 }
 function isUpperCase(letter) {
     return letter === letter.toUpperCase() && letter !== letter.toLowerCase();
@@ -209,17 +209,17 @@ const createTab_1 = () => {
     Object.entries(alphabet).forEach(([item, value], index) => {
         const cardAlphabetCard = document.createElement('div');
         cardAlphabetCard.classList.add('cardAlphabet_card');
-        switch(true){
+        switch (true) {
             case index <= 15: cardAlphabetCard.classList.add('four');
-            break;
+                break;
             case index <= 23: cardAlphabetCard.classList.add('three');
-            break;
+                break;
             case index <= 28: cardAlphabetCard.classList.add('two');
-            break;
+                break;
         }
-        
+
         value.split(' ').map(
-             createCircle
+            createCircle
         ).forEach(circle => {
             cardAlphabetCard.classList.add(`grid_el_${index}`);
             cardAlphabetCard.dataset.data = value;
@@ -231,46 +231,46 @@ const createTab_1 = () => {
         tab_1_docFragment.appendChild(cardAlphabetCard);
     });
     tab_1.appendChild(tab_1_docFragment);
-   return tab_1;
+    return tab_1;
 }
 
 const createTab_2 = () => {
-       // TAB_2
-       const tab_2 = document.createElement('div');
-       tab_2.classList.add('tab');
-       tab_2.classList.add('tab_2');
-       tab_2.dataset.table = 'tab_2';
-       tab_2.classList.add('display_none');
-       const tab_2_docFragment = document.createDocumentFragment();
-       Object.entries(alphabet_2).forEach(([item, value], index) => {
+    // TAB_2
+    const tab_2 = document.createElement('div');
+    tab_2.classList.add('tab');
+    tab_2.classList.add('tab_2');
+    tab_2.dataset.table = 'tab_2';
+    tab_2.classList.add('display_none');
+    const tab_2_docFragment = document.createDocumentFragment();
+    Object.entries(alphabet_2).forEach(([item, value], index) => {
         const cardAlphabetCard = document.createElement('div');
         cardAlphabetCard.classList.add('cardAlphabet_card');
         // let newArrForLength = alphabet[item].split(' ');
-        switch(true){
+        switch (true) {
             case index <= 15: cardAlphabetCard.classList.add('four');
-            break;
+                break;
             case index <= 23: cardAlphabetCard.classList.add('three');
-            break;
+                break;
             case index <= 28: cardAlphabetCard.classList.add('two');
-            break;
+                break;
         }
-            cardAlphabetCard.classList.add(`grid_el_${index}`);
-            cardAlphabetCard.dataset.data = value;
-            cardAlphabetCard.draggable = true;
-           value.split(' ')
-           .map(createCircle)
-           .forEach(circle => {
-            if(circle != 'undefined'){
-                cardAlphabetCard.appendChild(circle);
-            } 
-           });
-            cardAlphabetCard.addEventListener('dragstart', dragstart, false);
-            cardAlphabetCard.addEventListener('dragend', dragend, false);
-            tab_2_docFragment.appendChild(cardAlphabetCard);
-       });
+        cardAlphabetCard.classList.add(`grid_el_${index}`);
+        cardAlphabetCard.dataset.data = value;
+        cardAlphabetCard.draggable = true;
+        value.split(' ')
+            .map(createCircle)
+            .forEach(circle => {
+                if (circle != 'undefined') {
+                    cardAlphabetCard.appendChild(circle);
+                }
+            });
+        cardAlphabetCard.addEventListener('dragstart', dragstart, false);
+        cardAlphabetCard.addEventListener('dragend', dragend, false);
+        tab_2_docFragment.appendChild(cardAlphabetCard);
+    });
     //    console.log(tab_2_docFragment);
-       tab_2.appendChild(tab_2_docFragment);
-       return tab_2;
+    tab_2.appendChild(tab_2_docFragment);
+    return tab_2;
 }
 
 const createTab_3 = () => {
@@ -284,13 +284,13 @@ const createTab_3 = () => {
     Object.entries(alphabet_3).forEach(([item, value], index) => {
         const cardAlphabetCard = document.createElement('div');
         cardAlphabetCard.classList.add('cardAlphabet_card');
-        switch(true){
+        switch (true) {
             case index <= 15: cardAlphabetCard.classList.add('four');
-            break;
+                break;
             case index <= 23: cardAlphabetCard.classList.add('three');
-            break;
+                break;
             case index <= 28: cardAlphabetCard.classList.add('two');
-            break;
+                break;
         }
         cardAlphabetCard.classList.add(`grid_el_${index}`);
         cardAlphabetCard.dataset.data = value;
@@ -303,7 +303,7 @@ const createTab_3 = () => {
         tab_3_docFragment.appendChild(cardAlphabetCard);
     });
     tab_3.appendChild(tab_3_docFragment);
-   return tab_3;
+    return tab_3;
 }
 
 const appForInsertCardAlphabet = document.querySelector('.cardAlphabetContain');
@@ -385,18 +385,18 @@ let createNoteAfterDrop = (event, dropElem) => {
     //         item.remove();
     //     }
     // }
-    
+
     dropElem.classList.remove('drop_insert_border_on');
 
     let customData = event.dataTransfer.getData('customData').split(' ');
     let interval;
     let isPause;
-    
+
     // let constInterval = interval;
     let targetLeftPosition = dropElemPosition.left;
 
     for (let i = 0; i < customData.length; i++) {
-        switch (customData[i]){
+        switch (customData[i]) {
             case '1':
                 interval = dropElemPosition.width / customData.length;
                 isPause = false;
@@ -431,17 +431,18 @@ let createNoteAfterDrop = (event, dropElem) => {
                 break;
         }
 
-        
-if(customData[i] != '-'){
-    bgMatrix.create_note(
-        bgMatrix.sizeIdentif[interval],
-        interval,
-        targetLeftPosition,
-        undefined,
-        isPause);
-        targetLeftPosition += interval;
-}
-}
+
+        if (customData[i] != '-') {
+
+            bgMatrix.create_note(
+                bgMatrix.sizeIdentif[interval],
+                interval,
+                targetLeftPosition,
+                bgMatrix.newOutIndMatrix[targetLeftPosition],
+                isPause);
+            targetLeftPosition += interval;
+        }
+    }
 }
 
 let extractPositionData = (style) => {

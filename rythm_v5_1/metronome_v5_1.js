@@ -2,8 +2,8 @@ class Metronome { // создание нового класса
     constructor(tempo = 50) {
         this.allNotes = {};
         this.schet_for_led = 0,
-        this.contain_btn_pulse = null,
-        this.audioContext = null; // обозначение свойства для будущего audioContext
+            this.contain_btn_pulse = null,
+            this.audioContext = null; // обозначение свойства для будущего audioContext
         this.notesInQueue = []; // заметки, которые были помещены в веб-аудио и могут быть или не быть воспроизведены еще {note, time}
         this.currentBeatInBar = 0; // текущее положение в такте
         this.beatsPerBar = 4; // размер такта
@@ -20,6 +20,7 @@ class Metronome { // создание нового класса
     }
     searsh_all_elem() {
         this.contain_btn_pulse = document.querySelector('.contain_btn_pulse');
+        this.allNotes['value_NO'] = null;
         this.allNotes['matrix_2'] = document.querySelectorAll('.matrix_2');
         this.allNotes['matrix_4'] = document.querySelectorAll('.matrix_4');
         this.allNotes['matrix_8'] = document.querySelectorAll('.matrix_8');
@@ -77,8 +78,8 @@ class Metronome { // создание нового класса
         }
         // последовательное добавление элементам подсветки
         level[this.schet_for_led].classList.add('add_metronome_click_active');
-console.log(this.schet_for_led);
-// console.log(this.akcents[this.schet_for_led]);
+        console.log(this.schet_for_led);
+        // console.log(this.akcents[this.schet_for_led]);
 
 
         this.schet_for_led += 1;  // переключение доли (индекса)
@@ -90,12 +91,12 @@ console.log(this.schet_for_led);
     // метод в конструкторе, где this - класс Metronome
     scheduleNote(beatNumber, time) { // расписание нот
         // помещаем ноту в очередь, даже если её не играем.
-        if(this.akcents[this.schet_for_led] == 1){
+        if (this.akcents[this.schet_for_led] == 1) {
             this.akcentBoolean = true;
         } else {
             this.akcentBoolean = false;
         }
-        
+
         this.notesInQueue.push({ // заметки в очереди
             note: beatNumber,
             time: time
@@ -194,6 +195,8 @@ metronome.contain_btn_pulse.addEventListener('change', function () {
     metronome.clear_all_elem();
     switch (this.dataset.value) {
         case 'value_NO':
+            metronome.tempo = 50;
+            tempo.textContent = metronome.tempo;
             break;
         case 'value_2':
             metronome.tempo = 25;

@@ -35,6 +35,7 @@ const sizeMenu = new Object({
                         bgMatrix.createBackground(bgMatrix.matrix_2x4, bgMatrix.startleftPosition);
                         metronome.searsh_all_elem();
                         clearActiveElem();
+                        akcents.delElements();
                         break;
                     case '3:4':
                         bgMatrix.createBackground(bgMatrix.matrix_3x4, bgMatrix.startleftPosition);

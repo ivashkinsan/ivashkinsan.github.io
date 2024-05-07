@@ -196,6 +196,15 @@ button:disabled {
     cursor: pointer;
 }
 
+.circleAkcentElem_p {
+    text-align: center;
+    /* margin-top: -24px; */
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 21px;
+    color: rgb(190, 190, 190);
+}
+
 .circle_akcent_elem_active {
     background-color: whitesmoke;
 }

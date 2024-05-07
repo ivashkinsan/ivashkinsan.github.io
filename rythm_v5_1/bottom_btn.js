@@ -1,12 +1,9 @@
 let buttonsPulse = document.querySelectorAll('.btn_pulse');
-let buttonsGrp = document.querySelectorAll('.btn_grp');
-let btnSelectOptions;
 let changeForBtnContains = new Event('change', {
     bubbles: true,
     cancelable: true
 });
 let containBtnPulse = document.querySelector('.contain_btn_pulse');
-let containBtnGroup = document.querySelector('.contain_btn_group');
 
 buttonsPulse.forEach(button => {
     button.addEventListener('click', () => {
@@ -19,28 +16,11 @@ buttonsPulse.forEach(button => {
         akcents.pressButton = button;
 
         akcents.delElements();
-        akcents.createElem();
-        akcents.containerForAppend.append(akcents.container);
-
-        // btnSelectOptions = button.dataset.value;
-        // console.log(btnSelectOptions);
-        // Вызов события change на btnContains
+        if (button.dataset.value != 'value_NO') {
+            akcents.createElem();
+            akcents.containerForAppend.append(akcents.container);
+        }
         containBtnPulse.dispatchEvent(changeForBtnContains);
-    });
-});
-
-buttonsGrp.forEach(button => {
-    button.addEventListener('click', () => {
-        buttonsGrp.forEach(btn => {
-            btn.classList.remove('btn_active');
-        });
-        button.classList.add('btn_active');
-        button.parentNode.dataset.value = button.dataset.value;
-
-        // btnSelectOptions = button.dataset.value;
-        // console.log(btnSelectOptions);
-        // Вызов события change на btnContains
-        containBtnGroup.dispatchEvent(changeForBtnContains);
     });
 });
 
@@ -63,6 +43,10 @@ const akcents = new Object({
         for (let i = 0; i < findLengthMtrx; i++) {
             let circleAkcentElem = document.createElement('div');
             circleAkcentElem.classList.add('circle_akcent_elem');
+            let circleAkcentElem_p = document.createElement('p');
+            circleAkcentElem_p.classList.add('circleAkcentElem_p');
+            circleAkcentElem_p.textContent = i + 1;
+            circleAkcentElem.append(circleAkcentElem_p);
             this.allElems.push(circleAkcentElem);
             this.container.append(circleAkcentElem);
             if ((i % this.defaultIntervals) == 0) {
@@ -75,20 +59,15 @@ const akcents = new Object({
             circleAkcentElem.addEventListener('click', () => {
                 circleAkcentElem.classList.toggle('circle_akcent_elem_active');
                 this.findAllAkcents();
-                // if (circleAkcentElem.classList.contains('circle_akcent_elem_active')) {
-                //     this.pattern.push(metronome.allNotes[this.pressButton.dataset.mtrx][i]);
-                // } else {
-                //     this.pattern.splice(this.pattern.indexOf(metronome.allNotes[this.pressButton.dataset.mtrx][i]), 1);
-                // }
-                console.log( this.pattern);
+                console.log(this.pattern);
                 metronome.akcents = this.pattern;
             })
         }
     },
-    findAllAkcents(){
+    findAllAkcents() {
         this.pattern = [];
-        for(let item of this.allElems){
-            if(item.classList.contains('circle_akcent_elem_active')){
+        for (let item of this.allElems) {
+            if (item.classList.contains('circle_akcent_elem_active')) {
                 this.pattern.push(1);
             } else {
                 this.pattern.push(0);

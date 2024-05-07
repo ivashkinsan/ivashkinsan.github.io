@@ -554,7 +554,3 @@ bgMatrix.createSizeIdentif();
 bgMatrix.createBackground(bgMatrix.matrix_8x4, bgMatrix.startleftPosition);
 
 bgMatrix.saveState();
-
-
-
-console.log(solfedjio);
