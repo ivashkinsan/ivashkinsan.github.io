@@ -181,54 +181,59 @@ body {
 .left-handle {
     left: 3px;
     /* cursor: w-resize; */
-    cursor: url('/cursor/left_32px.png')16 16, auto;
+    /* cursor: url('/cursor/left_32px.png')16 16, auto; */
+    cursor: ew-resize;
     touch-action: none;
 }
 
 .right-handle {
     right: 3px;
-    cursor: url('/cursor/right_32px.png')16 16, auto;
+    /* cursor: url('/cursor/right_32px.png')16 16, auto; */
+    cursor: ew-resize;
     touch-action: none;
 }
 
 .left_double_arrow {
     position: absolute;
-    width: 10px;
-    height: 30px;
+    width: 6px;
+    height: 20px;
     margin: auto;
     top: 0;
     bottom: 0;
-    height: 150px;
+   
 
     left: -2.5px;
-    cursor: url('/cursor/left-right_32px.png')16 16, auto;
-
+    /* cursor: url('/cursor/left-right_32px.png')16 16, auto; */
+    cursor: col-resize;
+    z-index: 1000;
 }
 
 .left_double_arrow:before {
-    content: '';
+    content: '\21C6';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    border-top: 1px solid var(--active-elem-color);
-    border-bottom: 1px solid var(--active-elem-color);
+    top: -80px;
+    left: -13px;
+    font-size: 40px;
+    text-align: center;
+    width: 0;
+    height: 0;
+    /* border-top: 1px solid var(--active-elem-color); */
+    /* border-bottom: 1px solid var(--active-elem-color); */
+    /* border-top: 5px solid var(--active-elem-color); */
     transform: scaleY(2);
     /* Масштабирование увеличение */
     transition: .5s;
     /* Плавный переход */
     opacity: 0;
-    z-index: -1;
+    z-index: 1;
 }
 
 .left_double_arrow:hover:before {
     transform: scaleY(1.2);
-    /* Масштабирование уменьшение */
     opacity: 1;
 }
 
-.left_double_arrow:after {
+/* .left_double_arrow:after {
     content: '';
     position: absolute;
     top: 0;
@@ -239,18 +244,18 @@ body {
     border-bottom: 1px solid var(--active-elem-color);
     transform: scale(0);
     transition: .5s;
-    /* Плавный переход */
+
     background: var(--active-elem-color);
     z-index: -1;
-}
+} */
 
-.left_double_arrow:hover:after {
+/* .left_double_arrow:hover:after {
     transform: scale(1);
-}
+} */
 
-.right_double_arrow:hover {
+/* .right_double_arrow:hover {
     color: var(--active-elem-color);
-}
+} */
 
 
 

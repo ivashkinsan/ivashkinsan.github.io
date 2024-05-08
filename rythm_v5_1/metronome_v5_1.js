@@ -76,6 +76,9 @@ class Metronome { // создание нового класса
         for (let item of level) { // удаление подсветки
             item.classList.remove('add_metronome_click_active');
         }
+        
+       akcents.ledOn(this.schet_for_led);
+        
         // последовательное добавление элементам подсветки
         level[this.schet_for_led].classList.add('add_metronome_click_active');
         console.log(this.schet_for_led);
@@ -142,6 +145,7 @@ class Metronome { // создание нового класса
     }
     // метод в конструкторе, где this - класс Metronome
     stop() {
+        
         this.isRunning = false; // остановить метроном отметкой в запуске
         clearInterval(this.intervalID); // очистить значение интервала
     }

@@ -154,9 +154,12 @@ class Note {
         // console.log(rect);
         // console.log( `rect = ${rect} x = ${x} y = ${y}`);
         if((rect.width - x) < percentForTouchLeftRight || x < percentForTouchLeftRight){
-            this.style.cursor = 'url(\'/cursor/left_and_right_40_figma.svg\')16 16, auto';
+            // this.style.cursor = 'url(\'/cursor/left_and_right_40_figma.svg\')16 16, auto';
+            this.style.cursor = 'ew-resize';
         } else {
-            this.style.cursor = 'url(\'/cursor/note_pause_40_figma.svg\')16 16, auto'; 
+            // this.style.cursor = 'url(\'/cursor/note_pause_40_figma.svg\')16 16, auto'; 
+            this.style.cursor = 'pointer'; 
+
         }
 
         // if (y < rect.height / 2) {

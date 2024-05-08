@@ -179,10 +179,10 @@ button:disabled {
 }
 
 .akcent_container {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     position: absolute;
-    top: -25px;
+    bottom: 50px;
     width: min-content;
     height: min-content;
     gap: 5px;
@@ -191,7 +191,7 @@ button:disabled {
 .circle_akcent_elem {
     width: 25px;
     height: 25px;
-    border: 1px solid whitesmoke;
+    border: 1px solid rgba(144, 144, 144, 0.78);
     border-radius: 50%;
     cursor: pointer;
 }
@@ -206,5 +206,9 @@ button:disabled {
 }
 
 .circle_akcent_elem_active {
-    background-color: whitesmoke;
+    /* background-color: rgba(8, 23, 105, 0.266); */
+    box-shadow: 0 0 0 1px white;
+}
+.circle_akcent_elem_metr_on_active{
+    box-shadow: 0 0 0 1px #F4D6B1 inset;
 }
