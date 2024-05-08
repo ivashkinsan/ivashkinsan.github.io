@@ -32,24 +32,24 @@ const akcents = new Object({
     'container': null,
     'noteElemLength': null,
     'pattern': [],
-    'proxy_start_stop_metr': new Proxy(metronome,{
-        get(target, prop){
+    'proxy_start_stop_metr': new Proxy(metronome, {
+        get(target, prop) {
             // console.log('Target', target);
             console.log(`Getting prop ${prop}`);
             console.log("isRunning " + target.isRunning);
             return target[prop];
         },
-        set(target, prop, value){
-            if(prop in target){
+        set(target, prop, value) {
+            if (prop in target) {
                 target[prop] = value
             } else {
                 throw new Error(`No ${prop} field in target`)
             }
         },
-        has(target, prop){
+        has(target, prop) {
             return ['isRunning'].includes(prop)
         },
-        deleteProperty(target, prop){
+        deleteProperty(target, prop) {
             console.log(`Deleting... ${prop}`);
             delete target[prop]
         }
@@ -57,6 +57,7 @@ const akcents = new Object({
     createContainer() {
         let container = document.createElement('div');
         container.classList.add('akcent_container');
+
         this.container = container;
     },
     createElem() {
@@ -85,6 +86,13 @@ const akcents = new Object({
                 metronome.akcents = this.pattern;
             })
         }
+        this.container.append(akcents.createEraser());
+    },
+    createEraser() {
+        let eraser = document.createElement('div');
+        eraser.classList.add('eraser');
+        eraser.textContent = `del`;
+        return eraser;
     },
     findAllAkcents() {
         this.pattern = [];
@@ -101,16 +109,17 @@ const akcents = new Object({
             this.container.removeChild(this.container.firstChild);
         }
     },
-    ledOn(index){
+    ledOn(index) {
         this.ledOff();
         this.allElems[index].classList.add('circle_akcent_elem_metr_on_active');
     },
-    ledOff(){
-        this.allElems.forEach((elem)=>elem.classList.remove('circle_akcent_elem_metr_on_active'));
+    ledOff() {
+        this.allElems.forEach((elem) => elem.classList.remove('circle_akcent_elem_metr_on_active'));
     }
 
 
 });
 
 akcents.createContainer();
+
 console.log(akcents.proxy_start_stop_metr);

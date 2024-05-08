@@ -209,6 +209,13 @@ button:disabled {
     /* background-color: rgba(8, 23, 105, 0.266); */
     box-shadow: 0 0 0 1px white;
 }
-.circle_akcent_elem_metr_on_active{
+
+.circle_akcent_elem_metr_on_active {
     box-shadow: 0 0 0 1px #F4D6B1 inset;
+}
+
+.eraser {
+    width: 20px;
+    height: 20px;
+    /* background: red; */
 }
