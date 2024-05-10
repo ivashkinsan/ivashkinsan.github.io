@@ -217,5 +217,5 @@ button:disabled {
 .eraser {
     width: 20px;
     height: 20px;
-    /* background: red; */
+    cursor: pointer;
 }

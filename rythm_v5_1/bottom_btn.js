@@ -83,16 +83,34 @@ const akcents = new Object({
                 circleAkcentElem.classList.toggle('circle_akcent_elem_active');
                 this.findAllAkcents();
                 console.log(this.pattern);
-                metronome.akcents = this.pattern;
             })
         }
         this.container.append(akcents.createEraser());
+        // this.container.append(akcents.createPattern());
     },
     createEraser() {
         let eraser = document.createElement('div');
         eraser.classList.add('eraser');
         eraser.textContent = `del`;
+        eraser.addEventListener('click', () => {
+            for (let item of this.allElems) {
+                item.classList.remove('circle_akcent_elem_active');
+            }
+            this.findAllAkcents();
+        })
         return eraser;
+    },
+    createPattern() {
+        let btnArr = ['2', '3', '4'];
+        let allBtn = [];
+        for (let item of btnArr) {
+            let btn = document.createElement('div');
+            btn.classList.add(`btnPattern_${item}`);
+            btn.textContent = item;
+            allBtn.push(btn)
+        }
+        console.log(allBtn);
+        // return allBtn.forEach((element) => { return element });
     },
     findAllAkcents() {
         this.pattern = [];
@@ -103,6 +121,7 @@ const akcents = new Object({
                 this.pattern.push(0);
             }
         }
+        metronome.akcents = this.pattern;
     },
     delElements() {
         while (this.container.firstChild) {
