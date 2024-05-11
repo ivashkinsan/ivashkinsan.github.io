@@ -204,11 +204,12 @@ body {
 
     left: -2.5px;
     /* cursor: url('/cursor/left-right_32px.png')16 16, auto; */
+    background: rgba(255, 255, 255, 0.465);
     cursor: col-resize;
     z-index: 1000;
 }
 
-.left_double_arrow:before {
+/* .left_double_arrow:before {
     content: '\21C6';
     position: absolute;
     top: -80px;
@@ -217,21 +218,21 @@ body {
     text-align: center;
     width: 0;
     height: 0;
-    /* border-top: 1px solid var(--active-elem-color); */
-    /* border-bottom: 1px solid var(--active-elem-color); */
-    /* border-top: 5px solid var(--active-elem-color); */
     transform: scaleY(2);
-    /* Масштабирование увеличение */
     transition: .5s;
-    /* Плавный переход */
     opacity: 0;
     z-index: 1;
-}
+} */
 
-.left_double_arrow:hover:before {
-    transform: scaleY(1.2);
+.left_double_arrow:hover {
+    /* transform: scaleY(3); */
+    transform: scaleX(3);
     opacity: 1;
 }
+/* .left_double_arrow:hover:before {
+    transform: scaleY(1.2);
+    opacity: 1;
+} */
 
 /* .left_double_arrow:after {
     content: '';

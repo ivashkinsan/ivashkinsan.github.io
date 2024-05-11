@@ -19,7 +19,7 @@ class Metronome { // создание нового класса
         // позволяет впоследствии удалить запущенный setInterval c помощью clearInterval()
     }
     searsh_all_elem() {
-        this.contain_btn_pulse = document.querySelector('.contain_btn_pulse');
+        // this.contain_btn_pulse = document.querySelector('.contain_btn_pulse');
         this.allNotes['value_NO'] = null;
         this.allNotes['matrix_2'] = document.querySelectorAll('.matrix_2');
         this.allNotes['matrix_4'] = document.querySelectorAll('.matrix_4');
@@ -195,43 +195,7 @@ for (let i = 0; i < tempoChangeButtons.length; i++) {
 };
 
 // ВЫБОР ПУЛЬСА
-metronome.contain_btn_pulse.addEventListener('change', function () {
-    metronome.clear_all_elem();
-    switch (this.dataset.value) {
-        case 'value_NO':
-            metronome.tempo = 50;
-            tempo.textContent = metronome.tempo;
-            break;
-        case 'value_2':
-            metronome.tempo = 25;
-            tempo.textContent = metronome.tempo;
-            metronome.currentBeatInBar = 0;
-            metronome.schet_for_led = 0;
-            metronome.beatsPerBar = metronome.allNotes.matrix_2.length;
-            break;
-        case 'value_4':
-            metronome.tempo = 50;
-            tempo.textContent = metronome.tempo;
-            metronome.currentBeatInBar = 0;
-            metronome.schet_for_led = 0;
-            metronome.beatsPerBar = metronome.allNotes.matrix_4.length;
-            break;
-        case 'value_8':
-            metronome.tempo = 100;
-            tempo.textContent = metronome.tempo;
-            metronome.currentBeatInBar = 0;
-            metronome.schet_for_led = 0;
-            metronome.beatsPerBar = metronome.allNotes.matrix_8.length;
-            break;
-        case 'value_16':
-            metronome.tempo = 200;
-            tempo.textContent = metronome.tempo;
-            metronome.currentBeatInBar = 0;
-            metronome.schet_for_led = 0;
-            metronome.beatsPerBar = metronome.allNotes.matrix_16.length;
-            break;
-    }
-})
+
 
 // ВЫБОР АКЦЕНТОВ
 // document.querySelector('.contain_btn_group').addEventListener('change', function () {

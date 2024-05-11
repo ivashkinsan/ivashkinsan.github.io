@@ -112,20 +112,25 @@ button:disabled {
 }
 
 .sizeMenuBtn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
     width: 40px;
     height: 40px;
     font-size: 28px;
     text-align: center;
+    color: #ffffff;
     cursor: pointer;
 }
 
 .menuContain {
     position: absolute;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    margin-top: 10px;
     gap: 15px;
-    top: -70px;
-    right: 0;
+    /* top: -70px; */
+    /* right: 0; */
 
 }
 

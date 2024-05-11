@@ -189,7 +189,7 @@ function isUpperCase(letter) {
 
 const createBtnOpenAndCloseCardAlphabet = function () {
     let btn = document.createElement('div');
-    btn.classList.add('btn_open_and_close_card_alphabet');
+    btn.classList.add('btn_open_and_close_card_alphabet','inBody');
     btn.addEventListener('click', function () {
         const cardAlphabetContain = document.querySelector('.cardAlphabetContain');
         cardAlphabetContain.classList.toggle('hidden_cardAlphabetContain');

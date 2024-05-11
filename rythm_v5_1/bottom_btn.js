@@ -1,10 +1,115 @@
+const btnPulseContainer = new Object({
+    '_state': null,
+    'container': null,
+    'allButtons': [],
+    'containerForAppend': document.querySelector('.metronome_container'),
+    createContainer(){
+        let label = document.createElement('p');
+        label.textContent = 'пульс';
+       let container = document.createElement('div');
+       container.classList.add('contain_btn_pulse');
+       container.classList.add('elem_footer');
+       this.container = container;
+       this.container.addEventListener('click', (event) => {
+        this.state = event.target.dataset.value;
+        akcents.pressButton = event.target;
+        // console.log(event.target);
+        // console.log(akcents.pressButton);
+        // console.log(akcents.pressButton.dataset.mtrx);
+       });
+       this.containerForAppend.append(container);
+       this.container.append(label);
+       metronome.contain_btn_pulse = container;
+    
+       let changeForBtnContains = new Event('change', {
+        bubbles: true,
+        cancelable: true
+    });
+    metronome.containBtnPulse = container;
+    container.dispatchEvent(changeForBtnContains);
+
+    metronome.contain_btn_pulse.addEventListener('change', function () {
+        metronome.clear_all_elem();
+        switch (this.dataset.value) {
+            case 'value_NO':
+                metronome.tempo = 50;
+                tempo.textContent = metronome.tempo;
+                break;
+            case 'value_2':
+                metronome.tempo = 25;
+                tempo.textContent = metronome.tempo;
+                metronome.currentBeatInBar = 0;
+                metronome.schet_for_led = 0;
+                metronome.beatsPerBar = metronome.allNotes.matrix_2.length;
+                break;
+            case 'value_4':
+                metronome.tempo = 50;
+                tempo.textContent = metronome.tempo;
+                metronome.currentBeatInBar = 0;
+                metronome.schet_for_led = 0;
+                metronome.beatsPerBar = metronome.allNotes.matrix_4.length;
+                break;
+            case 'value_8':
+                metronome.tempo = 100;
+                tempo.textContent = metronome.tempo;
+                metronome.currentBeatInBar = 0;
+                metronome.schet_for_led = 0;
+                metronome.beatsPerBar = metronome.allNotes.matrix_8.length;
+                break;
+            case 'value_16':
+                metronome.tempo = 200;
+                tempo.textContent = metronome.tempo;
+                metronome.currentBeatInBar = 0;
+                metronome.schet_for_led = 0;
+                metronome.beatsPerBar = metronome.allNotes.matrix_16.length;
+                break;
+        }
+    })
+    
+
+
+    },
+    createButtons(){
+        let dataValue = ['value_NO','value_2','value_4','value_8','value_16'];
+        let datasetMtrx = ['value_NO','matrix_2','matrix_4','matrix_8','matrix_16']
+        let btnLabel = ['\u2717','h','q','e','x'];
+        for(let i = 0; i < btnLabel.length; i++){
+            let button = document.createElement('div');
+            button.classList.add('btn_pulse');
+            button.textContent = btnLabel[i];
+            button.dataset.value = dataValue[i];
+            button.dataset.mtrx = datasetMtrx[i];
+            this.allButtons.push(button);
+            this.container.append(button);
+        }
+    },
+    /**
+     * @param {any} value
+     */
+    set state(value){
+        this._state = value;
+        this.allButtons.forEach(btn => {
+            if(btn.dataset.value == value){
+                btn.classList.add('btn_active');
+            } else {
+                btn.classList.remove('btn_active');
+            }
+        }); 
+    }
+});
+btnPulseContainer.createContainer();
+btnPulseContainer.createButtons();
+
+
 let buttonsPulse = document.querySelectorAll('.btn_pulse');
 let changeForBtnContains = new Event('change', {
     bubbles: true,
     cancelable: true
 });
-let containBtnPulse = document.querySelector('.contain_btn_pulse');
 
+
+
+// let containBtnPulse = document.querySelector('.contain_btn_pulse');
 buttonsPulse.forEach(button => {
     button.addEventListener('click', () => {
         buttonsPulse.forEach(btn => {
@@ -20,7 +125,8 @@ buttonsPulse.forEach(button => {
             akcents.createElem();
             akcents.containerForAppend.append(akcents.container);
         }
-        containBtnPulse.dispatchEvent(changeForBtnContains);
+        console.log(changeForBtnContains);
+        metronome.containBtnPulse.dispatchEvent(changeForBtnContains);
     });
 });
 
@@ -62,6 +168,8 @@ const akcents = new Object({
     },
     createElem() {
         this.allElems = [];
+        console.log(this.pressButton);
+        console.log(metronome.allNotes);
         let findLengthMtrx = metronome.allNotes[this.pressButton.dataset.mtrx].length;
         for (let i = 0; i < findLengthMtrx; i++) {
             let circleAkcentElem = document.createElement('div');

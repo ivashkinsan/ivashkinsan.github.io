@@ -33,56 +33,38 @@ const sizeMenu = new Object({
                 switch (e.target.textContent) {
                     case '2:4':
                         bgMatrix.createBackground(bgMatrix.matrix_2x4, bgMatrix.startleftPosition);
-                        metronome.searsh_all_elem();
-                        clearActiveElem();
-                        akcents.delElements();
                         break;
                     case '3:4':
                         bgMatrix.createBackground(bgMatrix.matrix_3x4, bgMatrix.startleftPosition);
-                        metronome.searsh_all_elem();
-                        clearActiveElem();
                         break;
                     case '4:4':
                         bgMatrix.createBackground(bgMatrix.matrix_4x4, bgMatrix.startleftPosition);
-                        metronome.searsh_all_elem();
-                        clearActiveElem();
                         break;
                     case '5:4':
                         bgMatrix.createBackground(bgMatrix.matrix_5x4, bgMatrix.startleftPosition);
-                        metronome.searsh_all_elem();
-                        clearActiveElem();
                         break;
                     case '6:4':
                         bgMatrix.createBackground(bgMatrix.matrix_6x4, bgMatrix.startleftPosition);
-                        metronome.searsh_all_elem();
-                        clearActiveElem();
                         break;
                     case '7:4':
                         bgMatrix.createBackground(bgMatrix.matrix_6x4, bgMatrix.startleftPosition);
-                        metronome.searsh_all_elem();
-                        clearActiveElem();
                         break;
                     case '8:4':
                         bgMatrix.createBackground(bgMatrix.matrix_8x4, bgMatrix.startleftPosition);
-                        metronome.searsh_all_elem();
-                        clearActiveElem();
                         break;
                     case '6:8':
                         bgMatrix.createBackground(bgMatrix.matrix_6x8, bgMatrix.startleftPosition);
-                        metronome.searsh_all_elem();
-                        clearActiveElem();
                         break;
                     case '9:8':
                         bgMatrix.createBackground(bgMatrix.matrix_9x8, bgMatrix.startleftPosition);
-                        metronome.searsh_all_elem();
-                        clearActiveElem();
                         break;
                     case '12:8':
                         bgMatrix.createBackground(bgMatrix.matrix_12x8, bgMatrix.startleftPosition);
-                        metronome.searsh_all_elem();
-                        clearActiveElem();
                         break;
                 }
+                metronome.searsh_all_elem();
+                clearActiveElem();
+                akcents.delElements();
             })
         }
     },
@@ -104,5 +86,5 @@ sizeMenu.createButtonSizeMenu();
 
 
 
-let metrContain = document.querySelector('.metronome_container');
-metrContain.append(sizeMenu.button);
+let body = document.querySelector('body');
+body.append(sizeMenu.button);
