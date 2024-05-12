@@ -209,7 +209,12 @@ button:disabled {
     line-height: 21px;
     color: rgb(190, 190, 190);
 }
-
+/* .akcentsBtnPattern{
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    cursor: pointer;
+} */
 .circle_akcent_elem_active {
     /* background-color: rgba(8, 23, 105, 0.266); */
     box-shadow: 0 0 0 1px white;

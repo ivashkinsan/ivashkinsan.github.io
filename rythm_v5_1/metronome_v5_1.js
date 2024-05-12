@@ -32,7 +32,6 @@ class Metronome { // создание нового класса
             item.classList.remove('add_metronome_click_active');
         }
     }
-
     // метод в конструкторе, где this - класс Metronome
     nextNote() { // функция исполнения следующей ноты
         // Передвинуть текущую ноту и время на четвертную ноту 
@@ -71,14 +70,10 @@ class Metronome { // создание нового класса
                 //play();//=================================================
             }, 55);  //======== delay для синхронного воспроизведения с аудио
         }//=================================================
-
-
         for (let item of level) { // удаление подсветки
             item.classList.remove('add_metronome_click_active');
         }
-        
        akcents.ledOn(this.schet_for_led);
-        
         // последовательное добавление элементам подсветки
         level[this.schet_for_led].classList.add('add_metronome_click_active');
         console.log(this.schet_for_led);
@@ -108,16 +103,13 @@ class Metronome { // создание нового класса
         // создаем осциллятор
         const osc = this.audioContext.createOscillator(); // вызов метода создания Oscillator с присвоением в osc
         const envelope = this.audioContext.createGain();  // вызов метода создания Gain с присвоением в envelope (конверт)
-
         // osc.frequency.value = (beatNumber % this.beatsPerBar == 0) ? 1000 : 800; // высота звука метронома
         osc.frequency.value = this.akcentBoolean ? 1000 : 800; // высота звука метронома
         envelope.gain.value = 1; // громкость
         envelope.gain.exponentialRampToValueAtTime(1, time + 0.001); // плавность в конце воспроизведения
         envelope.gain.exponentialRampToValueAtTime(0.001, time + 0.02); // плавность в начале воспроизведения
-
         osc.connect(envelope); // соединениеосциллатора с гейном
         envelope.connect(this.audioContext.destination); // подключение гейна к аудио выходу
-
         osc.start(time); // запуск осцилатора
         osc.stop(time + 0.03); // остановка осцилатора
     }
@@ -145,7 +137,6 @@ class Metronome { // создание нового класса
     }
     // метод в конструкторе, где this - класс Metronome
     stop() {
-        
         this.isRunning = false; // остановить метроном отметкой в запуске
         clearInterval(this.intervalID); // очистить значение интервала
     }
@@ -157,31 +148,25 @@ class Metronome { // создание нового класса
             this.start();
         }
     }
-
 }
 // =============================================================================================
-
 let metronome = new Metronome(); // наследование от класса Метронома
 metronome.searsh_all_elem();
 let tempo = document.getElementById('tempo'); // привязка элемента для отображения темпа
 tempo.textContent = metronome.tempo; // запись значения темпа
-
 let playPauseIcon = document.getElementById('play-pause-icon'); // кнопка паузы
-
 let playButton = document.getElementById('play-button'); // кнопка плей
 playButton.addEventListener('click', function () { // событие на кнопке плей
     metronome.startStop(); // вызов метода у метронома
-    metronome.clear_all_elem(); // очистка всех элементов
-
+    metronome.clear_all_elem(); // очистка всех фона mtrx элементов
+    akcents.ledOff(); // очистка фона у матрицы акцентов
     // console.log(metronome.notesInQueue);
 
     if (metronome.isRunning) { // изменение класса у кнопки плей и пауза
         playPauseIcon.className = 'pause_metr';
     } else {
         playPauseIcon.className = 'play';
-
     }
-
 });
 
 // значение темпа
@@ -193,9 +178,6 @@ for (let i = 0; i < tempoChangeButtons.length; i++) {
         // speed_tempo();
     });
 };
-
-// ВЫБОР ПУЛЬСА
-
 
 // ВЫБОР АКЦЕНТОВ
 // document.querySelector('.contain_btn_group').addEventListener('change', function () {
@@ -238,7 +220,6 @@ let clearActiveElem = function () {// функция очистки подсве
 }
 let clearButton = document.querySelector('.clear');
 clearButton.addEventListener('click', clearActiveElem); // очистка подсветки
-
 
 // подключение аудио файла для диктанта
 let context = new AudioContext();

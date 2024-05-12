@@ -194,7 +194,10 @@ const akcents = new Object({
             })
         }
         this.container.append(akcents.createEraser());
-        // this.container.append(akcents.createPattern());
+        // let patterns = akcents.createPattern();
+        // patterns.map(elem =>{
+        //     this.container.append(elem);
+        // })
     },
     createEraser() {
         let eraser = document.createElement('div');
@@ -208,18 +211,18 @@ const akcents = new Object({
         })
         return eraser;
     },
-    createPattern() {
-        let btnArr = ['2', '3', '4'];
-        let allBtn = [];
-        for (let item of btnArr) {
-            let btn = document.createElement('div');
-            btn.classList.add(`btnPattern_${item}`);
-            btn.textContent = item;
-            allBtn.push(btn)
-        }
-        console.log(allBtn);
-        // return allBtn.forEach((element) => { return element });
-    },
+    // createPattern() {
+    //     let btnArr = ['1','2', '3', '4','del'];
+    //     let allBtn = [];
+    //     for (let item of btnArr) {
+    //         let btn = document.createElement('div');
+    //         btn.classList.add(`akcentsBtnPattern`);
+    //         btn.classList.add(`btnPattern_${item}`);
+    //         btn.textContent = item;
+    //         allBtn.push(btn);
+    //     }
+    //     return allBtn;
+    // },
     findAllAkcents() {
         this.pattern = [];
         for (let item of this.allElems) {
