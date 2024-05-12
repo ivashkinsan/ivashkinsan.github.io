@@ -76,7 +76,7 @@ class Metronome { // создание нового класса
        akcents.ledOn(this.schet_for_led);
         // последовательное добавление элементам подсветки
         level[this.schet_for_led].classList.add('add_metronome_click_active');
-        console.log(this.schet_for_led);
+        // console.log(this.schet_for_led);
         // console.log(this.akcents[this.schet_for_led]);
 
 

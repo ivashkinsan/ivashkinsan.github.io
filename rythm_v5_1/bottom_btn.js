@@ -109,7 +109,7 @@ let changeForBtnContains = new Event('change', {
 
 
 
-// let containBtnPulse = document.querySelector('.contain_btn_pulse');
+let containBtnPulse = document.querySelector('.contain_btn_pulse');
 buttonsPulse.forEach(button => {
     button.addEventListener('click', () => {
         buttonsPulse.forEach(btn => {
@@ -125,7 +125,7 @@ buttonsPulse.forEach(button => {
             akcents.createElem();
             akcents.containerForAppend.append(akcents.container);
         }
-        console.log(changeForBtnContains);
+        // console.log(changeForBtnContains);
         metronome.containBtnPulse.dispatchEvent(changeForBtnContains);
     });
 });
@@ -140,7 +140,9 @@ const akcents = new Object({
     'pattern': [],
     'proxy_start_stop_metr': new Proxy(metronome, {
         get(target, prop) {
-            // console.log('Target', target);
+            if(prop == 'isRunning'){
+                console.log('isRunning');
+            }
             console.log(`Getting prop ${prop}`);
             console.log("isRunning " + target.isRunning);
             return target[prop];
@@ -168,8 +170,8 @@ const akcents = new Object({
     },
     createElem() {
         this.allElems = [];
-        console.log(this.pressButton);
-        console.log(metronome.allNotes);
+        // console.log(this.pressButton);
+        // console.log(metronome.allNotes);
         let findLengthMtrx = metronome.allNotes[this.pressButton.dataset.mtrx].length;
         for (let i = 0; i < findLengthMtrx; i++) {
             let circleAkcentElem = document.createElement('div');
@@ -251,5 +253,6 @@ const akcents = new Object({
 });
 
 akcents.createContainer();
+akcents.proxy_start_stop_metr;
 
-console.log(akcents.proxy_start_stop_metr);
+console.log(akcents.proxy_start_stop_metr.isRunning);
