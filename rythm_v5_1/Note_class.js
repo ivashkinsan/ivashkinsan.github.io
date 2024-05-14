@@ -16,6 +16,8 @@ class Note {
         this._label = null;
         this.previousElemId = null;
         this.nextElemId = null;
+        this.previousElemIsSixteenthNote_16 = false;
+        this.nextElemIsSixteenthNote_16 = false;
         this.div = null;
         this.handle = {};
         this.startResizing = this.startResizing.bind(this);
@@ -71,25 +73,56 @@ class Note {
         this.div.append(this.handle.leftRightHandle);
     }
     findPrevNextForShowHandle() {
+        // если правый край превиоус элемента равен левому краю this элемента
         if (bgMatrix.idStack[this.previousElemId]
             && bgMatrix.idStack[this.previousElemId]._rightSidePosition == this._leftSidePosition
-        ) {
+        ) { // тогда добавить возможность изменения двух блоков
             this.handle.leftRightHandle.classList.remove('display_none');
             if (bgMatrix.idStack[this.previousElemId].div.classList.contains('sixteenthNote_16')
                 && this.div.classList.contains('sixteenthNote_16')
-            ) {
+            ) { // если превиоус элемент 16-ая нота скрыть возможность
                 this.handle.leftRightHandle.classList.add('display_none');
             }
-        } else if (bgMatrix.idStack[this.previousElemId]) {
+
+        } else if (bgMatrix.idStack[this.previousElemId]) { // если позиции краев не равны - скрыть
             this.handle.leftRightHandle.classList.add('display_none');
         }
+
+        // если правый край превиоус элемента равен левому и оба элемента 16-ые ноты
+        if (bgMatrix.idStack[this.previousElemId]
+            && bgMatrix.idStack[this.previousElemId]._rightSidePosition == this._leftSidePosition
+            && bgMatrix.idStack[this.previousElemId].div.classList.contains('sixteenthNote_16')
+            && bgMatrix.idStack[this.id].div.classList.contains('sixteenthNote_16')
+        ) {
+            console.log('16 + 16')
+            // присвоить true для, для сокрытия стрелочного курсора и блокировки растягивания левой стороны
+            this.previousElemIsSixteenthNote_16 = true;
+        } else {
+            this.previousElemIsSixteenthNote_16 = false;
+        }
+        // если левый край next элемента равен правому this и оба элемента 16-ые ноты
         if (bgMatrix.idStack[this.nextElemId]
-            && bgMatrix.idStack[this.nextElemId]._rightSidePosition == this._leftSidePosition) {
-            bgMatrix.idStack[this.nextElemId].handle.leftRightHandle.classList.remove('display_none');
+            && bgMatrix.idStack[this.nextElemId]._leftSidePosition == this._rightSidePosition
+            && bgMatrix.idStack[this.nextElemId].div.classList.contains('sixteenthNote_16')
+            && bgMatrix.idStack[this.id].div.classList.contains('sixteenthNote_16')
+        ) {
+            console.log('16 + 16')
+            // присвоить true для, для сокрытия стрелочного курсора и блокировки растягивания правой стороны
+            this.nextElemIsSixteenthNote_16 = true;
+        } else {
+            this.nextElemIsSixteenthNote_16 = false;
         }
-        if (!bgMatrix.idStack[this.previousElemId] && !bgMatrix.idStack[this.nextElemId]) {
-            this.handle.leftRightHandle.classList.add('display_none');
-        }
+        // console.log(`nextElemIsSixteenthNote_16 = ${this.nextElemIsSixteenthNote_16}`);
+        // console.log(`nextElemIsSixteenthNote_16 = ${this.previousElemIsSixteenthNote_16}`);
+
+        // если 
+        // if (bgMatrix.idStack[this.nextElemId]
+        //     && bgMatrix.idStack[this.nextElemId]._rightSidePosition == this._leftSidePosition) {
+        //     bgMatrix.idStack[this.nextElemId].handle.leftRightHandle.classList.remove('display_none');
+        // }
+        // if (!bgMatrix.idStack[this.previousElemId] && !bgMatrix.idStack[this.nextElemId]) {
+        //     this.handle.leftRightHandle.classList.add('display_none');
+        // }
 
 
     }
@@ -124,11 +157,11 @@ class Note {
     createLabel() {
         let p_label = document.createElement('p');
         // if (is_pause) {
-            // p_label.textContent = this.pausesSymbol.default;
+        // p_label.textContent = this.pausesSymbol.default;
         // } else {
-            // p_label.textContent = this.notesSymbol.default;
+        // p_label.textContent = this.notesSymbol.default;
         // }
-        
+
         this._label = p_label;
         this.div.append(this._label);
         this.isPause = false;
@@ -146,22 +179,22 @@ class Note {
         this.div.dataset.id = this.id;
         this.rightSidePosition = this._leftSidePosition + this._width;
     }
-    findCursorPosition(e){
+    findCursorPosition(e) {
         let rect = this.getBoundingClientRect();
-        let percentForTouchLeftRight = (rect.width / 100 * 20)
+        let percentForTouchLeftRight = (rect.width / 100 * 20) // 20% процентов площади для отображения стрелок курсора
         let x = e.clientX - rect.left;
         let y = e.clientY - rect.top;
         // console.log(rect);
         // console.log( `rect = ${rect} x = ${x} y = ${y}`);
-        if((rect.width - x) < percentForTouchLeftRight || x < percentForTouchLeftRight){
-            // this.style.cursor = 'url(\'/cursor/left_and_right_40_figma.svg\')16 16, auto';
+        if ((rect.width - x) < percentForTouchLeftRight && !this.nextElemIsSixteenthNote_16) {
+            this.style.cursor = 'ew-resize';
+        } else if (x < percentForTouchLeftRight && !this.previousElemIsSixteenthNote_16) {
             this.style.cursor = 'ew-resize';
         } else {
-            // this.style.cursor = 'url(\'/cursor/note_pause_40_figma.svg\')16 16, auto'; 
-            this.style.cursor = 'pointer'; 
-
+            this.style.cursor = 'pointer';
         }
-
+        // this.style.cursor = 'url(\'/cursor/left_and_right_40_figma.svg\')16 16, auto';
+        // this.style.cursor = 'url(\'/cursor/note_pause_40_figma.svg\')16 16, auto'; 
         // if (y < rect.height / 2) {
         //     this.style.cursor = "pointer";
         // } else {
@@ -171,17 +204,17 @@ class Note {
     addEventListenerForPauseTransform() {
         this.div.addEventListener('mousedown', (event) => {
             let rect = this.div.getBoundingClientRect();
-        let percentForTouchLeftRight = (rect.width / 100 * 20)
-        let x = event.clientX - rect.left;
-        let y = event.clientY - rect.top;
+            let percentForTouchLeftRight = (rect.width / 100 * 20)
+            let x = event.clientX - rect.left;
+            let y = event.clientY - rect.top;
             // console.log(event);
             event.preventDefault();
             event.stopPropagation();
-           
 
-            if((rect.width - x) < percentForTouchLeftRight){
+            // три состояния и функции курсора над элементом
+            if ((rect.width - x) < percentForTouchLeftRight && !this.nextElemIsSixteenthNote_16) {
                 this.startResizing(event, 'right',);
-            } else if(x < percentForTouchLeftRight){
+            } else if (x < percentForTouchLeftRight && !this.previousElemIsSixteenthNote_16) {
                 this.startResizing(event, 'left',);
             } else {
                 if (event.button == 0) {
@@ -189,11 +222,11 @@ class Note {
                 }
             }
         })
-        
+
         this.div.addEventListener('mousemove', this.findCursorPosition);
     }
 
-    addTouchEventForPauseAndResizeTransform(){
+    addTouchEventForPauseAndResizeTransform() {
         this.div.addEventListener('touchstart', (event) => {
 
             let touch = event.touches[0];
@@ -204,12 +237,12 @@ class Note {
             // console.log('width','touchX','touchY');
             // console.log([this.width,touchX_inElem,(this.width - touchX_inElem),percentForTouchLeftRight]);
             // console.log(`Touch start relative to element at: ${touchX}, ${touchY}`);
-// console.log((this.width - touchX_inElem) < percentForTouchLeftRight);
-            if((this.width - touchX_inElem) < percentForTouchLeftRight){
+            // console.log((this.width - touchX_inElem) < percentForTouchLeftRight);
+            if ((this.width - touchX_inElem) < percentForTouchLeftRight) {
                 this.magicNoteOrPause();
                 this.startResizing(event, 'right',);
             }
-            if(touchX_inElem < percentForTouchLeftRight){
+            if (touchX_inElem < percentForTouchLeftRight) {
                 this.magicNoteOrPause();
                 this.startResizing(event, 'left',);
             }
@@ -258,10 +291,10 @@ class Note {
                 bgMatrix.idStack[this.previousElemId].hameleon();
                 bgMatrix.researchAllNextPrevElem();
                 console.log('ifBorderCollapse_resize previousElem');
-            } else if(
+            } else if (
                 bgMatrix.idStack[this.previousElemId]._leftSidePosition == this._leftSidePosition
                 && this._width < bgMatrix.idStack[this.previousElemId]._width
-            ){
+            ) {
                 bgMatrix.idStack[this.previousElemId].leftSidePosition = bgMatrix.idStack[this.previousElemId]._leftSidePosition + this._width;
                 bgMatrix.idStack[this.previousElemId].width = bgMatrix.idStack[this.previousElemId]._width - this._width;
                 bgMatrix.idStack[this.previousElemId].indxPosition = bgMatrix.newOutIndMatrix[bgMatrix.idStack[this.previousElemId]._leftSidePosition];
@@ -272,7 +305,7 @@ class Note {
         }
         if (bgMatrix.idStack[this.nextElemId]) {
             if (
-                this._rightSidePosition > bgMatrix.idStack[this.nextElemId]._leftSidePosition 
+                this._rightSidePosition > bgMatrix.idStack[this.nextElemId]._leftSidePosition
                 && bgMatrix.idStack[this.nextElemId]._rightSidePosition > this._rightSidePosition
             ) {
                 let diff = this._rightSidePosition - bgMatrix.idStack[this.nextElemId]._leftSidePosition;
@@ -294,19 +327,19 @@ class Note {
         // let left = rect.left;
         // console.log(rect);
         if (eventMSD.touches) {
-            
+
             // this.startX = eventMSD.touches ? eventMSD.touches[0].clientX : undefined;
-            if(direction == 'right'){this.startX = rect.right };
-            if(direction == 'left'){this.startX = rect.left };
+            if (direction == 'right') { this.startX = rect.right };
+            if (direction == 'left') { this.startX = rect.left };
             // console.log([this.startX,left, right]);
-          } else {
-            
+        } else {
+
             // this.startX = eventMSD.clientX;
-            if(direction == 'right'){this.startX = rect.right };
-            if(direction == 'left'){this.startX = rect.left };
-            if(direction == 'left_right'){this.startX = rect.left };
-          }
-        
+            if (direction == 'right') { this.startX = rect.right };
+            if (direction == 'left') { this.startX = rect.left };
+            if (direction == 'left_right') { this.startX = rect.left };
+        }
+
         this.startWidth = this._width;
         this.startLeft = this._leftSidePosition;
         this.direction = direction;
@@ -317,17 +350,17 @@ class Note {
         if (eventMSD.touches) {
             document.documentElement.addEventListener('touchmove', this.resize);
             document.documentElement.addEventListener('touchend', this.stopResizing);
-          } else {
+        } else {
             document.documentElement.addEventListener('mousemove', this.resize);
             document.documentElement.addEventListener('mouseup', this.stopResizing);
-          }
+        }
     }
     resize(event) {
         // event.preventDefault();
         // event.stopPropagation();
         if (event.touches) {
-            event = event.touches[0]; 
-          }
+            event = event.touches[0];
+        }
         if (this.direction === 'right') {
             let newWidth = Math.min(Math.max(this.startWidth + event.clientX - this.startX, bgMatrix.minWidth), bgMatrix.maxWidth);
             // console.log(bgMatrix.idStack[this.nextElemId]);
@@ -468,18 +501,18 @@ class Note {
      * @param {{boolean}} value
      */
     // при установке паузы изменяются: класс, текст внутри label, переменная _isPause 
-    set isPause(value){
-        if(value === true){
-                this.div.classList.add('pause');
-                this._label.textContent = this.pausesSymbol.default;
-                this._isPause = true;
-        } else if(value === false){
+    set isPause(value) {
+        if (value === true) {
+            this.div.classList.add('pause');
+            this._label.textContent = this.pausesSymbol.default;
+            this._isPause = true;
+        } else if (value === false) {
             this.div.classList.remove('pause');
             this._label.textContent = this.notesSymbol.default;
             this._isPause = false;
         }
     }
-    get isPause(){
+    get isPause() {
         return this._isPause;
     }
 }

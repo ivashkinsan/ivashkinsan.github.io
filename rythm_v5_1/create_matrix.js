@@ -463,9 +463,9 @@ const bgMatrix = {
             note.isPause = true;
         }
 
-        note.addEventListenerForPauseTransform(); // добавить обработчик для ссмены ноты на паузу
-        note.addTouchEventForPauseAndResizeTransform(); // добавить обработчик для ссмены ноты на паузу
-        note.div.addEventListener('contextmenu', (event) => {
+        note.addEventListenerForPauseTransform(); // добавить обработчик для смены ноты на паузу
+        note.addTouchEventForPauseAndResizeTransform(); // добавить обработчик touch для смены ноты на паузу
+        note.div.addEventListener('contextmenu', (event) => { // обработчик для удаления ноты
             event.preventDefault();
             event.stopPropagation();
             let previousElemId = this.previousElemId ? this.previousElemId : undefined;
