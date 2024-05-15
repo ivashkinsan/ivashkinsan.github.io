@@ -187,28 +187,30 @@ class Note {
         let nextElemLeftSidePosition = bgMatrix?.idStack[this.nextElemId]?._leftSidePosition;
         let previousElemRightSidePosition = bgMatrix?.idStack[this.previousElemId]?._rightSidePosition;
         // правая сторона элемента
-        if ((rect.width - x) < percentForTouchLeftRight
-            && !this.nextElemIsSixteenthNote_16
-        ) {
+        if ((rect.width - x) < percentForTouchLeftRight && !this.nextElemIsSixteenthNote_16) {
             if (rect.right - bgMatrix.leftAppSide == nextElemLeftSidePosition || rect.right == bgMatrix.rightAppSide) {
-                this.div.style.cursor = 'w-resize';
+                this.div.style.cursor = 'url(\'/cursor/resizewest.svg\')16 16, auto';
             } else if (this.previousElemIsSixteenthNote_16 || this._class == 'sixteenthNote_16') {
-                this.div.style.cursor = 'e-resize';
+                this.div.style.cursor = 'url(\'/cursor/resizeeast.svg\')16 16, auto';
             } else {
-                this.div.style.cursor = 'ew-resize';
+                this.div.style.cursor = 'url(\'/cursor/resizewesteast.svg\')16 16, auto';
             }
             // левая сторона элемента
         } else if (x < percentForTouchLeftRight && !this.previousElemIsSixteenthNote_16) {
             if (rect.left - bgMatrix.leftAppSide == previousElemRightSidePosition || rect.left == bgMatrix.leftAppSide) {
-                this.div.style.cursor = 'e-resize';
+                this.div.style.cursor = 'url(\'/cursor/resizeeast.svg\')16 16, auto';
             } else if (this.nextElemIsSixteenthNote_16 || this._class == 'sixteenthNote_16') {
-                this.div.style.cursor = 'w-resize';
+                this.div.style.cursor = 'url(\'/cursor/resizewest.svg\')16 16, auto';
             } else {
-                this.div.style.cursor = 'ew-resize';
+                this.div.style.cursor = 'url(\'/cursor/resizewesteast.svg\')16 16, auto';
             }
-        } else if (this._class == 'sixteenthNote_16' && x < percentForTouchLeftRight) {
-            this.div.style.cursor = 'e-resize';
-        } else {
+        } else if (
+            this._class == 'sixteenthNote_16' && this.nextElemIsSixteenthNote_16 && nextElemLeftSidePosition == this._rightSidePosition
+            || this._class == 'sixteenthNote_16' && this.previousElemIsSixteenthNote_16 && previousElemRightSidePosition == this._leftSidePosition
+        ) {
+            this.div.style.cursor = 'pointer';
+        }
+        else {
             this.div.style.cursor = 'pointer';
         }
         // this.style.cursor = 'url(\'/cursor/left_and_right_40_figma.svg\')16 16, auto';

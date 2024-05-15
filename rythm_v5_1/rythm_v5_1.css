@@ -173,23 +173,19 @@ body {
     margin: auto;
     top: 0;
     bottom: 0;
-    /* background-color: red; */
-    /* cursor: ew-resize; */
     z-index: 1001;
 }
 
 .left-handle {
     left: 3px;
-    /* cursor: w-resize; */
-    /* cursor: url('/cursor/left_32px.png')16 16, auto; */
     cursor: ew-resize;
     touch-action: none;
 }
 
 .right-handle {
     right: 3px;
-    /* cursor: url('/cursor/right_32px.png')16 16, auto; */
-    cursor: ew-resize;
+
+    /* cursor: ew-resize; */
     touch-action: none;
 }
 
@@ -200,12 +196,12 @@ body {
     margin: auto;
     top: 0;
     bottom: 0;
-   
+
 
     left: -2.5px;
     /* cursor: url('/cursor/left-right_32px.png')16 16, auto; */
     background: rgba(255, 255, 255, 0.465);
-    cursor: col-resize;
+    cursor: url('/cursor/resizeleftright.svg')16 16, col-resize;
     z-index: 1000;
 }
 
@@ -229,6 +225,7 @@ body {
     transform: scaleX(3);
     opacity: 1;
 }
+
 /* .left_double_arrow:hover:before {
     transform: scaleY(1.2);
     opacity: 1;
