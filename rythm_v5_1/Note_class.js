@@ -179,19 +179,37 @@ class Note {
         this.div.dataset.id = this.id;
         this.rightSidePosition = this._leftSidePosition + this._width;
     }
-    findCursorPosition(e) {
-        let rect = this.getBoundingClientRect();
+    findCursorPosition(event) {
+        let rect = this.div.getBoundingClientRect();
         let percentForTouchLeftRight = (rect.width / 100 * 20) // 20% процентов площади для отображения стрелок курсора
-        let x = e.clientX - rect.left;
-        let y = e.clientY - rect.top;
-        // console.log(rect);
-        // console.log( `rect = ${rect} x = ${x} y = ${y}`);
-        if ((rect.width - x) < percentForTouchLeftRight && !this.nextElemIsSixteenthNote_16) {
-            this.style.cursor = 'ew-resize';
+        let x = event.clientX - rect.left;
+        let y = event.clientY - rect.top;
+        let nextElemLeftSidePosition = bgMatrix?.idStack[this.nextElemId]?._leftSidePosition;
+        let previousElemRightSidePosition = bgMatrix?.idStack[this.previousElemId]?._rightSidePosition;
+        // правая сторона элемента
+        if ((rect.width - x) < percentForTouchLeftRight
+            && !this.nextElemIsSixteenthNote_16
+        ) {
+            if (rect.right - bgMatrix.leftAppSide == nextElemLeftSidePosition || rect.right == bgMatrix.rightAppSide) {
+                this.div.style.cursor = 'w-resize';
+            } else if (this.previousElemIsSixteenthNote_16 || this._class == 'sixteenthNote_16') {
+                this.div.style.cursor = 'e-resize';
+            } else {
+                this.div.style.cursor = 'ew-resize';
+            }
+            // левая сторона элемента
         } else if (x < percentForTouchLeftRight && !this.previousElemIsSixteenthNote_16) {
-            this.style.cursor = 'ew-resize';
+            if (rect.left - bgMatrix.leftAppSide == previousElemRightSidePosition || rect.left == bgMatrix.leftAppSide) {
+                this.div.style.cursor = 'e-resize';
+            } else if (this.nextElemIsSixteenthNote_16 || this._class == 'sixteenthNote_16') {
+                this.div.style.cursor = 'w-resize';
+            } else {
+                this.div.style.cursor = 'ew-resize';
+            }
+        } else if (this._class == 'sixteenthNote_16' && x < percentForTouchLeftRight) {
+            this.div.style.cursor = 'e-resize';
         } else {
-            this.style.cursor = 'pointer';
+            this.div.style.cursor = 'pointer';
         }
         // this.style.cursor = 'url(\'/cursor/left_and_right_40_figma.svg\')16 16, auto';
         // this.style.cursor = 'url(\'/cursor/note_pause_40_figma.svg\')16 16, auto'; 
@@ -207,7 +225,6 @@ class Note {
             let percentForTouchLeftRight = (rect.width / 100 * 20)
             let x = event.clientX - rect.left;
             let y = event.clientY - rect.top;
-            // console.log(event);
             event.preventDefault();
             event.stopPropagation();
 
@@ -223,7 +240,7 @@ class Note {
             }
         })
 
-        this.div.addEventListener('mousemove', this.findCursorPosition);
+        this.div.addEventListener('mousemove', (event) => { this.findCursorPosition(event) });
     }
 
     addTouchEventForPauseAndResizeTransform() {
@@ -368,10 +385,12 @@ class Note {
                 if (event.clientX < bgMatrix.idStack[this.nextElemId]._leftSidePosition + bgMatrix.app.offsetLeft) {
                     this.width = Math.round(newWidth / bgMatrix.step) * bgMatrix.step;
                     this.hameleon();
+                    // this.findPrevNextForShowHandle();
                 }
             } else if (event.clientX < bgMatrix.rightAppSide) {
                 this.width = Math.round(newWidth / bgMatrix.step) * bgMatrix.step;
                 this.hameleon();
+                // this.findPrevNextForShowHandle();
             }
 
         } else if (this.direction === 'left') {
@@ -432,6 +451,23 @@ class Note {
         this.class = bgMatrix.sizeIdentif[this._width];
         this.label = allSymbolForNotes_2_4[bgMatrix.sizeIdentif[this._width]];
         this._rightSidePosition = this._leftSidePosition + this._width;
+
+        // скрытие двойного handle
+        // if (this.nextElem) {
+        //     if (this._rightSidePosition != this.nextElem._leftSidePosition) {
+        //         bgMatrix.idStack[this.nextElemId].handle.leftRightHandle.classList.add('display_none');
+        //     } else if (this._rightSidePosition == this.nextElem._leftSidePosition) {
+        //         bgMatrix.idStack[this.nextElemId].handle.leftRightHandle.classList.remove('display_none');
+        //     }
+        // }
+        // if (this.previousElem) {
+        //     if (this._leftSidePosition != this.previousElem._rightSidePosition) {
+        //         this.handle.leftRightHandle.classList.add('display_none');
+        //     } else if (this._rightSidePosition == this.nextElem._leftSidePosition) {
+        //         this.handle.leftRightHandle.classList.remove('display_none');
+        //     }
+        // }
+
     }
 
     idGenerator() {
