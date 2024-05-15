@@ -178,7 +178,7 @@ body {
 
 .left-handle {
     left: 3px;
-    cursor: ew-resize;
+    /* cursor: ew-resize; */
     touch-action: none;
 }
 
@@ -201,7 +201,7 @@ body {
     left: -2.5px;
     /* cursor: url('/cursor/left-right_32px.png')16 16, auto; */
     background: rgba(255, 255, 255, 0.465);
-    cursor: url('/cursor/resizeleftright.svg')16 16, col-resize;
+    cursor: url('/cursor/resizeleftright_48.svg')24 24, col-resize;
     z-index: 1000;
 }
 

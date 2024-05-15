@@ -186,40 +186,39 @@ class Note {
         let y = event.clientY - rect.top;
         let nextElemLeftSidePosition = bgMatrix?.idStack[this.nextElemId]?._leftSidePosition;
         let previousElemRightSidePosition = bgMatrix?.idStack[this.previousElemId]?._rightSidePosition;
+        
         // правая сторона элемента
-        if ((rect.width - x) < percentForTouchLeftRight && !this.nextElemIsSixteenthNote_16) {
+        if ((rect.width - x) < percentForTouchLeftRight && !this.nextElemIsSixteenthNote_16 && this._class != 'sixteenthNote_16') {
             if (rect.right - bgMatrix.leftAppSide == nextElemLeftSidePosition || rect.right == bgMatrix.rightAppSide) {
-                this.div.style.cursor = 'url(\'/cursor/resizewest.svg\')16 16, auto';
+                this.div.style.cursor = 'url(\'/cursor/resizewest_48.svg\')24 24, auto';
             } else if (this.previousElemIsSixteenthNote_16 || this._class == 'sixteenthNote_16') {
-                this.div.style.cursor = 'url(\'/cursor/resizeeast.svg\')16 16, auto';
+                this.div.style.cursor = 'url(\'/cursor/resizeeast_48.svg\')24 24, auto';
             } else {
-                this.div.style.cursor = 'url(\'/cursor/resizewesteast.svg\')16 16, auto';
+                this.div.style.cursor = 'url(\'/cursor/resizewesteast_48.svg\')24 24, auto';
             }
             // левая сторона элемента
-        } else if (x < percentForTouchLeftRight && !this.previousElemIsSixteenthNote_16) {
+        } else if (x < percentForTouchLeftRight && !this.previousElemIsSixteenthNote_16 && this._class != 'sixteenthNote_16') {
             if (rect.left - bgMatrix.leftAppSide == previousElemRightSidePosition || rect.left == bgMatrix.leftAppSide) {
-                this.div.style.cursor = 'url(\'/cursor/resizeeast.svg\')16 16, auto';
+                this.div.style.cursor = 'url(\'/cursor/resizeeast_48.svg\')24 24, auto';
             } else if (this.nextElemIsSixteenthNote_16 || this._class == 'sixteenthNote_16') {
-                this.div.style.cursor = 'url(\'/cursor/resizewest.svg\')16 16, auto';
+                this.div.style.cursor = 'url(\'/cursor/resizewest_48.svg\')24 24, auto';
             } else {
-                this.div.style.cursor = 'url(\'/cursor/resizewesteast.svg\')16 16, auto';
+                this.div.style.cursor = 'url(\'/cursor/resizewesteast_48.svg\')24 24, auto';
             }
-        } else if (
-            this._class == 'sixteenthNote_16' && this.nextElemIsSixteenthNote_16 && nextElemLeftSidePosition == this._rightSidePosition
-            || this._class == 'sixteenthNote_16' && this.previousElemIsSixteenthNote_16 && previousElemRightSidePosition == this._leftSidePosition
-        ) {
+        } else if ( this._class == 'sixteenthNote_16' ){
+            if(nextElemLeftSidePosition == this._rightSidePosition && (rect.width - x) < percentForTouchLeftRight
+            || previousElemRightSidePosition == this._leftSidePosition && x < percentForTouchLeftRight
+            ){
+                this.div.style.cursor = 'pointer';
+            } else if((rect.width - x) < percentForTouchLeftRight){ // правая сторона элемента
+                this.div.style.cursor = 'url(\'/cursor/resizeeast_48.svg\')24 24, auto';
+            } else if(x < percentForTouchLeftRight){ // левая сторона элемента
+                this.div.style.cursor = 'url(\'/cursor/resizewest_48.svg\')24 24, auto';
+            }            
+        } else {
             this.div.style.cursor = 'pointer';
         }
-        else {
-            this.div.style.cursor = 'pointer';
-        }
-        // this.style.cursor = 'url(\'/cursor/left_and_right_40_figma.svg\')16 16, auto';
-        // this.style.cursor = 'url(\'/cursor/note_pause_40_figma.svg\')16 16, auto'; 
-        // if (y < rect.height / 2) {
-        //     this.style.cursor = "pointer";
-        // } else {
-        //     this.style.cursor = "default";
-        // }
+
     }
     addEventListenerForPauseTransform() {
         this.div.addEventListener('mousedown', (event) => {
