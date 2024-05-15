@@ -1,3 +1,108 @@
+const metronome_buttons = new Object({
+    'container': null,
+    'playButton': null,
+    'minusFiveButton': null,
+    'minusOneButton': null,
+    'bpmMonitor': null,
+    'plusOneButton': null,
+    'plusFiveButton': null,
+    'containerForAppend': document.querySelector('.metronome_container'),
+    createContainer(){
+        this.container = document.createElement('div');
+        this.container.classList.add('metronome_buttons');
+        return this.container;
+    },
+    createPlayButton(){
+        this.playButton = document.createElement('button');
+        this.playButton.classList.add('minusFiveButton');
+        this.playButton.textContent = 'svg';
+        return this.playButton;
+    },
+    createMinusFiveButton(){
+        this.minusFiveButton = document.createElement('button');
+        this.minusFiveButton.classList.add('minusFiveButton');
+        this.minusFiveButton.textContent = '-5';
+        return this.minusFiveButton;
+    },
+    createMinusOneButton(){
+        this.minusOneButton = document.createElement('button');
+        this.minusOneButton.classList.add('minusOneButton');
+        this.minusOneButton.textContent = '-1';
+        return this.minusOneButton;
+    },
+    createBpmMonitor(){
+        this.bpmMonitor = document.createElement('div');
+        this.bpmMonitor.classList.add('bpmMonitor');
+        this.bpmMonitor.textContent = '120';
+        return this.bpmMonitor;
+    },
+    createPlusOneButton(){
+        this.plusOneButton = document.createElement('button');
+        this.plusOneButton.classList.add('plusOneButton');
+        this.plusOneButton.textContent = '+1';
+        return this.plusOneButton;
+    },
+    createPlusFiveButton(){
+        this.plusFiveButton = document.createElement('button');
+        this.plusFiveButton.classList.add('plusFiveButton');
+        this.plusFiveButton.textContent = '+5';
+        return this.plusFiveButton;
+    },
+    initialize(){
+        this.createContainer();
+        this.container.append(this.createPlayButton());
+        this.container.append(this.createMinusFiveButton());
+        this.container.append(this.createMinusOneButton());
+        this.container.append(this.createBpmMonitor());
+        this.container.append(this.createPlusOneButton());
+        this.container.append(this.createPlusFiveButton());
+        // this.containerForAppend.append(this.container);
+    }
+});
+metronome_buttons.initialize();
+console.log(metronome_buttons);
+
+
+const randomBtnSection = new Object({
+    'containerRandomButton': null,
+    'clearButton': null,
+    'undoButton': null,
+    'redoButton': null,
+    createContainerRandom(){
+        this.containerRandomButton = document.createElement('div');
+        this.containerRandomButton.classList.add('containerRandomButton');
+        return this.containerRandomButton;
+    },
+    createClearButton(){
+        this.clearButton = document.createElement('button');
+        this.clearButton.classList.add('clearButton');
+        this.clearButton.textContent = 'clear';
+        return this.clearButton;
+    },
+    createUndoButton(){
+        this.undoButton = document.createElement('button');
+        this.undoButton.classList.add('undoButton');
+        this.undoButton.textContent = 'undo';
+        return this.undoButton;
+    },
+    createRedoButton(){
+        this.redoButton = document.createElement('button');
+        this.redoButton.classList.add('redoButton');
+        this.redoButton.textContent ='redo';
+        return this.redoButton;
+    },
+    initialize(){
+        this.createContainerRandom();
+        this.containerRandomButton.append(this.createClearButton());
+        this.containerRandomButton.append(this.createUndoButton());
+        this.containerRandomButton.append(this.createRedoButton());
+        // this.containerForAppend.append(this.containerRandomButton);
+    }
+});
+randomBtnSection.initialize();
+console.log(randomBtnSection);
+
+
 const btnPulseContainer = new Object({
     '_state': null,
     'container': null,
@@ -106,9 +211,6 @@ let changeForBtnContains = new Event('change', {
     bubbles: true,
     cancelable: true
 });
-
-
-
 let containBtnPulse = document.querySelector('.contain_btn_pulse');
 buttonsPulse.forEach(button => {
     button.addEventListener('click', () => {
@@ -256,3 +358,21 @@ akcents.createContainer();
 akcents.proxy_start_stop_metr;
 
 console.log(akcents.proxy_start_stop_metr.isRunning);
+
+
+// BUTTON корзина для очистки активных элементов
+let clearActiveElem = function () {// функция очистки подсветки всех активных элементов
+    for (let key in bgMatrix.idStack) {
+        bgMatrix.idStack[key].deleteNote(bgMatrix.idStack[key].id);
+    }
+}
+let clearButton = document.querySelector('.clear');
+clearButton.addEventListener('click', clearActiveElem); // очистка подсветки
+
+
+bgMatrix.undoButton.addEventListener('click', (e) => {
+    bgMatrix.undo();
+});
+bgMatrix.redoButton.addEventListener('click', (e) => {
+    bgMatrix.redo();
+});

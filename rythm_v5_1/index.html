@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Rythm_v5_1</title>
     <link rel="shortcut icon" href="" type="image/x-icon">
-    <link rel="stylesheet" href="/rythm_v5_1/rythm_v5_1.css">
-    <link rel="stylesheet" href="/rythm_v5_1/metronome_style_v5_1.css">
+    <link rel="stylesheet" href="/rythm_v5_1/metronome_sound_style.css">
+    <link rel="stylesheet" href="/rythm_v5_1/style.css">
     <!-- вычисление размера экрана -->
     <script type="text/javascript">
         const baseSettings = {
@@ -24,6 +24,8 @@
 
 <div class="app"></div>
 <div class="cardAlphabetContain hidden_cardAlphabetContain"></div>
+
+<!-- примеры шрифта -->
 <div class="font" style="font-size: 40px">
     <!-- !@#$%^&*()_+`~\|</br>
         qwertyuiop[]</br>
@@ -33,68 +35,33 @@
     ASDFGHJKL:""</br>
     ZXCVBNM?</br>
     w d h j q i e s</br> -->
-
 </div>
-
-
 
 <div class="metronome_container">
     <div class="line_border_left"></div>
     <button id="play-button" class="">
         <div id="play-pause-icon" class="play"></div>
     </button>
-
-    <!-- <div class="tempo-controls"> -->
     <button class="tempo-change" data-change="-5">-5</button>
     <button class="tempo-change" data-change="-1">-</button>
-
     <div class="tempo-container">
         <div id="tempo">120</div>
         <div class="bpm">ск/уд/м</div>
     </div>
-
     <button class="tempo-change" data-change="+1">+</button>
     <button class="tempo-change" data-change="+5">+5</button>
-
-    <div class="line_border_left"></div>
-
-    <!-- <div class="elem_footer contain_btn_pulse">
-        <p>пульс</p>
-        <div class="btn_pulse btn_active" data-value="value_NO">&#10007;</div>
-        <div class="btn_pulse" data-value="value_2" data-mtrx="matrix_2">h</div>
-        <div class="btn_pulse" data-value="value_4" data-mtrx="matrix_4">q</div>
-        <div class="btn_pulse" data-value="value_8" data-mtrx="matrix_8">e</div>
-        <div class="btn_pulse" data-value="value_16" data-mtrx="matrix_16">x</div>
-    </div> -->
-    <!-- <div class="line_border_left"></div> -->
-    <!-- <div class="elem_footer contain_btn_group">
-        <p>группа</p>
-        <div class="btn_grp btn_active" data-value="value_NO">--</div>
-        <div class="btn_grp " data-value="value_1">1</div>
-        <div class="btn_grp " data-value="value_2">2</div>
-        <div class="btn_grp " data-value="value_3">3</div>
-        <div class="btn_grp " data-value="value_4">4</div>
-        <div class="btn_grp " data-value="value_5">5</div>
-        <div class="btn_grp " data-value="value_3+2">3+2</div>
-    </div> -->
     <div class="line_border_left"></div>
     <button class="clear">🗑</button>
-    <!-- <button class="newRootBaseSizeValue420">420</button> -->
-    <!-- <button class="newRootBaseSizeValue840">840</button> -->
-    <!-- <button class="noPause">без пауз</button> -->
-    <!-- <button onclick="toggleCurtain()">шторка</button> -->
     <button id="undoButton" class="undo" disabled>&#8634;</button>
     <button id="redoButton" class="redo" disabled>&#8635;</button>
     <div class="line_border_left"></div>
 </div>
 
-
-<!-- <div style="left: 120px; width: 3px; height: 3px; background: red; position: absolute;">123</div> -->
-
 <audio id="myAudio" preload="auto">
     <source src="/Example_audio/Example_1.mp3" type="audio/mpeg">
 </audio>
 
+<!----------------- АВТОР ----------------->
 <div class="author">Copyright © 2022 Ивашкин Александр</div>
 <style>
     .author {
@@ -110,16 +77,17 @@
         color: #ffffff3a;
     }
 </style>
+<!----------------- АВТОР ----------------->
+
 
 <script src="/rythm_v5_1/solfejio_label.js"></script>
-<script src="/rythm_v5_1/Note_class.js"></script>
-<script src="/rythm_v5_1/All_symbol_for_notes.js"></script>
-<script src="/rythm_v5_1/create_matrix.js"></script>
-<script src="/rythm_v5_1/alphabet.js"></script>
-<script src="/rythm_v5_1/metronome_v5_1.js"></script>
-<script src="/rythm_v5_1/bottom_btn.js"></script>
-<script src="/rythm_v5_1/start_size_menu.js"></script>
-<!-- <script src="/rythm_v5_1/undo_redo_new.js"></script> -->
+<script src="/rythm_v5_1/notes_manager.js"></script>
+<script src="/rythm_v5_1/data_notes.js"></script>
+<script src="/rythm_v5_1/background_matrix.js"></script>
+<script src="/rythm_v5_1/menu_top.js"></script>
+<script src="/rythm_v5_1/metronome_sound.js"></script>
+<script src="/rythm_v5_1/menu_bottom.js"></script>
+<script src="/rythm_v5_1/menu_size.js"></script>
 </body>
 
 </html>

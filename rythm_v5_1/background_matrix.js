@@ -20,8 +20,8 @@ const bgMatrix = {
 
     undoStack: [],
     redoStack: [],
-    undoButton: null,
-    redoButton: null,
+    undoButton: document.getElementById('undoButton'),
+    redoButton: document.getElementById('redoButton'),
 
     'matrix_1x4': [
         '4 8 16',       //1
@@ -536,14 +536,7 @@ const bgMatrix = {
     }
 }
 
-bgMatrix.undoButton = document.getElementById('undoButton');
-bgMatrix.redoButton = document.getElementById('redoButton');
-bgMatrix.undoButton.addEventListener('click', (e) => {
-    bgMatrix.undo();
-});
-bgMatrix.redoButton.addEventListener('click', (e) => {
-    bgMatrix.redo();
-});
+
 
 
 bgMatrix.addApp();
