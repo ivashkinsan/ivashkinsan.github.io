@@ -227,7 +227,7 @@ const bgMatrix = {
         // let app_forMouseUpEvent = document.querySelector('.app');
         this.app.addEventListener('mouseup', () => {
             console.log('mouseup');
-            this.saveState();
+            // this.saveState();
         })
     },
     createContainMatrix() {

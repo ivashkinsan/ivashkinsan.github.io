@@ -7,14 +7,24 @@
     src: url(/fonts/Maestro2.ttf);
 }
 
-.metronome_buttons_container {
+.bottom_container {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
     position: absolute;
+    bottom: 0px;
+    z-index: 1000;
+}
+
+.metronome_buttons_container {
+    /* position: absolute; */
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-flow: reverse;
-    left: 50%;
-    transform: translateX(-50%);
+    /* flex-flow: reverse; */
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
     bottom: 10px;
     margin: 10px;
     height: auto;
@@ -63,12 +73,15 @@ button {
     color: white;
     cursor: pointer;
 }
+
 button:focus {
     outline: none;
 }
+
 button:active {
     background-color: rgba(240, 248, 255, 0.493);
 }
+
 button:disabled {
     opacity: 0.3;
 }
@@ -172,6 +185,7 @@ button:disabled {
     line-height: 21px;
     color: rgb(190, 190, 190);
 }
+
 /* .akcentsBtnPattern{
     width: 25px;
     height: 25px;
