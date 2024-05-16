@@ -94,7 +94,7 @@ class Note {
             && bgMatrix.idStack[this.previousElemId].div.classList.contains('sixteenthNote_16')
             && bgMatrix.idStack[this.id].div.classList.contains('sixteenthNote_16')
         ) {
-            console.log('16 + 16')
+            // console.log('16 + 16')
             // присвоить true для, для сокрытия стрелочного курсора и блокировки растягивания левой стороны
             this.previousElemIsSixteenthNote_16 = true;
         } else {
@@ -106,7 +106,7 @@ class Note {
             && bgMatrix.idStack[this.nextElemId].div.classList.contains('sixteenthNote_16')
             && bgMatrix.idStack[this.id].div.classList.contains('sixteenthNote_16')
         ) {
-            console.log('16 + 16')
+            // console.log('16 + 16')
             // присвоить true для, для сокрытия стрелочного курсора и блокировки растягивания правой стороны
             this.nextElemIsSixteenthNote_16 = true;
         } else {

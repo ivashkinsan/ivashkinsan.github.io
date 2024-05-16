@@ -1,9 +1,10 @@
+
 class Metronome { // создание нового класса
     constructor(tempo = 50) {
         this.allNotes = {};
         this.schet_for_led = 0,
-            this.contain_btn_pulse = null,
-            this.audioContext = null; // обозначение свойства для будущего audioContext
+        this.contain_btn_pulse = null,
+        this.audioContext = null; // обозначение свойства для будущего audioContext
         this.notesInQueue = []; // заметки, которые были помещены в веб-аудио и могут быть или не быть воспроизведены еще {note, time}
         this.currentBeatInBar = 0; // текущее положение в такте
         this.beatsPerBar = 4; // размер такта
@@ -19,7 +20,7 @@ class Metronome { // создание нового класса
         // позволяет впоследствии удалить запущенный setInterval c помощью clearInterval()
     }
     searsh_all_elem() {
-        // this.contain_btn_pulse = document.querySelector('.contain_btn_pulse');
+        this.contain_btn_pulse = document.querySelector('.contain_btn_pulse');
         this.allNotes['value_NO'] = null;
         this.allNotes['matrix_2'] = document.querySelectorAll('.matrix_2');
         this.allNotes['matrix_4'] = document.querySelectorAll('.matrix_4');
@@ -41,6 +42,7 @@ class Metronome { // создание нового класса
         if (this.currentBeatInBar == this.beatsPerBar) { // если текущее положение доли равно размеру такта
             this.currentBeatInBar = 0; // переходим на ноль в начало
         }
+        // console.log(this.contain_btn_pulse);
         switch (this.contain_btn_pulse.dataset.value) {
             case 'value_NO':
                 break;
@@ -150,66 +152,125 @@ class Metronome { // создание нового класса
     }
 }
 // =============================================================================================
-let metronome = new Metronome(); // наследование от класса Метронома
-metronome.searsh_all_elem();
-let tempo = document.getElementById('tempo'); // привязка элемента для отображения темпа
-tempo.textContent = metronome.tempo; // запись значения темпа
-let playPauseIcon = document.getElementById('play-pause-icon'); // кнопка паузы
-let playButton = document.getElementById('play-button'); // кнопка плей
-playButton.addEventListener('click', function () { // событие на кнопке плей
-    metronome.startStop(); // вызов метода у метронома
-    metronome.clear_all_elem(); // очистка всех фона mtrx элементов
-    akcents.ledOff(); // очистка фона у матрицы акцентов
-    // console.log(metronome.notesInQueue);
 
-    if (metronome.isRunning) { // изменение класса у кнопки плей и пауза
-        playPauseIcon.className = 'pause_metr';
-    } else {
-        playPauseIcon.className = 'play';
+const metronome_buttons = new Object({
+    'container': null,
+    'metronome': null,
+    'tempo': null,
+    'playButton': null,
+    'playPauseIcon': null,
+    'minusFiveButton': null,
+    'minusOneButton': null,
+    'tempoContainer': null,
+    'tempoTextLabel': null,
+    'bpmTempoMonitor': null,
+    'plusOneButton': null,
+    'plusFiveButton': null,
+    'tempoChangeButtons': [],
+    'containerForAppend': document.querySelector('.app'),
+    createContainer(){
+        this.container = document.createElement('div');
+        this.container.classList.add('metronome_buttons_container');
+        return this.container;
+    },
+    createPlayAndPauseButton(){
+        this.playButton = document.createElement('button');
+        this.playButton.classList.add('play-button');
+        this.playPauseIcon = document.createElement('div');
+        this.playPauseIcon.classList.add('play');
+        this.playButton.append(this.playPauseIcon);
+        // this.playButton.textContent = 'svg';
+        this.playButton.addEventListener('click', ()=> { // событие на кнопке плей
+            this.metronome.startStop(); // вызов метода у метронома
+            this.metronome.clear_all_elem(); // очистка всех фона mtrx элементов
+            akcents.ledOff(); // очистка фона у матрицы акцентов
+            // console.log(metronome.notesInQueue);
+        
+            if (this.metronome.isRunning) { // изменение класса у кнопки плей и пауза
+                this.playPauseIcon.className = 'pause_metr';
+            } else {
+                this.playPauseIcon.className = 'play';
+            }
+        });
+        return this.playButton;
+    },
+    createMinusFiveButton(){
+        this.minusFiveButton = document.createElement('tempo-change');
+        this.minusFiveButton = document.createElement('button');
+        this.minusFiveButton.classList.add('minusFiveButton');
+        this.minusFiveButton.textContent = '-5';
+        this.minusFiveButton.dataset.change = '-5';
+        this.tempoChangeButtons.push(this.minusFiveButton);
+        return this.minusFiveButton;
+    },
+    createMinusOneButton(){
+        this.minusOneButton = document.createElement('tempo-change');
+        this.minusOneButton = document.createElement('button');
+        this.minusOneButton.classList.add('minusOneButton');
+        this.minusOneButton.textContent = '-1';
+        this.minusOneButton.dataset.change = '-1';
+        this.tempoChangeButtons.push(this.minusOneButton);
+        return this.minusOneButton;
+    },
+    createBpmTempoMonitor(){
+        this.tempoContainer = document.createElement('div');
+        this.tempoContainer.classList.add('tempo-container');
+        this.tempoTextLabel = document.createElement('div');
+        this.tempoTextLabel.classList.add('bpm');
+        this.tempoTextLabel.textContent = 'ск/уд/м';
+        this.bpmTempoMonitor = document.createElement('div');
+        this.bpmTempoMonitor.classList.add('tempo');
+        this.bpmTempoMonitor.textContent = '120';
+        this.tempoContainer.append(this.bpmTempoMonitor);
+        this.tempoContainer.append(this.tempoTextLabel);
+        return this.tempoContainer;
+    },
+    createPlusOneButton(){
+        this.plusOneButton = document.createElement('tempo-change');
+        this.plusOneButton = document.createElement('button');
+        this.plusOneButton.classList.add('plusOneButton');
+        this.plusOneButton.textContent = '+1';
+        this.plusOneButton.dataset.change = '+1';
+        this.tempoChangeButtons.push(this.plusOneButton);
+        return this.plusOneButton;
+    },
+    createPlusFiveButton(){
+        this.plusFiveButton = document.createElement('tempo-change');
+        this.plusFiveButton = document.createElement('button');
+        this.plusFiveButton.classList.add('plusFiveButton');
+        this.plusFiveButton.textContent = '+5';
+        this.plusFiveButton.dataset.change = '+5';
+        this.tempoChangeButtons.push(this.plusFiveButton);
+        return this.plusFiveButton;
+    },
+    addEventForTempoChangeButtons(){
+        for (let i = 0; i < this.tempoChangeButtons.length; i++) {
+            this.tempoChangeButtons[i].addEventListener('click', (event)=> {
+                this.metronome.tempo += parseInt(event.target.dataset.change);
+                this.bpmTempoMonitor.textContent = this.metronome.tempo;
+                // speed_tempo();
+            });
+        };
+    },
+    initialize(){
+        this.createContainer();
+        this.container.append(this.createPlayAndPauseButton());
+        this.container.append(this.createMinusFiveButton());
+        this.container.append(this.createMinusOneButton());
+        this.container.append(this.createBpmTempoMonitor());
+        this.container.append(this.createPlusOneButton());
+        this.container.append(this.createPlusFiveButton());
+        this.containerForAppend.before(this.container);
+    },
+    metronomeInitialize(){
+        this.metronome = new Metronome(); // наследование от класса Метронома
+        this.metronome.searsh_all_elem();
+        this.bpmTempoMonitor.textContent = this.metronome.tempo; // запись значения темпа
     }
 });
-
-// значение темпа
-let tempoChangeButtons = document.getElementsByClassName('tempo-change');
-for (let i = 0; i < tempoChangeButtons.length; i++) {
-    tempoChangeButtons[i].addEventListener('click', function () {
-        metronome.tempo += parseInt(this.dataset.change);
-        tempo.textContent = metronome.tempo;
-        // speed_tempo();
-    });
-};
-
-// ВЫБОР АКЦЕНТОВ
-// document.querySelector('.contain_btn_group').addEventListener('change', function () {
-//     // console.log(this.value);
-//     // clear_all_elem();
-//     console.log(this.dataset.value);
-//     switch (this.dataset.value) {
-//         case 'value_NO':
-//             metronome.beatsPerBar = 0;
-//             break;
-//         case 'value_1':
-//             metronome.beatsPerBar = 1;
-//             break;
-//         case 'value_2':
-//             metronome.beatsPerBar = 2;
-//             break;
-//         case 'value_3':
-//             metronome.beatsPerBar = 3;
-//             break;
-//         case 'value_4':
-//             metronome.beatsPerBar = 4;
-//             break;
-//         case 'value_5':
-//             metronome.beatsPerBar = 5;
-//             break;
-//         // case 'value_3+2':
-//         //     let arr_3_2 = [1, 1, 1, 2, 3];
-//         //     metronome.beatsPerBar = arr_3_2.forEach();
-//         //     console.log(arr_3_2);
-//         //     break;
-//     }
-// })
+metronome_buttons.initialize();
+metronome_buttons.metronomeInitialize();
+metronome_buttons.addEventForTempoChangeButtons();
 
 
 

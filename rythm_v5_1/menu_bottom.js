@@ -1,67 +1,3 @@
-const metronome_buttons = new Object({
-    'container': null,
-    'playButton': null,
-    'minusFiveButton': null,
-    'minusOneButton': null,
-    'bpmMonitor': null,
-    'plusOneButton': null,
-    'plusFiveButton': null,
-    'containerForAppend': document.querySelector('.metronome_container'),
-    createContainer(){
-        this.container = document.createElement('div');
-        this.container.classList.add('metronome_buttons');
-        return this.container;
-    },
-    createPlayButton(){
-        this.playButton = document.createElement('button');
-        this.playButton.classList.add('minusFiveButton');
-        this.playButton.textContent = 'svg';
-        return this.playButton;
-    },
-    createMinusFiveButton(){
-        this.minusFiveButton = document.createElement('button');
-        this.minusFiveButton.classList.add('minusFiveButton');
-        this.minusFiveButton.textContent = '-5';
-        return this.minusFiveButton;
-    },
-    createMinusOneButton(){
-        this.minusOneButton = document.createElement('button');
-        this.minusOneButton.classList.add('minusOneButton');
-        this.minusOneButton.textContent = '-1';
-        return this.minusOneButton;
-    },
-    createBpmMonitor(){
-        this.bpmMonitor = document.createElement('div');
-        this.bpmMonitor.classList.add('bpmMonitor');
-        this.bpmMonitor.textContent = '120';
-        return this.bpmMonitor;
-    },
-    createPlusOneButton(){
-        this.plusOneButton = document.createElement('button');
-        this.plusOneButton.classList.add('plusOneButton');
-        this.plusOneButton.textContent = '+1';
-        return this.plusOneButton;
-    },
-    createPlusFiveButton(){
-        this.plusFiveButton = document.createElement('button');
-        this.plusFiveButton.classList.add('plusFiveButton');
-        this.plusFiveButton.textContent = '+5';
-        return this.plusFiveButton;
-    },
-    initialize(){
-        this.createContainer();
-        this.container.append(this.createPlayButton());
-        this.container.append(this.createMinusFiveButton());
-        this.container.append(this.createMinusOneButton());
-        this.container.append(this.createBpmMonitor());
-        this.container.append(this.createPlusOneButton());
-        this.container.append(this.createPlusFiveButton());
-        // this.containerForAppend.append(this.container);
-    }
-});
-metronome_buttons.initialize();
-console.log(metronome_buttons);
-
 
 const randomBtnSection = new Object({
     'containerRandomButton': null,
@@ -100,79 +36,88 @@ const randomBtnSection = new Object({
     }
 });
 randomBtnSection.initialize();
-console.log(randomBtnSection);
-
+// console.log(randomBtnSection);
 
 const btnPulseContainer = new Object({
+    'label': null,
     '_state': null,
+    'matrxValue': null,
     'container': null,
     'allButtons': [],
-    'containerForAppend': document.querySelector('.metronome_container'),
+    'containerForAppend': document.querySelector('.app'),
     createContainer(){
-        let label = document.createElement('p');
-        label.textContent = 'пульс';
-       let container = document.createElement('div');
-       container.classList.add('contain_btn_pulse');
-       container.classList.add('elem_footer');
-       this.container = container;
-       this.container.addEventListener('click', (event) => {
-        this.state = event.target.dataset.value;
-        akcents.pressButton = event.target;
-        // console.log(event.target);
-        // console.log(akcents.pressButton);
-        // console.log(akcents.pressButton.dataset.mtrx);
+        let changeForBtnContains = new Event('change', {
+            bubbles: true,
+            cancelable: true
+        });
+        this.container = document.createElement('div');
+        this.container.classList.add('contain_btn_pulse');
+        this.container.classList.add('elem_footer');
+        this.label = document.createElement('p');
+        this.label.textContent = 'пульс';
+        this.container.append(this.label);
+
+        this.container.addEventListener('click', (event) => {
+            this.state = event.target.dataset.value;
+            if(event.target.classList.contains('btn_pulse') 
+                && event.target.dataset.value !='value_NO'){
+                
+                this.matrxValue = event.target.dataset.mtrx;
+                this.container.dataset.value = this._state;
+                this.container.dispatchEvent(changeForBtnContains);
+                akcents.delElements();
+            if (this._state != 'value_NO') {
+                akcents.createElem();
+                akcents.containerForAppend.append(akcents.container);
+            }
+            metronome.contain_btn_pulse = this.container;
+            metronome.containBtnPulse = this.container;
+            } else if(this._state == 'value_NO'){
+                akcents.delElements();
+            }
        });
-       this.containerForAppend.append(container);
-       this.container.append(label);
-       metronome.contain_btn_pulse = container;
-    
-       let changeForBtnContains = new Event('change', {
-        bubbles: true,
-        cancelable: true
-    });
-    metronome.containBtnPulse = container;
-    container.dispatchEvent(changeForBtnContains);
+       this.containerForAppend.before(this.container);
+       
 
-    metronome.contain_btn_pulse.addEventListener('change', function () {
-        metronome.clear_all_elem();
-        switch (this.dataset.value) {
-            case 'value_NO':
-                metronome.tempo = 50;
-                tempo.textContent = metronome.tempo;
-                break;
-            case 'value_2':
-                metronome.tempo = 25;
-                tempo.textContent = metronome.tempo;
-                metronome.currentBeatInBar = 0;
-                metronome.schet_for_led = 0;
-                metronome.beatsPerBar = metronome.allNotes.matrix_2.length;
-                break;
-            case 'value_4':
-                metronome.tempo = 50;
-                tempo.textContent = metronome.tempo;
-                metronome.currentBeatInBar = 0;
-                metronome.schet_for_led = 0;
-                metronome.beatsPerBar = metronome.allNotes.matrix_4.length;
-                break;
-            case 'value_8':
-                metronome.tempo = 100;
-                tempo.textContent = metronome.tempo;
-                metronome.currentBeatInBar = 0;
-                metronome.schet_for_led = 0;
-                metronome.beatsPerBar = metronome.allNotes.matrix_8.length;
-                break;
-            case 'value_16':
-                metronome.tempo = 200;
-                tempo.textContent = metronome.tempo;
-                metronome.currentBeatInBar = 0;
-                metronome.schet_for_led = 0;
-                metronome.beatsPerBar = metronome.allNotes.matrix_16.length;
-                break;
-        }
-    })
-    
-
-
+    },
+    changeForContainer(){
+        this.container.addEventListener('change', (event)=> {
+            metronome.clear_all_elem();
+            switch (event.target.dataset.value) {
+                case 'value_NO':
+                    metronome.tempo = 50;
+                    tempo.textContent = metronome.tempo;
+                    break;
+                case 'value_2':
+                    metronome.tempo = 25;
+                    tempo.textContent = metronome.tempo;
+                    metronome.currentBeatInBar = 0;
+                    metronome.schet_for_led = 0;
+                    metronome.beatsPerBar = metronome.allNotes.matrix_2.length;
+                    break;
+                case 'value_4':
+                    metronome.tempo = 50;
+                    tempo.textContent = metronome.tempo;
+                    metronome.currentBeatInBar = 0;
+                    metronome.schet_for_led = 0;
+                    metronome.beatsPerBar = metronome.allNotes.matrix_4.length;
+                    break;
+                case 'value_8':
+                    metronome.tempo = 100;
+                    tempo.textContent = metronome.tempo;
+                    metronome.currentBeatInBar = 0;
+                    metronome.schet_for_led = 0;
+                    metronome.beatsPerBar = metronome.allNotes.matrix_8.length;
+                    break;
+                case 'value_16':
+                    metronome.tempo = 200;
+                    tempo.textContent = metronome.tempo;
+                    metronome.currentBeatInBar = 0;
+                    metronome.schet_for_led = 0;
+                    metronome.beatsPerBar = metronome.allNotes.matrix_16.length;
+                    break;
+            }
+        })
     },
     createButtons(){
         let dataValue = ['value_NO','value_2','value_4','value_8','value_16'];
@@ -180,6 +125,7 @@ const btnPulseContainer = new Object({
         let btnLabel = ['\u2717','h','q','e','x'];
         for(let i = 0; i < btnLabel.length; i++){
             let button = document.createElement('div');
+            i == 0 ? button.classList.add('btn_active') : undefined;
             button.classList.add('btn_pulse');
             button.textContent = btnLabel[i];
             button.dataset.value = dataValue[i];
@@ -188,10 +134,16 @@ const btnPulseContainer = new Object({
             this.container.append(button);
         }
     },
+    initialize(){
+        this.createContainer();
+        this.createButtons();
+        this.changeForContainer();
+    },
     /**
      * @param {any} value
      */
     set state(value){
+      if(value != undefined){
         this._state = value;
         this.allButtons.forEach(btn => {
             if(btn.dataset.value == value){
@@ -200,70 +152,43 @@ const btnPulseContainer = new Object({
                 btn.classList.remove('btn_active');
             }
         }); 
+      }
     }
 });
-btnPulseContainer.createContainer();
-btnPulseContainer.createButtons();
-
-
-let buttonsPulse = document.querySelectorAll('.btn_pulse');
-let changeForBtnContains = new Event('change', {
-    bubbles: true,
-    cancelable: true
-});
-let containBtnPulse = document.querySelector('.contain_btn_pulse');
-buttonsPulse.forEach(button => {
-    button.addEventListener('click', () => {
-        buttonsPulse.forEach(btn => {
-            btn.classList.remove('btn_active');
-        });
-        button.classList.add('btn_active');
-        button.parentNode.dataset.value = button.dataset.value;
-
-        akcents.pressButton = button;
-
-        akcents.delElements();
-        if (button.dataset.value != 'value_NO') {
-            akcents.createElem();
-            akcents.containerForAppend.append(akcents.container);
-        }
-        // console.log(changeForBtnContains);
-        metronome.containBtnPulse.dispatchEvent(changeForBtnContains);
-    });
-});
+btnPulseContainer.initialize();
 
 const akcents = new Object({
     'defaultIntervals': 4,
     'allElems': [],
     'containerForAppend': document.querySelector('.metronome_container'),
-    'pressButton': null,
+    'inputMtrxValue': null,
     'container': null,
     'noteElemLength': null,
     'pattern': [],
-    'proxy_start_stop_metr': new Proxy(metronome, {
-        get(target, prop) {
-            if(prop == 'isRunning'){
-                console.log('isRunning');
-            }
-            console.log(`Getting prop ${prop}`);
-            console.log("isRunning " + target.isRunning);
-            return target[prop];
-        },
-        set(target, prop, value) {
-            if (prop in target) {
-                target[prop] = value
-            } else {
-                throw new Error(`No ${prop} field in target`)
-            }
-        },
-        has(target, prop) {
-            return ['isRunning'].includes(prop)
-        },
-        deleteProperty(target, prop) {
-            console.log(`Deleting... ${prop}`);
-            delete target[prop]
-        }
-    }),
+    // 'proxy_start_stop_metr': new Proxy(metronome, {
+    //     get(target, prop) {
+    //         if(prop == 'isRunning'){
+    //             console.log('isRunning');
+    //         }
+    //         console.log(`Getting prop ${prop}`);
+    //         console.log("isRunning " + target.isRunning);
+    //         return target[prop];
+    //     },
+    //     set(target, prop, value) {
+    //         if (prop in target) {
+    //             target[prop] = value
+    //         } else {
+    //             throw new Error(`No ${prop} field in target`)
+    //         }
+    //     },
+    //     has(target, prop) {
+    //         return ['isRunning'].includes(prop)
+    //     },
+    //     deleteProperty(target, prop) {
+    //         console.log(`Deleting... ${prop}`);
+    //         delete target[prop]
+    //     }
+    // }),
     createContainer() {
         let container = document.createElement('div');
         container.classList.add('akcent_container');
@@ -274,7 +199,7 @@ const akcents = new Object({
         this.allElems = [];
         // console.log(this.pressButton);
         // console.log(metronome.allNotes);
-        let findLengthMtrx = metronome.allNotes[this.pressButton.dataset.mtrx].length;
+        let findLengthMtrx = metronome.allNotes[btnPulseContainer.matrxValue].length;
         for (let i = 0; i < findLengthMtrx; i++) {
             let circleAkcentElem = document.createElement('div');
             circleAkcentElem.classList.add('circle_akcent_elem');
@@ -357,22 +282,22 @@ const akcents = new Object({
 akcents.createContainer();
 akcents.proxy_start_stop_metr;
 
-console.log(akcents.proxy_start_stop_metr.isRunning);
+// console.log(akcents.proxy_start_stop_metr.isRunning);
 
 
 // BUTTON корзина для очистки активных элементов
-let clearActiveElem = function () {// функция очистки подсветки всех активных элементов
-    for (let key in bgMatrix.idStack) {
-        bgMatrix.idStack[key].deleteNote(bgMatrix.idStack[key].id);
-    }
-}
-let clearButton = document.querySelector('.clear');
-clearButton.addEventListener('click', clearActiveElem); // очистка подсветки
+// let clearActiveElem = function () {// функция очистки подсветки всех активных элементов
+//     for (let key in bgMatrix.idStack) {
+//         bgMatrix.idStack[key].deleteNote(bgMatrix.idStack[key].id);
+//     }
+// }
+// let clearButton = document.querySelector('.clear');
+// clearButton.addEventListener('click', clearActiveElem); // очистка подсветки
 
 
-bgMatrix.undoButton.addEventListener('click', (e) => {
-    bgMatrix.undo();
-});
-bgMatrix.redoButton.addEventListener('click', (e) => {
-    bgMatrix.redo();
-});
+// bgMatrix.undoButton.addEventListener('click', (e) => {
+//     bgMatrix.undo();
+// });
+// bgMatrix.redoButton.addEventListener('click', (e) => {
+//     bgMatrix.redo();
+// });

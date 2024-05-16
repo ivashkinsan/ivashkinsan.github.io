@@ -546,4 +546,4 @@ bgMatrix.find_Root_baseSize_baseWidth_step_minWidth_max_width();
 bgMatrix.createSizeIdentif();
 bgMatrix.createBackground(bgMatrix.matrix_8x4, bgMatrix.startleftPosition);
 
-bgMatrix.saveState();
+// bgMatrix.saveState();

@@ -7,7 +7,7 @@
     src: url(/fonts/Maestro2.ttf);
 }
 
-.metronome_container {
+.metronome_buttons_container {
     position: absolute;
     display: flex;
     align-items: center;
@@ -24,7 +24,7 @@
     z-index: 2000;
 }
 
-#play-button {
+.play-button {
     width: 40px;
     height: 40px;
     display: flex;
@@ -33,11 +33,7 @@
     flex-flow: column;
 }
 
-.title {
-    text-align: center;
-}
-
-#tempo {
+.tempo {
     font-size: 20px;
 }
 
