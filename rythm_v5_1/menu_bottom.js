@@ -559,12 +559,19 @@ const akcents = new Object({
 
 akcents.createContainer();
 akcents.proxy_start_stop_metr;
-
+let line_border_left = function(){
+    let line = document.createElement('div');
+    line.classList.add('line_border_left');
+    return line;
+}
 
 let initializeBottomContainer = function () {
     let bottom_container = document.querySelector('.bottom_container');
+    bottom_container.append(line_border_left());
     bottom_container.append(metronome_buttons.initialize());
+    bottom_container.append(line_border_left());
     bottom_container.append(btnPulseContainer.initialize());
+    bottom_container.append(line_border_left());
     bottom_container.append();
 }
 initializeBottomContainer();

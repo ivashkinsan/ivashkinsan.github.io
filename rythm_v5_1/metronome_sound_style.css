@@ -13,83 +13,87 @@
     /* justify-content: center; */
     align-items: center;
     position: absolute;
-    bottom: 0px;
+    gap: 15px;
+    bottom: 10px;
     z-index: 1000;
 }
 
+/* ====================== metronome buttons ============================ */
 .metronome_buttons_container {
-    /* position: absolute; */
     display: flex;
     align-items: center;
     justify-content: center;
-    /* flex-flow: reverse; */
-    /* left: 50%; */
-    /* transform: translateX(-50%); */
-    bottom: 10px;
-    margin: 10px;
-    height: auto;
-    gap: 10px;
+    gap: 5px;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     z-index: 2000;
 }
 
-.play-button {
+.metronome_buttons_container > button {
     width: 40px;
     height: 40px;
+    color: white;
+
+    border: 1px solid var(--matrix-color);
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+}
+
+.metronome_buttons_container > button:focus {
+    outline: none;
+}
+
+.metronome_buttons_container > button:active {
+    background-color: rgba(240, 248, 255, 0.493);
+}
+
+.metronome_buttons_container > button:disabled {
+    opacity: 0.3;
+}
+
+.metronome_buttons_container > .play-button {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-flow: column;
 }
 
-.tempo {
-    font-size: 20px;
+.metronome_buttons_container > .play-button > .play {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 25px solid #ffffff;
+    margin-left: 7.5px;
 }
 
-.bpm {
-    font-size: 12px;
+.metronome_buttons_container > .play-button > .pause_metr {
+    box-sizing: content-box;
+    width: 7.5px;
+    height: 30px;
+    border: none;
+    border-left: 7.5px solid #ffffff;
+    border-right: 7.5px solid #ffffff;
 }
-
-.tempo-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: row;
-}
-
-.tempo-container {
+.metronome_buttons_container > .tempo-container {
     text-align: center;
-    width: 50px;
     margin: 0 10px;
 }
 
-button {
-    border: 1px solid var(--matrix-color);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    background: none;
-    color: white;
-    cursor: pointer;
+.metronome_buttons_container > .tempo-container > .tempo {
+    font-size: 20px;
 }
 
-button:focus {
-    outline: none;
-}
-
-button:active {
-    background-color: rgba(240, 248, 255, 0.493);
-}
-
-button:disabled {
-    opacity: 0.3;
+.metronome_buttons_container > .tempo-container > .bpm {
+    font-size: 12px;
 }
 
 .contain_btn_pulse {
     font-family: MAESTRO;
 }
 
+/* ===================== left size menu ==========================*/
 .sizeMenuBtn {
     position: fixed;
     top: 10px;
@@ -137,23 +141,7 @@ button:disabled {
     background-color: rgba(240, 248, 255, 0.150);
 }
 
-.play {
-    width: 0;
-    height: 0;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    border-left: 25px solid #ffffff;
-    margin-left: 7.5px;
-}
 
-.pause_metr {
-    box-sizing: content-box;
-    width: 7.5px;
-    height: 30px;
-    border: none;
-    border-left: 7.5px solid #ffffff;
-    border-right: 7.5px solid #ffffff;
-}
 
 .add_metronome_click_active {
     background: #ffffff17;
@@ -186,12 +174,6 @@ button:disabled {
     color: rgb(190, 190, 190);
 }
 
-/* .akcentsBtnPattern{
-    width: 25px;
-    height: 25px;
-    text-align: center;
-    cursor: pointer;
-} */
 .circle_akcent_elem_active {
     box-shadow: 0 0 0 1px white;
 }

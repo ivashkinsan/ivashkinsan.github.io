@@ -484,6 +484,14 @@ const bgMatrix = {
             // note.findPrevNextForShowHandle();
         })
     },
+    clearActiveElem(){
+        console.log(this.idStack);
+        for(let key in this.idStack){
+            this.idStack[key].deleteNote(this.idStack[key].id);
+            // this.idStack[key] = null;
+            // console.log(this.idStack[key]);
+        }
+    },
     sortedActiveLayer(container, newDiv) {
         // container.appendChild(newDiv); // Вставляем новый div в конец контейнера
         const childrenArray = Array.from(this.activeLayer.children); // Преобразуем коллекцию дочерних элементов в массив
@@ -503,7 +511,7 @@ const bgMatrix = {
         this.redoButton.disabled = true; // деактивировать редо баттон
     },
     undo() {
-        clearActiveElem();
+        bgMatrix.clearActiveElem();
         this.redoStack.push({ ...this.idStack }); // сохранить в эелемент массива редоСтек текущее состояние стека
 
         this.idStack = this.undoStack.pop(); // удалить последний элемент массива и записать в айдиСтек
@@ -522,7 +530,7 @@ const bgMatrix = {
         this.undoStack.push({ ...this.idStack });
         this.idStack = this.redoStack.pop();
         this.undoButton.disabled = false;
-        clearActiveElem();
+        bgMatrix.clearActiveElem();
         for (let key in this.idStack) {
             // console.log(this.idStack[key]);
             // this.idStack[key].delElemInBigElem();

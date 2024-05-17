@@ -62,8 +62,8 @@ const sizeMenu = new Object({
                         bgMatrix.createBackground(bgMatrix.matrix_12x8, bgMatrix.startleftPosition);
                         break;
                 }
-                metronome.searsh_all_elem();
-                clearActiveElem();
+                metronome_buttons.metronome.searsh_all_elem();
+                bgMatrix.clearActiveElem();
                 akcents.delElements();
             })
         }
