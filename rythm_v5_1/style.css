@@ -63,7 +63,8 @@ body {
     /* overflow-x: hidden; отключает горизонтальный скролл */
     /* overflow-y: scroll; включает вертикальный скролл */
 }
-body::before{
+
+/* body::before {
     content: "";
     position: absolute;
     top: 0;
@@ -73,8 +74,8 @@ body::before{
     background-image: url(/backgrounds/2.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    filter: grayscale(50%) blur(2px) brightness(30%) contrast(90%);
-}
+    filter: grayscale(20%) blur(5px) brightness(60%) contrast(90%);
+} */
 
 
 /* .numbMatrx {
