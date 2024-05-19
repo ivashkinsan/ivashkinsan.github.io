@@ -478,7 +478,7 @@ body {
     flex-direction: row;
     position: fixed;
     left: 50%;
-    top: 10px;
+    top: 0;
 
     width: 746px;
     height: 255px;
@@ -490,7 +490,7 @@ body {
 
     transform: translateX(-50%);
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
-    z-index: 1000;
+    z-index: 2000;
 }
 
 .hidden_cardAlphabetContain {
@@ -598,9 +598,9 @@ body {
 
 .cardAlphabet_card {
     display: grid;
-    /* justify-content: center; */
-    /* justify-items: center; */
-    padding: 5px 10px;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding: 0 10px;
     /* min-width: calc(var(--base-size) / 10); */
     gap: 5px;
     border: 1px solid var(--matrix-color);
@@ -622,14 +622,13 @@ body {
 
 .grid_el {
     position: relative;
-    width: calc(var(--base-size) / 65);
-    height: calc(var(--base-size) / 65);
+    width: 12px;
+    height: 12px;
 
     background-color: unset;
-    font-size: 12px;
-    line-height: 24px;
+    /* font-size: 12px; */
+    /* line-height: 24px; */
     color: var(--matrix-color);
-    ;
 }
 
 .akcent::before {
