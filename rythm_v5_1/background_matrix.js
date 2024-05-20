@@ -514,47 +514,61 @@ const bgMatrix = {
             randomBtnSection.redoButton.disabled = true; // деактивировать редо баттон
         }
 
-        console.log(this.idStack);
+
+
     },
     undo() {
+        if (this.undoStack.length <= 1) {
+            return;
+        }
 
-        let deleteStack = this.undoStack.pop();
-        let currentStack = { ...this.idStack };
-        this.redoStack.push(deleteStack); // сохранить в эелемент массива редоСтек текущее состояние стека
+        // Сохраняем текущее состояние в redoStack
+        let currentState = this.undoStack.pop();
+        this.redoStack.push(currentState);
 
+        // Получаем предыдущее состояние
+        let previousState = this.undoStack[this.undoStack.length];
+        this.idStack = previousState;
+
+        // Очищаем активный слой
         bgMatrix.clearActiveElem();
 
-        this.idStack = this.undoStack[this.undoStack.length - 1];// записать в айдиСтек
-        randomBtnSection.redoButton.disabled = false; // выключить активность редо кнопки
-
-
-
-        for (let key in this.idStack) { // пройти циклом по активному стеку
-            // console.log(this.idStack[key]);
-            this.activeLayer.append(this.idStack[key].div); // добавить дивы объектов в активный слой
-        }
-        if (this.undoStack.length === 1) { // если длина стека будет ноль
-            randomBtnSection.undoButton.disabled = true; // выключить активность кнопки ундо
-        }
-        // console.log(`UNDO BTN / undo = ${this.undoStack.length} redo ${this.redoStack.length}`);
-        console.log(this.idStack);
-    },
-    redo() {
-        let currentStack = { ...this.idStack };
-        let deleteState = this.redoStack.pop();
-        this.undoStack.push(currentStack); // сохранить текущий стек в undo
-        bgMatrix.clearActiveElem();
-        this.idStack = deleteState;// последний элемент в redo вырезать  в idStack
-        randomBtnSection.undoButton.disabled = false;
-
+        // Восстанавливаем состояние элементов в activeLayer
         for (let key in this.idStack) {
             this.activeLayer.append(this.idStack[key].div);
         }
-        console.log(`REDO BTN / undo = ${this.undoStack.length} redo ${this.redoStack.length}`);
 
+        // Управляем состояниями кнопок
+        randomBtnSection.redoButton.disabled = false;
+        randomBtnSection.undoButton.disabled = this.undoStack.length <= 1;
+
+        console.log(this.idStack);
+    },
+    redo() {
         if (this.redoStack.length === 0) {
-            randomBtnSection.redoButton.disabled = true;
+            return;
         }
+
+        // Сохраняем текущее состояние в undoStack
+        let currentState = this.redoStack.pop();
+        this.undoStack.push(currentState);
+
+        // Восстанавливаем состояние из redoStack
+        this.idStack = currentState;
+
+        // Очищаем активный слой
+        bgMatrix.clearActiveElem();
+
+        // Восстанавливаем состояние элементов в activeLayer
+        for (let key in this.idStack) {
+            this.activeLayer.append(this.idStack[key].div);
+        }
+
+        // Управляем состояниями кнопок
+        randomBtnSection.undoButton.disabled = false;
+        randomBtnSection.redoButton.disabled = this.redoStack.length === 0;
+
+        console.log(`REDO BTN / undo = ${this.undoStack.length} redo ${this.redoStack.length}`);
         console.log(this.idStack);
     }
 }
