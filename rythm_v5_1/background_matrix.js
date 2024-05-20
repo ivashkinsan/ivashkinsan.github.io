@@ -485,12 +485,13 @@ const bgMatrix = {
         })
     },
     clearActiveElem(){
-        console.log(this.idStack);
+        
         for(let key in this.idStack){
             this.idStack[key].deleteNote(this.idStack[key].id);
             // this.idStack[key] = null;
             // console.log(this.idStack[key]);
         }
+        
     },
     sortedActiveLayer(container, newDiv) {
         // container.appendChild(newDiv); // Вставляем новый div в конец контейнера
@@ -505,30 +506,37 @@ const bgMatrix = {
         }
     },
     saveState() {
+
         this.undoStack.push({ ...this.idStack }); // сохранить текущеесостояние в отдельный элемент массива
         this.redoStack = []; // очистить редо стек
         randomBtnSection.undoButton.disabled = false; // активировать ундо баттон
         randomBtnSection.redoButton.disabled = true; // деактивировать редо баттон
+        console.log(this.idStack);
     },
     undo() {
+        let newState = this.undoStack.pop();
+        this.redoStack.push(newState); // сохранить в эелемент массива редоСтек текущее состояние стека
+       
         bgMatrix.clearActiveElem();
-        this.redoStack.push({ ...this.idStack }); // сохранить в эелемент массива редоСтек текущее состояние стека
 
-        this.idStack = this.undoStack.pop(); // удалить последний элемент массива и записать в айдиСтек
+        this.idStack = this.undoStack[this.undoStack.length-1];// удалить последний элемент массива и записать в айдиСтек
         randomBtnSection.redoButton.disabled = false; // выключить активность редо кнопки
+
+        
+
         for (let key in this.idStack) { // пройти циклом по активному стеку
             // console.log(this.idStack[key]);
             this.activeLayer.append(this.idStack[key].div); // добавить дивы объектов в активный слой
         }
-        if (this.undoStack.length === 0) { // если длина стека будет ноль
+        if (this.undoStack.length === 1) { // если длина стека будет ноль
             randomBtnSection.undoButton.disabled = true; // выключить активность кнопки ундо
         }
         // console.log(`UNDO BTN / undo = ${this.undoStack.length} redo ${this.redoStack.length}`);
         // console.log(this.idStack);
     },
     redo() {
-        this.undoStack.push({ ...this.idStack });
-        this.idStack = this.redoStack.pop();
+        this.undoStack.push({ ...this.idStack }); // сохранить текущий стек в undo
+        this.idStack = this.redoStack.pop(); // последний
         randomBtnSection.undoButton.disabled = false;
         bgMatrix.clearActiveElem();
         for (let key in this.idStack) {
@@ -554,4 +562,4 @@ bgMatrix.find_Root_baseSize_baseWidth_step_minWidth_max_width();
 bgMatrix.createSizeIdentif();
 bgMatrix.createBackground(bgMatrix.matrix_8x4, bgMatrix.startleftPosition);
 
-// bgMatrix.saveState();
+bgMatrix.saveState();

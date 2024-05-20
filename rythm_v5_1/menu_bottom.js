@@ -293,7 +293,9 @@ const randomBtnSection = new Object({
         this.clearButton.textContent = '🗑';
         
         this.clearButton.addEventListener('click', () => {
+            // bgMatrix.saveState();
             bgMatrix.clearActiveElem();
+            
         });
         return this.clearButton;
     },
