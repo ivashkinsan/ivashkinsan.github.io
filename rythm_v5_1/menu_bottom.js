@@ -291,11 +291,11 @@ const randomBtnSection = new Object({
         this.clearButton.classList.add('randBtn');
         this.clearButton.classList.add('clearButton');
         this.clearButton.textContent = '🗑';
-        
+
         this.clearButton.addEventListener('click', () => {
-            // bgMatrix.saveState();
+            bgMatrix.saveState();
             bgMatrix.clearActiveElem();
-            
+
         });
         return this.clearButton;
     },
@@ -304,7 +304,7 @@ const randomBtnSection = new Object({
         this.undoButton.classList.add('randBtn');
         this.undoButton.classList.add('undoButton');
         this.undoButton.textContent = '\u21BA';
-        this.undoButton.setAttribute('disabled','');
+        this.undoButton.setAttribute('disabled', '');
         this.undoButton.addEventListener('click', () => {
             bgMatrix.undo();
         });
@@ -315,7 +315,7 @@ const randomBtnSection = new Object({
         this.redoButton.classList.add('randBtn');
         this.redoButton.classList.add('redoButton');
         this.redoButton.textContent = '\u21BB';
-        this.redoButton.setAttribute('disabled','');
+        this.redoButton.setAttribute('disabled', '');
         this.redoButton.addEventListener('click', () => {
             bgMatrix.redo();
         });
@@ -575,7 +575,7 @@ const akcents = new Object({
 
 akcents.createContainer();
 akcents.proxy_start_stop_metr;
-let line_border_left = function(){
+let line_border_left = function () {
     let line = document.createElement('div');
     line.classList.add('line_border_left');
     return line;

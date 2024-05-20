@@ -484,14 +484,14 @@ const bgMatrix = {
             // note.findPrevNextForShowHandle();
         })
     },
-    clearActiveElem(){
-        
-        for(let key in this.idStack){
+    clearActiveElem() {
+
+        for (let key in this.idStack) {
             this.idStack[key].deleteNote(this.idStack[key].id);
             // this.idStack[key] = null;
             // console.log(this.idStack[key]);
         }
-        
+
     },
     sortedActiveLayer(container, newDiv) {
         // container.appendChild(newDiv); // Вставляем новый div в конец контейнера
@@ -505,24 +505,29 @@ const bgMatrix = {
             this.idStack[key].findPrevNextForShowHandle();
         }
     },
-    saveState() {
+    saveState(start) {
 
         this.undoStack.push({ ...this.idStack }); // сохранить текущеесостояние в отдельный элемент массива
         this.redoStack = []; // очистить редо стек
-        randomBtnSection.undoButton.disabled = false; // активировать ундо баттон
-        randomBtnSection.redoButton.disabled = true; // деактивировать редо баттон
+        if (start != 'start') {
+            randomBtnSection.undoButton.disabled = false; // активировать ундо баттон
+            randomBtnSection.redoButton.disabled = true; // деактивировать редо баттон
+        }
+
         console.log(this.idStack);
     },
     undo() {
-        let newState = this.undoStack.pop();
-        this.redoStack.push(newState); // сохранить в эелемент массива редоСтек текущее состояние стека
-       
+
+        let deleteStack = this.undoStack.pop();
+        let currentStack = { ...this.idStack };
+        this.redoStack.push(deleteStack); // сохранить в эелемент массива редоСтек текущее состояние стека
+
         bgMatrix.clearActiveElem();
 
-        this.idStack = this.undoStack[this.undoStack.length-1];// удалить последний элемент массива и записать в айдиСтек
+        this.idStack = this.undoStack[this.undoStack.length - 1];// записать в айдиСтек
         randomBtnSection.redoButton.disabled = false; // выключить активность редо кнопки
 
-        
+
 
         for (let key in this.idStack) { // пройти циклом по активному стеку
             // console.log(this.idStack[key]);
@@ -532,23 +537,25 @@ const bgMatrix = {
             randomBtnSection.undoButton.disabled = true; // выключить активность кнопки ундо
         }
         // console.log(`UNDO BTN / undo = ${this.undoStack.length} redo ${this.redoStack.length}`);
-        // console.log(this.idStack);
+        console.log(this.idStack);
     },
     redo() {
-        this.undoStack.push({ ...this.idStack }); // сохранить текущий стек в undo
-        this.idStack = this.redoStack.pop(); // последний
-        randomBtnSection.undoButton.disabled = false;
+        let currentStack = { ...this.idStack };
+        let deleteState = this.redoStack.pop();
+        this.undoStack.push(currentStack); // сохранить текущий стек в undo
         bgMatrix.clearActiveElem();
+        this.idStack = deleteState;// последний элемент в redo вырезать  в idStack
+        randomBtnSection.undoButton.disabled = false;
+
         for (let key in this.idStack) {
-            // console.log(this.idStack[key]);
-            this.idStack[key].delElemInBigElem();
             this.activeLayer.append(this.idStack[key].div);
         }
-        // console.log(`REDO BTN / undo = ${this.undoStack.length} redo ${this.redoStack.length}`);
-        // console.log('redo');
+        console.log(`REDO BTN / undo = ${this.undoStack.length} redo ${this.redoStack.length}`);
+
         if (this.redoStack.length === 0) {
             randomBtnSection.redoButton.disabled = true;
         }
+        console.log(this.idStack);
     }
 }
 
@@ -562,4 +569,4 @@ bgMatrix.find_Root_baseSize_baseWidth_step_minWidth_max_width();
 bgMatrix.createSizeIdentif();
 bgMatrix.createBackground(bgMatrix.matrix_8x4, bgMatrix.startleftPosition);
 
-bgMatrix.saveState();
+bgMatrix.saveState('start');
