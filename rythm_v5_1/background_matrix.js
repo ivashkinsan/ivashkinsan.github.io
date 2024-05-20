@@ -227,7 +227,7 @@ const bgMatrix = {
         // let app_forMouseUpEvent = document.querySelector('.app');
         this.app.addEventListener('mouseup', () => {
             console.log('mouseup');
-            // this.saveState();
+            this.saveState();
         })
     },
     createContainMatrix() {
@@ -507,21 +507,21 @@ const bgMatrix = {
     saveState() {
         this.undoStack.push({ ...this.idStack }); // сохранить текущеесостояние в отдельный элемент массива
         this.redoStack = []; // очистить редо стек
-        this.undoButton.disabled = false; // активировать ундо баттон
-        this.redoButton.disabled = true; // деактивировать редо баттон
+        randomBtnSection.undoButton.disabled = false; // активировать ундо баттон
+        randomBtnSection.redoButton.disabled = true; // деактивировать редо баттон
     },
     undo() {
         bgMatrix.clearActiveElem();
         this.redoStack.push({ ...this.idStack }); // сохранить в эелемент массива редоСтек текущее состояние стека
 
         this.idStack = this.undoStack.pop(); // удалить последний элемент массива и записать в айдиСтек
-        this.redoButton.disabled = false; // выключить активность редо кнопки
+        randomBtnSection.redoButton.disabled = false; // выключить активность редо кнопки
         for (let key in this.idStack) { // пройти циклом по активному стеку
             // console.log(this.idStack[key]);
             this.activeLayer.append(this.idStack[key].div); // добавить дивы объектов в активный слой
         }
         if (this.undoStack.length === 0) { // если длина стека будет ноль
-            this.undoButton.disabled = true; // выключить активность кнопки ундо
+            randomBtnSection.undoButton.disabled = true; // выключить активность кнопки ундо
         }
         // console.log(`UNDO BTN / undo = ${this.undoStack.length} redo ${this.redoStack.length}`);
         // console.log(this.idStack);
@@ -529,17 +529,17 @@ const bgMatrix = {
     redo() {
         this.undoStack.push({ ...this.idStack });
         this.idStack = this.redoStack.pop();
-        this.undoButton.disabled = false;
+        randomBtnSection.undoButton.disabled = false;
         bgMatrix.clearActiveElem();
         for (let key in this.idStack) {
             // console.log(this.idStack[key]);
-            // this.idStack[key].delElemInBigElem();
+            this.idStack[key].delElemInBigElem();
             this.activeLayer.append(this.idStack[key].div);
         }
         // console.log(`REDO BTN / undo = ${this.undoStack.length} redo ${this.redoStack.length}`);
         // console.log('redo');
         if (this.redoStack.length === 0) {
-            this.redoButton.disabled = true;
+            randomBtnSection.redoButton.disabled = true;
         }
     }
 }

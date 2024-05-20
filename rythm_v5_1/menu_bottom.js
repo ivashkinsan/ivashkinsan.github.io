@@ -288,20 +288,35 @@ const randomBtnSection = new Object({
     },
     createClearButton() {
         this.clearButton = document.createElement('button');
+        this.clearButton.classList.add('randBtn');
         this.clearButton.classList.add('clearButton');
-        this.clearButton.textContent = 'clear';
+        this.clearButton.textContent = '🗑';
+        
+        this.clearButton.addEventListener('click', () => {
+            bgMatrix.clearActiveElem();
+        });
         return this.clearButton;
     },
     createUndoButton() {
         this.undoButton = document.createElement('button');
+        this.undoButton.classList.add('randBtn');
         this.undoButton.classList.add('undoButton');
-        this.undoButton.textContent = 'undo';
+        this.undoButton.textContent = '\u21BA';
+        this.undoButton.setAttribute('disabled','');
+        this.undoButton.addEventListener('click', () => {
+            bgMatrix.undo();
+        });
         return this.undoButton;
     },
     createRedoButton() {
         this.redoButton = document.createElement('button');
+        this.redoButton.classList.add('randBtn');
         this.redoButton.classList.add('redoButton');
-        this.redoButton.textContent = 'redo';
+        this.redoButton.textContent = '\u21BB';
+        this.redoButton.setAttribute('disabled','');
+        this.redoButton.addEventListener('click', () => {
+            bgMatrix.redo();
+        });
         return this.redoButton;
     },
     initialize() {
@@ -309,7 +324,7 @@ const randomBtnSection = new Object({
         this.containerRandomButton.append(this.createClearButton());
         this.containerRandomButton.append(this.createUndoButton());
         this.containerRandomButton.append(this.createRedoButton());
-        // this.containerForAppend.append(this.containerRandomButton);
+        return this.containerRandomButton;
     }
 });
 // randomBtnSection.initialize();
@@ -329,7 +344,6 @@ const btnPulseContainer = new Object({
         });
         this.container = document.createElement('div');
         this.container.classList.add('contain_btn_pulse');
-        this.container.classList.add('elem_footer');
         this.label = document.createElement('p');
         this.label.textContent = 'пульс';
         this.container.append(this.label);
@@ -572,7 +586,7 @@ let initializeBottomContainer = function () {
     bottom_container.append(line_border_left());
     bottom_container.append(btnPulseContainer.initialize());
     bottom_container.append(line_border_left());
-    bottom_container.append();
+    bottom_container.append(randomBtnSection.initialize());
 }
 initializeBottomContainer();
 

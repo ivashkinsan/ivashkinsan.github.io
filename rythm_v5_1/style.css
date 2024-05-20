@@ -427,34 +427,68 @@ body {
 }
 
 /* ======================= footer ========================= */
-.elem_footer {
+/* .elem_footer {
     display: flex;
     flex-direction: row;
-    /* padding: 0 10px; */
     color: white;
     gap: 5px;
+} */
+
+.contain_btn_pulse {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    color: white;
+    font-family: MAESTRO;
 }
 
 .btn_pulse {
-    width: 32px;
-    height: 32px;
-    font-size: 22px;
-    line-height: 42px;
+    width: 40px;
+    height: 40px;
+    /* line-height: 48px; */
+    font-size: 20px;
     text-align: center;
     color: white;
     border: 1px rgba(255, 255, 255, 0.27) solid;
-    border-radius: 5px;
+    border-radius: 50%;
     cursor: pointer;
 }
 
-.elem_footer :nth-child(2) {
-    line-height: 37px;
+.btn_pulse:nth-child(2) {
+    line-height: 42px;
+    /* background-color: red; */
 }
 
-.clear,
-.undo,
-.redo {
-    font-size: 26px;
+.containerRandomButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+button{
+    all: unset;
+}
+
+.randBtn {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--matrix-color);
+    cursor: pointer;
+}
+
+.randBtn:hover{
+background: rgba(255, 255, 255, 0.229);
+}
+
+.randBtn:disabled{
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
 .elem_footer>.btn_active {
