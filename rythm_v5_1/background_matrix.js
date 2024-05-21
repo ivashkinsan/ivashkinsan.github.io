@@ -452,7 +452,7 @@ const bgMatrix = {
         note.createHandle(); // создать внутренние handle
         note.createLabel(); // создать внутренний p для сивола нот и пауз
         note.delElemInBigElem(); // удалить элементы внутри нового блока
-
+        console.log(this.idStack);
         this.idStack[note.id] = note;
         this.activeLayer.append(note.div); // вставить ноту в активный слой
         this.sortedActiveLayer(); // сортировать с лева на право
@@ -491,7 +491,7 @@ const bgMatrix = {
             // this.idStack[key] = null;
             // console.log(this.idStack[key]);
         }
-
+        this.idStack = {};
     },
     sortedActiveLayer(container, newDiv) {
         // container.appendChild(newDiv); // Вставляем новый div в конец контейнера
@@ -507,42 +507,40 @@ const bgMatrix = {
     },
     saveState(start) {
 
-        this.undoStack.push({ ...this.idStack }); // сохранить текущеесостояние в отдельный элемент массива
+        this.undoStack.push({ ...this.idStack }); // сохранить текущее состояние в отдельный элемент массива
         this.redoStack = []; // очистить редо стек
         if (start != 'start') {
             randomBtnSection.undoButton.disabled = false; // активировать ундо баттон
             randomBtnSection.redoButton.disabled = true; // деактивировать редо баттон
         }
-
-
-
+        console.log('this.idStack');
+        console.log(this.idStack);
+        console.log('this.undoStack');
+        console.log(this.undoStack);
     },
     undo() {
-        if (this.undoStack.length <= 1) {
-            return;
-        }
+        // if (this.undoStack.length <= 0) {
+        //     return;
+        // }
 
         // Сохраняем текущее состояние в redoStack
-        let currentState = this.undoStack.pop();
-        this.redoStack.push(currentState);
+        this.redoStack.push(this.undoStack.pop());
 
         // Получаем предыдущее состояние
-        let previousState = this.undoStack[this.undoStack.length];
-        this.idStack = previousState;
+        let previousState = this.undoStack[this.undoStack.length-1];
 
         // Очищаем активный слой
         bgMatrix.clearActiveElem();
 
         // Восстанавливаем состояние элементов в activeLayer
+        this.idStack = previousState ? previousState : {};
         for (let key in this.idStack) {
             this.activeLayer.append(this.idStack[key].div);
         }
 
         // Управляем состояниями кнопок
         randomBtnSection.redoButton.disabled = false;
-        randomBtnSection.undoButton.disabled = this.undoStack.length <= 1;
-
-        console.log(this.idStack);
+        randomBtnSection.undoButton.disabled = this.undoStack.length <= 0;
     },
     redo() {
         if (this.redoStack.length === 0) {
@@ -583,4 +581,4 @@ bgMatrix.find_Root_baseSize_baseWidth_step_minWidth_max_width();
 bgMatrix.createSizeIdentif();
 bgMatrix.createBackground(bgMatrix.matrix_8x4, bgMatrix.startleftPosition);
 
-bgMatrix.saveState('start');
+// bgMatrix.saveState('start');
