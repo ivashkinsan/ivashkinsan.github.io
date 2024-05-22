@@ -228,6 +228,7 @@ const bgMatrix = {
         this.app.addEventListener('mouseup', () => {
             console.log('mouseup');
             this.saveState();
+            console.log('saveState');
         })
     },
     createContainMatrix() {
@@ -506,8 +507,53 @@ const bgMatrix = {
         }
     },
     saveState(start) {
-
-        this.undoStack.push({ ...this.idStack }); // сохранить текущее состояние в отдельный элемент массива
+        function deepCopy(obj, hash = new WeakMap()) {
+            // Проверяем примитивные типы данных (не объекты и не массивы)
+            if (obj === null || typeof obj !== 'object') {
+                return obj;
+            }
+        
+            // Проверка на циклические ссылки, чтобы избежать бесконечной рекурсии
+            if (hash.has(obj)) {
+                return hash.get(obj);
+            }
+        
+            // Обработка Date объектов
+            if (obj instanceof Date) {
+                return new Date(obj);
+            }
+        
+            // Обработка RegExp объектов
+            if (obj instanceof RegExp) {
+                return new RegExp(obj);
+            }
+        
+            // Обработка функций
+            if (typeof obj === 'function') {
+                return obj.bind(null);
+            }
+        
+            // Обработка DOM элементов
+            if (obj instanceof HTMLElement) {
+                return obj.cloneNode(true);
+            }
+        
+            // Создаем новый объект или массив в зависимости от типа оригинала
+            const copy = Array.isArray(obj) ? [] : Object.create(Object.getPrototypeOf(obj));
+        
+            // Добавляем оригинальный объект в hash для предотвращения циклических ссылок
+            hash.set(obj, copy);
+        
+            // Копируем свойства
+            for (let key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    copy[key] = deepCopy(obj[key], hash);
+                }
+            }
+        
+            return copy;
+        }
+        this.undoStack.push(deepCopy(this.idStack)); // сохранить текущее состояние в отдельный элемент массива
         this.redoStack = []; // очистить редо стек
         if (start != 'start') {
             randomBtnSection.undoButton.disabled = false; // активировать ундо баттон
@@ -533,8 +579,10 @@ const bgMatrix = {
         bgMatrix.clearActiveElem();
 
         // Восстанавливаем состояние элементов в activeLayer
+
         this.idStack = previousState ? previousState : {};
         for (let key in this.idStack) {
+            console.log(this.idStack[key].div);
             this.activeLayer.append(this.idStack[key].div);
         }
 
