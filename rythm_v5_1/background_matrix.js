@@ -507,63 +507,22 @@ const bgMatrix = {
         }
     },
     saveState(start) {
-        function deepCopy(obj, hash = new WeakMap()) {
-            // Проверяем примитивные типы данных (не объекты и не массивы)
-            if (obj === null || typeof obj !== 'object') {
-                return obj;
-            }
-        
-            // Проверка на циклические ссылки, чтобы избежать бесконечной рекурсии
-            if (hash.has(obj)) {
-                return hash.get(obj);
-            }
-        
-            // Обработка Date объектов
-            if (obj instanceof Date) {
-                return new Date(obj);
-            }
-        
-            // Обработка RegExp объектов
-            if (obj instanceof RegExp) {
-                return new RegExp(obj);
-            }
-        
-            // Обработка функций
-            if (typeof obj === 'function') {
-                return obj.bind(null);
-            }
-        
-            // Обработка DOM элементов
-            if (obj instanceof HTMLElement) {
-                return obj.cloneNode(true);
-            }
-        
-            // Создаем новый объект или массив в зависимости от типа оригинала
-            const copy = Array.isArray(obj) ? [] : Object.create(Object.getPrototypeOf(obj));
-        
-            // Добавляем оригинальный объект в hash для предотвращения циклических ссылок
-            hash.set(obj, copy);
-        
-            // Копируем свойства
-            for (let key in obj) {
-                if (obj.hasOwnProperty(key)) {
-                    copy[key] = deepCopy(obj[key], hash);
+       // сохранить размер, позицию, качество
+       let newStateIdStack = [];
+        for (let key in this.idStack) {
+            newStateIdStack.push(
+                {
+                    id: this.idStack[key].id,
+                    size: this.idStack[key]._width,
+                    leftPosition: this.idStack[key]._leftSidePosition,
+                    indPosition: this.idStack[key].indxPosition,
+                    isPause: this.idStack[key].isPause
                 }
-            }
-        
-            return copy;
+            );
         }
-        this.undoStack.push(deepCopy(this.idStack)); // сохранить текущее состояние в отдельный элемент массива
-        this.redoStack = []; // очистить редо стек
-        if (start != 'start') {
-            randomBtnSection.undoButton.disabled = false; // активировать ундо баттон
-            randomBtnSection.redoButton.disabled = true; // деактивировать редо баттон
-        }
-        console.log('this.idStack');
-        console.log(this.idStack);
-        console.log('this.undoStack');
+        this.undoStack.push(newStateIdStack);
         console.log(this.undoStack);
-    },
+        },
     undo() {
         // if (this.undoStack.length <= 0) {
         //     return;
