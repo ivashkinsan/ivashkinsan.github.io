@@ -77,8 +77,8 @@ class Note {
         this.handle.leftRightHandle = left_double_arrow;
         this.div.append(this.handle.leftRightHandle);
     }
-    handleBehavior(sms){
-        if(sms == 'show' && this._leftSidePosition == this.previousElemRightSide){
+    handleBehavior(sms) {
+        if (sms == 'show' && this._leftSidePosition == this.previousElemRightSide) {
             this.handle.leftRightHandle.style.display = 'block';
             this.handle.leftRightHandle.classList.remove('display_none');
             console.log([this._leftSidePosition, " == ", this.previousElemRightSide]);
@@ -86,14 +86,14 @@ class Note {
             this.handle.leftRightHandle.style.display = 'none';
             this.handle.leftRightHandle.classList.add('display_none');
         }
-        
+
     }
     findPrevNextElemsAndFindParam() {
         if (this.div.nextElementSibling) {
             this.nextElem = this.div.nextElementSibling;
             this.nextElemId = this.nextElem.dataset.id;
-            this.nextElemWidth = Number(this.nextElem.style.width.replace('px',''));
-            this.nextElemLeftSide = Number(this.nextElem.style.left.replace('px',''));
+            this.nextElemWidth = Number(this.nextElem.style.width.replace('px', ''));
+            this.nextElemLeftSide = Number(this.nextElem.style.left.replace('px', ''));
             this.nextElemRightSide = this.nextElemLeftSide + this.nextElemWidth;
             backgroundMatrix.activeLayerStack[this.nextElemId].handleBehavior('show');
         } else {
@@ -106,8 +106,8 @@ class Note {
         if (this.div.previousElementSibling) {
             this.previousElem = this.div.previousElementSibling;
             this.previousElemId = this.previousElem.dataset.id;
-            this._previousElemWidth = Number(this.previousElem.style.width.replace('px',''));
-            this.previousElemLeftSide = Number(this.previousElem.style.left.replace('px',''));
+            this._previousElemWidth = Number(this.previousElem.style.width.replace('px', ''));
+            this.previousElemLeftSide = Number(this.previousElem.style.left.replace('px', ''));
             this.previousElemRightSide = this.previousElemLeftSide + this.previousElemWidth;
             this.previousElemStartWidth = this.previousElemLeftSide + this.previousElemWidth;
             this.handleBehavior('show');
@@ -122,7 +122,7 @@ class Note {
     }
     createLabel(is_pause) {
         let p_label = document.createElement('p');
-        if (is_pause) {
+        if (is_pause == true) {
             p_label.textContent = this.pausesSymbol.default;
         } else {
             p_label.textContent = this.notesSymbol.default;
@@ -137,7 +137,7 @@ class Note {
         newNoteDiv.style.width = this._width + 'px';
         newNoteDiv.style.height = this._height + 'px';
         newNoteDiv.style.left = this._leftSidePosition + 'px';
-        
+
         this.id = this.idGenerator();
         this.div = newNoteDiv;
         this.div.dataset.id = this.id;
@@ -183,7 +183,7 @@ class Note {
             backgroundMatrix.activeLayerStack[this.previousElemId].hameleon();
             backgroundMatrix.researchAllNextPrevElem();
         }
-        if(this._rightSidePosition > this.nextElemLeftSide && this.nextElemRightSide > this._rightSidePosition){
+        if (this._rightSidePosition > this.nextElemLeftSide && this.nextElemRightSide > this._rightSidePosition) {
             let diff = this._rightSidePosition - this.nextElemLeftSide;
             let newWidth = this.nextElemWidth - diff;
             let newLeftSidePosition = this.nextElemLeftSide + diff;
@@ -256,7 +256,7 @@ class Note {
                 let difference = newWidthRoundet - this.startWidth;
 
                 this.newLeftPosition = Math.round(newLeft / backgroundMatrix.step) * backgroundMatrix.step;
-                
+
                 if (this.previousElemStartWidth - difference >= backgroundMatrix.minWidth) {
                     this.width = newWidthRoundet;
                     this.leftSidePosition = this.newLeftPosition;
@@ -272,7 +272,7 @@ class Note {
         }
     }
     stopResizing() {
-    
+
         backgroundMatrix.researchAllNextPrevElem();
         this.notesSymbol = allSymbolForNotes_2_4[this.name]['notesSymbol'];
         this.pausesSymbol = allSymbolForNotes_2_4[this.name]['pausesSymbol'];
@@ -294,7 +294,7 @@ class Note {
         ).replace(/\./g, '')
     }
 
-    set rightSidePosition(value){
+    set rightSidePosition(value) {
         this._rightSidePosition = value;
     }
     get rightSidePosition() {
@@ -320,11 +320,11 @@ class Note {
     /**
      * @param {string} value
      */
-    set class(value){
-    // console.log(this._class);
-    this.div.classList.remove(this._class);
-    this._class = value;
-    this.div.classList.add(this._class);
+    set class(value) {
+        // console.log(this._class);
+        this.div.classList.remove(this._class);
+        this._class = value;
+        this.div.classList.add(this._class);
     }
     get previousElemWidth() {
         return this._previousElemWidth;
@@ -339,24 +339,24 @@ class Note {
     /**
      * @param {{ textContent: any; }} value
      */
-    set label(value){
-        if(value.notesSymbol[this.indxPosition]){
-            if(this.div.classList.contains('pause')){
+    set label(value) {
+        if (value.notesSymbol[this.indxPosition]) {
+            if (this.div.classList.contains('pause')) {
                 this._label.textContent = value.pausesSymbol[this.indxPosition];
             } else {
                 this._label.textContent = value.notesSymbol[this.indxPosition];
             }
-           
+
         } else {
-            if(this.div.classList.contains('pause')){
+            if (this.div.classList.contains('pause')) {
                 this._label.textContent = value.pausesSymbol['default'];
-            }else {
+            } else {
                 this._label.textContent = value.notesSymbol['default'];
             }
-            
+
         }
-       
-// this.label = value;
+
+        // this.label = value;
 
     }
 }

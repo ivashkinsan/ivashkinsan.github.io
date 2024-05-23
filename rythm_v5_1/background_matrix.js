@@ -459,9 +459,11 @@ const bgMatrix = {
         this.sortedActiveLayer(); // сортировать с лева на право
         this.researchAllNextPrevElem();  // найти и добавить все параметры окружения у активных нот
         note.ifBorderCollapse_resize(); // если новая нота наслаивается на уже имеющуюся - изменить размер старой
-        if (isPause) {
+        if (isPause == true) {
             // note.magicNoteOrPause();
             note.isPause = true;
+        } else {
+            note.isPause = false;
         }
 
         note.addEventListenerForPauseTransform(); // добавить обработчик для смены ноты на паузу
@@ -507,47 +509,60 @@ const bgMatrix = {
         }
     },
     saveState(start) {
-       // сохранить размер, позицию, качество
-       let newStateIdStack = [];
+        // сохранить размер, позицию, качество
+        let newStateIdStack = [];
         for (let key in this.idStack) {
             newStateIdStack.push(
                 {
                     id: this.idStack[key].id,
-                    size: this.idStack[key]._width,
+                    name: this.idStack[key].name,
+                    width: this.idStack[key]._width,
                     leftPosition: this.idStack[key]._leftSidePosition,
-                    indPosition: this.idStack[key].indxPosition,
+                    indxPosition: this.idStack[key].indxPosition,
                     isPause: this.idStack[key].isPause
                 }
             );
         }
         this.undoStack.push(newStateIdStack);
-        console.log(this.undoStack);
-        },
+        // console.log(this.undoStack);
+        randomBtnSection.undoButton.disabled = false;
+    },
     undo() {
-        // if (this.undoStack.length <= 0) {
-        //     return;
-        // }
+
 
         // Сохраняем текущее состояние в redoStack
         this.redoStack.push(this.undoStack.pop());
 
         // Получаем предыдущее состояние
-        let previousState = this.undoStack[this.undoStack.length-1];
+        console.log(this.undoStack[this.undoStack.length - 1]);
+        let previousState = this.undoStack[this.undoStack.length - 1];
 
         // Очищаем активный слой
         bgMatrix.clearActiveElem();
-
+        randomBtnSection.redoButton.disabled = false;
+        randomBtnSection.undoButton.disabled = this.undoStack.length == 0;
+        console.log(this.undoStack.length);
+        if (this.undoStack.length == 0) {
+            return;
+        }
         // Восстанавливаем состояние элементов в activeLayer
+        console.log(previousState);
+        // this.idStack = previousState ? previousState : {};
+        for (let item of previousState) {
+            console.log(item);
+            this.create_note(
+                item.name,
+                item.width,
+                item.leftPosition,
+                item.indxPosition,
+                item.indxPosition,
+                item.isPause
 
-        this.idStack = previousState ? previousState : {};
-        for (let key in this.idStack) {
-            console.log(this.idStack[key].div);
-            this.activeLayer.append(this.idStack[key].div);
+            )
         }
 
         // Управляем состояниями кнопок
-        randomBtnSection.redoButton.disabled = false;
-        randomBtnSection.undoButton.disabled = this.undoStack.length <= 0;
+
     },
     redo() {
         if (this.redoStack.length === 0) {
