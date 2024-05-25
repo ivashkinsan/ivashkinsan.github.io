@@ -23,6 +23,7 @@ const sizeMenu = new Object({
             this.elementsArr.push(newElement);
             newElement.textContent = this.variants[i];
             this.contain.append(newElement);
+            if(newElement.textContent != 'sw'){
             newElement.addEventListener('click', (e) => {
                 e.stopPropagation();
                 e.preventDefault();
@@ -66,6 +67,17 @@ const sizeMenu = new Object({
                 bgMatrix.clearActiveElem();
                 akcents.delElements();
             })
+        } else {        
+            newElement.addEventListener('click', (event) => {
+                event.preventDefault()
+                event.stopPropagation();
+                newElement.classList.toggle('menuElementActive_sw');
+                // if(newElement.classList.contains('menuElementActive_sw')){
+                    bgMatrix.notes.eighthNote_8.forEach((elem)=>elem.classList.toggle('display_none'));
+                    bgMatrix.notes.sixteenthNote_16.forEach((elem)=>elem.classList.toggle('display_none'));
+                // }
+            })
+        }
         }
     },
     createButtonSizeMenu() {

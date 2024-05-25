@@ -150,7 +150,7 @@ body {
     /* box-shadow: 0 0 0 1px rgba(199, 199, 199, 0.451) inset, 0px 5px 5px 0px black; */
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.651) inset;
     /* background: rgba(9, 2, 37, 0.177); */
-    background: #16161669;
+    background: #16161640;
     ;
     top: 50%;
     cursor: pointer;
@@ -491,7 +491,7 @@ background: rgba(255, 255, 255, 0.229);
     cursor: not-allowed;
 }
 
-.elem_footer>.btn_active {
+.contain_btn_pulse>.btn_active {
     border: 1px solid white;
 }
 
@@ -519,7 +519,7 @@ background: rgba(255, 255, 255, 0.229);
     border: 1px rgba(255, 255, 255, 0.489) solid;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    background-color: #2d2d2d5b;
+    background-color: #2d2d2d20;
 
 
     transform: translateX(-50%);

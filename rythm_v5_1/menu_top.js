@@ -379,12 +379,12 @@ let createNoteAfterDrop = (event, dropElem) => {
     //         bgMatrix.idStack[item.dataset.id].deleteNote(item.dataset.id);
     //     }
     // }
-    // for (let item of allActiveForDelete) {
-    //     let itemLeft = Number(item.style.left.replace('px', ''));
-    //     if (itemLeft >= dropElemPosition.left && itemLeft < dropElemPosition.right) {
-    //         item.remove();
-    //     }
-    // }
+    for (let item of allActiveForDelete) {
+        let itemLeft = Number(item.style.left.replace('px', ''));
+        if (itemLeft >= dropElemPosition.left && itemLeft < dropElemPosition.right) {
+            item.remove();
+        }
+    }
 
     dropElem.classList.remove('drop_insert_border_on');
 
@@ -441,8 +441,10 @@ let createNoteAfterDrop = (event, dropElem) => {
                 bgMatrix.newOutIndMatrix[targetLeftPosition],
                 isPause);
             targetLeftPosition += interval;
+           
         }
     }
+    bgMatrix.saveState();
 }
 
 let extractPositionData = (style) => {

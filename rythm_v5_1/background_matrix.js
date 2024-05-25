@@ -18,6 +18,8 @@ const bgMatrix = {
     'leftAppSide': null,
     'rightAppSide': null,
 
+    'notes': {},
+
     undoStack: [],
     redoStack: [],
     undoButton: document.getElementById('undoButton'),
@@ -224,11 +226,8 @@ const bgMatrix = {
     addApp() {
         let app = document.querySelector('.app');
         this.app = app;
-        // let app_forMouseUpEvent = document.querySelector('.app');
-        this.app.addEventListener('mouseup', () => {
-            console.log('mouseup');
+        this.app.addEventListener('mouseup', (event) => {
             this.saveState();
-            console.log('saveState');
         })
     },
     createContainMatrix() {
@@ -264,9 +263,22 @@ const bgMatrix = {
         this.minWidth = bgMatrix.baseSize / 16;
         this.maxWidth = bgMatrix.baseSize;
     },
+    addNotes(input, elem){
+        console.log(input);
+        console.log(elem);
+        if (!this.notes.hasOwnProperty(input)) {
+            this.notes[input] = [];
+          }
+        if(this.notes.hasOwnProperty(input)){
+            this.notes[input].push(elem);
+          }
+    },
     // в бэкграунде на каждый элемент настроен клик
     createBackground(array, startleftPosition) {
-
+        this.notes = {};
+        this.undoStack = [];
+        this.redoStack = [];
+        
         while (this.containMatrix.firstChild) {
             this.containMatrix.removeChild(this.containMatrix.firstChild);
         }
@@ -290,6 +302,7 @@ const bgMatrix = {
                         new_circle.style.height = this.baseSize / 16 + 'px';
                         new_circle.classList.add('mtrxCircle');
                         new_circle.classList.add('matrix_16');
+                        this.addNotes(new_circle.dataset.name, new_circle);
                         break;
                     case '8':
                         new_circle.classList.add(this.sizeIdentif[this.baseSize / 8]);
@@ -298,6 +311,7 @@ const bgMatrix = {
                         new_circle.style.height = this.baseSize / 8 + 'px';
                         new_circle.classList.add('mtrxCircle');
                         new_circle.classList.add('matrix_8');
+                        this.addNotes(new_circle.dataset.name, new_circle);
                         break;
                     case '4':
                         new_circle.classList.add(this.sizeIdentif[this.baseSize / 4]);
@@ -306,6 +320,7 @@ const bgMatrix = {
                         new_circle.style.height = this.baseSize / 4 + 'px';
                         new_circle.classList.add('mtrxCircle');
                         new_circle.classList.add('matrix_4');
+                        this.addNotes(new_circle.dataset.name, new_circle);
                         break;
                     case '2':
                         new_circle.classList.add(this.sizeIdentif[this.baseSize / 2]);
@@ -314,6 +329,7 @@ const bgMatrix = {
                         new_circle.style.height = this.baseSize / 2 + 'px';
                         new_circle.classList.add('mtrxCircle');
                         new_circle.classList.add('matrix_2');
+                        this.addNotes(new_circle.dataset.name, new_circle);
                         break;
                     case '1':
                         new_circle.classList.add(this.sizeIdentif[this.baseSize / 1]);
@@ -322,6 +338,7 @@ const bgMatrix = {
                         new_circle.style.height = this.baseSize / 1 + 'px';
                         new_circle.classList.add('mtrxCircle');
                         new_circle.classList.add('matrix_1');
+                        this.addNotes(new_circle.dataset.name, new_circle);
                         break;
 
                     case '2w4':
@@ -331,6 +348,7 @@ const bgMatrix = {
                         new_circle.style.height = ((bgMatrix.baseSize / 16) * 12) + 'px';
                         new_circle.classList.add('mtrxCircle');
                         new_circle.classList.add('matrix_2w4');
+                        this.addNotes(new_circle.dataset.name, new_circle);
                         break;
                     case '2w16':
                         new_circle.classList.add(this.sizeIdentif[((bgMatrix.baseSize / 16) * 9)]);
@@ -339,6 +357,7 @@ const bgMatrix = {
                         new_circle.style.height = ((bgMatrix.baseSize / 16) * 9) + 'px';
                         new_circle.classList.add('mtrxCircle');
                         new_circle.classList.add('matrix_2w4');
+                        this.addNotes(new_circle.dataset.name, new_circle);
                         break;
                     case '4w8':
                         new_circle.classList.add(this.sizeIdentif[((bgMatrix.baseSize / 16) * 6)]);
@@ -347,6 +366,7 @@ const bgMatrix = {
                         new_circle.style.height = ((bgMatrix.baseSize / 16) * 6) + 'px';
                         new_circle.classList.add('mtrxCircle');
                         new_circle.classList.add('matrix_4w8');
+                        this.addNotes(new_circle.dataset.name, new_circle);
                         break;
                     case '8w16':
                         new_circle.classList.add(this.sizeIdentif[((bgMatrix.baseSize / 16) * 3)]);
@@ -355,6 +375,7 @@ const bgMatrix = {
                         new_circle.style.height = ((bgMatrix.baseSize / 16) * 3) + 'px';
                         new_circle.classList.add('mtrxCircle');
                         new_circle.classList.add('matrix_8w16');
+                        this.addNotes(new_circle.dataset.name, new_circle);
                         break;
 
                 }
@@ -470,7 +491,7 @@ const bgMatrix = {
         note.addTouchEventForPauseAndResizeTransform(); // добавить обработчик touch для смены ноты на паузу
         note.div.addEventListener('contextmenu', (event) => { // обработчик для удаления ноты
             event.preventDefault();
-            event.stopPropagation();
+            // event.stopPropagation();
             let previousElemId = this.previousElemId ? this.previousElemId : undefined;
             let nextElemId = this.nextElemId ? this.nextElemId : undefined;
             note.deleteNote(note.id);
@@ -484,7 +505,6 @@ const bgMatrix = {
             //     bgMatrix.idStack[nextElemId].findPrevNextElemsAndFindParam();
             // }
             this.researchAllNextPrevElem();
-            // note.findPrevNextForShowHandle();
         })
     },
     clearActiveElem() {
@@ -509,6 +529,9 @@ const bgMatrix = {
         }
     },
     saveState(start) {
+        console.log('bgMatrix.saveState();');
+        
+        this.redoStack = [];
         // сохранить размер, позицию, качество
         let newStateIdStack = [];
         for (let key in this.idStack) {
@@ -526,18 +549,21 @@ const bgMatrix = {
         this.undoStack.push(newStateIdStack);
         randomBtnSection.undoButton.disabled = false;
         randomBtnSection.redoButton.disabled = true;
+        console.log(`undo = ${this.undoStack.length} redo = ${this.redoStack.length}`);
+        console.log(this.undoStack);
     },
     undo() {
         // Текущее состояние перезаписать в redoStack
         this.redoStack.push(this.undoStack.pop());
         // Получаем предыдущее состояние
-        let previousState = this.undoStack[this.undoStack.length - 1];
+        let previousState = this.undoStack[this.undoStack.length-1];
         // Очищаем активный слой
         bgMatrix.clearActiveElem();
         // активировать redo button
         randomBtnSection.redoButton.disabled = false;
+        console.log(`undo = ${this.undoStack.length} redo = ${this.redoStack.length}`);
         // если undoStack пустой 
-        if (this.undoStack.length < 1) {
+        if (this.undoStack.length == 0) {
             // деактивировать button
             randomBtnSection.undoButton.disabled = true;
             // оставить стек массивом и выйти из функции
@@ -556,7 +582,6 @@ const bgMatrix = {
         }
     },
     redo() {
-        console.log(this.redoStack);
         // Сохраняем текущее состояние в undoStack
         let nextState = this.redoStack.pop();
         if (nextState == undefined) {
@@ -576,6 +601,7 @@ const bgMatrix = {
                 item.isPause
             )
         }
+        console.log(`undo = ${this.undoStack.length} redo = ${this.redoStack.length}`);
         if (this.redoStack.length == 0) {
             randomBtnSection.redoButton.disabled = true;
         }
