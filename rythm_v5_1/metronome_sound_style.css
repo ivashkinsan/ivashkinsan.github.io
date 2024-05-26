@@ -1,5 +1,7 @@
 :root {
     --matrix-color: rgba(144, 144, 144, 0.78);
+    --opacity-background: #2d2d2d20;
+    --border-opacity-elem: rgba(255, 255, 255, 0.489);
 }
 
 @font-face {
@@ -109,8 +111,16 @@
     position: absolute;
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin-top: 10px;
+    padding: 10px 0;
     gap: 15px;
+    left: -10px;
+    width: 100px;
+    background: var(--opacity-background);
+    border: 1px var(--border-opacity-elem) solid;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .menuContainDspNone {
@@ -139,11 +149,36 @@
     border-color: white;
     background-color: rgba(240, 248, 255, 0.150);
 }
-.menuElementActive_sw {
+.menuElement_sw {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    width: 50px;
+    height: 30px;
     border-color: white;
+    border-radius: 25px;
     background-color: rgba(240, 248, 255, 0.150);
 }
-
+.menuElement_sw > .thumbler{
+    width: 30px;
+    height: 30px;
+    color: black;
+    font-family: MAESTRO;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 50%;
+}
+.menuContain > .menuElement_sw:nth-last-child(1) > .thumbler:first-letter {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    font-weight: bold;
+    transform: scale(2);
+}
+.menuElementActive_sw{
+    justify-content: end;
+    background-color: rgba(0, 106, 255, 0.549);
+}
 
 
 

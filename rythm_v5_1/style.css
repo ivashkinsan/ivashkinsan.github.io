@@ -5,6 +5,8 @@
     --font-size: calc(var(--base-size) / 30);
     --matrix-color: rgba(144, 144, 144, 0.538);
     --active-elem-color: #F4D6B1;
+    --opacity-background: #2d2d2d20;
+    --border-opacity-elem: rgba(255, 255, 255, 0.489);
 }
 
 /* @media (max-width: 600px) and (max-height: 300px) {
@@ -516,20 +518,20 @@ background: rgba(255, 255, 255, 0.229);
 
     width: 746px;
     height: 255px;
-    border: 1px rgba(255, 255, 255, 0.489) solid;
+    border: 1px var(--border-opacity-elem) solid;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    background-color: #2d2d2d20;
+    background-color: var(--opacity-background);
 
 
     transform: translateX(-50%);
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1500ms;
     z-index: 2000;
 }
 
 .hidden_cardAlphabetContain {
     transform: translate(-50%, -110%);
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1500ms;
 }
 
 .menuInTopBar {

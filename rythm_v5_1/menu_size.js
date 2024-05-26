@@ -6,7 +6,8 @@
 //  6х8     9х8     12х8
 
 const sizeMenu = new Object({
-    'variants': ['2:4', '3:4', '4:4', '5:4', '6:4', '7:4', '8:4', '6:8', '9:8', '12:8', 'sw'],
+    'variants': ['2:4', '3:4', '4:4', '5:4', '6:4', '7:4', '8:4', '6:8', '9:8', '12:8', 'sw','sw','sw'],
+    'thumbler_text': ['\uF078','\uF065','3 \uF065'],
     'button': null,
     'contain': null,
     'elementsArr': [],
@@ -19,11 +20,13 @@ const sizeMenu = new Object({
     generateAllButton() {
         for (let i = 0; i < this.variants.length; i++) {
             let newElement = document.createElement('div');
-            newElement.classList.add('menuElement');
+            
             this.elementsArr.push(newElement);
-            newElement.textContent = this.variants[i];
+            
             this.contain.append(newElement);
-            if(newElement.textContent != 'sw'){
+            if(this.variants[i] != 'sw'){
+            newElement.textContent = this.variants[i];
+            newElement.classList.add('menuElement');
             newElement.addEventListener('click', (e) => {
                 e.stopPropagation();
                 e.preventDefault();
@@ -67,15 +70,43 @@ const sizeMenu = new Object({
                 bgMatrix.clearActiveElem();
                 akcents.delElements();
             })
-        } else {        
+        } else {     
+            newElement.classList.add('menuElement_sw');
+            
+            
+            let thumbler = document.createElement('div');
+            thumbler.classList.add('thumbler');
+            thumbler.textContent = this.thumbler_text.shift();
+            newElement.append(thumbler);
+
+            if(thumbler.textContent[0] != '3'){
+                newElement.classList.add('menuElementActive_sw');
+            }
+
             newElement.addEventListener('click', (event) => {
                 event.preventDefault()
                 event.stopPropagation();
                 newElement.classList.toggle('menuElementActive_sw');
-                // if(newElement.classList.contains('menuElementActive_sw')){
-                    bgMatrix.notes.eighthNote_8.forEach((elem)=>elem.classList.toggle('display_none'));
-                    bgMatrix.notes.sixteenthNote_16.forEach((elem)=>elem.classList.toggle('display_none'));
-                // }
+                switch(newElement.textContent){
+                    case '\uF078':
+                        bgMatrix.notes.sixteenthNote_16.forEach((elem)=>elem.classList.toggle('display_none'));
+                        break;
+                    case '\uF065':
+                        bgMatrix.notes.eighthNote_8.forEach((elem)=>elem.classList.toggle('display_none'));
+                        break;
+                    case '3 \uF065':
+                        if( newElement.classList.contains('menuElementActive_sw')){
+                            bgMatrix.notes.eighthNote_8_triple.forEach((elem)=>elem.classList.remove('display_none'));
+                        } else {
+                            bgMatrix.notes.eighthNote_8_triple.forEach((elem)=>elem.classList.add('display_none'));
+                        }
+                       
+                        break;
+                }
+                    
+                    
+
+
             })
         }
         }
@@ -90,6 +121,9 @@ const sizeMenu = new Object({
             this.contain.classList.toggle('menuContainDspNone');
         })
     },
+    createThumbler(){
+
+    }
 })
 sizeMenu.createMenu();
 sizeMenu.generateAllButton();

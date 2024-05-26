@@ -264,8 +264,8 @@ const bgMatrix = {
         this.maxWidth = bgMatrix.baseSize;
     },
     addNotes(input, elem){
-        console.log(input);
-        console.log(elem);
+        // console.log(input);
+        // console.log(elem);
         if (!this.notes.hasOwnProperty(input)) {
             this.notes[input] = [];
           }
@@ -426,6 +426,32 @@ const bgMatrix = {
         // document.querySelector('body').append(marker);
         // this.leftAppSide = boundingPosition.left;
         // this.rightAppSide = boundingPosition.right;
+        bgMatrix.createTripletNotes();
+    },
+    createTripletNotes(){
+        for(let item of bgMatrix.notes.quarterNote_4){
+            let startLeftPosition = Number(item.style.left.replace('px',''));
+            let itemWidth = Number(item.style.width.replace('px',''));
+            let newWidth = itemWidth / 3;
+            console.log([startLeftPosition,itemWidth,newWidth]);
+            for(let i = 0; i < 3; i++){
+                let new_circle = document.createElement('div');
+                new_circle.classList.add('mtrxCircle');
+                new_circle.style.left = startLeftPosition + 'px';
+                new_circle.classList.add(bgMatrix.sizeIdentif[bgMatrix.baseSize / 12]);
+                new_circle.dataset.name = bgMatrix.sizeIdentif[bgMatrix.baseSize / 12];
+                new_circle.style.width = bgMatrix.baseSize / 12 + 'px';
+                new_circle.style.height = bgMatrix.baseSize / 12 + 'px';
+                new_circle.classList.add('eighthNote_8_triple');
+                new_circle.classList.add('display_none');
+                bgMatrix.addNotes(new_circle.dataset.name, new_circle);
+
+                bgMatrix.containMatrix.append(new_circle);
+                startLeftPosition += newWidth;
+                console.log(startLeftPosition);
+                this.addNotes(new_circle.dataset.name, new_circle);
+            }
+        }
     },
     createLabelSolf(info) {
         let newLabel = new solfedjioLabel();
@@ -617,5 +643,6 @@ bgMatrix.createActiveLayer();
 bgMatrix.find_Root_baseSize_baseWidth_step_minWidth_max_width();
 bgMatrix.createSizeIdentif();
 bgMatrix.createBackground(bgMatrix.matrix_8x4, bgMatrix.startleftPosition);
+
 
 // bgMatrix.saveState('start');
