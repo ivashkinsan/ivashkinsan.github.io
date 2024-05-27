@@ -12,7 +12,7 @@
 .bottom_container {
     display: flex;
     flex-direction: row;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
     position: absolute;
     gap: 15px;
@@ -101,48 +101,54 @@
     left: 10px;
     width: 40px;
     height: 40px;
-    font-size: 28px;
     text-align: center;
     color: #ffffff;
     cursor: pointer;
+    z-index: 2000;
 }
 
 .menuContain {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    all:initial;
+    position: fixed;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
     margin-top: 10px;
-    padding: 10px 0;
+    padding: 15px;
     gap: 15px;
-    left: -10px;
-    width: 100px;
+    left: 0px;
+    width: 160px;
     background: var(--opacity-background);
     border: 1px var(--border-opacity-elem) solid;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
 }
 
 .menuContainDspNone {
-    display: none;
+    /* display: none; */
+    left: -192px;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
 }
 
 .menuElement {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
+    width: 50px;
+    height: 50px;
+    color: white;
+    font-size: 14px;
     letter-spacing: 2px;
     line-height: 16px;
-    cursor: pointer;
     border: 1px var(--matrix-color) solid;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .menuElement:hover {
     background-color: rgba(240, 248, 255, 0.500);
+    cursor: pointer;
 }
 
 .menuElementActive {
@@ -166,8 +172,10 @@
     font-family: MAESTRO;
     font-size: 16px;
     font-weight: bold;
+    text-align: center;
     background-color: white;
     border-radius: 50%;
+    cursor: pointer;
 }
 .menuContain > .menuElement_sw:nth-last-child(1) > .thumbler:first-letter {
     font-family: 'Times New Roman', Times, serif;

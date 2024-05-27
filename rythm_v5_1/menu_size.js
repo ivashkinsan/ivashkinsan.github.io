@@ -99,14 +99,9 @@ const sizeMenu = new Object({
                             bgMatrix.notes.eighthNote_8_triple.forEach((elem)=>elem.classList.remove('display_none'));
                         } else {
                             bgMatrix.notes.eighthNote_8_triple.forEach((elem)=>elem.classList.add('display_none'));
-                        }
-                       
+                        }      
                         break;
                 }
-                    
-                    
-
-
             })
         }
         }
