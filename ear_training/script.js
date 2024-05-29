@@ -110,8 +110,5 @@ playBtn.addEventListener('click', ()=>{
     let interval = 0;
     for(let i = 0; i < 4; i++){
         setTimeout(playAudio,interval,[i+10]);
-        interval +=500;
-    }
-})
 
- 
+        
