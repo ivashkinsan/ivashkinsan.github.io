@@ -103,12 +103,16 @@ function playAudio(index) {
 }
 
 
+let arrPlay = [1,3,5,6,5,3,1];
 const playBtn = document.querySelector('#play');
 playBtn.addEventListener('click', ()=>{
     // Загрузка аудиофайлов
-
+    let length = arrPlay.length
     let interval = 0;
-    for(let i = 0; i < 4; i++){
-        setTimeout(playAudio,interval,[i+10]);
+    for(let i = 0; i < length; i++){
+        setTimeout(playAudio,interval,arrPlay.shift());
+        interval +=400;
 
-        
+    }
+    arrPlay = [1,5,10,15];
+  });

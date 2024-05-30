@@ -90,12 +90,6 @@ let moni_hide = document.querySelector('.moni_hide').onclick = hide_moni;
 
 oneDable.onclick = function () {
     keyboard_add3.classList.toggle('hideClass');
-    // keyHide.classList.toggle('key_hide');
-    // let newElement = keyboard_add.cloneNode(true);
-    // console.log(newElement);
-    // console.log(section);
-    // section.append(newElement);
-    // onload = workCode;
 };
 
 //функция подсветки голубым
@@ -162,8 +156,6 @@ var calculateMassive = function (massive) {
 };
 // console.log(five_Black['C']);
 calculateMassive(five_Black['C']);
-
-
 
 
 document.querySelector('.label_checkbox').addEventListener('change', function (elem) {
@@ -252,44 +244,6 @@ document.querySelector('.label_checkbox').addEventListener('change', function (e
     }
 })
 
-// notes_Number.addEventListener('click', function () {
-//     noteLabel(notes_Number, notes_Number_mas);
-// });
-// halftones.addEventListener('click', function () {
-//     noteLabel(halftones, halftones_mas);
-// });
-// wholetones.addEventListener('click', function () {
-//     noteLabel(wholetones, wholetones_mas);
-// });
-// notes_Intervals.addEventListener('click', function () {
-//     noteLabel(notes_Intervals, notes_Intervals_mas);
-// });
-// notes_rim.addEventListener('click', function () {
-//     noteLabel(notes_rim, notes_rim_mas);
-// });
-// notes_123.addEventListener('click', function () {
-//     noteLabel(notes_123, notes_123_mas);
-// });
-// maj_min.addEventListener('click', function () {
-//     noteLabel(maj_min, maj_min_mas);
-// });
-// extensions.addEventListener('click', function () {
-//     noteLabel(extensions, extensions_mas);
-// });
-// chords.addEventListener('click', function () {
-//     noteLabel(chords, chords_mas);
-// });
-// relative.addEventListener('click', function () {
-//     noteLabel(relative, relative_mas);
-//     noteColor();
-//     console.log("YES");
-// });
-// relative_center.addEventListener('click', function () {
-//     noteLabelCenter(relative_center, relative_center_mas);
-//     noteColorCenter();
-//     console.log("YES");
-// });
-
 //расскрашивание клавиш
 let noteColor = function () {
     for (var i = 0; i < key.length; i++) {
@@ -349,23 +303,21 @@ wholetoneButtonY.onclick = function () {
 
 //Запуск целотоновых гамм 1 и 2
 wholetoneButtonXY.onclick = function () {
-    // clearKey();
     x_circle_function('x_item', 'circle', 2, 2);
     monitor.textContent = this.dataset.symbol;
     x_item_led_boolean ^= true;
     circle_led_boolean ^= true;
-    // conflict();
 };
 
 // создаем функцию слушания клика
-let keyboard_vision_tonality_count = 12;
+// let keyboard_vision_tonality_count = 12;
 
-function tonality_sound() {
-    for (let i = 0; i < all_key_for_sound.length; i++) {
-        all_key_for_sound[i].dataset.src = array_of_nodelist[i + 12].src;
-    }
-}
-tonality_sound();
+// function tonality_sound() {
+//     for (let i = 0; i < all_key_for_sound.length; i++) {
+//         all_key_for_sound[i].dataset.src = array_of_nodelist[i + 12].src;
+//     }
+// }
+// tonality_sound();
 let button_vision_section = document.querySelector('.button_vision_section');
 
 button_vision_section.addEventListener('click', function (event) {
@@ -519,31 +471,9 @@ symmetric_3.onclick = function () {
 }
 
 
-// =================================== ВОСПРОИЗВЕДЕНИЕ ЗВУКА =================================
-function playArray(newArray, reverse, blok_chord, up_down) {
-    let list = Array.from(newArray);
-    if (reverse)(list.reverse());
-    if (up_down) {
-        for (let i = list.length - 1; i > 0; i--) {
-            list.push(list[i - 1]);
-        }
-    }
-    let audioElements = [];
-    for (let i = 0; i < list.length; i++) {
-        audioElements.push(list[i]);
-    }
-    console.log(list);
-    if (blok_chord) {
-        playMultipleAudioWithInterval(audioElements, 0);
-    } else {
-        playMultipleAudioWithInterval(audioElements, 250);
-    }
-}
-
-
 let section_for_contextmenu = document.querySelector('.section');
 section_for_contextmenu.addEventListener('contextmenu', function (event) {
-
+console.log('contextmenu');
     // let audio = new Audio(event.target.dataset.src);
     // audio.play();
     event.preventDefault(false);
@@ -576,252 +506,3 @@ play_up_down.addEventListener('click', () => {
     let all_active_keys = document.querySelectorAll('.ledON');
     playArray(all_active_keys, null, null, true);
 });
-
-
-// ======================================== audioContext =======================================
-// const context = new AudioContext();
-// const gain = new GainNode(context);
-// const delay = new DelayNode(context);
-// const source = new MediaElementAudioSourceNode(
-//     context, {
-//         mediaElement: document.querySelector('audio')
-//     });
-// gain.gain.value = 0.5;
-// source.connect(context.destination);
-// source.connect(delay);
-// delay.connect(gain);
-// gain.connect(context.destination);
-
-
-// console.log(context);
-// console.log(gain);
-// console.log(delay);
-// console.log(source);
-
-// function playAudio(audioFile) {
-//     const audioContext = new AudioContext();
-//     const reader = new FileReader();
-
-//     reader.onload = function (event) {
-//         const arrayBuffer = event.target.result;
-
-//         audioContext.decodeAudioData(arrayBuffer, function (buffer) {
-//             const source = audioContext.createBufferSource();
-//             source.buffer = buffer;
-//             source.connect(audioContext.destination);
-//             source.start();
-//         });
-//     };
-
-//     reader.readAsArrayBuffer(audioFile);
-// }
-
-// function play(audioElement) {
-//     const audioContext = new AudioContext();
-//     const source = audioContext.createMediaElementSource(audioElement);
-
-//     source.connect(audioContext.destination);
-//     audioElement.play();
-// }
-
-
-console.log(document.body.style);
-
-
-
-// const audioMemory = {};
-// let audioContext = new AudioContext();
-// let source;
-
-// function cacheAudioFile(audioFile) {
-//     return fetch(audioFile)
-//         .then(response => response.arrayBuffer())
-//         .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
-//         .then(audioBuffer => {
-//             audioMemory[audioFile] = audioBuffer;
-//         })
-//         .catch(error => {
-//             console.error('Error loading audio file:', error);
-//         });
-// }
-
-// function playCachedAudio(audioFile, startTime, stopTime) {
-//     source = audioContext.createBufferSource();
-//     source.buffer = audioMemory[audioFile];
-
-//     const gainNode = audioContext.createGain();
-//     source.connect(gainNode);
-//     gainNode.connect(audioContext.destination);
-
-//     source.start(0, startTime, stopTime - startTime);
-
-//     return source;
-// }
-
-// function stopAudioPlayback() {
-//     if (source && audioContext.state === 'running') {
-//         source.stop();
-//     }
-// }
-
-// // Управление кнопками Play и Stop
-// const playButton = document.querySelector('.play');
-// const stopButton = document.getElementById('stopButton');
-
-// playButton.addEventListener('click', () => {
-//     const audioFile = '/keyboard_v2/PIANO_BIG_FILES_192.mp3';
-//     cacheAudioFile(audioFile)
-//         .then(() => {
-//             playCachedAudio(audioFile, 55, 65); // Пример воспроизведения с 5 по 10 секунду
-//         });
-// });
-
-
-
-
-
-
-
-// const audioMemory = {};
-// let audioContext = new AudioContext();
-// let source;
-
-// function cacheAudioFile(audioFile) {
-//     return fetch(audioFile)
-//         .then(response => response.arrayBuffer())
-//         .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
-//         .then(audioBuffer => {
-//             audioMemory[audioFile] = audioBuffer;
-//         })
-//         .catch(error => {
-//             console.error('Error loading audio file:', error);
-//         });
-// }
-
-// function playSound(note) {
-//     const audioFile = '/keyboard_v2/PIANO_BIG_FILES_192.mp3'; // Замените на ваш аудиофайл с нотами пианино
-//     if (!audioMemory[audioFile]) {
-//         cacheAudioFile(audioFile)
-//             .then(() => {
-//                 playSound(note);
-//             });
-//     } else {
-//         if (source) {
-//             source.stop();
-//         }
-
-//         source = audioContext.createBufferSource();
-//         source.buffer = audioMemory[audioFile];
-
-//         const gainNode = audioContext.createGain();
-//         gainNode.gain.value = 0.5; // Громкость сэмпла
-
-//         source.connect(gainNode);
-//         gainNode.connect(audioContext.destination);
-
-//         source.start(0);
-//     }
-// }
-
-// // Обработка клавиш клавиатуры для воспроизведения звуков
-// document.addEventListener('keydown', event => {
-//     switch(event.key) {
-//         case 'c':
-//             playSound('C');
-//             break;
-//         case 'd':
-//             playSound('D');
-//             break;
-//         case 'e':
-//             playSound('E');
-//             break;
-//         case 'f':
-//             playSound('F');
-//             break;
-//         case 'g':
-//             playSound('G');
-//             break;
-//         case 'a':
-//             playSound('A');
-//             break;
-//         case 'b':
-//             playSound('B');
-//             break;
-//     }
-// });
-
-
-
-// const audioMemory = {};
-// let audioContext = new AudioContext();
-// let source;
-// const tempo = 1;
-// const attackTime = 0.1; // Время нарастания звука
-// const releaseTime = 0.3; // Время затухания звука
-
-// function cacheAudioFile(audioFile) {
-//     return fetch(audioFile)
-//         .then(response => response.arrayBuffer())
-//         .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
-//         .then(audioBuffer => {
-//             audioMemory[audioFile] = audioBuffer;
-//         })
-//         .catch(error => {
-//             console.error('Error loading audio file:', error);
-//         });
-// }
-
-// function playSound(note, startTime, duration) {
-//     const audioFile = '/keyboard_v2/PIANO_BIG_FILES_192.mp3'; // Путь к вашему аудиофайлу с нотами пианино
-//     if (!audioMemory[audioFile]) {
-//         cacheAudioFile(audioFile)
-//             .then(() => {
-//                 playSound(note, startTime, duration);
-//             });
-//     } else {
-//         if (source) {
-//             source.stop();
-//         }
-
-//         source = audioContext.createBufferSource();
-//         source.buffer = audioMemory[audioFile];
-
-//         const gainNode = audioContext.createGain();
-//         gainNode.gain.value = 0;
-
-//         source.connect(gainNode);
-//         gainNode.connect(audioContext.destination);
-
-//         const currentTime = audioContext.currentTime;
-//         gainNode.gain.linearRampToValueAtTime(0, currentTime);
-//         gainNode.gain.linearRampToValueAtTime(0.5, currentTime + attackTime);
-//         source.start(currentTime + startTime, startTime, duration / tempo);
-//         gainNode.gain.linearRampToValueAtTime(0, currentTime + startTime + duration / tempo + releaseTime);
-//     }
-// }
-
-// document.addEventListener('keydown', event => {
-//     switch(event.key) {
-//         case 'c':
-//             playSound('C', 0, 8);
-//             break;
-//         case 'd':
-//             playSound('D', 80, 8);
-//             break;
-//         case 'e':
-//             playSound('E', 120, 8);
-//             break;
-//         case 'f':
-//             playSound('F', 240, 8);
-//             break;
-//         case 'g':
-//             playSound('G', 320, 8);
-//             break;
-//         case 'a':
-//             playSound('A', 400, 8);
-//             break;
-//         case 'b':
-//             playSound('B', 480, 8);
-//             break;
-//     }
-// });
