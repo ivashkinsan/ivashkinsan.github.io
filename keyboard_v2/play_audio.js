@@ -198,12 +198,13 @@ Promise.all(loadPromises).then(buffers => {
 
 // Функция для воспроизведения аудиофайла по индексу
 let currentFileIndex = 0; 
-
+let transposeOctava = 12;
+// let transposeCount = 0;
 function playAudio(index) {
   if (index < audioBuffers.length) {
     // Создаем новый источник звука для каждого файла
     const source = audioContext.createBufferSource(); 
-    source.buffer = audioBuffers[index];
+    source.buffer = audioBuffers[index + transposeOctava];
     source.connect(audioContext.destination);
     source.start();
 
@@ -220,46 +221,43 @@ function playAudio(index) {
 
 
 // const playBtn = document.querySelector('#play');
-
+let addLedForPlay = function(elem){
+elem.classList.add('play_led');
+setTimeout(function () {
+  elem.classList.remove('play_led')
+}, 200)
+}
 let playArray = function(newArray,reverse, blok_chord, up_down){
   let arrPlay = [];
-
+  let arrElem = [];
   for(let item of newArray){
     arrPlay.push(item.dataset.key);
+    arrElem.push(item);
   }
 
   if(reverse){
-    arrPlay.reverse(); 
+    arrPlay.reverse();
+    arrElem.reverse();
   }
 
   if(up_down){
       for (let i = arrPlay.length - 1; i > 0; i--) {
         arrPlay.push(arrPlay[i - 1]);
+        arrElem.push(arrElem[i - 1]);
   }
   }
-  console.log(arrPlay);
+
   // Загрузка аудиофайлов
-  // let arrPlay = [1,3,5,6,5,3,1];
     let length = arrPlay.length
     let interval = 0;
     for(let i = 0; i < length; i++){
-        setTimeout(playAudio,interval,keybNameAndSoundFlat[arrPlay.shift()]);
+        setTimeout(playAudio,interval,keybNameAndSoundFlat[arrPlay[i]]);
+        setTimeout(addLedForPlay,interval,arrElem[i]);
         if(blok_chord){
           interval = 0;
         } else { 
           interval +=300;
         }
     }
-    // arrPlay = [1,5,10,15];
+    arrPlay = [];
 }
-// playBtn.addEventListener('click', ()=>{
-//     // Загрузка аудиофайлов
-//     let length = arrPlay.length
-//     let interval = 0;
-//     for(let i = 0; i < length; i++){
-//         setTimeout(playAudio,interval,arrPlay.shift());
-//         interval +=400;
-
-//     }
-//     arrPlay = [1,5,10,15];
-//   });

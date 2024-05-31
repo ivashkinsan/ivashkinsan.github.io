@@ -309,23 +309,13 @@ wholetoneButtonXY.onclick = function () {
     circle_led_boolean ^= true;
 };
 
-// создаем функцию слушания клика
-// let keyboard_vision_tonality_count = 12;
 
-// function tonality_sound() {
-//     for (let i = 0; i < all_key_for_sound.length; i++) {
-//         all_key_for_sound[i].dataset.src = array_of_nodelist[i + 12].src;
-//     }
-// }
-// tonality_sound();
 let button_vision_section = document.querySelector('.button_vision_section');
 
 button_vision_section.addEventListener('click', function (event) {
-
-    let el = event.target;
-    // keyboard_vision_tonality_count = Number(el.dataset.count) + 12;
-    console.log(keyboard_vision_tonality_count);
-    if (["C", "D", "E", "Gb", "Ab", "Bb"].includes(el.dataset.mas)) {
+    // transposeCount += Number(event.target.dataset.count);
+    // console.log(transposeCount);
+    if (["C", "D", "E", "Gb", "Ab", "Bb"].includes(event.target.dataset.mas)) {
         wholeToneBoolean = true;
     } else {
         wholeToneBoolean = false;
@@ -333,8 +323,6 @@ button_vision_section.addEventListener('click', function (event) {
     for (var i = 0; i < elements.length; i++) {
         elements[i].classList.remove("black_key"); //сброс со всех клавиш класса black
     }
-
-    tonality_sound();
 
     calculateMassive(five_Black[event.target.dataset.mas]);
     if (x_item_led_boolean == 1 & circle_led_boolean != 1) {
@@ -349,8 +337,6 @@ button_vision_section.addEventListener('click', function (event) {
         x_circle_function('x_item', 'circle', 2, 2);
     }
 })
-
-
 
 let set_34 = true;
 
@@ -384,14 +370,6 @@ var addClickEvent_34 = function (button, numb) {
         }
     })
 };
-
-// циклом запускаем функцию на все кнопки
-// for (var i = 0; i < buttons.length; i++) {
-//     addClickEvent(buttons[i], five_Black[i], set_34);
-// };
-
-
-
 
 // циклом запускаем функцию на все кнопки мажоры 34
 for (var i = 0; i < buttons_34.length; i++) {
@@ -473,16 +451,33 @@ symmetric_3.onclick = function () {
 
 let section_for_contextmenu = document.querySelector('.section');
 section_for_contextmenu.addEventListener('contextmenu', function (event) {
-console.log('contextmenu');
-    // let audio = new Audio(event.target.dataset.src);
-    // audio.play();
     event.preventDefault(false);
-    // event.target.classList.add('play_led')
-    // setTimeout(function () {
-    //     event.target.classList.remove('play_led')
-    // }, 200)
+    playArray([event.target]);
+    event.target.classList.add('play_led')
+    setTimeout(function () {
+        event.target.classList.remove('play_led')
+    }, 200)
 })
 
+document.addEventListener('keydown',(event)=>{
+
+let all_active_keys = document.querySelectorAll('.ledON');
+switch(event.code){
+    case 'ArrowLeft':
+        playArray(all_active_keys, null, true);
+        return;
+    case 'ArrowRight':
+        playArray(all_active_keys, null, null, true);
+        return;
+    case 'ArrowUp':
+        playArray(all_active_keys);
+        return;
+    case 'ArrowDown':
+        playArray(all_active_keys, true);
+        return;
+    
+}
+})
 
 let play_up = document.querySelector('.play_up');
 let play_down = document.querySelector('.play_down');
