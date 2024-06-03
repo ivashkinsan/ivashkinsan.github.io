@@ -1,49 +1,62 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.userInput{
+.userInput {
     height: 50px;
     width: 600px;
     font-size: 30px;
 }
 
-.row{
+.header {
+    display: flex;
+    flex-direction: row;
+}
+
+.header>.header_label {
+    margin: 0 10px;
+    text-align: center;
+}
+
+.row {
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
-.row_elem{
+
+.row_elem {
     display: flex;
     flex-direction: column;
-    
+
     font-size: 20px;
     text-align: center;
 }
 
-.winner{
+.winner {
     background-color: rgba(172, 255, 47, 0.596);
 }
 
-select{
+select {
     font-size: 20px;
     width: 70px;
     height: 50px;
 }
 
-select:disabled{
+select:disabled {
     color: black;
     border: none;
     height: 50px;
     text-align: center;
     -webkit-appearance: none;
-     -moz-appearance: none; /* Для Firefox */
-     appearance: none; /* Для других браузеров */
+    -moz-appearance: none;
+    /* Для Firefox */
+    appearance: none;
+    /* Для других браузеров */
 }
 
-.keybContainer{
+.keybContainer {
     display: flex;
     flex-direction: row;
     height: 150px;
@@ -52,22 +65,24 @@ select:disabled{
     /* border: 1px solid black; */
 }
 
-.key{
+.key {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-width: 50px;
-height: 100%;
-border: 1px solid rgb(0, 0, 0);
-border-bottom-left-radius: 5px;
-border-bottom-right-radius: 5px;
+    width: 50px;
+    height: 100%;
+    border: 1px solid rgb(0, 0, 0);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
-.white{
+
+.white {
     color: black;
 }
-.black{
+
+.black {
     width: 34px;
     height: 60%;
     margin-left: -17px;
@@ -76,11 +91,25 @@ border-bottom-right-radius: 5px;
     z-index: 2;
     color: white;
 }
-.key_label{
+
+.key_label {
     width: min-content;
     position: absolute;
     bottom: 5px;
 }
-.led_on{
+
+.led_on {
     background-color: rgb(19, 157, 148);
+}
+
+.rowElemLabel {
+    padding-top: 23.5px;
+}
+
+.rowElemLabel>div {
+    padding: 0 5px;
+    height: 50px;
+    line-height: 50px;
+    background: rgba(172, 255, 47, 0.596);
+    border: 1px solid rgba(0, 0, 0, 0.449);
 }
