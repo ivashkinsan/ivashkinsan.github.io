@@ -13,8 +13,17 @@ const inpUser = (event) => {
 }
 
 const job = {
-    name: 'Определить лад, тетрахорды и ступени',
-    row_1: {
+    root_C_ionian: {
+        content: 'C D E F G A B C',
+        stage: '1 2 3 4 5 6 7 1',
+        tetrachords: 'maj min frig TTT maj min frig maj',
+        chords: 'maj min min maj maj min dim maj',
+        seventhСhords: 'X^ Xm7 Xm7 X^ X7 Xm7 Xm7b5 X^',
+        keyboards: 'w b w b w w b w b w b w w b w b w w b w b w b w',
+        noteLabel: 'C C#/Db D D#/Eb E F F#/Gb G G#/Ab A A#/Bb B C C#/Db D D#/Eb E F F#/Gb G G#/Ab A A#/Bb B C',
+        name: 'ионийский'
+    },
+    root_E_locrian: {
         content: 'E F G A Bb C D E',
         stage: '1 b2 b3 4 #4/b5 b6 b7 1',
         tetrachords: 'frig maj min frig TTT maj min frig',
@@ -291,5 +300,5 @@ const createJob = function (inputJob) {
 }
 
 
-createJob(job.row_1);
-// localStorage.clear();
+createJob(job.root_C_ionian);
+localStorage.clear();
