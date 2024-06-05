@@ -1,3 +1,31 @@
+let name = '';
+
+function getURLParameters() {
+    const queryString = window.location.search; // Получаем строку с параметрами после "?"
+    const urlParams = new URLSearchParams(queryString);
+
+    const name = urlParams.get('name');
+    // const age = urlParams.get('age');
+
+    return { name }; // Возвращаем объект с параметрами
+    // return { name, age }; // Возвращаем объект с параметрами
+  }
+
+  // При загрузке страницы:
+  window.onload = function() {
+    const params = getURLParameters();
+    if (params.name) {
+      console.log("Имя пользователя:", params.name);
+      document.querySelector('.userName').textContent =  params.name;
+    }
+    // if (params.age) {
+    //   console.log("Возраст:", params.age);
+    // }
+  };
+
+
+
+
 const app = document.querySelector('.app');
 
 const userSaveData = {
