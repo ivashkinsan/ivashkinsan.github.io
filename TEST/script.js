@@ -49,7 +49,7 @@ const job = {
         seventhСhords: 'X^ Xm7 Xm7 X^ X7 Xm7 Xm7b5 X^',
         keyboards: 'w b w b w w b w b w b w w b w b w w b w b w b w',
         noteLabel: 'C C#/Db D D#/Eb E F F#/Gb G G#/Ab A A#/Bb B C C#/Db D D#/Eb E F F#/Gb G G#/Ab A A#/Bb B C',
-        name: 'ионийский'
+        name: 'ionian_C'
     },
     root_E_locrian: {
         content: 'E F G A Bb C D E',
@@ -59,7 +59,7 @@ const job = {
         seventhСhords: 'Xm7b5 X^ Xm7 Xm7 X^ X7 Xm7 Xm7b5',
         keyboards: 'w w b w b w b w w b w b w w b w b w b w w b w b w',
         noteLabel: 'E F F#/Gb G G#/Ab A A#/Bb B C C#/Db D D#/Eb E F F#/Gb G G#/Ab A A#/Bb B C C#/Db D D#/Eb E',
-        name: 'локрийский'
+        name: 'locrian_E'
     },
 }
 
@@ -122,7 +122,7 @@ const saveState = function (input) {
     localStorage.setItem(input.id, input.value);
 }
 
-const createSelectStage = function (input, value) {
+const createSelectStage = function (input, value, inputJob) {
 
     let optionValue = '-- 1 b2 2 b3 3 4 #4/b5 5 b6 6 b7 7';
     let optionArr = optionValue.split(' ');
@@ -136,10 +136,10 @@ const createSelectStage = function (input, value) {
         select.appendChild(option);
     }
 
-    if (window.localStorage[`createSelectStage_${input}`]) {
-        console.log(`createSelectStage_${input}`);
+    if (window.localStorage[`${inputJob.name}_stage_${input}`]) {
+        console.log(`${inputJob.name}_stage_${input}`);
         select.classList.add('winner');
-        select.value = window.localStorage[`createSelectStage_${input}`];
+        select.value = window.localStorage[`${inputJob.name}_stage_${input}`];
         select.disabled = true;
     }
 
@@ -151,7 +151,7 @@ const createSelectStage = function (input, value) {
             // e.target.parentNode.classList.add('winner');
             addCount('true');
             let storage = {};
-            storage.id = `createSelectStage_${input}`;
+            storage.id = `${inputJob.name}_stage_${input}`;
             storage.value = value;
             saveState(storage);
         } else {
@@ -314,10 +314,10 @@ const createJob = function (inputJob) {
             rowElemChild.textContent = arrForOf[i - 1];
 
             rowElem.appendChild(rowElemChild);
-            rowElem.append(createSelectStage(i - 1, rowElem.dataset.valueStage));
-            rowElem.append(createSelectTetrachords(i - 1, rowElem.dataset.valueTetrachord));
-            rowElem.append(createSelectChords(i - 1, rowElem.dataset.valueChord));
-            rowElem.append(createSeventhChords(i - 1, rowElem.dataset.valueSeventhСhords));
+            rowElem.append(createSelectStage(i - 1, rowElem.dataset.valueStage,inputJob));
+            rowElem.append(createSelectTetrachords(i - 1, rowElem.dataset.valueTetrachord,inputJob));
+            rowElem.append(createSelectChords(i - 1, rowElem.dataset.valueChord,inputJob));
+            rowElem.append(createSeventhChords(i - 1, rowElem.dataset.valueSeventhСhords,inputJob));
             newRow.appendChild(rowElem);
         }
 
