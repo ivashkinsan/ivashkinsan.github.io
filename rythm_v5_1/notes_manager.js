@@ -37,7 +37,7 @@ class Note {
         leftHandle.addEventListener('mousedown', (eventMSD) => {
             eventMSD.preventDefault();
             eventMSD.stopPropagation();
-            this.startResizing(eventMSD, 'left',);
+            this.startResizing(eventMSD, 'left', );
         });
 
         this.handle.leftHandle = leftHandle;
@@ -51,7 +51,7 @@ class Note {
         righttHandle.addEventListener('mousedown', (eventMSD) => {
             eventMSD.preventDefault();
             eventMSD.stopPropagation();
-            this.startResizing(eventMSD, 'right',);
+            this.startResizing(eventMSD, 'right', );
         });
 
         this.handle.rightHandle = righttHandle;
@@ -66,7 +66,7 @@ class Note {
         left_double_arrow.addEventListener('mousedown', (eventMSD) => {
             eventMSD.preventDefault();
             eventMSD.stopPropagation();
-            this.startResizing(eventMSD, 'left_right',);
+            this.startResizing(eventMSD, 'left_right', );
         });
 
         this.handle.leftRightHandle = left_double_arrow;
@@ -74,12 +74,12 @@ class Note {
     }
     findPrevNextForShowHandle() {
         // если правый край превиоус элемента равен левому краю this элемента
-        if (bgMatrix.idStack[this.previousElemId]
-            && bgMatrix.idStack[this.previousElemId]._rightSidePosition == this._leftSidePosition
+        if (bgMatrix.idStack[this.previousElemId] &&
+            bgMatrix.idStack[this.previousElemId]._rightSidePosition == this._leftSidePosition
         ) { // тогда добавить возможность изменения двух блоков
             this.handle.leftRightHandle.classList.remove('display_none');
-            if (bgMatrix.idStack[this.previousElemId].div.classList.contains('sixteenthNote_16')
-                && this.div.classList.contains('sixteenthNote_16')
+            if (bgMatrix.idStack[this.previousElemId].div.classList.contains('sixteenthNote_16') &&
+                this.div.classList.contains('sixteenthNote_16')
             ) { // если превиоус элемент 16-ая нота скрыть возможность
                 this.handle.leftRightHandle.classList.add('display_none');
             }
@@ -89,10 +89,10 @@ class Note {
         }
 
         // если правый край превиоус элемента равен левому и оба элемента 16-ые ноты
-        if (bgMatrix.idStack[this.previousElemId]
-            && bgMatrix.idStack[this.previousElemId]._rightSidePosition == this._leftSidePosition
-            && bgMatrix.idStack[this.previousElemId].div.classList.contains('sixteenthNote_16')
-            && bgMatrix.idStack[this.id].div.classList.contains('sixteenthNote_16')
+        if (bgMatrix.idStack[this.previousElemId] &&
+            bgMatrix.idStack[this.previousElemId]._rightSidePosition == this._leftSidePosition &&
+            bgMatrix.idStack[this.previousElemId].div.classList.contains('sixteenthNote_16') &&
+            bgMatrix.idStack[this.id].div.classList.contains('sixteenthNote_16')
         ) {
             // console.log('16 + 16')
             // присвоить true для, для сокрытия стрелочного курсора и блокировки растягивания левой стороны
@@ -101,10 +101,10 @@ class Note {
             this.previousElemIsSixteenthNote_16 = false;
         }
         // если левый край next элемента равен правому this и оба элемента 16-ые ноты
-        if (bgMatrix.idStack[this.nextElemId]
-            && bgMatrix.idStack[this.nextElemId]._leftSidePosition == this._rightSidePosition
-            && bgMatrix.idStack[this.nextElemId].div.classList.contains('sixteenthNote_16')
-            && bgMatrix.idStack[this.id].div.classList.contains('sixteenthNote_16')
+        if (bgMatrix.idStack[this.nextElemId] &&
+            bgMatrix.idStack[this.nextElemId]._leftSidePosition == this._rightSidePosition &&
+            bgMatrix.idStack[this.nextElemId].div.classList.contains('sixteenthNote_16') &&
+            bgMatrix.idStack[this.id].div.classList.contains('sixteenthNote_16')
         ) {
             // console.log('16 + 16')
             // присвоить true для, для сокрытия стрелочного курсора и блокировки растягивания правой стороны
@@ -184,9 +184,10 @@ class Note {
         let percentForTouchLeftRight = (rect.width / 100 * 20) // 20% процентов площади для отображения стрелок курсора
         let x = event.clientX - rect.left;
         let y = event.clientY - rect.top;
+        // prettier-ignore
         let nextElemLeftSidePosition = bgMatrix?.idStack[this.nextElemId]?._leftSidePosition;
         let previousElemRightSidePosition = bgMatrix?.idStack[this.previousElemId]?._rightSidePosition;
-        
+
         // правая сторона элемента
         if ((rect.width - x) < percentForTouchLeftRight && !this.nextElemIsSixteenthNote_16 && this._class != 'sixteenthNote_16') {
             if (rect.right - bgMatrix.leftAppSide == nextElemLeftSidePosition || rect.right == bgMatrix.rightAppSide) {
@@ -205,16 +206,16 @@ class Note {
             } else {
                 this.div.style.cursor = 'url(\'/cursor/resizewesteast_48.svg\')24 24, auto';
             }
-        } else if ( this._class == 'sixteenthNote_16' ){
-            if(nextElemLeftSidePosition == this._rightSidePosition && (rect.width - x) < percentForTouchLeftRight
-            || previousElemRightSidePosition == this._leftSidePosition && x < percentForTouchLeftRight
-            ){
+        } else if (this._class == 'sixteenthNote_16') {
+            if (nextElemLeftSidePosition == this._rightSidePosition && (rect.width - x) < percentForTouchLeftRight ||
+                previousElemRightSidePosition == this._leftSidePosition && x < percentForTouchLeftRight
+            ) {
                 this.div.style.cursor = 'pointer';
-            } else if((rect.width - x) < percentForTouchLeftRight){ // правая сторона элемента
+            } else if ((rect.width - x) < percentForTouchLeftRight) { // правая сторона элемента
                 this.div.style.cursor = 'url(\'/cursor/resizeeast_48.svg\')24 24, auto';
-            } else if(x < percentForTouchLeftRight){ // левая сторона элемента
+            } else if (x < percentForTouchLeftRight) { // левая сторона элемента
                 this.div.style.cursor = 'url(\'/cursor/resizewest_48.svg\')24 24, auto';
-            }            
+            }
         } else {
             this.div.style.cursor = 'pointer';
         }
@@ -231,9 +232,9 @@ class Note {
 
             // три состояния и функции курсора над элементом
             if ((rect.width - x) < percentForTouchLeftRight && !this.nextElemIsSixteenthNote_16) {
-                this.startResizing(event, 'right',);
+                this.startResizing(event, 'right', );
             } else if (x < percentForTouchLeftRight && !this.previousElemIsSixteenthNote_16) {
-                this.startResizing(event, 'left',);
+                this.startResizing(event, 'left', );
             } else {
                 if (event.button == 0) {
                     this.isPause = this._isPause === true ? false : true;
@@ -241,7 +242,9 @@ class Note {
             }
         })
 
-        this.div.addEventListener('mousemove', (event) => { this.findCursorPosition(event) });
+        this.div.addEventListener('mousemove', (event) => {
+            this.findCursorPosition(event)
+        });
     }
 
     addTouchEventForPauseAndResizeTransform() {
@@ -258,11 +261,11 @@ class Note {
             // console.log((this.width - touchX_inElem) < percentForTouchLeftRight);
             if ((this.width - touchX_inElem) < percentForTouchLeftRight) {
                 this.magicNoteOrPause();
-                this.startResizing(event, 'right',);
+                this.startResizing(event, 'right', );
             }
             if (touchX_inElem < percentForTouchLeftRight) {
                 this.magicNoteOrPause();
-                this.startResizing(event, 'left',);
+                this.startResizing(event, 'left', );
             }
             event.preventDefault();
             event.stopPropagation();
@@ -288,9 +291,9 @@ class Note {
     delElemInBigElem() {
         for (let key in bgMatrix.idStack) {
             let item = bgMatrix.idStack[key];
-            if (item._leftSidePosition >= this._leftSidePosition
-                && item._leftSidePosition < this._rightSidePosition
-                && item._rightSidePosition <= this._rightSidePosition
+            if (item._leftSidePosition >= this._leftSidePosition &&
+                item._leftSidePosition < this._rightSidePosition &&
+                item._rightSidePosition <= this._rightSidePosition
             ) {
                 console.log('delElemInBigElem');
                 item.div.remove();
@@ -302,16 +305,16 @@ class Note {
     ifBorderCollapse_resize() {
         if (bgMatrix.idStack[this.previousElemId]) {
             if (
-                bgMatrix.idStack[this.previousElemId]._rightSidePosition > this._leftSidePosition
-                && bgMatrix.idStack[this.previousElemId]._leftSidePosition != this._leftSidePosition
+                bgMatrix.idStack[this.previousElemId]._rightSidePosition > this._leftSidePosition &&
+                bgMatrix.idStack[this.previousElemId]._leftSidePosition != this._leftSidePosition
             ) {
                 bgMatrix.idStack[this.previousElemId].width = bgMatrix.idStack[this.previousElemId]._width - (bgMatrix.idStack[this.previousElemId]._rightSidePosition - this._leftSidePosition);
                 bgMatrix.idStack[this.previousElemId].hameleon();
                 bgMatrix.researchAllNextPrevElem();
                 console.log('ifBorderCollapse_resize previousElem');
             } else if (
-                bgMatrix.idStack[this.previousElemId]._leftSidePosition == this._leftSidePosition
-                && this._width < bgMatrix.idStack[this.previousElemId]._width
+                bgMatrix.idStack[this.previousElemId]._leftSidePosition == this._leftSidePosition &&
+                this._width < bgMatrix.idStack[this.previousElemId]._width
             ) {
                 bgMatrix.idStack[this.previousElemId].leftSidePosition = bgMatrix.idStack[this.previousElemId]._leftSidePosition + this._width;
                 bgMatrix.idStack[this.previousElemId].width = bgMatrix.idStack[this.previousElemId]._width - this._width;
@@ -323,8 +326,8 @@ class Note {
         }
         if (bgMatrix.idStack[this.nextElemId]) {
             if (
-                this._rightSidePosition > bgMatrix.idStack[this.nextElemId]._leftSidePosition
-                && bgMatrix.idStack[this.nextElemId]._rightSidePosition > this._rightSidePosition
+                this._rightSidePosition > bgMatrix.idStack[this.nextElemId]._leftSidePosition &&
+                bgMatrix.idStack[this.nextElemId]._rightSidePosition > this._rightSidePosition
             ) {
                 let diff = this._rightSidePosition - bgMatrix.idStack[this.nextElemId]._leftSidePosition;
                 let newWidth = bgMatrix.idStack[this.nextElemId]._width - diff;
@@ -347,15 +350,25 @@ class Note {
         if (eventMSD.touches) {
 
             // this.startX = eventMSD.touches ? eventMSD.touches[0].clientX : undefined;
-            if (direction == 'right') { this.startX = rect.right };
-            if (direction == 'left') { this.startX = rect.left };
+            if (direction == 'right') {
+                this.startX = rect.right
+            };
+            if (direction == 'left') {
+                this.startX = rect.left
+            };
             // console.log([this.startX,left, right]);
         } else {
 
             // this.startX = eventMSD.clientX;
-            if (direction == 'right') { this.startX = rect.right };
-            if (direction == 'left') { this.startX = rect.left };
-            if (direction == 'left_right') { this.startX = rect.left };
+            if (direction == 'right') {
+                this.startX = rect.right
+            };
+            if (direction == 'left') {
+                this.startX = rect.left
+            };
+            if (direction == 'left_right') {
+                this.startX = rect.left
+            };
         }
 
         this.startWidth = this._width;
@@ -376,9 +389,11 @@ class Note {
     resize(event) {
         // event.preventDefault();
         // event.stopPropagation();
+        
         if (event.touches) {
             event = event.touches[0];
         }
+        console.log(this.startWidth + event.clientX - this.startX);
         if (this.direction === 'right') {
             let newWidth = Math.min(Math.max(this.startWidth + event.clientX - this.startX, bgMatrix.minWidth), bgMatrix.maxWidth);
             // console.log(bgMatrix.idStack[this.nextElemId]);
@@ -498,8 +513,8 @@ class Note {
         this.div.style.height = this._width + 'px';
     }
     /**
-    * @param {string} value
-    */
+     * @param {string} value
+     */
     set leftSidePosition(value) {
         this._leftSidePosition = value;
         this.div.style.left = this._leftSidePosition + 'px';

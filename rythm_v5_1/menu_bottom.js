@@ -134,7 +134,7 @@ class Metronome { // создание нового класса
         this.currentBeatInBar = 0; // с указанного положения в такте
         this.nextNoteTime = this.audioContext.currentTime + 0.05; // добавление к текущему времени ???????
         this.intervalID = setInterval(() => this.scheduler(), this.lookahead);
-        // строка выше запуск метода sheduler у метронома с добавлением интервала lookahead = 25
+        // строка выше // запуск метода sheduler у метронома с добавлением интервала lookahead = 25
     }
     // метод в конструкторе, где this - класс Metronome
     stop() {
