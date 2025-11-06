@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard Workout</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <header class="app-header">
+            <h1>Keyboard Workout</h1>
+        </header>
+        <main class="app-main">
+            <div id="controls-container">
+                <div class="control-group">
+                    <label for="start-octave-input">Start Octave:</label>
+                    <input type="number" id="start-octave-input" value="2" min="0" max="6">
+                </div>
+                <div class="control-group">
+                    <label for="num-octaves-input">Num Octaves:</label>
+                    <input type="number" id="num-octaves-input" value="3" min="1" max="5">
+                </div>
+                <div class="control-group">
+                    <label for="root-note-select">Root Note:</label>
+                    <select id="root-note-select"></select>
+                </div>
+                <div class="control-group">
+                    <label for="scale-select">Scale:</label>
+                    <select id="scale-select"></select>
+                </div>
+                <div class="control-group">
+                    <label for="chord-select">Chord:</label>
+                    <select id="chord-select"></select>
+                </div>
+            </div>
+            <div id="keyboard-container"></div>
+            <div id="info-display">
+                <div id="playback-controls">
+                    <button id="play_all">Play All</button>
+                    <button id="play_down">Play Down</button>
+                    <button id="play_up">Play Up</button>
+                    <button id="play_random">Play Random</button>
+                </div>
+                <div id="notes-info"></div>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="script.js"></script>
+</body>
+</html>

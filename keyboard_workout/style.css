@@ -1,0 +1,187 @@
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#app {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.app-header h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #00aaff;
+    margin: 0;
+}
+
+.app-main {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+#controls-container {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.control-group {
+    margin-bottom: 15px;
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.control-group select,
+.control-group input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #2c2c2c;
+    color: #eee;
+    border: 1px solid #444;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+#keyboard-container {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+}
+
+#info-display {
+    grid-column: 1 / -1;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 100px;
+}
+
+#info-display h2 {
+    margin-top: 0;
+    color: #00aaff;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 10px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #2c2c2c;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.info-item span:first-child {
+    font-weight: bold;
+    color: #00aaff;
+    font-size: 1.1rem;
+}
+
+#keyboard-container svg {
+    height: auto;
+    max-height: 320px;
+}
+
+.key {
+    cursor: pointer;
+}
+
+.white-key {
+    fill: #f5f5f5;
+    stroke: #333;
+    stroke-width: 1;
+    transition: fill 0.1s ease;
+}
+
+.key:hover .white-key {
+    fill: #d0eaff;
+}
+
+.black-key {
+    fill: #222;
+    stroke: #000;
+    stroke-width: 1;
+    transition: fill 0.1s ease;
+}
+
+.key:hover .black-key {
+    fill: #4dabf7;
+}
+
+.key-active .white-key {
+    fill: #00aaff;
+}
+
+.key-active .black-key {
+    fill: #4dabf7;
+    stroke: #00aaff;
+}
+
+.key-text {
+    font-size: 14px;
+    font-weight: bold;
+    text-anchor: middle;
+    fill: #333;
+    pointer-events: none;
+    user-select: none;
+}
+
+.black-key-text {
+    fill: #eee;
+    font-size: 12px;
+}
+
+.key-active .key-text {
+    fill: #000;
+}
+
+.key-active .black-key-text {
+    fill: #fff;
+}
+
+#playback-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#playback-controls button {
+    padding: 10px 15px;
+    background-color: #00aaff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+#playback-controls button:hover {
+    background-color: #0077cc;
+}
