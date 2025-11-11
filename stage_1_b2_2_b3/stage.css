@@ -25,13 +25,75 @@ body {
     cursor: pointer;
     font-size: 16px;
     font-weight: 500;
-    margin-bottom: 24px; /* Отступ от сетки */
     transition: background-color 0.3s ease;
 }
 
 .reset-button:hover {
     background-color: #c0392b; /* Более яркий красный при наведении */
 }
+
+/* --- Новые стили для верхних кнопок и истории --- */
+
+.top-buttons-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 24px; /* Отступ от сетки */
+}
+
+.icon-button {
+    background-color: #333;
+    color: #E0E0E0;
+    border: 1px solid #555;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.icon-button:hover {
+    background-color: #444;
+    border-color: #777;
+}
+
+.icon-button svg {
+    width: 22px;
+    height: 22px;
+}
+
+#history-list-container {
+    margin-top: 20px;
+    max-height: 40vh;
+    overflow-y: auto;
+    text-align: left;
+}
+
+.history-item {
+    background-color: #2D2D2D;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    border: 1px solid #444;
+}
+
+.history-item p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+#history-close-btn {
+    margin-top: 20px;
+    background-color: #4A90E2;
+}
+
+#history-close-btn:hover {
+    background-color: #5aa1f2;
+}
+
+/* --- Конец новых стилей --- */
 
 
 /* Главный контейнер для всех тональностей */
@@ -137,6 +199,18 @@ select:disabled {
     opacity: 0.8;
     color: #A8D5B5;
     cursor: not-allowed;
+}
+
+/* Стиль для неверно выбранных ответов (временный) */
+.answer_red {
+    border-color: #c0392b;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
 }
 
 /* --- Стили для прогресс-бара --- */
