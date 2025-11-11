@@ -11,6 +11,28 @@
 <body>
     <button id="reset-progress-btn" class="reset-button">Сбросить прогресс</button>
     <div class="app"></div>
+
+    <!-- Прогресс-бар -->
+    <div class="progress-container">
+        <div id="progress-bar" class="progress-bar"></div>
+    </div>
+
+    <!-- Модальное окно завершения -->
+    <div id="completion-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Поздравляем!</h2>
+            <p>Вы успешно завершили все задания.</p>
+            <p><strong>Время завершения:</strong> <span id="completion-time-element"></span></p>
+            <p><strong>Затраченное время:</strong> <span id="time-spent-element"></span></p>
+            <div class="stats-grid">
+                <p><strong>Всего попыток:</strong> <span id="total-attempts-element"></span></p>
+                <p><strong>Неудачных:</strong> <span id="failed-attempts-element"></span></p>
+                <p><strong>Качество:</strong> <span id="quality-element"></span></p>
+            </div>
+            <button id="modal-reset-btn" class="reset-button">Начать заново</button>
+        </div>
+    </div>
+
     <script src="main.js" type="module"></script>
 </body>
 

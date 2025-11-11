@@ -139,6 +139,80 @@ select:disabled {
     cursor: not-allowed;
 }
 
+/* --- Стили для прогресс-бара --- */
+.progress-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: #2D2D2D;
+    border-top: 1px solid #444;
+}
+
+.progress-bar {
+    width: 0%; /* Начальная ширина */
+    height: 100%;
+    background-color: #4A90E2;
+    transition: width 0.5s ease-out;
+}
+
+/* --- Стили для модального окна --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none; /* Скрыто по умолчанию */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #1E1E1E;
+    padding: 30px 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    border: 1px solid #333;
+    max-width: 400px;
+}
+
+.modal-content h2 {
+    color: #4A90E2;
+    margin-top: 0;
+}
+
+.modal-content p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.stats-grid p {
+    margin: 0;
+}
+
+#modal-reset-btn {
+    margin-top: 20px;
+    background-color: #4A90E2;
+}
+
+#modal-reset-btn:hover {
+    background-color: #5aa1f2;
+}
+
+
 /* Адаптивность */
 @media screen and (max-width: 980px) {
     .row_contain {
