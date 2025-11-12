@@ -8,6 +8,7 @@ const resetButton = document.getElementById('reset-progress-btn');
 const progressBar = document.getElementById('progress-bar');
 const chordTypeSelect = document.getElementById('chord-type-select');
 const tableTitle = document.getElementById('table-title');
+// Модальное окно завершения
 const completionModal = document.getElementById('completion-modal');
 const completionTimeElement = document.getElementById('completion-time-element');
 const timeSpentElement = document.getElementById('time-spent-element');
@@ -15,11 +16,18 @@ const modalResetButton = document.getElementById('modal-reset-btn');
 const totalAttemptsElement = document.getElementById('total-attempts-element');
 const failedAttemptsElement = document.getElementById('failed-attempts-element');
 const qualityElement = document.getElementById('quality-element');
+// Модальное окно истории
 const historyButton = document.getElementById('history-btn');
 const historyModal = document.getElementById('history-modal');
 const historyListContainer = document.getElementById('history-list-container');
 const historyCloseButton = document.getElementById('history-close-btn');
 const historyTitle = document.getElementById('history-title');
+// Модальное окно общей статистики
+const overallStatsBtn = document.getElementById('overall-stats-btn');
+const overallStatsModal = document.getElementById('overall-stats-modal');
+const overallStatsContent = document.getElementById('overall-stats-content');
+const overallStatsCloseBtn = document.getElementById('overall-stats-close-btn');
+
 
 // --- Глобальные переменные ---
 let state = {};
@@ -50,7 +58,7 @@ function loadExercises() {
     HISTORY_STORAGE_KEY = `seventh_chords_history_${currentChordKey}`;
 
     resetStateForNewChordType();
-    renderApp(appElement, currentExercises, dataset.degrees); // Передаем ступени в renderApp
+    renderApp(appElement, currentExercises, dataset.degrees);
     loadState();
 }
 
@@ -67,7 +75,7 @@ function populateChordSelector() {
 
 function resetStateForNewChordType() {
     state = {
-        solvedAnswers: [], // Теперь здесь будут храниться стабильные ID
+        solvedAnswers: [],
         startTime: new Date().getTime(),
         completionTime: null,
         totalAttempts: 0,
@@ -84,7 +92,6 @@ function loadState() {
         state.startTime = new Date().getTime();
     }
     
-    // Восстанавливаем решенные упражнения по их стабильным ID
     currentExercises.forEach((exercise, index) => {
         if (state.solvedAnswers.includes(exercise.id)) {
             const correctAnswer = calculateChord(exercise.given_note, exercise.given_degree, currentIntervalMap);
@@ -161,9 +168,7 @@ function showCompletionModal() {
 }
 
 function showHistoryModal() {
-    // Устанавливаем заголовок в соответствии с текущим типом аккорда
     historyTitle.textContent = `История: ${chordDatasets[currentChordKey].name}`;
-
     const history = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY)) || [];
     if (history.length === 0) {
         historyListContainer.innerHTML = '<p>История пуста.</p>';
@@ -183,13 +188,42 @@ function showHistoryModal() {
     historyModal.style.display = 'flex';
 }
 
+function calculateAndShowOverallStats() {
+    let totalSolved = 0;
+    let totalPossible = 0;
+    let statsHTML = '<ul>';
+
+    for (const key in chordDatasets) {
+        const dataset = chordDatasets[key];
+        const storageKey = `seventh_chords_state_${key}`;
+        const savedState = JSON.parse(localStorage.getItem(storageKey));
+        
+        const solvedCount = savedState ? savedState.solvedAnswers.length : 0;
+        const possibleCount = dataset.exercises.length;
+        
+        totalSolved += solvedCount;
+        totalPossible += possibleCount;
+        
+        const percentage = possibleCount > 0 ? ((solvedCount / possibleCount) * 100).toFixed(1) : 0;
+        
+        statsHTML += `<li><strong>${dataset.name}:</strong> ${solvedCount} / ${possibleCount} (${percentage}%)</li>`;
+    }
+
+    const overallPercentage = totalPossible > 0 ? ((totalSolved / totalPossible) * 100).toFixed(1) : 0;
+    statsHTML += `</ul><hr><p><strong>Всего решено: ${totalSolved} / ${totalPossible} (${overallPercentage}%)</strong></p>`;
+
+    overallStatsContent.innerHTML = statsHTML;
+    overallStatsModal.style.display = 'flex';
+}
+
+
 // --- Обработчики событий ---
 
 appElement.addEventListener('change', (event) => {
     const target = event.target;
     if (target.tagName !== 'SELECT' || target.disabled) return;
 
-    const exerciseId = parseInt(target.dataset.exerciseId, 10); // Это временный индекс в перемешанном массиве
+    const exerciseId = parseInt(target.dataset.exerciseId, 10);
     const exerciseCol = appElement.querySelector(`.exercise-column[data-exercise-id="${exerciseId}"]`);
     const selects = exerciseCol.querySelectorAll('select');
 
@@ -213,7 +247,6 @@ appElement.addEventListener('change', (event) => {
             s.disabled = true;
             s.classList.add('answer_green');
         });
-        // Сохраняем стабильный ID, а не индекс
         if (!state.solvedAnswers.includes(exercise.id)) {
             state.solvedAnswers.push(exercise.id);
         }
@@ -238,7 +271,11 @@ resetButton.addEventListener('click', resetCurrentProgress);
 modalResetButton.addEventListener('click', resetCurrentProgress);
 historyButton.addEventListener('click', showHistoryModal);
 historyCloseButton.addEventListener('click', () => historyModal.style.display = 'none');
-[completionModal, historyModal].forEach(modal => {
+overallStatsBtn.addEventListener('click', calculateAndShowOverallStats);
+overallStatsCloseBtn.addEventListener('click', () => overallStatsModal.style.display = 'none');
+
+// Закрытие модальных окон по клику на оверлей
+[completionModal, historyModal, overallStatsModal].forEach(modal => {
     modal.addEventListener('click', (event) => {
         if (event.target === modal) modal.style.display = 'none';
     });
@@ -259,7 +296,6 @@ function activateCheat() {
     state.completionTime = new Date().getTime();
     state.isCompleted = true;
     
-    // Заполняем state.solvedAnswers всеми стабильными ID
     state.solvedAnswers = currentExercises.map(ex => ex.id);
 
     saveResultToHistory();

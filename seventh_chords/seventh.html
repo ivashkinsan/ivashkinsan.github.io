@@ -24,8 +24,11 @@
             <select id="chord-type-select"></select>
         </div>
         <button id="reset-progress-btn" class="reset-button">Сбросить прогресс</button>
-        <button id="history-btn" class="icon-button" title="Показать историю">
+        <button id="history-btn" class="icon-button" title="История сессий">
             $
+        </button>
+        <button id="overall-stats-btn" class="icon-button" title="Общая статистика">
+            i
         </button>
     </div>
     <h2 id="table-title"></h2>
@@ -60,6 +63,17 @@
                 <!-- Сюда будет добавляться история -->
             </div>
             <button id="history-close-btn" class="reset-button">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно общей статистики -->
+    <div id="overall-stats-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Общая статистика</h2>
+            <div id="overall-stats-content">
+                <!-- Сюда будет добавляться общая статистика -->
+            </div>
+            <button id="overall-stats-close-btn" class="reset-button">Закрыть</button>
         </div>
     </div>
 
