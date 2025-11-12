@@ -82,62 +82,6 @@ select:hover { background-color: #3a3a3a; }
 select:focus { outline: 2px solid #4A90E2; outline-offset: -2px; position: relative; z-index: 1; }
 option { background-color: #2D2D2D; color: #E0E0E0; }
 
-/* --- Мобильный вид: Вертикальный список --- */
-@media screen and (max-width: 768px) {
-    .app {
-        flex-direction: column;
-        overflow-x: hidden;
-        border: none;
-        background-color: transparent;
-        box-shadow: none;
-    }
-
-    .header-column {
-        display: none; /* Скрываем липкий заголовок */
-    }
-
-    .exercise-column {
-        flex-direction: row;
-        flex-wrap: wrap;
-        border: 1px solid #333;
-        border-radius: 8px;
-        margin-bottom: 16px;
-        padding: 10px;
-        background-color: #1E1E1E;
-    }
-
-    .exercise-cell {
-        width: 50%;
-        height: auto;
-        min-height: 40px;
-        border: none;
-        justify-content: flex-start;
-        gap: 10px;
-        font-size: 22px;
-    }
-
-    .exercise-cell::before {
-        content: attr(data-label) ":"; /* Используем data-label */
-        color: #4A90E2;
-        font-family: "Opus_chords_std";
-        font-size: 24px;
-        min-width: 25px; /* для выравнивания двоеточия */
-        text-align: right;
-    }
-
-    .input-cell {
-        padding: 5px 0;
-    }
-
-    select {
-        width: auto;
-        flex-grow: 1;
-        height: 35px;
-        border: 1px solid #444;
-        border-radius: 6px;
-    }
-}
-
 /* --- Стили состояний (общие для обоих видов) --- */
 .answer_green { background-color: #2E4637 !important; color: #A8D5B5 !important; }
 select:disabled { opacity: 0.9; color: #A8D5B5; cursor: not-allowed; }
